@@ -1,0 +1,2 @@
+import {registerHooks} from 'node:module';import {createHash} from 'node:crypto';
+registerHooks({load(url,context,next){const r=next(url,context);if(url.endsWith('/middle-right-whole-cpu.mjs')){const source=String(r.source);if(createHash('sha256').update(source).digest('hex')!=="626b957308e525a86518095c90a86b6ec98d5e7868d5b418e254390a89b13812")throw Error('source SHA changed');return {...r,source:source.replace("out='../r157-resume-20261030-evidence/zhongyou-whole-closure'",'out='+"\"/workspace/scratch/02a8023d1a85/zhongyou-delivery-evidence-0127/cpu\"")};}return r;}});

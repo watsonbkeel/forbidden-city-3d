@@ -1,0 +1,144 @@
+{
+  "baseline": "678b90493fc637a1bbc05347c48d6c6d43989a50",
+  "oldRuntimePackage": "323aa691",
+  "evidenceDirectory": "/workspace/scratch/02a8023d1a85/b-recheck-evidence-0318",
+  "scope": "candidate local module plus exact shared patch; not yet integrated or in existing ZIP",
+  "originalWorld": {
+    "arrived": 24,
+    "routes": 24,
+    "assertion": "FAILED 8 Taihemen foot-ground checks",
+    "peakMeters": 2.2842437368730413
+  },
+  "candidateWorld": {
+    "arrived": 24,
+    "routes": 24,
+    "frames": 16730,
+    "peakMeters": 0.24436942039504572,
+    "baohe16ResultsUnchanged": true,
+    "negatives": [
+      {
+        "name": "photographed-central-barrier",
+        "blocked": true
+      },
+      {
+        "name": "west-wall-inner-flank",
+        "blocked": true
+      },
+      {
+        "name": "west-wall-outer-flank",
+        "blocked": true
+      }
+    ],
+    "headProbes": [
+      {
+        "name": "taihemen-through-hall",
+        "bodyClear": true,
+        "nearHeadTriangles": 0
+      },
+      {
+        "name": "baohe-west-door",
+        "bodyClear": true,
+        "nearHeadTriangles": 0
+      },
+      {
+        "name": "baohe-east-door",
+        "bodyClear": true,
+        "nearHeadTriangles": 0
+      },
+      {
+        "name": "baohe-east-veranda",
+        "bodyClear": true,
+        "nearHeadTriangles": 0
+      },
+      {
+        "name": "baohe-west-veranda",
+        "bodyClear": true,
+        "nearHeadTriangles": 0
+      }
+    ]
+  },
+  "focusedTests": {
+    "baseline": 20,
+    "candidate": 33,
+    "fail": 0
+  },
+  "candidateSourceSha256": {
+    "src/scene/PalaceBuilder.js": "cb30cfbe9d4b0271906c0188438e9aed9da4eba4475c74d7e2d3fc7e0e385574",
+    "src/utils/Collision.js": "714c597e97f1f8dd7c22bde8705ab30f95956b88dbfdca8ec01bdf0ba10302b3",
+    "src/scene/palace/TaihemenStairContact.js": "44917a8936a8e88ed76fb417e83fb402c7dd6fd98544b56ca07c48109c0f281f"
+  },
+  "files": [
+    {
+      "file": "components-current.tap",
+      "bytes": 5151,
+      "sha256": "829b9f0a7dc9b65a6d88ab59d27f6b433197a0bb4b67467eb9a7f2b424248c80"
+    },
+    {
+      "file": "current-world.tap",
+      "bytes": 68698,
+      "sha256": "d50451c0f3047c46e48b1b47027cdadead087cc3465006296d12faf79e55ef0c"
+    },
+    {
+      "file": "current-world.json",
+      "bytes": 48442,
+      "sha256": "1f7816c4c739b564f957b7af61f3e4eeb7869e2eec466af635cf45d5c8a4c7cb"
+    },
+    {
+      "file": "current-world.json.ndjson",
+      "bytes": 2527772,
+      "sha256": "cb56c36fe120c7a9b36687bae7300df96da8f75ae0f5cc4bc943a2a2601c61cc"
+    },
+    {
+      "file": "stair-contact-red.tap",
+      "bytes": 4341,
+      "sha256": "bc6df67dfd4902d0680c55a3baeafc359de3197448018715de11a31cd6ecc466"
+    },
+    {
+      "file": "stair-contact-green-1.tap",
+      "bytes": 2743,
+      "sha256": "138c2d57edd39702f3b3b8e9a888203acaab1eb4de4790f98b65ead37018435d"
+    },
+    {
+      "file": "stair-contact-green-2.tap",
+      "bytes": 1016,
+      "sha256": "432e906e484b0d482356b97243abddec8a4d4431cce5f02f0c1f5921d79b581e"
+    },
+    {
+      "file": "contact-regressions-final.tap",
+      "bytes": 8208,
+      "sha256": "3f94462ab129e4d425bfe92664c652248230d7768876035ecb3206f2843f0759"
+    },
+    {
+      "file": "current-world-candidate.tap",
+      "bytes": 3568,
+      "sha256": "739bb076a63bc404a7e1ff223bcc09f65a6e8764bd1471d74b2e22e97ddc47ee"
+    },
+    {
+      "file": "current-world-candidate.json",
+      "bytes": 48338,
+      "sha256": "da39c5ef31933bbb0b82f5dabbd3c43f2e875adf33eeaab767cbaca0edbbe695"
+    },
+    {
+      "file": "current-world-candidate.json.ndjson",
+      "bytes": 2524525,
+      "sha256": "0e55634a6f0c7f80e09fcc9e4ee4da67e4a8fdc9c6aca98f8646f7832cf41a18"
+    },
+    {
+      "file": "CANDIDATE-SCOPE.json",
+      "bytes": 417,
+      "sha256": "878a771307ea801e3d7a37562653bc92bcd9d9921d94367558f7b42f25aff816"
+    },
+    {
+      "file": "lions-current/taihemen-lion-east.png",
+      "bytes": 54393,
+      "sha256": "fb68ce8bf14c3d3d3bb55bab4c79a301c66374aeb8b5b46b5be4c3135043341c"
+    },
+    {
+      "file": "lions-current/taihemen-lion-west.png",
+      "bytes": 55818,
+      "sha256": "af8cf425f89b05b82bfb9c514b0b371d65377c54ce09d5807bc58e979fa660d9"
+    }
+  ],
+  "userAccepted": false,
+  "gpuVerified": false
+}

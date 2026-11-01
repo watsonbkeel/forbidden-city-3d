@@ -1,3 +1,7 @@
+import {preserveBPrincipalStairOwner,resolveBPrincipalStairContact} from '../scene/palace/BPrincipalStairContact.js';
+import {preserveTaihemenStairContactOwner,resolveTaihemenStairContact} from '../scene/palace/TaihemenStairContact.js';
+import {preserveWumenPracticalDescentOwner,resolveWumenPracticalDescent} from '../scene/palace/special/WumenPracticalDescent.js';
+import {validateSideGateGalleryDeck,canCrossSideGateGalleryDeck} from '../scene/palace/special/SideGateGalleryProfiles.js';
 import {beginWumenJointCall,tryWumenJointCallStep,acceptedWumenJointStep,acceptedWumenJointLegacyStep,endWumenJointCall,abortWumenJointCall,resolveWumenJointVertical} from '../controls/WumenJointAscentHandoff.js';
 import {canRecoverInwardFromWenyuanRail} from '../scene/palace/special/WenyuanPondBridgeRails.js';
 import {canRecoverInwardFromWuyingRail} from '../scene/palace/special/WuyingThreeBridgeRails.js';
@@ -92,7 +96,9 @@ export class CollisionManager {
     if (walkable.type === 'box') {
       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
       // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
-      if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag });
+      if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag, ...(walkable.sideGateGalleryDeck===undefined?{}:{sideGateGalleryDeck:validateSideGateGalleryDeck(walkable.sideGateGalleryDeck,box)}) });
+      if (!box.isEmpty()) preserveTaihemenStairContactOwner(this.walkables.at(-1),walkable);
+      if (!box.isEmpty()) preserveBPrincipalStairOwner(this.walkables.at(-1),walkable);
       return;
     }
     if (walkable.type === 'ramp') {
@@ -111,6 +117,9 @@ export class CollisionManager {
           ? { crossMin0: r.crossMin0, crossMax0: r.crossMax0, crossMin1: r.crossMin1, crossMax1: r.crossMax1 } : {}),
         tag,
       });
+      preserveWumenPracticalDescentOwner(this.walkables.at(-1),r);
+      preserveTaihemenStairContactOwner(this.walkables.at(-1),r);
+      preserveBPrincipalStairOwner(this.walkables.at(-1),r);
     }
   }
 
@@ -367,7 +376,7 @@ export class CollisionManager {
   }
 
   checkRiverCrossing(position, radius, from = null, feetY = null, fromFeetY = null) {
-    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius) || canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY) || canRecoverInwardFromWenyuanRail(this,river,from,position,radius,fromFeetY,feetY)) &&
+    return canCrossFubiPool(position, radius) && canCrossLinxiPool(position, radius) && this.rivers.every(river => canCrossPalaceWater(river, position, radius) || canCrossSideGateGalleryDeck(this,position,radius,feetY) || canRecoverInwardFromWuyingRail(this,river,from,position,radius,fromFeetY,feetY) || canRecoverInwardFromWenyuanRail(this,river,from,position,radius,fromFeetY,feetY)) &&
       this.moats.every(moat => from ? canTraverseOuterMoat(moat, from, position, radius) : canCrossOuterMoat(moat, position, radius));
   }
 
@@ -508,7 +517,7 @@ export class CollisionManager {
     if(!source._grid||source._grid.count!==source.colliders.length)source._buildGrid();
     return source._grid;
   }
-  resolveFurnitureVertical(state,delta,radius=.5) { return resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
+  resolveFurnitureVertical(state,delta,radius=.5) { return resolveBPrincipalStairContact(this,state,delta,radius) ?? resolveTaihemenStairContact(this,state,delta,radius) ?? resolveWumenPracticalDescent(this,state,delta,radius) ?? resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
   resolveDuixiuVertical(state, delta, radius=.5) { return resolveDuixiuVertical(this,state,delta,radius); }
   duixiuContact(x,z,maxTop,radius=.5) { return duixiuContact(this,x,z,maxTop,radius); }
 

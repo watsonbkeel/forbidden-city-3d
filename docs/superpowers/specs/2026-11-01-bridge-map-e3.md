@@ -1,0 +1,9 @@
+# E3 bridge map/briefs — approved limited UI scope
+
+Root approved2026-11-01 04:11UTC,30-minute box. Base5be90007. Do not touch World, physical movement/teleport, C, scene geometry, river anchors, PlaceCatalog schema or the159 historical building cards.
+
+Use the actual InnerJinshui/SouthWater profiles to paint all15 existing bridge footprints and the half bridge's actual grass cover. Expose only four original E group IDs in a separate “桥梁设施” directory section, searched by the existing search field; retain the159-building DOM/card contract. Four canonical group names and5/3/1/3 child bindings, never fake hall/gate records or add37 targets. Directory/map selection focuses map view only, never player position; facilities cannot gain a travel button even if a generic travel resolver says true.
+
+Three UI files only: Minimap.js derives/presents profile data and routes typed facility selection; ModelFidelity.js holds frozen, exact-ID/name controlled short intros/model limits/official source links; PlaceInfoPanel.js renders only those verified facility briefs while retaining unknown-place fallback. Briefs state outdoor facility, engineering fit/not surveyed, no user/GPU acceptance. Three-Gates note says this batch does not generate the gate building, not Nansansuo-gate impersonation. Existing unknown names/invalid facility IDs remain unknown and cannot borrow a source-supported brief by display name.
+
+Low-risk layout choice: the bridge section is a sibling of #place-list, not four fake catalog cards, so historical159 cards/8 quick targets stay unchanged. Existing filter also filters bridge section buttons. Native keyboard/touch buttons, compact/detail/back/close lifecycle reuse current map mechanisms. Bridge rectangles/cover may open the brief when the label is decluttered; overlapping different identities remain ambiguous/no-op.

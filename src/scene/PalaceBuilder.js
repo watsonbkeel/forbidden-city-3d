@@ -1,3 +1,9 @@
+import {registerBPrincipalStairs} from './palace/BPrincipalStairContact.js';
+import {registerTaihemenStairContact} from './palace/TaihemenStairContact.js';
+import {installWumenPracticalAssembly} from './palace/special/WumenPracticalAssembly.js';
+import {buildTaihemenBronzeLions} from './palace/TaihemenBronzeLions.js';
+import {baoheWestTerraceProfile} from './palace/BaoheWestTerrace.js';
+import {createBaoheWestFirewallProfile,buildBaoheWestFirewall} from './palace/BaoheWestFirewall.js';
 import {buildTaiheTerraceInstruments} from './palace/special/TaiheTerraceInstruments.js';
 import {refineWumenOuterSideColumns} from './palace/special/WumenOuterSideColumns.js';
 import {refineWumenNorthwestNorthColumns, WUMEN_NORTHWEST_PAVILION_ID} from './palace/special/WumenNorthwestColumns.js';
@@ -361,7 +367,7 @@ export class PalaceBuilder {
    * rects: [{ hw, z0, z1 }]（顶层，局部坐标），每下一层 hw 与首尾 z 向外扩 setback。
    * 只在首块南边、末块北边设台阶；矩形交界处宽出的部分设挡墙与栏杆。
    */
-  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null, baoheEast = null, taiheWalls = [] }) {
+  buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile = null, taiheSouth = false, taihemenSouth = false, innerPalace = false, baoheNorth = null, baoheEast = null, baoheWest = null, taiheWalls = [] }) {
     if (taihemenSouth) assertObservedTaihemenHost(g, rects);
     const half = stairW / 2;
     const t = 0.5;
@@ -380,20 +386,21 @@ export class PalaceBuilder {
       const R = rects.map((r, k) => ({
         hw: r.hw + e,
         eastX: baoheEast && k === baoheEast.rectIndex ? baoheEast.eastEdges[i] : -(r.hw + e),
+        westX: baoheWest && k === baoheWest.rectIndex ? baoheWest.westEdges[i] : r.hw + e,
         z0: k === 0 ? r.z0 - e : r.z0,
         z1: k === last ? r.z1 + e : r.z1,
       }));
       R.forEach((r, k) => {
         const d = r.z1 - r.z0;
         const zc = (r.z0 + r.z1) / 2;
-        this.libBox(g, innerPalace && k > 0 ? 'wall_brick' : 'sumeru_band', r.hw - r.eastX, lh, d, (r.hw + r.eastX)/2, y0 + lh / 2, zc, innerPalace && k > 0 ? 'box' : 'band');
-        const deck = this.libBox(g, 'stone_slab', r.hw - r.eastX + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), (r.hw + r.eastX)/2, y1 - 0.03, zc, 'box');
+        this.libBox(g, innerPalace && k > 0 ? 'wall_brick' : 'sumeru_band', r.westX - r.eastX, lh, d, (r.westX + r.eastX)/2, y0 + lh / 2, zc, innerPalace && k > 0 ? 'box' : 'band');
+        const deck = this.libBox(g, 'stone_slab', r.westX - r.eastX + 0.2, 0.1, d + (k === 0 || k === last ? 0.2 : 0), (r.westX + r.eastX)/2, y1 - 0.03, zc, 'box');
         // One coherent front court sample. Same existing box/UV/height and walk
         // surface; private material, no floating overlay or shared-map mutation.
         if (innerPalace && k === 0) deck.material = qianqingSurfaceMaterial(this, 'court');
-        this.walkBox(r.eastX, r.z0, r.hw, r.z1, y1);
+        this.walkBox(r.eastX, r.z0, r.westX, r.z1, y1);
         for (const s of [-1, 1]) {
-          const sideX = s < 0 ? r.eastX : r.hw;
+          const sideX = s < 0 ? r.eastX : r.westX;
           const flight = sideStairProfile?.flights.find(f => f.tier === i + 1 && f.rectIndex === k && f.dir === s);
           const wallIntervals = flight ? [[r.z0, flight.openingZ[0]], [flight.openingZ[1], r.z1]] : [[r.z0, r.z1]];
           const railMin = r.z0 + (k === 0 ? 0.2 : 0), railMax = r.z1 - (k === last ? 0.2 : 0);
@@ -401,7 +408,7 @@ export class PalaceBuilder {
           for (const [z0, z1] of wallIntervals) this.col(sideX, y0, z0, sideX - s * t, y0 + ch, z1);
           for (const [z0, z1] of railIntervals) {
             if (innerPalace && k > 0) buildInnerTerraceRail(this, g, s * (r.hw - 0.2), z0, s * (r.hw - 0.2), z1, y1);
-            else {const wall=k===0?taiheWalls.find(p=>p.side===(s<0?'east':'west')):null;this.rail(g, sideX - s * 0.2, z0, sideX - s * 0.2, z1, y1,1.1,wall?[wall.z-wall.thickness/2,wall.z+wall.thickness/2]:null);}
+            else {const wall=k===0?taiheWalls.find(p=>p.side===(s<0?'east':'west')):baoheWest&&k===baoheWest.rectIndex&&s===1?{z:123,thickness:.65}:null;this.rail(g, sideX - s * 0.2, z0, sideX - s * 0.2, z1, y1,1.1,wall?[wall.z-wall.thickness/2,wall.z+wall.thickness/2]:null);}
           }
           if (flight) {
             if (innerPalace) buildInnerTerraceStair(this, g, flight);
@@ -411,7 +418,7 @@ export class PalaceBuilder {
         if (k < last) {
           const n = R[k + 1];
           for (const s of [-1, 1]) {
-            const rw = s < 0 ? -r.eastX : r.hw, nw = s < 0 ? -n.eastX : n.hw;
+            const rw = s < 0 ? -r.eastX : r.westX, nw = s < 0 ? -n.eastX : n.westX;
             if (Math.abs(rw - nw) > 0.6) {
               const wide = Math.max(rw,nw);
               const narrow = Math.min(rw,nw);
@@ -435,11 +442,15 @@ export class PalaceBuilder {
         }
         if (baoheNorth && s === 1) {
           buildBaoheNorthTier(this, g, baoheNorthTier({ zEdge: ze, y0, y1, run, halfWidth: r.hw, tier: i + 1 }), baoheNorth);
-          // Extend only the east boundary: original north stairs and west
-          // geometry retain their exact coordinates/metadata.
+          // Extend the side boundaries only; original central north stairs
+          // retain their exact coordinates and metadata.
           if (baoheEast) {
             this.col(r.eastX,y0,ze,-r.hw,y0+ch,ze-t);
             this.rail(g,r.eastX+0.2,ze-0.2,-r.hw+0.2,ze-0.2,y1);
+          }
+          if (baoheWest) {
+            this.col(r.hw,y0,ze,r.westX,y0+ch,ze-t);
+            this.rail(g,r.hw-0.2,ze-0.2,r.westX-0.2,ze-0.2,y1);
           }
           continue;
         }
@@ -478,6 +489,7 @@ export class PalaceBuilder {
   }
 
   buildComplex(halls, { name, apron, margin, maxH, bottom }) {
+    const stairContactStart=this.walkables.length;
     this.ox = 0;
     this.oz = 0;
     const g = new THREE.Group();
@@ -516,6 +528,8 @@ export class PalaceBuilder {
     const baoheNorth = name === '三台' ? createBaoheNorthDetail() : null;
     const baoheEast = name === '三台' ? baoheEastTerraceProfile(rects,{layers,lh}) : null;
     if(baoheEast)g.userData.baoheEastTerrace=baoheEast;
+    const baoheWest = name === '三台' ? baoheWestTerraceProfile(rects,{layers,lh}) : null;
+    if(baoheWest)g.userData.baoheWestTerrace=baoheWest;
     let taiheWalls=[];
     if(name==='三台'){
       const hallIndex = halls.findIndex(h => h.name === '太和殿');
@@ -532,7 +546,7 @@ export class PalaceBuilder {
       validateTaiheFirewall(this,g,profile);validateTaiheFirewall(this,g,westProfile);
       taiheWalls=[profile,westProfile];
     }
-    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth, baoheEast, taiheWalls });
+    const top = this.buildTerraceUnion(g, rects, { layers, lh, run, setback, stairW, sideStairProfile, taiheSouth: name === '三台', taihemenSouth: name === '太和门', innerPalace: name === '后三宫', baoheNorth, baoheEast, baoheWest, taiheWalls });
 
     if (halls.length > 1) {
       // Individual supports are source-specific: high stairs belong to the
@@ -560,6 +574,7 @@ export class PalaceBuilder {
     } else {
       halls.forEach(h => this.buildHall(g, h, top));
     }
+    if (name === '太和门') { buildTaihemenBronzeLions(this,g); registerTaihemenStairContact(this,g); }
     if (name === '后三宫') buildJiaotaiLowRooms(this,g,rects,sideStairProfile);
     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
     if (name === '三台') {
@@ -567,8 +582,12 @@ export class PalaceBuilder {
       const baoheLinks=axisCourts.items.filter(i=>i.kind==='wall'&&i.from?.[0]<0&&i.gaps?.some(gap=>gap.gate==='后左门'));
       if(baoheLinks.length!==1)throw Error('Ambiguous Baohe east wall binding');
       buildBaoheEastFirewall(this,g,createBaoheEastFirewallProfile({terrace:baoheEast,linkWall:baoheLinks[0]}));
+      const westLinks=axisCourts.items.filter(i=>i.kind==='wall'&&i.from?.[0]>0&&i.gaps?.some(gap=>gap.gate==='后右门'));
+      if(westLinks.length!==1)throw Error('Ambiguous Baohe west wall binding');
+      buildBaoheWestFirewall(this,g,createBaoheWestFirewallProfile({terrace:baoheWest,linkWall:westLinks[0]}));
     }
 
+    if (name === '三台') registerBPrincipalStairs(this,g,'three-halls',stairContactStart);
     const coarse = name === '后三宫' ? captureInnerGlazeCoarse(g) : null;
     const finished = this.finish(g);
     if (coarse) installInnerGlazeLOD(finished, coarse);
@@ -1118,7 +1137,10 @@ export class PalaceBuilder {
    * - 两翼墩台 x ∈ ±[wingInnerX, W/2]，z ∈ [wingSouth, platformSouth]，近内转角有掖门侧口
    * - 回归约束：保留全城锚点、城台外廓、台顶与马道；五口共同修正，未知洞内细部不复原
    */
+  finalizeWumenPractical(group,data,starts) { return installWumenPracticalAssembly(this,group,data,starts); }
+
   buildWumen(data) {
+    const starts={colliderStart:this.colliders.length,walkableStart:this.walkables.length};
     const g = this.begin(data);
     const dm = data.dimensions;
     const W = dm.platformWidth;
@@ -1204,6 +1226,7 @@ export class PalaceBuilder {
       refineWumenNorthwestNorthColumns(g.children.find(o=>o.userData.structure?.id===WUMEN_NORTHWEST_PAVILION_ID), {instanceId:WUMEN_NORTHWEST_PAVILION_ID});
       refineWumenOuterSideColumns(this, g);
     }
+    this.finalizeWumenPractical(g,data,starts);
     this.finish(g);
   }
 

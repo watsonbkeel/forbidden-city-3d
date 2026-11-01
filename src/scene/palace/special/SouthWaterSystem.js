@@ -1,3 +1,4 @@
+import {banbiCoveredStrip,pointOnBanbiCoveredCrossing,buildBanbiCoveredStrip} from './BanbiCoveredCrossing.js';
 import {buildWenyuanPondBridgeRails} from './WenyuanPondBridgeRails.js';
 import {buildWuyingThreeBridgeRails} from './WuyingThreeBridgeRails.js';
 import * as THREE from 'three';
@@ -52,19 +53,22 @@ export function southWaterProfile(river){
  const east=reach('east-wenhua',[[ -76,-290.8,5],[-78,-290.8,2],[-82,-282,3.5],[-94,-278,4.0],[-98,-278,4.0],[-119,-278,4.0],[-140,-270,4],[-140,-175,4],[-149,-149,3],[-167,-149,3],[-175.5,-149,4.5],[-197.5,-149,4.5],[-220,-149,3],[-300,-149,4],[-320,-180,4],[-320,-280,4],[-308,-350,4],[-300,-408,4]]);
  const bridges=[...[-1,0,1].map((s,i)=>({id:`wuying-${i+1}`,family:'wuying',x:220.8+s*34.9/5,z:WUYING_BRIDGE_Z,axis:'z',length:18.4,width:s?3.8:5,minWidth:s?3.8:5,crest:.45,railSides:[-1,1],stairToHead:4.8,dimensionStatus:FIT})),
   {id:'duanhong',family:'duanhong',x:160.6,z:-234,axis:'z',length:18.7,width:9.2,minWidth:7.8,crest:.7,railSides:[-1,1],dimensionStatus:'OFFICIAL_LENGTH_AND_MAX_WIDTH__OTHER_DIMENSIONS_MODEL_FIT'},
-  {id:'xiehe-banbi',family:'half-bridge',x:-140,z:-266,axis:'x',length:16,width:5,minWidth:5,crest:.35,railSides:[-1],dimensionStatus:FIT},
+  {id:'xiehe-banbi',family:'half-bridge',x:-112.97,z:-278,axis:'z',length:16,width:5,minWidth:5,crest:.35,railSides:[-1],dimensionStatus:FIT,sourceBinding:'OFFICIAL_MAP3_NS_EAST_RAIL__EXISTING_XIEHE_CULVERT_ROOF_INTERFACE_FIT'},
   {id:'wenyuan-pond',family:'pond',railEndInset:1.5,x:-186.5,z:-149,axis:'z',length:13.2,width:3.4,minWidth:3.4,crest:.18,railSides:[-1,1],dimensionStatus:FIT},
+  ...[-255,-267,-279].map((x,i)=>({id:['three-gates-west','three-gates-middle','three-gates-east'][i],family:'three-gates',x,z:-149,axis:'z',length:14,width:4.5,minWidth:4.5,crest:.25,railSides:[-1,1],dimensionStatus:FIT,sourceBinding:'OFFICIAL_MAP3_DISTINCT_TRIO_BEFORE_THREE_GATES__NOT_DONGHUA_OR_NANSANSUO_HALL_AXES'})),
   {id:'donghua-inner',family:'east-route',x:-320,z:-257,axis:'x',length:18,width:6.8,minWidth:6.8,crest:.35,railSides:[-1,1],dimensionStatus:FIT}];
  const rawPolygon=[...base.banks.south,...west.right.slice(1),...west.left.toReversed(),...base.banks.north.toReversed().slice(1),...east.right.slice(1),...east.left.toReversed()];
  const polygon=rawPolygon.filter((p,i)=>{const prev=rawPolygon[(i+rawPolygon.length-1)%rawPolygon.length];return Math.hypot(p.x-prev.x,p.z-prev.z)>1e-8;});
  const profile={id:'r36-south-precinct',status:FIT,sources,mainBridgeCount:5,reaches:[west,east],bridges,waterPolygons:[polygon],
   culverts:[{id:'xihe-north',x:110.7,z:-278,axis:'x',length:8,width:8.4,status:'OFFICIAL_NORTH_INTERFACE__VAULT_SHAPE_FIT_NOT_MIRRORED_EVIDENCE'},{id:'xiehe-north',x:-106.47,z:-278,axis:'x',length:8,width:8,status:'OFFICIAL_PHOTOGRAPHED_UNDER_CORRIDOR_CULVERT__DIMENSIONS_FIT'},...[-149.5,-219].map(x=>({id:`wenyuan-wall-${x}`,x,z:-149,axis:'x',length:2,width:6.2,status:'OFFICIAL_POND_FEED_RELATION__UNDER_WALL_INTERFACE_MODEL_FIT'}))],
-  ends:'BOUNDED_NORTHWEST_AND_SOUTHEAST_CONTINUATIONS_NOT_COMPLETE_PALACE_DRAINAGE',limitations:['No georeferenced measured plan: channel bends, widths, levels and most bridge sizes are fitted.','Wenyuan pool connection is a diagram-derived interface, not a surveyed hydraulic restoration.','Duanhong width tapers in this model; only its maximum width and length are official figures.']};cache.set(river,profile);return profile;
+  ends:'BOUNDED_NORTHWEST_AND_SOUTHEAST_CONTINUATIONS_NOT_COMPLETE_PALACE_DRAINAGE',limitations:['No georeferenced measured plan: channel bends, widths, levels and most bridge sizes are fitted.','Wenyuan pool connection is a diagram-derived interface, not a surveyed hydraulic restoration.','Duanhong width tapers in this model; only its maximum width and length are official figures.']};
+ profile.bridges.find(b=>b.id==='xiehe-banbi').cover=banbiCoveredStrip(profile.bridges.find(b=>b.id==='xiehe-banbi'),profile.culverts.find(c=>c.id==='xiehe-north'));
+ cache.set(river,profile);return profile;
 }
 export function palaceWaterGroundPaths(river){const p=southWaterProfile(river);return p?p.waterPolygons.map(v=>path(v,true)):[innerJinshuiGroundPath(river)];}
 export function palaceWaterPolygons(river){return southWaterProfile(river)?.waterPolygons??[innerJinshuiProfile(river).waterPolygon];}
 function widthAt(b,t){return b.minWidth+(b.width-b.minWidth)*Math.abs(t);}
-export function pointOnSouthBridge(b,x,z,r=0){const a=b.axis==='z'?z-b.z:x-b.x,c=b.axis==='z'?x-b.x:z-b.z;return Math.abs(a)+r<=b.length/2&&Math.abs(c)+r<widthAt(b,Math.max(0,(Math.abs(a)-r)/(b.length/2)))/2-.23;}
+export function pointOnSouthBridge(b,x,z,r=0){if(b.id==='xiehe-banbi'&&b.cover)return pointOnBanbiCoveredCrossing(b,x,z,r);const a=b.axis==='z'?z-b.z:x-b.x,c=b.axis==='z'?x-b.x:z-b.z;return Math.abs(a)+r<=b.length/2&&Math.abs(c)+r<widthAt(b,Math.max(0,(Math.abs(a)-r)/(b.length/2)))/2-.23;}
 export function canCrossPalaceWater(river,position,radius=.5){if(!Number.isFinite(radius)||radius<0)throw new Error('South water radius must be non-negative');const p=southWaterProfile(river);if(!p)return canCrossInnerJinshui(river,position,radius);const{x,z}=position;if(!p.waterPolygons.some(poly=>touches(poly,x,z,radius)))return true;return p.bridges.some(b=>pointOnSouthBridge(b,x,z,radius))||canCrossInnerJinshui(river,position,radius)&&innerJinshuiProfile(river).bridges.some(b=>Math.abs(x-b.x)+radius<b.width/2-.22&&Math.abs(z-b.z)+radius<=b.length/2);}
 
 /** Real masonry arch volumes with tapered deck widths. All walk supports are
@@ -100,7 +104,7 @@ export function buildSouthWaterSystem(library,river,waterMaterial){
    const u=a/(b.length*.36),under=Math.abs(u)<1?-1.9+2.02*Math.sqrt(1-u*u):-2.4;
    return{a,top,under:Math.min(under,top-.12),half};});
   for(let i=1;i<samples.length;i++){const a=samples[i-1],c=samples[i];face(verts,world(b,-a.half,a.a,a.top),world(b,a.half,a.a,a.top),world(b,c.half,c.a,c.top),world(b,-c.half,c.a,c.top));face(verts,world(b,-c.half,c.a,c.under),world(b,c.half,c.a,c.under),world(b,a.half,a.a,a.under),world(b,-a.half,a.a,a.under));for(const s of[-1,1])face(verts,world(b,s*a.half,a.a,a.under),world(b,s*c.half,c.a,c.under),world(b,s*c.half,c.a,c.top),world(b,s*a.half,a.a,a.top));
-   if(!culvert){const bounds={minX:Math.min(b.x-a.half,b.x-c.half),maxX:Math.max(b.x+a.half,b.x+c.half),minZ:b.z+a.a,maxZ:b.z+c.a};const cross0=(b.axis==='z'?b.x:b.z)-a.half+.24,cross1=(b.axis==='z'?b.x:b.z)+a.half-.24,cross2=(b.axis==='z'?b.x:b.z)-c.half+.24,cross3=(b.axis==='z'?b.x:b.z)+c.half-.24;walkables.push({type:'ramp',axis:b.axis,...(b.axis==='z'?bounds:{minX:b.x+a.a,maxX:b.x+c.a,minZ:Math.min(b.z-a.half,b.z-c.half),maxZ:Math.max(b.z+a.half,b.z+c.half)}),a0:(b.axis==='z'?b.z:b.x)+a.a,a1:(b.axis==='z'?b.z:b.x)+c.a,y0:a.top,y1:c.top,crossMin0:cross0,crossMax0:cross1,crossMin1:cross2,crossMax1:cross3,structureId:b.id});}
+   if(!culvert){const bounds={minX:Math.min(b.x-a.half,b.x-c.half),maxX:Math.max(b.x+a.half,b.x+c.half),minZ:b.z+a.a,maxZ:b.z+c.a};const cross0=(b.axis==='z'?b.x:b.z)-a.half+.24,cross1=(b.axis==='z'?b.x:b.z)+a.half-(b.id==='xiehe-banbi'?0:.24),cross2=(b.axis==='z'?b.x:b.z)-c.half+.24,cross3=(b.axis==='z'?b.x:b.z)+c.half-(b.id==='xiehe-banbi'?0:.24);walkables.push({type:'ramp',axis:b.axis,...(b.axis==='z'?bounds:{minX:b.x+a.a,maxX:b.x+c.a,minZ:Math.min(b.z-a.half,b.z-c.half),maxZ:Math.max(b.z+a.half,b.z+c.half)}),a0:(b.axis==='z'?b.z:b.x)+a.a,a1:(b.axis==='z'?b.z:b.x)+c.a,y0:a.top,y1:c.top,crossMin0:cross0,crossMax0:cross1,crossMin1:cross2,crossMax1:cross3,structureId:b.id});}
   }
   for(const a of[samples[0],samples.at(-1)])face(verts,world(b,-a.half,a.a,a.under),world(b,a.half,a.a,a.under),world(b,a.half,a.a,a.top),world(b,-a.half,a.a,a.top));
   if(b.axis==='z')for(let k=0;k<verts.length;k+=9)for(let j=0;j<3;j++){const v=verts[k+3+j];verts[k+3+j]=verts[k+6+j];verts[k+6+j]=v;}
@@ -120,5 +124,6 @@ export function buildSouthWaterSystem(library,river,waterMaterial){
   const geo=new THREE.ExtrudeGeometry(shape,{depth:c.length,steps:1,bevelEnabled:false});geo.rotateY(Math.PI/2);geo.translate(c.x-c.length/2,0,c.z);mesh(applyBoxUV(geo,library.tileSize('marble')),marble).userData.culvertId=c.id;
  }
 
+ const covered=buildBanbiCoveredStrip(library,profile.bridges.find(b=>b.id==='xiehe-banbi'),profile.culverts.find(c=>c.id==='xiehe-north'));masonry.add(covered.group);colliders.push(...covered.colliders);walkables.push(...covered.walkables);
  group.add(mergeByMaterial(masonry,{name:'south-water-masonry'}),water);group.userData.structure={id:profile.id,status:profile.status,bridges:profile.bridges.map(b=>b.id)};group.userData.southWater=profile;group.userData.wuyingBridgeRails=wuyingRails;group.userData.wenyuanPondRails=wenyuanRails;return{group,water,profile,colliders,walkables};
 }

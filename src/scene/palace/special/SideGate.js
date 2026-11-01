@@ -1,3 +1,4 @@
+import {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';
 import {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';
 import {buildXieheEastRampRails} from './XieheEastRampRails.js';
 import {fitXieheVisibleHall} from './XieheVisibleHall.js';
@@ -60,7 +61,7 @@ export function buildSideGate(kit,opts) {
     }
   }
   if(g.railings) {
-    for(const side of [-1,1]) railing(kit,f,[side*g.platformWidth/2,ph,-g.platformDepth/2],[side*g.platformWidth/2,ph,g.platformDepth/2],renderBoxes);
+    for(const side of [-1,1]) railing(kit,f,[side*g.platformWidth/2,ph,-g.platformDepth/2],[side*g.platformWidth/2,ph,sideGateGalleryRailEnd(g)],renderBoxes);
     for(const r of g.ramps) {
       railing(kit,f,[-g.platformWidth/2,ph,r.zTop],[r.leftTop,ph,r.zTop],renderBoxes,{skipEnd:g.profile==='xiehe'&&r===g.ramps[0]});
       railing(kit,f,[r.rightTop,ph,r.zTop],[g.platformWidth/2,ph,r.zTop],renderBoxes,{skipStart:g.profile==='xiehe'&&r===g.ramps[0]});

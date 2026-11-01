@@ -1,3 +1,5 @@
+import {sideGateGalleryOptions,validateSideGateGalleryDeck} from '../palace/special/SideGateGalleryProfiles.js';
+import {buildBaoheLinkedGallery} from '../palace/BaoheLinkedGalleries.js';
 import {buildMiddleRightGate} from '../palace/special/MiddleRightGate.js';
 import {applyMiddleAxisFacades} from '../palace/special/MiddleAxisFacades.js';
 import {buildRearAxisGate} from '../palace/special/RearAxisGate.js';
@@ -417,9 +419,14 @@ export class ZoneBase {
     // Generic wall physics is historically only 3m; do not change other walls.
     const ownMiddleRight=this.zoneJson.id==='axis-courts'&&this.zoneJson.items.indexOf(item)===15&&this.gateGeometries.get('中右门')?.profile==='own-three-bay-end-aisles';
     if(ownMiddleRight&&(JSON.stringify(item.from)!=='[65.5,-12.2]'||JSON.stringify(item.to)!=='[110.7,-12.2]'||item.h!==7||item.t!==undefined||gaps.length!==1||gaps[0].at!==80||gaps[0].w!==16.4))throw Error('Invalid own middle-right adjoining wall');
+    const ownBaoheWall=this.zoneJson.id==='axis-courts'&&[17,19].includes(this.zoneJson.items.indexOf(item));
+    if(ownBaoheWall){
+      const west=this.zoneJson.items.indexOf(item)===19;
+      if(item.h!==7||item.t!==undefined||JSON.stringify(item.from)!==JSON.stringify([west?64.85:-64.97666666666667,123])||JSON.stringify(item.to)!==JSON.stringify([west?110.7:-106.47,123])||item.gaps?.length!==1||item.gaps[0].gate!==(west?'后右门':'后左门'))throw Error('Invalid own Baohe adjoining wall');
+    }
     const colliderStart=this.kit.colliders.length;
     this.kit.wall(x1, z1, x2, z2, params);
-    if(ownMiddleRight)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
+    if(ownMiddleRight||ownBaoheWall)for(const collider of this.kit.colliders.slice(colliderStart))collider.max.y=7;
   }
 
   buildCourtWalls(item) {
@@ -433,6 +440,7 @@ export class ZoneBase {
   }
 
   buildCorridor(item) {
+    if(this.zoneJson.id==='axis-courts'&&[31,37].includes(this.zoneJson.items.indexOf(item)))return buildBaoheLinkedGallery(this.kit,item,this.zoneJson.items.indexOf(item));
     let from = item.from, to = item.to, contact;
     if (item.gateJoin !== undefined) {
       const ref = item.gateJoin;
@@ -451,13 +459,22 @@ export class ZoneBase {
     const [x1, z1] = from;
     const [x2, z2] = to;
     const params = { facing: item.facing, depth: item.depth, colH: item.colH, name: item.name };
+    const gallery = sideGateGalleryOptions(this.zoneJson.id,this.zoneJson.items.indexOf(item),item);
+    if(gallery) Object.assign(params,gallery);
     if (item.furnishingPolicy !== undefined) {
       params.furnishingPolicy = item.furnishingPolicy;
       params.furnishingTarget = `${this.zoneJson.id}/items/${this.zoneJson.items.indexOf(item)}`;
       params.furnishingKind = item.kind;
     }
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
+    const galleryWalkableStart=this.kit.walkables.length;
     this.kit.corridor(x1, z1, x2, z2, item.facing, params);
+    if(gallery&&[27,33].includes(this.zoneJson.items.indexOf(item))){
+      const deck=this.kit.walkables.slice(galleryWalkableStart).find(w=>w.type==='box'&&w.box.min.y===2.4&&w.box.max.y===2.4);
+      if(!deck)throw Error('Actual north gallery deck missing');
+      deck.sideGateGalleryDeck=validateSideGateGalleryDeck(gallery.objectId,deck.box);
+    }
+    if(gallery) this.kit.root.children.at(-1).userData.sideGateGallery = {...gallery,scope:'VISIBLE_PRIMARY_BODY_AND_FRONT_PORCH_ENGINEERING_FIT',inventory:'UNKNOWN_NOT_FURNISHED'};
     if (contact) this.kit.root.children.at(-1).userData.gateJoin = {
       ...item.gateJoin, boundary: [...contact.world], effectiveFrom: [...from], effectiveTo: [...to],
       provisional: true, status: contact.status,

@@ -1,0 +1,52 @@
+diff --git a/src/scene/PalaceBuilder.js b/src/scene/PalaceBuilder.js
+index 7a990a6e..f93ffe5f 100644
+--- a/src/scene/PalaceBuilder.js
++++ b/src/scene/PalaceBuilder.js
+@@ -1,3 +1,4 @@
++import {registerTaihemenStairContact} from './palace/TaihemenStairContact.js';
+ import {installWumenPracticalAssembly} from './palace/special/WumenPracticalAssembly.js';
+ import {buildTaihemenBronzeLions} from './palace/TaihemenBronzeLions.js';
+ import {baoheWestTerraceProfile} from './palace/BaoheWestTerrace.js';
+@@ -571,7 +572,7 @@ export class PalaceBuilder {
+     } else {
+       halls.forEach(h => this.buildHall(g, h, top));
+     }
+-    if (name === '太和门') buildTaihemenBronzeLions(this,g);
++    if (name === '太和门') { buildTaihemenBronzeLions(this,g); registerTaihemenStairContact(this,g); }
+     if (name === '后三宫') buildJiaotaiLowRooms(this,g,rects,sideStairProfile);
+     if (name === '三台') this.terraceOrnaments(g, rects[0], top);
+     if (name === '三台') {
+diff --git a/src/utils/Collision.js b/src/utils/Collision.js
+index 96bb3a36..e3f0d8ec 100644
+--- a/src/utils/Collision.js
++++ b/src/utils/Collision.js
+@@ -1,3 +1,4 @@
++import {preserveTaihemenStairContactOwner,resolveTaihemenStairContact} from '../scene/palace/TaihemenStairContact.js';
+ import {preserveWumenPracticalDescentOwner,resolveWumenPracticalDescent} from '../scene/palace/special/WumenPracticalDescent.js';
+ import {validateSideGateGalleryDeck,canCrossSideGateGalleryDeck} from '../scene/palace/special/SideGateGalleryProfiles.js';
+ import {beginWumenJointCall,tryWumenJointCallStep,acceptedWumenJointStep,acceptedWumenJointLegacyStep,endWumenJointCall,abortWumenJointCall,resolveWumenJointVertical} from '../controls/WumenJointAscentHandoff.js';
+@@ -95,6 +96,7 @@ export class CollisionManager {
+       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
+       // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
+       if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag, ...(walkable.sideGateGalleryDeck===undefined?{}:{sideGateGalleryDeck:validateSideGateGalleryDeck(walkable.sideGateGalleryDeck,box)}) });
++      if (!box.isEmpty()) preserveTaihemenStairContactOwner(this.walkables.at(-1),walkable);
+       return;
+     }
+     if (walkable.type === 'ramp') {
+@@ -114,6 +116,7 @@ export class CollisionManager {
+         tag,
+       });
+       preserveWumenPracticalDescentOwner(this.walkables.at(-1),r);
++      preserveTaihemenStairContactOwner(this.walkables.at(-1),r);
+     }
+   }
+ 
+@@ -511,7 +514,7 @@ export class CollisionManager {
+     if(!source._grid||source._grid.count!==source.colliders.length)source._buildGrid();
+     return source._grid;
+   }
+-  resolveFurnitureVertical(state,delta,radius=.5) { return resolveWumenPracticalDescent(this,state,delta,radius) ?? resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
++  resolveFurnitureVertical(state,delta,radius=.5) { return resolveTaihemenStairContact(this,state,delta,radius) ?? resolveWumenPracticalDescent(this,state,delta,radius) ?? resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
+   resolveDuixiuVertical(state, delta, radius=.5) { return resolveDuixiuVertical(this,state,delta,radius); }
+   duixiuContact(x,z,maxTop,radius=.5) { return duixiuContact(this,x,z,maxTop,radius); }
+ 

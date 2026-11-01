@@ -47,7 +47,9 @@ export function sideGateGeometry(item) {
   const columnXs=[-width/2];
   for(const bay of p.bayWidths) columnXs.push(columnXs.at(-1)+bay);
   const bayCenters=p.bayWidths.map((w,i)=>(columnXs[i]+columnXs[i+1])/2);
-  const radius=.28, platformWidth=width+1.2, platformDepth=p.depth+2;
+  // Real side circulation needs room outside the columns and inside the rail.
+  // The extra half metre at each apron is an engineering fit, not a surveyed depth.
+  const radius=.28, platformWidth=width+1.2, platformDepth=p.depth+2+(['xiehe','xihe'].includes(key)?1:0);
   const rampHalf=(p.bayWidths[1]+p.bayWidths[2]+p.bayWidths[3]+.8)/2;
   const ramps=[['front',-1,p.frontRun],['rear',1,p.rearRun]].map(([side,sign,run])=>({
     side,zTop:sign*platformDepth/2,zToe:sign*(platformDepth/2+run),yTop:p.platformY,yToe:0,

@@ -1,11 +1,26 @@
 import { outerMoatProfile } from '../scene/palace/special/OuterMoat.js';
-import { palaceWaterPolygons } from '../scene/palace/special/SouthWaterSystem.js';
+import { innerJinshuiProfile } from '../scene/palace/special/InnerJinshui.js';
+import { bridgeFacilityInfoFor } from './ModelFidelity.js';
+import { palaceWaterPolygons, southWaterProfile } from '../scene/palace/special/SouthWaterSystem.js';
 import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
 import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
 import { PlaceCatalog } from './PlaceCatalog.js';
 import { PlaceInfoPanel } from './PlaceInfoPanel.js';
+
+/** Read-only presentation projection of the same actual bridge profiles as physics.
+ * No new scene entities, floor, catalog bindings or travel coordinates are created. */
+export function bridgeMapData(layout=PALACE_LAYOUT){
+ const river=layout.find(item=>item.type==='river');if(!river)return{bridges:[],covers:[],facilities:[]};
+ const inner=innerJinshuiProfile(river),south=southWaterProfile(river),profiles=[...inner.bridges,...(south?.bridges??[])];
+ const groups=[['FC-D156902D78',inner.bridges],['FC-B9097C61D8',south?.bridges.filter(b=>b.family==='wuying')??[]],['FC-74F8C30390',south?.bridges.filter(b=>b.id==='xiehe-banbi')??[]],['FC-17AFD38428',south?.bridges.filter(b=>b.family==='three-gates')??[]]];
+ const facilities=groups.flatMap(([id,bridges])=>{const info=bridgeFacilityInfoFor(id);return bridges.length===info.count?[{id,name:info.name,bridgeIds:bridges.map(b=>b.id),x:bridges.reduce((n,b)=>n+b.x,0)/bridges.length,z:bridges.reduce((n,b)=>n+b.z,0)/bridges.length}]:[];});
+ const owner=id=>facilities.find(f=>f.bridgeIds.includes(id))?.id;
+ const bridges=profiles.map(b=>{const world=(cross,along)=>b.axis==='x'?{x:b.x+along,z:b.z+cross}:{x:b.x+cross,z:b.z+along},stations=[[-b.length/2,b.width/2],[0,(b.minWidth??b.width)/2],[b.length/2,b.width/2]];return{id:b.id,x:b.x,z:b.z,facilityId:owner(b.id),points:[...stations.map(([a,h])=>world(-h,a)),...stations.slice().reverse().map(([a,h])=>world(h,a))]};});
+ const covers=profiles.filter(b=>b.cover).map(b=>({id:b.id+':visible-cover',facilityId:owner(b.id),points:[{x:b.cover.minX,z:b.cover.minZ},{x:b.cover.maxX,z:b.cover.minZ},{x:b.cover.maxX,z:b.cover.maxZ},{x:b.cover.minX,z:b.cover.maxZ}]}));
+ return{bridges,covers,facilities};
+}
 
 const MAP_HEADINGS = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
 
@@ -41,6 +56,7 @@ export class Minimap {
     this.ctx = null;
     this.playerPosition = new THREE.Vector3();
     this.playerDir = new THREE.Vector3(0, 0, 1);
+    this.bridgeMapData = bridgeMapData();
     this.items = items; // 两侧宫院：{ kind: 'hall'|'gate'|'corridor', name, x, z, w, d }
     
     // 地图范围：取场景边界 LAYOUT.BOUNDARY（宫城外廓 + 街面），竖长方形（与紫禁城南北长、东西窄的比例一致）
@@ -200,8 +216,8 @@ export class Minimap {
     });
     this.container.appendChild(quick);
     this.initPlaceInformation();
-    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
-    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.resumePlace];
+    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.bridgeFacilityList, this.resumePlace];
+    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.bridgeFacilityList, this.resumePlace];
     
     document.body.appendChild(this.container);
     
@@ -259,7 +275,7 @@ export class Minimap {
     search.id = 'place-search'; search.type = 'search'; search.value = '';
     search.placeholder = '搜索地点名称';
     search.setAttribute('aria-label', '搜索地点名称');
-    search.setAttribute('aria-controls', 'place-directory');
+    search.setAttribute('aria-controls', 'place-directory bridge-facility-directory');
     const resultCount = document.createElement('p'); resultCount.id = 'place-search-count';
     resultCount.setAttribute('role', 'status'); resultCount.setAttribute('aria-live', 'polite');
     const directory = document.createElement('div'); directory.id = 'place-directory';
@@ -274,6 +290,20 @@ export class Minimap {
       directory.appendChild(button);
       const names = [place.name, place.canonicalName, ...(place.aliases ?? []).map(alias => alias.name)];
       entries.push({button, names: names.filter(Boolean).map(name => name.normalize('NFKC').toLocaleLowerCase('zh-CN'))});
+    }
+    // Separate facility section preserves the159 historical card contract.
+    this.bridgeFacilityList = document.createElement('section');
+    this.bridgeFacilityList.id = 'bridge-facilities';
+    const bridgeHeading = document.createElement('h2'); bridgeHeading.textContent = '桥梁设施（4组）';
+    const bridgeDirectory = document.createElement('div'); bridgeDirectory.id = 'bridge-facility-directory';
+    this.bridgeFacilityList.append(bridgeHeading, bridgeDirectory);
+    for (const facility of this.bridgeMapData.facilities) {
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = facility.name;
+      button.setAttribute('aria-label', `了解${facility.name}并定位地图，不移动人物`);
+      button.style.cssText = 'min-height:44px;min-width:44px';
+      button.addEventListener('click', () => this.selectMapLabel({name:facility.name,facilityId:facility.id}));
+      bridgeDirectory.appendChild(button);
+      entries.push({button,names:[facility.name.normalize('NFKC').toLocaleLowerCase('zh-CN')]});
     }
     const filter = () => {
       const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');
@@ -306,7 +336,7 @@ export class Minimap {
     this.placeAnnouncement.id = 'place-announcement';
     this.placeAnnouncement.setAttribute('aria-live', 'polite');
     this.placeAnnouncement.setAttribute('aria-atomic', 'true');
-    this.container.append(this.placeList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
+    this.container.append(this.placeList, this.bridgeFacilityList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
   }
 
   showPlace(id) {
@@ -329,7 +359,8 @@ export class Minimap {
     const place = this.placeCatalog?.get(label.placeId);
     // Never match a card by a global display name or an unverified stale ID.
     const selected = place?.name === label.name ? place : null;
-    if (this.detailVisible && this.selection?.name === label.name && this.selectedPlaceId === (selected?.id ?? null)) return;
+    const facility = !selected && this.bridgeMapData.facilities.find(f=>f.id===label.facilityId&&f.name===label.name);
+    if (this.detailVisible && this.selection?.name === label.name && this.selectedPlaceId === (selected?.id ?? null) && this.selection?.facilityId === (facility?.id ?? undefined)) return;
     if (!this.detailVisible) {
       this.mapScrollTop = this.container.scrollTop;
       this.mapReturnFocus = document.activeElement;
@@ -337,12 +368,13 @@ export class Minimap {
     this.cancelMapGesture?.();
     this.secondaryTaps.clear();
     const generation = ++this.selectionGeneration;
-    this.selection = { name: label.name, placeId: selected?.id ?? null };
+    if (facility) { const point=this.worldToMap(facility.x,facility.z);this.view.k=4;this.view.cx=point.x;this.view.cy=point.y;this.clampView();this.drawMap(); }
+    this.selection = { name: label.name, placeId: selected?.id ?? null, ...(facility?{facilityId:facility.id}:{}) };
     this.selectedPlaceId = selected?.id ?? null;
     this.detailVisible = true;
     const target = selected?.modelExperience.teleportTargetName ?? label.name;
-    const canTravel = this.canTravelToPlace(target);
-    const title = this.placePanel.render({ place: selected, name: label.name,
+    const canTravel = !facility && this.canTravelToPlace(target);
+    const title = this.placePanel.render({ place: selected, name: label.name, facility,
       sources: selected ? this.placeCatalog.sourcesFor(selected) : [], canTravel,
       onTravel: button => {
         if (this.disposed || !this.visible || this.compact || !this.detailVisible ||
@@ -357,7 +389,7 @@ export class Minimap {
     this.placeHeader.appendChild(this.closeButton);
     this.container.setAttribute('data-detail', 'true');
     this.container.scrollTop = 0;
-    this.placeAnnouncement.textContent = `已选择${label.name}`;
+    this.placeAnnouncement.textContent = `已选择${label.name}${facility?'，仅定位地图，人物未移动':''}`;
     title.focus({ preventScroll: true });
   }
 
@@ -648,7 +680,7 @@ export class Minimap {
     // nothing. Selection still never travels without the separate card action.
     const hits = this.placeFootprints.filter(it =>
       m.x >= it.x && m.x <= it.x + it.width && m.y >= it.y && m.y <= it.y + it.height);
-    const places = new Map(hits.map(it => [it.placeId, it]));
+    const places = new Map(hits.map(it => [it.facilityId?`facility:${it.facilityId}`:`place:${it.placeId}`, it]));
     if (places.size === 1) this.selectMapLabel(places.values().next().value);
   }
   
@@ -752,9 +784,9 @@ export class Minimap {
     return [Math.min(a.x, b.x), Math.min(a.y, b.y), Math.abs(b.x - a.x), Math.abs(b.y - a.y)];
   }
 
-  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null, unitScale = 1) {
+  drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null, unitScale = 1, facilityId = null) {
     if (this.labelQueue) {
-      this.labelQueue.push({ text, x, y, bold, size, targetName, mode, placeId });
+      this.labelQueue.push({ text, x, y, bold, size, targetName, mode, placeId, ...(facilityId?{facilityId}:{}) });
       return;
     }
     const ctx = this.ctx;
@@ -765,7 +797,7 @@ export class Minimap {
     const tw = Math.max(...lines.map(line => ctx.measureText(line).width)) / unitScale;
     const textHeight = size * lines.length;
     const pad = 1 / unitScale;
-    const label = { name: targetName, placeId, x, y, width: tw + 4 * pad, height: textHeight + 2 * pad, ...(mode ? { mode } : {}) };
+    const label = { name: targetName, placeId, x, y, width: tw + 4 * pad, height: textHeight + 2 * pad, ...(mode ? { mode } : {}), ...(facilityId?{facilityId}:{}) };
     this.labels.push(label);
     const paint = { ...label, text, bold, size };
     this.labelPaintRecords?.push(paint);
@@ -867,7 +899,7 @@ export class Minimap {
         const gap = 2 / labelScale;
         if (this.labels.some(p => Math.abs(p.x - label.x) < (p.width + width) / 2 + gap &&
           Math.abs(p.y - label.y) < (p.height + height) / 2 + gap)) continue;
-        this.drawLabel(text, label.x, label.y, label.bold, size, label.targetName, label.mode, label.placeId, labelScale);
+        this.drawLabel(text, label.x, label.y, label.bold, size, label.targetName, label.mode, label.placeId, labelScale, label.facilityId);
       }
       this.baseLabelScale = labelScale;
     } finally {
@@ -968,6 +1000,14 @@ export class Minimap {
     ctx.stroke();
   }
 
+  drawBridgeFootprints() {
+    const ctx=this.ctx;
+    for(const [rows,fill]of[[this.bridgeMapData.bridges,'rgba(235, 230, 215, 0.98)'],[this.bridgeMapData.covers,'rgba(112, 135, 78, 0.9)']])for(const row of rows){
+      const points=row.points.map(p=>this.worldToMap(p.x,p.z));ctx.beginPath();points.forEach((p,i)=>ctx[i?'lineTo':'moveTo'](p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.strokeStyle='rgba(100, 95, 80, 0.9)';ctx.lineWidth=.6;ctx.fill();ctx.stroke();
+      const f=this.bridgeMapData.facilities.find(f=>f.id===row.facilityId);if(f){const xs=points.map(p=>p.x),ys=points.map(p=>p.y);this.placeFootprints.push({name:f.name,placeId:null,facilityId:f.id,x:Math.min(...xs),y:Math.min(...ys),width:Math.max(...xs)-Math.min(...xs),height:Math.max(...ys)-Math.min(...ys)});}
+    }
+  }
+
   drawStatic() {
     const ctx = this.ctx;
     const w = this.mapSize;
@@ -1024,7 +1064,7 @@ export class Minimap {
       } else if (type === 'river') {
         for (const polygon of palaceWaterPolygons(item)) { ctx.beginPath();
         polygon.forEach((point,index)=>{const mapped=this.worldToMap(point.x,point.z);if(index)ctx.lineTo(mapped.x,mapped.y);else ctx.moveTo(mapped.x,mapped.y);});
-        ctx.closePath();ctx.fillStyle='rgba(100, 150, 200, 0.6)';ctx.strokeStyle='rgba(70, 120, 170, 0.8)';ctx.lineWidth=1.2;ctx.fill();ctx.stroke(); } continue;
+        ctx.closePath();ctx.fillStyle='rgba(100, 150, 200, 0.6)';ctx.strokeStyle='rgba(70, 120, 170, 0.8)';ctx.lineWidth=1.2;ctx.fill();ctx.stroke(); } this.drawBridgeFootprints(); continue;
       } else if (type === 'garden') {
         fillColor = 'rgba(120, 180, 120, 0.6)'; strokeColor = 'rgba(80, 140, 80, 0.8)'; showLabel = true;
       } else {
@@ -1040,6 +1080,8 @@ export class Minimap {
 
     // 两侧宫院
     this.drawSideItems();
+
+    for(const f of this.bridgeMapData.facilities){const p=this.worldToMap(f.x,f.z);this.drawLabel(f.name,p.x,p.y,false,8,f.name,undefined,null,1,f.id);}
 
     // 方位
     ctx.fillStyle = 'rgba(100, 40, 40, 0.85)';

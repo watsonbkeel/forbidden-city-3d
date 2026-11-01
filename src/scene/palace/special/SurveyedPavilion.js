@@ -1,3 +1,4 @@
+import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
 import * as THREE from 'three';
 import { pavilionGeometry } from './PavilionProfiles.js';
 import { buildTirenLowerWindowLeaves } from './PavilionLowerWindowLeaves.js';
@@ -10,6 +11,7 @@ const part=(parent,role,data={})=>{const group=tag(new THREE.Group(),role,data);
 
 /** One reusable assembly, two independently transcribed surveys. Front is -Z. */
 export function buildSurveyedPavilion(kit,opts={}) {
+  const stairContactStart=kit.walkables.length;
   const g=pavilionGeometry(opts),f=kit.frame(g.x,g.z,g.rot),name=opts.name??g.name;
   f.name=name;
   const enter=opts.enter===true,lo=g.lower,up=g.upper,p=g.platform;
@@ -259,6 +261,7 @@ export function buildSurveyedPavilion(kit,opts={}) {
     dimensions:{status:'mixed-evidence',measurements:g.measurements,assumptions:g.assumptions,officialOverallHeight:g.measurements.overview_height.value,generatedTopY:roof.userData.topY,currentCondition2026Accepted:false},
     elevations:g.elevations,waist:g.waist,platform:g.platform,frontFlights:g.frontFlights,approaches:g.approaches,roomBounds:g.roomBounds,sideConnections:g.sideConnections,interface:g.interface,
     rearAcceptance:'UNKNOWN_2026',visitorPolicy:'Playable lower entry is a game choice, not museum access permission.'};
+  registerBPrincipalStairs(kit,f,g.profile,stairContactStart);
   const renderGeometry=prunePavilionCoveredFaces(f,renderBoxes);
   return {f,group:f,PW:p.width,PD:p.depth,top:p.y,geometry:g,renderGeometry};
 }

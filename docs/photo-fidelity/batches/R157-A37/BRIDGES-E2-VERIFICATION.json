@@ -1,0 +1,304 @@
+{
+  "baseline": "abc3a2afd75d7933ecc44171a929e9669b817e2f",
+  "verifiedUTC": "2026-11-01T03:04:31Z",
+  "rawLocation": "outside repository: ../r157-bridges-e2-evidence/",
+  "tests": [
+    {
+      "localRawEvidence": "component-red.tap",
+      "sha256": "9548f5d284d434d2703c6c55bfc67659969a63bece779da8924dab477fba5758",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/practical-crossings.test.mjs",
+      "tests": 9,
+      "passed": 1,
+      "failed": 8,
+      "exitCode": 1,
+      "scope": "Original unchanged parent RED: wrong half axis/missing three instances"
+    },
+    {
+      "localRawEvidence": "component-green-first.tap",
+      "sha256": "8999db8b14fb7ce46c850f8f36ea2025cc2adeb01081ccca8f582e5083f7e92f",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/practical-crossings.test.mjs",
+      "tests": 9,
+      "passed": 8,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Initial GREEN: exact analytic edge vs Float32 ray seam, intentional.17m step; retained"
+    },
+    {
+      "localRawEvidence": "cover-bank-red.tap",
+      "sha256": "a5e71657f23a4c59f97a275e8f3f36360b11de35941e52be437981e538180168",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/practical-crossings.test.mjs",
+      "tests": 10,
+      "passed": 6,
+      "failed": 4,
+      "exitCode": 1,
+      "scope": "Additional true controls expose roof-cap-only bank-entry water seam; fixed with visible dry-bank grass solids"
+    },
+    {
+      "localRawEvidence": "review-gallery-red.tap",
+      "sha256": "42c4ce6751e910fa8d22f7ff2e8dd414833157d1f7db17e398ed4aa5b385203e",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/gallery-interface.test.mjs",
+      "tests": 5,
+      "passed": 4,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Independent Important reproduced: cover extended inside actual depth7 gallery foundation"
+    },
+    {
+      "localRawEvidence": "review-gallery-green.tap",
+      "sha256": "b9771c6ad5ef6ba87a41e38a58b61495a1161ddc7873486b4cbb953314fa037a",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/gallery-interface.test.mjs tests/r157-bridges-e2/practical-crossings.test.mjs",
+      "tests": 15,
+      "passed": 15,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "After Important fix, actual adjacent-gallery fixture included"
+    },
+    {
+      "localRawEvidence": "final-affected.tap",
+      "sha256": "e71ffa823ea5842161aa7e250b23d4e0d883ae7a893b35190ab4f825ca47bfbd",
+      "command": "node --max-old-space-size=768 --test --test-concurrency=1 tests/r157-bridges-e2/gallery-interface.test.mjs tests/r157-bridges-e2/practical-crossings.test.mjs tests/r157-practical-side-galleries.test.mjs tests/r157-bridges-e/principal-bridge.test.mjs tests/r36-south-water.test.mjs",
+      "tests": 34,
+      "passed": 33,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Inherited r36:14 central equal6.1x21 assertion unchanged; all new15/current high-gallery/central component tests pass"
+    },
+    {
+      "localRawEvidence": "world-final.tap",
+      "sha256": "154b8ade504b003c1ae4cfe65e6c0362e20e1210cae79e51bfd4f26b3c9d6c68",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 tests/r157-bridges-e2/practical-world.test.mjs",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Initial84 routes64 arrived/20 failed; raw failed invalid-spawn and retained Wenyuan observations preserved"
+    },
+    {
+      "localRawEvidence": "world-confirmed.tap",
+      "sha256": "0ebf79817f9083dfe3ffe46472def02170c6f174156b82347801754e210169c2",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 tests/r157-bridges-e2/practical-world.test.mjs",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "exitCode": 1,
+      "scope": "Real clear approach76/80 targets arrived;4 zero-length duplicate-waypoint inputs fixed, no production change"
+    },
+    {
+      "localRawEvidence": "wenyuan-parent.tap",
+      "sha256": "43500b7196d6bdbb9b910f7da0822d5ceeacb992f0596e2819c66a1e91613420",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 tests/r157-bridges-e2/retained-wenyuan-baseline.test.mjs",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "Characterization harness only: exactabc parent Wenyuan0/4 arrived, not crossing acceptance"
+    },
+    {
+      "localRawEvidence": "world-confirmed-final.tap",
+      "sha256": "4ed4686d79377e974db2ac7fcdf21f472983dde8461e81153b40a83cd3005e0b",
+      "command": "EVIDENCE_OUT=... node --max-old-space-size=1024 --test --test-concurrency=1 tests/r157-bridges-e2/practical-world.test.mjs",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "scope": "84 recorded:80 target/Donghua/high-gallery routes arrived;4 retained Wenyuan blocked and separately unaccepted;6 water negatives block"
+    }
+  ],
+  "actualWorld": {
+    "scenariosRecorded": 84,
+    "targetRouteFailures": 0,
+    "arrived": 80,
+    "frames": 18787,
+    "outsideWaterNegatives": [
+      {
+        "name": "trio-gap-west",
+        "x": -261,
+        "z": -149,
+        "blocked": true
+      },
+      {
+        "name": "trio-gap-east",
+        "x": -273,
+        "z": -149,
+        "blocked": true
+      },
+      {
+        "name": "trio-outside",
+        "x": -290,
+        "z": -149,
+        "blocked": true
+      },
+      {
+        "name": "half-outside-east",
+        "x": -117,
+        "z": -278,
+        "blocked": true
+      },
+      {
+        "name": "removed-wrong-half",
+        "x": -140,
+        "z": -266,
+        "blocked": true
+      },
+      {
+        "name": "low-gallery",
+        "x": -100.65,
+        "z": -278,
+        "blocked": true
+      }
+    ],
+    "retainedWenyuanUnacceptedRows": 4,
+    "exactParentComparison": [
+      {
+        "fps": 10,
+        "sprint": false,
+        "sameFields": [
+          "fps",
+          "sprint",
+          "arrived",
+          "end",
+          "minFeet",
+          "maxFeet"
+        ],
+        "arrived": false,
+        "end": [
+          -186.5,
+          -142.64098835343458,
+          0.01273404367580436
+        ]
+      },
+      {
+        "fps": 10,
+        "sprint": true,
+        "sameFields": [
+          "fps",
+          "sprint",
+          "arrived",
+          "end",
+          "minFeet",
+          "maxFeet"
+        ],
+        "arrived": false,
+        "end": [
+          -186.5,
+          -142.6983704696923,
+          0.015766166864422206
+        ]
+      },
+      {
+        "fps": 60,
+        "sprint": false,
+        "sameFields": [
+          "fps",
+          "sprint",
+          "arrived",
+          "end",
+          "minFeet",
+          "maxFeet"
+        ],
+        "arrived": false,
+        "end": [
+          -186.5,
+          -142.6428235385915,
+          0.012831016527846194
+        ]
+      },
+      {
+        "fps": 60,
+        "sprint": true,
+        "sameFields": [
+          "fps",
+          "sprint",
+          "arrived",
+          "end",
+          "minFeet",
+          "maxFeet"
+        ],
+        "arrived": false,
+        "end": [
+          -186.5,
+          -142.70277470656612,
+          0.015998890744686807
+        ]
+      }
+    ],
+    "noInjectedProviders": true,
+    "browserGPU": false,
+    "targetAndNearbyArrivedRoutes": 80,
+    "targetAndNearbyFrames": 18097,
+    "unacceptedWenyuanFrames": 690
+  },
+  "build": {
+    "exitCode": 0,
+    "modulesPerBase": 594,
+    "writtenBundles": false,
+    "publicCopied": false,
+    "standaloneDeployable": false,
+    "bases": [
+      {
+        "base": "/",
+        "buildId": "R146-fix-a064e7050bae",
+        "sourceFingerprint": "80b70b7181e08a0e9ceb91d98b31827c41d1c25871e0880b725dd2d736fe25b6",
+        "sourceCommit": "abc3a2afd75d7933ecc44171a929e9669b817e2f",
+        "sourceDirty": true
+      },
+      {
+        "base": "/forbidden-city-3d/",
+        "buildId": "R146-fix-7a282ffedca2",
+        "sourceFingerprint": "80b70b7181e08a0e9ceb91d98b31827c41d1c25871e0880b725dd2d736fe25b6",
+        "sourceCommit": "abc3a2afd75d7933ecc44171a929e9669b817e2f",
+        "sourceDirty": true
+      },
+      {
+        "base": "/gugong/",
+        "buildId": "R146-fix-07cd72dc6a96",
+        "sourceFingerprint": "80b70b7181e08a0e9ceb91d98b31827c41d1c25871e0880b725dd2d736fe25b6",
+        "sourceCommit": "abc3a2afd75d7933ecc44171a929e9669b817e2f",
+        "sourceDirty": true
+      }
+    ]
+  },
+  "standardCommands": [
+    {
+      "command": "npm run test:anchors",
+      "exitCode": 1,
+      "finding": "114 compared;1 over-tolerance: Shenwu gate z11m;1 incompatible QianDong group omitted; no E2 anchor data changed"
+    },
+    {
+      "command": "npm run test:zones",
+      "exitCode": 2,
+      "finding": "Actual geometry lint reports retained Middle-Right gate near-outlet failures, then TypeError Unsupported furniture-domain shape. This is NOT a passing whole suite and was not repaired in bridge scope."
+    }
+  ],
+  "independentReview": {
+    "reviewer": "fresh gpt-6-astra",
+    "critical": 0,
+    "important": 1,
+    "importantFixed": "actual depth7 north-gallery edge derived from existing options; real-gallery RED4/5->GREEN5/5; outside-wall endpoint-108.1; old-107 real wall remains blocked",
+    "secondReviewClaimed": false
+  },
+  "visual": {
+    "views": [
+      "half-interface",
+      "three-gates"
+    ],
+    "stages": [
+      "before",
+      "after"
+    ],
+    "actualProductionSouthWaterAndAdjacentGallery": true,
+    "trianglesBefore": 122512,
+    "trianglesAfter": 127432,
+    "sameCameraBeforeAfter": true,
+    "personallyViewed": true,
+    "baseVertexColorOnly": true,
+    "texturesAndGPUNotVerified": true
+  },
+  "limits": [
+    "Engineering coordinates not surveyed or calibrated to.3m.",
+    "Detailed morphology/count/relief/hidden source matching not accepted.",
+    "Full historical standard suite not rerun; observed standard failures preserved.",
+    "Do not claim84 routes arrived or all legacy tests passed.",
+    "No currentCycleAccepted/whole-count promotion or remote/main/Pages write."
+  ]
+}

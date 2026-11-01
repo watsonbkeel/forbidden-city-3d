@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {captureGate} from '../../lib/wumen-practical-fixture.mjs';
+import {replayGateTower} from '../../lib/gate-tower-walk.mjs';
+import {CollisionManager} from '../../../src/utils/Collision.js';
+import {installWumenPracticalAssembly} from '../../../src/scene/palace/special/WumenPracticalAssembly.js';
+import {preserveWumenPracticalDescentOwner,resolveWumenPracticalDescent} from '../../../src/scene/palace/special/WumenPracticalDescent.js';
+class ScopedManager extends CollisionManager {
+ addWalkable(source,tag){const n=this.walkables.length;super.addWalkable(source,tag);if(this.walkables.length>n)preserveWumenPracticalDescentOwner(this.walkables.at(-1),source);}
+ resolveFurnitureVertical(state,delta,radius){return resolveWumenPracticalDescent(this,state,delta,radius)??super.resolveFurnitureVertical(state,delta,radius);}
+}
+function world(){const c=captureGate();installWumenPracticalAssembly(c.builder,c.group,c.data,{colliderStart:0,walkableStart:0});const cm=new ScopedManager();cm.addColliders(c.builder.colliders);cm.addWalkables(c.builder.walkables);return {...c,cm};}
+function pair(w){const x=-77,z=-421,y=w.cm.getGroundHeight(x,z,9,.6);return{first:{x,z,feetY:y,groundY:y,airborne:false,verticalVelocity:0},next:{x:x+.15,z,feetY:y,groundY:y,airborne:false,verticalVelocity:0}};}
+test('only continuous grounded descent on the real registered ramp receives contact',()=>{const w=world(),{first,next}=pair(w);assert.equal(resolveWumenPracticalDescent(w.cm,first,1/60),null);const r=resolveWumenPracticalDescent(w.cm,next,1/60);assert.ok(r?.wumenPracticalDescent);assert.equal(r.feetY,w.cm.getGroundHeight(next.x,next.z,9,.6));assert.equal(r.airborne,false);});
+test('jump, airborne high fall, stale/high pose and removed registration never attract to ramp',()=>{for(const change of[s=>({...s,airborne:true,verticalVelocity:7.2}),s=>({...s,airborne:true,feetY:s.feetY+8,verticalVelocity:-10}),s=>({...s,feetY:s.feetY+2})]){const w=world(),{first,next}=pair(w);resolveWumenPracticalDescent(w.cm,first,1/60);assert.equal(resolveWumenPracticalDescent(w.cm,change(next),1/60),null);}const w=world(),{first,next}=pair(w);resolveWumenPracticalDescent(w.cm,first,1/60);w.cm.walkables=w.cm.walkables.filter(r=>r.wumenPracticalDescentId!=='east/outward');assert.equal(resolveWumenPracticalDescent(w.cm,next,1/60),null);});
+test('leaving the actual entry footprint uses native falling, not an extended support',t=>{const w=world(),z=-419.6+12,x=-66.88,feet=w.cm.getGroundHeight(x,z,5,.6);let r;try{r=replayGateTower(t,w,[[x,z],[-75,z]],{startFeet:feet,fps:60,sprint:false});}finally{t.mock.restoreAll();}assert.equal(r.arrived,true);assert.equal(r.end[2],0);assert.ok(r.frames.some(f=>f.x<-70.7&&f.feet-f.ground>.3),'genuine edge drop remains a fall');});
+test('ordinary thin obstacle in the swept path refuses contact even when endpoints are clear',()=>{const w=world(),{first}=pair(w),next={...first,x:first.x+1.2},y=w.cm.getGroundHeight(next.x,next.z,9,.6),wall=new w.THREE.Box3(new w.THREE.Vector3(first.x+.56,first.feetY+.4,first.z-1),new w.THREE.Vector3(first.x+.64,first.feetY+.8,first.z+1));w.cm.addCollider(wall);resolveWumenPracticalDescent(w.cm,first,.1);assert.equal(w.cm.checkCollision(new w.THREE.Vector3(next.x,y+1.7,next.z),.5),false,'endpoint does not overlap thin obstacle');assert.equal(resolveWumenPracticalDescent(w.cm,next,.1),null,'continuous raw sweep must block');});

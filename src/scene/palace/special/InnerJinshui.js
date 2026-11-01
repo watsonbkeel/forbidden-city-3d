@@ -20,6 +20,7 @@ export const INNER_JINSHUI = Object.freeze({
   sources: Object.freeze([
     Object.freeze({url:'https://www.dpm.org.cn/explore/building/236439.html',use:'West–east meander; five bridges, not surveyed dimensions'}),
     Object.freeze({url:'https://www.dpm.org.cn/architectural_art/246281.html',use:'Five white-marble arch bridges'}),
+    Object.freeze({url:'https://img.dpm.org.cn/Uploads/pdf/2192/T00005_00.pdf',use:'Xu Yilin 1982: imperial middle bridge widest, longest and highest; not individual measured dimensions'}),
     Object.freeze({url:'https://img.dpm.org.cn/Uploads/Picture/2018/01/18/s5a6079fc517e1.jpg',use:'South-facing entry photograph: bow, banks and actual arch openings'}),
     Object.freeze({url:'https://img.dpm.org.cn/static/themes/image/xf/map3.jpg',use:'Official Visit diagram: south-bowed centre and north-turning shoulders; not a measured plan'}),
   ]),
@@ -59,15 +60,22 @@ export function innerJinshuiProfile(river) {
     const length=b.length??JINSHUI_BRIDGE_LENGTH;
     if(!Number.isFinite(b.dx)||!Number.isFinite(b.width)||b.width<2||b.width>12||!Number.isFinite(length)||length<18||length>30)
       throw new Error('Invalid fitted Inner Jinshui bridge width, run or anchor');
+    if(b.crest!==undefined&&(!Number.isFinite(b.crest)||b.crest<0||b.crest>3))
+      throw new Error('Invalid fitted Inner Jinshui bridge crest');
+    if(b.bankSamplingWidth!==undefined&&(!Number.isFinite(b.bankSamplingWidth)||b.bankSamplingWidth<2||b.bankSamplingWidth>12))
+      throw new Error('Invalid retained Inner Jinshui bridge bank sampling width');
     return {id:`inner-jinshui:bridge-${i+1}`,x:x+b.dx,z,width:b.width,length,
       minZ:z-length/2,maxZ:z+length/2,railX:b.width/2-.11,
+      ...(b.crest===undefined?{}:{crest:b.crest}),
+      ...(b.bankSamplingWidth===undefined?{}:{bankSamplingWidth:b.bankSamplingWidth}),
       dimensionStatus:'RETAINED_INDEPENDENT_MODEL_FIT_NOT_SURVEYED'};
   });
   const xs=new Set();
   for(let lx=-P.reachHalfWidth;lx<=P.reachHalfWidth;lx+=P.bankSampleStep)xs.add(lx);
-  // Put rail-gap edges into the SAME sampled polygon, so bank geometry cannot
-  // cross a bridge entrance merely because it falls inside a sampling cell.
-  for(const b of bridges)for(const s of [-1,1])xs.add(b.x-x+s*(b.width/2+.16));
+  // Normally sample rail-gap edges in the SAME polygon. An explicitly retained
+  // sampling width preserves the prior river polygon when a bridge is widened;
+  // actual rail gaps, opening spans and deck support still use its actual width.
+  for(const b of bridges)for(const s of [-1,1])xs.add(b.x-x+s*((b.bankSamplingWidth??b.width)/2+.16));
   const samples=[...xs].sort((a,b)=>a-b).map(lx=>({x:x+lx,...section(lx)}));
   const north=samples.map(s=>({x:s.x,z:z+s.center+s.halfWidth}));
   const south=samples.map(s=>({x:s.x,z:z+s.center-s.halfWidth}));
@@ -78,7 +86,7 @@ export function innerJinshuiProfile(river) {
     if(b.opening[0]-b.minZ<1||b.maxZ-b.opening[1]<1)throw new Error('Fitted bridge run does not span both banks with landing overlap');
     b.deck=Array.from({length:P.deckSegments+1},(_,i)=>{
       const dz=-b.length/2+b.length*i/P.deckSegments;
-      return {z:b.z+dz,y:P.bridgeCrest*(1-(2*dz/b.length)**2)};
+      return {z:b.z+dz,y:(b.crest??P.bridgeCrest)*(1-(2*dz/b.length)**2)};
     });
   }
   const waterPolygon=[...south,...north.slice().reverse()];
@@ -87,7 +95,7 @@ export function innerJinshuiProfile(river) {
     ends:'OPEN_MODEL_BOUNDARIES_NOT_COMPLETE_WATER_SYSTEM',
     limitations:['Diagrammatic bow fit; bank plan, vault rise, water level and rail detail are not measured.',
       'The western/eastern continuations and junctions at the side gateways are outside this bounded reach.',
-      'Retained equal bridge widths are independently configurable, not a claim of equal historical dimensions.']};
+      'Middle-bridge hierarchy is source-backed; its width/length/crest and the four retained side-bridge dimensions are engineering fits, not surveyed measurements.']};
   profileCache.set(river,result);return result;
 }
 

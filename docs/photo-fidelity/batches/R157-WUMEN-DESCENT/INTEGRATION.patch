@@ -1,0 +1,9 @@
+--- a/src/utils/Collision.js
++++ b/src/utils/Collision.js
+@@ -0,0 +1 @@
++import {preserveWumenPracticalDescentOwner,resolveWumenPracticalDescent} from '../scene/palace/special/WumenPracticalDescent.js';
+@@ -113,0 +115 @@
++      preserveWumenPracticalDescentOwner(this.walkables.at(-1),r);
+@@ -511 +513 @@
+-  resolveFurnitureVertical(state,delta,radius=.5) { return resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }
++  resolveFurnitureVertical(state,delta,radius=.5) { return resolveWumenPracticalDescent(this,state,delta,radius) ?? resolveWumenJointVertical(this,state,delta,radius) ?? resolveFurnitureVertical(this,state,delta,radius); }

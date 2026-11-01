@@ -1,0 +1,41 @@
+[
+  {
+    "name": "world28",
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-concurrency=1",
+      "tests/photo-fidelity/batches/halls-retained-main-entry-world.test.mjs"
+    ],
+    "exit": 0,
+    "seconds": 14.11628007888794
+  },
+  {
+    "name": "world24",
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-concurrency=1",
+      "tests/photo-fidelity/batches/halls-practical-current-entry-world.test.mjs"
+    ],
+    "exit": 0,
+    "seconds": 14.885759115219116
+  },
+  {
+    "name": "world244",
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=1024",
+      "--test",
+      "--test-concurrency=1",
+      "tests/r157-integrated-practical-world.test.mjs"
+    ],
+    "exit": 0,
+    "seconds": 37.10894966125488
+  }
+]

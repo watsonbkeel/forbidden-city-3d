@@ -4,7 +4,7 @@ import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSu
 /** Own east-view type fit only. Retained station spacing and all dimensions are
  * engineering approximations, not a carving survey or a whole-gate acceptance. */
 export function buildXieheEastRampRails(kit,frame,g,r) {
- if(g.profile!=='xiehe'||r!==g.ramps[0]||r.zTop!==-6||r.zToe!==-23.75||r.leftTop!==-9||r.rightTop!==9)throw Error('Xiehe east ramp identity mismatch');
+ if(g.profile!=='xiehe'||r!==g.ramps[0]||r.zTop!==-g.platformDepth/2||r.zToe!==r.zTop-17.75||r.leftTop!==-9||r.rightTop!==9)throw Error('Xiehe east ramp identity mismatch');
  const owners=[],material=kit.lib.material('marble');
  const add=(parts,geometry,role)=>{const mesh=new THREE.Mesh(geometry,material);mesh.name=`xiehe-east-rail-${role}`;mesh.userData.xieheEastRail={role};mesh.castShadow=mesh.receiveShadow=true;frame.add(mesh);parts.push(mesh);return mesh;};
  const box=(parts,role,w,h,d,x,y,z)=>add(parts,new THREE.BoxGeometry(w,h,d).translate(x,y,z),role);
