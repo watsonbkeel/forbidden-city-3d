@@ -19,7 +19,21 @@ export function buildYouyiFreshGate(kit,item,zoneId,index){
   // Conservative inscribed solid slices match the visible wedge, no hidden floor.
   for(let i=0;i<15;i++){const z0=s*(4+i*.2),z1=s*(4+(i+1)*.2),y=ph*(1-(i+1)/15);if(y>0)kit.col(f,-5.4,0,z0,5.4,y,z1);}
   for(const x of[-5.55,5.55]){
-   for(let i=0;i<=4;i++){const z=s*(4+i*.75),y=ph*(1-i/4);solid('youyi-rail','marble',.18,.9,.18,x,y+.45,z);}
+   // Own public west view: lower stone panels and rounded post heads.
+   // Compact visual fit inside the retained rail proxy, not measured carving.
+   for(let i=0;i<=4;i++){
+    const z=s*(4+i*.75),y=ph*(1-i/4),cy=y+.45;
+    // Keep original .18 x .9 x .18 post collision arithmetic exactly.
+    kit.col(f,x-.18/2,cy-.9/2,z-.18/2,x+.18/2,cy+.9/2,z+.18/2);
+    box('youyi-rail','marble',.13,.72,.13,x,y+.36,z);
+    const head=new T.LatheGeometry([[.065,0],[.085,.025],[.09,.07],[.075,.12],[.035,.165],[0,.18]].map(p=>new T.Vector2(...p)),12);
+    tag(kit.mesh(f,head,kit.lib.material('marble'),x,y+.72,z),'youyi-stone-head');
+   }
+   for(let i=0;i<4;i++){
+    const z=s*(4+(i+.5)*.75),y=ph*(1-(i+.5)/4);
+    const panel=box('youyi-stone-panel','marble',.12,.48,Math.hypot(.57,.57*ph/3),x,y+.34,z);
+    panel.rotation.x=s*Math.atan2(ph,3);
+   }
    const m=box('youyi-rail','marble',.14,.16,Math.hypot(3,ph),x,ph/2+.72,s*5.5);m.rotation.x=s*Math.atan2(ph,3);
    kit.col(f,x-.09,0,s*4,x+.09,1.3,s*7);
   }
