@@ -1,0 +1,284 @@
+{
+  "base": {
+    "local": "74c6832d1c8351ac3e08031558a0e7146a81a1f1",
+    "remote": "e2f0969db843d5048d15d5ed716e75d30b6e0faf",
+    "tree": "288d67a14febe7743ebd55dc412a608ee7b866c7",
+    "actualTrackedRuntimeStillClean": true
+  },
+  "source": [
+    {
+      "path": "src/scene/palace/special/LuanjiaEastWing.js",
+      "bytes": 5884,
+      "sha256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026"
+    },
+    {
+      "path": "tests/r158-luanjia-east/component.test.mjs",
+      "bytes": 6725,
+      "sha256": "64bcb457e7f0de5f0d802b6eef5b6a4052beb2ceff466fc357e1534cd544fd20"
+    },
+    {
+      "path": "tests/r158-luanjia-east/export-cpu.mjs",
+      "bytes": 1410,
+      "sha256": "a73452f54a33595b41c3e5c8b2aa58f531fe62f84ed96cec9d2e6d4d9fbfbe74"
+    },
+    {
+      "path": "tests/r158-luanjia-east/fixture.mjs",
+      "bytes": 766,
+      "sha256": "6464498d4d78c5d23f383062993550d070ddbffd69af14ec10d7e39ab4c2cd51"
+    },
+    {
+      "path": "tests/r158-luanjia-east/render-cpu.py",
+      "bytes": 3057,
+      "sha256": "d4f9f7a7ce556d08faf0af1aec7655496f5a2b4cb1f1d26b6dc8191296ad8aea"
+    },
+    {
+      "path": "tests/r158-luanjia-east/stream-pin.mjs",
+      "bytes": 1604,
+      "sha256": "e1a137989984aeb61a4f133f209a01772c3ca127bfc713471c95a7771937d39e"
+    },
+    {
+      "path": "tests/r158-luanjia-east/world.test.mjs",
+      "bytes": 4224,
+      "sha256": "dd08e57a582ed42a38174210228f6ccb33adf21e52a88c0c37fa3c7d36770681"
+    }
+  ],
+  "unchangedSourcePins": [
+    {
+      "path": "../r158-wenhua-route-1821/src/scene/zones/ZoneBase.js",
+      "bytes": 40012,
+      "sha256": "b8ac551180ae132b304df9f53aa2abb2898041f6dd5da108acfa6e063e7b49f4"
+    },
+    {
+      "path": "../r158-wenhua-route-1821/src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 8625,
+      "sha256": "651b31b81c7cdb9bf919b64b42c6cce7de75e48fedc7eaa5fa925a030d4c557c"
+    },
+    {
+      "path": "../r158-wenhua-route-1821/src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "../r158-wenhua-route-1821/data/zones/outer-east.json",
+      "bytes": 7941,
+      "sha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e"
+    }
+  ],
+  "officialSource": {
+    "url": "https://www.dpm.org.cn/explore/building/236525.html",
+    "readThisTurn": "OFFICIAL_PROSE_READ",
+    "ownFacadePixelsThisCandidate": false,
+    "known": [
+      "existing east warehouse five bays",
+      "yellow hard-gable roof",
+      "two internal levels"
+    ],
+    "unmodeled": [
+      "south ten-bay warehouse",
+      "vanished offices",
+      "internal upper floor/stairs/furnishings"
+    ]
+  },
+  "results": {
+    "components": {
+      "firstMissingBuilderRed": 6,
+      "firstGreen": 6,
+      "pierEndPlaneRed": {
+        "pass": 6,
+        "fail": 1
+      },
+      "finalPass": 8,
+      "finalFail": 0,
+      "finalBeforeResourceReviewPass": 7,
+      "uvHelperDisposeRed": {
+        "pass": 7,
+        "fail": 1,
+        "actual": 2,
+        "expected": 1
+      }
+    },
+    "world": {
+      "arrived": 8,
+      "frames": 2383,
+      "maxAbsFootGap": 0,
+      "closedWallRefusals": 4,
+      "oldDonghuaRowsExact": 4
+    },
+    "cpu": {
+      "sourceMeshes": 17,
+      "triangles": 444,
+      "owners": 17,
+      "finalViewsPersonallyViewed": [
+        "west-front",
+        "south-oblique"
+      ],
+      "palette": "EXPLICIT_MATERIAL_CATEGORY_FLAT_DIAGNOSTIC_NOT_GPU",
+      "initialCpuNotRetained": "low disk; first source hash ea3053724d4e6fcbbdc41044c781eed09073db3df719bda8f0424224905568e6; pier ends changed -12.35+24.7*i/5 to -12.2+24.4*i/5; actual RED retained"
+    },
+    "newSupports": 0,
+    "newRooms": 0,
+    "normalProductionHookInstalledByAuthor": false,
+    "fullAppBuildOrGpu": false
+  },
+  "privateSmallEvidence": [
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-final.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-final.tap",
+      "bytes": 868,
+      "sha256": "dfc46ce32afae7ab9597b2036a62f0a50d38d1c0aeb9488d7b7e02e257c9f280"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-first.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-first.tap",
+      "bytes": 750,
+      "sha256": "fce85ea36591154965adf61fb4869c5a1a42216f4927685383e00481d194c2e5"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-red.tap",
+      "bytes": 7459,
+      "sha256": "922d9442d268a414420dd5f3f2a76215567fd3ae6494d4f7f4fb2a851065d90e"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-release.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-release.tap",
+      "bytes": 753,
+      "sha256": "c6beee74c8a0125f0d5b5ad5b87ebec166c9c3f7609c5d36f27798a0c9e712d0"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-reviewed.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/component-reviewed.tap",
+      "bytes": 954,
+      "sha256": "2d9305f155e0535bcf1d9bc14dcaa58bf53cc088fb43bf7a4b9f2fa4a816767a"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/cpu/export-final.log",
+      "bytes": 1141,
+      "sha256": "f2fc7048e7a9ada136e0b7c0e71f4453233bf13e509077136116ef3c5c1b9878"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/cpu/export.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/cpu/export.log",
+      "bytes": 1141,
+      "sha256": "f2fc7048e7a9ada136e0b7c0e71f4453233bf13e509077136116ef3c5c1b9878"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/cpu/south-oblique.json.gz",
+      "bytes": 4231,
+      "sha256": "cfefec161d5999645f598bef562601ecec3e1bd2e7f2488f176272b70a548244"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/cpu/west-front.json.gz",
+      "bytes": 4143,
+      "sha256": "f416e6f2c386fcc92c6c79c1198cd5f9f7d4c1830ec8e9ec8afcfa2ef85c4ea0"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/pier-end-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/pier-end-red.tap",
+      "bytes": 1861,
+      "sha256": "05b10acf99e468de91d39dee46abbbc037e72070a06d8d68867d29fa10f6ea58"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/stream-after-dispose-fix.json",
+      "bytes": 241,
+      "sha256": "0a39928d54934ad50a4a3fde41f12ca0572d79188bc319545c4becd408136153"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/stream-before-dispose-fix.json",
+      "bytes": 241,
+      "sha256": "0a39928d54934ad50a4a3fde41f12ca0572d79188bc319545c4becd408136153"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/uv-dispose-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/uv-dispose-red.tap",
+      "bytes": 1928,
+      "sha256": "8eba157eb98b784982a73431e0225eaeb0fe4d4fe7401432098fbd7da9f07c31"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/world-summary.json",
+      "bytes": 8950,
+      "sha256": "2f6936a2e0c196b5504d73c15ef6f162b14172e4dc836919f7c44a316f788438"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/world.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-east-evidence-2017/world.tap",
+      "bytes": 645,
+      "sha256": "77d9d0f40ba800e1afda502375962f95c4697d51204aea2f26c06a59d467c5c3"
+    }
+  ],
+  "privateFullFramePolicy": "No full raw frame JSON written; every accepted frame evaluated and SHA256 recorded. Do not claim full frame bytes are saved or remotely retrievable.",
+  "cpuImages": [
+    {
+      "path": "docs/photo-fidelity/batches/R158-LUANJIA-EAST/cpu/south-oblique.png",
+      "bytes": 24162,
+      "sha256": "1bb7bd1e0129aa36c577c1e08a4c1a8edc8893a943df7597d8802bcf70f24a64"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R158-LUANJIA-EAST/cpu/west-front.png",
+      "bytes": 20879,
+      "sha256": "1bdf645ea6cd627c13b0275df7a97e8966f9bf4756e64a6b1a486e1389550702"
+    }
+  ],
+  "dependencyMethod": "No src/data copied. Temporary uncommitted symlinks to exact clean74c source during QA; commit tree retains original unchanged tracked dependencies.",
+  "diskPolicy": "No clone/install/build; all author outputs below2MiB, stop writes below500MiB.",
+  "resourceOnlyReviewedSuccessor": {
+    "priorRuntimeSourceSha256": "1ad4f813ccf0e894a8522fbba21b77f3a17fe2aa6a96910b221a1fe1511927dc",
+    "currentRuntimeSourceSha256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026",
+    "onlyRuntimeChange": "Delete caller original.dispose after applyBoxUV helper already owns original indexed geometry disposal.",
+    "before": {
+      "meshes": 17,
+      "owners": 17,
+      "fullVisibleAttributeStreamSha256": "1bbff04cc2ad73f4f094214f16f2be2bbbc96484704848c078073595afd30d3f",
+      "fullOwnerStreamSha256": "56883ed8c3169bb6183647a1080dd250dfb62959b3a0457af5e1315ef96020a5",
+      "supports": 0,
+      "rooms": 0
+    },
+    "after": {
+      "meshes": 17,
+      "owners": 17,
+      "fullVisibleAttributeStreamSha256": "1bbff04cc2ad73f4f094214f16f2be2bbbc96484704848c078073595afd30d3f",
+      "fullOwnerStreamSha256": "56883ed8c3169bb6183647a1080dd250dfb62959b3a0457af5e1315ef96020a5",
+      "supports": 0,
+      "rooms": 0
+    },
+    "streamsExactlyEqual": true,
+    "worldCpuNotRerun": true,
+    "worldCpuSourceBinding": "Prior1ad4 runtime; inherited only by exact complete visible attribute/material/transform and full collider-owner stream identity, not falsely rerun."
+  }
+}
