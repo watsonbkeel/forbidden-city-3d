@@ -1,0 +1,171 @@
+{
+  "base": "e35789c207621b2b0ea1be4a56052339e5048fc4",
+  "routes": 28,
+  "arrived": 28,
+  "frames": 4562,
+  "maxAbsFootGap": 0,
+  "raw": [
+    {
+      "file": "component-red.tap",
+      "bytes": 4471,
+      "sha256": "1a733ea2283fc0148427284ddd63efa355c4976d5e726ba823b892b2ecc6eb62"
+    },
+    {
+      "file": "component-final.tap",
+      "bytes": 3878,
+      "sha256": "a768c950d744cd0c0efc7660f5334d05712c410128571df125c605b45fa072e9"
+    },
+    {
+      "file": "component-triangle-final.tap",
+      "bytes": 1104,
+      "sha256": "96652b80773e8ace2364d85ad9edb6d5d6e72d04ea0a977a505d995a2b3fa2bd"
+    },
+    {
+      "file": "final-regression.tap",
+      "bytes": 7040,
+      "sha256": "50a34b51d020b7ce0a4e97b75a805899b258e1cde8a80a90d0a5e405f5217390"
+    },
+    {
+      "file": "controller-frames.json",
+      "bytes": 631242,
+      "sha256": "821fd1341b8d52a2d605b4048115fee0d53328d9d5e3edf04de86859eda61e36"
+    },
+    {
+      "file": "world-before-scan.json",
+      "bytes": 2708,
+      "sha256": "f19121782bb3198bee1d4ce1dc4af20a431639c1c715fd7acbd95a4e1609402a"
+    },
+    {
+      "file": "cpu.log",
+      "bytes": 722,
+      "sha256": "ae99ccac4a5235060847ff1661b1e911f3d2668afc8c3e303803c37a01b9f44e"
+    },
+    {
+      "file": "cpu/proof.json",
+      "bytes": 1642,
+      "sha256": "8039ef222ffb7ec5cdbb4b3ddf7914c8a7eee2c03f2eea1a1cd93d3f1fbaea77"
+    },
+    {
+      "file": "cpu/fixture-stream-equality.json",
+      "bytes": 485,
+      "sha256": "3624b8528e439d28b5509c6577a908cf85a9acda7f19789d5ed985c81f5de3fe"
+    },
+    {
+      "file": "cpu/after-context.png",
+      "bytes": 25215,
+      "sha256": "dba167629d1c4ef12c3eb0a1ee761517f0feb530a4dc76727e72c1e990270e3a"
+    },
+    {
+      "file": "cpu/after-middle-gate.png",
+      "bytes": 25552,
+      "sha256": "b8dd218bf4b5d4d4a162b6ee0347f131dc159cd95d3d3742a032bec3692215a4"
+    },
+    {
+      "file": "cpu/before-context.png",
+      "bytes": 24976,
+      "sha256": "499a2bc8b452b4ce13f3e23d1feb8429c0d6c46d397999fb3c812ca48719b3cb"
+    },
+    {
+      "file": "cpu/before-middle-gate.png",
+      "bytes": 26442,
+      "sha256": "e03c5b11a063e93bc470861da02fbefcc8410f4b0e75044b4a3e57103c496d24"
+    }
+  ],
+  "componentTests": 8,
+  "targetedRegressionTests": 76,
+  "newTriangleOwners": 39,
+  "newTriangles": 456,
+  "newWalkables": 0,
+  "newRooms": 0,
+  "newOwnedMaterials": 2,
+  "installedSharedHook": false,
+  "fullInstalledWorldRun": false,
+  "cleanWholeSiteBuildRun": false,
+  "candidateFiles": [
+    {
+      "path": "src/scene/palace/special/NansansuoCourtyardGates.js",
+      "sha256": "bbfee6052becf7b06533b3033600262f7324efb26fc73bdeafeea6000bb9791c"
+    },
+    {
+      "path": "tests/r158-nansansuo-courtyard-gates.test.mjs",
+      "sha256": "28e51fd6ed8acc150ec0a1a9dc3f7411293a4a61bea4ecdba07d918d8f2d88fc"
+    },
+    {
+      "path": "tests/lib/r158-nansansuo-courtyard-fixture.mjs",
+      "sha256": "46606ea768651d9d29884abd5e5274ef544621be48f1707a29e8c2a8a6e7059b"
+    },
+    {
+      "path": "tests/r158-nansansuo-courtyard/export-cpu.mjs",
+      "sha256": "b64887b1dc19e042cb92e332789ae9a47eacceecd3a216a1526f6eec7b48ad48"
+    },
+    {
+      "path": "tests/r158-nansansuo-courtyard/render-cpu.py",
+      "sha256": "fbb2c83795071a9052c13826f19d5a881819f604a560e91c0bb70cc79c8fd80a"
+    }
+  ],
+  "unchangedSourcePins": [
+    {
+      "path": "src/scene/palace/special/NansansuoCommonGate.js",
+      "sha256": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a",
+      "baseSha256": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a",
+      "baseUnchanged": true
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoFrontHalls.js",
+      "sha256": "e5ab91c9ab3281e402c184a722ebb6de7fc9c04165c45134babae1ab2248c5e6",
+      "baseSha256": "e5ab91c9ab3281e402c184a722ebb6de7fc9c04165c45134babae1ab2248c5e6",
+      "baseUnchanged": true
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoFrontFinalizer.js",
+      "sha256": "582fa7fd3b5ccd8671e6756f6f3ca159190fd57ee0d2278a268b0aeae69a8270",
+      "baseSha256": "582fa7fd3b5ccd8671e6756f6f3ca159190fd57ee0d2278a268b0aeae69a8270",
+      "baseUnchanged": true
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "sha256": "f2fc81bb2beb99fd4949802d1eb9d44d7e077a2f63750b63e677036ce8e614a9",
+      "baseSha256": "f2fc81bb2beb99fd4949802d1eb9d44d7e077a2f63750b63e677036ce8e614a9",
+      "baseUnchanged": true
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+      "baseSha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+      "baseUnchanged": true
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+      "baseSha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+      "baseUnchanged": true
+    },
+    {
+      "path": "data/zones/outer-east.json",
+      "sha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e",
+      "baseSha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e",
+      "baseUnchanged": true
+    },
+    {
+      "path": "data/architecture/b-practical-stair-contacts.json",
+      "sha256": "230ebeb75b3d600d3853f296995ab19a285099d9f6a21417b8365b8b4a6f75a7",
+      "baseSha256": "230ebeb75b3d600d3853f296995ab19a285099d9f6a21417b8365b8b4a6f75a7",
+      "baseUnchanged": true
+    },
+    {
+      "path": "data/architecture/donghua-madao-contacts.json",
+      "sha256": "f9a879d8d997ff07a0e824bdbf581dfd08ebef87dbd0cfac5a980a5532829930",
+      "baseSha256": "f9a879d8d997ff07a0e824bdbf581dfd08ebef87dbd0cfac5a980a5532829930",
+      "baseUnchanged": true
+    },
+    {
+      "path": "data/architecture/nansansuo-front-stair-contacts.json",
+      "sha256": "90ca1834f1fbab5f7a57a2712eaa683c60ea26ec80274b0263215b70203ffe08",
+      "baseSha256": "90ca1834f1fbab5f7a57a2712eaa683c60ea26ec80274b0263215b70203ffe08",
+      "baseUnchanged": true
+    }
+  ],
+  "privateEvidenceDirectory": "r158-nansansuo-doors-evidence-1823",
+  "cpuImagesPersonallyViewed": 4,
+  "cpuFinalFixtureStreamsEqual": true
+}

@@ -1,0 +1,6 @@
+# Jingxing gate bounded implementation
+Approved by parent 2026-11-01 18:23: separate simplified3-bay yellow suspended-gable gate in previously-audited Chuanxin south reservation, no courtyard closure/river/road movement, no invented modern office facade. Native ground-level central access is an explicitly labelled GAME adaptation, not current museum admission.
+Base e35789c207621b2b0ea1be4a56052339e5048fc4 (tree293dc92e, remote2cbf).
+Only new JingxingGate.js module; sole integrator owns normal ZoneBase hook. Three-bay width13.2,depth6.4,centre(-236.5,-224) and roof overhangs are engineering fits within17×12m reservation. Plain closed side-bay infill is not reconstructed office fenestration. No door leaves/painted artwork/room furniture.
+Plan: missing-builder RED → component implementation/guards → one realWorld QA-hook run central roundtrip and retained3outside routes/side rejection →2small actual-mesh CPU views → freeze+independent Astra review → unique integrator final registration/build.
+Constraints: floor flush with existing ground (no stair/contact modification), exact triangle colliders from visible solids, preserve previous objects byte-for-byte. No full-courtyard/GPU/current-open-state claims.
