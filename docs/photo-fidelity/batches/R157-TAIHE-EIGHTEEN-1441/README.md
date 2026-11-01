@@ -1,0 +1,22 @@
+# Taihe eighteen bronze tripods — bounded layout candidate
+
+Base `196384b027e930209145cde19050d6754554e97f`. Independent development; main, user branches and Pages unchanged. Existing downloadable 276449 package does not contain this candidate.
+
+## Evidence versus fit
+The [Palace Museum Taihe page](https://www.dpm.org.cn/explore/building/236465.html) expressly gives **18 bronze tripods**. Two own official south photographs support **ground four + first terrace four + second terrace four + top six**, with lower pairs on the inside/outside of both stair flights and the top six across the front. This distribution is a photo reading, not a documentary per-tier inventory or metric survey. Source dates in URLs are not claimed photography dates. Private reference photographs are not runtime textures.
+
+Replace the actual old six (two north–south rows at far side edges) with eighteen low-detail bronze tripods and plain low stone bases. Top six become a horizontal arrangement rather than retaining the known wrong longitudinal layout. Reuse the existing low-poly tripod form, without invented fine carving or inscriptions. Lower centers x=±5.5/±15.5, top x=±5.5/±22/±31 are engineering fits; top wider offsets avoid existing instruments and bronze animals. Ground is 2m beyond the actual first toe; terrace centers are 2.4m behind each actual front edge, at that tier's existing height. Bases are 1.4m square and .16m high. None of these sizes is claimed measured.
+
+All eighteen have visible geometry and body collision; no new walkable/rescue, no moved stair/rail/wall or neighbouring ornament. Per-object merge records preserve the eighteen identities. The generic tripod function is unchanged. The standalone `terraceOrnaments` compatibility call without actual tier input still makes the legacy six; the **normal production buildComplex path supplies actual tier profiles and installs eighteen**. Tests and World explicitly check that real path, not the legacy standalone fixture.
+
+## Real validation
+- Corrected raw-premerge baseline: 1284 non-tripod original mesh records, all non-target colliders and all supports match the exact 196 baseline. The normal finish/material merge still executes; the test saves a clone immediately before it.
+- New five component tests + previous bronze four + instrument nine = **18/18 selected**. Actual tier count, locations, old bodies/support, clear retained body occupancy at centers and bypass corners, full visible bounds, shadow states and physical envelopes are checked. Legacy standalone tests are not evidence of production eighteen; new actual full-builder tests supply that evidence.
+- Real merged whole World: **80/80**, 10,738 recorded frames. Both main stairs up/down in 10/60Hz walk/run (8), plus all eighteen local square bypasses in those four control modes (72). Peak absolute feet−ground .017635m. This is a limited route result, not full-city/GPU acceptance.
+- First 80-route attempt: 24 arrived / 56 failed because the proposed bypass south corners touched the unchanged front railing. Kept original failures. Shift only the fitted terrace tripod centers from edge+2m to edge+2.4m; existing rails/collision remain untouched. Final actual test passes without weakening collision assertions.
+- Early QA attempted to inspect already merged meshes as individual owners; a second attempted finish override missed a normal architecture field. Those original errors remain. Final fixture snapshots before the real finish, calls the real finish, and passes against exact baseline.
+- Four final CPU views use the same cameras and actual triangles. First export omitted material-array side selection and failed rendering; original error log retained, fixed only exporter. Final renderer resolves per-group material and renders correctly. Flat palette is **not actual texture/GPU lighting**.
+- Full application `/gugong/` build: **607 modules, exit0**, dirty 196 source identity and exact fingerprint in build-info. Later cumulative build must bind its own commit.
+
+## Known limits / rollback
+Fine shape, exact placement, photography date, conservation barriers and present visitor access are not reconstructed. Existing broad body proxies intentionally remain simpler than the legs; no claim of sub-leg free passage. No full suite/GPU/mobile/user or 37-item acceptance upgrade. Rollback the two production paths to 196; prior candidate branches/package remain available. This change does not alter the later two-pavilion roof-end candidate, which is integrated separately.

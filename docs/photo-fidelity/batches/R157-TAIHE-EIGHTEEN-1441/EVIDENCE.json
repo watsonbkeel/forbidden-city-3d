@@ -1,0 +1,676 @@
+{
+  "base": "196384b027e930209145cde19050d6754554e97f",
+  "sourcePins": {
+    "src/scene/PalaceBuilder.js": "0f7fab7a5a34dec511761a26199199a57916c5906efa83ea9cb4ec8d7c7ad62f",
+    "src/scene/palace/special/TaiheEighteenTripods.js": "44726e2a593cbc679c95498820e90681aee14616c16879d6c766774beb8e1214",
+    "src/scene/palace/special/TaiheBronzeSilhouettes.js": "69296c09ed76895ea8a62c221a9c40c965ce360f800f5d8d714f9a9473f5b9c2",
+    "src/scene/palace/special/TaiheTerraceInstruments.js": "587372f5a0a15039a8f910789a946ea1e34c29798d501e3bc3d81500a3874ca2",
+    "src/scene/palace/TaiheFrontApproaches.js": "8e886f1c9f03b4cedd920a993c9f34dbb9e110197195cbd1adf50f1e136d1e53",
+    "src/utils/Collision.js": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+    "data/zones/axis-courts.json": "4f4aeac4786e0452929edfbb8bc5dc29c5b67c734b9ff5e671116126772b593f",
+    "tests/r157-taihe-tripods/before.json": "3f9296c17f04e390362823b69ac1a2bd28ea53f8f7ac52dd2ca06b999dfaa3c6",
+    "tests/r157-taihe-tripods/component.test.mjs": "b9c777e3602cf2abc2d082ecff73d4dcd15b3f80ce1e627f2931c6dadd4fcc0d",
+    "tests/r157-taihe-tripods/export-cpu.mjs": "7e9c01cb9312a00f6233063ebe5298b2697470a2f9fada2a2601feb4f753aa23",
+    "tests/r157-taihe-tripods/fixture.mjs": "8c2cd78132cb2e8e6674529a57db4aee3001b1701a16e2b592c27c65a5e0ed5c",
+    "tests/r157-taihe-tripods/inspect.mjs": "48405bb3c736964d9d7a962982c72118873fbb08a977a4596dd9758d1072b4f0",
+    "tests/r157-taihe-tripods/render-cpu.py": "3a4311899a39c6f106b54e7a53adb848db2a1fb9b26ea30a4518215fd39c66a5",
+    "tests/r157-taihe-tripods/world.test.mjs": "1a802224ced2858b01abc5c616dc52947f9ee6415c193107bac2fd395678899f"
+  },
+  "archive": [
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/actual-profile.json",
+      "stored": "archive/actual-profile.json.compressed.gz",
+      "rawBytes": 23955,
+      "rawSHA256": "bd1a6610ce3d2c0df08bfc2353a3778bec21355c41a8d3a78ba2f9852e24b7d3",
+      "storedSHA256": "8db8482189b34f150d170dd4d529a28723dddb43f243935e27bfffda713ea073"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/build.exit",
+      "stored": "archive/build.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/build.log",
+      "stored": "archive/build.log.compressed.gz",
+      "rawBytes": 1097,
+      "rawSHA256": "fb11f1b04d541f26c39938df66f65c05fbabbe91ec0b0d457c3a606b0cfc3af1",
+      "storedSHA256": "9b16072f9d2c2142eaad3ee942c8a30f583e55983409a76f0c308812695a66b2"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/component-final.exit",
+      "stored": "archive/component-final.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/component-final.tap",
+      "stored": "archive/component-final.tap.compressed.gz",
+      "rawBytes": 567,
+      "rawSHA256": "e93719e8dff1c3814aaea2783ff369e18679921748440a2eca78c0940c650fcd",
+      "storedSHA256": "55834a43d7bccf54ef84f6d95ad85676a36fba732f775bbb53b4fd5e8eebef62"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/component4.exit",
+      "stored": "archive/component4.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/component4.tap",
+      "stored": "archive/component4.tap.compressed.gz",
+      "rawBytes": 1558,
+      "rawSHA256": "0494e6737bc438c3b6f390f2e5530c637dbbe35302ae553e63bfaa8db89eb25e",
+      "storedSHA256": "d11ec5ccfe7c0c66df7eba38dc9d036a4fd815b8279cb276a9ed2fae898fdf34"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu/render.exit",
+      "stored": "archive/cpu_render.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu/render.log",
+      "stored": "archive/cpu_render.log.compressed.gz",
+      "rawBytes": 968,
+      "rawSHA256": "502fc33f92315099383dc1fae2f85acf60dd18d811c9fa658eb128450120fdc1",
+      "storedSHA256": "38b9214c4f424fa91bf36fb3fe99d6de8c6a63b99a3d4a75990b4b4ca4f13478"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/after-front.json.gz",
+      "stored": "archive/cpu-final_after-front.json.gz.original.gz",
+      "rawBytes": 479683,
+      "rawSHA256": "079cf07888af9d19ff8aa69f8b6749c86b02d614a3e01e953713b44d74294b8b",
+      "storedSHA256": "079cf07888af9d19ff8aa69f8b6749c86b02d614a3e01e953713b44d74294b8b"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/after-front.png",
+      "stored": "views/after-front.png",
+      "rawBytes": 36273,
+      "rawSHA256": "53b9764c2bec15b4c40a2fe96f5582accf843def7d14b224cb20f8c0c5f75979",
+      "storedSHA256": "53b9764c2bec15b4c40a2fe96f5582accf843def7d14b224cb20f8c0c5f75979"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/after-levels.json.gz",
+      "stored": "archive/cpu-final_after-levels.json.gz.original.gz",
+      "rawBytes": 479777,
+      "rawSHA256": "310dd77555881140cf8b4232f9c550346827163cd79a906348a060f65eeed77d",
+      "storedSHA256": "310dd77555881140cf8b4232f9c550346827163cd79a906348a060f65eeed77d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/after-levels.png",
+      "stored": "views/after-levels.png",
+      "rawBytes": 64230,
+      "rawSHA256": "3baabf79534fbdffb559ef14ff4805caf88ef480938274954ee9f3324aa00138",
+      "storedSHA256": "3baabf79534fbdffb559ef14ff4805caf88ef480938274954ee9f3324aa00138"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/before-front.json.gz",
+      "stored": "archive/cpu-final_before-front.json.gz.original.gz",
+      "rawBytes": 442129,
+      "rawSHA256": "902d272922e84c71f0e4eafa0430f85a82c16193c97e516519bdd6bf5beb377f",
+      "storedSHA256": "902d272922e84c71f0e4eafa0430f85a82c16193c97e516519bdd6bf5beb377f"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/before-front.png",
+      "stored": "views/before-front.png",
+      "rawBytes": 34545,
+      "rawSHA256": "3432f2190aee6048d2c046a9a56a24de74793bf6f63c13e72d2b387a4710de32",
+      "storedSHA256": "3432f2190aee6048d2c046a9a56a24de74793bf6f63c13e72d2b387a4710de32"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/before-levels.json.gz",
+      "stored": "archive/cpu-final_before-levels.json.gz.original.gz",
+      "rawBytes": 442232,
+      "rawSHA256": "33994808ed64cf7476b5effaa6aa8afb9e70d2fe50a4c3a3f11c995b9a92a91d",
+      "storedSHA256": "33994808ed64cf7476b5effaa6aa8afb9e70d2fe50a4c3a3f11c995b9a92a91d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/before-levels.png",
+      "stored": "views/before-levels.png",
+      "rawBytes": 57388,
+      "rawSHA256": "3794cdbc797a165c283782784d79549101da8ef275174fb6595f4f79a25288bb",
+      "storedSHA256": "3794cdbc797a165c283782784d79549101da8ef275174fb6595f4f79a25288bb"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/render.exit",
+      "stored": "archive/cpu-final_render.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/cpu-final/render.log",
+      "stored": "archive/cpu-final_render.log.compressed.gz",
+      "rawBytes": 612,
+      "rawSHA256": "9aa2bf2248eb28b54396484b1b87b94819cd7cd17687231784b91c40aaa40c71",
+      "storedSHA256": "56538abc5832a8246fb4438c1e99733feb908b255e409a756d93837ab60ecd0b"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/final18.exit",
+      "stored": "archive/final18.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/final18.tap",
+      "stored": "archive/final18.tap.compressed.gz",
+      "rawBytes": 2165,
+      "rawSHA256": "43ca23e17765bb6f27050f63403758b5ac1b7d0bdf61e986b13e99de2f6cd19e",
+      "storedSHA256": "78755ccaf2fc60836a80e9c2ec4490505b508f6bf40a2fb84b359f4636b8362d"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-first.exit",
+      "stored": "archive/green-first.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-first.tap",
+      "stored": "archive/green-first.tap.compressed.gz",
+      "rawBytes": 4040,
+      "rawSHA256": "8d5394717e83c41f81423d95e5db2557da7890b10a8d0a1d6161d9cf7d3c5a94",
+      "storedSHA256": "05d935295f3920f5d1c320f615918e587db016e73c4d3dac1572dcca94ec7ede"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-second.exit",
+      "stored": "archive/green-second.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-second.tap",
+      "stored": "archive/green-second.tap.compressed.gz",
+      "rawBytes": 4125,
+      "rawSHA256": "9a78ec01dbec0c66112fa5ab850eed77c494ab1d72dcbaa004e0c00e1de97080",
+      "storedSHA256": "e336fa29d6dd82d9045a82329051417ace277274d57d8bfff5fd984edb636a20"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-third.exit",
+      "stored": "archive/green-third.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/green-third.tap",
+      "stored": "archive/green-third.tap.compressed.gz",
+      "rawBytes": 447,
+      "rawSHA256": "116652d4ca77c65c09a3db2bcc2cc6f8d31049cef1150ce25a6980f8c9982f1f",
+      "storedSHA256": "93b7217da6a5d8e3778849ba3c0701f3aa45de60ef7f86b93a23df649dc504b0"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/inspect.err",
+      "stored": "archive/inspect.err.compressed.gz",
+      "rawBytes": 0,
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red-corrected-fixture.exit",
+      "stored": "archive/red-corrected-fixture.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red-corrected-fixture.tap",
+      "stored": "archive/red-corrected-fixture.tap.compressed.gz",
+      "rawBytes": 4125,
+      "rawSHA256": "9c3c024e7a254713ab7dd275f8e96f3d827e6e1954c9538d7f6277ffcbb745c7",
+      "storedSHA256": "257d08e7f66151d7d51d6d94c3cb62ce8edc8f70111340c7a838b7e21a56a274"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red-real-premerge.exit",
+      "stored": "archive/red-real-premerge.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red-real-premerge.tap",
+      "stored": "archive/red-real-premerge.tap.compressed.gz",
+      "rawBytes": 2225,
+      "rawSHA256": "4ceb8453cd69bb3171ba60d074f5bb432d2c3c2e2c1e77d3b3aa5a6625db9909",
+      "storedSHA256": "d7c0ebe580a1c92b1c719886e2fff0447085e4d6acdac3a6cfd904ad9775baae"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red.exit",
+      "stored": "archive/red.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/red.tap",
+      "stored": "archive/red.tap.compressed.gz",
+      "rawBytes": 2225,
+      "rawSHA256": "86c370df88adf7d6807efe31e44ec4fca87a0362d905049c8adfda6b5e4bec4d",
+      "storedSHA256": "282bb64338541505c685560e777b4ac0cb55a4d31fc78c6b07ea45a3984fb0a2"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80-final.exit",
+      "stored": "archive/world80-final.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "storedSHA256": "cabc3a30b39528db601f65ca3ced008dd775595c901102d08ac8ae8976b29bcf"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80-final.json",
+      "stored": "archive/world80-final.json.compressed.gz",
+      "rawBytes": 1822655,
+      "rawSHA256": "90639e91775729b11c2040ea64725eaffd22937c4def466ac50f3c97ee132e4e",
+      "storedSHA256": "493e6de63823a8c021168f4d36194d96d5be03f54251c4e54ee644db0f62b923"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80-final.tap",
+      "stored": "archive/world80-final.tap.compressed.gz",
+      "rawBytes": 1272,
+      "rawSHA256": "be38595cb2f24df551900ca6d8f5b71a1843cdbd5c7e9925a82a3e9c8be3d1c0",
+      "storedSHA256": "ba2c0660bf7f414952094400a3b9dffe8a35206973938d3f8f8db63d1d82f96f"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80.exit",
+      "stored": "archive/world80.exit.compressed.gz",
+      "rawBytes": 2,
+      "rawSHA256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "storedSHA256": "d381e5a9b7c1c71b5fb3fef202103bf4b6098ce288f148735de1ecf61d4e3b75"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80.json",
+      "stored": "archive/world80.json.compressed.gz",
+      "rawBytes": 1714153,
+      "rawSHA256": "4dd0ed834228a40bf4ecda2d3ebb2d7018c24561e1530d2bd5d810594df9687d",
+      "storedSHA256": "243504074a14ffd9b67f17e7d74b317987d83b8e5c96bb6b9285cfa3c74fb471"
+    },
+    {
+      "source": "/workspace/scratch/02a8023d1a85/r157-taihe-tripods-evidence-1441/world80.tap",
+      "stored": "archive/world80.tap.compressed.gz",
+      "rawBytes": 2052,
+      "rawSHA256": "b5aca246cb4303788b977a2e237c50ab015d31f7045abd3b581f16ec318ba560",
+      "storedSHA256": "afd6f5795476141b775dbc1343926a33f996c62110a236216b96fe2fdece4bf6"
+    }
+  ],
+  "world": {
+    "front-stairs": {
+      "records": 8,
+      "arrived": 8,
+      "frames": 6022,
+      "maxAbsFeetGround": 0.017634623899234772
+    },
+    "tripod-bypass": {
+      "records": 72,
+      "arrived": 72,
+      "frames": 4716,
+      "maxAbsFeetGround": 0
+    }
+  },
+  "actualOwners": [
+    {
+      "id": "axis/taihe-eighteen-tripods/0/-15.5",
+      "level": 0,
+      "x": -15.5,
+      "z": -60.266666666666666,
+      "floorY": 0,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/0/-5.5",
+      "level": 0,
+      "x": -5.5,
+      "z": -60.266666666666666,
+      "floorY": 0,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/0/5.5",
+      "level": 0,
+      "x": 5.5,
+      "z": -60.266666666666666,
+      "floorY": 0,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/0/15.5",
+      "level": 0,
+      "x": 15.5,
+      "z": -60.266666666666666,
+      "floorY": 0,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/1/-15.5",
+      "level": 1,
+      "x": -15.5,
+      "z": -51.6,
+      "floorY": 2.6666666666666665,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/1/-5.5",
+      "level": 1,
+      "x": -5.5,
+      "z": -51.6,
+      "floorY": 2.6666666666666665,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/1/5.5",
+      "level": 1,
+      "x": 5.5,
+      "z": -51.6,
+      "floorY": 2.6666666666666665,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/1/15.5",
+      "level": 1,
+      "x": 15.5,
+      "z": -51.6,
+      "floorY": 2.6666666666666665,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/2/-15.5",
+      "level": 2,
+      "x": -15.5,
+      "z": -46.13333333333333,
+      "floorY": 5.333333333333333,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/2/-5.5",
+      "level": 2,
+      "x": -5.5,
+      "z": -46.13333333333333,
+      "floorY": 5.333333333333333,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/2/5.5",
+      "level": 2,
+      "x": 5.5,
+      "z": -46.13333333333333,
+      "floorY": 5.333333333333333,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/2/15.5",
+      "level": 2,
+      "x": 15.5,
+      "z": -46.13333333333333,
+      "floorY": 5.333333333333333,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/-31",
+      "level": 3,
+      "x": -31,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/-22",
+      "level": 3,
+      "x": -22,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/-5.5",
+      "level": 3,
+      "x": -5.5,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/5.5",
+      "level": 3,
+      "x": 5.5,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/22",
+      "level": 3,
+      "x": 22,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    },
+    {
+      "id": "axis/taihe-eighteen-tripods/3/31",
+      "level": 3,
+      "x": 31,
+      "z": -40.666666666666664,
+      "floorY": 8,
+      "positionStatus": "PHOTO_DISTRIBUTION_ENGINEERING_FIT_NOT_SURVEY",
+      "entityId": "FC-A478209231",
+      "scope": "EIGHTEEN_BRONZE_TRIPODS_ONLY",
+      "accepted": false,
+      "documentaryCount": 18,
+      "photoFitDistribution": [
+        4,
+        4,
+        4,
+        6
+      ],
+      "hiddenCarving": "UNMODELED"
+    }
+  ],
+  "components": {
+    "new": 5,
+    "retainedStandaloneBronze": 4,
+    "retainedInstruments": 9,
+    "totalSelected": 18,
+    "passed": 18
+  },
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-f94b4e6bda82",
+    "sourceFingerprint": "df64954e9443a2f64f3cb235f8135fe203d22ada25d104768f308ae07e722b18",
+    "sourceCommit": "196384b027e930209145cde19050d6754554e97f",
+    "sourceDirty": true,
+    "base": "/gugong/"
+  }
+}

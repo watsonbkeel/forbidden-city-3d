@@ -68,7 +68,7 @@ export function pavilionGeometry(item={}) {
   const gallery={front:galleryFront,rear:galleryRear,supports,width:Math.max(galleryFront.width,galleryRear.width),depth:gr-gf,offset:galleryOffset,floorY:upper.floorY,flatFloor:true};
   const deck={x0:Math.min(...galleryFront.x,...galleryRear.x)-.28,x1:Math.max(...galleryFront.x,...galleryRear.x)+.28,z0:gf-.28,z1:gr+.28,status:PROVISIONAL};
   deck.width=deck.x1-deck.x0;deck.depth=deck.z1-deck.z0;
-  const roof={width:gallery.width+3.5,depth:gallery.depth+3.5,front:gf-1.75,rear:gr+1.75,centerZ:(gf+gr)/2,overhang:1.75,baseY:roofBase,height:roofHeight,tilePeakY,ridgeCapRise,ridgeReferenceObject:'central-main-ridge-cap-crest',ornamentFidelity:'LOW_DETAIL_CHIWEN_OMITTED',status:PROVISIONAL};
+  const roof={width:gallery.width+3.5,depth:gallery.depth+3.5,front:gf-1.75,rear:gr+1.75,centerZ:(gf+gr)/2,overhang:1.75,baseY:roofBase,height:roofHeight,tilePeakY,ridgeCapRise,ridgeReferenceObject:'central-main-ridge-cap-crest',ornamentFidelity:'COARSE_END_CHIWEN_PHOTO_SILHOUETTE_NOT_SURVEYED',status:PROVISIONAL};
   const waist={rearWidth:key==='hongyi'?41.6:41.65,frontWidth:key==='hongyi'?41.6:41.65,depth:key==='hongyi'?14.496:14.610,
     floorY:elevations.upper_floor,supportBaseY:elevations.upper_floor-2.2,landingY:floorY+measurements.waist_layer.stair_landing_elevation.value,
     frontStatus:key==='hongyi'?'PROVISIONAL_SOURCE_CONFLICT':'DIMENSIONED'};
