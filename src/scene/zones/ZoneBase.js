@@ -1,4 +1,8 @@
+import {finishNansansuoFrontHalls} from '../palace/special/NansansuoFrontFinalizer.js';
+import {buildNeigeStorehouse} from '../palace/special/NeigeStorehouse.js';
 import {buildNeigeCourt} from '../palace/special/NeigeCourt.js';
+import {buildChuanxinHall} from '../palace/special/ChuanxinHall.js';
+import {buildWenyuanStelePavilion} from '../palace/special/WenyuanStelePavilion.js';
 import {buildNansansuoCommonGate} from '../palace/special/NansansuoCommonGate.js';
 import {finishWenyuanEntryTread} from '../palace/special/WenyuanEntryTread.js';
 import {buildZuoyiOwnGate} from '../palace/special/ZuoyiOwnGate.js';
@@ -192,9 +196,13 @@ export class ZoneBase {
     finishYikunInnerSouthWindows(this.kit);
     finishArrowSouthHeadBands(this.kit,this.zoneJson);
 
+    finishNansansuoFrontHalls(this.kit,this.zoneJson);
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     buildNeigeCourt(this.kit, this.zoneJson);
+    buildNeigeStorehouse(this.kit, this.zoneJson);
+    buildWenyuanStelePavilion(this.kit, this.zoneJson);
+    buildChuanxinHall(this.kit, this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     

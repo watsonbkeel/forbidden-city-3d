@@ -1,0 +1,14 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import{buildR52World}from'../lib/r52-world.mjs';import{createActualLibrary}from'../r158-cumulative-1600/library.mjs';import{replayKunning}from'../lib/kunning-walk.mjs';import{withBoundedQaMocks}from'../lib/bounded-qa-clock.mjs';import{PLAYER}from'../../src/config/constants.js';
+const zone=JSON.parse(fs.readFileSync(new URL('../../data/zones/outer-east.json',import.meta.url)));
+test('Chuanxin installed normal World: real steps and empty hall bidirectional plus protected exterior routes and wall rejection',async t=>{
+ let w;const report={scope:'ACTUAL_INSTALLED_ZONEBASE_OUTER_EAST_LOADALL_FALSE_NOT_GPU',routes:[],negative:[]};
+ try{w=await buildR52World({loadAll:false,initialPosition:{x:-236.5,z:-211},createLibrary:createActualLibrary});assert.equal(w.mapItems.filter(x=>x.name==='传心殿').length,1);
+ const pts=[[-236.5,-211],[-236.5,-205.2],[-236.5,-204.5],[-236.5,-204],[-236.5,-203.5],[-236.5,-202],[-236.5,-196],[-236.5,-202],[-236.5,-203.5],[-236.5,-204],[-236.5,-204.5],[-236.5,-205.2],[-236.5,-211]];
+ for(const fps of[10,60])for(const sprint of[false,true])for(const backward of[false,true]){const r=withBoundedQaMocks(t,c=>replayKunning(c,w,pts,{fps,sprint,backward,startFeet:0,recordFrames:true}));report.routes.push({id:'main-hall-both-directions',fps,sprint,backward,...r});}
+ for(const [id,path]of[['donghua-road',[[-290,-257],[-220,-257]]],['west-bridge-approach',[[-255,-240],[-255,-159]]],['wenhua-east-alley',[[-221.5,-250],[-221.5,-159]]]])for(const reverse of[false,true]){const r=withBoundedQaMocks(t,c=>replayKunning(c,w,reverse?[...path].reverse():path,{fps:60,sprint:true,startFeet:0,recordFrames:true}));report.routes.push({id,reverse,...r});}
+ for(const [id,path]of[['rear',[[-236.5,-197],[-236.5,-190]]],['east-side',[[-242,-198],[-248,-198]]],['west-side',[[-231,-198],[-225,-198]]]]){const r=withBoundedQaMocks(t,c=>replayKunning(c,w,path,{fps:60,sprint:true,startFeet:.45,recordFrames:true}));report.negative.push({id,...r});}
+ report.summary={arrived:report.routes.filter(r=>r.arrived).length,total:report.routes.length,rejected:report.negative.filter(r=>!r.arrived).length,frames:report.routes.reduce((n,r)=>n+r.frames.length,0),maxContactGap:Math.max(...report.routes.flatMap(r=>r.frames.map(f=>Math.abs(f.feet-f.ground))))};
+ for(const r of report.routes){assert.equal(r.arrived,true,JSON.stringify({...r,frames:undefined}));assert.ok(r.frames.every(f=>Math.abs(f.feet-f.ground)<=.3),'practical contact gap above0.3m '+r.id);for(const f of r.frames)assert.equal(w.cm.checkCollision(new w.THREE.Vector3(f.x,f.feet+PLAYER.HEIGHT+.025,f.z),.5),false,'body penetrates solid');}
+ for(const r of report.negative)assert.equal(r.arrived,false,r.id);console.log(JSON.stringify(report.summary));
+ }finally{fs.writeFileSync(process.env.EVIDENCE_OUT??'/tmp/r158-chuanxin-world.json',JSON.stringify(report));w?.dispose();}
+});
