@@ -1,3 +1,5 @@
+import {buildNansansuoCommonGate} from '../palace/special/NansansuoCommonGate.js';
+import {finishWenyuanEntryTread} from '../palace/special/WenyuanEntryTread.js';
 import {buildZuoyiOwnGate} from '../palace/special/ZuoyiOwnGate.js';
 import {raiseMiddleLeftPlatform} from '../palace/special/MiddleLeftPlatform.js';
 import {sideConnectionTargets} from '../palace/special/PavilionSideConnections.js';
@@ -181,6 +183,7 @@ export class ZoneBase {
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
     finishWenyuanSouthVeranda(this.kit);
+    finishWenyuanEntryTread(this.kit);
     finishWenhuaSouthWindows(this.kit);
     finishWenhuaCentralDoors(this.kit);
     finishWuyingSouthWindows(this.kit);
@@ -375,6 +378,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='outer-east'&&item.name==='南三所宫门'){const built=buildNansansuoCommonGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),zoneJson:this.zoneJson});if(!built)throw Error('Nansansuo common gate dispatch mismatch');this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
