@@ -1,3 +1,6 @@
+import {finishWenhuaCompanionSteps} from '../palace/special/WenhuaCompanionSteps.js';
+import {buildChuanxinZhubanShell} from '../palace/special/ChuanxinZhubanShell.js';
+import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehouse.js';
 import {buildDapaoWell} from '../palace/special/DapaoWell.js';
 import {buildLuanjiaEastWing} from '../palace/special/LuanjiaEastWing.js';
 import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
@@ -221,14 +224,17 @@ export class ZoneBase {
     buildNeigeWestAnnexSegment(this.kit, this.zoneJson);
     buildNeigeTextSideWings(this.kit, this.zoneJson);
     buildNeigeEastTextAnnex(this.kit, this.zoneJson);
+    buildNeigeSecondStorehouse(this.kit, this.zoneJson);
     buildZhishengShell(this.kit, this.zoneJson);
     buildZhifangShell(this.kit, this.zoneJson);
+    buildChuanxinZhubanShell(this.kit, this.zoneJson);
     buildDapaoWell(this.kit, this.zoneJson);
     buildWenyuanStelePavilion(this.kit, this.zoneJson);
     buildChuanxinHall(this.kit, this.zoneJson);
     buildJingxingGate(this.kit, this.zoneJson);
     buildLuanjiaEastWing(this.kit, this.zoneJson);
     buildLuanjiaSouthWing(this.kit, this.zoneJson);
+    finishWenhuaCompanionSteps(this.kit, this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
