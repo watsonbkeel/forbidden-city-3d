@@ -1,0 +1,50 @@
+[
+  {
+    "name": "transverse-false",
+    "command": [
+      "node",
+      "--max-old-space-size=384",
+      "--loader",
+      "/workspace/scratch/02a8023d1a85/wumen-joint-recovery-1607/upper-reassembly-2034/assembly-task3-0005/transverse-false-loader.mjs",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^actual transverse triangles",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-junctions.test.mjs"
+    ],
+    "exit": 1,
+    "assertionFailure": true,
+    "seconds": 0.2321811939982581
+  },
+  {
+    "name": "drop-all-pairs",
+    "command": [
+      "node",
+      "--max-old-space-size=384",
+      "--loader",
+      "/workspace/scratch/02a8023d1a85/wumen-joint-recovery-1607/upper-reassembly-2034/assembly-task3-0005/drop-all-pairs-loader.mjs",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^pair broad phase",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-junctions.test.mjs"
+    ],
+    "exit": 1,
+    "assertionFailure": true,
+    "seconds": 0.24524994599778438
+  },
+  {
+    "name": "world-matrix-ignored",
+    "command": [
+      "node",
+      "--max-old-space-size=384",
+      "--loader",
+      "/workspace/scratch/02a8023d1a85/wumen-joint-recovery-1607/upper-reassembly-2034/assembly-task3-0005/world-matrix-ignored-loader.mjs",
+      "--test",
+      "--test-reporter=tap",
+      "--test-name-pattern=^complete assembly supplies",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-junctions.test.mjs"
+    ],
+    "exit": 1,
+    "assertionFailure": true,
+    "seconds": 1.6897007670049788
+  }
+]

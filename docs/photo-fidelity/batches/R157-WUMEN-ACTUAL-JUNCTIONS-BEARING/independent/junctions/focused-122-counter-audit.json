@@ -1,0 +1,126 @@
+{
+  "prior": 105,
+  "current": 122,
+  "new": 17,
+  "completeCounterEqual": true,
+  "added": [
+    {
+      "status": "ok",
+      "title": "actual transverse triangles report intersection points and never grant contact or support acceptance",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "symmetric transverse classification and separated bounding boxes retain exact input identities without mutation",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "coplanar positive area overlap is reported explicitly rather than a false library separation or support",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "coplanar contact only at an edge remains unresolved and separated coplanar regions do not pass as overlap",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "noncoplanar endpoint tangency and degenerate triangles are explicit unresolved diagnostics",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "stable pair classification survives finite rigid translation and positive scale with original raw values retained",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "malformed sparse nonfinite or wrong-size triangle inputs fail closed",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "coplanar clipping retains area line and point distinction including partial overlap and reversed triangle winding",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "strictly separated triangles with intersecting AABBs are not mistaken for transverse contacts",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "finite input with overflowing or underflowed area computations is explicitly unresolved rather than contact",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual triangle collector preserves every single-material Box group and multi-material repeated draw with reversible ordinals",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "complete assembly supplies nine explicit entities for all eight contract pairs and matches independently collected actual face vertices",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "pair broad phase accounts for the full Cartesian denominator and streams all candidates without turning region inclusion into acceptance",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "assembly classifier requires full record sinks and refuses fabricated candidates before any implicit diagnostic discard",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "separated full entities report an actual closest-point distance and reject overlap rather than inventing a joint",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "real effective root displacement and actual missing face change the complete diagnostic rather than passing by metadata count",
+      "count": 1
+    },
+    {
+      "status": "ok",
+      "title": "actual construction boundary audit distinguishes ten exact fan edges from six numerical beam seams without granting support",
+      "count": 1
+    }
+  ],
+  "removed": [],
+  "SHA256": {
+    "current122": "dbecbc245187db1a76409f6ea3ce90175888cb569287da8418fe22a269aa58c8",
+    "parent105": "870e8153023bef632fc24a4e6c68135313c47ce60fc9e457f36a206f7dfb0fea",
+    "new17": "9f122792e79a70f19b2526f9f715df209e4f5dd3e03eaada193e2945fc5e69a0"
+  },
+  "resource": {
+    "command": [
+      "node",
+      "--max-old-space-size=384",
+      "--test",
+      "--test-reporter=tap",
+      "--test-concurrency=1",
+      "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-evaluator.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-surfaces.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/roof-section-trims.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/upper-contract.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/upper-baseline.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/roof-combined.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/roof-combined-cpu.test.mjs",
+      "tests/photo-fidelity/batches/wumen-lower-five-portals.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-contract.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/upper-assembly.test.mjs",
+      "tests/photo-fidelity/batches/wumen-joint-layout/assembly-junctions.test.mjs"
+    ],
+    "cwd": "/workspace/scratch/02a8023d1a85/r157-wumen-joint-layout-1622",
+    "startUTC": "2026-11-01T00:27:42.746134+00:00",
+    "endUTC": "2026-11-01T00:28:20.379365+00:00",
+    "wallSeconds": 37.63318274100311,
+    "maxRSSKiB": 427944,
+    "exit": 0,
+    "node": "v24.22.1"
+  }
+}
