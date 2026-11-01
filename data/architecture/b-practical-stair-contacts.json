@@ -2,7 +2,7 @@
   "schema": "existing-b-principal-stair-contacts-v1",
   "basisCommit": "e64098e80ba563d15af78f410df2b6f1298e6f26",
   "basisInventorySHA256": "f9c5c2c4f9d082aff43f43a78c01f027cee40d15f597b38159a78990c5643da4",
-  "scope": "Existing registered surfaces only. No survey claim, new surface or changed geometry. Three halls exclude throne/dais; pavilions exclude closed side connectors and upper storeys.",
+  "scope": "Existing registered surfaces only. No survey claim, new surface or changed geometry. Three halls exclude throne/dais; Original 57 records retain their values. Four existing pavilion side slopes and four landings additionally permit the guarded engineering links; upper storeys remain excluded.",
   "groups": [
     {"id":"three-halls","surfaces":[
       {"id":"three-halls/retained-0","type":"box","min":[-65,2.6666666666666665,-54],"max":[65,2.6666666666666665,23.5]},
@@ -60,12 +60,20 @@
     {"id":"tiren","surfaces":[
       {"id":"tiren/retained-0","type":"box","min":[-107.60000000000001,3.6999999999999997,-140.95],"max":[-80.1,3.6999999999999997,-77.64999999999999]},
       {"id":"tiren/front-0","type":"ramp","axis":"x","minX":-80.10000000000001,"maxX":-69.86000000000001,"minZ":-113.05,"maxZ":-110.44999999999999,"a0":-69.86000000000001,"a1":-80.10000000000001,"y0":0,"y1":3.6999999999999997},
-      {"id":"tiren/front-1","type":"ramp","axis":"x","minX":-80.10000000000001,"maxX":-69.86000000000001,"minZ":-108.14999999999999,"maxZ":-105.55,"a0":-69.86000000000001,"a1":-80.10000000000001,"y0":0,"y1":3.6999999999999997}
+      {"id":"tiren/front-1","type":"ramp","axis":"x","minX":-80.10000000000001,"maxX":-69.86000000000001,"minZ":-108.14999999999999,"maxZ":-105.55,"a0":-69.86000000000001,"a1":-80.10000000000001,"y0":0,"y1":3.6999999999999997},
+      {"id":"tiren/side-ramp-0","type":"ramp","axis":"z","minX":-94.182,"maxX":-89.28200000000001,"minZ":-143.95,"maxZ":-140.95,"a0":-140.95,"a1":-143.95,"y0":3.6999999999999997,"y1":2.8},
+      {"id":"tiren/side-ramp-1","type":"ramp","axis":"z","minX":-94.182,"maxX":-89.28200000000001,"minZ":-77.65,"maxZ":-74.65,"a0":-77.65,"a1":-74.65,"y0":3.6999999999999997,"y1":2.8},
+      {"id":"tiren/side-landing-0","type":"box","min":[-94.182,2.8,-145.15],"max":[-89.282,2.8,-143.95]},
+      {"id":"tiren/side-landing-1","type":"box","min":[-94.18200000000002,2.8,-74.65],"max":[-89.28200000000001,2.8,-73.44999999999999]}
     ]},
     {"id":"hongyi","surfaces":[
       {"id":"hongyi/retained-0","type":"box","min":[83.79999999999998,3.6999999999999997,-142.05],"max":[111.3,3.6999999999999997,-78.75]},
       {"id":"hongyi/front-0","type":"ramp","axis":"x","minX":73.56,"maxX":83.8,"minZ":-109.25000000000001,"maxZ":-106.65,"a0":73.56,"a1":83.8,"y0":0,"y1":3.6999999999999997},
-      {"id":"hongyi/front-1","type":"ramp","axis":"x","minX":73.56,"maxX":83.8,"minZ":-114.15,"maxZ":-111.55000000000001,"a0":73.56,"a1":83.8,"y0":0,"y1":3.6999999999999997}
+      {"id":"hongyi/front-1","type":"ramp","axis":"x","minX":73.56,"maxX":83.8,"minZ":-114.15,"maxZ":-111.55000000000001,"a0":73.56,"a1":83.8,"y0":0,"y1":3.6999999999999997},
+      {"id":"hongyi/side-ramp-0","type":"ramp","axis":"z","minX":92.99799999999999,"maxX":97.898,"minZ":-145.05,"maxZ":-142.05,"a0":-142.05,"a1":-145.05,"y0":3.6999999999999997,"y1":2.8},
+      {"id":"hongyi/side-ramp-1","type":"ramp","axis":"z","minX":92.99799999999999,"maxX":97.898,"minZ":-78.75,"maxZ":-75.75,"a0":-78.75,"a1":-75.75,"y0":3.6999999999999997,"y1":2.8},
+      {"id":"hongyi/side-landing-0","type":"box","min":[92.998,2.8,-146.25],"max":[97.898,2.8,-145.05]},
+      {"id":"hongyi/side-landing-1","type":"box","min":[92.99799999999999,2.8,-75.75],"max":[97.89799999999998,2.8,-74.55000000000001]}
     ]}
   ]
 }

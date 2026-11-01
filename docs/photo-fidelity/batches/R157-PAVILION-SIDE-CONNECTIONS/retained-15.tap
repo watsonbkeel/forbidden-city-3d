@@ -1,0 +1,46 @@
+✔ unchanged principal south stairs have bounded contact on a real round trip 10/false (778.529977ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 10/true (522.898513ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 60/false (533.315851ms)
+✔ unchanged principal south stairs have bounded contact on a real round trip 60/true (552.46783ms)
+✖ exact allowlist marks 43 genuine slopes and 14 existing landings, not dais, closed side inclines or upper floors (421.388754ms)
+✔ jump, high fall, high/stale position and fast teleport keep native physics (426.673121ms)
+✔ missing, duplicated and changed registrations disable only the affected group (396.341773ms)
+✔ side departure cannot acquire a lower terrace and ordinary foreign ground remains unmodified (372.951849ms)
+✔ real thin solid and registered NPC remain authoritative (445.635588ms)
+✔ own Youyi replaces only its generic body with five bays, three door pairs and end windows (30.568181ms)
+✔ three actual doorways and shared hall are clear while end rooms remain solid (12.613218ms)
+✔ both approaches are real visible slopes with transformed matching support and rail solids (15.587991ms)
+✔ source data and neighbouring gallery endpoints remain the unchanged baseline (0.780648ms)
+✔ actual roof stays inside its wall opening and three actual ray paths remain hollow (22.831835ms)
+✔ ordinary TextureLibrary object names and real material cache survive normal finish (15.877421ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4721.620632
+
+✖ failing tests:
+
+test at tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs:11:1
+✖ exact allowlist marks 43 genuine slopes and 14 existing landings, not dais, closed side inclines or upper floors (421.388754ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  65 !== 57
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r157-pavilion-side-1029/tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs:12:99)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 65,
+    expected: 57,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

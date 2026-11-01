@@ -1,3 +1,4 @@
+import {sideConnectionTargets} from '../palace/special/PavilionSideConnections.js';
 import {buildYouyiFreshGate} from '../palace/special/YouyiFreshGate.js';
 import {sideGateGalleryOptions,validateSideGateGalleryDeck} from '../palace/special/SideGateGalleryProfiles.js';
 import {buildBaoheLinkedGallery} from '../palace/BaoheLinkedGalleries.js';
@@ -334,6 +335,7 @@ export class ZoneBase {
       upperStoreyH: item.upperStoreyH,
       structure: item.structure,
       pavilionProfile: item.pavilionProfile,
+      sideGalleryConnections: sideConnectionTargets(this.zoneJson,item),
       qinanProfile: item.qinanProfile,
       interiorFloorWorldY: item.interiorFloorWorldY,
       bays: item.bays,
