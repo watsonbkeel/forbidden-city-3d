@@ -1,3 +1,4 @@
+import {resolveWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
 import {nansansuoNorthStairGroups,isNansansuoNorthStairGroup,isNansansuoNorthStairId,validNansansuoNorthStairHost,preserveNansansuoNorthStairOwner,validNansansuoNorthStairOwner} from './special/NansansuoNorthStairHost.js';
 import {arrowStairGroup,isArrowStairId,validArrowStairHost,preserveArrowStairOwner,validArrowStairOwner} from './special/ArrowStairHost.js';
 import {wenhuaStairGroup,isWenhuaStairId,validWenhuaStairHost,preserveWenhuaStairOwner,validWenhuaStairOwner} from './special/WenhuaStairHost.js';
@@ -61,6 +62,7 @@ function toeRect(r){
  return r.axis==='x'?{minX:Math.min(at,a),maxX:Math.max(at,a),minZ:r.minZ,maxZ:r.maxZ}:{minX:r.minX,maxX:r.maxX,minZ:Math.min(at,a),maxZ:Math.max(at,a)};
 }
 export function resolveBPrincipalStairContact(cm,state,delta,radius=.5){
+ const gate=resolveWenhuaGateDescent(cm,state,delta,radius);if(gate)return gate;
  const prior=previous.get(cm);previous.delete(cm);
  if(!state||state.airborne!==false||state.verticalVelocity>0||radius!==.5||![state.x,state.z,state.feetY,state.groundY,state.verticalVelocity,delta].every(Number.isFinite)||delta<=0||delta>.100001)return null;
  const group=groups.find(g=>g.surfaces.some(p=>p.type==='ramp'&&state.x>=p.minX-1.5&&state.x<=p.maxX+1.5&&state.z>=p.minZ-1.5&&state.z<=p.maxZ+1.5));if(!group)return null;

@@ -1,0 +1,3 @@
+import {registerHooks} from 'node:module';import{execFileSync}from'node:child_process';import{fileURLToPath}from'node:url';import path from'node:path';
+const base='97420d8d9742bccea11d1a77869e9b9aab67cf96',root=process.cwd(),files=new Set(['src/scene/palace/BPrincipalStairContact.js','src/scene/palace/special/WenhuaGateApproaches.js']);
+registerHooks({load(u,c,next){if(!u.startsWith('file:'))return next(u,c);const f=path.relative(root,fileURLToPath(u));if(!files.has(f))return next(u,c);return{format:'module',source:execFileSync('git',['show',base+':'+f],{encoding:'utf8'}),shortCircuit:true}}});

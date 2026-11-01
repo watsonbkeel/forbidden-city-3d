@@ -1,0 +1,280 @@
+{
+  "base": {
+    "remote": "0d996ea0100f346539baba86fbe03475ec24d8f0",
+    "local": "97420d8d9742bccea11d1a77869e9b9aab67cf96",
+    "tree": "154f5190b82c5cfa29266d9ff35b7a4feadd7882"
+  },
+  "source": [
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthWing.js",
+      "bytes": 6191,
+      "sha256": "35120125795a71fdbc489064d17474605a8d9ec5540e885682c8a471d1b3c7d2"
+    },
+    {
+      "path": "tests/r158-luanjia-south/component.test.mjs",
+      "bytes": 7316,
+      "sha256": "09bbeba07df89b4271ad888a6510c096f540f722e8d7333c9e4f48f779bea499"
+    },
+    {
+      "path": "tests/r158-luanjia-south/export-cpu.mjs",
+      "bytes": 1448,
+      "sha256": "e93ef617a00930c8b315f4d1520b8b8636d17c84d4364232579d242e0f925294"
+    },
+    {
+      "path": "tests/r158-luanjia-south/fixture.mjs",
+      "bytes": 1140,
+      "sha256": "7fb1b8ae09f0b34c9cc04f071640140b0576d399b821dc8bee5e143cac332c6d"
+    },
+    {
+      "path": "tests/r158-luanjia-south/render-cpu.py",
+      "bytes": 3092,
+      "sha256": "f51113c766b203f34f00ad7b9662abd7f243fca93e359bbeb3fdba39720f7c34"
+    },
+    {
+      "path": "tests/r158-luanjia-south/world.test.mjs",
+      "bytes": 4472,
+      "sha256": "c2902af1008a2f9c759cd7056da29fc6898e24a6309186c239f2ce12d460c9c6"
+    }
+  ],
+  "frozenReadOnlyDependencyPins": [
+    {
+      "path": "../r158-zhifang-2044/src/scene/zones/ZoneBase.js",
+      "bytes": 40246,
+      "sha256": "5c837fde4f2776aa6cff1ea911bf2150f64dfdae249faa49fb85e3b0bece5ad9"
+    },
+    {
+      "path": "../r158-zhifang-2044/src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 8625,
+      "sha256": "651b31b81c7cdb9bf919b64b42c6cce7de75e48fedc7eaa5fa925a030d4c557c"
+    },
+    {
+      "path": "../r158-zhifang-2044/src/scene/palace/special/LuanjiaEastWing.js",
+      "bytes": 5884,
+      "sha256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026"
+    },
+    {
+      "path": "../r158-zhifang-2044/src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "../r158-zhifang-2044/src/utils/GeometryUV.js",
+      "bytes": 4039,
+      "sha256": "6c6f55acd7e96d8dd8169baa62e0fdee7f92b27deb30532de022b18858884e30"
+    },
+    {
+      "path": "../r158-zhifang-2044/data/zones/outer-east.json",
+      "bytes": 7941,
+      "sha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e"
+    }
+  ],
+  "dependencyMethod": "Temporary readonly symlinks to existing scope97420 source/data/tests-lib. No src/data copied; new unhooked Zhifang module irrelevant. Do not confuse integrator Wenhua WIP tree with this frozen source.",
+  "officialSource": {
+    "url": "https://www.dpm.org.cn/explore/building/236525.html",
+    "readScope": "OFFICIAL_PROSE_ONLY_NOT_OWN_PHOTO_VERIFIED",
+    "supported": [
+      "south ten-bay warehouse",
+      "yellow hard-gable",
+      "two internal levels"
+    ],
+    "unmodeled": [
+      "internal upper floor/stairs/furnishings",
+      "windows",
+      "vanished halls/offices"
+    ]
+  },
+  "scan": {
+    "method": "normal97420 World stdout only, outer-east plus globals",
+    "colliders": 10771,
+    "supports": 898,
+    "rejectedA": {
+      "bounds": [
+        -364,
+        -316,
+        -399,
+        -385
+      ],
+      "oldIntersections": 1,
+      "blockedBodySamples": 95,
+      "samples": 672,
+      "reason": "existing southeast corner tower base retained"
+    },
+    "acceptedB": {
+      "bounds": [
+        -364,
+        -316,
+        -385,
+        -371
+      ],
+      "oldIntersections": 0,
+      "blockedBodySamples": 0,
+      "waterBlockedSamples": 0,
+      "nonzeroGroundSamples": 0,
+      "samples": 672
+    }
+  },
+  "results": {
+    "missingBuilderRed": {
+      "pass": 0,
+      "fail": 8
+    },
+    "firstComponentGreen": 8,
+    "panelPierRed": {
+      "pass": 8,
+      "fail": 1
+    },
+    "finalComponents": {
+      "pass": 9,
+      "fail": 0,
+      "exit": 0
+    },
+    "world": {
+      "newArrived": 8,
+      "newFrames": 3072,
+      "newMaxAbsFootGap": 0,
+      "closedWallRefusals": 4,
+      "retainedEastRowsExact": 8,
+      "retainedEastFrames": 2383
+    },
+    "sourceBinding": "Final component/World/CPU all from the same unchanged final source listed above.",
+    "newMeshes": 22,
+    "newTriangles": 504,
+    "newActualTriangleOwners": 22,
+    "newSupports": 0,
+    "newRooms": 0,
+    "cpuWithRetainedEast": {
+      "meshes": 39,
+      "triangles": 948,
+      "owners": 39,
+      "finalViewsPersonallyViewed": [
+        "north-front",
+        "group-oblique"
+      ],
+      "palette": "EXPLICIT_FLAT_MATERIAL_CATEGORIES_NOT_GPU",
+      "firstViewsAndSourceRetained": true
+    },
+    "productionHookInstalledByAuthor": false,
+    "fullBuildOrGpuRun": false
+  },
+  "privateSmallRaw": [
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-final.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-final.tap",
+      "bytes": 1052,
+      "sha256": "56f6d0a6958f46bacb91476a6d9072ecbd9f84819b5850d293f3042b214d5d8a"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-first.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-first.tap",
+      "bytes": 957,
+      "sha256": "0f4f4b54b7b7f4d80de2d749e7af66c5ef3b2fd33f489f037f89e1cb6af76157"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/component-red.tap",
+      "bytes": 9962,
+      "sha256": "0d8fe5471f9b471bdf70129c00d0522d982a1ff69e0604364c0c24293051ca6d"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-final/export.log",
+      "bytes": 1173,
+      "sha256": "fc3830904ea768628fdae242ba9dbec2929fbb5f42e6693eb944bc4a107d3912"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-final/group-oblique.json.gz",
+      "bytes": 8535,
+      "sha256": "835b303972a39e421b5867d3c415d2160b93eab211ff02016fd04ee0b2e99813"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-final/north-front.json.gz",
+      "bytes": 8499,
+      "sha256": "6a9116c3d9528bdd00aa4400ebdab559bb99ada6229de22138254f9e09c4e076"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/export.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/export.log",
+      "bytes": 1173,
+      "sha256": "fc3830904ea768628fdae242ba9dbec2929fbb5f42e6693eb944bc4a107d3912"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/group-oblique.json.gz",
+      "bytes": 8584,
+      "sha256": "c9bb9b224357a73b27ad4e7ccafea42a235fb593e78e80f4ca7dff835d41f8ac"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/group-oblique.png",
+      "bytes": 29975,
+      "sha256": "e950dec52acff45cb5005cbb46e72ebcc6b6ddc2659870a9f9596f28285fb2f3"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/north-front.json.gz",
+      "bytes": 8488,
+      "sha256": "d1a2a97ed2632f20c57b1107f27380c0a5eabefeae67169f8104c486144dd817"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/cpu-first/north-front.png",
+      "bytes": 21349,
+      "sha256": "d35ac02cf3b53f4c9832b61141a105fb23fb200725edae9c8e276dc11f02b1b5"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/panel-pier-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/panel-pier-red.tap",
+      "bytes": 2078,
+      "sha256": "08e75f6f79aabf5ee0868bb7916c9edb2c4a2485300e7e78e507214bad7ef0a8"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/source-before-panel-fit.js",
+      "bytes": 6110,
+      "sha256": "e1f8266b0702fc32f57e4944925001805d589de635f6c8ad88efb3e0324bf998"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/world-summary.json",
+      "bytes": 4672,
+      "sha256": "5be2cd65be24a10e7f95932c37d53bac81a6e1f1cc6ced2fa9bc2a6a0afe6376"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/world.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "../r158-luanjia-south-evidence-2051/world.tap",
+      "bytes": 668,
+      "sha256": "f9b978870735af3b89fa6491625ed4aa68afd10fb82e0cf7df6a840fb3986f03"
+    }
+  ],
+  "rawFramePolicy": "Complete accepted frame arrays were evaluated and SHA256 recorded, but not written as large raw files. Compact rows/hash equality proves prior East8; do not claim full raw frames are saved or remotely available.",
+  "finalCpu": [
+    {
+      "path": "docs/photo-fidelity/batches/R158-LUANJIA-SOUTH/cpu/group-oblique.png",
+      "bytes": 25727,
+      "sha256": "665e235a73f5c4eb8bba3407c9877b9f0e8547f3d7533c50717bb0b5340ad631"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R158-LUANJIA-SOUTH/cpu/north-front.png",
+      "bytes": 21226,
+      "sha256": "4bbc5a562aae70ca70b9e8963b5630ce7a2d8e03926e328ab6f73d64d9b5f5f6"
+    }
+  ],
+  "budget": "Parent<=0.3MiB all new product file bytes, df>=500MiB; no build/clone/install, pause honored until explicit resume."
+}
