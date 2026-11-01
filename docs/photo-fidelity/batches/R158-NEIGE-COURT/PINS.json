@@ -1,0 +1,213 @@
+{
+  "base": "be5393cb62b24d726896403a4a27ad37ca92a3f9",
+  "scope": "CANDIDATE_ONLY_NOT_SHARED_HOOK_OR_WHOLE_OBJECT_ACCEPTANCE",
+  "candidateFiles": {
+    "src/scene/palace/special/NeigeCourt.js": {
+      "sha256": "80fe42ee6fc913b6735a328761f6b1c93ce2517bf46cc5f3e108ed9c07697d5a",
+      "bytes": 11002
+    },
+    "tests/r158-neige/baseline-world.test.mjs": {
+      "sha256": "8887556f788b3cc89e47c1b42c1656d57d19df7a517e38a1a6817a95ef21daab",
+      "bytes": 2015
+    },
+    "tests/r158-neige/component.test.mjs": {
+      "sha256": "b836ab6851b30fd4bf6d2e2e1336415780ba4700a332a01aa9d308876bae7fae",
+      "bytes": 6059
+    },
+    "tests/r158-neige/export-cpu.mjs": {
+      "sha256": "7f30de52158b175755a414c3e500c93ce1513a58dfc9c3d032e85ad4a340bc93",
+      "bytes": 1752
+    },
+    "tests/r158-neige/fixture.mjs": {
+      "sha256": "793555d0539dfc994fa96ba3031a5612cc8db350b47eb8ccf23e07d9cf2ab19e",
+      "bytes": 895
+    },
+    "tests/r158-neige/flight.test.mjs": {
+      "sha256": "75ab232eade0efd69b2ad00d5d1563f2f77b6bba59db5c09a21be7525f9ee846",
+      "bytes": 2541
+    },
+    "tests/r158-neige/render-cpu.py": {
+      "sha256": "44fa3efa61c834f8130ee029c14e3565eec11be625347cd1cc78fde8eb9ed293",
+      "bytes": 3043
+    },
+    "tests/r158-neige/routes.test.mjs": {
+      "sha256": "69393d69767ad5aed45ab8bf64d0bc39ccca8dd182f17d8c22a6718638eefc69",
+      "bytes": 4459
+    },
+    "tests/r158-neige/south-routes.mjs": {
+      "sha256": "b3136a98a1f79aceeac2e346b16c87b6fa4d306b23c0588ed3b5b901e5ce006a",
+      "bytes": 1659
+    },
+    "tests/r158-neige/world.test.mjs": {
+      "sha256": "a242f8a1aa43693f75ef3bc03f49fd1870f3e2afaa20242ac57cc48bd997eec2",
+      "bytes": 4642
+    }
+  },
+  "unchangedDependencies": {
+    "src/scene/zones/ZoneBase.js": {
+      "sha256": "65ef99c83b0dfedeee618c4aee0a376be8e00025d9eee5ae227719512ad2b04f",
+      "bytes": 37736
+    },
+    "src/scene/palace/kit.js": {
+      "sha256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5",
+      "bytes": 41503
+    },
+    "src/utils/Collision.js": {
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+      "bytes": 40936
+    },
+    "src/utils/TriangleSupport.js": {
+      "sha256": "7fd649dc22e354351c0457236da04339b5008cd7125f175129a5f96c6b1e1c1a",
+      "bytes": 6745
+    },
+    "src/controls/FirstPerson.js": {
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+      "bytes": 33730
+    },
+    "src/scene/flight/FlightEnvelope.js": {
+      "sha256": "00f94400eedb5d80c4b3cf227b80afbe015207c7658bc555c7ec7662d9050d76",
+      "bytes": 7883
+    },
+    "src/scene/flight/FlightState.js": {
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4",
+      "bytes": 5665
+    },
+    "src/scene/flight/FlightTour.js": {
+      "sha256": "b1f568efff8a93da62717365e8475493baa7b9980766d6df35d9f06363d9118e",
+      "bytes": 30095
+    },
+    "src/scene/palace/special/SouthCourtGates.js": {
+      "sha256": "63bbc6569067a0aa7605c68d758cf6388dd6a910586ca8371149971c5aa4b45c",
+      "bytes": 3746
+    },
+    "src/scene/palace/special/SideGateProfiles.js": {
+      "sha256": "54f2d2860f325ab189823ebe1b084c9762ed286d7dcd75170d94dff500a7c5a3",
+      "bytes": 5429
+    },
+    "data/anchors.json": {
+      "sha256": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
+      "bytes": 18447
+    },
+    "data/zones/outer-east.json": {
+      "sha256": "5327bf3dbaff2b102c62363d70fbbad3e39eaa08e966040cb26acd33e3398b7e",
+      "bytes": 7941
+    },
+    "data/zones/axis-courts.json": {
+      "sha256": "4f4aeac4786e0452929edfbb8bc5dc29c5b67c734b9ff5e671116126772b593f",
+      "bytes": 8212
+    },
+    "tests/stepwalk.cjs": {
+      "sha256": "87659eaf375c74261f86ad17a25d94ab922b8354872ad56bc95b3ca66fcad84d",
+      "bytes": 19372
+    }
+  },
+  "localEvidenceRoot": "/workspace/scratch/02a8023d1a85/r158-neige-court-evidence-1630",
+  "localRawEvidence": {
+    "target-final.tap": {
+      "sha256": "20246d6f5feef03c32f035b4161ae489b1c1329b41f43ce89f898d85521e2cec",
+      "bytes": 1642
+    },
+    "target-final.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    "target-routes-final.json": {
+      "sha256": "1c933f5ebfd273401c68130dc0a3dad3121c3534d88de5fee40a851a1e529e19",
+      "bytes": 2951
+    },
+    "target-flight-final.json": {
+      "sha256": "76c089c677c74287607a51b7e6633dd62e170c9850afb1db8bfdffa842b62821",
+      "bytes": 3020
+    },
+    "candidate-world-final.tap": {
+      "sha256": "3916adaa0b2ec8170cefc0ef23f55a61b098c34f7d14954a86f206e9de155bd0",
+      "bytes": 687
+    },
+    "candidate-world-final.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    "candidate-world-final.json": {
+      "sha256": "1bb2e25ac68c35eb240b856638e5b5a8d735113eb0e401c8f87d8d0f45740a0a",
+      "bytes": 3069460
+    },
+    "baseline-world-all8.tap": {
+      "sha256": "d5cb99cd4cf172cbdd19496184293686e635d5483186209cc3374405dc7d5155",
+      "bytes": 15668
+    },
+    "baseline-world-all8.exit": {
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    "baseline-world-all8.json": {
+      "sha256": "5747a5a50675cd3d2cf60811efea68ded5aeea0ee15ef90bf0a9618c70efad48",
+      "bytes": 28237
+    },
+    "target-build.log": {
+      "sha256": "76bd7daee6f8c5c6a6b654324c18d7a029ba4811e3dc6003d3fd50566a62254b",
+      "bytes": 75
+    },
+    "target-build.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    }
+  },
+  "officialOriginalsLocalOnly": {
+    "/workspace/scratch/02a8023d1a85/r158-neige-audit-1621/8036.jpg": {
+      "sha256": "59b9b7ade8100040b6abd4c591907ecf93378a992d27e0c8e4d6c7c8290058ce",
+      "bytes": 131217
+    },
+    "/workspace/scratch/02a8023d1a85/r158-neige-audit-1621/hall-page.html": {
+      "sha256": "94139c324225f02f36534dad29881adceb172c642fb8e8c8014999cb0096c625",
+      "bytes": 101375
+    },
+    "/workspace/scratch/02a8023d1a85/r158-neige-audit-1621/paper2011.pdf": {
+      "sha256": "c554b9365d56ecaab55bbf26de90cfa30e2780549fd75205c6a1b5427fbd99fe",
+      "bytes": 155410
+    }
+  },
+  "officialMapLocalOnly": {
+    "localPath": "/workspace/scratch/02a8023d1a85/r158-nansansuo-readonly-1618/map3.jpg",
+    "sha256": "e3c8a08d63b4f254657b668022cab24eb5eedfce421052f1a73f291163864796",
+    "bytes": 1121631
+  },
+  "cpu": {
+    "docs/photo-fidelity/batches/R158-NEIGE-COURT/cpu/front.png": {
+      "sha256": "00eed37299f0813021ded9e5064f783b865ba2da5ef5e58303d6c159fd228cc7",
+      "bytes": 28233
+    },
+    "docs/photo-fidelity/batches/R158-NEIGE-COURT/cpu/gate-ground.png": {
+      "sha256": "61612e63d3ad96cb1a36528a57715bcb936fa06360237f62ce710b73f58df997",
+      "bytes": 28413
+    },
+    "docs/photo-fidelity/batches/R158-NEIGE-COURT/cpu/hall-inside.png": {
+      "sha256": "143a3c9102508d789512e192cc5fe745be927069ed046aa80b73557f77a249cc",
+      "bytes": 23639
+    },
+    "docs/photo-fidelity/batches/R158-NEIGE-COURT/cpu/oblique.png": {
+      "sha256": "d04c026364616ec4152d6b50cf9946041239a7a008e9aa617155314fc3e11df5",
+      "bytes": 39759
+    },
+    "docs/photo-fidelity/batches/R158-NEIGE-COURT/cpu/plan.png": {
+      "sha256": "b2784aa01f387b22d4776d7094277b1257a1a3b78072f00b10d50ca92907fb2e",
+      "bytes": 26711
+    }
+  },
+  "summary": {
+    "targetTests": 11,
+    "targetPass": 11,
+    "newNativeWorldRoutes": 8,
+    "newWorldArrived": 8,
+    "inheritedWorldDiagnosticRows": 8,
+    "inheritedArrived": 4,
+    "inheritedFailed": 4,
+    "inheritedIdenticalToBaseline": true,
+    "visibleTriangles": 20584,
+    "triangleOwners": 60,
+    "newWalkables": 0,
+    "baselineOccupants": 0,
+    "baselineWaterSamplesBlocked": 0,
+    "wholeApplicationBuildRun": false,
+    "sharedHookInstalled": false
+  }
+}

@@ -1,3 +1,4 @@
+import {buildNeigeCourt} from '../palace/special/NeigeCourt.js';
 import {buildNansansuoCommonGate} from '../palace/special/NansansuoCommonGate.js';
 import {finishWenyuanEntryTread} from '../palace/special/WenyuanEntryTread.js';
 import {buildZuoyiOwnGate} from '../palace/special/ZuoyiOwnGate.js';
@@ -193,6 +194,7 @@ export class ZoneBase {
 
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
+    buildNeigeCourt(this.kit, this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
