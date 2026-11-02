@@ -1,3 +1,4 @@
+import {buildJifuGate} from '../palace/special/JifuGate.js';
 import {buildYangxingZhai} from '../palace/special/YangxingZhai.js';
 import {buildNingxiangPavilion} from '../palace/special/NingxiangPavilion.js';
 import {buildYanhuiHall} from '../palace/special/YanhuiHall.js';
@@ -335,6 +336,7 @@ export class ZoneBase {
     buildYanhuiHall(this.kit,this.kit.root.name);
     buildNingxiangPavilion(this.kit,this.kit.root.name);
     buildYangxingZhai(this.kit,this.kit.root.name);
+    buildJifuGate(this.kit,this.kit.root.name);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     

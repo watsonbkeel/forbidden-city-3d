@@ -1,0 +1,8 @@
+node /tmp/r162-jifu-static-1904.mjs
+node --test /tmp/r162-jifu-1905/scan.mjs
+node --test tests/r162-jifu/component.test.mjs # missing module RED then final GREEN
+node --test tests/r162-jifu/routes.test.mjs
+node --test tests/r162-jifu/world.test.mjs
+node tests/r162-jifu/export-cpu.mjs /tmp/r162-jifu-1905
+python tests/r162-jifu/render-cpu.py /tmp/r162-jifu-1905/front.json.gz docs/photo-fidelity/R162-JIFU-1906/front.png
+python tests/r162-jifu/render-cpu.py /tmp/r162-jifu-1905/oblique.json.gz docs/photo-fidelity/R162-JIFU-1906/oblique.png
