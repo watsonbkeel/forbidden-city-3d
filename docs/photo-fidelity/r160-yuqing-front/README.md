@@ -1,0 +1,29 @@
+# R160 毓庆宫：仅工字殿前殿外壳
+
+Base `1a0e81044c62bfcbb5ed906c559f2c1cfe364d41` (normal Zhaigong and Chengsu already installed). Original object `FC-C716A8E34A` is a compound; this candidate is ONLY its gongzi FRONT hall, not whole-object acceptance and not separate completion of Dunben/Jide/connector IDs.
+
+## Own sources and visual scope
+- DPM236570: `https://www.dpm.org.cn/explore/building/236570.html` — five-bay/front three-depth-bay yellow xieshan, central doors/sill windows; distinguishes front/rear hall and connector.
+- DPM original2402 `https://img.dpm.org.cn/Uploads/Picture/dc/2402.jpg`: original is400×343; actual HTML src and enlargement data-img point to the SAME file. No guessed larger URL/panorama ID.
+- DPM2020 article `https://www.dpm.org.cn/building/talk/253589.html`, embedded own PDF `https://img.dpm.org.cn/Uploads/File/2020/08/20/u5f3df7b489b79.pdf`: p1/print70 large own exterior; p4/print73 explicitly titled “毓庆宫工字殿前殿平面图”, north arrow, distinct front hall and moon platform. Both personally viewed. The photo resolves coarse red closed central leaves, red-framed sill windows, grey base and yellow roof; no furniture inferred.
+- DPM2021 `https://www.dpm.org.cn/Uploads/File/2021/09/15/u6141698d36e1d.pdf`: p2/print110 regional plan color-separates front hall/connector/Jide; personally viewed. Initial bounded fetch stopped above10MB without saving; integrator explicitly authorized one<=32MiB fetch, actual Content-Length12,912,444 and SHA pinned. Not an access bypass; ordinary public URL. No repeated download loops.
+
+Current runtime has no independently bound Yuqing/Dunben/Jide hall. The sole `anchors.json` point is not a survey. Region/parent ID never used to infer a complete compound. All documents/photos remain local `/tmp`, not committed or slated for raw upload.
+
+## Minimal fitted form
+One independent module `src/scene/palace/special/YuqingFrontHall.js`, staged CourtKit. Main20×11m at(-134.5,256.5),5 equal bays, yellow xieshan, six facade columns,4 coarse sill-window bays and4 closed center leaves. Exact leaf/grid/count beyond bays is engineering simplification, not a photo measurement. Other side/back solid faces are explicitly unseen fits; no fake connector, no interior/furniture, no public entry claim, no new map/room.
+
+True22×12 base +14×6 projecting moon platform at.3m,2 actual broad steps .15m rise/1.4m run. These heights/counts/dimensions are LOW GAME ACCESS FIT, not the source elevation or original step count. Four visible solids carry matching Box colliders + actual top surfaces with `rescue:false`. No ramp/contact exception/global change. Each other mesh has a separate exact Float32-world triangle owner, avoiding disconnected aggregate-solid false interiors.105 owners total(4boxes+101triangle owners),4supports. CPU exports2400triangles include12 diagnostic ground triangles, not extra production floor.
+
+Approved full reserve X[-147,-122],Z[240,267],Y[0,12]. Actual source bounds X[-145.949279785,-123.050720215],Z[241.700000012,263.473054886],Y[-5.96e-9,9.002203941]. Old x=-120.8 street centre remains2.25072m away, radius.5 leaves1.75072m; west enclosurex=-150 untouched. New body has no overlap with Zhaigong/Chengsu. No old route or entity relocated.
+
+## Verification actually performed
+1. Single baseline normal World scan (actual TextureLibrary/controller,loadAll:false; explicitly loaded east-six/garden/axis-courts+global): exact full reserve no visible triangles/colliders/supports/water/body hits. Actual Zhaigong/Chengsu bounds recorded. Four original two-street30Hz walking/running roundtrips arrived,3315frames; full arrays identical earlier accepted pre-Zhaigong raw.
+2. Seven missing-builder trueRED component tests, then7/7GREEN first production implementation: five-bay scope/closed front; entire reserve; exact per-mesh triangle union;4real stone boxes/tops;UV with actual tile sizes; pre-registration guards;finish/dispose owned geometry/materials once and library material retained. No claim of injected late-publish rollback.
+3. Native local exterior moon-platform4/443frames,10/60Hz walk/run, peaks .052000003/.052000003/.147277781/.202000006; all arrived. Two actual negative routes reject front CLOSED door and back wall. These are not successful indoor visits.
+4. ONE candidate World using QA loader injection before normal kit.finish:1/1. Same moon-platform4 arrays exactly local; original street4/3315 arrays exactly baseline. Original3193meshes/1724colliders/95walkables and rooms/maps/regions SHA identical before/after, including all Zhaigong/Chengsu geometry/physics. No repeated routes through their interiors. Candidate World's inherited empty `owners/visibleHits` arrays are unused placeholders, not a post-build assertion that the NEW building has no occupants; baseline scan is the actual occupancy test.
+5. Two800×450 CPU views personally inspected. Actual geometry, fallback colors, NOT GPU/textures/screenshots or photogrammetric acceptance. No new detail iteration after initial source. No full-project suite/build/browser/mobile claims.
+
+## Handoff
+Unique integrator imports/calls `buildYuqingFrontHall(this.kit,this.kit.root.name)` once at normal ZoneBase.build end before `this.group=this.kit.finish()`; current author does NOT modify shared hook. Function returnsfalse for other zones, rejects duplicate/transformed/frozen registration before publication.
+Author World loader uses a fixed author path and injects candidate plus before/after preservation capture. Copy to a NEW cumulative QA/raw path, remove candidate injection after production hook is installed. Do not rerun `before` capture as if it were old baseline once the normal hook has already added the building; use frozen author preservation and check normal runtime candidate counts + exact street/porch arrays. Author raw fixed `/tmp/r160-yuqing-front-1015`; never overwrite it. Final normal entry/build gate belongs to integrator/Astra.
