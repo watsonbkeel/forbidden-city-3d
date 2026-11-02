@@ -1,0 +1,21 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import zlib from 'node:zlib';import crypto from 'node:crypto';import{registerHooks}from'node:module';
+const base=new URL('../../',import.meta.url).pathname;registerHooks({load(u,c,n){return n(u,u.endsWith('.json')?{...c,importAttributes:{...c.importAttributes,type:'json'}}:c)}});
+const{buildR52World}=await import(base+'tests/lib/r52-world.mjs'),{createActualLibrary}=await import(base+'tests/r158-cumulative-1600/library.mjs'),{replayKunning}=await import(base+'tests/lib/kunning-walk.mjs'),{withBoundedQaMocks}=await import(base+'tests/lib/bounded-qa-clock.mjs'),{canCrossPalaceWater}=await import(base+'src/scene/palace/special/SouthWaterSystem.js');
+const sha=v=>crypto.createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const frozen=JSON.parse(fs.readFileSync(base+'tests/fixtures/r47-r46-auto-routes.json')).find(r=>r.name==='[跨区] 中轴→东六宫景仁宫→宁寿宫皇极殿→回中轴').pts;
+const old=[{name:'old-east-first-street-leg',pts:[frozen[1],frozen[2],frozen[1]]},{name:'old-east-second-street-leg',pts:[frozen[8],frozen[9],frozen[8]]}];
+assert.deepEqual(old.map(r=>r.pts),[[[-62.4,209.9],[-63.3,297.2],[-62.4,209.9]],[[-120.8,299.2],[-120.8,193.3],[-120.8,299.2]]]);
+test('Tianqiong proposed complete box: true visible/physical/water clearance and two unchanged street legs',async t=>{
+ const W=await buildR52World({loadAll:false,initialPosition:{x:-194.5,z:435},createLibrary:createActualLibrary,zoneManagerOptions:{reuseInactive:true}}),T=W.THREE;
+ const r={base:'8ca949a8a1125246cdedcf857884d58284bfcc79',box:[[-208,0,420],[-181,12,449]],scope:'loadAll:false; explicitly resident east-six/ningshou/garden/axis-courts plus global production; not streaming/GPU',routes:[],owners:[],supports:[],visibleHits:[],waterBlocked:[],bodyBlocked:[]};
+ try{
+  W.zoneManager.loadZone('east-six');W.zoneManager.loadZone('ningshou');W.zoneManager.loadZone('garden');W.zoneManager.loadZone('axis-courts');W.scene.updateMatrixWorld(true);r.loaded=[...W.zoneManager.loaded.keys()];
+  const d=W.zoneManager.loaded.get('east-six').data,records=d.group.userData.architecture??[],tops=d.walkables.filter(w=>w.type==='box'&&w.box.min.x>=-208&&w.box.max.x<=-181&&w.box.min.z>=420&&w.box.max.z<=449);assert.equal(records.filter(q=>q.id==='tianqiong-front-photo-fit').length,1);assert.equal(tops.length,4);assert.ok(tops.every(w=>w.rescue===false));r.normalGuard={records:1,trueTops:4,rescueFalse:true};
+  for(const{name,pts}of old)for(const[fps,sprint]of[[30,false],[30,true]])r.routes.push({name,pts,fps,sprint,...withBoundedQaMocks(t,q=>replayKunning(q,W,pts,{startFeet:0,fps,sprint,recordFrames:true}))});
+  const previous=JSON.parse(zlib.gunzipSync(fs.readFileSync('/tmp/r160-tianqiong-1043/scan.json.gz')));assert.deepEqual(r.routes,previous.routes,'old street four full arrays unchanged against pre-Zhaigong baseline');
+  r.boundaryRoutes=[];for(const [name,pts]of [['east-open-strip',[[-220,415],[-220,460],[-220,415]]],['qiandong-south-clear-band',[[-210,458],[-180,458],[-210,458]]]])for(const sprint of[false,true])r.boundaryRoutes.push({name,pts,fps:30,sprint,...withBoundedQaMocks(t,q=>replayKunning(q,W,pts,{startFeet:0,fps:30,sprint,recordFrames:true}))});assert.deepEqual(r.boundaryRoutes,previous.boundaryRoutes,'all original boundary route frames remain identical');
+  r.newRoutes=[];for(const fps of[10,60])for(const sprint of[false,true])r.newRoutes.push({fps,sprint,...withBoundedQaMocks(t,q=>replayKunning(q,W,[[-194.5,419],[-194.5,427.5],[-194.5,419]],{fps,sprint,startFeet:0,recordFrames:true}))});
+  const local=JSON.parse(zlib.gunzipSync(fs.readFileSync('/tmp/r160-tianqiong-1043/local.json.gz')));assert.deepEqual(r.newRoutes,local.rows);r.preservation=null;r.routeSummary=[...r.routes,...r.boundaryRoutes,...r.newRoutes].map(q=>({name:q.name,fps:q.fps,sprint:q.sprint,arrived:q.arrived,n:q.frames.length,peak:Math.max(...q.frames.map(f=>Math.abs(f.feet-f.ground)))}));console.log(JSON.stringify({routes:r.routeSummary,preservation:r.preservation}));assert.ok(r.routes.every(q=>q.arrived));
+
+ }finally{fs.writeFileSync('/tmp/r160-tianqiong-cumulative-1048/world.json.gz',zlib.gzipSync(JSON.stringify(r)));W.dispose();}
+});
