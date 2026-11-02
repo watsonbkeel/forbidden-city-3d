@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {KUNNING_WALKING_BEAST_PROFILE} from './KunningWalkingBeasts.js';
 import {QIANQING_WALKING_BEAST_PROFILE} from './QianqingWalkingBeasts.js';
 import {addQianqingWalkingBeastRow} from './QianqingBeastSeat.js';
 
@@ -6,6 +7,7 @@ import {addQianqingWalkingBeastRow} from './QianqingBeastSeat.js';
 // retained-model fits, NOT measured historic dimensions. The rider is separate.
 const PROFILES = Object.freeze({
   qianqing: QIANQING_WALKING_BEAST_PROFILE,
+  kunning: KUNNING_WALKING_BEAST_PROFILE,
   // Huang Ximing, Palace Museum Journal 2014(2), printed p.142: each level
   // independently lists four riders and forty walking beasts, i.e. 10/corner.
   taihe: Object.freeze({id:'taihe-ten-walking-beasts',entityId:'FC-A478209231',counts:Object.freeze({lower:10,upper:10}),type:'wudian',width:63.6,depth:37.6,layers:2,
@@ -26,6 +28,7 @@ export function resolveWalkingBeastProfile(o) {
   if (!p || o.type !== p.type || !sameDimension(o.width,p.width) || !sameDimension(o.depth,p.depth) || o.layers !== p.layers ||
       o.height !== p.height || o.overhang !== p.overhang || o.sides !== 4 || o.brackets !== true ||
       (p === QIANQING_WALKING_BEAST_PROFILE && o.baoheInteriorOpening !== undefined) ||
+      (p === KUNNING_WALKING_BEAST_PROFILE && (!sameDimension(o.baseY,p.baseY) || o.baoheInteriorOpening !== undefined)) ||
       !Number.isFinite(o.baseY) || o._lift !== undefined || o.wumenVerticalProfile !== undefined || o.jiaotaiCeilingOpening !== undefined) {
     throw Error('Walking-beast profile requires exact reviewed hall roof inputs');
   }
@@ -76,7 +79,8 @@ function contactProbe(ridge) {
 }
 
 export function addWalkingBeastRow(ctx, g, ridge, pts, r, scope, add) {
-  if(ctx.walkingProfile===QIANQING_WALKING_BEAST_PROFILE)return addQianqingWalkingBeastRow(ctx,g,ridge,pts,r,scope,add,hipArcSampler);
+  // Explicit Kunning reuse of the unchanged reviewed full-triangle seating algorithm.
+  if(ctx.walkingProfile===QIANQING_WALKING_BEAST_PROFILE||ctx.walkingProfile===KUNNING_WALKING_BEAST_PROFILE)return addQianqingWalkingBeastRow(ctx,g,ridge,pts,r,scope,add,hipArcSampler);
   const path=ridge.geometry.parameters.path, arc=hipArcSampler(path,pts.length+1);
   const sb=r*2.6, first=sb*.9, spacing=sb*1.15;
   const halfLength=sb*.29;
