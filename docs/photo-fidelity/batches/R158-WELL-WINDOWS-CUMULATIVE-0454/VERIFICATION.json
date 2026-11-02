@@ -1,0 +1,222 @@
+{
+  "runtime": "316113804a3f085c0e302fd83c9ec1b16825d59d",
+  "parentRemote": "ac17aa1a514bb7b4253d3a5f800cf832780fdfae",
+  "productionChanges": [
+    "src/scene/palace/special/LuanjiaSouthPhotoWindows.js",
+    "src/scene/palace/special/NansansuoMiddleWell.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "components": 13,
+    "normalWellWorld": 1,
+    "normalWindowsRetainedWorld": 1,
+    "total": 15,
+    "failed": 0,
+    "skipped": 0
+  },
+  "world": {
+    "routes": 32,
+    "frames": 10720,
+    "peak": 0,
+    "well": {
+      "arrived": 8,
+      "total": 8,
+      "rejected": 2,
+      "frames": 2255,
+      "maxGap": 0,
+      "rowsSHA": "8c4d3bcfbc4964109c004c47db7c645d65b768b83e1d84481947cbbbbb395de9"
+    },
+    "windows": {
+      "newRoutes": {
+        "routes": 4,
+        "frames": 1550,
+        "peak": 0
+      },
+      "eastInterior": {
+        "routes": 4,
+        "frames": 1460,
+        "peak": 0
+      },
+      "eastExterior": {
+        "routes": 8,
+        "frames": 2383,
+        "peak": 0
+      },
+      "southExterior": {
+        "routes": 8,
+        "frames": 3072,
+        "peak": 0
+      }
+    },
+    "wellArraysEqualAuthor": true,
+    "retained24ArraysEqual0130": true,
+    "negative": 2
+  },
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-275b52c0ad59",
+    "sourceFingerprint": "32094f8eca2746eb0522f10dc6f247e317a4d95fd407d5d68139bdcb0cc89cf4",
+    "sourceCommit": "316113804a3f085c0e302fd83c9ec1b16825d59d",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 664,
+  "source": [
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthPhotoWindows.js",
+      "bytes": 5328,
+      "sha256": "265fe335bdfb5fdbf1fc51cd1cdace0a264d239de6fa03290a3bc8cd83603e24"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoMiddleWell.js",
+      "bytes": 7126,
+      "sha256": "d20fe3316bdcc12a26c18e139922dd9f34e5bb77e340125f2770b4d88d91b9b3"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 42399,
+      "sha256": "3bf104f9280d0661fcfaaae57a5874278a1fad0af2e0fbb9aee7db8a64b0e212"
+    }
+  ],
+  "qa": [
+    {
+      "path": "tests/r158-middle-well/component.test.mjs",
+      "bytes": 6004,
+      "sha256": "5c48b3f2ad7ca7ac4a04d81eab7e4d1ee2638f0550b3c147771fa6aaf92a6cac"
+    },
+    {
+      "path": "tests/r158-middle-well/fixture.mjs",
+      "bytes": 1379,
+      "sha256": "606843d9a371e7e08a37a0ee6d56dde1318746816df76b519f0c3aa55ddb716e"
+    },
+    {
+      "path": "tests/r158-middle-well/world.test.mjs",
+      "bytes": 3679,
+      "sha256": "7282e8918805ee31390d1fa0196c75693adeb2a450d59af1ba2ac10d50b56cd6"
+    },
+    {
+      "path": "tests/r158-luanjia-windows/component.test.mjs",
+      "bytes": 3997,
+      "sha256": "fd582f85d59468175f3fff9548e546d01171607b51c36fa508c5232562d8fe3a"
+    },
+    {
+      "path": "tests/r158-luanjia-windows/resource.test.mjs",
+      "bytes": 1890,
+      "sha256": "63d8d1ccd7f537bc158fb8750ae0eacc8a54a3173ba63d1403700c76e874c0f6"
+    },
+    {
+      "path": "tests/r158-luanjia-windows/routes.test.mjs",
+      "bytes": 2097,
+      "sha256": "2216b005d5856b5cd31095e8a3a4cf5c56f090253de7e051fa77744c697ad8e5"
+    },
+    {
+      "path": "tests/r158-well-windows-cumulative/windows-world.test.mjs",
+      "bytes": 4202,
+      "sha256": "9e002deaf70e8b0f9d2b98ef1060814c94f2c489f2ef1cc99864cb313f7d3821"
+    }
+  ],
+  "protected": [
+    {
+      "path": "main.js",
+      "bytes": 33144,
+      "sha256": "265f62d7f1996420842a6f51d64303ea56ee65902e12a9212c742cdffb5e1d39"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 31295,
+      "sha256": "df3c5839fa42da7f1f56bc531419cf88bc8c10c02ff6a235adde233fc3272f83"
+    },
+    {
+      "path": "src/render/TourFrameScheduler.js",
+      "bytes": 2913,
+      "sha256": "da6cdc1de9e9c7834ce9e081db79e0f055de94aee2c34d6dc0df90cedc0a700c"
+    },
+    {
+      "path": "src/render/TourPerformancePreference.js",
+      "bytes": 877,
+      "sha256": "1e54583316ad5df9e849076ddb6ce36f8f91946bbedaaa81dbcee5f9c01491c7"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    },
+    {
+      "path": "src/ui/Minimap.js",
+      "bytes": 54063,
+      "sha256": "1d17a39970666a78d3651a8e923cd4aaea6b88d5d25ee326f0639ead24eafd2a"
+    },
+    {
+      "path": "src/ui/Teleport.js",
+      "bytes": 20879,
+      "sha256": "5219e428ecbc16add99e24edaf1cafa9673a8a4bbcf56b18f667d223f4e9ac2f"
+    },
+    {
+      "path": "src/scene/zones/ZoneManager.js",
+      "bytes": 17401,
+      "sha256": "b47c4967da7abb82648230a9ce2e3dd961344978f6511c0be54336482964a9cd"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaEastWing.js",
+      "bytes": 5884,
+      "sha256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthWing.js",
+      "bytes": 6191,
+      "sha256": "35120125795a71fdbc489064d17474605a8d9ec5540e885682c8a471d1b3c7d2"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaEastTwoLevel.js",
+      "bytes": 9613,
+      "sha256": "e06833f5bd01bacd5030d546ab2147561fe62d6f295af87446def736a49d5984"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthTwoLevel.js",
+      "bytes": 9703,
+      "sha256": "2fcfda8b1081c21229c33557bfe6d0d9bf10aca19ad60f281dede9eb9f53ad8c"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaEastContact.js",
+      "bytes": 8302,
+      "sha256": "b5a750f2f208f005e420cdaae61e89e7ce179efc0b6f45fa90437d05c7f6d969"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthContact.js",
+      "bytes": 8318,
+      "sha256": "6a85f74687097a456a701a34c6e1f6183ae3373b022412781fc10ca500188970"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoMiddleHall.js",
+      "bytes": 7167,
+      "sha256": "836d249512f22385365be7cd9570fbce6c82527ef25bc37029a84e931f15ede8"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeSecondStorehouse.js",
+      "bytes": 11348,
+      "sha256": "d81ccfd729059894621e2221ea1e4cd25e39943f7d76e3f11aedebc7a58befcc"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    }
+  ],
+  "unchangedDataTree": "79a229234e00d0f1f0878848b3412ce9a95f9f02"
+}
