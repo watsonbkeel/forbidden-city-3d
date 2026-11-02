@@ -1,0 +1,6 @@
+# Zhongsi own-photo minimal gate plan
+Original E61 FC-CF00F15FA8 but correct runtime west-six. Official236551 text one bay/south/yellow xieshan/green eave/two leaves, own13146 partial front +13145 back-and-guardroom photos. Only gate; do not copy adjacent guardroom/other gate. Existing street/yard walls remain byte-identical. Photos not fully unoccluded; dims and hidden parts fit. Open side leaves / .06 real threshold are explicit gameplay choices, not current admission or Puyi-era exact restoration.
+
+Full reserve X[118.2,126.6] Z[301.5,306.5] Y[0,7], center(122.4,303.9) relative to existing west-second street, anchor not survey. Real e096 successor49c8 scan0old overlap; 247gridpoints, original south-cross approach avoids existing Yangxin northwallz298. Preserve4 original Yongshou/Taiji gate-front routes; actually cross proposed gate in four10/60 walk/run combinations.
+
+TDD7missing→minimal one-source CourtKit staged builder→7green; exact real triangle owners and true .06Box/toprescuefalse, no contact/ramp. Native4+2jamb/2leaf negatives; one candidateWorld oldflow/4oldarrays/new4same local; twoCPU, source/raw pins, freeze/Astra. Normal hook/build only unique integrator. No sharedsource/data/main/branches edits, no global physics. Stop on old overlap/route regression.
