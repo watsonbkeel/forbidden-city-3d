@@ -1,3 +1,5 @@
+import {buildNansansuoMiddleHall} from '../palace/special/NansansuoMiddleHall.js';
+import {buildNeigeHanbenTextVolume} from '../palace/special/NeigeHanbenTextVolume.js';
 import {finishWenhuaCompanionSteps} from '../palace/special/WenhuaCompanionSteps.js';
 import {buildChuanxinZhubanShell} from '../palace/special/ChuanxinZhubanShell.js';
 import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehouse.js';
@@ -216,6 +218,7 @@ export class ZoneBase {
     finishNansansuoFrontHalls(this.kit,this.zoneJson);
     finishNansansuoCourtyardGates(this.kit,this.zoneJson);
     finishNansansuoNorthEaves(this.kit,this.zoneJson);
+    buildNansansuoMiddleHall(this.kit,this.zoneJson);
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     buildNeigeCourt(this.kit, this.zoneJson);
@@ -225,6 +228,7 @@ export class ZoneBase {
     buildNeigeTextSideWings(this.kit, this.zoneJson);
     buildNeigeEastTextAnnex(this.kit, this.zoneJson);
     buildNeigeSecondStorehouse(this.kit, this.zoneJson);
+    buildNeigeHanbenTextVolume(this.kit, this.zoneJson);
     buildZhishengShell(this.kit, this.zoneJson);
     buildZhifangShell(this.kit, this.zoneJson);
     buildChuanxinZhubanShell(this.kit, this.zoneJson);
