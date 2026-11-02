@@ -1,0 +1,269 @@
+{
+  "runtime": "474d73e704809271b09609a4c00b7115e257d3f4",
+  "parentRemote": "81f3123d6297e2c4c9edaefc12b803879092d489",
+  "productionChanges": [
+    "src/scene/palace/special/NeigeSecondStorehouse.js",
+    "src/ui/Teleport.js"
+  ],
+  "tests": {
+    "components": 38,
+    "normalWorld": 1,
+    "total": 39,
+    "failed": 0,
+    "skipped": 0
+  },
+  "world": {
+    "landing": {
+      "name": "内阁大库第二体",
+      "x": -262.5,
+      "z": -351.12,
+      "lookAtX": -262.5,
+      "lookAtZ": -359.12,
+      "distance": 8,
+      "lateral": 0,
+      "entryProfile": "neige-second-store-open-door",
+      "y": 0,
+      "walk": 9,
+      "approachVerified": true,
+      "fallback": false,
+      "zone": "outer-east"
+    },
+    "heading": [
+      0,
+      0,
+      -1
+    ],
+    "rows": [
+      {
+        "name": "real-go-door-axis-in-and-back",
+        "arrived": true,
+        "frames": 182,
+        "end": [
+          -262.5,
+          -351.0331654919594,
+          0
+        ],
+        "maxAbsGap": 0
+      },
+      {
+        "name": "old-center-still-stops-at-masonry",
+        "arrived": false,
+        "frames": 120,
+        "end": [
+          -273,
+          -358.4121283769643,
+          0
+        ],
+        "maxAbsGap": 0,
+        "blockers": [
+          {
+            "tag": "outer-east",
+            "id": "neige-storehouse-candidate-b:bay-4-base",
+            "min": [
+              -277.20001220703125,
+              2.3841858265427618e-08,
+              -359.44000244140625
+            ],
+            "max": [
+              -273,
+              2.299999952316284,
+              -359
+            ]
+          },
+          {
+            "tag": "outer-east",
+            "id": "neige-storehouse-candidate-b:bay-5-base",
+            "min": [
+              -273,
+              2.3841858265427618e-08,
+              -359.44000244140625
+            ],
+            "max": [
+              -268.79998779296875,
+              2.299999952316284,
+              -359
+            ]
+          }
+        ]
+      },
+      {
+        "name": "other-closed-door-still-solid",
+        "arrived": false,
+        "frames": 90,
+        "end": [
+          -283.5,
+          -358.2456918280627,
+          0
+        ],
+        "maxAbsGap": 0,
+        "blockers": [
+          {
+            "tag": "outer-east",
+            "id": "neige-storehouse-candidate-b:bay-2-closed-leaf--1",
+            "min": [
+              -284.84698486328125,
+              3.814697180359872e-08,
+              -359
+            ],
+            "max": [
+              -283.50299072265625,
+              3.0799999237060547,
+              -358.8999938964844
+            ]
+          },
+          {
+            "tag": "outer-east",
+            "id": "neige-storehouse-candidate-b:bay-2-closed-leaf-1",
+            "min": [
+              -283.49700927734375,
+              3.814697180359872e-08,
+              -359
+            ],
+            "max": [
+              -282.15301513671875,
+              3.0799999237060547,
+              -358.8999938964844
+            ]
+          }
+        ]
+      }
+    ],
+    "loaded": [
+      "axis-courts",
+      "outer-east",
+      "ningshou"
+    ]
+  },
+  "comparison": "Same inputs, landing, heading, arrival outcomes and frame counts; real-clock positions are not byte-identical",
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-ad8b8a4b7fcd",
+    "sourceFingerprint": "6227da92c71d43330e1f889c2f8f6137a902dbfe16266b53474a74609f5361d7",
+    "sourceCommit": "474d73e704809271b09609a4c00b7115e257d3f4",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 662,
+  "source": [
+    {
+      "path": "src/scene/palace/special/NeigeSecondStorehouse.js",
+      "bytes": 11348,
+      "sha256": "d81ccfd729059894621e2221ea1e4cd25e39943f7d76e3f11aedebc7a58befcc"
+    },
+    {
+      "path": "src/ui/Teleport.js",
+      "bytes": 20879,
+      "sha256": "5219e428ecbc16add99e24edaf1cafa9673a8a4bbcf56b18f667d223f4e9ac2f"
+    }
+  ],
+  "qa": [
+    {
+      "path": "tests/r158-second-store-entry/baseline.json",
+      "bytes": 596,
+      "sha256": "8a9696da7510f17c75453e116a83962a3544703b6564835318c1cec800301453"
+    },
+    {
+      "path": "tests/r158-second-store-entry/component.test.mjs",
+      "bytes": 4556,
+      "sha256": "8d3452beb0c2235cdd85d46a84ada70d09e31ac0398fb8450a615e5ec05045f8"
+    },
+    {
+      "path": "tests/r158-second-store-entry/fixture.mjs",
+      "bytes": 2536,
+      "sha256": "e418f64eddcbee7cbcfdaa1e2ab28f1c978879fccc9226e84efc2b02786c7364"
+    },
+    {
+      "path": "tests/r158-second-store-entry/world.test.mjs",
+      "bytes": 6014,
+      "sha256": "37d14c018cf4f254f492abeb5133329fbb4d79f0f2d12b06b1a94a398fe6c4a8"
+    }
+  ],
+  "protected": [
+    {
+      "path": "main.js",
+      "bytes": 33144,
+      "sha256": "265f62d7f1996420842a6f51d64303ea56ee65902e12a9212c742cdffb5e1d39"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 31295,
+      "sha256": "df3c5839fa42da7f1f56bc531419cf88bc8c10c02ff6a235adde233fc3272f83"
+    },
+    {
+      "path": "src/render/TourFrameScheduler.js",
+      "bytes": 2913,
+      "sha256": "da6cdc1de9e9c7834ce9e081db79e0f055de94aee2c34d6dc0df90cedc0a700c"
+    },
+    {
+      "path": "src/render/TourPerformancePreference.js",
+      "bytes": 877,
+      "sha256": "1e54583316ad5df9e849076ddb6ce36f8f91946bbedaaa81dbcee5f9c01491c7"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    },
+    {
+      "path": "src/ui/Minimap.js",
+      "bytes": 54063,
+      "sha256": "1d17a39970666a78d3651a8e923cd4aaea6b88d5d25ee326f0639ead24eafd2a"
+    },
+    {
+      "path": "src/scene/zones/ZoneManager.js",
+      "bytes": 17401,
+      "sha256": "b47c4967da7abb82648230a9ce2e3dd961344978f6511c0be54336482964a9cd"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 42107,
+      "sha256": "2617776cb1ee3d5ec85eed009719dc2efe4d7a3971890bbbbabae4e68b697a09"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/ZhishengShell.js",
+      "bytes": 7160,
+      "sha256": "1f1f4d8c9e336379c6e0039be46b84381a971447924e9663cb3dc2e7b721d11d"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanGroundFans.js",
+      "bytes": 4572,
+      "sha256": "46abfedc5b2a54ec11d8041891b931fa028e9b377c9ecf2d3718468e37ef9e50"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeEastTextAnnex.js",
+      "bytes": 9996,
+      "sha256": "f397c8752a812625b3266c5959428463ca0a512ce6ea7bebc19b58cf93eae1dc"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeStorehouse.js",
+      "bytes": 9600,
+      "sha256": "a87b03a3850a5497a23860eb1819d745b24c1834b5b817a3fb23aa0dd8162960"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/flight/FlightState.js",
+      "bytes": 5665,
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    }
+  ]
+}

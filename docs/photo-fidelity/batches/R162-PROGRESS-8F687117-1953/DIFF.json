@@ -1,0 +1,63 @@
+{
+  "classification": "CODE_LEDGER_DELTA_NOT_ACCEPTANCE",
+  "fromCommit": "6eb1e1c91a166770a8acd215509d1b46d10fcc56",
+  "toCommit": "8f687117a6bfdd85989a2cb64657f0c6cb77898c",
+  "toTree": "d3c4ae654722a60a1b9f14a737a40f79a81a0f5a",
+  "changedObjectOrdinals": [
+    20
+  ],
+  "unchangedCompleteObjectCount": 28,
+  "transitions": [
+    {
+      "ordinal": 20,
+      "id": "FC-A3B03BAB65",
+      "name": "承光门",
+      "from": "N",
+      "to": "H_PARTIAL"
+    }
+  ],
+  "fromCountsNotProgress": {
+    "G": 4,
+    "H": 20,
+    "N": 4,
+    "P": 1
+  },
+  "toCountsNotProgress": {
+    "G": 4,
+    "H": 21,
+    "N": 3,
+    "P": 1
+  },
+  "preserved": "29 original ordinal/ID/name/sourceLine/cautions and all NOT_ASSERTED; 28 complete object values identical",
+  "remainingNoIdentifiedBinding": [
+    {
+      "ordinal": 15,
+      "id": "FC-D471A19B37",
+      "name": "玉翠亭"
+    },
+    {
+      "ordinal": 18,
+      "id": "FC-30C5E54148",
+      "name": "钦安殿东南亭"
+    },
+    {
+      "ordinal": 19,
+      "id": "FC-F3135E4D16",
+      "name": "钦安殿西南亭"
+    }
+  ],
+  "oldRuntimeFilesChanged": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "oldRuntimePinsUnchanged": 37,
+  "newRuntimeFiles": [
+    "src/scene/garden/ChengguangCurbFit.js",
+    "src/scene/palace/special/ChengguangGate.js"
+  ],
+  "runtimePinCount": 41,
+  "priorCumulativeEvidencePinsUnchanged": 9,
+  "cumulativeEvidencePinCount": 13,
+  "fixedCumulativeGitPinsMatched": 104,
+  "execution": "Read-only fixed Git/source/doc audit; no tests/build/World/Node/download/shared writes. Only these /tmp ledger/diff/script outputs."
+}

@@ -1,0 +1,8 @@
+# Actual bounded author commands, raw /tmp/r162-chizao-1738; do not overwrite frozen outputs.
+node --test /tmp/r162-chizao-1738/scan.mjs
+node --test r162-chizao-1739/tests/r162-chizao/component.test.mjs # 7 missing-module RED
+node --test r162-chizao-1739/tests/r162-chizao/component.test.mjs r162-chizao-1739/tests/r162-chizao/routes.test.mjs # 8 GREEN
+node --test r162-chizao-1739/tests/r162-chizao/world.test.mjs # one candidate World GREEN
+node r162-chizao-1739/tests/r162-chizao/export-cpu.mjs /tmp/r162-chizao-1738
+for v in front oblique; do python r162-chizao-1739/tests/r162-chizao/render-cpu.py /tmp/r162-chizao-1738/$v.json.gz r162-chizao-1739/docs/photo-fidelity/R162-CHIZAO-1739/$v.png; done
+# No author full-suite/build/GPU; normal hook/build pending integration.

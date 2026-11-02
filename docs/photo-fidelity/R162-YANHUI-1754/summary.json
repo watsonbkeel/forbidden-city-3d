@@ -1,0 +1,229 @@
+{
+  "base": "35f23bffd8496eed0492db952e6954e6e2bad477",
+  "id": "FC-7E30C9E212",
+  "wholeObjectAcceptance": "NOT_ASSERTED",
+  "tests": {
+    "missingBuilder": "7 RED",
+    "qaRearTargetError": "7 pass/1 fail; target519.8 erroneously outward; restored515.5 only",
+    "componentsPlusLocal": "8/8 GREEN",
+    "candidateWorld": "1/1 GREEN",
+    "fullSuiteBuildGpu": "NOT_RUN"
+  },
+  "counts": {
+    "owners": 116,
+    "falseBoxTops": 2,
+    "upperWalkables": 0,
+    "newRooms": 0,
+    "newMaps": 0,
+    "newContacts": 0,
+    "landscapeChanges": 0
+  },
+  "preflight": {
+    "box": [
+      [
+        25.9,
+        0,
+        511.6
+      ],
+      [
+        37.7,
+        9.8,
+        517.4
+      ]
+    ],
+    "triangles": 94492,
+    "bodySamples": 288,
+    "oldIntersections": 0,
+    "scanYMin": 0.04,
+    "loaded": [
+      "garden",
+      "west-six",
+      "axis-courts"
+    ],
+    "routes": [
+      {
+        "name": "current-layout-west-x17-north-lane",
+        "fps": 30,
+        "sprint": false,
+        "arrived": true,
+        "frames": 100,
+        "peak": 0,
+        "rowsSHA": "7e1b8bf3786ab3efc2e4a826015931fc02c377d47b2943347eb9cded13c89557",
+        "end": [
+          17,
+          506.4918021450788,
+          0
+        ]
+      },
+      {
+        "name": "current-layout-west-x17-north-lane",
+        "fps": 30,
+        "sprint": true,
+        "arrived": true,
+        "frames": 51,
+        "peak": 0,
+        "rowsSHA": "cf0a29065548c8efdf42daf97610f661cffbcc7218c0b62d1c082a968f7aae3c",
+        "end": [
+          17,
+          506.4769552434168,
+          0
+        ]
+      },
+      {
+        "name": "current-layout-northwest-crosspath",
+        "fps": 30,
+        "sprint": false,
+        "arrived": true,
+        "frames": 304,
+        "peak": 0,
+        "rowsSHA": "7c029e4a37468ab6355582c401bf6d32c50150643d1005a91dcdc3524db80d78",
+        "end": [
+          19.491802110196996,
+          509.3,
+          0
+        ]
+      },
+      {
+        "name": "current-layout-northwest-crosspath",
+        "fps": 30,
+        "sprint": true,
+        "arrived": true,
+        "frames": 135,
+        "peak": 0,
+        "rowsSHA": "0701d8621bfec87c3235a9f599fe2455c4e6bc4b7631f636a992c9a9752f1ac5",
+        "end": [
+          19.443885658151505,
+          509.3,
+          0
+        ]
+      },
+      {
+        "name": "fixed-yanhui-prebuild-front-approach",
+        "fps": 30,
+        "sprint": false,
+        "arrived": true,
+        "frames": 44,
+        "peak": 0,
+        "rowsSHA": "c913187683a93d5bcbb943f66ddde230aca4650ea1dbbe2861b86cdff214c9eb",
+        "end": [
+          31.8,
+          508.79219658321574,
+          0
+        ]
+      },
+      {
+        "name": "fixed-yanhui-prebuild-front-approach",
+        "fps": 30,
+        "sprint": true,
+        "arrived": true,
+        "frames": 29,
+        "peak": 0,
+        "rowsSHA": "bce98938fed3108523dbc8ed28942160621dfafcb953ba4f1e0442202505cbe7",
+        "end": [
+          31.8,
+          508.81342458280136,
+          0
+        ]
+      }
+    ]
+  },
+  "world": {
+    "oldFourCompleteObjectsEqualPreflight": true,
+    "oldFrames": 590,
+    "newCompleteObjectsIncludingEndEqualLocal": true,
+    "newFrames": 169,
+    "newSummary": [
+      {
+        "fps": 10,
+        "sprint": false,
+        "arrived": true,
+        "n": 15,
+        "peak": 0.030740702885718535
+      },
+      {
+        "fps": 10,
+        "sprint": true,
+        "arrived": true,
+        "n": 10,
+        "peak": 0.030740702885718535
+      },
+      {
+        "fps": 60,
+        "sprint": false,
+        "arrived": true,
+        "n": 87,
+        "peak": 0.13011639960002871
+      },
+      {
+        "fps": 60,
+        "sprint": true,
+        "arrived": true,
+        "n": 57,
+        "peak": 0.1512329463899252
+      }
+    ],
+    "endChecks": [
+      {
+        "end": [
+          31.8,
+          508.96902367801687,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          31.8,
+          508.687634620409,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          31.8,
+          508.7990806108755,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          31.8,
+          508.81618822274993,
+          0
+        ],
+        "blocked": false
+      }
+    ],
+    "necessary30ChangedByRealPlatform": true,
+    "worldValidNegatives": 1,
+    "localValidNegatives": 2,
+    "preservation": {
+      "before": {
+        "meshes": "c17b3accc7c87e68baaac45a9ef40b07ba96f9bfe52fc744088824617cb4b5c7",
+        "colliders": "761c66f10caf2863cfda0394636060cfe069725c4049ea06f84a425e358e7ed1",
+        "walkables": "b47424e1ea37dfde56fb2b8cdb03b1e185ce9ca217f96676514b4c56d88d068d",
+        "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+        "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+        "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+        "meshCount": 2824,
+        "colliderCount": 1477,
+        "walkableCount": 98
+      },
+      "after": {
+        "meshes": "c17b3accc7c87e68baaac45a9ef40b07ba96f9bfe52fc744088824617cb4b5c7",
+        "colliders": "761c66f10caf2863cfda0394636060cfe069725c4049ea06f84a425e358e7ed1",
+        "walkables": "b47424e1ea37dfde56fb2b8cdb03b1e185ce9ca217f96676514b4c56d88d068d",
+        "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+        "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+        "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+        "meshCount": 2824,
+        "colliderCount": 1477,
+        "walkableCount": 98
+      },
+      "equal": true
+    }
+  },
+  "upperGallery": "visible geometry+collision only; no public walkable/access or interior"
+}

@@ -1,0 +1,211 @@
+{
+  "base": "70a98df245d4b2a4c0b385a563b0d6101e9e274e",
+  "objectId": "FC-E0E2F06A88",
+  "authorScope": "injected garden hall + normal isolated GardenBuilder; garden/east-six/west-six/axis-courts + global, loadAll:false",
+  "sourceChanges": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/garden/JiangxueLandscapeFit.js",
+    "src/scene/palace/special/JiangxueHall.js"
+  ],
+  "counts": {
+    "newOwners": 29,
+    "boxTopsRescueFalse": 3,
+    "rooms": 0,
+    "maps": 0,
+    "newContacts": 0,
+    "sampledTrees": 34,
+    "publishedTrees": 33,
+    "withheldTree": 1
+  },
+  "tests": {
+    "initialMissingModulesRed": "6 fail",
+    "landscapeRed": "68 != 66; exact helper test pass",
+    "landscapeGreen": "2/2",
+    "finalComponentAndLocal": "8/8",
+    "authorWorldBeforeWinding": "1/1",
+    "fullProjectSuite": "NOT_RUN: explicitly bounded author QA; cumulative normal hook/build by integrator"
+  },
+  "originalRoutes": {
+    "count": 4,
+    "frames": 710,
+    "completeObjectsEqual": true
+  },
+  "newRoutes": [
+    {
+      "fps": 10,
+      "sprint": false,
+      "arrived": true,
+      "n": 30,
+      "peak": 0.030740702885718535
+    },
+    {
+      "fps": 10,
+      "sprint": true,
+      "arrived": true,
+      "n": 16,
+      "peak": 0.10200000149011611
+    },
+    {
+      "fps": 60,
+      "sprint": false,
+      "arrived": true,
+      "n": 169,
+      "peak": 0.14283333482344895
+    },
+    {
+      "fps": 60,
+      "sprint": true,
+      "arrived": true,
+      "n": 89,
+      "peak": 0.18366666815678287
+    }
+  ],
+  "negative": 2,
+  "endChecks": [
+    {
+      "end": [
+        -48.41874475917315,
+        445.2,
+        0
+      ],
+      "blocked": false
+    },
+    {
+      "end": [
+        -48.37869820992081,
+        445.2,
+        0
+      ],
+      "blocked": false
+    },
+    {
+      "end": [
+        -48.49865083044762,
+        445.2,
+        0
+      ],
+      "blocked": false
+    },
+    {
+      "end": [
+        -48.47706394178759,
+        445.2,
+        0
+      ],
+      "blocked": false
+    }
+  ],
+  "preservation": {
+    "before": {
+      "meshes": "9752d1d34b8b3345a60492d1d42d09af41c60fd6954882b8ffca2107b2a710c0",
+      "colliders": "7575d67cbe088efff2e71da7742f94b1e33ac6f568adb26b5fc9be225a737a0e",
+      "walkables": "a626634b79923ef8c323926825daf36b55e3b9270421a7f5a58d43e69220505f",
+      "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+      "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+      "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+      "meshCount": 2706,
+      "colliderCount": 1359,
+      "walkableCount": 91
+    },
+    "after": {
+      "meshes": "9752d1d34b8b3345a60492d1d42d09af41c60fd6954882b8ffca2107b2a710c0",
+      "colliders": "7575d67cbe088efff2e71da7742f94b1e33ac6f568adb26b5fc9be225a737a0e",
+      "walkables": "a626634b79923ef8c323926825daf36b55e3b9270421a7f5a58d43e69220505f",
+      "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+      "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+      "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+      "meshCount": 2706,
+      "colliderCount": 1359,
+      "walkableCount": 91
+    },
+    "equal": true
+  },
+  "winding": {
+    "localCompleteObjectsIncludingEndEqual": true,
+    "allActualCpuTriangleVertexSetsEqualIgnoringWinding": true,
+    "trianglesIncludingQaGround": 1260,
+    "note": "Only porch winding/normals changed; directed triangle owners differ. Author World precedes this final winding fix; final local rows unchanged; cumulative normal World required."
+  },
+  "northTreeCheck": {
+    "scope": "actual final candidate geometry versus retained north tree original real triangles",
+    "treeChecks": [
+      {
+        "mesh": "garden_oldCypress_trunk",
+        "instance": 2,
+        "sourceTriangles": 117,
+        "broadPairs": 0,
+        "actualTriangleHits": []
+      },
+      {
+        "mesh": "garden_oldCypress_crown",
+        "instance": 2,
+        "sourceTriangles": 180,
+        "broadPairs": 0,
+        "actualTriangleHits": []
+      }
+    ],
+    "bounds": [
+      [
+        -63.377672290802,
+        -1.4901161138336505e-09,
+        437.79999990463256
+      ],
+      [
+        -53.99999999701977,
+        5.332399845123291,
+        452.6000000953674
+      ]
+    ],
+    "triangles": 1240,
+    "sourceTreeEvidence": "capture.json.gz: complete actual oldCypress triangles intersecting original larger box; new body wholly within that box",
+    "retainedTreeOwner": {
+      "min": [
+        -61.613413042342295,
+        0,
+        453.7409071383067
+      ],
+      "max": [
+        -60.0134130423423,
+        3,
+        455.3409071383067
+      ],
+      "tag": "static",
+      "sourceFlags": [
+        "mesh"
+      ],
+      "raw": {
+        "mesh": {
+          "isBox3": true,
+          "min": {
+            "x": -61.613413042342295,
+            "y": 0,
+            "z": 453.7409071383067
+          },
+          "max": {
+            "x": -60.0134130423423,
+            "y": 3,
+            "z": 455.3409071383067
+          }
+        },
+        "box": {
+          "isBox3": true,
+          "min": {
+            "x": -61.613413042342295,
+            "y": 0,
+            "z": 453.7409071383067
+          },
+          "max": {
+            "x": -60.0134130423423,
+            "y": 3,
+            "z": 455.3409071383067
+          }
+        },
+        "tag": "static"
+      }
+    },
+    "ownerOverlap": false,
+    "retainedLaneGap": 4.1999999970197734
+  },
+  "wholeObjectAcceptance": "NOT_ASSERTED",
+  "gpu": "NOT_RUN"
+}

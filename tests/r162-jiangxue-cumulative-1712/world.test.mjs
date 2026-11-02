@@ -1,0 +1,20 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import zlib from 'node:zlib';import crypto from 'node:crypto';import{registerHooks}from'node:module';
+const base=new URL('../../',import.meta.url).pathname;registerHooks({load(u,c,n){return n(u,u.endsWith('.json')?{...c,importAttributes:{...c.importAttributes,type:'json'}}:c)}});
+const{buildR52World}=await import(base+'tests/lib/r52-world.mjs'),{createActualLibrary}=await import(base+'tests/r158-cumulative-1600/library.mjs'),{replayKunning}=await import(base+'tests/lib/kunning-walk.mjs'),{withBoundedQaMocks}=await import(base+'tests/lib/bounded-qa-clock.mjs'),{canCrossPalaceWater}=await import(base+'src/scene/palace/special/SouthWaterSystem.js');
+const Geo=await import(base+'node_modules/three/build/three.module.js');
+const sha=v=>crypto.createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const plans=[{name:'current-plan-east-garden-lane',pts:[[-48,435],[-48,455],[-48,435]]},{name:'current-plan-south-crosspath',pts:[[-50,429.7],[-30,429.7],[-50,429.7]]}];
+test('final normal Jiangxue hook and landscape; original four paths and real new approach',async t=>{
+const W=await buildR52World({loadAll:false,initialPosition:{x:-60.1,z:445.2},createLibrary:createActualLibrary,zoneManagerOptions:{reuseInactive:true}}),T=W.THREE,r={base:'70a98df245d4b2a4c0b385a563b0d6101e9e274e',scope:'actual resources; garden/east-six/west-six/axis-courts + global resident; final normal hall and GardenBuilder; not full-streaming/GPU',routes:[],newRoutes:[],negative:[],starts:[]};
+try{
+for(const z of['garden','east-six','west-six','axis-courts'])W.zoneManager.loadZone(z);W.scene.updateMatrixWorld(true);r.loaded=[...W.zoneManager.loaded.keys()];
+const zone=W.zoneManager.loaded.get('garden').data;const frames=zone.group.userData.architecture.filter(x=>x.sourceObjectId==='FC-E0E2F06A88');assert.equal(frames.length,1);const owners=zone.colliders.filter(x=>x.min.x>=-63.5&&x.max.x<=-53.9&&x.min.z>=437.7&&x.max.z<=452.7&&x.max.y<=5.5);assert.equal(owners.length,29);const tops=zone.walkables.filter(x=>x.rescue===false&&x.box&&x.box.min.x>=-63.5&&x.box.max.x<=-53.9&&x.box.min.z>=437.7&&x.box.max.z<=452.7);assert.equal(tops.length,3);r.normalGuard={records:1,owners:owners.length,falseTops:tops.length};
+for(const route of plans)for(const sprint of[false,true])r.routes.push({...route,fps:30,sprint,...withBoundedQaMocks(t,q=>replayKunning(q,W,route.pts,{startFeet:0,fps:30,sprint,recordFrames:true}))});
+const old=JSON.parse(zlib.gunzipSync(fs.readFileSync('/tmp/r162-jiangxue-capture-1636/capture.json.gz')));assert.deepEqual(r.routes,old.routes,'original four complete route arrays/end unchanged');
+const pts=[[-49,445.2],[-55.8,445.2],[-49,445.2]];r.starts.push({point:pts[0],blocked:W.cm.checkCollision(new T.Vector3(-49,1.7,445.2),.5)});assert.equal(r.starts[0].blocked,false);
+for(const fps of[10,60])for(const sprint of[false,true])r.newRoutes.push({fps,sprint,...withBoundedQaMocks(t,q=>replayKunning(q,W,pts,{fps,sprint,startFeet:0,recordFrames:true}))});
+for(const pts of[[[-55.8,445.2],[-58.2,445.2]],[[-64,445.2],[-61.8,445.2]]])r.negative.push(withBoundedQaMocks(t,q=>replayKunning(q,W,pts,{fps:60,sprint:true,startFeet:.2,recordFrames:true})));
+r.endChecks=r.newRoutes.map(q=>({end:q.end,blocked:W.cm.checkCollision(new T.Vector3(q.end[0],q.end[2]+1.7,q.end[1]),.5)}));r.preservation=null;
+r.summary=r.newRoutes.map(q=>({fps:q.fps,sprint:q.sprint,arrived:q.arrived,n:q.frames.length,peak:Math.max(...q.frames.map(f=>Math.abs(f.feet-f.ground)))}));console.log(JSON.stringify({summary:r.summary,negative:r.negative.map(q=>q.arrived),preservation:r.preservation,endChecks:r.endChecks}));assert.ok(r.newRoutes.every(q=>q.arrived));assert.ok(r.summary.every(q=>q.peak<=.300001));assert.ok(r.negative.every(q=>!q.arrived));assert.ok(r.endChecks.every(q=>!q.blocked));
+}finally{fs.writeFileSync('/tmp/r162-jiangxue-cumulative-1712/world.json.gz',zlib.gzipSync(JSON.stringify(r)));W.dispose()}
+});

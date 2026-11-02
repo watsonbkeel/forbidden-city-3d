@@ -1,0 +1,81 @@
+{
+  "runtime": "0d751131913fdebdc9c60dd81379de942765b8de",
+  "baseLocal": "70a98df245d4b2a4c0b385a563b0d6101e9e274e",
+  "remoteParent": "245cd87cfe9620406661a30b35cc567de459c2d0",
+  "productionDiff": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/garden/JiangxueLandscapeFit.js",
+    "src/scene/palace/special/JiangxueHall.js",
+    "src/scene/zones/ZoneBase.js",
+    "release.json"
+  ],
+  "tests": {
+    "focused": 10,
+    "normalWorld": 1,
+    "total": 11,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 29,
+    "falseTops": 3
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 710,
+    "newRoutes": 4,
+    "newFrames": 304,
+    "newPeak": 0.18366666815678287,
+    "negative": 2,
+    "sevenReportFieldsExactAuthorWorld": true,
+    "localCompleteIncludingEndExact": true,
+    "finalWindingSourceTestedNormally": true
+  },
+  "landscape": {
+    "samples": 34,
+    "publishedTrees": 33,
+    "withheld": "only exact procedural pine0 trunk/crown and unique owner",
+    "cuts": [
+      [
+        -63.5,
+        -53.9,
+        437.7,
+        452.7
+      ],
+      [
+        -53.9,
+        -49.8,
+        443.7,
+        446.7
+      ]
+    ],
+    "other33TreesExact": true,
+    "northTreePreserved": true,
+    "oldBedsPathsAndRngConsumptionPreserved": true,
+    "wholeGardenUnchanged": false
+  },
+  "scopeDelta": {
+    "id": "FC-E0E2F06A88",
+    "name": "绛雪轩",
+    "fromHistoricalCodeClass": "UNCLASSIFIED_SCOPE_ONLY",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR_PORCH",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-5740f8f791a2",
+    "sourceFingerprint": "155fcd9cf98ab865630cdf6a1a378a7d0315f1740e59aab507b3148edbb4b8e4",
+    "sourceCommit": "0d751131913fdebdc9c60dd81379de942765b8de",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "authorWorldBeforeFinalWinding": true,
+  "authorPreservation": "Exact 3 production files carry old garden zone 2706 mesh/1359 collider/91 top proof. Global landscape difference is explicitly separate; no fake before capture after hook.",
+  "qaCorrections": [
+    "normal frame guard initially queried pre-merge structure; corrected to merged architecture",
+    "normal owner prefix excluded four roof meshes; corrected to approved full bbox owner selection; both pre-route failures retained"
+  ],
+  "localRawNonpersistent": true
+}

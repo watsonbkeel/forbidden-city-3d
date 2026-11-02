@@ -1,0 +1,184 @@
+{
+  "base": "32d0107900094b73421e29c16686dffd83aca832",
+  "id": "FC-2C00D09F2A",
+  "wholeObjectAcceptance": "NOT_ASSERTED",
+  "tests": {
+    "component": 7,
+    "landscape": 2,
+    "groundPreservation": 1,
+    "finalTreeClearance": 1,
+    "localRoutes": 1,
+    "candidateWorld": 1,
+    "fullSuiteBuildGpu": "NOT_RUN"
+  },
+  "counts": {
+    "owners": 57,
+    "falseBoxTops": 2,
+    "sampledTrees": 34,
+    "previousWithheldPine": 1,
+    "newWithheldTrees": 2,
+    "publishedTrees": 31,
+    "upperWalkables": 0,
+    "newContacts": 0,
+    "newRooms": 0,
+    "newMaps": 0
+  },
+  "normalCaptureRoutes": {
+    "rows": 4,
+    "frames": 710,
+    "peak": 0
+  },
+  "world": {
+    "newSummary": [
+      {
+        "fps": 10,
+        "sprint": false,
+        "arrived": true,
+        "n": 46,
+        "peak": 0.030740702885718535
+      },
+      {
+        "fps": 10,
+        "sprint": true,
+        "arrived": true,
+        "n": 23,
+        "peak": 0.10200000149011611
+      },
+      {
+        "fps": 60,
+        "sprint": false,
+        "arrived": true,
+        "n": 265,
+        "peak": 0.1428333348234505
+      },
+      {
+        "fps": 60,
+        "sprint": true,
+        "arrived": true,
+        "n": 129,
+        "peak": 0.18366666815678265
+      }
+    ],
+    "newFrames": 463,
+    "newCompleteObjectsIncludingEndEqualLocal": true,
+    "oldCompleteObjectsEqualCapture": true,
+    "endChecks": [
+      {
+        "end": [
+          47.41874458120484,
+          443,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          47.20396682319899,
+          443,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          47.49865036711739,
+          443,
+          0
+        ],
+        "blocked": false
+      },
+      {
+        "end": [
+          47.47606912743683,
+          443,
+          0
+        ],
+        "blocked": false
+      }
+    ],
+    "validNegatives": 2,
+    "kitPreservation": {
+      "before": {
+        "meshes": "91136397d332404b8422c1c971611c5556c3ef7a6f09d14707ac5b708591384c",
+        "colliders": "c3cd68faec973d8bfc35bcd3641c74b84b1ebe944ca0e4b9d11f654d6ab7c32e",
+        "walkables": "02252e4c00b9d2d653ab3128c4301da199ed0129a93ac5ed79517f68b0dcd534",
+        "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+        "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+        "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+        "meshCount": 2966,
+        "colliderCount": 1619,
+        "walkableCount": 102
+      },
+      "after": {
+        "meshes": "91136397d332404b8422c1c971611c5556c3ef7a6f09d14707ac5b708591384c",
+        "colliders": "c3cd68faec973d8bfc35bcd3641c74b84b1ebe944ca0e4b9d11f654d6ab7c32e",
+        "walkables": "02252e4c00b9d2d653ab3128c4301da199ed0129a93ac5ed79517f68b0dcd534",
+        "rooms": "83167d4b023cebbacbf0c93581214fd09064c937bbfef4f12bf8332030d5548d",
+        "maps": "83494d9b6f50e9d85487372dbb9219eca80a9985e452a5002a38807faa47f2a6",
+        "regions": "b68a9e85c8c689899bc2e8473c2987b0f4f8cd17f09e4d6cadad002423745509",
+        "meshCount": 2966,
+        "colliderCount": 1619,
+        "walkableCount": 102
+      },
+      "equal": true
+    },
+    "scopeWarning": "landscape global changed only authorized exceptions; kit prefix equality is not global whole-flow equality"
+  },
+  "ground": {
+    "oldMeshes": 74,
+    "newMeshes": 75,
+    "unchanged": 72,
+    "pathsEqual": true,
+    "bedsEqual": true
+  },
+  "actualTreeClearance": {
+    "triangles": 8282,
+    "trees": [
+      {
+        "name": "garden_oldCypress_trunk",
+        "at": [
+          53.22242736816406,
+          0.30000001192092896,
+          452.3616943359375
+        ],
+        "oldPossible": 89,
+        "pairs": 71,
+        "hits": 0
+      },
+      {
+        "name": "garden_oldCypress_crown",
+        "at": [
+          53.22242736816406,
+          0.30000001192092896,
+          452.3616943359375
+        ],
+        "oldPossible": 36,
+        "pairs": 0,
+        "hits": 0
+      },
+      {
+        "name": "garden_cypress_trunk",
+        "at": [
+          58.209938049316406,
+          0.30000001192092896,
+          455.99871826171875
+        ],
+        "oldPossible": 0,
+        "pairs": 0,
+        "hits": 0
+      },
+      {
+        "name": "garden_cypress_crown",
+        "at": [
+          58.209938049316406,
+          0.30000001192092896,
+          455.99871826171875
+        ],
+        "oldPossible": 0,
+        "pairs": 0,
+        "hits": 0
+      }
+    ]
+  },
+  "cpu": "explicit product polygonOffset factor approximate depth-bias only, initial ignored-bias images retained; GPU unverified"
+}

@@ -4,6 +4,31 @@ import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSu
 const ID='neige-storehouse-candidate-b',FIT='ENGINEERING_FIT_NOT_SURVEYED';
 export const NEIGE_SECOND_STORE_FIT=Object.freeze({x:-273,z:-365,width:42,depth:12,eave:5.4,ridge:8.7,bays:10,front:'north',doorClearWidth:2.7,doorClearHeight:3.1});
 export const NEIGE_SECOND_STORE_SOURCES=Object.freeze(['https://www.dpm.org.cn/explore/building/236579.html','https://www.dpm.org.cn/Uploads/pdf/6179/T00018_00.pdf','https://www.dpm.org.cn/Uploads/pdf/6179/T00025_00.pdf','https://www.dpm.org.cn/Uploads/File/pdf/dc/90/c9/dc90c935d785bbdf396ad66173ebf391.pdf']);
+const OPEN_BAY=7,FIRST_BAY=-18.9,BAY_SPACING=4.2,DOOR_FRONT=5.88;
+export const NEIGE_SECOND_STORE_ENTRY='neige-second-store-open-door';
+/** Game entry for the existing open bay, not a newly identified historic store.
+ * Map center/extent stay unchanged; a mismatched frame may not borrow this door. */
+export function neigeSecondStoreEntry(target){
+ if(target?.structure!==ID&&target?.entryProfile!==NEIGE_SECOND_STORE_ENTRY)return null;
+ const p=NEIGE_SECOND_STORE_FIT;
+ if(target.structure!==ID||target.entryProfile!==NEIGE_SECOND_STORE_ENTRY||target.kind!=='hall'||target.parentObjectId!=='FC-40EB11CF20'||target.x!==p.x||target.z!==p.z||target.w!==p.width||target.d!==p.depth||target.rot!==Math.PI)throw Error('Invalid second store entry frame');
+ const x=p.x+FIRST_BAY+OPEN_BAY*BAY_SPACING,z=p.z+DOOR_FRONT;
+ return {name:target.name,cx:p.x,cz:p.z,frontX:x,frontZ:z,entryProfile:NEIGE_SECOND_STORE_ENTRY,requiredZone:'outer-east',approachPoints:[{x,y:0,z:z+8},{x,y:0,z},{x,y:0,z:z-1}]};
+}
+/** Require the resident map/frame and original owner identities; an absent
+ * shell must not be certified merely because implicit ground is zero. */
+export function hasNeigeSecondStoreEntry(zoneManager,collisionManager){
+ if(!zoneManager.getLoadedIds?.().includes('outer-east'))return false;
+ const records=zoneManager.loaded?.get('outer-east')?.data.mapItems?.filter(m=>m.structure===ID||m.entryProfile===NEIGE_SECOND_STORE_ENTRY);
+ if(records?.length!==1)return false;
+ try{if(!neigeSecondStoreEntry(records[0]))return false;}catch{return false;}
+ const p=NEIGE_SECOND_STORE_FIT,ids=['floor','south-wall','end-wall--1','end-wall-1','gable--1','gable-1','real-closed-roof'];
+ for(let i=0;i<p.bays;i++){const parts=i===2||i===OPEN_BAY?['wall--1','wall-1','jamb--1','jamb-1','top','lintel',...(i===OPEN_BAY?['open-leaf--1','open-leaf-1']:['closed-leaf--1','closed-leaf-1'])]:['base','top','pier--1','pier-1','stone-side--1','stone-side-1','stone-rail-2.22','stone-rail-4.48','iron-bars','iron-shutter--1','iron-shutter-1'];ids.push(...parts.map(k=>'bay-'+i+'-'+k));}
+ const owners=collisionManager.colliders.filter(c=>c.tag==='outer-east'&&c.triangleSupport?.id.startsWith(ID+':'));
+ if(owners.length!==ids.length||!ids.every(id=>owners.some(c=>c.triangleSupport.id===ID+':'+id)))return false;
+ const lintel=owners.find(c=>c.triangleSupport.id===ID+':bay-'+OPEN_BAY+'-lintel'),x=p.x+FIRST_BAY+OPEN_BAY*BAY_SPACING;
+ return lintel.triangleSupport.template.triangles.length===12&&lintel.box.min.equals(new T.Vector3(Math.fround(x-p.doorClearWidth/2),Math.fround(p.doorClearHeight),Math.fround(p.z+DOOR_FRONT-.32)))&&lintel.box.max.equals(new T.Vector3(Math.fround(x+p.doorClearWidth/2),Math.fround(p.doorClearHeight+.2),Math.fround(p.z+DOOR_FRONT+.32)));
+}
 const identity=o=>o?.isObject3D&&o.position.lengthSq()===0&&o.rotation.x===0&&o.rotation.y===0&&o.rotation.z===0&&o.scale.equals(new T.Vector3(1,1,1));
 /** Second text-based exterior, NOT an identified red-book/records library.
  * Official2008 text describes two surviving masonry stores and north iron
@@ -30,11 +55,11 @@ export function buildNeigeSecondStorehouse(kit,zone){
   solid('floor','visible-ground-flush-floor',stone,42.4,.06,12.4,0,-.03,0);
   solid('south-wall','plain-masonry-back',brick,42.4,5.4,.4,0,2.7,-5.8);
   for(const s of[-1,1])solid('end-wall-'+s,'plain-masonry-end',brick,.4,5.4,12,s*21,2.7,0);
-  for(let i=0;i<10;i++){const cx=-18.9+i*4.2,key='bay-'+i;
-   if(i===2||i===7){
-    for(const s of[-1,1]){solid(key+'-wall-'+s,'plain-door-pier',brick,.6,3.3,.44,cx+s*1.8,1.65,5.78);solid(key+'-jamb-'+s,'plain-stone-door-jamb',stone,.15,3.3,.64,cx+s*1.425,1.65,5.88);}
-    solid(key+'-top','plain-masonry-head',brick,4.2,2.1,.44,cx,4.35,5.78);solid(key+'-lintel','plain-stone-door-lintel',stone,2.7,.2,.64,cx,3.2,5.88);
-    for(const s of[-1,1]){if(i===7)solid(key+'-open-leaf-'+s,'visible-open-iron-door',iron,.09,3.06,1.25,cx+s*1.565,1.53,5.20);else solid(key+'-closed-leaf-'+s,'visible-closed-iron-door',iron,1.344,3.08,.10,cx+s*.675,1.54,6.05);}
+  for(let i=0;i<10;i++){const cx=FIRST_BAY+i*BAY_SPACING,key='bay-'+i;
+   if(i===2||i===OPEN_BAY){
+    for(const s of[-1,1]){solid(key+'-wall-'+s,'plain-door-pier',brick,.6,3.3,.44,cx+s*1.8,1.65,5.78);solid(key+'-jamb-'+s,'plain-stone-door-jamb',stone,.15,3.3,.64,cx+s*1.425,1.65,DOOR_FRONT);}
+    solid(key+'-top','plain-masonry-head',brick,4.2,2.1,.44,cx,4.35,5.78);solid(key+'-lintel','plain-stone-door-lintel',stone,2.7,.2,.64,cx,3.2,DOOR_FRONT);
+    for(const s of[-1,1]){if(i===OPEN_BAY)solid(key+'-open-leaf-'+s,'visible-open-iron-door',iron,.09,3.06,1.25,cx+s*1.565,1.53,5.20);else solid(key+'-closed-leaf-'+s,'visible-closed-iron-door',iron,1.344,3.08,.10,cx+s*.675,1.54,6.05);}
    }else{
     solid(key+'-base','plain-window-masonry-base',brick,4.2,2.3,.44,cx,1.15,5.78);solid(key+'-top','plain-window-masonry-head',brick,4.2,1,.44,cx,4.9,5.78);
     for(const s of[-1,1]){solid(key+'-pier-'+s,'plain-window-masonry-pier',brick,1,2.1,.44,cx+s*1.6,3.35,5.78);solid(key+'-stone-side-'+s,'window-stone-frame',stone,.16,2.42,.3,cx+s*1.18,3.35,6.03);}
@@ -53,5 +78,5 @@ export function buildNeigeSecondStorehouse(kit,zone){
   box(roof,'plain-roof-ridge-fit',roofMat,42.4,.15,.18,0,p.ridge+.07,0);own(roof,'real-closed-roof');
  }catch(e){geometries.forEach(g=>g.dispose());owned.forEach(m=>m.dispose());throw e;}
  const meta={id:ID,parentObjectId:'FC-40EB11CF20',name:'内阁大库第二体（文字拟合、库别待核）',...p,identityUnresolved:true,representedStorehouses:1,doorCount:2,windowCountFit:8,evidenceBasis:'OFFICIAL_TEXT_NOT_SECOND_STORE_PHOTO',textSupported:['two masonry stores still extant in2008 account','historical ten bays and two doors per store','north-facing stone-framed iron-bar/iron-shutter windows'],placement:FIT,dimensions:FIT,roofDesign:'PLAIN_PITCHED_MUTED_TONE_ENGINEERING_FIT_NOT_CURRENT_ROOF_SURVEY',openingLayout:'EIGHT_WINDOWS_TWO_DOOR_POSITIONS_ENGINEERING_FIT_NOT_PHOTO_ORDER',openState:'ONE_VISIBLE_OPEN_DOOR_INTERACTIVE_FIT_NOT_PUBLIC_ADMISSION',wholeObjectAccepted:false,interiorFurnishings:0,modelledUpperFloors:0,sourceUrls:[...NEIGE_SECOND_STORE_SOURCES],triangleOwners:colliders.length,unknown:['which photo and present building correspond to red-book or records store','measured position/span/depth/height','actual current window count, door positions, roof type and color','modern upper-floor layout, partitions and contents','post2023repair condition and present access','GPU/mobile visual acceptance']};
- frame.userData.structure=meta;kit.root.add(frame);kit.colliders.push(...colliders);kit.owned.push(...owned);kit.mapItems.push({kind:'hall',name:meta.name,x:p.x,z:p.z,w:p.width,d:p.depth,rot:Math.PI,parentObjectId:meta.parentObjectId,sourceStatus:meta.evidenceBasis});return{frame,meta,colliders};
+ frame.userData.structure=meta;kit.root.add(frame);kit.colliders.push(...colliders);kit.owned.push(...owned);kit.mapItems.push({kind:'hall',structure:ID,entryProfile:NEIGE_SECOND_STORE_ENTRY,name:meta.name,x:p.x,z:p.z,w:p.width,d:p.depth,rot:Math.PI,parentObjectId:meta.parentObjectId,sourceStatus:meta.evidenceBasis});return{frame,meta,colliders};
 }

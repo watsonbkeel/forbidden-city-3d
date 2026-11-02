@@ -1,0 +1,127 @@
+{
+  "schema": "r162-interruption-recovery/v1",
+  "runtime": "b831afc4c1f9efc3f1d954dd17f8f9b0eeed937a",
+  "originalEvidenceSHA256": "ec4f84fc987c80b119fd232d3941f16eac6bc3618db224572a307fe78fc167a1",
+  "originalEvidencePinsVerified": 197,
+  "tests": {
+    "focused": 29,
+    "normalWorld": 1,
+    "neighborQinan": 1,
+    "total": 31,
+    "fail": 0,
+    "skip": 0,
+    "fullWorldJSONExactOriginal": true,
+    "fullNeighborJSONExactOriginal": true,
+    "outputOnlyLoaderRedirection": true
+  },
+  "independentReview": {
+    "tests": 30,
+    "passCount": 30,
+    "fail": 0,
+    "critical": 0,
+    "important": 0,
+    "minor": "fixed local /tmp baseline dependency; now exact baseline archived with reproducible preparation instructions, production and original test unchanged"
+  },
+  "buildSourceAndOriginal137HTTPBytesFreshVerified": true,
+  "originalHTTPReportExactSHA256": "284aabd234e6f5fbae2c12e23d9358788981c7acc9a462c28866620ef6be547a",
+  "limits": [
+    "Historical full suite not rerun; no full-green claim",
+    "GPU/mobile/full-streaming/whole-gate/whole-R162 not accepted",
+    "Original official photos not redistributed",
+    "No main/old development branches/merge/Pages mutations"
+  ],
+  "localRecoveryRaw": [
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/build-source-verify.json",
+      "bytes": 272,
+      "sha256": "933da291ffa18263b87f90037be27cd6beb5a94766e57a496f3a5e82916b64ea"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/build.log",
+      "bytes": 1330,
+      "sha256": "43f8a1866a40274ca7220f4b9645bd591a76465bb3fc31e631837350997ef199"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/focused.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/focused.tap",
+      "bytes": 1972,
+      "sha256": "3a87cada75d59900f6a5b2bdbb890e3d619c5ec39f0e4c912e1641514e89771a"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/http-verify-fresh.py",
+      "bytes": 1562,
+      "sha256": "3f52395f96cd88b86a70a7daadcf95412d9b6578fdd8e1fc9e67317d6793b91a"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/http-verify.json",
+      "bytes": 25903,
+      "sha256": "284aabd234e6f5fbae2c12e23d9358788981c7acc9a462c28866620ef6be547a"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/http-verify.py",
+      "bytes": 1562,
+      "sha256": "03038a35bf327b503befe68232a8946111e844a0332ae17b6be9c9ee5cf12b9e"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/neighbor.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/neighbor.json.gz",
+      "bytes": 73672,
+      "sha256": "e01b40cf8162aa7b770eb1ad683a7e1979049793932b3612f7caa0d5bb320d87"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/neighbor.tap",
+      "bytes": 2144,
+      "sha256": "389abf49730cf823a99f6b03373062ff9be885ccebfd4d1a2b6a7d769e4e4d38"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/redirect.mjs",
+      "bytes": 636,
+      "sha256": "1547609a674bbcd4d6074aab3323a4b06f5afebfadd4937308860304e07343ed"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/world.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/world.json.gz",
+      "bytes": 9912,
+      "sha256": "de564fcedfe9a10b625f34684ce275c2d57d06b6ab48cc04f67450b5ba62933a"
+    },
+    {
+      "path": "/tmp/r162-four-pins-recovery-2106/world.tap",
+      "bytes": 4340,
+      "sha256": "5a11d90a541b05bbdfb94657d7ddee50f5db5f625909a2a203b58834bac89a21"
+    }
+  ],
+  "freshBuild": {
+    "exit": 0,
+    "modules": 720,
+    "info": {
+      "schema": 1,
+      "release": "R162",
+      "buildId": "R162-8481b23e3d05",
+      "sourceFingerprint": "22926d46d376ec0378ac3843d68324cc2ced0b6f1fb3cc4dbb1e38f2348754ca",
+      "sourceCommit": "b831afc4c1f9efc3f1d954dd17f8f9b0eeed937a",
+      "sourceDirty": false,
+      "base": "/gugong/"
+    },
+    "httpFiles": 137,
+    "allHTTPBytesHashExact": true,
+    "fullHTTPReportExactOriginal": true,
+    "chunkSizeWarningRetained": true
+  }
+}

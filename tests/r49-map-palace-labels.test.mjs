@@ -26,7 +26,7 @@ function overlap(a, b) {
 }
 function assertReadable(m) {
   for (const a of m.labels) {
-    const lines = a.mode === 'exterior-view' || m.items.find(i => i.name === a.name)?.historicalSite ? 2 : 1;
+    const lines = m.labelPaintRecords.find(p => p.name === a.name)?.text.split('\n').length ?? 1;
     const screenFontSize = (a.height * m.pxPerUnit - 2) / lines;
     assert.ok(screenFontSize >= 12 - 1e-9, `${a.name}: legible screen height`);
     assert.ok(screenFontSize <= 13 + 1e-9, `${a.name}: text must not balloon with map zoom`);

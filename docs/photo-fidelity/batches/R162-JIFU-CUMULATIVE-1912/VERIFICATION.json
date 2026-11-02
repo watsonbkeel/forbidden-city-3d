@@ -1,0 +1,60 @@
+{
+  "runtime": "bda49407575a12f6734af45c333588328108f629",
+  "baseLocal": "7f19b54b63a60edce7b5a739a8234e5699ab148b",
+  "remoteParent": "7c5bdf01d880e2b575c8ce91a3bf2ce8acce2476",
+  "productionDiff": [
+    "src/scene/palace/special/JifuGate.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 8,
+    "normalWorld": 1,
+    "total": 9,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 15,
+    "falseTops": 1
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 590,
+    "newRoutes": 4,
+    "newFrames": 528,
+    "newPeak": 0.04799948133796332,
+    "validWorldMovementNegative": 2,
+    "validLocalMovementNegatives": 2,
+    "nineReportFieldsExactAuthorWorld": true,
+    "localCompleteIncludingEndExact": true,
+    "necessary30": "same input and arrival, prebuild 2/227 ground routes changed by new true threshold; not trajectory preservation"
+  },
+  "scopeDelta": {
+    "id": "FC-CAA90DB107",
+    "name": "集福门",
+    "fromHistoricalCodeClass": "N",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-2f02a9700b28",
+    "sourceFingerprint": "b3fb2cb35497653b72381788beba71298aa63d1a88792ddede58ebe5054a6127",
+    "sourceCommit": "bda49407575a12f6734af45c333588328108f629",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "landscapeChanges": 0,
+  "scan": {
+    "minY": 0.04,
+    "retainedGroundPlanes": [
+      0.012,
+      0.028
+    ],
+    "notFullHeightEmptyColumn": true
+  },
+  "authorPreservation": "Exact source carries original 3023 mesh/1676 collider/104 tops and UI before/after proof; no fake before capture with installed hook",
+  "localRawNonpersistent": true
+}

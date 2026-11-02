@@ -1,0 +1,66 @@
+{
+  "classification": "CODE_LEDGER_DELTA_NOT_ACCEPTANCE",
+  "fromCommit": "32d0107900094b73421e29c16686dffd83aca832",
+  "toCommit": "6eb1e1c91a166770a8acd215509d1b46d10fcc56",
+  "toTree": "b5bf8d5d312de19596deabd6f743bf8f55f15599",
+  "changedObjectOrdinals": [
+    14,
+    25,
+    26
+  ],
+  "unchangedCompleteObjectCount": 26,
+  "transitions": [
+    {
+      "ordinal": 14,
+      "id": "FC-2C00D09F2A",
+      "name": "养性斋",
+      "from": "N",
+      "to": "H_PARTIAL"
+    },
+    {
+      "ordinal": 25,
+      "id": "FC-2934DA7C63",
+      "name": "延和门",
+      "from": "N",
+      "to": "H_PARTIAL"
+    },
+    {
+      "ordinal": 26,
+      "id": "FC-CAA90DB107",
+      "name": "集福门",
+      "from": "N",
+      "to": "H_PARTIAL"
+    }
+  ],
+  "fromCountsNotProgress": {
+    "G": 4,
+    "H": 17,
+    "N": 7,
+    "P": 1
+  },
+  "toCountsNotProgress": {
+    "G": 4,
+    "H": 20,
+    "N": 4,
+    "P": 1
+  },
+  "preserved": "29 original ordinal/ID/name/sourceLine/cautions and all NOT_ASSERTED;26 complete objects value-identical",
+  "oldRuntimeFilesChanged": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "newRuntimeFiles": [
+    "src/scene/garden/YangxingLandscapeFit.js",
+    "src/scene/palace/special/JifuGate.js",
+    "src/scene/palace/special/YangxingZhai.js",
+    "src/scene/palace/special/YanheGate.js"
+  ],
+  "runtimePinCount": 39,
+  "cumulativeEvidencePinCount": 9,
+  "historicalPrefixIndices": [
+    0,
+    1,
+    4
+  ],
+  "execution": "Read-only fixed Git/source/doc audit; no tests/build/World/Node/download/shared writes."
+}

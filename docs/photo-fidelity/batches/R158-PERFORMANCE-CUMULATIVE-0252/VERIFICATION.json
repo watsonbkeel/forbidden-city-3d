@@ -1,0 +1,178 @@
+{
+  "runtime": "171b190b20ae3bca91b44fca4aa5d78e039afe84",
+  "parentRemote": "d5f751cefbef6e050e4a4ef2b3af5c3552c44b72",
+  "tests": {
+    "passed": 91,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-10b01ca8333c",
+    "sourceFingerprint": "37b8875e4860abfd4cc071723a4e77d357ac3c10387d6be1d11d7921a3a0e210",
+    "sourceCommit": "171b190b20ae3bca91b44fca4aa5d78e039afe84",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "native": {
+    "scope": "LOCAL_REAL_CONTROLLERS_30HZ_NOT_BROWSER_GPU_OR_FULL_WORLD",
+    "routes": [
+      {
+        "fps": 30,
+        "sprint": false,
+        "frames": 434,
+        "peak": 0,
+        "maxFeet": 3.3,
+        "end": [
+          -342.2603999830125,
+          -369.5690704160788,
+          0
+        ],
+        "framesSHA256": "a99526bd998d72d7f08c06ffc4249ed2391e37909281ef3046e4000d2ce326f9"
+      },
+      {
+        "fps": 30,
+        "sprint": true,
+        "frames": 233,
+        "peak": 0,
+        "maxFeet": 3.3,
+        "end": [
+          -342.2694293864342,
+          -369.43837136535257,
+          0
+        ],
+        "framesSHA256": "15ddf158cefa945fdea6833a884584426a11662500f25ae758040a1794e2501b"
+      }
+    ],
+    "ground": {
+      "fps": 30,
+      "jumpPeak": 1.7333333333333334,
+      "wallRejected": true,
+      "mapMovement": true,
+      "teleportStopped": true
+    }
+  },
+  "nativeReportExactAuthor": true,
+  "sourcePins": [
+    {
+      "path": "main.js",
+      "bytes": 33144,
+      "sha256": "265f62d7f1996420842a6f51d64303ea56ee65902e12a9212c742cdffb5e1d39"
+    },
+    {
+      "path": "src/render/TourFrameScheduler.js",
+      "bytes": 2913,
+      "sha256": "da6cdc1de9e9c7834ce9e081db79e0f055de94aee2c34d6dc0df90cedc0a700c"
+    },
+    {
+      "path": "src/render/TourPerformancePreference.js",
+      "bytes": 877,
+      "sha256": "1e54583316ad5df9e849076ddb6ce36f8f91946bbedaaa81dbcee5f9c01491c7"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 31295,
+      "sha256": "df3c5839fa42da7f1f56bc531419cf88bc8c10c02ff6a235adde233fc3272f83"
+    }
+  ],
+  "qaPins": [
+    {
+      "path": "tests/r158-performance/flight-30hz.test.mjs",
+      "bytes": 1690,
+      "sha256": "d5b243d60d36a97257a6f5c0e6f905d7c3b3493b057f69e521330b877412cb63"
+    },
+    {
+      "path": "tests/r158-performance/flight-fixture.mjs",
+      "bytes": 2253,
+      "sha256": "c7471b262044da0b36c570fc0d36d2d6d2cb7479c42538bdc41d334ef1c363fa"
+    },
+    {
+      "path": "tests/r158-performance/main-loop.test.mjs",
+      "bytes": 5120,
+      "sha256": "962a7aa3723f1449f9f1104a264dd8472dc5a8ee8a5d2958f76db65ecd45f6fe"
+    },
+    {
+      "path": "tests/r158-performance/native-30hz.test.mjs",
+      "bytes": 3128,
+      "sha256": "3253a6ce7c67fc629cd17e7cf6ae9e3be509202b2c53ef95942a982fa7318573"
+    },
+    {
+      "path": "tests/r158-performance/preferences-ui.test.mjs",
+      "bytes": 2537,
+      "sha256": "e86a3609247db8bb34188e52b4410e2732f46caa0f3da8f42f8a7e5b4723ac2d"
+    },
+    {
+      "path": "tests/r158-performance/scheduler.test.mjs",
+      "bytes": 3006,
+      "sha256": "2340e122ea4654e7afd622b20d925e9c7ad39d8c0e0f2bc4640ea95db389011e"
+    }
+  ],
+  "protectedPins": [
+    {
+      "path": "data/architecture/zhujing-north-stair-contacts.json",
+      "bytes": 791,
+      "sha256": "ae51f1a8a0a8f68ed9b12358ccb90aaee6da0b2881a6b70c39fb3fe88764cd2e"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+      "bytes": 7199,
+      "sha256": "85c3e2da76c026987d93f54e10122b923351884917f32c11b7590e2ede479598"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtHalls.js",
+      "bytes": 5584,
+      "sha256": "b3693e40a06e5377a88f1af36923f9bb6a383eb4ae62c128a7597178f1e6400b"
+    },
+    {
+      "path": "src/scene/palace/special/WenhuaGateApproaches.js",
+      "bytes": 16165,
+      "sha256": "251e959a63ac747b41119a73ea917716d9b9040a705e5c0c1dca6a9bf37c2b86"
+    },
+    {
+      "path": "src/scene/palace/special/ZhujingNorthStairHost.js",
+      "bytes": 2763,
+      "sha256": "3ee54f56096248a9442cec747518adc44a224ef800cd8ce2ad2b4ab6028edf4b"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 41988,
+      "sha256": "dd28ccba3a867da98956b5eeaea5b29db2622adbec47bbf722441bc454c8ff30"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/flight/FlightState.js",
+      "bytes": 5665,
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4"
+    },
+    {
+      "path": "src/scene/flight/FlightTour.js",
+      "bytes": 30095,
+      "sha256": "b1f568efff8a93da62717365e8475493baa7b9980766d6df35d9f06363d9118e"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    }
+  ]
+}

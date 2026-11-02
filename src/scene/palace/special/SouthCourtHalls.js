@@ -1,3 +1,4 @@
+import {authorizeZhujingNorthStairHost,revokeZhujingNorthStairHost} from './ZhujingNorthStairHost.js';
 import {authorizeWenhuaStairHost,revokeWenhuaStairHost} from './WenhuaStairHost.js';
 import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
 import * as THREE from 'three';
@@ -6,6 +7,8 @@ import { buildSouthGalleryDisplays } from './SouthGalleryDisplays.js';
 export { SOUTH_COURTS, southCourtGeometry } from './SouthCourtProfiles.js';
 
 const builtWenhuaFrontFrames=new WeakSet();
+const builtZhujingRearFrames=new WeakSet();
+export const isBuiltZhujingRearFrame=f=>builtZhujingRearFrames.has(f);
 export const isBuiltWenhuaFrontFrame=f=>builtWenhuaFrontFrames.has(f);
 
 /** A dedicated opt-in, not a global change to CourtKit hall defaults. */
@@ -72,6 +75,11 @@ export function buildSouthCourtHall(kit,item){
  if(g.court==='wenhua'&&g.part==='front'){
   builtWenhuaFrontFrames.add(f);
   if(authorizeWenhuaStairHost(kit,f,kit.walkables.slice(walkableStart,walkableStart+2))&&!registerBPrincipalStairs(kit,f,'wenhua-front-south',walkableStart))revokeWenhuaStairHost(f);
+ }
+ if(g.court==='wenhua'&&g.part==='rear'){
+  builtZhujingRearFrames.add(f);
+  const original=[kit.walkables[walkableStart],kit.walkables[walkableStart+2]];
+  if(authorizeZhujingNorthStairHost(kit,f,original)&&!registerBPrincipalStairs(kit,f,'zhujing-north',walkableStart))revokeZhujingNorthStairHost(f);
  }
  return {f,g,display};
 }

@@ -17,7 +17,7 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
  * 分区管理器：按玩家位置动态加载/卸载区域。
  * 
  * 流式策略：
- * - 玩家所在区 + neighbors 常驻
+ * - 当前区与已加载邻区保留；新增预载只排距玩家 40m 内的区
  * - 距离 ≤ 40m 预载
  * - 其余卸载（保留 silhouette 如果有）
  * - 构建时间切片（每帧 ≤ 8ms）
@@ -132,11 +132,14 @@ export class ZoneManager {
       return;
     }
 
-    // 正常模式：初始区同步加载（出生点脚下的碰撞体必须第一帧就在），neighbors 进队列分帧加载
+    // Initial current zone is synchronous. Only nearby declared neighbors enter
+    // the first queue; adjacency can connect points hundreds of metres apart.
     const initial = this.zones.get(this.currentId);
     this.loadZone(this.currentId);
     for (const nid of initial.neighbors ?? []) {
-      this.buildQueue.push({ zoneId: nid, priority: 1 });
+      if (this.distanceToZone(initialPos.x, initialPos.z, this.zones.get(nid).bounds) <= 40) {
+        this.buildQueue.push({ zoneId: nid, priority: 1 });
+      }
     }
     this.buildQueue.sort((a, b) => a.priority - b.priority);
   }
@@ -200,7 +203,8 @@ export class ZoneManager {
   }
 
   /**
-   * 进入新区时触发：将该区 + neighbors 加入构建队列
+   * Enter the current zone first. update() immediately queues all zones within
+   * 40m of the actual player, rather than every distant topological neighbor.
    */
   onEnterZone(zoneId) {
     console.log(`[ZoneManager] 进入区域: ${zoneId}`);
@@ -214,14 +218,9 @@ export class ZoneManager {
     const visited = this.loaded.get(zoneId);
     if (visited) visited.lastUsedAt = performance.now();
 
-    // 当前区优先级 0，neighbors 优先级 1
+    // Keep current-zone admission first, including a cached return above.
     if (!this.loaded.has(zoneId)) {
       this.buildQueue.push({ zoneId, priority: 0 });
-    }
-    for (const nid of config.neighbors ?? []) {
-      if (!this.loaded.has(nid) && !this.buildQueue.find(b => b.zoneId === nid)) {
-        this.buildQueue.push({ zoneId: nid, priority: 1 });
-      }
     }
     this.buildQueue.sort((a, b) => a.priority - b.priority);
   }

@@ -1,0 +1,168 @@
+{
+  "runtime": "c20fd576a9bd2469d69df0d0d14fc3086be92c3e",
+  "parentRemote": "411c7bfd21fe9a836e4a89a02b84ab0fd51d6a70",
+  "components": {
+    "pass": 36,
+    "fail": 0
+  },
+  "world": {
+    "routes": 28,
+    "arrived": 28,
+    "frames": 8470,
+    "maxFeetGroundGap": 0.44417641998547114,
+    "allAuthorRowsEqual": true,
+    "zhujing": {
+      "arrived": 4,
+      "total": 4,
+      "frames": 312,
+      "maxFeetGroundGap": 0,
+      "maxFeetDatumGap": 1.2
+    },
+    "wenyuan": {
+      "routes": 8,
+      "frames": 1678,
+      "strictFeet03": {
+        "pass": false,
+        "peak": 0.39127395593100833,
+        "status": "PARENT_ACCEPTED_NATURAL_OLD_SHORT_TREAD_DROP_NOT_STRICT_PASS"
+      }
+    },
+    "wenhua": {
+      "newRoutes": 4,
+      "oldRoutes": 12,
+      "newPeak": 0.44417641998547114,
+      "oldPeak": 0.04291666696468516,
+      "negative": 2,
+      "jumps": [
+        {
+          "fps": 10,
+          "start": 0.6627272963523865,
+          "peak": 2.162727296352386,
+          "air": 9,
+          "endFeet": 0.6627272963523865,
+          "ground": 0.6627272963523865,
+          "airborne": false
+        },
+        {
+          "fps": 60,
+          "start": 0.6627272963523865,
+          "peak": 2.4543939630190525,
+          "air": 60,
+          "endFeet": 0.6627272963523865,
+          "ground": 0.6627272963523865,
+          "airborne": false
+        }
+      ]
+    }
+  },
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-912414ce363e",
+    "sourceFingerprint": "4f80f793e18da77228d63a4318850ba2c56130c00127aea1e3f00d643e3824ab",
+    "sourceCommit": "c20fd576a9bd2469d69df0d0d14fc3086be92c3e",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "sourcePins": [
+    {
+      "path": "data/architecture/zhujing-north-stair-contacts.json",
+      "bytes": 791,
+      "sha256": "ae51f1a8a0a8f68ed9b12358ccb90aaee6da0b2881a6b70c39fb3fe88764cd2e"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+      "bytes": 7199,
+      "sha256": "85c3e2da76c026987d93f54e10122b923351884917f32c11b7590e2ede479598"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtHalls.js",
+      "bytes": 5584,
+      "sha256": "b3693e40a06e5377a88f1af36923f9bb6a383eb4ae62c128a7597178f1e6400b"
+    },
+    {
+      "path": "src/scene/palace/special/WenhuaGateApproaches.js",
+      "bytes": 16165,
+      "sha256": "251e959a63ac747b41119a73ea917716d9b9040a705e5c0c1dca6a9bf37c2b86"
+    },
+    {
+      "path": "src/scene/palace/special/ZhujingNorthStairHost.js",
+      "bytes": 2763,
+      "sha256": "3ee54f56096248a9442cec747518adc44a224ef800cd8ce2ad2b4ab6028edf4b"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 41988,
+      "sha256": "dd28ccba3a867da98956b5eeaea5b29db2622adbec47bbf722441bc454c8ff30"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    }
+  ],
+  "normalQaPins": [
+    {
+      "path": "tests/r158-user-feedback-cumulative/zhujing-world.test.mjs",
+      "bytes": 3634,
+      "sha256": "a1e529773ed633365c216f87d43f98320b0061912a2b50d4aebffa801c317543"
+    },
+    {
+      "path": "tests/r158-place-display/names.test.mjs",
+      "bytes": 2586,
+      "sha256": "c8cd039e79cd185a0fe8f38445db292aba6c65c35aadfc5bd371ecc2091ef549"
+    },
+    {
+      "path": "tests/r158-place-display/normal-zone.test.mjs",
+      "bytes": 2052,
+      "sha256": "df5fd1cb83c30cfe07dab8df67ea17f91a858e16d33d3411579ed6ba45d069cc"
+    }
+  ],
+  "protectedPins": [
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanBridgeAxis.js",
+      "bytes": 793,
+      "sha256": "29cf8d273ca1be2ffc055035f5dd201ddc5646bf190942b625eba3207b81f3b7"
+    },
+    {
+      "path": "src/scene/palace/special/SouthWaterSystem.js",
+      "bytes": 17160,
+      "sha256": "da5c71a19ebdf6adba82f6948e729e819eee2d1e9e102ab6984496fba7fc4912"
+    },
+    {
+      "path": "data/zones/outer-east.json",
+      "bytes": 7983,
+      "sha256": "b943383090570f93772a35f39240dfdd1bccec4be265a9fb30dc40b48a956417"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    },
+    {
+      "path": "main.js",
+      "bytes": 31078,
+      "sha256": "b18c4a7cf10a69d758f1b4b84d4c27f0a9153ce718424edf7224c58daab10788"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 29839,
+      "sha256": "e609d928478fd37191a6e49be151e642a41cf08655783d04702ccea2e04a5119"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "runtime": "39488fbc5e1e31a8b2bfc7d93c5d99e9aff77aab",
+  "baseLocal": "5cccc444f1f6631a836062b2277ca1a1aa7726e8",
+  "remoteParent": "227f82c4f232cca311b55737bade9e68195b5e41",
+  "productionDiff": [
+    "src/scene/palace/special/FengxianCentralContact.js",
+    "src/scene/palace/BPrincipalStairContact.js",
+    "src/scene/palace/special/ZhaigongFrontHall.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 25,
+    "normalWorlds": 2,
+    "total": 27,
+    "fail": 0,
+    "skip": 0
+  },
+  "fengxian": {
+    "centralRoutes": 3,
+    "centralFrames": 224,
+    "peak": 0.04300288963045315,
+    "retainedSideRoutes": 4,
+    "sideFrames": 242,
+    "retainedBypassRoutes": 4,
+    "bypassFrames": 354,
+    "completeWorldExactAuthor": true,
+    "localObjectAndJumpBytesExact": true,
+    "geometryAndSupportAdded": 0,
+    "centralP1Status": "FIXED_FOR_TESTED_ROUTES_ONLY"
+  },
+  "zhaigong": {
+    "oldRoutes": 4,
+    "oldFrames": 3315,
+    "newRoutes": 6,
+    "newFrames": 371,
+    "negative": 3,
+    "threeArraysExactAuthor": true,
+    "guard": {
+      "records": 1,
+      "trueTops": 14,
+      "rescueFalse": true
+    },
+    "contract": {
+      "functionalArrivals": 10,
+      "negativeRejected": 3,
+      "acceptDocumentedRunoff": true,
+      "strictPoint3Pass": false,
+      "oldFrames": 3315,
+      "newFrames": 371,
+      "rows": [
+        {
+          "name": "central",
+          "fps": 10,
+          "frames": 42,
+          "peak": 0.10200000894069677,
+          "framesAbovePoint3": 0
+        },
+        {
+          "name": "central",
+          "fps": 60,
+          "frames": 121,
+          "peak": 0.4297777837382389,
+          "framesAbovePoint3": 10
+        },
+        {
+          "name": "east-side",
+          "fps": 10,
+          "frames": 25,
+          "peak": 0.10200000894069677,
+          "framesAbovePoint3": 0
+        },
+        {
+          "name": "east-side",
+          "fps": 60,
+          "frames": 79,
+          "peak": 0.3876666711370159,
+          "framesAbovePoint3": 8
+        },
+        {
+          "name": "west-side",
+          "fps": 10,
+          "frames": 25,
+          "peak": 0.10200000894069677,
+          "framesAbovePoint3": 0
+        },
+        {
+          "name": "west-side",
+          "fps": 60,
+          "frames": 79,
+          "peak": 0.3876666711370159,
+          "framesAbovePoint3": 8
+        }
+      ]
+    }
+  },
+  "scopeDelta": {
+    "id": "FC-8D4739DF1E",
+    "name": "斋宫",
+    "baseSnapshot": "R160-RESUMPTION-0926/STATUS-61.json at1b91",
+    "fromCodeClass": "N",
+    "toCodeClass": "H_PARTIAL_FRONT_HALL_AND_BAOXIA",
+    "wholeObjectAcceptance": "NOT_ASSERTED",
+    "notClaimed": "诚肃/配殿/内陈/整斋宫"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R160",
+    "buildId": "R160-328711d26bc3",
+    "sourceFingerprint": "1fb8dc880824f2ab738d89fb4549ec175a21e363f24d6789cab1fc9c06019c8b",
+    "sourceCommit": "39488fbc5e1e31a8b2bfc7d93c5d99e9aff77aab",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "authorPreserve": "carried by exact source bytes; neither preserve before test rerun under installed hook",
+  "rawBaseFields": "inherited author baseline labels, actual execution identity is runtime and exact source/QA pins",
+  "localRawNonpersistent": true
+}

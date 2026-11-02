@@ -1,0 +1,8 @@
+node --test /tmp/r162-ningxiang-1804/scan.mjs
+node --test tests/r162-ningxiang/component.test.mjs # 7missing RED
+node --test tests/r162-ningxiang/component.test.mjs tests/r162-ningxiang/routes.test.mjs # resource RED then noMerge fix8green
+node --test tests/r162-ningxiang/world.test.mjs # unique candidateWorld1green
+node tests/r162-ningxiang/export-cpu.mjs /tmp/r162-ningxiang-1804
+python tests/r162-ningxiang/render-cpu.py /tmp/r162-ningxiang-1804/front.json.gz docs/photo-fidelity/R162-NINGXIANG-1805/front.png
+python tests/r162-ningxiang/render-cpu.py /tmp/r162-ningxiang-1804/oblique.json.gz docs/photo-fidelity/R162-NINGXIANG-1805/oblique.png
+# No author full suite/build/GPU. Normal hook cumulative pending.

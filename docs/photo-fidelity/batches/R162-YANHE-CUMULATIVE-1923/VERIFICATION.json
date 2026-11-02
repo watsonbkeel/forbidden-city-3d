@@ -1,0 +1,98 @@
+{
+  "runtime": "24ac8f592c14e1230665dc3845d8a97951cb2035",
+  "baseLocal": "9e7b4386f662fd27fcc973751eceec159810da34",
+  "remoteParent": "eaf85150e0f89733c07a0b1e2a82011a727ed4db",
+  "productionDiff": [
+    "src/scene/palace/special/YanheGate.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 8,
+    "normalWorld": 1,
+    "total": 9,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 15,
+    "falseTops": 1
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 590,
+    "newRoutes": 4,
+    "newFrames": 962,
+    "newPeak": 0.04993039149415995,
+    "validWorldMovementNegative": 2,
+    "validLocalMovementNegatives": 2,
+    "tenReportFieldsExactAuthorWorld": true,
+    "localFileCompleteExactAuthorLocal": true,
+    "world60HzAndNegativesExactLocal": true,
+    "world10HzDiffersLocalDueToExistingMountain": true,
+    "local10HzComparison": [
+      {
+        "sprint": false,
+        "worldFrames": 94,
+        "localFrames": 92,
+        "worldEnd": [
+          0.57473952684312,
+          509.32222187045585,
+          0
+        ],
+        "localEnd": [
+          0.5809809610804295,
+          509.32277920037484,
+          0
+        ],
+        "firstDifference": 45,
+        "reason": "Existing real Duixiu limits west-end coast/turn in World; local gate alone has no mountain. No product or fixed route adjustment."
+      },
+      {
+        "sprint": true,
+        "worldFrames": 49,
+        "localFrames": 46,
+        "worldEnd": [
+          0.7089108001999421,
+          509.30266357146667,
+          0
+        ],
+        "localEnd": [
+          0.7092260780460271,
+          509.3024524993345,
+          0
+        ],
+        "firstDifference": 22,
+        "reason": "Existing real Duixiu limits west-end coast/turn in World; local gate alone has no mountain. No product or fixed route adjustment."
+      }
+    ],
+    "necessary30": "same input and arrival, prebuild ground routes changed by new true threshold; not trajectory preservation"
+  },
+  "scopeDelta": {
+    "id": "FC-2934DA7C63",
+    "name": "延和门",
+    "fromHistoricalCodeClass": "N",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-dcded611c816",
+    "sourceFingerprint": "dd4be0912a15119a15fefc87895aab3fcb92e66168f3a2041c3b4b514b527cc6",
+    "sourceCommit": "24ac8f592c14e1230665dc3845d8a97951cb2035",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "landscapeChanges": 0,
+  "scan": {
+    "minY": 0.04,
+    "retainedGroundPlanes": [
+      0.012,
+      0.028
+    ],
+    "notFullHeightEmptyColumn": true
+  },
+  "authorPreservation": "Exact source carries original 3038 mesh/1691 collider/105 tops and UI before/after proof; no fake before capture with installed hook",
+  "localRawNonpersistent": true
+}

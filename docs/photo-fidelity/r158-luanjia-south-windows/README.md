@@ -1,0 +1,17 @@
+# R158 south warehouse: photo8037 two rows of dark small windows
+
+Base e0340ee56bf36e1dbe5f17df74babdaa8830b2dc. New independent finalizer only; integrator must call `finishLuanjiaSouthPhotoWindows(kit, zoneJson)` AFTER `finishLuanjiaSouthTwoLevel`, before ordinary CourtKit finish. Author does not edit ZoneBase or generic builder.
+
+## Evidence and limits
+Own official image https://img.dpm.org.cn/Uploads/Picture/dc/8037.jpg (91,191 bytes; SHA256 dd08fdb9ef5f2d75e46bd0422c901d8e09413de4dcdadef9fb6b723a7f1d740d) was retrieved and personally viewed. It shows an opaque masonry gable, two rows of narrow dark windows on a long wall, and yellow hard-gable tiles. Building lies inside the city wall; the wall on image right approaches the southeast corner tower. **Assuming an unmirrored photograph**, this supports an eastward view along the south city wall and a probable south-warehouse south face. This is a topology inference, NOT a named-wing official caption or a survey. Exact current wing identity remains unverified. Official https://www.dpm.org.cn/explore/building/236525.html supports east five bays / south ten bays, yellow hard gables and two internal storeys; it does NOT give this photo's window count or measured location.
+
+Only the south shell's south long wall is changed. Ten columns per row are a reversible fit of the existing46m shell, NOT a count of photographed windows and NOT an equation of windows to bays. No copying to east warehouse, no windows in west gable, no new north-face details. Roof/gables/east wing/north gameplay entrance/floors/stairs and23 support owners are retained. Original provisional structure metadata is not rewritten as verified; supplemental `luanjiaSouthPhotoWindows` makes all inference/fit boundaries explicit.
+
+## Construction
+One original south long wall mesh and its exact triangle owner are replaced with two merged meshes and two exact triangle owners. Original inside plane local z4.18 remains; masonry backing ends z4.30. Two rows of .6m×1.1m shallow recesses end at an opaque dark surface z4.304, with original exterior wall plane4.50. These are **closed, physically backed recesses**, not transparent glazing, traversable holes or a claim the photographed windows were sealed. New support/room/map entries:0. Old material/UV scale retained on masonry; one new private dark material. No global physics or floor-contact authentication changes.
+
+## Verification boundary
+See summary and raw SHA manifest for executed results. Local actual CourtKit + native controller tests are not full World, browser/GPU or full-site tests. Two CPU images use actual candidate geometry and flat diagnostic colors, not textures/lighting. This is a small visible photo-fit, not full warehouse or current-site reconstruction.
+
+## Independent review resource correction
+Original ffb706 review found one intermediate indexed merge disposed twice because applyBoxUV already owns/disposes that input. A counted-disposal test failed1/1 before correction, then passed with three existing components (4/4). The only production correction removes that redundant dispose. Complete new geometry/UV/material/owner stream SHA remains a0e829cb307c6d5ad19463fd1e9c2ac88bd455691a13419c3b2097ae076dc3dc before/after;50 temporary/removed geometries each release once. Original native-route and CPU evidence remains applicable through this exact stream equality, not newly rerun.

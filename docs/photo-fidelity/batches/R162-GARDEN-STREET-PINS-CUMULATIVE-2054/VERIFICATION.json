@@ -1,0 +1,149 @@
+{
+  "runtime": "b831afc4c1f9efc3f1d954dd17f8f9b0eeed937a",
+  "baseLocal": "edc2de78ed62e82efd47555ef607c1a1071c8551",
+  "author": "d98fd08de2fa33412a332de7fee27545fd25fe50",
+  "remoteParent": "b46089708466a5167abf3da64dbed73e3425051e",
+  "productionDiff": [
+    "src/scene/palace/special/GardenStreetGatePins.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 29,
+    "normalWorld": 1,
+    "neighborQinan": 1,
+    "total": 31,
+    "fail": 0,
+    "skip": 0,
+    "prehookBaselineRuns": 2,
+    "normalHookExpectedRed": "missing unique source-front record 0!=1"
+  },
+  "normalGuard": [
+    {
+      "id": "FC-4BC6AD858B",
+      "records": 1,
+      "pins": 4,
+      "face": 1,
+      "status": "CONTEXTUAL_INFERENCE_NOT_SURVEY"
+    },
+    {
+      "id": "FC-75C4A83F02",
+      "records": 1,
+      "pins": 4,
+      "face": 1,
+      "status": "CONTEXTUAL_INFERENCE_NOT_SURVEY"
+    },
+    {
+      "id": "FC-D2B1DB1C8C",
+      "records": 1,
+      "pins": 4,
+      "face": -1,
+      "status": "UNKNOWN_ENGINEERING_TRANSFER"
+    },
+    {
+      "id": "FC-E18D4B34CA",
+      "records": 1,
+      "pins": 4,
+      "face": -1,
+      "status": "UNKNOWN_ENGINEERING_TRANSFER"
+    }
+  ],
+  "newGeometry": {
+    "mergedMeshes": 8,
+    "triangles": 1088
+  },
+  "preservation": {
+    "originalMeshCount": 756,
+    "originalGeometry": "fa6e9ab21a558f47646830c6e05baba2ecd3298f17513c4f2413a94d0b7cd73e",
+    "colliderCount": 24019,
+    "colliders": "f641c43357284c0b1891d0dd3721a8e3e8922b06a741d700d9be3e083e65d27b",
+    "walkableCount": 1298,
+    "walkables": "a0c92f1672507874ec058951d3106f6e664536ed2d01917535130b0dc3c289d1",
+    "maps": "0c4a5ab65a82456447e3e493d8c4bb846df680f7ae35c0ef18d881906f233a8a",
+    "rooms": "a01b160897be27b23b8b557af79935e840fb25636475002e6c1b5347a65c6129",
+    "architecture": "63bd1099eaf6e6bcfc04a51c99db16e52c645b7f0580c18334fe4806012385cb"
+  },
+  "routes": {
+    "completeReports": 12,
+    "totalFrames": 740,
+    "validClearStartRoutes": 8,
+    "validFrames": 500,
+    "validAllArrived": true,
+    "validAllEndClear": true,
+    "validPeakFeetGround": 0,
+    "completeAll12ReportsExactBefore": true,
+    "inheritedInvalidFarStartDiagnosticCount": 4,
+    "invalidFarStarts": "Qiongyuan x±73 were already inside old walls before decoration; retained as unsuccessful diagnostics. Actual near starts x±70 are native-clear and cross/return successfully."
+  },
+  "neighborQinanCompleteRawExactPrior": true,
+  "sourceProtection": {
+    "oldSourceDataBlobs": 741,
+    "onlyOldSourceChange": "ZoneBase sole exact import+call",
+    "landscapeChanges": 0,
+    "allPriorAuthorizedExceptionsRetained": true
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-8481b23e3d05",
+    "sourceFingerprint": "22926d46d376ec0378ac3843d68324cc2ced0b6f1fb3cc4dbb1e38f2348754ca",
+    "sourceCommit": "b831afc4c1f9efc3f1d954dd17f8f9b0eeed937a",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "buildModules": 720,
+  "http": {
+    "files": 137,
+    "allBytesHashExact": true
+  },
+  "cpu": {
+    "images": 8,
+    "authorActuallyViewedAfterForAll4": true,
+    "integratorViewedTwoBeforeAfterPairs": true,
+    "pinsPerAfter": 4,
+    "minimumVisiblePixelsPerPin": 763,
+    "actualGeometryFallbackOnly": true
+  },
+  "runnerRecovery": {
+    "sparseGitAddExcludedQAPath": true,
+    "uncleanBuildRetainedNotAccepted": true,
+    "dirtyBuildInfo": "build-dirty-precommit-info.json",
+    "cleanRebuildAfterExplicitSparseCommit": true,
+    "productionChangedForPackagingFailure": false
+  },
+  "scopeDelta": [
+    {
+      "id": "FC-4BC6AD858B",
+      "fromCodeClass": "G",
+      "toCodeClass": "H_SOURCE_FRONT_DECOR_PARTIAL",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "id": "FC-75C4A83F02",
+      "fromCodeClass": "G",
+      "toCodeClass": "H_SOURCE_FRONT_DECOR_PARTIAL",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "id": "FC-D2B1DB1C8C",
+      "fromCodeClass": "G",
+      "toCodeClass": "H_SOURCE_FRONT_DECOR_PARTIAL",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "id": "FC-E18D4B34CA",
+      "fromCodeClass": "G",
+      "toCodeClass": "H_SOURCE_FRONT_DECOR_PARTIAL",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    }
+  ],
+  "limits": [
+    "Frozen author README no-hook statement describes author-only stage; this new normal cumulative stage is independently verified",
+    "Qiongyuan local+Z is photo-context inference; Changkang actual cardinal source face UNKNOWN, retained-front local-Z feature transfer is engineering fit, not north/south fact",
+    "Source confirms four projecting red/gold pins; exact Changkang corner count unasserted, six-sided outline and all dimensions/colors/spacing are fits",
+    "Original generic full gate body/roof/plaque, unseen sides and historic high-level collision remain unvalidated; no rooms/maps/native physics changed",
+    "No historical full-suite rerun or full-green claim; previous known failures preserved",
+    "No GPU/mobile/full-streaming/current-admission/whole-object or R162 whole-zone acceptance",
+    "Only new development-branch delivery is intended; main/old refs/merge/Pages unchanged",
+    "Local author/study/QA raw is hash-pinned, not claimed remotely persisted; official photos not redistributed"
+  ]
+}

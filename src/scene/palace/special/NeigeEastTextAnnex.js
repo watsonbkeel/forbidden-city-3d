@@ -4,6 +4,29 @@ import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSu
 const ID='neige-east-text-annex',FIT='ENGINEERING_FIT_NOT_SURVEYED';
 export const NEIGE_EAST_TEXT_ANNEX_SOURCE='https://www.dpm.org.cn/explore/building/236523.html';
 export const NEIGE_EAST_TEXT_ANNEX_FIT=Object.freeze({x:-182.4,z:-363,width:14.8,depth:6.4,roofDepth:7.6,eave:4.35,ridge:5.95,bays:4,doorX:-1.85,doorClearWidth:2.8,doorClearHeight:3.12});
+export const NEIGE_EAST_TEXT_ANNEX_ENTRY='neige-east-text-annex-door';
+/** Interactive navigation only: preserve the map footprint and the fitted facade.
+ * Exact marker/frame validation prevents reusing this offset on another body. */
+export function neigeEastTextAnnexEntry(target){
+ if(target?.structure!==ID&&target?.entryProfile!==NEIGE_EAST_TEXT_ANNEX_ENTRY)return null;
+ const p=NEIGE_EAST_TEXT_ANNEX_FIT;
+ if(target.structure!==ID||target.entryProfile!==NEIGE_EAST_TEXT_ANNEX_ENTRY||target.kind!=='hall'||target.parentObjectId!=='FC-E09ED30C27'||target.x!==p.x||target.z!==p.z||target.w!==p.width||target.d!==p.depth||target.rot!==undefined)throw Error('Invalid east text annex entry frame');
+ const x=p.x+p.doorX,z=p.z-p.depth/2-.06; // Existing front posts/frame at local -3.26.
+ return {name:target.name,cx:p.x,cz:p.z,frontX:x,frontZ:z,entryProfile:NEIGE_EAST_TEXT_ANNEX_ENTRY,requiredZone:'outer-east',approachPoints:[{x,y:0,z:z-8},{x,y:0,z},{x,y:0,z:z+1}]};
+}
+/** Ground zero alone is not proof that this body is loaded. Require its exact
+ * resident map/frame plus every original triangle owner, including door parts. */
+export function hasNeigeEastTextAnnexEntry(zoneManager,collisionManager){
+ if(!zoneManager.getLoadedIds?.().includes('outer-east'))return false;
+ const records=zoneManager.loaded?.get('outer-east')?.data.mapItems?.filter(m=>m.structure===ID||m.entryProfile===NEIGE_EAST_TEXT_ANNEX_ENTRY);
+ if(records?.length!==1)return false;
+ try{if(!neigeEastTextAnnexEntry(records[0]))return false;}catch{return false;}
+ const ids=['visible-floor','end--1','end-1','back','front-posts','front-bay--5.55',...Array.from({length:7},(_,i)=>'open-door-part-'+i),'front-bay-1.85','front-bay-5.55','gable--1','gable-1','real-closed-roof'];
+ const owners=collisionManager.colliders.filter(c=>c.tag==='outer-east'&&c.triangleSupport?.id.startsWith(ID+':'));
+ if(owners.length!==ids.length||!ids.every(id=>owners.some(c=>c.triangleSupport.id===ID+':'+id)))return false;
+ const post=owners.find(c=>c.triangleSupport.id===ID+':front-posts'),p=NEIGE_EAST_TEXT_ANNEX_FIT;
+ return post.triangleSupport.template.triangles.length===60&&post.box.min.equals(new T.Vector3(Math.fround(p.x-7.4),Math.fround(p.eave/2-Math.fround(p.eave/2)),Math.fround(p.z-3.38)))&&post.box.max.equals(new T.Vector3(Math.fround(p.x+7.4),Math.fround(p.eave),Math.fround(p.z-3.14)));
+}
 const identity=o=>o?.isObject3D&&o.position.lengthSq()===0&&o.rotation.x===0&&o.rotation.y===0&&o.rotation.z===0&&o.scale.equals(new T.Vector3(1,1,1));
 /** Official text supports an eastern four-bay gray hard-gable ear room.
  * It does NOT verify this facade, current office identity, south-facing opening,
@@ -49,5 +72,5 @@ export function buildNeigeEastTextAnnex(kit,zone){
   box(roof,'gray-roof-ridge',gray,14.8,.15,.18,0,p.ridge+.07,0);own(roof,'real-closed-roof');
  }catch(e){geometries.forEach(g=>g.dispose());owned.forEach(m=>m.dispose());throw e;}
  const meta={id:ID,parentObjectId:'FC-E09ED30C27',historicalIdentityCandidate:'FC-12AA4B4366',name:'内阁东四间灰瓦耳房（文字依据候选）',side:'east',...p,roofType:'GRAY_HARD_GABLE_TEXT_BASED',evidenceBasis:'OFFICIAL_TEXT_NOT_PHOTO_RECONSTRUCTION',textSupported:['east of main hall','four bays','gray hard-gable roof'],placement:FIT,dimensions:FIT,facadeOrientation:'SOUTH_FACING_ENGINEERING_FIT_NOT_TEXT_VERIFIED',openingState:'ONE_VISIBLE_OPEN_BAY_INTERACTIVE_FIT_NOT_PUBLIC_ADMISSION',wholeObjectAccepted:false,interiorFurnishings:0,sourceUrls:[NEIGE_EAST_TEXT_ANNEX_SOURCE],triangleOwners:colliders.length,unknown:['individual present-day survival, elevation and historical office correspondence','measured location, span, depth and height','facade orientation and original doors/windows/thresholds','fine lattice, carving, decoration and interior layout','post2023repair condition and public admission','GPU/mobile visual acceptance']};
- frame.userData.structure=meta;kit.root.add(frame);kit.colliders.push(...colliders);kit.owned.push(...owned);kit.mapItems.push({kind:'hall',name:meta.name,x:p.x,z:p.z,w:p.width,d:p.depth,parentObjectId:meta.parentObjectId,sourceStatus:meta.evidenceBasis});return{frame,meta,colliders};
+ frame.userData.structure=meta;kit.root.add(frame);kit.colliders.push(...colliders);kit.owned.push(...owned);kit.mapItems.push({kind:'hall',structure:ID,entryProfile:NEIGE_EAST_TEXT_ANNEX_ENTRY,name:meta.name,x:p.x,z:p.z,w:p.width,d:p.depth,parentObjectId:meta.parentObjectId,sourceStatus:meta.evidenceBasis});return{frame,meta,colliders};
 }

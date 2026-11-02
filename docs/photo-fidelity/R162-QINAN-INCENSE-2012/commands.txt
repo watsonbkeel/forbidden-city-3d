@@ -1,0 +1,8 @@
+# Run from author worktree. Raw output paths are frozen; integration must use new paths.
+node tests/r162-qinan-incense/preflight.mjs
+node --test tests/r162-qinan-incense/baseline.test.mjs
+node --test tests/r162-qinan-incense/component.test.mjs tests/r162-qinan-incense/routes.test.mjs
+node --test tests/r162-qinan-incense/world.test.mjs
+node tests/r162-qinan-incense/export-cpu.mjs /tmp/r162-qinan-incense-2012
+python tests/r162-qinan-incense/render-cpu.py /tmp/r162-qinan-incense-2012/front.json.gz docs/photo-fidelity/R162-QINAN-INCENSE-2012/front.png
+python tests/r162-qinan-incense/render-cpu.py /tmp/r162-qinan-incense-2012/oblique.json.gz docs/photo-fidelity/R162-QINAN-INCENSE-2012/oblique.png

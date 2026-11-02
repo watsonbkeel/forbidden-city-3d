@@ -1,0 +1,2557 @@
+{
+  "schema": 4,
+  "releaseScope": "R160",
+  "sourceScope": "/tmp/r160-scope-0903.json",
+  "sourceScopeSHA256": "f65940ef7429934634aecd2117af98a6a8fb7c18ea2d6c79ed814a3928aac956",
+  "baseLocalCommit": "e41cfa976576ade40a227c4f18f679b8bae3d65f",
+  "baseTree": "809ab2695cb5d4681df01b4dfbaf4694ac62cd46",
+  "classificationOnly": "READ_ONLY_CODE_BINDING_NOT_WHOLE_OBJECT_OR_ROUTE_ACCEPTANCE",
+  "key": {
+    "H": "dedicated or explicitly corresponding current body, partial evidence",
+    "G": "existing generic/fitted current body, not absent",
+    "N": "no independently corresponding executed body identified in current source",
+    "P": "parent collection referencing existing children, not another body",
+    "U": "anonymous existing shell(s), no reliable per-original-object mapping"
+  },
+  "countsNotProgress": {
+    "H": 34,
+    "G": 15,
+    "N": 5,
+    "P": 2,
+    "U": 5
+  },
+  "objects": [
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          2
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastResidentialFacades.js",
+          "src/scene/palace/special/JingrenSouthWindows.js",
+          "src/scene/palace/special/EastFiveRoofBeasts.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "石影壁未见；非当前完整室内/全院验收",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 1,
+      "id": "FC-6AF6DCFC02",
+      "name": "景仁宫",
+      "sourceLine": 488
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          0
+        ],
+        "builderModules": [
+          "src/scene/palace/special/JingrenGateStoneFrame.js",
+          "src/scene/palace/special/JingrenSouthFace.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "高墙檐/完整背面未证；石座不是门内影壁",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 2,
+      "id": "FC-921CB4CE37",
+      "name": "景仁门",
+      "sourceLine": 489
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          3
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RearHallProfiles.js",
+          "src/scene/palace/special/JingrenRearWindows.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "五间硬山/窗在；完整后殿及现代陈设未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 3,
+      "id": "FC-2E5B97AD6F",
+      "name": "景仁宫后殿",
+      "sourceLine": 490
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          4
+        ],
+        "builderModules": [],
+        "note": "x=-109.88,z=319.8,rot=west；不得认领后配",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前东配估位壳；整体立面未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 4,
+      "id": "FC-D4E740DED3",
+      "name": "景仁宫东配殿",
+      "sourceLine": 491
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          5
+        ],
+        "builderModules": [],
+        "note": "x=-77,z=319.8,rot=east；不得认领后配",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前西配估位壳；整体立面未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 5,
+      "id": "FC-1B734F5453",
+      "name": "景仁宫西配殿",
+      "sourceLine": 492
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/JingrenRearEastWing.js"
+        ],
+        "note": "专属后配局部外壳，不借前配/前后主殿/井亭。无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "jingren-rear-east-photo-fit",
+        "sourceObjectId": "FC-808DBF510F",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 1,
+          "callLine": 307,
+          "call": "buildJingrenRearEastWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_TEXT_REAR_EAST_THREE_BAYS_NO_OWN_FACADE_PHOTO",
+        "ownViewpoint": null,
+        "ownPhoto": null,
+        "photoDoorState": "UNVERIFIED_NO_OWN_FACADE_PHOTO",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR",
+        "clearanceScope": "real geometry/owner/support/water separated from non-route body-edge diagnostic; no rear/south-gap passage claim",
+        "facadeVerified": false,
+        "windowLatticeGeometryCount": 0,
+        "textOnlyFacadeNotPhotoReconstruction": true
+      },
+      "remainingEvidence": "三间黄硬山/明间门仅官文最低素壳已接线；ownPhoto:null、facadeVerified:false，无自身立面照片，0窗格/0内陈。未见门窗/柱式与粗色/米制均拟合，内部photo-fit后缀不是照片认证。19半米身体边缘点伸入不承诺通行的背墙/南台边诊断保留，不称全盒身体净空；只实际院地折线/低台接近有限证据。前东配item4/后殿item3/前殿item2不重复认领，未造背南夹缝通路。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 6,
+      "id": "FC-808DBF510F",
+      "name": "景仁宫后殿东配殿",
+      "sourceLine": 493,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-JINGREN-REAR-EAST-CUMULATIVE-1327/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/JingrenRearWestWing.js"
+        ],
+        "note": "专属后配局部外壳，不借前配/前后主殿/井亭。无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "jingren-rear-west-photo-fit",
+        "sourceObjectId": "FC-C61F02E5E9",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 2,
+          "callLine": 306,
+          "call": "buildJingrenRearWestWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_GALLERY_REAR_COURT_TOPOLOGY_INFERENCE",
+        "ownViewpoint": null,
+        "ownPhoto": "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d16b8c46ab.jpg",
+        "photoDoorState": "CLOSED",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR",
+        "clearanceScope": "real geometry/owner/support/water separated from non-route body-edge diagnostic; no rear/south-gap passage claim"
+      },
+      "remainingEvidence": "三间黄硬山后西配局部闭壳已接线；官网图集后殿南面与侧配关系仅拓扑推断，ownViewpoint:null，非独立专名vp/完整无遮挡立面。红闭门/浅下窗最低粗形，位置米制/未知面拟合。20半米边缘身体点伸入非承诺背墙/南台边的原红保留，真实几何不交叠不等全盒body绿；只合理院地折线/台前有限通行，不造背南夹缝。前西配item5/后殿item3/前殿item2及井亭不重计。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 7,
+      "id": "FC-C61F02E5E9",
+      "name": "景仁宫后殿西配殿",
+      "sourceLine": 494,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-JINGREN-REAR-WEST-CUMULATIVE-1316/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          9
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RemainingResidentialHalls.js",
+          "src/scene/palace/special/ChengqianSouthWindows.js",
+          "src/scene/palace/special/ChengqianCourtyardGroup.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "主体/月台/西院间门已有；非完整宫院现况",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 8,
+      "id": "FC-42D58B9B0D",
+      "name": "承乾宫",
+      "sourceLine": 495
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          7
+        ],
+        "builderModules": [
+          "src/scene/palace/special/ChengqianArrival.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "已有门/闭木屏/绕行接触，不补同屏；完整门外观未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 9,
+      "id": "FC-7668331735",
+      "name": "承乾门",
+      "sourceLine": 496
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          10
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RearHallProfiles.js",
+          "src/scene/palace/special/ChengqianSouthWindows.js",
+          "src/scene/palace/special/ChengqianArrival.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "五间硬山/南窗/短阶已在；现代内部未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 10,
+      "id": "FC-FCDFE021DF",
+      "name": "承乾宫后殿",
+      "sourceLine": 497
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          11
+        ],
+        "builderModules": [
+          "src/scene/palace/special/ChengqianCourtyardGroup.js"
+        ],
+        "note": "原位-110.08,370.6；硬山守卫",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前东配壳有；贞顺/明德侧别不能猜",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 11,
+      "id": "FC-27581842CA",
+      "name": "承乾宫东配殿",
+      "sourceLine": 498
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          12
+        ],
+        "builderModules": [
+          "src/scene/palace/special/ChengqianCourtyardGroup.js"
+        ],
+        "note": "已批准位置-77.12,367.1，不恢复旧z370.6",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前西配壳及门槛已有；贞顺/明德侧别未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 12,
+      "id": "FC-E2BBEF5EA0",
+      "name": "承乾宫西配殿",
+      "sourceLine": 499
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          56
+        ],
+        "builderModules": [
+          "src/scene/palace/special/ChengqianRearWings.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "3间/中央门/短阶已有；尺度/门叶开放姿态fit，非完整后院",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 13,
+      "id": "FC-53A9B689A3",
+      "name": "承乾宫后殿东配殿",
+      "sourceLine": 500
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          57
+        ],
+        "builderModules": [
+          "src/scene/palace/special/ChengqianRearWings.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "独立西后配已有；背立面/尺度fit，非前配重复",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 14,
+      "id": "FC-7A11F91B5D",
+      "name": "承乾宫后殿西配殿",
+      "sourceLine": 501
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          16
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastResidentialFacades.js",
+          "src/scene/palace/special/ZhongcuiSouthVisual.js",
+          "src/scene/palace/special/EastFiveRoofBeasts.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前廊/南窗/5兽已有；垂花门/游廊仍另核",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 15,
+      "id": "FC-479353AF2C",
+      "name": "钟粹宫",
+      "sourceLine": 502
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          14
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "通用宫门有；不等另层垂花影壁",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 16,
+      "id": "FC-818A015688",
+      "name": "钟粹门",
+      "sourceLine": 503
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          17
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RearHallProfiles.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "zhongcui-rear五间硬山已有；整体图证/内部待核",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 17,
+      "id": "FC-8B4AAF5852",
+      "name": "钟粹宫后殿",
+      "sourceLine": 504
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          18
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前东配估位壳有，不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 18,
+      "id": "FC-670877B32E",
+      "name": "钟粹宫东配殿",
+      "sourceLine": 505
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          19
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前西配估位壳有，不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 19,
+      "id": "FC-C2476163FF",
+      "name": "钟粹宫西配殿",
+      "sourceLine": 506
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/ZhongcuiRearEastWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "zhongcui-rear-east-photo-fit",
+        "sourceObjectId": "FC-29A3CF12B3",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 4,
+          "callLine": 300,
+          "call": "buildZhongcuiRearEastWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_INDEPENDENTLY_NAMED_PANO",
+        "ownViewpoint": "3801",
+        "photoDoorState": "CLOSED",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后东配闭合外壳/低台短步已独立接线；自身命名vp3801，左端树叶遮挡。仅最低门窗大形，位置米制/细格/隐藏面拟合；无室内/背缝路线，不借前东配item18或后殿item17。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 20,
+      "id": "FC-29A3CF12B3",
+      "name": "钟粹宫后殿东配殿",
+      "sourceLine": 507,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-EAST-CUMULATIVE-1208/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/ZhongcuiRearWestWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "zhongcui-rear-west-photo-fit",
+        "sourceObjectId": "FC-A50FDDE804",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 3,
+          "callLine": 301,
+          "call": "buildZhongcuiRearWestWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_INDEPENDENTLY_NAMED_PANO",
+        "ownViewpoint": "3457",
+        "photoDoorState": "CLOSED",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后西配闭合外壳/低台短步已独立接线；自身命名vp3457，右端树遮与前景另檐不照造。位置米制/隐藏面拟合；无室内/背缝路线，不借前西配item19或后殿item17。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 21,
+      "id": "FC-A50FDDE804",
+      "name": "钟粹宫后殿西配殿",
+      "sourceLine": 508,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-WEST-CUMULATIVE-1217/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          30
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastResidentialFacades.js",
+          "src/scene/palace/special/YongheSouthVisual.js",
+          "src/scene/palace/special/YongheCanopyKnees.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "五间主殿/三间开放抱厦/抱头撑已有；全体/现陈设未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 22,
+      "id": "FC-D2B7EEC1F3",
+      "name": "永和宫",
+      "sourceLine": 509
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          28
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "宫门已有；院内木影壁未由此证明",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 23,
+      "id": "FC-6F90562528",
+      "name": "永和门",
+      "sourceLine": 510
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          31
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RearHallProfiles.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "canonicalName同顺斋=永和后殿，非另一缺楼；完整现况未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 24,
+      "id": "FC-9503F7B70D",
+      "name": "同顺斋",
+      "sourceLine": 511
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          32
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前东配估位壳有；不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 25,
+      "id": "FC-AD0DA87365",
+      "name": "永和宫东配殿",
+      "sourceLine": 512
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          33
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前西配估位壳有；不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 26,
+      "id": "FC-2C0932AE68",
+      "name": "永和宫西配殿",
+      "sourceLine": 513
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/YongheRearEastWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "yonghe-rear-east-photo-fit",
+        "sourceObjectId": "FC-D240B3E3A3",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 6,
+          "callLine": 298,
+          "call": "buildYongheRearEastWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_INDEPENDENTLY_NAMED_PANO",
+        "ownViewpoint": "3668",
+        "photoDoorState": "OPEN",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后东配闭合外壳/低台短步已独立接线；自身命名vp3668照片开门，本体闭门为无室内资料的范围适配，不宣称现实关闭。位置尺度/未知面拟合；不借前东配item32/同顺斋item31，不造内陈或背缝通路。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 27,
+      "id": "FC-D240B3E3A3",
+      "name": "永和宫后殿东配殿",
+      "sourceLine": 514,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-YONGHE-REAR-EAST-CUMULATIVE-1131/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/YongheRearWestWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "yonghe-rear-west-photo-fit",
+        "sourceObjectId": "FC-171FEF95E4",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 5,
+          "callLine": 299,
+          "call": "buildYongheRearWestWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_INDEPENDENTLY_NAMED_PANO",
+        "ownViewpoint": "3670",
+        "photoDoorState": "OPEN",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后西配闭合外壳/低台短步已独立接线；自身命名vp3670照片开门，本体闭门为无室内资料的范围适配，不宣称现实关闭。位置尺度/未知面拟合；不借前西配item33/同顺斋item31，前景井亭/内陈/背缝通路未造。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 28,
+      "id": "FC-171FEF95E4",
+      "name": "永和宫后殿西配殿",
+      "sourceLine": 515,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-YONGHE-REAR-WEST-CUMULATIVE-1152/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          37
+        ],
+        "builderModules": [
+          "src/scene/palace/special/RemainingResidentialHalls.js",
+          "src/scene/palace/special/JingyangSouthVisual.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "三间庑殿主殿已在；不套五间歇山，现内部未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 29,
+      "id": "FC-9DA5992A78",
+      "name": "景阳宫",
+      "sourceLine": 516
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          35
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "通用宫门已在；院内屏门另核",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 30,
+      "id": "FC-A6CA8EE18C",
+      "name": "景阳门",
+      "sourceLine": 517
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          38
+        ],
+        "builderModules": [
+          "src/scene/palace/special/JingyangRearFacade.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "明确FC-8B02DC003C/五间歇山/高窗；御书房=景阳后殿，不重复",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 31,
+      "id": "FC-8B02DC003C",
+      "name": "御书房",
+      "sourceLine": 518
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          39
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前东配估位壳有，不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 32,
+      "id": "FC-493ECC78C4",
+      "name": "景阳宫东配殿",
+      "sourceLine": 519
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          40
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "前西配估位壳有，不认后配",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 33,
+      "id": "FC-1EBDC0DA98",
+      "name": "景阳宫西配殿",
+      "sourceLine": 520
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/JingyangRearEastWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "jingyang-rear-east-photo-fit",
+        "sourceObjectId": "FC-FE29005359",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 1,
+          "callLine": 303,
+          "call": "buildJingyangRearEastWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_GALLERY_REAR_COURT_TOPOLOGY_INFERENCE",
+        "ownViewpoint": null,
+        "photoDoorState": "CLOSED",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后东配局部闭壳/低台短步已独立接线。官网后院图集5、西南井亭远端与御书房/主殿关系仅拓扑推断，ownViewpoint:null；左窗/上门/大部屋盖遮挡拟合，屋型由官文支持。无专名vp/小匾可读或全立面声明；不借前东配item39/御书房/井亭，不造内陈/背缝。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 34,
+      "id": "FC-FE29005359",
+      "name": "景阳宫后殿东配殿",
+      "sourceLine": 521,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-EAST-CUMULATIVE-1253/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/JingyangRearWestWing.js"
+        ],
+        "note": "专属后配局部外壳；不是前配/后主殿/井亭重复计数；无新导航或室内承诺。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "jingyang-rear-west-photo-fit",
+        "sourceObjectId": "FC-BD30A6AEF7",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 2,
+          "callLine": 302,
+          "call": "buildJingyangRearWestWing(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "static current call site + east-six guard; no new execution in ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY",
+        "identityEvidence": "OFFICIAL_GALLERY_REAR_COURT_TOPOLOGY_INFERENCE",
+        "ownViewpoint": null,
+        "photoDoorState": "CLOSED",
+        "gameDoorState": "CLOSED_EXTERIOR_ONLY_NO_INTERIOR"
+      },
+      "remainingEvidence": "三间黄硬山后西配局部闭壳/低台短步已独立接线。官网图集3/4的御书房与西南井亭关系仅拓扑推断，ownViewpoint:null，不冒独立专名vp/完整无挡立面或读小匾。隐藏面/米制等拟合；原上方高檐仍在，非无限净空；不借前西配item40/御书房/井亭，不造内陈/背缝。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 35,
+      "id": "FC-BD30A6AEF7",
+      "name": "景阳宫后殿西配殿",
+      "sourceLine": 522,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-WEST-CUMULATIVE-1241/README.md"
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          21
+        ],
+        "builderModules": [],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "实际通用门已有；自身整体外观未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 36,
+      "id": "FC-87C1541D29",
+      "name": "延禧门",
+      "sourceLine": 523
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          23
+        ],
+        "builderModules": [
+          "src/scene/palace/special/YanxiRuin.js",
+          "src/scene/palace/special/YanxiRuinLOD.js"
+        ],
+        "note": "运行旧名延禧宫；本体为灵沼轩",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "lingzhao-current现遗构有，非历史旧前后殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 37,
+      "id": "FC-8317089C69",
+      "name": "灵沼轩",
+      "sourceLine": 524
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          24
+        ],
+        "builderModules": [
+          "src/scene/palace/special/YanxiStorehouses.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "北两层库楼类型有，外形比例/现代内部未完整证；非旧后殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 38,
+      "id": "FC-C8D368757C",
+      "name": "延禧宫北楼",
+      "sourceLine": 525
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          25
+        ],
+        "builderModules": [
+          "src/scene/palace/special/YanxiStorehouses.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "东两层库楼类型有，完整立面/现代内部未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 39,
+      "id": "FC-8FECDC6AD1",
+      "name": "延禧宫东楼",
+      "sourceLine": 526
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          26
+        ],
+        "builderModules": [
+          "src/scene/palace/special/YanxiStorehouses.js"
+        ],
+        "note": "",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "西两层库楼类型有，完整立面/现代内部未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 40,
+      "id": "FC-13EDF0348B",
+      "name": "延禧宫西楼",
+      "sourceLine": 527
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/YuqingFrontHall.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "yuqing-front-photo-fit",
+        "sourceObjectId": "FC-C716A8E34A",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 5,
+          "callLine": 287,
+          "call": "buildYuqingFrontHall(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "五间工字殿前殿、闭门侧窗及南月台局部；不等整个毓庆宫。惇本单列，继德后殿/穿堂/味余书室/前星祥旭门序和配殿内陈未由此完成；位置尺度、未知面及开放范围拟合。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 41,
+      "id": "FC-C716A8E34A",
+      "name": "毓庆宫",
+      "sourceLine": 528,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-YUQING-CUMULATIVE-1023/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/ZhaigongFrontHall.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "zhaigong-front-photo-fit",
+        "sourceObjectId": "FC-8D4739DF1E",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 8,
+          "callLine": 285,
+          "call": "buildZhaigongFrontHall(this.kit,this.zoneJson.id);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "五间前殿加三间抱厦/前廊部分已有；诚肃后殿单列，不重复计前殿。配殿游廊/内陈/现代现况未验；已许可短跑下阶 .429778/.387667 strictPoint3Pass:false 继续，不称严格全绿。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 42,
+      "id": "FC-8D4739DF1E",
+      "name": "斋宫",
+      "sourceLine": 529,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-CENTRAL-ZHAIGONG-CUMULATIVE-0946/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          53,
+          54
+        ],
+        "builderModules": [
+          "src/scene/palace/special/FengxianFrontWindows.js",
+          "src/scene/palace/special/FengxianFrontVats.js",
+          "src/scene/palace/special/FengxianRearProfile.js",
+          "src/scene/palace/special/FengxianFrontSteps.js",
+          "src/scene/palace/special/FengxianFrontContact.js",
+          "src/scene/palace/special/FengxianCentralContact.js"
+        ],
+        "note": "后殿AUX-BF1091B523A8属于父项，不增E计数",
+        "dataPath": "data/zones/east-six.json",
+        "contactDispatch": "src/scene/palace/BPrincipalStairContact.js",
+        "finalizerHooks": [
+          {
+            "function": "finishFengxianFrontSteps",
+            "path": "src/scene/zones/ZoneBase.js",
+            "line": 283,
+            "staticCallCount": 1
+          },
+          {
+            "function": "registerFengxianCentralContact",
+            "path": "src/scene/zones/ZoneBase.js",
+            "line": 284,
+            "staticCallCount": 1
+          }
+        ]
+      },
+      "remainingEvidence": "原前双檐九间/后单檐九间已有；后继外侧两组真实八级阶/分段白栏及中央原 ramp+平台私有接触已正常接线并有有限路线证据。未做完整40×12m台基测绘复原、背侧栏/细雕/完整内陈/整对象验收。旧侧阶初始化 metadata 的 central unresolved 是历史状态，不能覆盖后继 CentralContact 已修有限路线；原历史红不删除。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 43,
+      "id": "FC-D8AEF2E8A9",
+      "name": "奉先殿",
+      "sourceLine": 530,
+      "existingLimitedEvidenceRef": [
+        "docs/photo-fidelity/batches/R160-FENGXIAN-CUMULATIVE-0926/README.md",
+        "docs/photo-fidelity/batches/R160-CENTRAL-ZHAIGONG-CUMULATIVE-0946/README.md"
+      ]
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/ChengsuFrontHall.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "chengsu-front-photo-fit",
+        "sourceObjectId": "FC-DD68A90CC7",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 6,
+          "callLine": 286,
+          "call": "buildChengsuFrontHall(this.kit,this.zoneJson.id);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "七间主屋/前廊闭门窗/低台已在；不是斋宫前殿。两侧耳房、十一间游廊、内陈/现代现况仍未完成；裁切两端/背面和位置尺寸等为拟合。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 44,
+      "id": "FC-DD68A90CC7",
+      "name": "诚肃殿",
+      "sourceLine": 531,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-CHENGSU-CUMULATIVE-1011/README.md"
+    },
+    {
+      "runtimeClassification": "N",
+      "runtimeRef": {
+        "zone": null,
+        "itemIndices": [],
+        "builderModules": [],
+        "note": "",
+        "dataPath": null
+      },
+      "remainingEvidence": "前星门未见运行门项，不能把毓庆anchor作门",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 45,
+      "id": "FC-E8CC6A03C1",
+      "name": "前星门",
+      "sourceLine": 532
+    },
+    {
+      "runtimeClassification": "N",
+      "runtimeRef": {
+        "zone": null,
+        "itemIndices": [],
+        "builderModules": [],
+        "note": "",
+        "dataPath": null
+      },
+      "remainingEvidence": "祥旭门未见运行门项，官文门序不等已建",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 46,
+      "id": "FC-4D8561AE5D",
+      "name": "祥旭门",
+      "sourceLine": 533
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/DunbenFrontHall.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "dunben-front-photo-fit",
+        "sourceObjectId": "FC-1ED6740852",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 4,
+          "callLine": 288,
+          "call": "buildDunbenFrontHall(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "五间主屋/三中闭门与两梢槛窗/低台局部已有；依据明确大修前照片，不称修后或当前现况。不替毓庆前殿/继德后殿/门序，配殿、两缸和佛堂内陈未建。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 47,
+      "id": "FC-1ED6740852",
+      "name": "惇本殿",
+      "sourceLine": 534,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-DUNBEN-CUMULATIVE-1034/README.md"
+    },
+    {
+      "runtimeClassification": "N",
+      "runtimeRef": {
+        "zone": null,
+        "itemIndices": [],
+        "builderModules": [],
+        "note": "",
+        "dataPath": null
+      },
+      "remainingEvidence": "继德堂未见独立体；与毓庆后殿为别名而非两栋",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 48,
+      "id": "FC-7AACE4D51F",
+      "name": "继德堂",
+      "sourceLine": 535
+    },
+    {
+      "runtimeClassification": "N",
+      "runtimeRef": {
+        "zone": null,
+        "itemIndices": [],
+        "builderModules": [],
+        "note": "",
+        "dataPath": null
+      },
+      "remainingEvidence": "味余书室未见执行体，局部室内图不证明全后殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 49,
+      "id": "FC-59F7BB24CB",
+      "name": "味余书室",
+      "sourceLine": 536
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "west-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/ZhongsiGate.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/west-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "zhongsi-gate-photo-fit",
+        "sourceObjectId": "FC-CF00F15FA8",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 1,
+          "callLine": 291,
+          "call": "buildZhongsiGate(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "独立一间门体已有，实际 west-six；互补正背面仍有遮挡。双叶侧开/低槛为游戏适配，不称实景开放；旁值房/横墙/精细纹样未造，不替麟趾/苍震/百子。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 50,
+      "id": "FC-CF00F15FA8",
+      "name": "螽斯门",
+      "sourceLine": 537,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-ZHONGSI-CUMULATIVE-1111/README.md"
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/TianqiongFrontHall.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "tianqiong-front-photo-fit",
+        "sourceObjectId": "FC-7CE51EACB4",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 3,
+          "callLine": 289,
+          "call": "buildTianqiongFrontHall(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "五间主殿闭壳/可达低前台已有；自身图三中间可辨，两裁切端间纯闭面拟合。神像/仙楼/香炉/内陈及配殿院墙、天穹门/钦昊门不在范围，不称完整天穹宫院或现况。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 51,
+      "id": "FC-7CE51EACB4",
+      "name": "天穹宝殿",
+      "sourceLine": 538,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-TIANQIONG-CUMULATIVE-1048/README.md"
+    },
+    {
+      "runtimeClassification": "P",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "builderModules": [],
+        "note": "父组不得另造一个泛室内",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "门/总墙/五匿名hall/region有，不等五个完整三进院",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 52,
+      "id": "FC-4188F97D66",
+      "name": "乾东五所",
+      "sourceLine": 539
+    },
+    {
+      "runtimeClassification": "H",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [],
+        "builderModules": [
+          "src/scene/palace/special/LinzhiGate.js"
+        ],
+        "note": "独立末端 builder 局部体，不在 zones.items 追加；不是 anchor 或匿名壳强绑。",
+        "dataPath": null,
+        "zoneDataPath": "data/zones/east-six.json",
+        "registrationKind": "EXPLICIT_PRE_FINISH_BUILDER",
+        "structureId": "linzhi-gate-photo-fit",
+        "sourceObjectId": "FC-75AB2BF1F2",
+        "hook": {
+          "path": "src/scene/zones/ZoneBase.js",
+          "importLine": 2,
+          "callLine": 290,
+          "call": "buildLinzhiGate(this.kit,this.kit.root.name);",
+          "staticCallCount": 1,
+          "scope": "one call site, matching zone guard; no new runtime execution in this ledger audit"
+        },
+        "bodyCoverage": "PARTIAL_ONLY"
+      },
+      "remainingEvidence": "独立一间门体已有；自身官方背面图，未知正面/尺寸/细部拟合。双叶侧开/低真槛为保长街的游戏适配；不替螽斯/苍震/百子，不造横墙或宣称现实开放。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 53,
+      "id": "FC-75AB2BF1F2",
+      "name": "麟趾门",
+      "sourceLine": 540,
+      "existingLimitedEvidenceRef": "docs/photo-fidelity/batches/R160-LINZHI-CUMULATIVE-1100/README.md"
+    },
+    {
+      "runtimeClassification": "N",
+      "runtimeRef": {
+        "zone": null,
+        "itemIndices": [],
+        "builderModules": [],
+        "note": "仅anchors(-226.6,299.6)",
+        "dataPath": null
+      },
+      "remainingEvidence": "苍震门未见运行体，不认昭华/蹈和",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 54,
+      "id": "FC-9ABF21A275",
+      "name": "苍震门",
+      "sourceLine": 541
+    },
+    {
+      "runtimeClassification": "P",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "builderModules": [
+          "src/scene/palace/special/YanxiRuin.js",
+          "src/scene/palace/special/YanxiStorehouses.js",
+          "src/scene/palace/special/RemainingResidentialHalls.js"
+        ],
+        "note": "i23亦挂旧catalog延禧名，只是同一体",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "父院/遗构/三库楼分别记，不把父院+灵沼轩当两个主殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 55,
+      "id": "FC-1400B5FC62",
+      "name": "延禧宫",
+      "sourceLine": 542
+    },
+    {
+      "runtimeClassification": "G",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          51
+        ],
+        "builderModules": [],
+        "note": "style hall,w10.7，不因ID未显式绑重造",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "奉先门gateHall已有；自身照片/现状未闭合",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 56,
+      "id": "FC-EF18B2CEC2",
+      "name": "奉先门",
+      "sourceLine": 543
+    },
+    {
+      "runtimeClassification": "U",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          44
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastUnknownAnnexInventory.js"
+        ],
+        "note": "仅候选顺序对应，未确证原FC绑定",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "匿名单殿不是完整三进院；逐所身份/位置不能凭序列硬绑",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 57,
+      "id": "FC-7C94D62DDC",
+      "name": "乾东五所头所",
+      "sourceLine": 544
+    },
+    {
+      "runtimeClassification": "U",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          45
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastUnknownAnnexInventory.js"
+        ],
+        "note": "仅候选顺序对应，未确证原FC绑定",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "匿名单殿不是完整三进院；逐所身份/位置不能凭序列硬绑",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 58,
+      "id": "FC-58235BAE6E",
+      "name": "乾东五所二所",
+      "sourceLine": 545
+    },
+    {
+      "runtimeClassification": "U",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          46
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastUnknownAnnexInventory.js"
+        ],
+        "note": "仅候选顺序对应，未确证原FC绑定",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "匿名单殿不是完整三进院；逐所身份/位置不能凭序列硬绑",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 59,
+      "id": "FC-ADA14569A3",
+      "name": "乾东五所三所",
+      "sourceLine": 546
+    },
+    {
+      "runtimeClassification": "U",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          47
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastUnknownAnnexInventory.js"
+        ],
+        "note": "仅候选顺序对应，未确证原FC绑定",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "匿名单殿不是完整三进院；逐所身份/位置不能凭序列硬绑",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 60,
+      "id": "FC-E935697C20",
+      "name": "乾东五所四所",
+      "sourceLine": 547
+    },
+    {
+      "runtimeClassification": "U",
+      "runtimeRef": {
+        "zone": "east-six",
+        "itemIndices": [
+          48
+        ],
+        "builderModules": [
+          "src/scene/palace/special/EastUnknownAnnexInventory.js"
+        ],
+        "note": "仅候选顺序对应，未确证原FC绑定",
+        "dataPath": "data/zones/east-six.json"
+      },
+      "remainingEvidence": "匿名单殿不是完整三进院；逐所身份/位置不能凭序列硬绑",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "ordinal": 61,
+      "id": "FC-5B8C4984E3",
+      "name": "乾东五所五所",
+      "sourceLine": 548
+    }
+  ],
+  "runtimePins": [
+    {
+      "path": "data/anchors.json",
+      "bytes": 18447,
+      "sha256": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
+      "gitBlob": "9f36b34c2e59b2cc77247cc4051f6f258208b5f7"
+    },
+    {
+      "path": "data/zones/east-six.json",
+      "bytes": 10648,
+      "sha256": "ed8a435c72795cc1e640c49ab9b006670d2aa8be48a41b8a8e72c756bed71dd8",
+      "gitBlob": "64c9b9720f06f53cfcf1fe158f4f52434610a4fb"
+    },
+    {
+      "path": "data/zones/index.js",
+      "bytes": 650,
+      "sha256": "ed7d0b6154aed0af1460d9f96a1349fdf54764c00ae6f30b7eb9a175d20f3def",
+      "gitBlob": "ea241d1faf786a505c83b97c6503d915dca33c83"
+    },
+    {
+      "path": "data/zones/west-six.json",
+      "bytes": 11837,
+      "sha256": "a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e",
+      "gitBlob": "f5eac458e15e4d938f9e144a5676943b6fb40268"
+    },
+    {
+      "path": "src/config/constants.js",
+      "bytes": 8592,
+      "sha256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d",
+      "gitBlob": "be19c9ec34b54d7fe62a8d144baf1a020ec282ca"
+    },
+    {
+      "path": "src/scene/Layout.js",
+      "bytes": 7205,
+      "sha256": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2",
+      "gitBlob": "fb2405e69fbd4724e9b5491fe4fb63ab0450401f"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 11988,
+      "sha256": "f1a7d0d06d83d7742d03ddc95f512751bb320ba0a9f882f989f9198f95eaf141",
+      "gitBlob": "c9cb0d389ae76f8350268401c239cdbda5c03fd6"
+    },
+    {
+      "path": "src/scene/palace/kit.js",
+      "bytes": 41503,
+      "sha256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5",
+      "gitBlob": "c0b56bd93d347b5b340e5639f408f11b14d33901"
+    },
+    {
+      "path": "src/scene/palace/special/ChengqianArrival.js",
+      "bytes": 8316,
+      "sha256": "2dae15ed968716e091e59988fc55672f5ee098168e3a3595850e4b53164d3b06",
+      "gitBlob": "8e225efb6369f9978121e423902af48485feef83"
+    },
+    {
+      "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+      "bytes": 11339,
+      "sha256": "b4e23f6eb2e66d1048967f1c469889fb6c8fd6a2aacea653957f1dcaf9f6248f",
+      "gitBlob": "7f1c52342ac380b13de3d8368c8cfa113060873a"
+    },
+    {
+      "path": "src/scene/palace/special/ChengqianRearWings.js",
+      "bytes": 8256,
+      "sha256": "4126a7bbf0baa1cad219bc7eb5d9fbdc483f32e31fb3a8308d897bb755064e40",
+      "gitBlob": "4ee9bf83714033cc7f7b7a9ea5d1b72e47553368"
+    },
+    {
+      "path": "src/scene/palace/special/ChengqianSouthWindows.js",
+      "bytes": 10591,
+      "sha256": "1cc05476e1c9559c77dac5bfecd77870f34449043cebaf46815afd1f588d37d5",
+      "gitBlob": "e0f18e469aa7295405c99a6a4ccca89ff9b5caff"
+    },
+    {
+      "path": "src/scene/palace/special/ChengsuFrontHall.js",
+      "bytes": 6639,
+      "sha256": "2505fe46035ff568bd986e9c17e0478afc7859d618ee4009dbd2db5cc49c4f55",
+      "gitBlob": "7bdd77998b6ad713cda4ab8ad2ec96cfe62b7e6b"
+    },
+    {
+      "path": "src/scene/palace/special/DunbenFrontHall.js",
+      "bytes": 6941,
+      "sha256": "0031d80648c0c5917244a4da8cd86604b6de974e08726cab98c459e8af44a133",
+      "gitBlob": "4afc81874761653dd7842dd5c96da2a1cc00592f"
+    },
+    {
+      "path": "src/scene/palace/special/EastFiveRoofBeasts.js",
+      "bytes": 9045,
+      "sha256": "817369f087e922a270371e3b40ee8865a393f1c03a9ae349dcfa0487f9220e24",
+      "gitBlob": "bfe02bd96f88460b7c0d4d19696c6c1bfad5d97e"
+    },
+    {
+      "path": "src/scene/palace/special/EastResidentialFacades.js",
+      "bytes": 11896,
+      "sha256": "5df7b949ba24ef9332c25f0709a58fd2b7aac901ce51ac9f43aea2abf029d0af",
+      "gitBlob": "5fcf756be5df47febf552ed06e617231fdad1592"
+    },
+    {
+      "path": "src/scene/palace/special/EastUnknownAnnexInventory.js",
+      "bytes": 21278,
+      "sha256": "e4e988ae80fa85139ea8751aecb44cc23640b21fbbe08e1530d871130749777c",
+      "gitBlob": "d466cf5e659e5b10b30a5cf9fcfe8acfd4016270"
+    },
+    {
+      "path": "src/scene/palace/special/EastUnknownThroneInventory.js",
+      "bytes": 12349,
+      "sha256": "e0620141ae5a643b57fd46b7d7a00d7a6a7fc61c96d5f50266bd6fb8c5cb20c7",
+      "gitBlob": "50fca49f8a51bf59b723d5e65a45621836c5376f"
+    },
+    {
+      "path": "src/scene/palace/special/EastWellPavilion.js",
+      "bytes": 8284,
+      "sha256": "359b70f9fc3c3b869a15727402c301df6be9866b19f2ab31d326d61ccf525f7d",
+      "gitBlob": "74605213a4efadb222533234fa238b2e1d531795"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianCentralContact.js",
+      "bytes": 6351,
+      "sha256": "bbdb475dffee74681a1e56b897ce89a6a24d6c1cbb05325e252523c8ca7a72df",
+      "gitBlob": "0f7fe6577c0253e83d92dd3c7db658c380e21e78"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianFrontContact.js",
+      "bytes": 5478,
+      "sha256": "6933f48d114c115aa6da8320ec76cfeefc8f2bc946a1194eb5ed2c947e6829da",
+      "gitBlob": "016fedb255ec842f197c3cca7ce1057e64af26b2"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianFrontSteps.js",
+      "bytes": 6686,
+      "sha256": "d0d9b9b9d5401876f5c3c6d9f218b837f4b2c185984e054f40fb30b253f582e1",
+      "gitBlob": "5c688ea615e4a8512eccda9edb1f52751738ed18"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianFrontVats.js",
+      "bytes": 3828,
+      "sha256": "2a25dfd3f29df7463a1df5474552843a8caa012e49b620d3721779f5b13f009e",
+      "gitBlob": "1dfed702f64163768b5c64e9dfa40560c98d99e6"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianFrontWindows.js",
+      "bytes": 2841,
+      "sha256": "18a2d3d543fe4e5139b08dbc2ee888cd78c3c6f82233a7ab97610044706e417c",
+      "gitBlob": "50b9c495019bc92df7a29aab3e536675ac4d77a7"
+    },
+    {
+      "path": "src/scene/palace/special/FengxianRearProfile.js",
+      "bytes": 2816,
+      "sha256": "a2d0c86b9057471d98330d35f4b3164522c67c8390fbf9000d0bd6dcdd7e016c",
+      "gitBlob": "c0d147e3055040ec885a2eaa25b834316574ac15"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenGateStoneFrame.js",
+      "bytes": 6597,
+      "sha256": "ad1652288b43f2a1d2eb5ca9e505a350308e2f5a83e60383558d036c5364fc67",
+      "gitBlob": "ca00c4f4c259151ec4ba3d4f2b26e7d0416870eb"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenRearEastWing.js",
+      "bytes": 5472,
+      "sha256": "6df52f2a2f9d514794a0e4ea64a6da06fbcd2e4193a59512f7daa770ecf342d8",
+      "gitBlob": "afc3bf6d5622a6eb5d2c95143a805aba3130853b"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenRearWestWing.js",
+      "bytes": 6143,
+      "sha256": "fbd0edd75c7542a1a5d4ccc761ea9463b80198cae3897401972460178a427b29",
+      "gitBlob": "bd8103116c1582d304254fc29019034397752594"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenRearWindows.js",
+      "bytes": 9370,
+      "sha256": "1aaff11c03b57e6fa2764e447bbd5f888f0a9554a43d50894bfc78bd6d7ce134",
+      "gitBlob": "3f3b831bb7f074f9150379380af7fe892cc5215d"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenSouthFace.js",
+      "bytes": 3183,
+      "sha256": "b58c03b2ffac3ef4f401f3d6b725566fb6e003d8547668d1a43d04db00a06371",
+      "gitBlob": "c21bde19a8c39e7c0acf87f64a172fea3d06e49e"
+    },
+    {
+      "path": "src/scene/palace/special/JingrenSouthWindows.js",
+      "bytes": 7459,
+      "sha256": "7b8c38f92d42eb3411b0511e7d8cc9b73ecc89a7d59a99ca013bda201d1c327d",
+      "gitBlob": "4473c6c51a177d5b50ea019ce83c20d21eaba0ea"
+    },
+    {
+      "path": "src/scene/palace/special/JingyangRearEastWing.js",
+      "bytes": 6351,
+      "sha256": "cf346191c33e6a30a4be8e7cdb7375b7bb8043f1be15653d0cb78b69397e45e8",
+      "gitBlob": "1e772c0b132bbad153459c4cf3263151a16f77e0"
+    },
+    {
+      "path": "src/scene/palace/special/JingyangRearFacade.js",
+      "bytes": 7916,
+      "sha256": "c75c0dd835827e75c6ed0813e1bbf9f5cb0b70a3e40388fa5b12c353dc015556",
+      "gitBlob": "4fa1fc462e31fb81898e5193b6fd334920d1dc8b"
+    },
+    {
+      "path": "src/scene/palace/special/JingyangRearWestWing.js",
+      "bytes": 6089,
+      "sha256": "d59d0f0d3b7d992a81c2a7a13691791157432a547698a92371f01d5437531300",
+      "gitBlob": "390b62a70240e91618faf3c6a61cb727cfe3b52a"
+    },
+    {
+      "path": "src/scene/palace/special/JingyangSouthVisual.js",
+      "bytes": 11687,
+      "sha256": "55b606dfe7a073f29cafb2601f75c6e0ffce89bc02ac418fd2b8bc43ea5ca1c4",
+      "gitBlob": "939073f9ce2f6f59f8581d8f7bba1aa352df17d6"
+    },
+    {
+      "path": "src/scene/palace/special/LinzhiGate.js",
+      "bytes": 5038,
+      "sha256": "aa05389c137d5bf5470d4fb8099c7872fae8c0787eb93367fa533239fcd63255",
+      "gitBlob": "d4a41e4d046b2ad597580e3996898e4036e15620"
+    },
+    {
+      "path": "src/scene/palace/special/RearHallProfiles.js",
+      "bytes": 1935,
+      "sha256": "5f5b2e121444606e80617a4a84ac1481b1c135835a612618bb1a736fe39e0cfb",
+      "gitBlob": "3dcdaf0e738e76216fd5b9e329f1b5147f847498"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+      "bytes": 64356,
+      "sha256": "931cf961e89334551ae89d114aabca5f9b870956cb71ae538e8418379fea5915",
+      "gitBlob": "f8509688d602f528ddbb1163e7690d444957a41f"
+    },
+    {
+      "path": "src/scene/palace/special/TianqiongFrontHall.js",
+      "bytes": 6726,
+      "sha256": "7497ba45a57d7909504e67d2a094da1b6f1bb0a3b8c3061737374c40646a1710",
+      "gitBlob": "f305376a4e63ab2b683257281f3579e5c1c4f61f"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiRuin.js",
+      "bytes": 22696,
+      "sha256": "f3cf2e06ba345d5ed911927aeac95aec7a451470d1b5dcbf82e0c68ec275dffa",
+      "gitBlob": "870c69aa973f0ae4dcdbbc8634dcb757d1d7eb98"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiRuinLOD.js",
+      "bytes": 6731,
+      "sha256": "39b481cd4362a97ba9418699457cfeaf1a9039a3e714bfe4d9ec16dd2c09816f",
+      "gitBlob": "37311083336525481f1eb81cb2f02d82a339bed3"
+    },
+    {
+      "path": "src/scene/palace/special/YanxiStorehouses.js",
+      "bytes": 7441,
+      "sha256": "037ac719a101bc92f8b8b2945a8c589735fb7288868ef49676cdd05f0c0e73e6",
+      "gitBlob": "dd8e1a7ea2a53792404674d29de705b2ae1c195c"
+    },
+    {
+      "path": "src/scene/palace/special/YongheCanopyKnees.js",
+      "bytes": 5253,
+      "sha256": "9f24e8d16eb69d9e38fd056ba9405a56ee8088775c2bb82e6fed691f52d5ff00",
+      "gitBlob": "00ffae254ef155425efe2f7bf2811de7745790c7"
+    },
+    {
+      "path": "src/scene/palace/special/YongheRearEastWing.js",
+      "bytes": 5989,
+      "sha256": "1e99d3fe12fb52ed0ebd2c869aa288a3e4d116a93eba8233af05fe6b96623041",
+      "gitBlob": "ca4a9a8118cbc618045479671ea22cd76f272e3f"
+    },
+    {
+      "path": "src/scene/palace/special/YongheRearWestWing.js",
+      "bytes": 6257,
+      "sha256": "65f3c72bf5da7a4a008d98ff286a409b4888208496d64bca96385051dc3459bf",
+      "gitBlob": "0fa07fbc6f7e44ab55eb2803f3c66d76fa9a269e"
+    },
+    {
+      "path": "src/scene/palace/special/YongheSouthVisual.js",
+      "bytes": 12276,
+      "sha256": "883bf363ede49c04617f2201de1bcc90858f0ab39afdb25e7d87df22bd89fa10",
+      "gitBlob": "cfed76f8a6ec535e3cb55b25d535e60d4349bd1b"
+    },
+    {
+      "path": "src/scene/palace/special/YuqingFrontHall.js",
+      "bytes": 6781,
+      "sha256": "d05effeb5db02eab4a602a6339d5ad42501d1ef8e3201614a974059d66a3f402",
+      "gitBlob": "9329ca3b44e81b7aaf9cbc80789ea02c35394a16"
+    },
+    {
+      "path": "src/scene/palace/special/ZhaigongFrontHall.js",
+      "bytes": 7304,
+      "sha256": "b097f2cbfa2c59e7b4639501ab803cbd8967e833bd4b5e6a151d5660c260626b",
+      "gitBlob": "c3169d3694dd73735da5913a16d22fa2869f1a43"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongcuiRearEastWing.js",
+      "bytes": 6408,
+      "sha256": "117d45130d9c278ccde37295e5011f8f194a10a887f850480bbb61732204c108",
+      "gitBlob": "4068028f90e2b831eab7deee1843fe5e55f0a0f3"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongcuiRearWestWing.js",
+      "bytes": 6459,
+      "sha256": "130ae333ca59fbcc3b35c82c424cc72156e4b3a650e040bdec9ce58daec304c9",
+      "gitBlob": "47da3f517465624ed557a88e0aab289746dc7487"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongcuiSouthVisual.js",
+      "bytes": 12343,
+      "sha256": "308ddd4dbb856864bbf075f7fec34fc42b571a97e78cc4ae4d6e5777cdcc70c2",
+      "gitBlob": "b9dac74849d9f286c9210ef759d5db4ad0e7d1e4"
+    },
+    {
+      "path": "src/scene/palace/special/ZhongsiGate.js",
+      "bytes": 5359,
+      "sha256": "6cd5ee53ba399e9ccd1101d7e1f7c7abbc29c4dfae6d2a26d60d7b521308aa91",
+      "gitBlob": "40746a92d3e448c59636ba13db8edf1c7176f35d"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 46384,
+      "sha256": "ee9b0a2a416ccf8907d537d834e0d980c520665f97ecb2ec7401d047bd76c640",
+      "gitBlob": "548d54da729d79df6eeb687e4f13300e280e65e7"
+    }
+  ],
+  "dedupNotes": [
+    "同顺斋=永和后殿",
+    "御书房=景阳后殿",
+    "延禧父院/灵沼轩/三库楼不可重计旧前后殿",
+    "乾东父组+五匿名壳不等六个完成院",
+    "unknown-inventory withheld指家具，并未删除24壳",
+    "EastWellPavilion是御花园东井亭，不填景仁后院井亭",
+    "毓庆宫本次只工字殿前殿；惇本独立，继德/味余/穿堂及门序仍不借填",
+    "斋宫只前殿抱厦；诚肃为独立后殿主体，父子范围明确不多计整个院落",
+    "天穹只主殿，不借神像/仙楼/院门或配殿补整对象",
+    "螽斯虽属原E61排期，运行挂west-six；不迁到east-six或借麟趾替身",
+    "奉先新侧阶白栏和中央接触是原FC-D8AEF2E8A9局部更新，不加第62项",
+    "[历史734c] 所有七个新增明确 partial，H26不等26项完整验收",
+    "[历史fe266] 本轮只六后配原N转部分H；前配、主殿、井亭均不重复认领；景仁两后配及其余N未新增",
+    "景阳东西后配只有官方图集拓扑推断且有遮挡，ownViewpoint=null；非专名vp/全立面实测",
+    "永和东西后配官方照片开门，本次闭壳为无室内资料的有限实现，非现实关闭",
+    "[历史fe266] H32是有明确局部体的代码分类，不是32项验收或完成比例",
+    "本轮仅景仁后东/后西原6/7由N转部分H；前配、前后主殿、井亭不重复认领",
+    "景仁后西仅图集拓扑/非专名vp；后东仅官文素壳ownPhoto:null/facadeVerified:false/0窗格，不能混作同等照片认证",
+    "景仁两配非通路身体边缘诊断保留，不因可见体零交叠宣称全盒body绿或背南缝可走",
+    "八个新增后配均仅局部体H分类，H34不是34整项或八后配完整验收"
+  ],
+  "followupOnly": {
+    "remainingN": [
+      {
+        "ordinal": 45,
+        "id": "FC-E8CC6A03C1",
+        "name": "前星门",
+        "remainingEvidence": "前星门未见运行门项，不能把毓庆anchor作门"
+      },
+      {
+        "ordinal": 46,
+        "id": "FC-4D8561AE5D",
+        "name": "祥旭门",
+        "remainingEvidence": "祥旭门未见运行门项，官文门序不等已建"
+      },
+      {
+        "ordinal": 48,
+        "id": "FC-7AACE4D51F",
+        "name": "继德堂",
+        "remainingEvidence": "继德堂未见独立体；与毓庆后殿为别名而非两栋"
+      },
+      {
+        "ordinal": 49,
+        "id": "FC-59F7BB24CB",
+        "name": "味余书室",
+        "remainingEvidence": "味余书室未见执行体，局部室内图不证明全后殿"
+      },
+      {
+        "ordinal": 54,
+        "id": "FC-9ABF21A275",
+        "name": "苍震门",
+        "remainingEvidence": "苍震门未见运行体，不认昭华/蹈和"
+      }
+    ],
+    "note": "Five original N remain; no construction or acceptance implied, and no substitution using parent objects, alias halls or generic shells."
+  },
+  "execution": "Read-only reconciliation at e41cfa; only independent /tmp JSON + generator; no shared writes, tests, Node, World, build, release or production edits.",
+  "runtimeRoot": "/workspace/scratch/02a8023d1a85/r158-place-display-0218",
+  "previousLedger": {
+    "path": "docs/photo-fidelity/batches/R160-PROGRESS-FE266-1257/STATUS-61.json",
+    "bytes": 93885,
+    "sha256": "89eee85d048d15836cec232fd5d2abeb43264a0c0b3b55fbb6b632404c6ebaa8",
+    "gitBlob": "4130ddc24943d731b071bf4a299c4825decfffda"
+  },
+  "historicalRepositoryLedger": {
+    "path": "docs/photo-fidelity/batches/R160-PROGRESS-FE266-1257/STATUS-61.json",
+    "bytes": 93885,
+    "sha256": "89eee85d048d15836cec232fd5d2abeb43264a0c0b3b55fbb6b632404c6ebaa8",
+    "gitBlob": "4130ddc24943d731b071bf4a299c4825decfffda"
+  },
+  "registerPin": {
+    "path": "docs/photo-fidelity/BUILDING-REGISTER-FROM-MD.json",
+    "bytes": 408414,
+    "sha256": "fa6ee5520e8fa1170bc988a072e2a5be0cfabd7041e70974b46f178cf035243d",
+    "gitBlob": "2f8a73a840e98e46a10b9b1c2ea88071934359bd"
+  },
+  "existingEvidencePins": [
+    {
+      "path": "docs/photo-fidelity/batches/R160-CENTRAL-ZHAIGONG-CUMULATIVE-0946/README.md",
+      "bytes": 3811,
+      "sha256": "ebe4599037283772326125a269850b3398e45d0c7dd9d0ed5af8951f9221f3cc",
+      "gitBlob": "17a959be993c713fe823d87f9ccd3d290e687fb3"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-CHENGSU-CUMULATIVE-1011/README.md",
+      "bytes": 2565,
+      "sha256": "821fee936ba10b9d660bb0a17ce7e0d0256deb9d9194b767a155812342887269",
+      "gitBlob": "58547900b360d6dd5c6e14c2757a365a3d010ef8"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-DUNBEN-CUMULATIVE-1034/README.md",
+      "bytes": 2705,
+      "sha256": "15a23cf58b9ea518fb82d65ab93c3bf1d25b72dd4f1a60121f48bb3bd0409694",
+      "gitBlob": "35f70ef480023d501bfc290bb5f3e523a9a08260"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-FENGXIAN-CUMULATIVE-0926/README.md",
+      "bytes": 3063,
+      "sha256": "31339422569cb4b3b1025e3aef96d2fefc0263bbd288004ae22090c36919abde",
+      "gitBlob": "c06d0955ecf981a0da7a42829874ac5c70f77341"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-EAST-CUMULATIVE-1327/EVIDENCE.json",
+      "bytes": 13584,
+      "sha256": "6941a40911cff840da7579e5bc30a5cd10dc77cdc294d789f07d276ab420e0a0",
+      "gitBlob": "9e5166c3738f0089c34d4453b40d9f496e2fbe77"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-EAST-CUMULATIVE-1327/README.md",
+      "bytes": 2855,
+      "sha256": "71582f80c0888519f8a1e08e4cf695d47970dd7d271d03f75b5655e11d1081ee",
+      "gitBlob": "668193fead0118cb5d635fd613bfec802f356044"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-EAST-CUMULATIVE-1327/VERIFICATION.json",
+      "bytes": 1718,
+      "sha256": "628d636fa408515de1cf62713f70b578ce65763ea4cb1e005742be75cb4e8513",
+      "gitBlob": "5edd9b4c4921671e87ee06d1234d98f3b7f0e64f"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-WEST-CUMULATIVE-1316/EVIDENCE.json",
+      "bytes": 13419,
+      "sha256": "93a02ebc2197802c9d2c59f6e3ba7785e33dd865bdd75fc418399e048258b85f",
+      "gitBlob": "8f08c97ca8e9a59ef2dbbfaa238e2a6ae24f0aa5"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-WEST-CUMULATIVE-1316/README.md",
+      "bytes": 2924,
+      "sha256": "66f9cd4cd2bd1b9cc78b2e3cc29a131a0f52c73bbc3e5d2447f4c3430d5df05a",
+      "gitBlob": "0ac5fe09b8fdaa663527358cf075787d407d3547"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGREN-REAR-WEST-CUMULATIVE-1316/VERIFICATION.json",
+      "bytes": 1707,
+      "sha256": "ce456de4b78487c92ddd117791d63daaede4d2fc41e06817bf217c770fc66dbe",
+      "gitBlob": "545b60565a714141f503bc61270a7c01acfdf0ae"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-EAST-CUMULATIVE-1253/EVIDENCE.json",
+      "bytes": 12641,
+      "sha256": "67576b4be308b8e91c2844135fd1e6e75fbe7a13b4051441ad0b9c72d23159f4",
+      "gitBlob": "af6e35c432ec98ac769eb31b39458f5e482e73aa"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-EAST-CUMULATIVE-1253/README.md",
+      "bytes": 2461,
+      "sha256": "61091496c745591751af8cc4d05a52ff22a09981f8baad799678fc1f686ada1a",
+      "gitBlob": "6b3ccfc1b9df2b2f82e27c380aa2a3088debf66b"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-EAST-CUMULATIVE-1253/VERIFICATION.json",
+      "bytes": 1664,
+      "sha256": "628f4eba3fd0616c7f0d37c44adcae51bb4bbf5562878c5943befd1de2674564",
+      "gitBlob": "23d4fa6e789926bf747ba881cb904627c4878290"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-WEST-CUMULATIVE-1241/EVIDENCE.json",
+      "bytes": 12470,
+      "sha256": "bb614a0564c6c6d1f599bec521922562ee350d75ab2e8b00201be0782cc6d255",
+      "gitBlob": "99dafa5edf944205c0777a1fba7b00e5bba00cf9"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-WEST-CUMULATIVE-1241/README.md",
+      "bytes": 2724,
+      "sha256": "762b025760290272c6ae09114b1e4ed650f0904de52ea7682a29092902fcc8ef",
+      "gitBlob": "b6f9e556c4aad09df5ab3e63a945d64bef977d69"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-JINGYANG-REAR-WEST-CUMULATIVE-1241/VERIFICATION.json",
+      "bytes": 1664,
+      "sha256": "644419f375e81c8653009c627cab04a6cbf7940db0575a4adbe8337c6376b8ae",
+      "gitBlob": "06d93df2cd9d4f8ee71430d15b3c65f959ce6063"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-LINZHI-CUMULATIVE-1100/README.md",
+      "bytes": 2203,
+      "sha256": "505c58feb1deafbce1f993506301b495940d2b84f56461260f33dbd443f35b44",
+      "gitBlob": "70d221a04c517188f8c7edebb8fc7f286d3866a9"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-TIANQIONG-CUMULATIVE-1048/README.md",
+      "bytes": 2312,
+      "sha256": "d86c67e2c16bb0c445e9a61946958ad439dfd47f604127c5971e412033811557",
+      "gitBlob": "1e7bdaded907dc7faa1d46014094058b5ea1a306"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-EAST-CUMULATIVE-1131/EVIDENCE.json",
+      "bytes": 11708,
+      "sha256": "b7cf1556daeaa8daf1f90b46834d28453bea2e291f19e33a2a4dc29e7125b96f",
+      "gitBlob": "3f6dde9ce2339239d375180d07f45dd453679557"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-EAST-CUMULATIVE-1131/README.md",
+      "bytes": 2833,
+      "sha256": "53ebd06e74802e0b5382994f13de22de4066a28f57a6ad484b8b223ef6145c95",
+      "gitBlob": "de8d8a4663e63e84118a8d116f341d33fcd852bb"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-EAST-CUMULATIVE-1131/VERIFICATION.json",
+      "bytes": 1660,
+      "sha256": "ee31377ecd7631476d3a80b0ff39822903947b8cdef9554e758a0490a86a0177",
+      "gitBlob": "6d9253d81c9d05c76f0f9321ee8b5ecff9816f75"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-WEST-CUMULATIVE-1152/EVIDENCE.json",
+      "bytes": 11873,
+      "sha256": "596f4c8e187353143c885b97e921c39a4c488acf9f32dcaa09afe05d157ecbdd",
+      "gitBlob": "86ef5fa64de1c7a3fe2c656540bcfe1b71922c1b"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-WEST-CUMULATIVE-1152/README.md",
+      "bytes": 2407,
+      "sha256": "01b13e35f34cadeaa0fc46ede92e8cb83b3c296d8ec09b3163cd7824303b8996",
+      "gitBlob": "47866a1272d1e3db168af73bf7648cad7dc626b9"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YONGHE-REAR-WEST-CUMULATIVE-1152/VERIFICATION.json",
+      "bytes": 1719,
+      "sha256": "61dc9d1460b3c2251b8b059f46bf0121234538afe74df143e86c6376401799e6",
+      "gitBlob": "cc3588eee383cfcbcc20fabf51ddcfee60d4c412"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-YUQING-CUMULATIVE-1023/README.md",
+      "bytes": 2571,
+      "sha256": "0552d47519724046a00a57006c43b119b7141a2b1298ce2f2d0fd1b0bc414c59",
+      "gitBlob": "ef5470e4c5f774259fccf19eceb15995ada33e54"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-EAST-CUMULATIVE-1208/EVIDENCE.json",
+      "bytes": 12092,
+      "sha256": "39ee201958bc7960b5ad7f03fc99c749f3ab6c58ebe1c995d518ca434ee2019f",
+      "gitBlob": "e6fc8d2b3fede715d3ff279404e1c73a657b8dfd"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-EAST-CUMULATIVE-1208/README.md",
+      "bytes": 2310,
+      "sha256": "839639cf5f22c7076e17bdf2e87c090d45d84ea3ce1d3365a6a1488fe5c9e00b",
+      "gitBlob": "b350a5da676151d086d194f13189ee300e0f5679"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-EAST-CUMULATIVE-1208/VERIFICATION.json",
+      "bytes": 1666,
+      "sha256": "9a6d0f00f8b84fb43382f81ac71fcd5d35a5145236f9d970b73940ef4cb254d6",
+      "gitBlob": "cb87a77703de3e39385461d0cf8dad631a69316b"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-WEST-CUMULATIVE-1217/EVIDENCE.json",
+      "bytes": 12275,
+      "sha256": "a6fa5e8d086f7955bc57c3674d2dc4afed92b31febd8dc1ea13b85abe382e456",
+      "gitBlob": "94cb5ac3b8defdf4516576df94907c16bfe52a5c"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-WEST-CUMULATIVE-1217/README.md",
+      "bytes": 2244,
+      "sha256": "fb5bfc639f3090d0c300d86150bba7971f3dfd22557063c59c093adef7db5621",
+      "gitBlob": "ff2a718da046378ea95912a8d1527149fd3565ab"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGCUI-REAR-WEST-CUMULATIVE-1217/VERIFICATION.json",
+      "bytes": 1667,
+      "sha256": "2df69b16901a2ea17092f67d2832c176353dfb6af5731d1260ff29f52a84eb78",
+      "gitBlob": "cf61f1654e861f3936db4310c2b5d4b981909097"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R160-ZHONGSI-CUMULATIVE-1111/README.md",
+      "bytes": 2389,
+      "sha256": "c01786247edb225502def529979756ac397e452fbe8d767cc8630a2b318a16e1",
+      "gitBlob": "832c2b5501cee331ab09e1b8cdf03126442d6632"
+    }
+  ],
+  "reconciliation": {
+    "onlyTwoPriorNChangedToPartialH": true,
+    "classificationChanges": [
+      {
+        "ordinal": 6,
+        "id": "FC-808DBF510F",
+        "name": "景仁宫后殿东配殿",
+        "before": "N",
+        "after": "H"
+      },
+      {
+        "ordinal": 7,
+        "id": "FC-C61F02E5E9",
+        "name": "景仁宫后殿西配殿",
+        "before": "N",
+        "after": "H"
+      }
+    ],
+    "allRowChanges": [
+      6,
+      7
+    ],
+    "unchangedRows": 59,
+    "wholeObjectAcceptanceNotAssertedCount": 61,
+    "same61OriginalIdNameSourceLineOrder": true,
+    "oldRuntimePinComparison": [
+      {
+        "path": "data/anchors.json",
+        "oldSHA256": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
+        "currentSHA256": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883"
+      },
+      {
+        "path": "data/zones/east-six.json",
+        "oldSHA256": "ed8a435c72795cc1e640c49ab9b006670d2aa8be48a41b8a8e72c756bed71dd8",
+        "currentSHA256": "ed8a435c72795cc1e640c49ab9b006670d2aa8be48a41b8a8e72c756bed71dd8"
+      },
+      {
+        "path": "data/zones/index.js",
+        "oldSHA256": "ed7d0b6154aed0af1460d9f96a1349fdf54764c00ae6f30b7eb9a175d20f3def",
+        "currentSHA256": "ed7d0b6154aed0af1460d9f96a1349fdf54764c00ae6f30b7eb9a175d20f3def"
+      },
+      {
+        "path": "data/zones/west-six.json",
+        "oldSHA256": "a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e",
+        "currentSHA256": "a98ddde19f72fa3facc8fdfe5ec3c3130fc1ad572c3d4550661b44885a42a66e"
+      },
+      {
+        "path": "src/config/constants.js",
+        "oldSHA256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d",
+        "currentSHA256": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d"
+      },
+      {
+        "path": "src/scene/Layout.js",
+        "oldSHA256": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2",
+        "currentSHA256": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2"
+      },
+      {
+        "path": "src/scene/palace/BPrincipalStairContact.js",
+        "oldSHA256": "f1a7d0d06d83d7742d03ddc95f512751bb320ba0a9f882f989f9198f95eaf141",
+        "currentSHA256": "f1a7d0d06d83d7742d03ddc95f512751bb320ba0a9f882f989f9198f95eaf141"
+      },
+      {
+        "path": "src/scene/palace/kit.js",
+        "oldSHA256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5",
+        "currentSHA256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5"
+      },
+      {
+        "path": "src/scene/palace/special/ChengqianArrival.js",
+        "oldSHA256": "2dae15ed968716e091e59988fc55672f5ee098168e3a3595850e4b53164d3b06",
+        "currentSHA256": "2dae15ed968716e091e59988fc55672f5ee098168e3a3595850e4b53164d3b06"
+      },
+      {
+        "path": "src/scene/palace/special/ChengqianCourtyardGroup.js",
+        "oldSHA256": "b4e23f6eb2e66d1048967f1c469889fb6c8fd6a2aacea653957f1dcaf9f6248f",
+        "currentSHA256": "b4e23f6eb2e66d1048967f1c469889fb6c8fd6a2aacea653957f1dcaf9f6248f"
+      },
+      {
+        "path": "src/scene/palace/special/ChengqianRearWings.js",
+        "oldSHA256": "4126a7bbf0baa1cad219bc7eb5d9fbdc483f32e31fb3a8308d897bb755064e40",
+        "currentSHA256": "4126a7bbf0baa1cad219bc7eb5d9fbdc483f32e31fb3a8308d897bb755064e40"
+      },
+      {
+        "path": "src/scene/palace/special/ChengqianSouthWindows.js",
+        "oldSHA256": "1cc05476e1c9559c77dac5bfecd77870f34449043cebaf46815afd1f588d37d5",
+        "currentSHA256": "1cc05476e1c9559c77dac5bfecd77870f34449043cebaf46815afd1f588d37d5"
+      },
+      {
+        "path": "src/scene/palace/special/ChengsuFrontHall.js",
+        "oldSHA256": "2505fe46035ff568bd986e9c17e0478afc7859d618ee4009dbd2db5cc49c4f55",
+        "currentSHA256": "2505fe46035ff568bd986e9c17e0478afc7859d618ee4009dbd2db5cc49c4f55"
+      },
+      {
+        "path": "src/scene/palace/special/DunbenFrontHall.js",
+        "oldSHA256": "0031d80648c0c5917244a4da8cd86604b6de974e08726cab98c459e8af44a133",
+        "currentSHA256": "0031d80648c0c5917244a4da8cd86604b6de974e08726cab98c459e8af44a133"
+      },
+      {
+        "path": "src/scene/palace/special/EastFiveRoofBeasts.js",
+        "oldSHA256": "817369f087e922a270371e3b40ee8865a393f1c03a9ae349dcfa0487f9220e24",
+        "currentSHA256": "817369f087e922a270371e3b40ee8865a393f1c03a9ae349dcfa0487f9220e24"
+      },
+      {
+        "path": "src/scene/palace/special/EastResidentialFacades.js",
+        "oldSHA256": "5df7b949ba24ef9332c25f0709a58fd2b7aac901ce51ac9f43aea2abf029d0af",
+        "currentSHA256": "5df7b949ba24ef9332c25f0709a58fd2b7aac901ce51ac9f43aea2abf029d0af"
+      },
+      {
+        "path": "src/scene/palace/special/EastUnknownAnnexInventory.js",
+        "oldSHA256": "e4e988ae80fa85139ea8751aecb44cc23640b21fbbe08e1530d871130749777c",
+        "currentSHA256": "e4e988ae80fa85139ea8751aecb44cc23640b21fbbe08e1530d871130749777c"
+      },
+      {
+        "path": "src/scene/palace/special/EastUnknownThroneInventory.js",
+        "oldSHA256": "e0620141ae5a643b57fd46b7d7a00d7a6a7fc61c96d5f50266bd6fb8c5cb20c7",
+        "currentSHA256": "e0620141ae5a643b57fd46b7d7a00d7a6a7fc61c96d5f50266bd6fb8c5cb20c7"
+      },
+      {
+        "path": "src/scene/palace/special/EastWellPavilion.js",
+        "oldSHA256": "359b70f9fc3c3b869a15727402c301df6be9866b19f2ab31d326d61ccf525f7d",
+        "currentSHA256": "359b70f9fc3c3b869a15727402c301df6be9866b19f2ab31d326d61ccf525f7d"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianCentralContact.js",
+        "oldSHA256": "bbdb475dffee74681a1e56b897ce89a6a24d6c1cbb05325e252523c8ca7a72df",
+        "currentSHA256": "bbdb475dffee74681a1e56b897ce89a6a24d6c1cbb05325e252523c8ca7a72df"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianFrontContact.js",
+        "oldSHA256": "6933f48d114c115aa6da8320ec76cfeefc8f2bc946a1194eb5ed2c947e6829da",
+        "currentSHA256": "6933f48d114c115aa6da8320ec76cfeefc8f2bc946a1194eb5ed2c947e6829da"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianFrontSteps.js",
+        "oldSHA256": "d0d9b9b9d5401876f5c3c6d9f218b837f4b2c185984e054f40fb30b253f582e1",
+        "currentSHA256": "d0d9b9b9d5401876f5c3c6d9f218b837f4b2c185984e054f40fb30b253f582e1"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianFrontVats.js",
+        "oldSHA256": "2a25dfd3f29df7463a1df5474552843a8caa012e49b620d3721779f5b13f009e",
+        "currentSHA256": "2a25dfd3f29df7463a1df5474552843a8caa012e49b620d3721779f5b13f009e"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianFrontWindows.js",
+        "oldSHA256": "18a2d3d543fe4e5139b08dbc2ee888cd78c3c6f82233a7ab97610044706e417c",
+        "currentSHA256": "18a2d3d543fe4e5139b08dbc2ee888cd78c3c6f82233a7ab97610044706e417c"
+      },
+      {
+        "path": "src/scene/palace/special/FengxianRearProfile.js",
+        "oldSHA256": "a2d0c86b9057471d98330d35f4b3164522c67c8390fbf9000d0bd6dcdd7e016c",
+        "currentSHA256": "a2d0c86b9057471d98330d35f4b3164522c67c8390fbf9000d0bd6dcdd7e016c"
+      },
+      {
+        "path": "src/scene/palace/special/JingrenGateStoneFrame.js",
+        "oldSHA256": "ad1652288b43f2a1d2eb5ca9e505a350308e2f5a83e60383558d036c5364fc67",
+        "currentSHA256": "ad1652288b43f2a1d2eb5ca9e505a350308e2f5a83e60383558d036c5364fc67"
+      },
+      {
+        "path": "src/scene/palace/special/JingrenRearWindows.js",
+        "oldSHA256": "1aaff11c03b57e6fa2764e447bbd5f888f0a9554a43d50894bfc78bd6d7ce134",
+        "currentSHA256": "1aaff11c03b57e6fa2764e447bbd5f888f0a9554a43d50894bfc78bd6d7ce134"
+      },
+      {
+        "path": "src/scene/palace/special/JingrenSouthFace.js",
+        "oldSHA256": "b58c03b2ffac3ef4f401f3d6b725566fb6e003d8547668d1a43d04db00a06371",
+        "currentSHA256": "b58c03b2ffac3ef4f401f3d6b725566fb6e003d8547668d1a43d04db00a06371"
+      },
+      {
+        "path": "src/scene/palace/special/JingrenSouthWindows.js",
+        "oldSHA256": "7b8c38f92d42eb3411b0511e7d8cc9b73ecc89a7d59a99ca013bda201d1c327d",
+        "currentSHA256": "7b8c38f92d42eb3411b0511e7d8cc9b73ecc89a7d59a99ca013bda201d1c327d"
+      },
+      {
+        "path": "src/scene/palace/special/JingyangRearEastWing.js",
+        "oldSHA256": "cf346191c33e6a30a4be8e7cdb7375b7bb8043f1be15653d0cb78b69397e45e8",
+        "currentSHA256": "cf346191c33e6a30a4be8e7cdb7375b7bb8043f1be15653d0cb78b69397e45e8"
+      },
+      {
+        "path": "src/scene/palace/special/JingyangRearFacade.js",
+        "oldSHA256": "c75c0dd835827e75c6ed0813e1bbf9f5cb0b70a3e40388fa5b12c353dc015556",
+        "currentSHA256": "c75c0dd835827e75c6ed0813e1bbf9f5cb0b70a3e40388fa5b12c353dc015556"
+      },
+      {
+        "path": "src/scene/palace/special/JingyangRearWestWing.js",
+        "oldSHA256": "d59d0f0d3b7d992a81c2a7a13691791157432a547698a92371f01d5437531300",
+        "currentSHA256": "d59d0f0d3b7d992a81c2a7a13691791157432a547698a92371f01d5437531300"
+      },
+      {
+        "path": "src/scene/palace/special/JingyangSouthVisual.js",
+        "oldSHA256": "55b606dfe7a073f29cafb2601f75c6e0ffce89bc02ac418fd2b8bc43ea5ca1c4",
+        "currentSHA256": "55b606dfe7a073f29cafb2601f75c6e0ffce89bc02ac418fd2b8bc43ea5ca1c4"
+      },
+      {
+        "path": "src/scene/palace/special/LinzhiGate.js",
+        "oldSHA256": "aa05389c137d5bf5470d4fb8099c7872fae8c0787eb93367fa533239fcd63255",
+        "currentSHA256": "aa05389c137d5bf5470d4fb8099c7872fae8c0787eb93367fa533239fcd63255"
+      },
+      {
+        "path": "src/scene/palace/special/RearHallProfiles.js",
+        "oldSHA256": "5f5b2e121444606e80617a4a84ac1481b1c135835a612618bb1a736fe39e0cfb",
+        "currentSHA256": "5f5b2e121444606e80617a4a84ac1481b1c135835a612618bb1a736fe39e0cfb"
+      },
+      {
+        "path": "src/scene/palace/special/RemainingResidentialHalls.js",
+        "oldSHA256": "931cf961e89334551ae89d114aabca5f9b870956cb71ae538e8418379fea5915",
+        "currentSHA256": "931cf961e89334551ae89d114aabca5f9b870956cb71ae538e8418379fea5915"
+      },
+      {
+        "path": "src/scene/palace/special/TianqiongFrontHall.js",
+        "oldSHA256": "7497ba45a57d7909504e67d2a094da1b6f1bb0a3b8c3061737374c40646a1710",
+        "currentSHA256": "7497ba45a57d7909504e67d2a094da1b6f1bb0a3b8c3061737374c40646a1710"
+      },
+      {
+        "path": "src/scene/palace/special/YanxiRuin.js",
+        "oldSHA256": "f3cf2e06ba345d5ed911927aeac95aec7a451470d1b5dcbf82e0c68ec275dffa",
+        "currentSHA256": "f3cf2e06ba345d5ed911927aeac95aec7a451470d1b5dcbf82e0c68ec275dffa"
+      },
+      {
+        "path": "src/scene/palace/special/YanxiRuinLOD.js",
+        "oldSHA256": "39b481cd4362a97ba9418699457cfeaf1a9039a3e714bfe4d9ec16dd2c09816f",
+        "currentSHA256": "39b481cd4362a97ba9418699457cfeaf1a9039a3e714bfe4d9ec16dd2c09816f"
+      },
+      {
+        "path": "src/scene/palace/special/YanxiStorehouses.js",
+        "oldSHA256": "037ac719a101bc92f8b8b2945a8c589735fb7288868ef49676cdd05f0c0e73e6",
+        "currentSHA256": "037ac719a101bc92f8b8b2945a8c589735fb7288868ef49676cdd05f0c0e73e6"
+      },
+      {
+        "path": "src/scene/palace/special/YongheCanopyKnees.js",
+        "oldSHA256": "9f24e8d16eb69d9e38fd056ba9405a56ee8088775c2bb82e6fed691f52d5ff00",
+        "currentSHA256": "9f24e8d16eb69d9e38fd056ba9405a56ee8088775c2bb82e6fed691f52d5ff00"
+      },
+      {
+        "path": "src/scene/palace/special/YongheRearEastWing.js",
+        "oldSHA256": "1e99d3fe12fb52ed0ebd2c869aa288a3e4d116a93eba8233af05fe6b96623041",
+        "currentSHA256": "1e99d3fe12fb52ed0ebd2c869aa288a3e4d116a93eba8233af05fe6b96623041"
+      },
+      {
+        "path": "src/scene/palace/special/YongheRearWestWing.js",
+        "oldSHA256": "65f3c72bf5da7a4a008d98ff286a409b4888208496d64bca96385051dc3459bf",
+        "currentSHA256": "65f3c72bf5da7a4a008d98ff286a409b4888208496d64bca96385051dc3459bf"
+      },
+      {
+        "path": "src/scene/palace/special/YongheSouthVisual.js",
+        "oldSHA256": "883bf363ede49c04617f2201de1bcc90858f0ab39afdb25e7d87df22bd89fa10",
+        "currentSHA256": "883bf363ede49c04617f2201de1bcc90858f0ab39afdb25e7d87df22bd89fa10"
+      },
+      {
+        "path": "src/scene/palace/special/YuqingFrontHall.js",
+        "oldSHA256": "d05effeb5db02eab4a602a6339d5ad42501d1ef8e3201614a974059d66a3f402",
+        "currentSHA256": "d05effeb5db02eab4a602a6339d5ad42501d1ef8e3201614a974059d66a3f402"
+      },
+      {
+        "path": "src/scene/palace/special/ZhaigongFrontHall.js",
+        "oldSHA256": "b097f2cbfa2c59e7b4639501ab803cbd8967e833bd4b5e6a151d5660c260626b",
+        "currentSHA256": "b097f2cbfa2c59e7b4639501ab803cbd8967e833bd4b5e6a151d5660c260626b"
+      },
+      {
+        "path": "src/scene/palace/special/ZhongcuiRearEastWing.js",
+        "oldSHA256": "117d45130d9c278ccde37295e5011f8f194a10a887f850480bbb61732204c108",
+        "currentSHA256": "117d45130d9c278ccde37295e5011f8f194a10a887f850480bbb61732204c108"
+      },
+      {
+        "path": "src/scene/palace/special/ZhongcuiRearWestWing.js",
+        "oldSHA256": "130ae333ca59fbcc3b35c82c424cc72156e4b3a650e040bdec9ce58daec304c9",
+        "currentSHA256": "130ae333ca59fbcc3b35c82c424cc72156e4b3a650e040bdec9ce58daec304c9"
+      },
+      {
+        "path": "src/scene/palace/special/ZhongcuiSouthVisual.js",
+        "oldSHA256": "308ddd4dbb856864bbf075f7fec34fc42b571a97e78cc4ae4d6e5777cdcc70c2",
+        "currentSHA256": "308ddd4dbb856864bbf075f7fec34fc42b571a97e78cc4ae4d6e5777cdcc70c2"
+      },
+      {
+        "path": "src/scene/palace/special/ZhongsiGate.js",
+        "oldSHA256": "6cd5ee53ba399e9ccd1101d7e1f7c7abbc29c4dfae6d2a26d60d7b521308aa91",
+        "currentSHA256": "6cd5ee53ba399e9ccd1101d7e1f7c7abbc29c4dfae6d2a26d60d7b521308aa91"
+      },
+      {
+        "path": "src/scene/zones/ZoneBase.js",
+        "oldSHA256": "c6d2f7c47acf82611d227943ca4168be76c9417069dd8205601097ebd247965e",
+        "currentSHA256": "ee9b0a2a416ccf8907d537d834e0d980c520665f97ecb2ec7401d047bd76c640"
+      }
+    ],
+    "uniqueNewHookVerification": [
+      {
+        "ordinal": 6,
+        "id": "FC-808DBF510F",
+        "builder": "src/scene/palace/special/JingrenRearEastWing.js",
+        "path": "src/scene/zones/ZoneBase.js",
+        "importLine": 1,
+        "callLine": 307,
+        "call": "buildJingrenRearEastWing(this.kit,this.kit.root.name);",
+        "staticCallCount": 1,
+        "scope": "static current call site + east-six guard; no new execution in ledger audit"
+      },
+      {
+        "ordinal": 7,
+        "id": "FC-C61F02E5E9",
+        "builder": "src/scene/palace/special/JingrenRearWestWing.js",
+        "path": "src/scene/zones/ZoneBase.js",
+        "importLine": 2,
+        "callLine": 306,
+        "call": "buildJingrenRearWestWing(this.kit,this.kit.root.name);",
+        "staticCallCount": 1,
+        "scope": "static current call site + east-six guard; no new execution in ledger audit"
+      }
+    ],
+    "currentPreFinishChainReferences": [
+      {
+        "ordinal": 20,
+        "sourceObjectId": "FC-29A3CF12B3",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildZhongcuiRearEastWing",
+        "calls": [
+          {
+            "line": 302,
+            "text": "buildZhongcuiRearEastWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 21,
+        "sourceObjectId": "FC-A50FDDE804",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildZhongcuiRearWestWing",
+        "calls": [
+          {
+            "line": 303,
+            "text": "buildZhongcuiRearWestWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 27,
+        "sourceObjectId": "FC-D240B3E3A3",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildYongheRearEastWing",
+        "calls": [
+          {
+            "line": 300,
+            "text": "buildYongheRearEastWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 28,
+        "sourceObjectId": "FC-171FEF95E4",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildYongheRearWestWing",
+        "calls": [
+          {
+            "line": 301,
+            "text": "buildYongheRearWestWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 34,
+        "sourceObjectId": "FC-FE29005359",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildJingyangRearEastWing",
+        "calls": [
+          {
+            "line": 305,
+            "text": "buildJingyangRearEastWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 35,
+        "sourceObjectId": "FC-BD30A6AEF7",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildJingyangRearWestWing",
+        "calls": [
+          {
+            "line": 304,
+            "text": "buildJingyangRearWestWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 41,
+        "sourceObjectId": "FC-C716A8E34A",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildYuqingFrontHall",
+        "calls": [
+          {
+            "line": 295,
+            "text": "buildYuqingFrontHall(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 42,
+        "sourceObjectId": "FC-8D4739DF1E",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildZhaigongFrontHall",
+        "calls": [
+          {
+            "line": 293,
+            "text": "buildZhaigongFrontHall(this.kit,this.zoneJson.id);"
+          }
+        ]
+      },
+      {
+        "ordinal": 44,
+        "sourceObjectId": "FC-DD68A90CC7",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildChengsuFrontHall",
+        "calls": [
+          {
+            "line": 294,
+            "text": "buildChengsuFrontHall(this.kit,this.zoneJson.id);"
+          }
+        ]
+      },
+      {
+        "ordinal": 47,
+        "sourceObjectId": "FC-1ED6740852",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildDunbenFrontHall",
+        "calls": [
+          {
+            "line": 296,
+            "text": "buildDunbenFrontHall(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 50,
+        "sourceObjectId": "FC-CF00F15FA8",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildZhongsiGate",
+        "calls": [
+          {
+            "line": 299,
+            "text": "buildZhongsiGate(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 51,
+        "sourceObjectId": "FC-7CE51EACB4",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildTianqiongFrontHall",
+        "calls": [
+          {
+            "line": 297,
+            "text": "buildTianqiongFrontHall(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 53,
+        "sourceObjectId": "FC-75AB2BF1F2",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildLinzhiGate",
+        "calls": [
+          {
+            "line": 298,
+            "text": "buildLinzhiGate(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 6,
+        "sourceObjectId": "FC-808DBF510F",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildJingrenRearEastWing",
+        "calls": [
+          {
+            "line": 307,
+            "text": "buildJingrenRearEastWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      },
+      {
+        "ordinal": 7,
+        "sourceObjectId": "FC-C61F02E5E9",
+        "path": "src/scene/zones/ZoneBase.js",
+        "function": "buildJingrenRearWestWing",
+        "calls": [
+          {
+            "line": 306,
+            "text": "buildJingrenRearWestWing(this.kit,this.kit.root.name);"
+          }
+        ]
+      }
+    ],
+    "lineLocatorProvenance": "The 59 unchanged objects keep historical line locators from their prior records. Current hook locators are separate to account for added import lines without rewriting unchanged objects.",
+    "runtimeDiffFromPrior": [
+      "A\tsrc/scene/palace/special/JingrenRearEastWing.js",
+      "A\tsrc/scene/palace/special/JingrenRearWestWing.js",
+      "M\tsrc/scene/zones/ZoneBase.js"
+    ],
+    "staticOnly": "No Node/World/replay/GPU/build; existing audited cumulative documents pinned, not newly rerun."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "base": "458cea434b60fa5e9b3a31fa84c2d90ba1ab4c36",
+  "before": {
+    "arrived": 4,
+    "total": 4,
+    "frames": 312,
+    "maxFeetGroundGap": 1.09111111111111,
+    "maxFeetDatumGap": 1.2
+  },
+  "after": {
+    "arrived": 4,
+    "total": 4,
+    "frames": 312,
+    "maxFeetGroundGap": 0,
+    "maxFeetDatumGap": 1.2
+  },
+  "components": 7,
+  "oldBRegression": 9,
+  "rawLocalOnly": {
+    "/tmp/r158-zhujing-north-0216.test.mjs": "c3a99c716553ba7d697b88e4b52f14aa5422d8645a9ed5a8a2e7d2db7762806c",
+    "/tmp/r158-zhujing-north-0216.log": "8b562e3476ffc26349a284cf6f94923955db03b2c8e90b346a040329dbf0f3ce",
+    "/tmp/r158-zhujing-north-0216.json.gz": "3a8eb300bfce524420faa0d611158da70543e13e3a39b7cb56f5b7851a40a6c5",
+    "/tmp/r158-zhujing-north-0218-before.json": "0e269e55ce7ffe8a9feb3c115e4b859c3a0494e41168256d6573158085a3f3cd",
+    "/tmp/r158-zhujing-north-0218-red.log": "722f05515f1414fc0878de9cce1cd6b58c12096173dabf8a324c698893022e84",
+    "/tmp/r158-zhujing-north-0218-component.log": "e7528d733cf83a903547e0f3c660244bc8489e054d83a6e7be09e16fc570104e",
+    "/tmp/r158-zhujing-north-0218-after.log": "f398ba382ab23275a613bb03fdc2a6b6ef94e03c6f066e41e76207c3dfacd2a9",
+    "/tmp/r158-zhujing-north-0218-after.json.gz": "43473d6b0812de5d6c8a6a92d2726ff9a348b299a09fb03993d1944191de0ba7",
+    "/tmp/r158-zhujing-north-0218-old-b.log": "cc4d250c74e2fec234012053b18fc8ecac72534d332539b1f1f0d906fe0c5aa9",
+    "/tmp/r158-zhujing-contact-old-b-loader.mjs": "d19b8d897dde6356ca6666c14b02aeb714ede39fb1a0f4e1f414aa08c7b41644"
+  },
+  "baselineCapture": {
+    "meshHash": "4ecffd1d4ba637bfb620f20324b5bc2c47396a60d03c43d5a656a3fefc2c52fe",
+    "colliderHash": "d0297cee71b0e8ffd181bcf93bde75f0fed7c188856eebe7cec9d211e282d19f",
+    "supportHash": "961bafe912008103eea13e78971a529181aa564a32e576785750d037ba423918",
+    "roomHash": "1775d2e5a2f5e1b963c3a231d9f20bb2d02ed6db5012a3b3d01cfc6617d01630",
+    "mapHash": "802799846d85a10ea60175f116650ccc1c131c659d28cadfcca8a23553bf953d",
+    "regionHash": "97d9699443c24f3535562c0ea873fa18313309ae943221873463fce86aabd369",
+    "surfaces": [
+      {
+        "type": "box",
+        "box": {
+          "isBox3": true,
+          "min": {
+            "x": -200.20000000000002,
+            "y": 1.2,
+            "z": -173.8
+          },
+          "max": {
+            "x": -172.6,
+            "y": 1.2,
+            "z": -160.2
+          }
+        }
+      },
+      {
+        "type": "ramp",
+        "minX": -188.70000000000002,
+        "maxX": -184.1,
+        "minZ": -175.72,
+        "maxZ": -173.8,
+        "axis": "z",
+        "a0": -173.8,
+        "a1": -175.72,
+        "y0": 1.2,
+        "y1": 0
+      },
+      {
+        "type": "ramp",
+        "minX": -188.70000000000002,
+        "maxX": -184.1,
+        "minZ": -160.2,
+        "maxZ": -158.28,
+        "axis": "z",
+        "a0": -160.2,
+        "a1": -158.28,
+        "y0": 1.2,
+        "y1": 0
+      }
+    ],
+    "counts": {
+      "meshes": 383,
+      "colliders": 34,
+      "supports": 3,
+      "rooms": 1,
+      "maps": 1
+    }
+  },
+  "afterLoadedPinsStable": true,
+  "afterLoadedSourceCount": 552,
+  "motionSuffixSha256": "96dd24f7d64b0e77e6ae5a4bf3649be1dee1a41575d764ce38708a6af60c792b",
+  "globalUnchanged": {
+    "src/utils/Collision.js": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+  },
+  "oldBCommand": "node --import /tmp/r158-zhujing-contact-old-b-loader.mjs --test ../r158-wenhua-route-1821/tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs",
+  "movementXZIdentical": true,
+  "motionSuffixBoundary": "UTF-8 bytes from and INCLUDING function toeRect( through EOF"
+}

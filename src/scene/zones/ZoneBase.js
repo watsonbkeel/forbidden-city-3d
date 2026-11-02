@@ -1,3 +1,53 @@
+import {applyGardenStreetGatePins} from '../palace/special/GardenStreetGatePins.js';
+import {buildQinanIncensePavilions} from '../palace/special/QinanIncensePavilions.js';
+import {buildYucuiPavilion} from '../palace/special/YucuiPavilion.js';
+import {buildChengguangGate} from '../palace/special/ChengguangGate.js';
+import {buildYanheGate} from '../palace/special/YanheGate.js';
+import {buildJifuGate} from '../palace/special/JifuGate.js';
+import {buildYangxingZhai} from '../palace/special/YangxingZhai.js';
+import {buildNingxiangPavilion} from '../palace/special/NingxiangPavilion.js';
+import {buildYanhuiHall} from '../palace/special/YanhuiHall.js';
+import {buildChizaoHall} from '../palace/special/ChizaoHall.js';
+import {buildWeiyuHall} from '../palace/special/WeiyuHall.js';
+import {buildJiangxueHall} from '../palace/special/JiangxueHall.js';
+import {buildChangchunLezhiWing} from '../palace/special/ChangchunLezhiWing.js';
+import {buildChangchunYishouWing} from '../palace/special/ChangchunYishouWing.js';
+import {buildTihePingkangWing} from '../palace/special/TihePingkangWing.js';
+import {buildTiheYishouWing} from '../palace/special/TiheYishouWing.js';
+import {buildXianfuRearEastWing} from '../palace/special/XianfuRearEastWing.js';
+import {buildXianfuRearWestWing} from '../palace/special/XianfuRearWestWing.js';
+import {buildYongshouRearEastWing} from '../palace/special/YongshouRearEastWing.js';
+import {buildYongshouRearWestWing} from '../palace/special/YongshouRearWestWing.js';
+import {buildJideRearHall} from '../palace/special/JideRearHall.js';
+import {buildJingrenRearEastWing} from '../palace/special/JingrenRearEastWing.js';
+import {buildJingrenRearWestWing} from '../palace/special/JingrenRearWestWing.js';
+import {buildJingyangRearEastWing} from '../palace/special/JingyangRearEastWing.js';
+import {buildJingyangRearWestWing} from '../palace/special/JingyangRearWestWing.js';
+import {buildZhongcuiRearWestWing} from '../palace/special/ZhongcuiRearWestWing.js';
+import {buildZhongcuiRearEastWing} from '../palace/special/ZhongcuiRearEastWing.js';
+import {buildYongheRearWestWing} from '../palace/special/YongheRearWestWing.js';
+import {buildYongheRearEastWing} from '../palace/special/YongheRearEastWing.js';
+import {buildZhongsiGate} from '../palace/special/ZhongsiGate.js';
+import {buildLinzhiGate} from '../palace/special/LinzhiGate.js';
+import {buildTianqiongFrontHall} from '../palace/special/TianqiongFrontHall.js';
+import {buildDunbenFrontHall} from '../palace/special/DunbenFrontHall.js';
+import {buildYuqingFrontHall} from '../palace/special/YuqingFrontHall.js';
+import {buildChengsuFrontHall} from '../palace/special/ChengsuFrontHall.js';
+import {registerFengxianCentralContact} from '../palace/special/FengxianCentralContact.js';
+import {buildZhaigongFrontHall} from '../palace/special/ZhaigongFrontHall.js';
+import {finishFengxianFrontSteps} from '../palace/special/FengxianFrontSteps.js';
+import {buildJiuqingSouthPorchFragment} from '../palace/special/JiuqingSouthPorchFragment.js';
+import {buildJunjiSouthPorchFragment} from '../palace/special/JunjiSouthPorchFragment.js';
+import {buildShangshuSouthFragment} from '../palace/special/ShangshuSouthFragment.js';
+import {publicMapItem} from '../../ui/PublicPlaceNames.js';
+import {buildNansansuoWestMiddleHall} from '../palace/special/NansansuoWestMiddleHall.js';
+import {buildNansansuoMiddleWell} from '../palace/special/NansansuoMiddleWell.js';
+import {buildNansansuoMiddleEastSideHall} from '../palace/special/NansansuoMiddleEastSideHall.js';
+import {buildNansansuoMiddleWestSideHall} from '../palace/special/NansansuoMiddleWestSideHall.js';
+import {buildNansansuoWestCourtWestSideHall} from '../palace/special/NansansuoWestCourtWestSideHall.js';
+import {buildNansansuoEastCourtEastSideHall} from '../palace/special/NansansuoEastCourtEastSideHall.js';
+import {buildNansansuoWestCourtEastSideHall} from '../palace/special/NansansuoWestCourtEastSideHall.js';
+import {buildNansansuoEastMiddleHall} from '../palace/special/NansansuoEastMiddleHall.js';
 import {buildNansansuoMiddleHall} from '../palace/special/NansansuoMiddleHall.js';
 import {buildNeigeHanbenTextVolume} from '../palace/special/NeigeHanbenTextVolume.js';
 import {finishWenhuaCompanionSteps} from '../palace/special/WenhuaCompanionSteps.js';
@@ -6,6 +56,9 @@ import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehous
 import {buildDapaoWell} from '../palace/special/DapaoWell.js';
 import {buildLuanjiaEastWing} from '../palace/special/LuanjiaEastWing.js';
 import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
+import {finishLuanjiaEastTwoLevel} from '../palace/special/LuanjiaEastTwoLevel.js';
+import {finishLuanjiaSouthTwoLevel} from '../palace/special/LuanjiaSouthTwoLevel.js';
+import {finishLuanjiaSouthPhotoWindows} from '../palace/special/LuanjiaSouthPhotoWindows.js';
 import {buildZhifangShell} from '../palace/special/ZhifangShell.js';
 import {buildZhishengShell} from '../palace/special/ZhishengShell.js';
 import {buildNeigeTextSideWings} from '../palace/special/NeigeTextSideWings.js';
@@ -41,6 +94,7 @@ import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js'
 import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
 import {finishArrowSouthHeadBands} from '../palace/special/ArrowSouthHeadBands.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
+import {finishWenyuanGroundFans} from '../palace/special/WenyuanGroundFans.js';
 import {finishWenyuanSouthVeranda} from '../palace/special/WenyuanSouthVeranda.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
@@ -95,6 +149,8 @@ import { rearHallProfile } from '../palace/special/RearHallProfiles.js';
 import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
 import { buildYudeBath } from '../palace/special/YudeBath.js';
 import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
+import {finishBaoyunPorchLions} from '../palace/special/BaoyunPorchLions.js';
+import {finishBaoyunExteriorSteps} from '../palace/special/BaoyunExteriorSteps.js';
 import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
 import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
 import * as THREE from 'three';
@@ -205,6 +261,7 @@ export class ZoneBase {
     finishTiheSouthVisual(this.kit);
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
+    finishWenyuanGroundFans(this.kit);
     finishWenyuanSouthVeranda(this.kit);
     finishWenyuanEntryTread(this.kit);
     finishWenhuaSouthWindows(this.kit);
@@ -219,6 +276,14 @@ export class ZoneBase {
     finishNansansuoCourtyardGates(this.kit,this.zoneJson);
     finishNansansuoNorthEaves(this.kit,this.zoneJson);
     buildNansansuoMiddleHall(this.kit,this.zoneJson);
+    buildNansansuoEastMiddleHall(this.kit,this.zoneJson);
+    buildNansansuoWestMiddleHall(this.kit,this.zoneJson);
+    buildNansansuoMiddleWell(this.kit,this.zoneJson);
+    buildNansansuoMiddleEastSideHall(this.kit,this.zoneJson);
+    buildNansansuoMiddleWestSideHall(this.kit,this.zoneJson);
+    buildNansansuoWestCourtWestSideHall(this.kit,this.zoneJson);
+    buildNansansuoEastCourtEastSideHall(this.kit,this.zoneJson);
+    buildNansansuoWestCourtEastSideHall(this.kit,this.zoneJson);
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
     buildNeigeCourt(this.kit, this.zoneJson);
@@ -238,7 +303,49 @@ export class ZoneBase {
     buildJingxingGate(this.kit, this.zoneJson);
     buildLuanjiaEastWing(this.kit, this.zoneJson);
     buildLuanjiaSouthWing(this.kit, this.zoneJson);
+    finishLuanjiaEastTwoLevel(this.kit, this.zoneJson);
+    finishLuanjiaSouthTwoLevel(this.kit, this.zoneJson);
+    finishLuanjiaSouthPhotoWindows(this.kit, this.zoneJson);
     finishWenhuaCompanionSteps(this.kit, this.zoneJson);
+    finishBaoyunPorchLions(this.kit);
+    finishBaoyunExteriorSteps(this.kit);
+    finishFengxianFrontSteps(this.kit);
+    registerFengxianCentralContact(this.kit);
+    buildZhaigongFrontHall(this.kit,this.zoneJson.id);
+    buildChengsuFrontHall(this.kit,this.zoneJson.id);
+    buildYuqingFrontHall(this.kit,this.kit.root.name);
+    buildDunbenFrontHall(this.kit,this.kit.root.name);
+    buildTianqiongFrontHall(this.kit,this.kit.root.name);
+    buildLinzhiGate(this.kit,this.kit.root.name);
+    buildZhongsiGate(this.kit,this.kit.root.name);
+    buildYongheRearEastWing(this.kit,this.kit.root.name);
+    buildYongheRearWestWing(this.kit,this.kit.root.name);
+    buildZhongcuiRearEastWing(this.kit,this.kit.root.name);
+    buildZhongcuiRearWestWing(this.kit,this.kit.root.name);
+    buildJingyangRearWestWing(this.kit,this.kit.root.name);
+    buildJingyangRearEastWing(this.kit,this.kit.root.name);
+    buildJingrenRearWestWing(this.kit,this.kit.root.name);
+    buildJingrenRearEastWing(this.kit,this.kit.root.name);
+    buildJideRearHall(this.kit,this.kit.root.name);
+    buildYongshouRearWestWing(this.kit,this.kit.root.name);
+    buildYongshouRearEastWing(this.kit,this.kit.root.name);
+    buildXianfuRearWestWing(this.kit,this.kit.root.name);
+    buildXianfuRearEastWing(this.kit,this.kit.root.name);
+    buildTiheYishouWing(this.kit,this.kit.root.name);
+    buildTihePingkangWing(this.kit,this.kit.root.name);
+    buildChangchunYishouWing(this.kit,this.kit.root.name);
+    buildChangchunLezhiWing(this.kit,this.kit.root.name);
+    buildJiangxueHall(this.kit,this.kit.root.name);
+    buildWeiyuHall(this.kit,this.kit.root.name);
+    buildChizaoHall(this.kit,this.kit.root.name);
+    buildYanhuiHall(this.kit,this.kit.root.name);
+    buildNingxiangPavilion(this.kit,this.kit.root.name);
+    buildYangxingZhai(this.kit,this.kit.root.name);
+    buildJifuGate(this.kit,this.kit.root.name);
+    buildYanheGate(this.kit,this.kit.root.name);
+    buildChengguangGate(this.kit,this.kit.root.name);
+    buildYucuiPavilion(this.kit,this.kit.root.name);
+    buildQinanIncensePavilions(this.kit,this.kit.root.name);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -251,7 +358,7 @@ export class ZoneBase {
       colliders: [...this.kit.colliders],
       walkables: [...this.kit.walkables],
       rooms: [...this.kit.rooms],
-      mapItems: [...this.kit.mapItems],
+      mapItems: this.kit.mapItems.map(publicMapItem),
       regions: [...this.kit.regions],
       silhouette,
     };
@@ -463,6 +570,7 @@ export class ZoneBase {
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
+    applyGardenStreetGatePins(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     raiseMiddleLeftPlatform(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item,colliderStart:ownGateColliderStart,walkableStart:ownGateWalkableStart});
     applyJingrenGateStoneFrame(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
@@ -473,9 +581,12 @@ export class ZoneBase {
   }
 
   buildWall(item) {
+    if(buildShangshuSouthFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item)))return;
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
+    if(buildJunjiSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
+    if(buildJiuqingSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     const params = { h: item.h, t: item.t, gaps };
     // Existing courtyard south boundary: appearance-only masonry split,
     // estimated against the retained gate platform, not a surveyed repair datum.

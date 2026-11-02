@@ -1,0 +1,9 @@
+diff --git a/src/scene/GardenBuilder.js b/src/scene/GardenBuilder.js
+index b76d99a4..c107d58b 100644
+--- a/src/scene/GardenBuilder.js
++++ b/src/scene/GardenBuilder.js
+@@ -0,0 +1 @@
++import {splitChengguangCurb} from './garden/ChengguangCurbFit.js';
+@@ -215 +216 @@ export class GardenBuilder {
+-        root.add(m);
++        root.add(...splitChengguangCurb(m,lib.tileSize('wall_brick')));

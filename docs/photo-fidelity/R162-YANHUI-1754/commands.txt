@@ -1,0 +1,8 @@
+node --test /tmp/r162-yanhui-1753/scan.mjs
+node --test tests/r162-yanhui/component.test.mjs # before builder:7 missing RED
+node --test tests/r162-yanhui/component.test.mjs tests/r162-yanhui/routes.test.mjs # original wrong rear target QA red then exact correction8green
+node --test tests/r162-yanhui/world.test.mjs # one candidate World1green
+node tests/r162-yanhui/export-cpu.mjs /tmp/r162-yanhui-1753
+python tests/r162-yanhui/render-cpu.py /tmp/r162-yanhui-1753/front.json.gz docs/photo-fidelity/R162-YANHUI-1754/front.png
+python tests/r162-yanhui/render-cpu.py /tmp/r162-yanhui-1753/oblique.json.gz docs/photo-fidelity/R162-YANHUI-1754/oblique.png
+# No author build/full suite/GPU. Cumulative normal hook pending.

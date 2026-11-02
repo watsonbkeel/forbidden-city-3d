@@ -23,7 +23,9 @@ const SOURCES=Object.freeze({
  // The official oblique photograph shows the TOP projecting outward: the
  // face points forward/down, not a vertical board lowered across the windows.
  // 60 degrees is a photo-compatible reversible fit, never a measured angle.
- 'outer-east/文渊阁':{page:236513,kind:'upper-storey-forward-downward-pitched',fit:{x:0,y:8.79,z:-8.88},
+ // Align this registered face/backing with the retained clear door and bridge,
+ // not the six-bay building's central column. Lateral offset is an engineering fit.
+ 'outer-east/文渊阁':{page:236513,kind:'upper-storey-forward-downward-pitched',fit:{x:-3.375,y:8.79,z:-8.88},
   pitch:{axis:'hall-local-X',degrees:-60,pivot:'registered-face-centre',conditionalSensitivityDegrees:[55,65],notASurveyConfidenceInterval:true,
    photo:'https://www.dpm.org.cn/Uploads/File/2022/04/20/u625f6d55f09ad.pdf',pdfPage:9,printedPage:22,
    supersedes:'R49B_MODEL_UPPER_WINDOW_TOO_HIGH_DIAGNOSIS_NOT_ESTABLISHED_BY_VERTICAL_PROJECTION'},

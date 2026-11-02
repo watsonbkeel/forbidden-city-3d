@@ -1,0 +1,64 @@
+{
+  "base": "e0340ee56bf36e1dbe5f17df74babdaa8830b2dc",
+  "production": [
+    "src/scene/palace/special/LuanjiaSouthPhotoWindows.js"
+  ],
+  "hook": "finishLuanjiaSouthPhotoWindows(this.kit,this.zoneJson) AFTER finishLuanjiaSouthTwoLevel and before ordinary finish; not installed by author",
+  "red": {
+    "tests": 2,
+    "fail": 2,
+    "cause": "missing adapter; explicit assertion"
+  },
+  "final": {
+    "pass": 4,
+    "fail": 0,
+    "skip": 0,
+    "routeSummary": {
+      "routes": 2,
+      "frames": 121,
+      "identical": true,
+      "maxGap": 0
+    },
+    "backingBodyChecks": 3,
+    "world": false,
+    "fullProjectSuite": false,
+    "build": false,
+    "gpu": false
+  },
+  "visual": {
+    "cpuViews": 2,
+    "width": 800,
+    "height": 450,
+    "personallyViewed": true,
+    "fullSouthTriangles": 1836,
+    "photoPersonallyViewed": true
+  },
+  "resourceDelta": {
+    "removedMeshes": 1,
+    "newMeshes": 2,
+    "removedTriangleOwners": 1,
+    "newTriangleOwners": 2,
+    "oldWallTriangles": 12,
+    "newWallTriangles": 552,
+    "newPrivateMaterials": 1,
+    "newSupports": 0,
+    "newRooms": 0,
+    "newMaps": 0
+  },
+  "limits": [
+    "probable south attribution is topology inference not official caption",
+    "10 columns per row and dimensions fitted, not counted windows or bays",
+    "closed dark recess solid backing not verified glazing",
+    "only local native entry roundtrips, no full World or stairs rerun",
+    "all pre-existing source unchanged; original provisional metadata preserved with supplemental flags"
+  ],
+  "resourceReviewFix": {
+    "reason": "applyBoxUV already disposes its indexed input; remove caller duplicate dispose only",
+    "redFail": 1,
+    "greenPass": 4,
+    "greenIncludes": "3 existing component tests +1 resource test; native route/CPU not rerun",
+    "geometryUvOwnerBeforeAfterSha256": "a0e829cb307c6d5ad19463fd1e9c2ac88bd455691a13419c3b2097ae076dc3dc",
+    "temporaryGeometriesDisposedExactlyOnce": 50,
+    "sourceOnlyChange": "delete duplicate disposal of intermediate indexed merge"
+  }
+}

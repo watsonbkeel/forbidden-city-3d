@@ -1,0 +1,10 @@
+node /tmp/r162-chengguang-static-1927.mjs
+node --test /tmp/r162-chengguang-1927/scan.mjs
+node --test tests/r162-chengguang/component.test.mjs # missing module RED then final GREEN
+node --test tests/r162-chengguang/routes.test.mjs
+node --test tests/r162-chengguang/world.test.mjs
+node tests/r162-chengguang/export-cpu.mjs /tmp/r162-chengguang-1927
+python tests/r162-chengguang/render-cpu.py /tmp/r162-chengguang-1927/front.json.gz docs/photo-fidelity/R162-CHENGGUANG-1930/front.png
+python tests/r162-chengguang/render-cpu.py /tmp/r162-chengguang-1927/oblique.json.gz docs/photo-fidelity/R162-CHENGGUANG-1930/oblique.png
+
+node --test tests/r162-chengguang/curb.test.mjs tests/r162-chengguang/ground-preservation.test.mjs

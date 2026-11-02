@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';import * as THREE from 'three';
+import {fixture as playerFixture} from '../lib/r72-player-fixture.mjs';
+import {fixture as stairsFixture,T} from '../r158-luanjia-south-twolevel/fixture.mjs';
+import * as stairs from '../../src/scene/palace/special/LuanjiaSouthTwoLevel.js';
+import {replayKunning} from '../lib/kunning-walk.mjs';import {withBoundedQaMocks} from '../lib/bounded-qa-clock.mjs';
+const report={scope:'LOCAL_REAL_CONTROLLERS_30HZ_NOT_BROWSER_GPU_OR_FULL_WORLD',routes:[]};
+const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
+test('30Hz native ground walk/run/map movement, jump landing, real thin wall and teleport input reset',t=>{
+ const f=playerFixture(t,{position:[0,0,3]}),p=f.controls;f.key('KeyW');for(let i=0;i<30;i++)f.step(1/30);assert.ok(f.camera.position.z<1);f.key('KeyW','keyup');p.stop();p.setPosition(0,1.7,3);p.setFreeMove(true);p.controls.isLocked=false;f.key('KeyW');for(let i=0;i<30;i++)f.step(1/30);assert.ok(f.camera.position.z<1,'map freeMove continues');
+ p.stop();p.setPosition(0,1.7,3);p.jump();let peak=0;for(let i=0;i<90;i++){f.step(1/30);peak=Math.max(peak,p.feetY);}assert.ok(peak>.5);assert.ok(Math.abs(p.feetY)<.01);assert.equal(p.airborne,false);
+ const wall=new THREE.Box3(new THREE.Vector3(-2,0,-.05),new THREE.Vector3(2,3,.05));f.cm.addCollider(wall,'perf-test-wall');p.setPosition(0,1.7,3);f.key('KeyW');f.key('ShiftLeft');for(let i=0;i<120;i++)f.step(1/30);assert.ok(f.camera.position.z>=.5,'cannot sprint through real thin wall');p.stop();p.setPosition(10,1.7,10);const before=f.camera.position.clone();for(let i=0;i<30;i++)f.step(1/30);assert.ok(f.camera.position.distanceTo(before)<.05,'no held movement after explicit teleport reset');
+ report.ground={fps:30,jumpPeak:peak,wallRejected:true,mapMovement:true,teleportStopped:true};
+});
+test('30Hz actual two-level stairs: walk/run up to real floor and back, no changed physics',t=>{const old=Object.getOwnPropertyDescriptor(globalThis,'navigator');Object.defineProperty(globalThis,'navigator',{value:{userAgent:'30Hz CPU',maxTouchPoints:0},configurable:true});const f=stairsFixture(stairs);try{const p=f.result.meta.routeWorld,points=['outside','inside','bottomApproach','bottom','top','upperCenter','top','bottom','bottomApproach','inside','outside'].map(k=>[p[k][0],p[k][2]]);for(const sprint of[false,true]){const r=withBoundedQaMocks(t,c=>replayKunning(c,{THREE:T,cm:f.cm},points,{startFeet:0,fps:30,sprint,recordFrames:true})),peak=Math.max(...r.frames.map(p=>Math.abs(p.feet-p.ground)));assert.equal(r.arrived,true);assert.ok(r.maxFeet>=3.25);assert.ok(peak<=.3);assert.ok(Math.abs(r.end[2])<=.02);report.routes.push({fps:30,sprint,frames:r.frames.length,peak,maxFeet:r.maxFeet,end:r.end,framesSHA256:hash(r.frames)});}}finally{f.dispose();if(old)Object.defineProperty(globalThis,'navigator',old);else delete globalThis.navigator;} });
+test.after(()=>{if(process.env.PERF_NATIVE_OUT)fs.writeFileSync(process.env.PERF_NATIVE_OUT,JSON.stringify(report,null,2));});

@@ -131,7 +131,7 @@ export function buildKunningPalace(builder, parent, data, floorY, source = KUNNI
   const plaque=builder.plaqueMesh(data.name,ph*.62,ph,true);
   plaque.position.set(x0,floorY+oldDoorH+(H-beamHeight-oldDoorH)/2+.2,z0-d/2-.4);
   plaque.rotation.y=Math.PI; shell.add(plaque);
-  const roof=buildRoof(builder.library,{...p.roof,baseY:floorY+H});
+  const roof=buildRoof(builder.library,{...p.roof,baseY:floorY+H,walkingBeastProfile:'kunning'});
   roof.position.set(x0,0,z0); shell.add(roof);
   positionHallNameboard(plaque,roof,data.name,{fitSizeToBand:true});
   builder.ownedMaterials.push(...(roof.userData.ownedMaterials??[]));
