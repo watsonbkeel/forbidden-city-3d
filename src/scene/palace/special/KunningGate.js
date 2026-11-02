@@ -1,7 +1,10 @@
+import {authorizeKunningGateStairContact} from './KunningGateStairContact.js';
 import {applyKunningNorthBalustrades} from './KunningNorthBalustrades.js';
 import * as THREE from 'three';
 import {buildStuddedDoor} from '../../HallKit.js';
 import {createGatePlaque} from './GatePlaques.js';
+const completedFrames=new WeakSet();
+export const isBuiltKunningGateFrame=frame=>completedFrames.has(frame);
 const SOURCE='https://www.dpm.org.cn/explore/building/236582.html';
 const FIT='REVERSIBLE_PHOTO_RELATION_FIT_NOT_SURVEY';
 const ROUTE=[[2.8,-8.5],[2.8,-7.2],[2.8,-4.5],[1.65,-2.8],[1.65,2.8],[2.8,4.5],[2.8,7.2],[2.8,8.5]];
@@ -81,6 +84,8 @@ export function buildKunningGate(kit,item){
  g.supports=kit.walkables.filter(w=>w.kunningGate).map(w=>w.type==='box'?{type:w.type,min:w.box.min.toArray(),max:w.box.max.toArray(),rescue:false,supportId:w.supportId}:{...w});
  f.userData.structure={...g,id:'garden/kunning-gate',x:item.x,z:item.z,gateKind:'three-bay',gateProfile:'kunning',storeys:1,eaveCount:1,portalCount:1,front:'north',dimensionStatus:FIT,accepted:false};
  applyKunningNorthBalustrades(kit,f,item);
+ completedFrames.add(f);
+ try{authorizeKunningGateStairContact(kit,f);}catch(error){completedFrames.delete(f);throw error;}
  return W;
 }
 function wedge(x0,x1,z0,z1,y0,y1){

@@ -1,0 +1,98 @@
+{
+  "base": "224065bb93a9a9d45e67d95614741de486e5e174",
+  "productionPaths": [
+    "src/scene/palace/special/KunningGateStairContact.js",
+    "src/scene/palace/special/KunningGate.js",
+    "src/scene/palace/BPrincipalStairContact.js"
+  ],
+  "component": "29/29 = 13 candidate + 16 retained east/south Luanjia and Baoyun",
+  "normalWorld": {
+    "parent": {
+      "routes": 4,
+      "arrived": 4,
+      "frames": 845,
+      "peaks": [
+        0.875277777777781,
+        0.20200000000000007,
+        0.5319999999999998,
+        0.30027777777778053
+      ],
+      "rowSHA": [
+        "59320d734aef514d211365ead6b51a7b7365803a98f504eebd65fe7c3ff4cf29",
+        "f825a2afdc1c51b17049553dfb37825a47f785fa0abcec27c52c94ea39685f10",
+        "e6b6d0a3fb02b6c5c26abb2602ec024c21073fed25819ba4e0d8f82cadbbfe97",
+        "30bbbd44bcfd2c155d6696005e89a4849f1adde6e8037b23e746e24537746660"
+      ],
+      "loaded": [
+        "garden"
+      ],
+      "physics": {
+        "rows": 9605,
+        "walkables": 919,
+        "rivers": 1,
+        "sha": "05544652e0b35c054a4ffaf96e2a8e15fa2a5b551a8ad0b323b15a2dac082b11"
+      }
+    },
+    "candidate": {
+      "routes": 4,
+      "arrived": 4,
+      "frames": 845,
+      "peaks": [
+        0.26927334853177104,
+        0.08621190934510192,
+        0.1292116525612883,
+        0.18655588286249603
+      ],
+      "rowSHA": [
+        "7b931785221eaf3e749aefdfe62f47611892a8ba479e69f816f88c949131ac52",
+        "82c5aa5d8183eed9d858a546f2bd2ace0360266474189e5910381b68441942f6",
+        "a71591b5aa019a57447a5df272894dd263ce61ea390be0cb9ca828bdd1860bca",
+        "9a81e6be3363e643388ee9e95ebab9b34cd90d9e692b756f27a5125f3ac1856e"
+      ],
+      "loaded": [
+        "garden"
+      ],
+      "physics": {
+        "rows": 9605,
+        "walkables": 919,
+        "rivers": 1,
+        "sha": "05544652e0b35c054a4ffaf96e2a8e15fa2a5b551a8ad0b323b15a2dac082b11"
+      }
+    },
+    "sameInputs": true,
+    "physicalExact": true,
+    "motionArraysExpectedDifferent": true
+  },
+  "native30Hz": [
+    {
+      "sprint": false,
+      "arrived": true,
+      "frames": 217,
+      "peak": 0.15113459003337715
+    },
+    {
+      "sprint": true,
+      "arrived": true,
+      "frames": 146,
+      "peak": 0.21323475519487745
+    }
+  ],
+  "retainedSingleGate": {
+    "meshes": "2e072d18cf698953705fc5c24de04792fd280621c60b8e3412987a33ab035622",
+    "meshCount": 261,
+    "colliders": "dfaa9178d5ae3fbd31bc244aabf914be9a13bb7f5f9a53353c07da4ee302a552",
+    "colliderCount": 186,
+    "walkables": "7e981e9b0ff8993245cf05306f310f3d4e26dc65284b4cb917e9b5d385d3b11f",
+    "walkableCount": 36,
+    "map": "50c947eda6f973c3043994857c4bb5466527d2ff5da3ddfd1b7f95f3288b2a25",
+    "structure": "4169b985e2072b07a4ee11f929f1d1d4dd47afc274c255047f84688e77e1bf7b",
+    "northBars": 60
+  },
+  "limits": [
+    "only normal garden residency + global static, not every zone traversal",
+    "no GPU or visual changes; no new CPU render",
+    "no full build by author",
+    "no new historical acceptance",
+    "motion controller and all render/physical/support values unchanged; only private contact identity/dispatch added"
+  ]
+}

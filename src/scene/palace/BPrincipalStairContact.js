@@ -1,8 +1,11 @@
+import {preserveKunningGateStairOwner,resolveKunningGateStairContact} from './special/KunningGateStairContact.js';
+// Independent Kunning dispatcher; retains the Baoyun prefix and old motion suffix.
+function resolveLuanjiaEastContact(...args){return resolveKunningGateStairContact(...args)??resolveOriginalLuanjiaEastContact(...args);}
 import {preserveBaoyunExteriorContactOwner,resolveBaoyunExteriorContact} from './special/BaoyunExteriorContact.js';
 // Prefix-only dispatch keeps the historical toeRect-to-EOF motion source intact.
 function resolveLuanjiaSouthContact(...args){return resolveBaoyunExteriorContact(...args)??resolveOriginalLuanjiaSouthContact(...args);}
 import {zhujingNorthStairGroup,isZhujingNorthStairId,validZhujingNorthStairHost,preserveZhujingNorthStairOwner,validZhujingNorthStairOwner} from './special/ZhujingNorthStairHost.js';
-import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact} from './special/LuanjiaEastContact.js';
+import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact as resolveOriginalLuanjiaEastContact} from './special/LuanjiaEastContact.js';
 import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact as resolveOriginalLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
 import {wenyuanStairGroup,isWenyuanStairId,validWenyuanStairHost,preserveWenyuanStairOwner,validWenyuanStairOwner} from './special/WenyuanStairHost.js';
 import {resolveWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
@@ -53,6 +56,7 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  rows.forEach(([w],i)=>{w.bPrincipalStairId=group.surfaces[i].id;});return true;
 }
 export function preserveBPrincipalStairOwner(target,original){
+ if(preserveKunningGateStairOwner(target,original))return;
  if(preserveBaoyunExteriorContactOwner(target,original))return;
  if(preserveLuanjiaEastContactOwner(target,original))return;
  if(preserveLuanjiaSouthContactOwner(target,original))return;
