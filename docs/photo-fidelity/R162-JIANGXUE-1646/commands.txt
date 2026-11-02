@@ -1,0 +1,10 @@
+# cwd /workspace/scratch/02a8023d1a85; actual commands; raw logs under /tmp/r162-jiangxue-capture-1636
+node --test r162-jiangxue-1646/tests/r162-jiangxue/component.test.mjs # original 6 RED; later 6 GREEN; final added roof winding RED then 7 GREEN
+BASELINE=1 node --test r162-jiangxue-1646/tests/r162-jiangxue/landscape.test.mjs
+node --test r162-jiangxue-1646/tests/r162-jiangxue/landscape.test.mjs # 1 RED then 2/2 GREEN
+node --test r162-jiangxue-1646/tests/r162-jiangxue/component.test.mjs r162-jiangxue-1646/tests/r162-jiangxue/routes.test.mjs # final 8/8
+node --test r162-jiangxue-1646/tests/r162-jiangxue/world.test.mjs # only author candidate World, before final roof winding
+node r162-jiangxue-1646/tests/r162-jiangxue/tree-check.mjs
+node r162-jiangxue-1646/tests/r162-jiangxue/export-cpu.mjs /tmp/r162-jiangxue-capture-1636
+for v in front oblique; do python r162-jiangxue-1646/tests/r162-jiangxue/render-cpu.py /tmp/r162-jiangxue-capture-1636/$v.json.gz r162-jiangxue-1646/docs/photo-fidelity/R162-JIANGXUE-1646/$v.png; done
+# no author build / full project suite / GPU. Do not rerun fixed outputs over author evidence.

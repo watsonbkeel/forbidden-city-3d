@@ -1,0 +1,532 @@
+{
+  "schema": 1,
+  "classification": "scope-only-not-progress-or-acceptance",
+  "registerPath": "docs/photo-fidelity/BUILDING-REGISTER-FROM-MD.json",
+  "registerSHA256": "fa6ee5520e8fa1170bc988a072e2a5be0cfabd7041e70974b46f178cf035243d",
+  "masterPromptSHA256": "58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0",
+  "authorization": {
+    "userMessage": "Sentinel_ade9be46db388191b12c0c00e72d7fc4",
+    "userTime": "2026-10-30T15:17:48.849089Z",
+    "planMessage": "Sentinel_d699e37324648191b5019f5fd60229a6",
+    "planTime": "2026-10-30T15:23:15.877044Z",
+    "scope": "R162 御花园29项 = G29",
+    "provenance": "Exact message locators and ten-version mapping inherited from tracked R159 authorization history; current G29 IDs/order independently checked against original register and RELEASE-PLAN. This pass did not reread cloud history.",
+    "source": "docs/photo-fidelity/batches/R159-RESUMPTION-0625/SCOPE.json",
+    "oldTraceRelease": "R64-G",
+    "oldTraceCaution": "早期分区追溯编号不覆盖后来十版排期。"
+  },
+  "originalTenReleaseMapping": [
+    {
+      "release": "R157",
+      "sections": [
+        "A"
+      ],
+      "originalObjectCount": 37
+    },
+    {
+      "release": "R158",
+      "sections": [
+        "B"
+      ],
+      "originalObjectCount": 41
+    },
+    {
+      "release": "R159",
+      "sections": [
+        "C",
+        "D"
+      ],
+      "originalObjectCount": 49
+    },
+    {
+      "release": "R160",
+      "sections": [
+        "E"
+      ],
+      "originalObjectCount": 61
+    },
+    {
+      "release": "R161",
+      "sections": [
+        "F"
+      ],
+      "originalObjectCount": 55
+    },
+    {
+      "release": "R162",
+      "sections": [
+        "G"
+      ],
+      "originalObjectCount": 29
+    },
+    {
+      "release": "R163",
+      "sections": [
+        "H"
+      ],
+      "originalObjectCount": 43
+    },
+    {
+      "release": "R164",
+      "sections": [
+        "I"
+      ],
+      "originalObjectCount": 29
+    },
+    {
+      "release": "R165",
+      "sections": [
+        "J",
+        "K"
+      ],
+      "originalObjectCount": 42
+    },
+    {
+      "release": "R166",
+      "sections": [
+        "L"
+      ],
+      "originalObjectCount": 11
+    }
+  ],
+  "totalRequiredOriginalRows": 397,
+  "optionalExcluded": {
+    "section": "M",
+    "count": 1,
+    "note": "端门可选项，不加入十版397或本G29"
+  },
+  "countsByOriginalNatureNotProgress": {
+    "建筑或构筑物": 27,
+    "室外构件/设施": 1,
+    "院落/设施组": 1
+  },
+  "dedupNotes": [
+    "御花园FC-FF96813CB0是父院落组，不作为第29座楼或重复新建园地。",
+    "堆秀山FC-A1FFC2BC33与其上的御景亭FC-4D1D69857E为不同原子项；保各自证据和依附关系，不将山顶亭与整山重复计为同一主体。",
+    "万春/千秋、浮碧/澄瑞、钦安东南/西南亭、东西井亭分别有原ID；不得仅按对称模板或名字自动认领。",
+    "绛雪轩、养性斋与养心殿/养性殿等同近名字分清；现anchor或旧metadata不是建造或身份已验的证据。",
+    "天一/顺贞/承光/琼苑东西/延和/集福/长康左右各保原ID及空间关系，不因在同院或匿名门壳而合并。",
+    "原G29为27建筑构筑物、堆秀山设施1、御花园父院1；现有GardenBuilder/ZoneBase/专属模块需逐项去重，全部NOT_ASSERTED。"
+  ],
+  "checks": {
+    "exactRegisterAndMarkdownOrder": true,
+    "uniqueIds": 29,
+    "sourceLineRange": [
+      614,
+      642
+    ],
+    "matchesOldTracePlanObjectIds": true,
+    "allWholeObjectAcceptanceNotAsserted": true,
+    "sourceDocsPins": [
+      {
+        "path": "docs/photo-fidelity/BUILDING-REGISTER-FROM-MD.json",
+        "bytes": 408414,
+        "sha256": "fa6ee5520e8fa1170bc988a072e2a5be0cfabd7041e70974b46f178cf035243d",
+        "gitBlob": "2f8a73a840e98e46a10b9b1c2ea88071934359bd"
+      },
+      {
+        "path": "docs/photo-fidelity/MASTER-PROMPT.md",
+        "bytes": 244402,
+        "sha256": "58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0",
+        "gitBlob": "6807a3ca9cda30807651e9fd7b8829c3d3540b62"
+      },
+      {
+        "path": "docs/photo-fidelity/batches/R159-RESUMPTION-0625/SCOPE.json",
+        "bytes": 16067,
+        "sha256": "ad9c51b7a866ece5e43dad22dc4c7ebcbfc563d2ec2316d18c93f40fa9a3dc4a",
+        "gitBlob": "a56cd7f6b0af62000baee0abcd9d7ce1fb1facef"
+      },
+      {
+        "path": "docs/photo-fidelity/batches/R159-RESUMPTION-0625/README.md",
+        "bytes": 2676,
+        "sha256": "23d5ca39c9e1281a6f70a6270498bd3f7ea1fd88b9d22cdf70ece733343c22ab",
+        "gitBlob": "85dbe88d1de82e8eeabb7ac30bbd070d8e448022"
+      },
+      {
+        "path": "docs/photo-fidelity/batches/R160-RESUMPTION-0926/SCOPE.json",
+        "bytes": 29719,
+        "sha256": "f65940ef7429934634aecd2117af98a6a8fb7c18ea2d6c79ed814a3928aac956",
+        "gitBlob": "91084403d4dd491bf640ed09f8aa9e8c3f4c4192"
+      },
+      {
+        "path": "docs/photo-fidelity/RELEASE-PLAN.json",
+        "bytes": 32071,
+        "sha256": "7ac7aece432957d078df14e3476b1e44e639919056813ef38aa8b75ff69158df",
+        "gitBlob": "4d29a113b87837228e47e06fad602d684a2e9cf9"
+      }
+    ]
+  },
+  "execution": "Only /tmp corrected scope JSON; original draft preserved. No runtime/progress/acceptance claims, no tests/World/Node/build for this scope artifact, no shared/source/release changes.",
+  "releaseScope": "R162",
+  "scopeBasis": "原397项十版计划R162=G御花园29；不新增范围，不将总院项当另造实体",
+  "inheritedBaselineLocal": "70a98df245d4b2a4c0b385a563b0d6101e9e274e",
+  "baseTree": "1089380c5965fa96bb3d1100094e73b0db62ab94",
+  "legacyReleasePlan": {
+    "path": "docs/photo-fidelity/RELEASE-PLAN.json",
+    "sha256": "7ac7aece432957d078df14e3476b1e44e639919056813ef38aa8b75ff69158df",
+    "oldLabel": "R64-G",
+    "section": "G",
+    "after": "R63-F integration checkpoint; unresolved acceptance stays open",
+    "expansionTaskIds": [
+      "EXPAND-06"
+    ],
+    "note": "R64-G is original plan label, not an instruction to change current product release; supplementary IDs are not added to original29"
+  },
+  "count": 29,
+  "natureCounts": {
+    "建筑或构筑物": 27,
+    "室外构件/设施": 1,
+    "院落/设施组": 1
+  },
+  "objects": [
+    {
+      "ordinal": 1,
+      "id": "FC-89576A9B7C",
+      "name": "钦安殿",
+      "section": "G",
+      "sourceLine": 614,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "重檐盝顶，不是庑殿/歇山；乾隆曾添抱厦后拆除，现状不得补旧抱厦。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 2,
+      "id": "FC-276BC550CA",
+      "name": "天一门",
+      "section": "G",
+      "sourceLine": 615,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "青砖券门、绿琉璃仿木构与两侧琉璃影壁；旧名天一之门。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 3,
+      "id": "FC-E0E2F06A88",
+      "name": "绛雪轩",
+      "section": "G",
+      "sourceLine": 616,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "坐东朝西；硬山主体接卷棚歇山抱厦；斑竹纹彩画、楠木本色门窗。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 4,
+      "id": "FC-8D9B4E9A44",
+      "name": "万春亭",
+      "section": "G",
+      "sourceLine": 617,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "上圆下方、四面抱厦；不可与千秋亭合并实例或互换藻井。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 5,
+      "id": "FC-4676FE63C3",
+      "name": "千秋亭",
+      "section": "G",
+      "sourceLine": 618,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "与万春亭为不同位置实体；藻井彩画细节有差异。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 6,
+      "id": "FC-DE4C06C5F7",
+      "name": "浮碧亭",
+      "section": "G",
+      "sourceLine": 619,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "绿瓦黄剪边、方亭与抱厦、池桥；内部为百花天花。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 7,
+      "id": "FC-4610835E3D",
+      "name": "澄瑞亭",
+      "section": "G",
+      "sourceLine": 620,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "绿瓦黄剪边、方亭与抱厦、池桥；内部金龙天花/八方藻井。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 8,
+      "id": "FC-4D1D69857E",
+      "name": "御景亭",
+      "section": "G",
+      "sourceLine": 621,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "在堆秀山顶；非另一座平地亭，楼梯登道须校核。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 9,
+      "id": "FC-A1FFC2BC33",
+      "name": "堆秀山",
+      "section": "G",
+      "sourceLine": 622,
+      "parentText": "御花园",
+      "nature": "室外构件/设施",
+      "cautions": "山体、御景亭、蹬道与水法独立成组成分，不使用随机假山。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 10,
+      "id": "FC-35C163B4E4",
+      "name": "摛藻堂",
+      "section": "G",
+      "sourceLine": 623,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "御花园东北依墙，五间硬山；殿名易误写摘藻堂。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 11,
+      "id": "FC-7E30C9E212",
+      "name": "延晖阁",
+      "section": "G",
+      "sourceLine": 624,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "北倚宫墙，两明层夹暗层；原名清望阁。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 12,
+      "id": "FC-492344B85B",
+      "name": "四神祠",
+      "section": "G",
+      "sourceLine": 625,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "八角主体加抱厦、无斗栱；不要使用八角亭通用模板忽略抱厦。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 13,
+      "id": "FC-E83C733B72",
+      "name": "位育斋",
+      "section": "G",
+      "sourceLine": 626,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "五间硬山，曾名对育轩、玉芳轩；与澄瑞亭前后位置对应。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 14,
+      "id": "FC-2C00D09F2A",
+      "name": "养性斋",
+      "section": "G",
+      "sourceLine": 627,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "西南凹形两层转角楼，旧名乐志斋；不要与宁寿宫养性殿混淆。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 15,
+      "id": "FC-D471A19B37",
+      "name": "玉翠亭",
+      "section": "G",
+      "sourceLine": 628,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "东北角；三色棋盘格瓦；曾加门窗，必须按现存图。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 16,
+      "id": "FC-7BE8375458",
+      "name": "凝香亭",
+      "section": "G",
+      "sourceLine": 629,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "西北角；旧名金香亭；与玉翠亭不合并。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 17,
+      "id": "FC-36C011ABEA",
+      "name": "顺贞门",
+      "section": "G",
+      "sourceLine": 630,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "北门三座随墙琉璃门；别与坤宁门（明代旧名）混作同一现存门。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 18,
+      "id": "FC-30C5E54148",
+      "name": "钦安殿东南亭",
+      "section": "G",
+      "sourceLine": 631,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "方向/用途工作名，非牌匾名；现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 19,
+      "id": "FC-F3135E4D16",
+      "name": "钦安殿西南亭",
+      "section": "G",
+      "sourceLine": 632,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "方向/用途工作名，非牌匾名；现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 20,
+      "id": "FC-A3B03BAB65",
+      "name": "承光门",
+      "section": "G",
+      "sourceLine": 633,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 21,
+      "id": "FC-4BC6AD858B",
+      "name": "琼苑东门",
+      "section": "G",
+      "sourceLine": 634,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 22,
+      "id": "FC-75C4A83F02",
+      "name": "琼苑西门",
+      "section": "G",
+      "sourceLine": 635,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 23,
+      "id": "FC-A9EE1A8071",
+      "name": "御花园东井亭",
+      "section": "G",
+      "sourceLine": 636,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "同项名：东井亭；方向/用途工作名，非牌匾名；现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 24,
+      "id": "FC-1FD92C0BD2",
+      "name": "御花园西井亭",
+      "section": "G",
+      "sourceLine": 637,
+      "parentText": "御花园",
+      "nature": "建筑或构筑物",
+      "cautions": "同项名：西井亭；方向/用途工作名，非牌匾名；现行官方全景名称/位置可核；亭内视点是亭下空间，不是宫殿陈设室。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 25,
+      "id": "FC-2934DA7C63",
+      "name": "延和门",
+      "section": "G",
+      "sourceLine": 638,
+      "parentText": "御花园/顺贞门小院",
+      "nature": "建筑或构筑物",
+      "cautions": "正文确认在顺贞门两侧；不得把官刊匾额当完整现状立面。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 26,
+      "id": "FC-CAA90DB107",
+      "name": "集福门",
+      "section": "G",
+      "sourceLine": 639,
+      "parentText": "御花园/顺贞门小院",
+      "nature": "建筑或构筑物",
+      "cautions": "正文确认在顺贞门两侧；不得把官刊匾额当完整现状立面。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 27,
+      "id": "FC-FF96813CB0",
+      "name": "御花园",
+      "section": "G",
+      "sourceLine": 640,
+      "parentText": "内廷中路·坤宁宫北",
+      "nature": "院落/设施组",
+      "cautions": "子建筑已大量覆盖，但缺园区总节点；补地形、道路、围墙与院落关系范围，不新增一座建筑。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 28,
+      "id": "FC-D2B1DB1C8C",
+      "name": "长康左门",
+      "section": "G",
+      "sourceLine": 641,
+      "parentText": "御花园周边街巷",
+      "nature": "建筑或构筑物",
+      "cautions": "目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    },
+    {
+      "ordinal": 29,
+      "id": "FC-E18D4B34CA",
+      "name": "长康右门",
+      "section": "G",
+      "sourceLine": 642,
+      "parentText": "御花园周边街巷",
+      "nature": "建筑或构筑物",
+      "cautions": "目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "runtimeState": "TO_RECONCILE_WITH_EXISTING_CODE"
+    }
+  ],
+  "historicalCarryoverNote": "R161/F55 may appear only in originalTenReleaseMapping; R63-F appears only as the historical preceding checkpoint in legacyReleasePlan.after. Neither describes current G29 authority/counts."
+}

@@ -1,3 +1,4 @@
+import {clipJiangxueBedRectangle,isJiangxueWithheldPine,validateJiangxuePineCount} from './garden/JiangxueLandscapeFit.js';
 import {sishenRetainedTreeSource,validateSishenTreeCount} from './garden/SishenTreeSource.js';
 import {clipSishenBedRectangle} from './garden/SishenGroundFit.js';
 import {westWellRetainedTreeSource,validateWestWellTreeCount} from './garden/WestWellTreeSource.js';
@@ -217,7 +218,7 @@ export class GardenBuilder {
     // 花坛：汉白玉围边 + 草顶
     const bedTops = [];
     for (const [a, b, c, e] of beds) {
-      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
+      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle).flatMap(clipJiangxueBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
       const t = 0.3;
       const parts = [
         [(a + b) / 2, c + t / 2, b - a, t], [(a + b) / 2, e - t / 2, b - a, t],
@@ -573,7 +574,7 @@ export class GardenBuilder {
     const m = new THREE.Matrix4();
     const q = new THREE.Quaternion();
     const s = new THREE.Vector3();
-    let westWellTreeCount=0,sishenTreeCount=0;
+    let westWellTreeCount=0,sishenTreeCount=0,jiangxuePineCount=0;
     for (const t of placed) {
       const vi = pick();
       const v = variants[vi];
@@ -581,10 +582,13 @@ export class GardenBuilder {
       q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rng() * Math.PI * 2);
       s.set(sc * (0.95 + rng() * 0.1), sc, sc * (0.95 + rng() * 0.1));
       m.compose(new THREE.Vector3(t.x, BED_H - 0.02, t.z), q, s);
-      v.items.push(m.clone());
       const rr = THREE.MathUtils.clamp(v.trunkRadius * sc * 1.25, 0.5, 0.8);
       const treeSource=westWellRetainedTreeSource(v.trunk,m,v.kind);if(treeSource)westWellTreeCount++;
       const sishenTree=sishenRetainedTreeSource(v.trunk,m,v.kind);if(sishenTree)sishenTreeCount++;
+      // Consume the complete original random sequence before withholding exactly one
+      // source-certified procedural pine; every other instance stays byte-identical.
+      if(isJiangxueWithheldPine(v,m)){jiangxuePineCount++;continue;}
+      v.items.push(m.clone());
       this.addCollider(treeSource ?? sishenTree ?? new THREE.Box3(new THREE.Vector3(t.x - rr, 0, t.z - rr), new THREE.Vector3(t.x + rr, 3, t.z + rr)));
     }
     if(this.bounds.x0===-68&&this.bounds.x1===68&&this.hallPos.z===493.1)validateWestWellTreeCount(westWellTreeCount);
@@ -606,7 +610,9 @@ export class GardenBuilder {
         tris += (geo.index ? geo.index.count : geo.attributes.position.count) / 3 * v.items.length;
       }
     }
-    this.stats.trees = placed.length;
+    validateJiangxuePineCount(jiangxuePineCount);
+    this.stats.treeSamples = placed.length;
+    this.stats.trees = placed.length-jiangxuePineCount;
     this.stats.treeTriangles = tris;
   }
 
