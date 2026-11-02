@@ -1,0 +1,14 @@
+node --test /tmp/r162-yangxingzhai-capture-1820/capture.mjs # only normal preflight capture,4/710
+node /tmp/r162-yangxingzhai-capture-1820/continuous-static.mjs # finite continuous geometry, not World
+node /tmp/r162-yangxingzhai-capture-1820/strip-source.mjs # normal GardenBuilder source only
+node --test tests/r162-yangxingzhai/component.test.mjs # 7missing RED then7GREEN
+node --test tests/r162-yangxingzhai/landscape.test.mjs #2RED; statsRED; final2GREEN
+node --test tests/r162-yangxingzhai/routes.test.mjs #1GREEN
+node --test tests/r162-yangxingzhai/tree-clearance.test.mjs #1GREEN final actual candidate
+node --test tests/r162-yangxingzhai/ground-preservation.test.mjs #1GREEN fixed32d source comparison
+node --test tests/r162-yangxingzhai/world.test.mjs # one candidateWorld1GREEN
+node tests/r162-yangxingzhai/export-cpu.mjs /tmp/r162-yangxingzhai-capture-1820
+python tests/r162-yangxingzhai/render-cpu.py /tmp/r162-yangxingzhai-capture-1820/front.json.gz docs/photo-fidelity/R162-YANGXINGZHAI-1828/front.png
+python tests/r162-yangxingzhai/render-cpu.py /tmp/r162-yangxingzhai-capture-1820/oblique.json.gz docs/photo-fidelity/R162-YANGXINGZHAI-1828/oblique.png
+# initial CPU no bias saved; final renderer approximates explicit existing factor, not exact GPU depth.
+# No author full suite/build/GPU.

@@ -1,0 +1,76 @@
+{
+  "runtime": "678e47e3625ac5bd029385bef6a69e33a922d70b",
+  "baseLocal": "32d0107900094b73421e29c16686dffd83aca832",
+  "remoteParent": "6fe2ecd54a439f8ec3dfebb4ce78f1b6a3b6b78f",
+  "productionDiff": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/garden/YangxingLandscapeFit.js",
+    "src/scene/palace/special/YangxingZhai.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 12,
+    "normalWorld": 1,
+    "total": 13,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 57,
+    "falseTops": 2,
+    "upperWalkables": 0
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 710,
+    "newRoutes": 4,
+    "newFrames": 463,
+    "newPeak": 0.18366666815678265,
+    "validWorldMovementNegatives": 2,
+    "sevenReportFieldsExactAuthor": true,
+    "localCompleteIncludingEndExact": true,
+    "threeLandscapeReportsExactAuthor": true
+  },
+  "groundParentFixture": {
+    "commit": "32d0107900094b73421e29c16686dffd83aca832",
+    "path": "src/scene/GardenBuilder.js",
+    "gitBlob": "37dd7107a39a5b45675c2f83923493a7114be581",
+    "sha256": "28926f8513bd246a050875e5fbf6d809a383454ea56d7f4d97a5a862bc058eba",
+    "scope": "ground-preservation test only, exact ?yangxingBaseline URL; all relative dependencies unchanged; New actual normal source; not normal World"
+  },
+  "landscape": {
+    "randomSamples": 34,
+    "publishedTrees": 31,
+    "newWithheldTrees": [
+      "cypress6",
+      "tallCypress2"
+    ],
+    "priorWithheldPinePreserved": true,
+    "other31Trees62PartsExact": true,
+    "nonTargetGroundMeshesExact": 72,
+    "groundMeshCountBefore": 74,
+    "groundMeshCountAfter": 75,
+    "changes": "actual footprint/step high bed top union plus authorized approach [49.8,53.5]x[441.8,444.2], only 0.3x2.4 program stone border opening; original grass floor and paths/beds unchanged",
+    "outsideTree": "oldCypress7 entire tree/owner preserved; actual 8282 new triangles vs 89 trunk/36 crown candidate triangles, 71 broad pairs and SAT hits0",
+    "wholeGlobalUnchanged": false
+  },
+  "scopeDelta": {
+    "id": "FC-2C00D09F2A",
+    "name": "养性斋",
+    "fromHistoricalCodeClass": "N",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-e57b6ecc9c22",
+    "sourceFingerprint": "cb968b40050d40582521a354dc52f9a6239b7a5ca79be12a20033c0b1137bc32",
+    "sourceCommit": "678e47e3625ac5bd029385bef6a69e33a922d70b",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "authorPreservation": "exact three production files carry original zone before/after proof; no fake capture after installed hook; authorized global landscape exceptions separately verified",
+  "localRawNonpersistent": true
+}

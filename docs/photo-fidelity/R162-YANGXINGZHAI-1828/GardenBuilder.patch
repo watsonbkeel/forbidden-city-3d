@@ -1,0 +1,22 @@
+diff --git a/src/scene/GardenBuilder.js b/src/scene/GardenBuilder.js
+index 37dd7107..b76d99a4 100644
+--- a/src/scene/GardenBuilder.js
++++ b/src/scene/GardenBuilder.js
+@@ -0,0 +1 @@
++import {clipYangxingBedTop,clipYangxingBedBorder,isYangxingWithheldTree,validateYangxingTreeCount} from './garden/YangxingLandscapeFit.js';
+@@ -221 +222 @@ export class GardenBuilder {
+-      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle).flatMap(clipJiangxueBedRectangle))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
++      for(const [x0,x1,z0,z1] of clipTianyiBedRectangle([a+.2,b-.2,c+.2,e-.2]).flatMap(clipFubiPoolRectangle).flatMap(clipEastWellBedRectangle).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle).flatMap(clipJiangxueBedRectangle).flatMap(clipYangxingBedTop))bedTops.push(quadGeometry(x0,x1,z0,z1,BED_H-.03,lib.tileSize('grass')));
+@@ -228 +229 @@ export class GardenBuilder {
+-        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle).flatMap(before=>clipEastWellBedRectangle(before).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle).map(r=>({r,before})));
++        const original=[x-sx/2,x+sx/2,z-sz/2,z+sz/2],pieces=clipTianyiBedRectangle(original).flatMap(clipFubiPoolRectangle).flatMap(before=>clipEastWellBedRectangle(before).flatMap(clipWestWellBedRectangle).flatMap(clipSishenBedRectangle).map(r=>({r,before}))).flatMap(piece=>clipYangxingBedBorder(piece.r).map(r=>({r,before:piece.before})));
+@@ -577 +578 @@ export class GardenBuilder {
+-    let westWellTreeCount=0,sishenTreeCount=0,jiangxuePineCount=0;
++    let westWellTreeCount=0,sishenTreeCount=0,jiangxuePineCount=0,yangxingTreeCount=0;
+@@ -590,0 +592 @@ export class GardenBuilder {
++      if(isYangxingWithheldTree(v,m)){yangxingTreeCount++;continue;}
+@@ -613,0 +616 @@ export class GardenBuilder {
++    if(this.bounds.x0===-68&&this.bounds.x1===68&&this.hallPos.z===493.1)validateYangxingTreeCount(yangxingTreeCount);
+@@ -615 +618 @@ export class GardenBuilder {
+-    this.stats.trees = placed.length-jiangxuePineCount;
++    this.stats.trees = placed.length-jiangxuePineCount-yangxingTreeCount;
