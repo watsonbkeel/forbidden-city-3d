@@ -1,0 +1,86 @@
+{
+  "runtimeCommit": "2195349fd8a329154fd120035a9c97b4ec75cdd6",
+  "baseRemote": "0773bbba6e9361b3d8497260e1704eab55024d69",
+  "candidateCommit": "e991182281ccaf57118ed4a1143b9e34a745dff9",
+  "pins": {
+    "src/scene/palace/special/NeigeCourt.js": "80fe42ee6fc913b6735a328761f6b1c93ce2517bf46cc5f3e108ed9c07697d5a",
+    "src/scene/zones/ZoneBase.js": "c6975b92d5d07457407372635a217561d1a5b55ed556a5b2896dfac13ec6313b",
+    "tests/r158-cumulative-1711/world-neige.test.mjs": "88962634add4eb249059ec4464dac786393bafe83a63054ff0608ed716a954f4",
+    "tests/r158-neige/component.test.mjs": "b836ab6851b30fd4bf6d2e2e1336415780ba4700a332a01aa9d308876bae7fae",
+    "tests/r158-neige/routes.test.mjs": "69393d69767ad5aed45ab8bf64d0bc39ccca8dd182f17d8c22a6718638eefc69",
+    "tests/r158-neige/flight.test.mjs": "75ab232eade0efd69b2ad00d5d1563f2f77b6bba59db5c09a21be7525f9ee846",
+    "tests/r158-neige/south-routes.mjs": "b3136a98a1f79aceeac2e346b16c87b6fa4d306b23c0588ed3b5b901e5ce006a"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-cbcf84e75252",
+    "sourceFingerprint": "a7c4ffc3399083b545a47a8f4b232dca1e75ce89ce08adad0a99de9bd1d0aec3",
+    "sourceCommit": "2195349fd8a329154fd120035a9c97b4ec75cdd6",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 614,
+  "buildExit": 0,
+  "localEvidence": {
+    "world-neige.tap": {
+      "bytes": 689,
+      "sha256": "14ef60d092107def68141d618d44c0c8f213466ec7a0d82199a89a0dd2398ef5"
+    },
+    "related.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "related.tap": {
+      "bytes": 1647,
+      "sha256": "523f4d8ebe481ae6d9d7ec4c9028a4fc0583fa04546eb782f733a41f392ef902"
+    },
+    "build.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "world-neige.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "world-neige.json": {
+      "bytes": 3069148,
+      "sha256": "400fe98d3b489af2821d24bbeefe685de4224d01b07ebf56ed52866ecbe8c313"
+    },
+    "build.log": {
+      "bytes": 889,
+      "sha256": "c725245288092dfe46ffc2f1299ff5d3f643aa3c24a5b9a9105e62a72acc4060"
+    }
+  },
+  "components": {
+    "tests": 11,
+    "pass": 11,
+    "fail": 0
+  },
+  "world": {
+    "loadAll": false,
+    "loadedZone": "outer-east",
+    "newRoutes": 8,
+    "arrived": 8,
+    "frames": 11318,
+    "maxAbsFeetGround": 0,
+    "rowsEqualApprovedCandidate": true,
+    "inheritedDiagnostics": {
+      "total": 8,
+      "arrived": 4,
+      "knownFailedWenhuaCenterline": 4,
+      "rowsEqualApprovedCandidate": true
+    }
+  },
+  "rawPolicy": "LOCAL_ONLY_RAW_LOGS_AND_FRAMES; remote summary/hash is not remote raw availability.",
+  "localReference": {
+    "r158-neige-court-evidence-1630/baseline-world-all8.json": {
+      "bytes": 28237,
+      "sha256": "5747a5a50675cd3d2cf60811efea68ded5aeea0ee15ef90bf0a9618c70efad48"
+    },
+    "r158-neige-court-evidence-1630/candidate-world-final.json": {
+      "bytes": 3069460,
+      "sha256": "1bb2e25ac68c35eb240b856638e5b5a8d735113eb0e401c8f87d8d0f45740a0a"
+    }
+  }
+}

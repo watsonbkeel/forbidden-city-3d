@@ -1,0 +1,10 @@
+# Existing north south-stair local contact plan
+Base9f67ee10 = remote899b. Conditional parent authorization2026-11-01 19:33 UTC.
+Actual normal World RED:12/12 arrivals,1170frames, gap.849444m; every north hall return crossesz61.20–61.29 with>.3 gap. Existing actual3 platform tops +3 south ramps captured verbatim in world-red.json, no prior rights.
+Root cause: inherited6-step.9m stair lowers exact ramp ground faster than ordinary smoothed/falling feet; geometry and actual supports are correct. Use proven BPrincipalStairContact only for these6 actual surfaces.
+- [ ] Write component grants/routes/negative controls; observe missing-grant/whole-frame RED.
+- [ ] Add separate north6 source JSON/Host ownership. Existing NorthEaves successful transaction certifies actual3hosts with a private WeakSet, registers their unique original2 surfaces, revokes on any failure. No old geometry/collider/walkable allocation or new ZoneBase hook.
+- [ ] B diff only append groups +strict host/owner branches; motion function and old tables/owners unchanged. Preserve jump/highfall/side exit/removed duplicate changed copied owners and ordinary/dynamic sweep vetoes.
+- [ ] Targeted red→green, geometry/physics/support streams and source byte pins. No CPU rerender (geometry untouched), no author build/clone. Sole integrator runs same normal12 World plus prior routes and clean cumulative build. Actual raw remains local-only and small; stop new products if free disk<500MiB.
+
+Execution: normal899b World12/1170 peak.849444 RED;31-component27 actual RED→31 GREEN. Actual old/current geometry/402collision/15support/room/map streams equal,0→6 north source labels. First broad112/1 failure identified a real independent CourtKit import cycle, not a physics defect; reference-only frozen local source replay removed heavy dependency, complete signature and identity guards retained. Donghua2 standalone GREEN; final114/114 GREEN. No author World duplication, image/build or more clone; sole integrator normal12 and prior routes remain before final acceptance. All raw local-only, explicit scope unchanged.

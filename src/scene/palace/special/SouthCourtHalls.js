@@ -1,11 +1,16 @@
+import {authorizeWenhuaStairHost,revokeWenhuaStairHost} from './WenhuaStairHost.js';
+import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
 import * as THREE from 'three';
 import { SOUTH_COURTS, southCourtGeometry } from './SouthCourtProfiles.js';
 import { buildSouthGalleryDisplays } from './SouthGalleryDisplays.js';
 export { SOUTH_COURTS, southCourtGeometry } from './SouthCourtProfiles.js';
 
+const builtWenhuaFrontFrames=new WeakSet();
+export const isBuiltWenhuaFrontFrame=f=>builtWenhuaFrontFrames.has(f);
+
 /** A dedicated opt-in, not a global change to CourtKit hall defaults. */
 export function buildSouthCourtHall(kit,item){
- const g=southCourtGeometry(item),roomStart=kit.rooms.length,regionStart=kit.regions.length;let f;
+ const g=southCourtGeometry(item),roomStart=kit.rooms.length,regionStart=kit.regions.length,walkableStart=kit.walkables.length;let f;
  if(g.part==='connector'){
   f=kit.frame(g.x,g.z,0);
   kit.box(f,'wall_brick',g.w,g.ph,g.d,0,g.ph/2,0);
@@ -64,5 +69,9 @@ export function buildSouthCourtHall(kit,item){
  kit.registerRoom(f,{name:g.name??`${g.court==='wenhua'?'文华':'武英'}殿穿廊`,kind:`${g.court}-gallery`,x0:-g.w/2+.35,x1:g.w/2-.35,z0:-g.d/2,z1:g.d/2,y:g.ph,h:g.colH-.85,doors:[{x:0,z:-g.d/2},{x:0,z:g.d/2}]});
  const room=kit.rooms.at(-1);room.spawns=[{x:g.navigation.inside.x,z:g.navigation.inside.z}];
  f.userData.structure={...g,display,...(f.userData.nameboardMount?{nameboardMount:f.userData.nameboardMount}:{})};f.userData.southCourt=g;
+ if(g.court==='wenhua'&&g.part==='front'){
+  builtWenhuaFrontFrames.add(f);
+  if(authorizeWenhuaStairHost(kit,f,kit.walkables.slice(walkableStart,walkableStart+2))&&!registerBPrincipalStairs(kit,f,'wenhua-front-south',walkableStart))revokeWenhuaStairHost(f);
+ }
  return {f,g,display};
 }

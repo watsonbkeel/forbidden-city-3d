@@ -1,0 +1,90 @@
+{
+  "runtimeCommit": "976b23249ccb54b5b8c8a41c0ef2e97d57f9b6d8",
+  "baseRemote": "be5393cb62b24d726896403a4a27ad37ca92a3f9",
+  "pins": {
+    "src/scene/palace/special/NansansuoCommonGate.js": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a",
+    "src/scene/palace/special/WenyuanEntryTread.js": "6f080bea16957c4a8b22203a3fc9a78acfdb1b92cac93dee5886e7a4e29af198",
+    "src/scene/zones/ZoneBase.js": "29eaf0b6ed0cfd7b8f9ee12d4f8e72324c266df19cdd2f36aaf118ff9a1b5120",
+    "tests/r158-cumulative-1645/world.test.mjs": "63e079511a123daaccd1bc222936cd56efb5498643596b4f52eb520276e12008",
+    "tests/r158-nansansuo-common-gate-controller.test.mjs": "11404b592ba4a8eaab1050b88c59c0dbece10148999f03d56ae4f049be89150f",
+    "tests/r158-nansansuo-common-gate.test.mjs": "093f4acd63ecde51f60e932ea28dcbeb8a32713823f92bcfd67aec4a76219c26",
+    "tests/r158-wenyuan-step/component.test.mjs": "cf42160f54d41a147869450c0c1c24a66c66195d31239d3b894081e49538926d",
+    "src/utils/Collision.js": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+    "src/controls/FirstPerson.js": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R146-fix",
+    "buildId": "R146-fix-d206a3ca339a",
+    "sourceFingerprint": "7492b13f5187bf89361154acafefe23adf11e9ad48d3dae9de5508db4df79ef3",
+    "sourceCommit": "976b23249ccb54b5b8c8a41c0ef2e97d57f9b6d8",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 613,
+  "buildExit": 0,
+  "localEvidence": {
+    "related-first.tap": {
+      "bytes": 5268,
+      "sha256": "fc4016d937d6bcdb8e3d1533e86319eb849418c219f088ae469c896b36b975cf"
+    },
+    "world-final.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "related-final.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "related-final.tap": {
+      "bytes": 3862,
+      "sha256": "1a3fec0d569066f57ced5df4e8c0890d06e0c6d65f0dcaec41c0b35c3fd801a0"
+    },
+    "build.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "world-final.tap": {
+      "bytes": 1298,
+      "sha256": "6cf6fdd59ea0fb237ae90ddf85e790d8055e6c0c603cb84c4b9a22fd45933c06"
+    },
+    "build.log": {
+      "bytes": 1097,
+      "sha256": "24f5217619ffaba63c033cee644d4835ed19541d1ab504bc0fa5835d111aee77"
+    },
+    "related-first.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "world-final.json": {
+      "bytes": 269373,
+      "sha256": "690e736cb4bb8c86a76b7e4887e0900885515d9d122458978aa289151da91c3e"
+    }
+  },
+  "components": {
+    "initial": {
+      "pass": 39,
+      "fail": 1
+    },
+    "final": {
+      "pass": 40,
+      "fail": 0
+    },
+    "testOnlyChange": "Only Nansansuo ordinary-zone test switched from unit fake UV/material library to real production API/manifest; original assertions preserved and no-fallback assertion added."
+  },
+  "world": {
+    "wenyuan": {
+      "arrived": 4,
+      "frames": 955,
+      "maxAbsFeetGround": 0.25100688692504725,
+      "rowsEqualApprovedTreadCandidate": true
+    },
+    "nansansuo": {
+      "arrived": 4,
+      "frames": 668,
+      "maxAbsFeetGround": 0.20433333333333142
+    }
+  },
+  "rawPolicy": "Raw logs, World JSON and reports remain local. Remote summaries/commands/hashes are not remote availability of raw evidence.",
+  "scope": "No Neige candidate; no main/branches/Pages change; no GPU/mobile/full-city acceptance."
+}

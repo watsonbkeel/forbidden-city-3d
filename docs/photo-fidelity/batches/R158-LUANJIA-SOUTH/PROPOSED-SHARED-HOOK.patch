@@ -1,0 +1,10 @@
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@ -2,2 +2,3 @@
+ import {buildLuanjiaEastWing} from '../palace/special/LuanjiaEastWing.js';
++import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
+ import {buildZhishengShell} from '../palace/special/ZhishengShell.js';
+@@ -225,2 +226,3 @@
+     buildLuanjiaEastWing(this.kit, this.zoneJson);
++    buildLuanjiaSouthWing(this.kit, this.zoneJson);
+     this.group = this.kit.finish();

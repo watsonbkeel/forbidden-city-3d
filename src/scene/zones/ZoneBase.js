@@ -1,3 +1,28 @@
+import {buildNansansuoMiddleHall} from '../palace/special/NansansuoMiddleHall.js';
+import {buildNeigeHanbenTextVolume} from '../palace/special/NeigeHanbenTextVolume.js';
+import {finishWenhuaCompanionSteps} from '../palace/special/WenhuaCompanionSteps.js';
+import {buildChuanxinZhubanShell} from '../palace/special/ChuanxinZhubanShell.js';
+import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehouse.js';
+import {buildDapaoWell} from '../palace/special/DapaoWell.js';
+import {buildLuanjiaEastWing} from '../palace/special/LuanjiaEastWing.js';
+import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
+import {buildZhifangShell} from '../palace/special/ZhifangShell.js';
+import {buildZhishengShell} from '../palace/special/ZhishengShell.js';
+import {buildNeigeTextSideWings} from '../palace/special/NeigeTextSideWings.js';
+import {buildNeigeEastTextAnnex} from '../palace/special/NeigeEastTextAnnex.js';
+import {finishZhujingNorthWindows} from '../palace/special/ZhujingNorthWindows.js';
+import {finishNansansuoNorthEaves} from '../palace/special/NansansuoNorthEaves.js';
+import {buildNeigeSouthConnectingGate} from '../palace/special/NeigeSouthConnectingGate.js';
+import {buildNeigeWestAnnexSegment} from '../palace/special/NeigeWestAnnexSegment.js';
+import {finishNansansuoCourtyardGates} from '../palace/special/NansansuoCourtyardGates.js';
+import {buildJingxingGate} from '../palace/special/JingxingGate.js';
+import {finishNansansuoFrontHalls} from '../palace/special/NansansuoFrontFinalizer.js';
+import {buildNeigeStorehouse} from '../palace/special/NeigeStorehouse.js';
+import {buildNeigeCourt} from '../palace/special/NeigeCourt.js';
+import {buildChuanxinHall} from '../palace/special/ChuanxinHall.js';
+import {buildWenyuanStelePavilion} from '../palace/special/WenyuanStelePavilion.js';
+import {buildNansansuoCommonGate} from '../palace/special/NansansuoCommonGate.js';
+import {finishWenyuanEntryTread} from '../palace/special/WenyuanEntryTread.js';
 import {buildZuoyiOwnGate} from '../palace/special/ZuoyiOwnGate.js';
 import {raiseMiddleLeftPlatform} from '../palace/special/MiddleLeftPlatform.js';
 import {sideConnectionTargets} from '../palace/special/PavilionSideConnections.js';
@@ -14,7 +39,9 @@ import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindo
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
 import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
 import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
+import {finishArrowSouthHeadBands} from '../palace/special/ArrowSouthHeadBands.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
+import {finishWenyuanSouthVeranda} from '../palace/special/WenyuanSouthVeranda.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
 import {buildSishenShrine} from '../palace/special/SishenShrine.js';
@@ -178,14 +205,40 @@ export class ZoneBase {
     finishTiheSouthVisual(this.kit);
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
+    finishWenyuanSouthVeranda(this.kit);
+    finishWenyuanEntryTread(this.kit);
     finishWenhuaSouthWindows(this.kit);
     finishWenhuaCentralDoors(this.kit);
+    finishZhujingNorthWindows(this.kit);
     finishWuyingSouthWindows(this.kit);
     finishChangchunSouthWindows(this.kit);
     finishYikunInnerSouthWindows(this.kit);
+    finishArrowSouthHeadBands(this.kit,this.zoneJson);
 
+    finishNansansuoFrontHalls(this.kit,this.zoneJson);
+    finishNansansuoCourtyardGates(this.kit,this.zoneJson);
+    finishNansansuoNorthEaves(this.kit,this.zoneJson);
+    buildNansansuoMiddleHall(this.kit,this.zoneJson);
     // Keep distance levels out of the ordinary recursive material merge.
     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);
+    buildNeigeCourt(this.kit, this.zoneJson);
+    buildNeigeStorehouse(this.kit, this.zoneJson);
+    buildNeigeSouthConnectingGate(this.kit, this.zoneJson);
+    buildNeigeWestAnnexSegment(this.kit, this.zoneJson);
+    buildNeigeTextSideWings(this.kit, this.zoneJson);
+    buildNeigeEastTextAnnex(this.kit, this.zoneJson);
+    buildNeigeSecondStorehouse(this.kit, this.zoneJson);
+    buildNeigeHanbenTextVolume(this.kit, this.zoneJson);
+    buildZhishengShell(this.kit, this.zoneJson);
+    buildZhifangShell(this.kit, this.zoneJson);
+    buildChuanxinZhubanShell(this.kit, this.zoneJson);
+    buildDapaoWell(this.kit, this.zoneJson);
+    buildWenyuanStelePavilion(this.kit, this.zoneJson);
+    buildChuanxinHall(this.kit, this.zoneJson);
+    buildJingxingGate(this.kit, this.zoneJson);
+    buildLuanjiaEastWing(this.kit, this.zoneJson);
+    buildLuanjiaSouthWing(this.kit, this.zoneJson);
+    finishWenhuaCompanionSteps(this.kit, this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -371,6 +424,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='outer-east'&&item.name==='南三所宫门'){const built=buildNansansuoCommonGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),zoneJson:this.zoneJson});if(!built)throw Error('Nansansuo common gate dispatch mismatch');this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(item.middleRightGate!==undefined){const b=buildMiddleRightGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}

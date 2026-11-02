@@ -1,0 +1,9 @@
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@ -1 +1,2 @@
++import {finishNansansuoFrontHalls} from '../palace/special/NansansuoFrontFinalizer.js';
+ import {buildNeigeCourt} from '../palace/special/NeigeCourt.js';
+@@ -195,2 +196,3 @@
++    finishNansansuoFrontHalls(this.kit,this.zoneJson);
+     // Keep distance levels out of the ordinary recursive material merge.
+     const yanxiFrames = detachYanxiRuinFrames(this.kit.root);

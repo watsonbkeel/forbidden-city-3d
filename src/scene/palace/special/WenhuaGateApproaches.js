@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import {applyBoxUV} from '../../../utils/GeometryUV.js';
 import {createXiqingSurface} from '../../../controls/XiqingRoofSurface.js';
 import {WENHUA_GATE_APPROACH_IDS,WENHUA_GATE_APPROACH_REGION,WENHUA_GATE_APPROACH_ANCHOR} from '../../../controls/WenhuaGateApproachSupport.js';
+const descentProofs=new WeakMap();
+// Read-only provenance of the actually committed southern triangle assembly.
+export function wenhuaGateDescentProof(owner){const p=descentProofs.get(owner);return p&&p.frame.visible&&p.kit.root.visible&&p.kit.root.position.lengthSq()===0&&p.kit.root.rotation.toArray().slice(0,3).every(x=>x===0)&&p.kit.root.scale.equals(new THREE.Vector3(1,1,1))&&p.kit.colliders.includes(owner)&&owner.xiqingRoofSurface===p.shape&&owner.equals(p.shape.box)&&p.frame.parent===p.kit.root&&p.frame.position.equals(p.position)&&p.frame.rotation.toArray().slice(0,3).every(x=>x===0)&&p.frame.scale.equals(new THREE.Vector3(1,1,1))?p:null;}
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<2e-6;
 const fail=()=>{throw Error('Wenhua gate approaches retained source drift');};
 const plain=m=>m.visible&&!m.rotation.x&&!m.rotation.y&&!m.rotation.z&&m.scale.equals(new THREE.Vector3(1,1,1));
@@ -30,6 +33,7 @@ export function applyWenhuaGateApproaches(kit,frame){
   const ramps=kit.walkables.map((w,i)=>({w,i})).filter(({w})=>w.type==='ramp'&&w.axis==='z'&&near(w.minX,g.x+x-width/2)&&near(w.maxX,g.x+x+width/2)&&near(w.a0,g.z+sign*edge)&&near(w.a1,g.z+sign*(edge+oldRun))&&w.y0===.8&&w.y1===0);
   if(ramps.length!==1)fail();rampIndices.push(ramps[0].i);
  }
+ let descentCertificate=null;
  const old=new Set(groups.flatMap(o=>o.children)),geos=new Set([...old].map(m=>m.geometry));let shared=geos.size!==42;kit.root.traverse(m=>{if(m.isMesh&&!old.has(m)&&geos.has(m.geometry))shared=true;});if(shared)fail();
  const caps=frame.children.filter(m=>m.isMesh&&m.material===kit.lib.material('stone_slab')&&near(m.position.y,.77)&&near(m.position.x,0)&&near(m.position.z,0));if(caps.length!==1||!plain(caps[0])||!boxShape(caps[0],34.8,.08,18.7))fail();
  const stage=new THREE.Group();stage.name='wenhua-gate-two-sided-approaches';const allocated=[],parts=[],sides=new Map(),colliders=[];let committed=false;
@@ -80,12 +84,19 @@ export function applyWenhuaGateApproaches(kit,frame){
     for(let i=1;i+1<vertices.length;i++)faces.push({source:{mesh,triangle:faces.length,retainedOriginalTriangle:k/9,clipFragment:i-1},vertices:[vertices[0],vertices[i],vertices[i+1]]});
    }}
    const surface=createXiqingSurface(faces,WENHUA_GATE_APPROACH_IDS[index]),box=surface.box.clone();box.xiqingRoofSurface=surface;box.wenhuaGateApproach={id:surface.id,sourceMeshes:selected.map(m=>m===caps[0]?'RETAINED_PLATFORM_CAP':m.userData.wenhuaGateApproach.id)};colliders.push(box);
+   if(side==='south'){
+    const allowed=selected.map((m,i)=>({m,i})).filter(({m})=>m===caps[0]||m.userData.wenhuaGateApproach?.role==='south-tread'),rects=[],lanes=new Map();
+    for(const {m,i} of allowed){const tops=surface.template.triangles.filter(q=>q.source.mesh===i&&q.normal.y>0&&q.triangle.a.y===q.triangle.b.y&&q.triangle.b.y===q.triangle.c.y);if(!tops.length)fail();const b=new THREE.Box3();let area=0;for(const q of tops){b.union(q.box);area+=q.normal.y/2;}if(Math.abs(area-(b.max.x-b.min.x)*(b.max.z-b.min.z))>1e-6)fail();const r=Object.freeze({minX:b.min.x,maxX:b.max.x,minZ:b.min.z,maxZ:b.max.z});rects.push(r);
+     if(m!==caps[0]){const key=r.minX+':'+r.maxX,prev=lanes.get(key);lanes.set(key,{minX:r.minX,maxX:r.maxX,minZ:Math.min(prev?.minZ??Infinity,r.minZ),maxZ:Math.max(prev?.maxZ??-Infinity,r.maxZ)});}}
+    if(rects.length!==41||lanes.size!==4)fail();descentCertificate={owner:box,proof:Object.freeze({kit,frame,position:Object.freeze(frame.position.clone()),shape:surface,rects:Object.freeze(rects),lanes:Object.freeze([...lanes.values()].map(Object.freeze)),meshes:Object.freeze(allowed.map(q=>q.i))})};
+   }
   }
   const metadata={objectId:'FC-5652FA389B',status:'VERIFY_PENDING',accepted:false,scope:'SOUTH_AND_NORTH_APPROACH_ASSEMBLIES_ONLY',dimensionStatus:'REVERSIBLE_PHOTO_FIT_NOT_SURVEY',sources:['https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefc7fb9a3d.jpg','https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefcb74c188.jpg','https://ggzlquanjing.dpm.org.cn/scene/wPIRwsKstn5bVoDoqCG426Sfykpnc2hK/20220207_hyzg/panos/1.tiles/b/l1/01/l1_b_01_01.jpg'],photographyDate:null,stepCountMeaning:'TEN_LEVEL_LOW_POLY_DISCRETIZATION_NOT_PHOTOGRAPH_COUNT',south:{stoneWidth:cw,outerWidth:width,run:2.56,centralRoute:'TWO_STAIR_FLANKS_AROUND_REAL_TERMINAL_STONE_PANELS'},north:{run:8,topWidth:19.86,toeWidth:29.6,flankingStairs:2},remaining:'Fine carved stone profiles, exact dimensions/tread inventory, full gate elevations/room and GPU view not accepted.',addedColliders:3};
   const children=[...frame.children],walkables=[...kit.walkables],originalColliders=[...kit.colliders];
   try{for(const group of groups)frame.remove(group);kit.walkables.splice(0,kit.walkables.length,...walkables.filter((_,i)=>!rampIndices.includes(i)));kit.colliders.push(...colliders);g.wenhuaGateApproaches=metadata;}
   catch(error){frame.children.splice(0,frame.children.length,...children);for(const c of children)c.parent=frame;kit.walkables.splice(0,kit.walkables.length,...walkables);kit.colliders.splice(0,kit.colliders.length,...originalColliders);delete g.wenhuaGateApproaches;throw error;}
   committed=true;
+  descentProofs.set(descentCertificate.owner,descentCertificate.proof);
   // Resource retirement happens AFTER the visible/physical commit. A failing
   // listener must not undo the new entrance or stop later retirement attempts.
   const cleanupErrors=disposeAll(geos);metadata.cleanup={status:cleanupErrors.length?'COMMITTED_CLEANUP_FAILED':'RETIRED_SOURCES_RELEASED',attempted:geos.size,failed:cleanupErrors.length};

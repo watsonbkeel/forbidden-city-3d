@@ -1,0 +1,19 @@
+# R158 limited well / east warehouse cumulative integration
+
+Runtime `4be7cda6ced06e09e1ccf5dce203fc6ce1000da1` is based on local74c6832d, identical to verified remote `e2f0969db843d5048d15d5ed716e75d30b6e0faf`. Preserve e2f as rollback. This packet changes only two dedicated modules and the normal ZoneBase import/call sites; prior terrain, water, controls, local-contact algorithms, earlier buildings and zone data remain unchanged.
+
+## Scope and evidence limits
+- **Dapao well**: own official images support four columns, curved yellow roof, real central aperture and square well rim. The model uses a visible shallow solid bottom and four actual rim barriers; actual depth, water level, present use and public access are unverified. Dimensions, orientation and placement are engineering fits. Straight walking/running into each rim is blocked; jumping into or over the rim was **not** tested, and is not claimed impossible. Supplement ID `R158-SUPPLEMENT-DAPAO`, `originalR158Item:false`: this is not an extra completed item among the original41, nor a substitute for missing courtyard buildings.20 real triangle owners, no new walkable.
+- **Luanjia east five-bay warehouse**: official prose supports the east five-bay, yellow hard-gable outline. This is a tentative text-based exterior, **not a verified own-photo modern facade**. West-facing orientation/location, plain closed panels and dimensions are engineering fits. No south ten-bay warehouse, vanished main rooms, internal second floor/stairs, windows or inventory are fabricated. The entire FC-33770DFDD3 group is not accepted.17 actual triangle owners, no new support/room. Final source includes the reviewed one-line duplicate-dispose correction; geometry/owner stream identity makes earlier author pictures/routes reusable, and current normal World is additionally run on that corrected source.
+
+Both normal finalizers run exactly once before merge. Actual tests assert unique labels/architecture and20/17 owners without prototype injection, manual finalizer replay or fallback. Author-only injection tests remain historical QA; accepted commands explicitly use distinct normal-world files.
+
+## Finite results
+- **11/11 components**, no fail/skip/cancel.
+- Well **7/7 routes,3180 full frames,gap0**, plus4 rim refusals. Complete accepted frames and negative records exactly equal the reviewed author candidate.
+- East wing **8/8 routes,2383 frames,gap0**, plus4 closed-panel refusals. Compact records retain each complete-frame SHA; these records and refusals exactly equal the reviewed author World. Four inherited Donghua rows also exactly equal the e2f predecessor and author records, separately reported rather than added to the15/5563 frame denominator.
+- **15 accepted routes /5563 frames**,8 separate solid refusals. Worlds load outer-east plus current global entities (`loadAll:false`), not every partition. Previous historical four diagnostic failures remain inherited; this batch neither reruns nor claims to fix them or the full historical suite.
+- One clean `/gugong/` build **637 modules**, exit0, independently checked with `verifyBuildSource`. Source fingerprint `f8a3cd2d8ff7d09e82ce7c7283aa949b68a81293a33035ced4d53beadafbd7eb`, build ID `R146-fix-12123653dfe3`; existing release label deliberately unchanged.
+
+## Storage / publication
+Authorized cleanup by the parent restored free space before work. No cleanup was performed by this integration. Existing worktree/dependencies were reused; no new clone/npm/package. Before build568,094,720 bytes free minus12MiB reserved budget remained above500MiB; actual build left about537MiB. Raw logs/frames/official research remain local-only, published hashes do not imply remote raw availability. Self-made CPU PNGs are source evidence, not GPU/phone acceptance. Existing playable ZIP is not updated. No user main/branches/Pages write or complete41-object acceptance.

@@ -1,3 +1,4 @@
+import {WENYUAN_BRIDGE_X,WENYUAN_BRIDGE_ALIGNMENT} from './WenyuanBridgeAxis.js';
 import {banbiCoveredStrip,pointOnBanbiCoveredCrossing,buildBanbiCoveredStrip} from './BanbiCoveredCrossing.js';
 import {buildWenyuanPondBridgeRails} from './WenyuanPondBridgeRails.js';
 import {buildWuyingThreeBridgeRails} from './WuyingThreeBridgeRails.js';
@@ -54,7 +55,7 @@ export function southWaterProfile(river){
  const bridges=[...[-1,0,1].map((s,i)=>({id:`wuying-${i+1}`,family:'wuying',x:220.8+s*34.9/5,z:WUYING_BRIDGE_Z,axis:'z',length:18.4,width:s?3.8:5,minWidth:s?3.8:5,crest:.45,railSides:[-1,1],stairToHead:4.8,dimensionStatus:FIT})),
   {id:'duanhong',family:'duanhong',x:160.6,z:-234,axis:'z',length:18.7,width:9.2,minWidth:7.8,crest:.7,railSides:[-1,1],dimensionStatus:'OFFICIAL_LENGTH_AND_MAX_WIDTH__OTHER_DIMENSIONS_MODEL_FIT'},
   {id:'xiehe-banbi',family:'half-bridge',x:-112.97,z:-278,axis:'z',length:16,width:5,minWidth:5,crest:.35,railSides:[-1],dimensionStatus:FIT,sourceBinding:'OFFICIAL_MAP3_NS_EAST_RAIL__EXISTING_XIEHE_CULVERT_ROOF_INTERFACE_FIT'},
-  {id:'wenyuan-pond',family:'pond',railEndInset:1.5,x:-186.5,z:-149,axis:'z',length:13.2,width:3.4,minWidth:3.4,crest:.18,railSides:[-1,1],dimensionStatus:FIT},
+  {id:'wenyuan-pond',family:'pond',railEndInset:1.5,alignment:WENYUAN_BRIDGE_ALIGNMENT,x:WENYUAN_BRIDGE_X,z:-149,axis:'z',length:13.2,width:3.4,minWidth:3.4,crest:.18,railSides:[-1,1],dimensionStatus:FIT},
   ...[-255,-267,-279].map((x,i)=>({id:['three-gates-west','three-gates-middle','three-gates-east'][i],family:'three-gates',x,z:-149,axis:'z',length:14,width:4.5,minWidth:4.5,crest:.25,railSides:[-1,1],dimensionStatus:FIT,sourceBinding:'OFFICIAL_MAP3_DISTINCT_TRIO_BEFORE_THREE_GATES__NOT_DONGHUA_OR_NANSANSUO_HALL_AXES'})),
   {id:'donghua-inner',family:'east-route',x:-320,z:-257,axis:'x',length:18,width:6.8,minWidth:6.8,crest:.35,railSides:[-1,1],dimensionStatus:FIT}];
  const rawPolygon=[...base.banks.south,...west.right.slice(1),...west.left.toReversed(),...base.banks.north.toReversed().slice(1),...east.right.slice(1),...east.left.toReversed()];
