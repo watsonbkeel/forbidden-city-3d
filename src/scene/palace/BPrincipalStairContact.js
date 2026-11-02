@@ -1,3 +1,5 @@
+import {preserveFengxianFrontContactOwner,resolveFengxianFrontContact} from './special/FengxianFrontContact.js';
+function resolveWenhuaGateDescent(...args){return resolveFengxianFrontContact(...args)??resolveOriginalWenhuaGateDescent(...args);}
 import {preserveKunningGateStairOwner,resolveKunningGateStairContact} from './special/KunningGateStairContact.js';
 // Independent Kunning dispatcher; retains the Baoyun prefix and old motion suffix.
 function resolveLuanjiaEastContact(...args){return resolveKunningGateStairContact(...args)??resolveOriginalLuanjiaEastContact(...args);}
@@ -8,7 +10,7 @@ import {zhujingNorthStairGroup,isZhujingNorthStairId,validZhujingNorthStairHost,
 import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact as resolveOriginalLuanjiaEastContact} from './special/LuanjiaEastContact.js';
 import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact as resolveOriginalLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
 import {wenyuanStairGroup,isWenyuanStairId,validWenyuanStairHost,preserveWenyuanStairOwner,validWenyuanStairOwner} from './special/WenyuanStairHost.js';
-import {resolveWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
+import {resolveWenhuaGateDescent as resolveOriginalWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
 import {nansansuoNorthStairGroups,isNansansuoNorthStairGroup,isNansansuoNorthStairId,validNansansuoNorthStairHost,preserveNansansuoNorthStairOwner,validNansansuoNorthStairOwner} from './special/NansansuoNorthStairHost.js';
 import {arrowStairGroup,isArrowStairId,validArrowStairHost,preserveArrowStairOwner,validArrowStairOwner} from './special/ArrowStairHost.js';
 import {wenhuaStairGroup,isWenhuaStairId,validWenhuaStairHost,preserveWenhuaStairOwner,validWenhuaStairOwner} from './special/WenhuaStairHost.js';
@@ -56,6 +58,7 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  rows.forEach(([w],i)=>{w.bPrincipalStairId=group.surfaces[i].id;});return true;
 }
 export function preserveBPrincipalStairOwner(target,original){
+ if(preserveFengxianFrontContactOwner(target,original))return;
  if(preserveKunningGateStairOwner(target,original))return;
  if(preserveBaoyunExteriorContactOwner(target,original))return;
  if(preserveLuanjiaEastContactOwner(target,original))return;
