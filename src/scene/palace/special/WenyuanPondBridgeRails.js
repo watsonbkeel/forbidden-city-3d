@@ -1,12 +1,13 @@
+import {WENYUAN_BRIDGE_X} from './WenyuanBridgeAxis.js';
 import * as T from 'three';
 import {applyBoxUV} from '../../../utils/GeometryUV.js';
 import {createTriangleTemplate,triangleInstance,triangleBodyIntersects,triangleBodySweepFraction} from '../../../utils/TriangleSupport.js';
 
 const issuedTemplates=new WeakMap();
 const SOURCE='https://img.dpm.org.cn/Uploads/Picture/2024/02/21/s65d5b6eae1fbb.jpg';
-const isBridge=b=>b?.id==='wenyuan-pond'&&b.family==='pond'&&b.x===-186.5&&b.z===-149&&b.axis==='z'&&b.length===13.2&&b.width===3.4&&b.minWidth===3.4&&b.crest===.18&&b.railEndInset===1.5&&JSON.stringify(b.railSides)==='[-1,1]';
-/** Both visible rail runs of this ONE pond bridge. The retained deck, channel,
- * banks and approach stay untouched. Count/metrics are fits, not a survey. */
+const isBridge=b=>b?.id==='wenyuan-pond'&&b.family==='pond'&&b.x===WENYUAN_BRIDGE_X&&b.z===-149&&b.axis==='z'&&b.length===13.2&&b.width===3.4&&b.minWidth===3.4&&b.crest===.18&&b.railEndInset===1.5&&JSON.stringify(b.railSides)==='[-1,1]';
+/** Both visible rail runs of this ONE pond bridge. Rail shape follows the exact bridge profile; its approved axis fit also
+ * moves the deck and bank opening. Count/metrics are fits, not a survey. */
 export function buildWenyuanPondBridgeRails(library,b){
  if(!isBridge(b))throw Error('Wenyuan pond bridge retained identity mismatch');
  const group=new T.Group();group.name='wenyuan-pond-own-source-rails';
@@ -37,7 +38,7 @@ export function buildWenyuanPondBridgeRails(library,b){
   for(const dir of[-1,1]){const parts=[],start=dir*4.7,end=dir*5.1,at=(u,h)=>[-(start+(end-start)*u),deck(start+(end-start)*u)+h],s=new T.Shape();s.moveTo(...at(0,-.002));s.lineTo(...at(1,-.002));s.lineTo(...at(1,.12));s.quadraticCurveTo(...at(.9,.31),...at(.73,.30));s.quadraticCurveTo(...at(.6,.22),...at(.55,.49));s.quadraticCurveTo(...at(.57,.67),...at(.35,.68));s.quadraticCurveTo(...at(.46,.9),...at(.16,.95));s.quadraticCurveTo(...at(.04,1.02),...at(0,1.01));s.closePath();extrude(parts,'descending-cloud-end-panel-type-fit',x,s,.25);own(parts,`${side}:end:${dir}`);}
   runs.push({side,posts:8,panels:7,endSlopes:2,stations:[...stations]});
  }}catch(e){for(const g of geometries)g.dispose();throw e;}
- const metadata={objectId:'FC-4591AC1E97',bridgeId:b.id,sourcePhoto:SOURCE,source:'https://www.dpm.org.cn/explore/building/236513.html',photographyDate:null,scope:'BOTH_COMPLETE_VISIBLE_RAIL_RUNS_DECK_BANKS_VAULT_UNCHANGED',dimensions:'RETAINED_BRIDGE_ENVELOPE_PHOTO_TYPE_FIT_NOT_SURVEY',countStatus:'EIGHT_RETAINED_POSTS_PER_SIDE_FIT_NOT_EXACT_PHOTO_CENSUS',carving:'PLAIN_CYLINDRICAL_HEAD_TYPE_AND_CLOUD_SILHOUETTE_ONLY_AQUATIC_RELIEF_UNMODELED',hiddenFaces:'UNKNOWN_NOT_BORROWED_FROM_WUYING_OR_DUANHONG',wholeObjectAccepted:false,runs};
+ const metadata={objectId:'FC-4591AC1E97',bridgeId:b.id,sourcePhoto:SOURCE,source:'https://www.dpm.org.cn/explore/building/236513.html',photographyDate:null,scope:'BOTH_COMPLETE_VISIBLE_RAIL_RUNS_BOUND_TO_CURRENT_BRIDGE_PROFILE',dimensions:'RETAINED_BRIDGE_ENVELOPE_PHOTO_TYPE_FIT_NOT_SURVEY',countStatus:'EIGHT_RETAINED_POSTS_PER_SIDE_FIT_NOT_EXACT_PHOTO_CENSUS',carving:'PLAIN_CYLINDRICAL_HEAD_TYPE_AND_CLOUD_SILHOUETTE_ONLY_AQUATIC_RELIEF_UNMODELED',hiddenFaces:'UNKNOWN_NOT_BORROWED_FROM_WUYING_OR_DUANHONG',wholeObjectAccepted:false,runs};
  group.userData.wenyuanPondRails=metadata;return{group,colliders,metadata};
 }
 
@@ -46,15 +47,15 @@ export function buildWenyuanPondBridgeRails(library,b){
  * across the planar water margin. No fake bank, lowered wall or general bypass.
  * All ordinary collision checks still execute after this narrow water grant. */
 export function canRecoverInwardFromWenyuanRail(manager,river,from,to,radius,fromFeet,toFeet){
- if(river?.southWaterProfile!=='r36-south-precinct'||river.position?.x!==0||river.position?.z!==-310.8||!from||!to||radius!==.5||![from.x,from.z,to.x,to.z,fromFeet,toFeet].every(Number.isFinite)||fromFeet<.5||fromFeet>2||toFeet>fromFeet+1e-7||Math.abs(to.z-from.z)>1e-7||Math.abs(to.x-from.x)>.251||Math.abs(to.x+186.5)>=Math.abs(from.x+186.5)-1e-8)return false;
+ if(river?.southWaterProfile!=='r36-south-precinct'||river.position?.x!==0||river.position?.z!==-310.8||!from||!to||radius!==.5||![from.x,from.z,to.x,to.z,fromFeet,toFeet].every(Number.isFinite)||fromFeet<.5||fromFeet>2||toFeet>fromFeet+1e-7||Math.abs(to.z-from.z)>1e-7||Math.abs(to.x-from.x)>.251||Math.abs(to.x-WENYUAN_BRIDGE_X)>=Math.abs(from.x-WENYUAN_BRIDGE_X)-1e-8)return false;
  const owners=manager.colliders.filter(c=>c.triangleSupport&&issuedTemplates.has(c.triangleSupport.template));
  if(owners.length!==34||new Set(owners.map(c=>c.triangleSupport.id)).size!==34)return false;
  // Broadphase follows actual issued bounds plus the full player footprint.
  // A center-only 2.2m cutoff trapped valid contacts on the outside crown edge.
  if(!owners.some(c=>{const b=issuedTemplates.get(c.triangleSupport.template).box;return from.x+radius>=b.min.x&&from.x-radius<=b.max.x&&from.z+radius>=b.min.z&&from.z-radius<=b.max.z&&fromFeet>=b.min.y-.002&&fromFeet<=b.max.y+.002;}))return false;
  for(const c of owners){const shape=c.triangleSupport,r=issuedTemplates.get(shape.template);if(shape.id!==r.id||shape.offset.lengthSq()!==0||!c.box.equals(r.box)||!shape.box.equals(r.box)||!shape.template.bounds.equals(r.box))return false;let k=0;for(const q of shape.template.triangles)for(const v of[q.triangle.a,q.triangle.b,q.triangle.c,q.normal,q.box.min,q.box.max])for(const axis of['x','y','z'])if(v[axis]!==r.flat[k++])return false;if(k!==r.flat.length)return false;}
- const ramps=manager.walkables.filter(w=>w.type==='ramp'&&w.axis==='z'&&Math.abs(w.minX+188.2)<1e-9&&Math.abs(w.maxX+184.8)<1e-9);if(ramps.length!==32)return false;
- const seen=new Set(),near=(a,b)=>Math.abs(a-b)<1e-9;for(const w of ramps){const i=Math.round((w.a0+149+6.6)/.4125),a=-149+(-1+2*i/32)*6.6,c=-149+(-1+2*(i+1)/32)*6.6,y0=.18*(1-(-1+2*i/32)**2),y1=.18*(1-(-1+2*(i+1)/32)**2);if(i<0||i>=32||seen.has(i)||!near(w.a0,a)||!near(w.a1,c)||w.minZ!==w.a0||w.maxZ!==w.a1||w.y0!==y0||w.y1!==y1||!near(w.crossMin0,-187.96)||!near(w.crossMin1,-187.96)||!near(w.crossMax0,-185.04)||!near(w.crossMax1,-185.04))return false;seen.add(i);}
+ const ramps=manager.walkables.filter(w=>w.type==='ramp'&&w.axis==='z'&&Math.abs(w.minX-(WENYUAN_BRIDGE_X-1.7))<1e-9&&Math.abs(w.maxX-(WENYUAN_BRIDGE_X+1.7))<1e-9);if(ramps.length!==32)return false;
+ const seen=new Set(),near=(a,b)=>Math.abs(a-b)<1e-9;for(const w of ramps){const i=Math.round((w.a0+149+6.6)/.4125),a=-149+(-1+2*i/32)*6.6,c=-149+(-1+2*(i+1)/32)*6.6,y0=.18*(1-(-1+2*i/32)**2),y1=.18*(1-(-1+2*(i+1)/32)**2);if(i<0||i>=32||seen.has(i)||!near(w.a0,a)||!near(w.a1,c)||w.minZ!==w.a0||w.maxZ!==w.a1||w.y0!==y0||w.y1!==y1||!near(w.crossMin0,WENYUAN_BRIDGE_X-1.46)||!near(w.crossMin1,WENYUAN_BRIDGE_X-1.46)||!near(w.crossMax0,WENYUAN_BRIDGE_X+1.46)||!near(w.crossMax1,WENYUAN_BRIDGE_X+1.46))return false;seen.add(i);}
  const body=new T.Box3(new T.Vector3(from.x-radius,fromFeet+1e-8,from.z-radius),new T.Vector3(from.x+radius,fromFeet+1.7,from.z+radius)),below=body.clone().translate(new T.Vector3(0,-.002,0));
  // Match the real vertical resolver: exact tangency can stop a full body.
  // Inclusive contact is evidence only; positive penetration and later sweeps remain guarded.

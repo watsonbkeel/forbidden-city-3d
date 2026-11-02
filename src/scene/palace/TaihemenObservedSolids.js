@@ -1,5 +1,6 @@
 // Source-registered visible southern solids. Central115px is a COMPOSITE,not all stone.
 import * as T from'three';
+import{registerTaihemenImperialFootprint}from'./TaihemenImperialFootprint.js';
 import{buildBalustrade}from'../HallKit.js';
 import{closedTerraceStairGeometry}from'./ThreeHallTerrace.js';
 import{applyBoxUV}from'../../utils/GeometryUV.js';
@@ -7,7 +8,7 @@ import{createTriangleTemplate,triangleInstance}from'../../utils/TriangleSupport.
 
 export function validateCentralGroupC(p){
  const c=p?.centralGroup;
- if(!c||![c.width,c.stoneWidth,c.run,c.zToe,c.outerCurbWidth,c.treadCount].every(Number.isFinite)||c.stoneWidth<=0||c.stoneWidth>=c.width||c.zToe>=p.zToe||c.shoulders?.length!==2||c.fences?.length!==2||c.physicsOwnerIds?.length!==10)throw Error('Taihemen C central composite source profile invalid');
+ if(!c||![c.width,c.stoneWidth,c.run,c.zToe,c.outerCurbWidth,c.treadCount].every(Number.isFinite)||c.stoneWidth<=0||c.stoneWidth>=c.width||c.zToe>=p.zToe||c.shoulders?.length!==2||c.fences?.length!==0||c.physicsOwnerIds?.length!==8||c.gameAccessOverride!=='USER_REQUESTED_REMOVE_HEAD_AND_TOE_BLACK_BARRIERS_ONLY_2026_11_02')throw Error('Taihemen C central composite source profile invalid');
 }
 function ownExactMesh(builder,mesh,id){
  mesh.updateWorldMatrix(true,false);
@@ -50,15 +51,19 @@ export function buildTaihemenApproachSolidsC(builder,parent,p){
  const section=new T.Shape();section.moveTo(0,0);section.lineTo(c.run,0);section.lineTo(0,rise);section.closePath();
  const base=new T.ExtrudeGeometry(section,{depth:c.stoneWidth,bevelEnabled:false,steps:1,curveSegments:1});base.translate(0,0,-c.stoneWidth/2);base.rotateY(Math.PI/2);base.translate(0,p.y0,p.zEdge);
  const body=new T.Mesh(applyBoxUV(base,builder.library.tileSize('marble')),marble);body.name='taihemen-c-central-stone-body';body.userData.centralPart={role:'stone-body',accepted:false};body.castShadow=body.receiveShadow=true;group.add(body);ownExactMesh(builder,body,c.physicsOwnerIds[0]);
- // Top surface exactly follows the rendered ramp plane;thickness is below it.
- const th=.12,slab=builder.box(group,builder.library.material('yulu'),c.stoneWidth,th,length,0,(p.y0+p.y1)/2-th*Math.cos(angle)/2,(p.zEdge+c.zToe)/2+th*Math.sin(angle)/2,{box:2});slab.rotation.x=-angle;slab.name='taihemen-c-central-carved-stone-placeholder';slab.userData.centralPart={role:'stone-cap-carving-unreproduced',accepted:false};ownExactMesh(builder,slab,c.physicsOwnerIds[1]);
+ // Top surface exactly follows the rendered ramp plane; thickness is below it.
+ // yulu is clamp-to-edge: native BoxGeometry UV maps its complete image once.
+ // Metre-scaled {box:2} projected UV incorrectly smeared texture border pixels.
+ const dragon=builder.library.material('yulu').clone();dragon.name='taihemen-local-yulu-depth-bias';dragon.polygonOffset=true;dragon.polygonOffsetFactor=-1;dragon.polygonOffsetUnits=-1;builder.ownedMaterials.push(dragon);
+ const th=.12,slab=builder.box(group,dragon,c.stoneWidth,th,length,0,(p.y0+p.y1)/2-th*Math.cos(angle)/2,(p.zEdge+c.zToe)/2+th*Math.sin(angle)/2);slab.rotation.x=-angle;slab.name='taihemen-c-central-carved-stone';slab.userData.centralPart={role:'stone-cap-shared-dragon-texture',textureStatus:'EXISTING_TAIHE_YULU_FULL_IMAGE_UV_NOT_OWN_HISTORIC_CARVING_REPLICA',accepted:false};ownExactMesh(builder,slab,c.physicsOwnerIds[1]);
  for(const[i,f]of c.shoulders.entries()){
   const g=new T.Group();g.name=f.id;g.userData.structure={id:f.id,entityId:'FC-B3B12CF397',accepted:false,profile:f};group.add(g);
   const geo=closedTerraceStairGeometry({...f,xEdge:0,centerZ:0,dir:1},builder.library.tileSize('marble'));geo.rotateY(Math.PI/2);geo.translate(f.centerX,0,p.zEdge);const m=new T.Mesh(geo,marble);m.name=f.id+':closed-treads';m.castShadow=m.receiveShadow=true;m.userData.centralPart={role:'shoulder-treads',accepted:false};g.add(m);ownExactMesh(builder,m,c.physicsOwnerIds[2+i]);
   const x=f.side*(c.width/2-c.outerCurbWidth/2),curb=builder.box(g,marble,c.outerCurbWidth,.4,length,x,(p.y0+p.y1)/2+.1,(p.zEdge+c.zToe)/2,{box:2});curb.rotation.x=-angle;curb.name=f.id+':outer-stone-cheek';curb.userData.centralPart={role:'shoulder-cheek',accepted:false};ownExactMesh(builder,curb,c.physicsOwnerIds[4+i]);
   const rail=buildBalustrade(builder.library,{length:c.run,height:1.1}),mesh=rail.children[0],a=mesh.geometry.attributes.position;for(let j=0;j<a.count;j++)a.setY(j,a.getY(j)-a.getX(j)*rise/c.run);a.needsUpdate=true;mesh.geometry.computeVertexNormals();rail.rotation.y=Math.PI/2;rail.position.set(x,(p.y0+p.y1)/2+.25,(p.zEdge+c.zToe)/2);mesh.userData.centralPart={role:'shoulder-outer-rail',accepted:false};g.add(rail);ownExactMesh(builder,mesh,c.physicsOwnerIds[6+i]);
  }
- // Both barriers are visible in the selected official front photo. Their bar
- // count/height are coarse fits,not a statement about post2026 works/access.
- const metal=builder.ownMat('taihemen-c-photo-barrier',{name:'taihemen-c-photo-barrier',color:0x292d2b,roughness:.8,metalness:.25});for(const f of c.fences)addPhotoFence(builder,group,p,f,metal);
+ registerTaihemenImperialFootprint(builder,parent,p);
+ // Explicit user gameplay choice: omit only the two transverse black barriers
+ // and their exact collision owners. White side balustrades above remain solid.
+ // Real-world present visitor access remains UNKNOWN in the source profile.
 }

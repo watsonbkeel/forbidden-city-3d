@@ -1,0 +1,131 @@
+{
+  "localBase": "c376ef094e0377ecee183a31252d3eadb95c54a2",
+  "remoteEquivalent": "aac4e3a3949688440ab21bad0877051d1e8242b3",
+  "target": "wuying-moon-causeway-surface plus two adjoining horizontal paving meshes; NOT Wuying gate three bridges",
+  "productionFile": "src/scene/palace/special/WuyingMoonTerrace.js",
+  "productionSHA256": "09e431239998235c762e58d685c7bce1b7ac799beaa870949b89c84a46ac7f5f",
+  "material": {
+    "name": "ground_brick",
+    "tileSize": 4,
+    "roughness": 0.88,
+    "metalness": 0,
+    "sharedRepeat": [
+      1,
+      1
+    ],
+    "hdColorPixels": [
+      1024,
+      1024
+    ],
+    "hdNormalPixels": [
+      512,
+      512
+    ],
+    "sdColorPixels": [
+      512,
+      512
+    ],
+    "sdNormalPixels": [
+      256,
+      256
+    ]
+  },
+  "meshDelta": "minus 4 duplicate horizontal base lid triangles only; remaining position triangles exact",
+  "physical": {
+    "geometryExceptDuplicateLidsHash": "3ef8f57cdb9b9c50c386f607804134e33c53a0d7179045b95f1739f782ae9929",
+    "triangles": 95208,
+    "physicalHash": "5eec348a856801f0fc85af6923bb27f3073e033e5ea2efe51e50b4ff28bd82b9",
+    "counts": {
+      "colliders": 665,
+      "walkables": 37,
+      "rooms": 1,
+      "mapItems": 2
+    }
+  },
+  "screenshots": "CPU perspective-correct UV sampled original WebP, real merged local meshes + production Environment ground, not GPU screenshot",
+  "review": "Astra found no blocking code issue; source frozen before review; later changes only QA, exact sparse evidence hydration and artifacts",
+  "build": "Deferred to sole integrator combined three-bug clean build, per queue instruction",
+  "rawPolicy": "LOCAL_ONLY: original logs remain in author/local tree; excluded from final remote projection and intermediate ancestors are not pushed",
+  "localRaw": [
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/baseline-old.log.gz",
+      "bytes": 1278,
+      "sha256": "0212811c245fdaa52a80578dd5d5c7de8d3729d39bb887bc7bcfb291581dcd09"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/final-39.log.gz",
+      "bytes": 1671,
+      "sha256": "f802a10d76a6be664098240cfacd78b75090a845a470590e50389710f11ca4af"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/final-related.log.gz",
+      "bytes": 1665,
+      "sha256": "723904c16cc99cee1afb52a954be544e8ad4a8730517354220f8dd9ff81a7bb7"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/green.log.gz",
+      "bytes": 1961,
+      "sha256": "6ecebe47c9b6a5c74c3919492d4761d5ca15f784e51d458e716e16eaf3d0aacd"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/green2.log.gz",
+      "bytes": 271,
+      "sha256": "93f36d1aac0232a1a92136d86feda48b4e29be5941e3516bf6f0c9fe007ddeb9"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/npm-test.log.gz",
+      "bytes": 261,
+      "sha256": "46d75e7aadb55db2f679d3a619933fc4c193e03f4e70c5f5bfb7083d9d881b13"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/old-hydrated.log.gz",
+      "bytes": 1993,
+      "sha256": "78c50fcbed76841937c91d29f1a212d1599923d976fc7a2dc5937cc921a5f59a"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/physical-and-triangles.json.gz",
+      "bytes": 221,
+      "sha256": "d6e4911a1f3627f8c94e5ffdaea3b9ed1ba5bc8ea92586c996bbd57b13faac31"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/red.log.gz",
+      "bytes": 2280,
+      "sha256": "08e0a05b9846f6150cf6efaf587f8936f774b9c96912e07032fffe1e2567707e"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/related.log.gz",
+      "bytes": 346,
+      "sha256": "e47d68ded9711f157d0d22ed67167e1740591db8cc9d5849aa877a57f56af670"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/render.log.gz",
+      "bytes": 136,
+      "sha256": "d9c236fd52997521e6ceef99d9456fbb70ef59fd71f953a61b494d1c6a3fc587"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/resources.log.gz",
+      "bytes": 553,
+      "sha256": "4c227bff22dd6defaa7890dde2b794d1fdac44013be7408c8e8ef9fd549fc4fe"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/retention-final.log.gz",
+      "bytes": 194,
+      "sha256": "7c789e04d37510a8bc578bd4d4f38f285db85e7add71d0bbd9a627f09cf0dea0"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/routes.log.gz",
+      "bytes": 1759,
+      "sha256": "e70ebab1d5a90a559e25ff4fdb64d29aa2850a2c457d44761ea33d8f55001b02"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/routes2.log.gz",
+      "bytes": 1764,
+      "sha256": "2f5a0455d8a78ac81259548fa7d38f954cf07d583042d9fdceb10b5771318e9f"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R157-WUYING-PAVING-20261102/evidence/wuying-paving-independent-review.log.gz",
+      "bytes": 1496,
+      "sha256": "6862ea5151cf143e75939bc08efb4b542b17d24c6581fcee5493b4aa3f481a64"
+    }
+  ]
+}

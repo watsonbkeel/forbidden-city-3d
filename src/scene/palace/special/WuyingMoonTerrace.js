@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {applyBoxUV} from '../../../utils/GeometryUV.js';
 
 const FIT='REVERSIBLE_MODEL_FIT_NOT_SURVEYED';
 const TOUR='https://ggzlquanjing.dpm.org.cn/scene/rOQSztMJ62XbrOjIj78rxu2KMZTcvyfg/20210517_wydtcg/';
@@ -35,7 +36,34 @@ export function buildWuyingMoonTerrace(kit,item,f,stone){
    [a.x+ox,a.y+hi,a.z+oz],[a.x-ox,a.y+hi,a.z-oz],[b.x-ox,b.y+hi,b.z-oz],[b.x+ox,b.y+hi,b.z+oz]];
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(points.flat(),3));g.setIndex([0,2,1,0,3,2,4,5,6,4,6,7,0,1,5,0,5,4,1,2,6,1,6,5,2,3,7,2,7,6,3,0,4,3,4,7]);for(let i=0;i<g.index.count;i+=3){const a=g.index.getX(i);g.index.setX(i,g.index.getX(i+2));g.index.setX(i+2,a);}g.computeVertexNormals();return mark(kit.mesh(f,g,stone,0,0,0),role,extra);
  };
- const slab=(role,x0,z0,x1,z1)=>{box(role,x1-x0,y,z1-z0,(x0+x1)/2,y/2,(z0+z1)/2,kit.lib.material('sumeru_band'),true);box(role+'-paving',x1-x0,.06,z1-z0,(x0+x1)/2,y-.03,(z0+z1)/2,kit.lib.material('stone_slab'));support(x0,z0,x1,z1,y);};
+ // Screenshot repair: the custom causeway previously had no UVs at all
+ // (batching filled them with zero); the flat slabs stretched one tile per box.
+ // Borrow the exact surrounding ground material, never change its shared repeat.
+ const pave=(m,slope=0)=>{
+  const old=m.geometry,geo=old.index?old.toNonIndexed():old;
+  if(geo!==old)old.dispose();
+  geo.computeVertexNormals();
+  const tile=kit.lib.tileSize('ground_brick');
+  m.geometry=applyBoxUV(geo,tile);
+  const p=geo.attributes.position,n=geo.attributes.normal,uv=geo.attributes.uv;
+  for(let i=0;i<p.count;i++)if(n.getY(i)>.9){
+   const x=p.getX(i)+m.position.x+item.x,z=p.getZ(i)+m.position.z;
+   // Match world ground X/-Z axes; integrate true slope distance, not a
+   // stretched 0..1 quad. North joint shares the horizontal terrace phase.
+   const distance=south+(z-south)*Math.hypot(1,slope);
+   uv.setXY(i,x/tile,-(item.z+distance)/tile);
+  }
+  m.material=kit.lib.material('ground_brick',{roughness:.88,metalness:0});
+  return m;
+ };
+ const slab=(role,x0,z0,x1,z1)=>{
+  const body=box(role,x1-x0,y,z1-z0,(x0+x1)/2,y/2,(z0+z1)/2,kit.lib.material('sumeru_band'),true);
+  // The solid body's lid was exactly coplanar with its separate paving cap.
+  // Keep its registered volume and side faces, remove only that hidden lid.
+  const ix=body.geometry.index,norm=body.geometry.attributes.normal,keep=[];
+  for(let i=0;i<ix.count;i+=3)if(norm.getY(ix.getX(i))<.9)keep.push(ix.getX(i),ix.getX(i+1),ix.getX(i+2));
+  body.geometry.setIndex(keep);
+  pave(box(role+'-paving',x1-x0,.06,z1-z0,(x0+x1)/2,y-.03,(z0+z1)/2,kit.lib.material('stone_slab')));support(x0,z0,x1,z1,y);};
  slab('wuying-moon-terrace-north-shoulder',-edge,north,edge,back);
  slab('wuying-moon-terrace-surface',-half,south,half,north);
  // The hall's old centre stair now lies under the real new slab. Remove only
@@ -55,6 +83,7 @@ export function buildWuyingMoonTerrace(kit,item,f,stone){
  // Straight X cross-sections match the production tapered ramp contract;
  // avoid a tiny rotation-dependent mismatch in the walkable outline.
  const pa=deck.geometry.attributes.position;for(let i=0;i<8;i++){const southEnd=i%4>=2,positive=[0,3,4,7].includes(i);pa.setXYZ(i,(southEnd?1.3:0)+(positive?causeway.halfWidth:-causeway.halfWidth),i<4?0:(southEnd?.8:y),southEnd?causeway.south:south);}pa.needsUpdate=true;deck.geometry.computeVertexNormals();
+ pave(deck,causeway.rise/causeway.run);
  kit.walkables.push({type:'ramp',axis:'z',minX:item.x-causeway.halfWidth,maxX:item.x+1.3+causeway.halfWidth,minZ:item.z+causeway.south,maxZ:item.z+south,a0:item.z+south,a1:item.z+causeway.south,y0:y,y1:.8,crossMin0:item.x-causeway.halfWidth,crossMax0:item.x+causeway.halfWidth,crossMin1:item.x+1.3-causeway.halfWidth,crossMax1:item.x+1.3+causeway.halfWidth,rescue:false,wuyingMoonTerrace:true});
  for(let k=0;k<50;k++){const t=(k+.5)/50,x=1.3*t,z=south+(causeway.south-south)*t,yy=y-.4*t;kit.col(f,x-causeway.halfWidth+.03,0,z-.1955,x+causeway.halfWidth-.03,yy-.004,z+.1955);if(k%10===0)result.surfaceSamples.push({x,z,y:yy});}
  // LatheGeometry emits one zero-area face per segment at a radius-zero

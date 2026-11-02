@@ -1,3 +1,4 @@
+import{preserveTaihemenImperialContact,resolveTaihemenImperialContact}from './TaihemenImperialFootprint.js';
 import * as THREE from 'three';
 import {PLAYER} from '../../config/constants.js';
 import {pathFootprintCovered} from '../../controls/WumenJointAscentCoverage.js';
@@ -20,11 +21,13 @@ export function registerTaihemenStairContact(builder,parent){
  for(const[w,id]of rows)w.taihemenStairContactId=id;
 }
 export function preserveTaihemenStairContactOwner(target,source){
+ preserveTaihemenImperialContact(target,source);
  const id=source?.taihemenStairContactId;if(id===undefined)return;
  const p=expected.find(p=>p.id===id);if(!p||!matches(source,p)||!matches(target,p))throw Error('Taihemen contact owner must match actual existing geometry');
  target.taihemenStairContactId=id;
 }
 export function resolveTaihemenStairContact(cm,state,delta,radius=.5){
+ const imperial=resolveTaihemenImperialContact(cm,state,delta,radius);if(imperial)return imperial;
  const prior=previous.get(cm);previous.delete(cm);
  if(!state||state.airborne!==false||state.verticalVelocity>0||radius!==.5||![state.x,state.z,state.feetY,state.groundY,state.verticalVelocity,delta].every(Number.isFinite)||delta<=0||delta>.100001)return null;
  if(state.x<-26||state.x>26||state.z<south.zToe-1.5||state.z>-194.9)return null;
