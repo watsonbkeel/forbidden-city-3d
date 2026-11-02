@@ -1,4 +1,6 @@
-import {preserveFengxianFrontContactOwner,resolveFengxianFrontContact} from './special/FengxianFrontContact.js';
+import {preserveFengxianCentralContactOwner,resolveFengxianCentralContact} from './special/FengxianCentralContact.js';
+function resolveFengxianFrontContact(...args){return resolveFengxianCentralContact(...args)??resolveOriginalFengxianFrontContact(...args);}
+import {preserveFengxianFrontContactOwner,resolveFengxianFrontContact as resolveOriginalFengxianFrontContact} from './special/FengxianFrontContact.js';
 function resolveWenhuaGateDescent(...args){return resolveFengxianFrontContact(...args)??resolveOriginalWenhuaGateDescent(...args);}
 import {preserveKunningGateStairOwner,resolveKunningGateStairContact} from './special/KunningGateStairContact.js';
 // Independent Kunning dispatcher; retains the Baoyun prefix and old motion suffix.
@@ -58,6 +60,8 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  rows.forEach(([w],i)=>{w.bPrincipalStairId=group.surfaces[i].id;});return true;
 }
 export function preserveBPrincipalStairOwner(target,original){
+ // Shared platform must retain BOTH independent private certificates.
+ preserveFengxianCentralContactOwner(target,original);
  if(preserveFengxianFrontContactOwner(target,original))return;
  if(preserveKunningGateStairOwner(target,original))return;
  if(preserveBaoyunExteriorContactOwner(target,original))return;

@@ -1,3 +1,5 @@
+import {registerFengxianCentralContact} from '../palace/special/FengxianCentralContact.js';
+import {buildZhaigongFrontHall} from '../palace/special/ZhaigongFrontHall.js';
 import {finishFengxianFrontSteps} from '../palace/special/FengxianFrontSteps.js';
 import {buildJiuqingSouthPorchFragment} from '../palace/special/JiuqingSouthPorchFragment.js';
 import {buildJunjiSouthPorchFragment} from '../palace/special/JunjiSouthPorchFragment.js';
@@ -273,6 +275,8 @@ export class ZoneBase {
     finishBaoyunPorchLions(this.kit);
     finishBaoyunExteriorSteps(this.kit);
     finishFengxianFrontSteps(this.kit);
+    registerFengxianCentralContact(this.kit);
+    buildZhaigongFrontHall(this.kit,this.zoneJson.id);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
