@@ -1,0 +1,10 @@
+--- a/src/scene/zones/ZoneBase.js
++++ b/src/scene/zones/ZoneBase.js
+@@ -6,2 +6,3 @@
+ import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
++import {finishLuanjiaEastTwoLevel} from '../palace/special/LuanjiaEastTwoLevel.js';
+ import {buildZhifangShell} from '../palace/special/ZhifangShell.js';
+@@ -236,2 +237,3 @@
+     buildLuanjiaSouthWing(this.kit, this.zoneJson);
++    finishLuanjiaEastTwoLevel(this.kit, this.zoneJson);
+     finishWenhuaCompanionSteps(this.kit, this.zoneJson);

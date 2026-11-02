@@ -6,6 +6,8 @@ import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehous
 import {buildDapaoWell} from '../palace/special/DapaoWell.js';
 import {buildLuanjiaEastWing} from '../palace/special/LuanjiaEastWing.js';
 import {buildLuanjiaSouthWing} from '../palace/special/LuanjiaSouthWing.js';
+import {finishLuanjiaEastTwoLevel} from '../palace/special/LuanjiaEastTwoLevel.js';
+import {finishLuanjiaSouthTwoLevel} from '../palace/special/LuanjiaSouthTwoLevel.js';
 import {buildZhifangShell} from '../palace/special/ZhifangShell.js';
 import {buildZhishengShell} from '../palace/special/ZhishengShell.js';
 import {buildNeigeTextSideWings} from '../palace/special/NeigeTextSideWings.js';
@@ -238,6 +240,8 @@ export class ZoneBase {
     buildJingxingGate(this.kit, this.zoneJson);
     buildLuanjiaEastWing(this.kit, this.zoneJson);
     buildLuanjiaSouthWing(this.kit, this.zoneJson);
+    finishLuanjiaEastTwoLevel(this.kit, this.zoneJson);
+    finishLuanjiaSouthTwoLevel(this.kit, this.zoneJson);
     finishWenhuaCompanionSteps(this.kit, this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);

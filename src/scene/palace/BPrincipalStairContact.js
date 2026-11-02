@@ -1,3 +1,5 @@
+import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact} from './special/LuanjiaEastContact.js';
+import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
 import {wenyuanStairGroup,isWenyuanStairId,validWenyuanStairHost,preserveWenyuanStairOwner,validWenyuanStairOwner} from './special/WenyuanStairHost.js';
 import {resolveWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
 import {nansansuoNorthStairGroups,isNansansuoNorthStairGroup,isNansansuoNorthStairId,validNansansuoNorthStairHost,preserveNansansuoNorthStairOwner,validNansansuoNorthStairOwner} from './special/NansansuoNorthStairHost.js';
@@ -45,6 +47,8 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  rows.forEach(([w],i)=>{w.bPrincipalStairId=group.surfaces[i].id;});return true;
 }
 export function preserveBPrincipalStairOwner(target,original){
+ if(preserveLuanjiaEastContactOwner(target,original))return;
+ if(preserveLuanjiaSouthContactOwner(target,original))return;
  const id=original?.bPrincipalStairId;if(id===undefined)return;
  const p=all.get(id);if(!p||!matches(original,p)||!matches(target,p))throw Error('B stair contact owner differs from its existing source surface');
  if(isNansansuoFrontStairId(id)&&!preserveNansansuoFrontStairOwner(target,original,id))throw Error('Nansansuo front stair requires actual terminal owner');
@@ -66,6 +70,8 @@ function toeRect(r){
  return r.axis==='x'?{minX:Math.min(at,a),maxX:Math.max(at,a),minZ:r.minZ,maxZ:r.maxZ}:{minX:r.minX,maxX:r.maxX,minZ:Math.min(at,a),maxZ:Math.max(at,a)};
 }
 export function resolveBPrincipalStairContact(cm,state,delta,radius=.5){
+ const luanjia=resolveLuanjiaEastContact(cm,state,delta,radius);if(luanjia)return luanjia;
+ const luanjiaSouth=resolveLuanjiaSouthContact(cm,state,delta,radius);if(luanjiaSouth)return luanjiaSouth;
  const gate=resolveWenhuaGateDescent(cm,state,delta,radius);if(gate)return gate;
  const prior=previous.get(cm);previous.delete(cm);
  if(!state||state.airborne!==false||state.verticalVelocity>0||radius!==.5||![state.x,state.z,state.feetY,state.groundY,state.verticalVelocity,delta].every(Number.isFinite)||delta<=0||delta>.100001)return null;
