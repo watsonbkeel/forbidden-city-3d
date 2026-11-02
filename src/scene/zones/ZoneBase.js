@@ -1,3 +1,4 @@
+import {buildShangshuSouthFragment} from '../palace/special/ShangshuSouthFragment.js';
 import {publicMapItem} from '../../ui/PublicPlaceNames.js';
 import {buildNansansuoWestMiddleHall} from '../palace/special/NansansuoWestMiddleHall.js';
 import {buildNansansuoMiddleWell} from '../palace/special/NansansuoMiddleWell.js';
@@ -502,6 +503,7 @@ export class ZoneBase {
   }
 
   buildWall(item) {
+    if(buildShangshuSouthFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item)))return;
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
