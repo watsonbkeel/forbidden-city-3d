@@ -1,3 +1,4 @@
+import { fitJingyunPlaqueFrame } from './JingyunPlaqueFrame.js';
 import {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';
 import {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';
 import {buildXieheEastRampRails} from './XieheEastRampRails.js';
@@ -162,7 +163,10 @@ export function buildSideGate(kit,opts) {
   fitXieheVisibleHall(kit,f,g,roof);
   // Xiehe only: move the complete plaque clear of the painted beam (engineering fit).
   const plaqueZ=-d/2-.29-(g.profile==='xiehe'?.07:0);
-  if(opts.plaque!==false)kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
+  if(opts.plaque!==false) {
+    kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
+    fitJingyunPlaqueFrame(kit,f,g,kit.plaques.at(-1));
+  }
   if(g.profile==='xihe')buildXiheCourtyardCorbels(kit,f,g);
   if(g.profile==='xiehe')buildXieheCourtyardKnees(kit,f,g);
   buildLongzongHallFrontFit(kit,f,g,renderBoxes);
