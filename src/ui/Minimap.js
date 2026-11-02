@@ -861,7 +861,7 @@ export class Minimap {
       const anchor = it.labelAnchor ? this.worldToMap(it.labelAnchor.x, it.labelAnchor.z) : { x: x + w / 2, y: y + h / 2 };
       const cx = anchor.x, cy = anchor.y;
       const mode = it.navigation?.mode;
-      this.drawLabel(it.historicalSite ? `${it.name}（旧址）` : mode === 'exterior-view' ? `${it.name}（外观）` : it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
+      this.drawLabel(it.name, cx, cy, it.kind === 'hall', it.kind === 'hall' ? 9 : 8, it.name, mode, this.placeCatalog?.forMapItem(it, this.items)?.id);
     }
   }
   

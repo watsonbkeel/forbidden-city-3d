@@ -26,7 +26,7 @@ test('old-site map labels preserve the selectable original name and never draw a
  const s=await setupMap(t);s.map.items=gateNames.map(name=>{const g=west.items.find(i=>i.name===name);return{kind:'gate',name,x:g.x,z:g.z,w:0,d:0,historicalSite:true};});
  const calls=[];s.map.ctx=new Proxy({measureText:t=>({width:t.length*6})},{get:(o,k)=>k in o?o[k]:(...args)=>calls.push([k,...args]),set:(o,k,v)=>(o[k]=v,true)});
  const labels=[];s.map.drawLabel=(...args)=>labels.push(args);s.map.drawSideItems();
- assert.equal(calls.filter(c=>c[0]==='fillRect').length,0);assert.deepEqual(labels.map(l=>l[0]),gateNames.map(n=>n+'（旧址）'));assert.deepEqual(labels.map(l=>l[5]),gateNames);
+ assert.equal(calls.filter(c=>c[0]==='fillRect').length,0);assert.deepEqual(labels.map(l=>l[0]),gateNames);assert.deepEqual(labels.map(l=>l[5]),gateNames);
 });
 
 test('historical west-six data retains only eight evidence-bound items and four provisional perimeter joins after exact R32 source restoration',async()=>{

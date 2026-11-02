@@ -55,7 +55,7 @@ test('minimap draws two separate physical footprints, keeps inherited label anch
  m.ctx={fillRect:(...v)=>rectangles.push(v),strokeRect(){},measureText:t=>({width:t.length*5}),fillText:(...v)=>texts.push(v)};
  m.drawSideItems();assert.deepEqual(rectangles.slice(0,2),it.footprints.map(p=>m.rectOf(p.x,p.z,p.w,p.d)));
  assert.equal(m.labels.length,1);assert.equal(m.labels[0].name,'钦安殿');assert.equal(m.labels[0].mode,'exterior-view');assert.deepEqual([m.labels[0].x,m.labels[0].y],[0,493.1]);
- assert.equal(texts[0][0],'钦安殿（外观）');
+ assert.equal(texts[0][0],'钦安殿');
 });
 test('settings disclose virtual side entry, missing south stonework, and unknown modern access',()=>{
  const settings=fs.readFileSync(new URL('../../src/ui/SettingsMenu.js',import.meta.url),'utf8'),map=fs.readFileSync(new URL('../../src/ui/Minimap.js',import.meta.url),'utf8');

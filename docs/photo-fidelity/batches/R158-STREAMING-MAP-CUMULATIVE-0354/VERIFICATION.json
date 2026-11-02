@@ -1,0 +1,222 @@
+{
+  "runtime": "3657bf5fe43e742165e0772c5e3aba208e39c045",
+  "parentRemote": "5a08657d30857868f9aa0836203027ee0b2e0216",
+  "productionChanges": [
+    "src/scene/zones/ZoneManager.js",
+    "src/ui/Minimap.js"
+  ],
+  "tests": {
+    "components": 27,
+    "selectedOldMarker": 1,
+    "normalDynamicWorld": 1,
+    "total": 29,
+    "failed": 0,
+    "skipped": 0
+  },
+  "world": {
+    "routes": 2,
+    "arrived": 2,
+    "frames": 1119,
+    "maxAbsGap": 0.13104596276716074,
+    "maxFeet": 2.62,
+    "coldInitials": [
+      {
+        "cache": {
+          "keys": [],
+          "bytes": 0
+        },
+        "loaded": [
+          "outer-east"
+        ],
+        "current": "outer-east",
+        "queue": [
+          {
+            "zoneId": "axis-courts",
+            "priority": 1
+          }
+        ]
+      },
+      {
+        "cache": {
+          "keys": [],
+          "bytes": 0
+        },
+        "loaded": [
+          "outer-east"
+        ],
+        "current": "outer-east",
+        "queue": [
+          {
+            "zoneId": "axis-courts",
+            "priority": 1
+          }
+        ]
+      }
+    ],
+    "axisRegisteredBeforeToe": true
+  },
+  "parentComparison": [
+    {
+      "sprint": false,
+      "parentFrames": 784,
+      "currentFrames": 784,
+      "parentBuildCount": 8,
+      "currentBuildCount": 7,
+      "parentMaxGap": 0.04136900442035518,
+      "currentMaxGap": 0.04136900376483621,
+      "parentManagerMaxMS": 2403.0505710000016,
+      "currentManagerMaxMS": 43.3917390000006,
+      "parentReturnUpdateMS": 2403.0505710000016,
+      "currentReturnUpdateMS": 0.14606699999967532
+    },
+    {
+      "sprint": true,
+      "parentFrames": 335,
+      "currentFrames": 335,
+      "parentBuildCount": 8,
+      "currentBuildCount": 7,
+      "parentMaxGap": 0.13104603920781166,
+      "currentMaxGap": 0.13104596276716074,
+      "parentManagerMaxMS": 2527.471211,
+      "currentManagerMaxMS": 49.7414260000005,
+      "parentReturnUpdateMS": 2527.471211,
+      "currentReturnUpdateMS": 0.12038899999970454
+    }
+  ],
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-5e91e93aa62a",
+    "sourceFingerprint": "50eb5718b1c90b725f9705cdebd0258483012ea3bf310d83108da52ca0506e44",
+    "sourceCommit": "3657bf5fe43e742165e0772c5e3aba208e39c045",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 662,
+  "source": [
+    {
+      "path": "src/scene/zones/ZoneManager.js",
+      "bytes": 17401,
+      "sha256": "b47c4967da7abb82648230a9ce2e3dd961344978f6511c0be54336482964a9cd"
+    },
+    {
+      "path": "src/ui/Minimap.js",
+      "bytes": 54063,
+      "sha256": "1d17a39970666a78d3651a8e923cd4aaea6b88d5d25ee326f0639ead24eafd2a"
+    }
+  ],
+  "qa": [
+    {
+      "path": "tests/r158-map-label/labels.test.mjs",
+      "bytes": 3921,
+      "sha256": "2616e27e9157e1c057dd25bdd7b49c268cecc2e6d54d279bd92e8b67fbe20d1c"
+    },
+    {
+      "path": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "bytes": 12876,
+      "sha256": "8c580dc8ad7bd53e17d9fb60787295a45acd42af954e32550bfcb2a95ffc0354"
+    },
+    {
+      "path": "tests/r49-map-palace-labels.test.mjs",
+      "bytes": 13516,
+      "sha256": "359b1f5c87493e7dc7054c438ed939f402ca9bf1d341fb868576b9548b9c4464"
+    },
+    {
+      "path": "tests/west-six-current-passages.test.mjs",
+      "bytes": 5658,
+      "sha256": "88ae6a7efa732a32d354b6731de4c2657f93e2a040a5b9d55aef3fe197e99960"
+    },
+    {
+      "path": "tests/r158-nearby-streaming/component.test.mjs",
+      "bytes": 5697,
+      "sha256": "7d69d71543fb47d301af3a0dde3691aaf03555df92f318eb465da4f5eea8d2d8"
+    },
+    {
+      "path": "tests/r158-nearby-streaming/world.test.mjs",
+      "bytes": 9378,
+      "sha256": "400a027bc619975085f5b245e724e83bf68f8f9be01eec97d40f384e89bcef4b"
+    }
+  ],
+  "protected": [
+    {
+      "path": "main.js",
+      "bytes": 33144,
+      "sha256": "265f62d7f1996420842a6f51d64303ea56ee65902e12a9212c742cdffb5e1d39"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 31295,
+      "sha256": "df3c5839fa42da7f1f56bc531419cf88bc8c10c02ff6a235adde233fc3272f83"
+    },
+    {
+      "path": "src/render/TourFrameScheduler.js",
+      "bytes": 2913,
+      "sha256": "da6cdc1de9e9c7834ce9e081db79e0f055de94aee2c34d6dc0df90cedc0a700c"
+    },
+    {
+      "path": "src/render/TourPerformancePreference.js",
+      "bytes": 877,
+      "sha256": "1e54583316ad5df9e849076ddb6ce36f8f91946bbedaaa81dbcee5f9c01491c7"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    },
+    {
+      "path": "src/ui/Teleport.js",
+      "bytes": 20148,
+      "sha256": "eff9d3b5739ed96652187eb33ba991b03692df2d759e03fc65c6236c1b3fcd3e"
+    },
+    {
+      "path": "src/ui/PlaceInfoPanel.js",
+      "bytes": 6965,
+      "sha256": "4882ab377ea7747651fad0387f0e1248d6537fd56d954c1b1c2a3a4acd49bd0a"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 42107,
+      "sha256": "2617776cb1ee3d5ec85eed009719dc2efe4d7a3971890bbbbabae4e68b697a09"
+    },
+    {
+      "path": "src/scene/zones/InactiveZoneCache.js",
+      "bytes": 4696,
+      "sha256": "49d7b2a03b5630d56611673947af4654a8237edb2954a54330f6b059e6b690d9"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/ZhishengShell.js",
+      "bytes": 7160,
+      "sha256": "1f1f4d8c9e336379c6e0039be46b84381a971447924e9663cb3dc2e7b721d11d"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanGroundFans.js",
+      "bytes": 4572,
+      "sha256": "46abfedc5b2a54ec11d8041891b931fa028e9b377c9ecf2d3718468e37ef9e50"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/flight/FlightState.js",
+      "bytes": 5665,
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    }
+  ]
+}
