@@ -1,3 +1,4 @@
+import {publicMapItem} from '../../ui/PublicPlaceNames.js';
 import {buildNansansuoWestMiddleHall} from '../palace/special/NansansuoWestMiddleHall.js';
 import {buildNansansuoEastMiddleHall} from '../palace/special/NansansuoEastMiddleHall.js';
 import {buildNansansuoMiddleHall} from '../palace/special/NansansuoMiddleHall.js';
@@ -259,7 +260,7 @@ export class ZoneBase {
       colliders: [...this.kit.colliders],
       walkables: [...this.kit.walkables],
       rooms: [...this.kit.rooms],
-      mapItems: [...this.kit.mapItems],
+      mapItems: this.kit.mapItems.map(publicMapItem),
       regions: [...this.kit.regions],
       silhouette,
     };

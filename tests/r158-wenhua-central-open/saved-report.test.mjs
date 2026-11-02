@@ -1,0 +1,2 @@
+import test from'node:test';import fs from'node:fs';import{gunzipSync}from'node:zlib';import{verifyReport}from'./verify-report.mjs';
+test('completed normal-World raw meets the bounded functional contract, strict foot diagnostic remains separate',()=>{const read=p=>JSON.parse(gunzipSync(fs.readFileSync(p)));console.log(JSON.stringify(verifyReport(read(process.env.CURRENT_REPORT),read(process.env.BASELINE_REPORT))))});

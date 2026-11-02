@@ -1,3 +1,4 @@
+import {zhujingNorthStairGroup,isZhujingNorthStairId,validZhujingNorthStairHost,preserveZhujingNorthStairOwner,validZhujingNorthStairOwner} from './special/ZhujingNorthStairHost.js';
 import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact} from './special/LuanjiaEastContact.js';
 import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
 import {wenyuanStairGroup,isWenyuanStairId,validWenyuanStairHost,preserveWenyuanStairOwner,validWenyuanStairOwner} from './special/WenyuanStairHost.js';
@@ -17,7 +18,7 @@ import {wumenJointBodySweep} from '../../controls/WumenJointAscentSweep.js';
 // Original group dimensions come from the unchanged e640 runtime inventory;
 // the separately host-bound Donghua group comes from its c0f5548b built surfaces. Neither this
 // module nor its hooks allocate a mesh, collider, walkable or alternative ground.
-const groups=[...source.groups,donghuaSource,...nansansuoFrontStairGroups,wenhuaStairGroup,arrowStairGroup,...nansansuoNorthStairGroups,wenyuanStairGroup];
+const groups=[...source.groups,donghuaSource,...nansansuoFrontStairGroups,wenhuaStairGroup,arrowStairGroup,...nansansuoNorthStairGroups,wenyuanStairGroup,zhujingNorthStairGroup];
 const all=new Map(groups.flatMap(g=>g.surfaces.map(p=>[p.id,p]))),previous=new WeakMap();
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-8;
 const rect=w=>w.type==='ramp'?w:{minX:w.box.min.x,maxX:w.box.max.x,minZ:w.box.min.z,maxZ:w.box.max.z};
@@ -29,6 +30,8 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  if(!group||!Number.isInteger(walkableStart)||walkableStart<0||walkableStart>builder.walkables.length)return false;
  if(groupId==='donghua-madao'){
   if(parent?.name!=='city-gate-东华门'||parent.position.x!==-365.8||parent.position.z!==-257||parent.rotation.y!==Math.PI/2||parent.userData.donghuaMadao?.objectId!=='FC-C8AD5BD621'||parent.userData.cityGate?.portalCount!==3||!builder.root?.children.includes(parent))return false;
+ }else if(groupId==='zhujing-north'){
+  if(!validZhujingNorthStairHost(builder,parent))return false;
  }else if(groupId==='wenyuan-west-stairs'){
   if(!validWenyuanStairHost(builder,parent))return false;
  }else if(isNansansuoNorthStairGroup(groupId)){
@@ -56,13 +59,14 @@ export function preserveBPrincipalStairOwner(target,original){
  if(isArrowStairId(id)&&!preserveArrowStairOwner(target,original,id))throw Error('Arrow stair requires actual source owner');
  if(isNansansuoNorthStairId(id)&&!preserveNansansuoNorthStairOwner(target,original,id))throw Error('Nansansuo north stair requires actual terminal owner');
  if(isWenyuanStairId(id)&&!preserveWenyuanStairOwner(target,original,id))throw Error('Wenyuan stair requires actual source owner');
+ if(isZhujingNorthStairId(id)&&!preserveZhujingNorthStairOwner(target,original,id))throw Error('Zhujing north stair requires actual source owner');
  target.bPrincipalStairId=id;
 }
 function live(cm,group){
  const ids=new Set(group.surfaces.map(p=>p.id)),found=new Map();
  for(const w of cm.walkables)if(w.bPrincipalStairId?.startsWith(group.id+'/')){if(!ids.has(w.bPrincipalStairId)||found.has(w.bPrincipalStairId))return null;found.set(w.bPrincipalStairId,w);}
  if(found.size!==ids.size)return null;
- const rows=group.surfaces.map(p=>found.get(p.id));return rows.every((w,i)=>matches(w,group.surfaces[i])&&(group.id!=='arrow-existing-stairs'||validArrowStairOwner(w,group.surfaces[i].id))&&(group.id!=='wenhua-front-south'||validWenhuaStairOwner(w,group.surfaces[i].id))&&(!isNansansuoFrontStairGroup(group.id)||validNansansuoFrontStairOwner(w,group.surfaces[i].id))&&(!isNansansuoNorthStairGroup(group.id)||validNansansuoNorthStairOwner(w,group.surfaces[i].id))&&(group.id!=='wenyuan-west-stairs'||validWenyuanStairOwner(w,group.surfaces[i].id)))?rows:null;
+ const rows=group.surfaces.map(p=>found.get(p.id));return rows.every((w,i)=>matches(w,group.surfaces[i])&&(group.id!=='arrow-existing-stairs'||validArrowStairOwner(w,group.surfaces[i].id))&&(group.id!=='wenhua-front-south'||validWenhuaStairOwner(w,group.surfaces[i].id))&&(!isNansansuoFrontStairGroup(group.id)||validNansansuoFrontStairOwner(w,group.surfaces[i].id))&&(!isNansansuoNorthStairGroup(group.id)||validNansansuoNorthStairOwner(w,group.surfaces[i].id))&&(group.id!=='wenyuan-west-stairs'||validWenyuanStairOwner(w,group.surfaces[i].id))&&(group.id!=='zhujing-north'||validZhujingNorthStairOwner(w,group.surfaces[i].id)))?rows:null;
 }
 function toeRect(r){
  const at=r.y0===0?r.a0:r.y1===0?r.a1:null;if(at===null)return null;
