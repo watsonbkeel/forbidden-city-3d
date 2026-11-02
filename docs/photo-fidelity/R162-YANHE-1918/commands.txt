@@ -1,0 +1,8 @@
+node /tmp/r162-yanhe-static-route-1917.mjs
+node --test /tmp/r162-yanhe-1917/scan.mjs
+node --test tests/r162-yanhe/component.test.mjs # missing module RED then final GREEN
+node --test tests/r162-yanhe/routes.test.mjs
+node --test tests/r162-yanhe/world.test.mjs
+node tests/r162-yanhe/export-cpu.mjs /tmp/r162-yanhe-1917
+python tests/r162-yanhe/render-cpu.py /tmp/r162-yanhe-1917/front.json.gz docs/photo-fidelity/R162-YANHE-1918/front.png
+python tests/r162-yanhe/render-cpu.py /tmp/r162-yanhe-1917/oblique.json.gz docs/photo-fidelity/R162-YANHE-1918/oblique.png
