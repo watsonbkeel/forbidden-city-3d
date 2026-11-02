@@ -1,3 +1,4 @@
+import {NEIGE_EAST_TEXT_ANNEX_ENTRY,neigeEastTextAnnexEntry,hasNeigeEastTextAnnexEntry} from '../scene/palace/special/NeigeEastTextAnnex.js';
 import {resolveRemainingProfile as resolveOuter} from '../scene/palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveNingshou} from '../scene/palace/special/RemainingNingshouHalls.js';
 import { southWaterProfile } from '../scene/palace/special/SouthWaterSystem.js';
@@ -41,6 +42,8 @@ export class Teleport {
   geometryFor(name) {
     const target = this.targets.get(name);
     if (!target) throw new Error(`未知传送目标：${name}`);
+    const eastEarEntry=neigeEastTextAnnexEntry(target);
+    if(eastEarEntry)return {...eastEarEntry,name};
     const remaining=resolveNingshou('ningshou',target);
     if(remaining){const portal=remaining.portals[0];return {name,cx:remaining.x,cz:remaining.z,frontX:portal.worldX,frontZ:portal.worldZ,entryProfile:remaining.id,approachPoints:remaining.navigation.approachPoints.map(p=>({...p,y:p.feetY})),requiredZone:'ningshou'};}
     const outer=resolveOuter('outer-west',target)??resolveOuter('outer-east',target),nav=outer?.navigation;
@@ -207,6 +210,7 @@ export class Teleport {
    */
   isProfileApproachSafe(p, g) {
     const cm = this.collisionManager, points = g.approachPoints;
+    if(g.entryProfile===NEIGE_EAST_TEXT_ANNEX_ENTRY&&!hasNeigeEastTextAnnexEntry(this.zoneManager,cm))return false;
     // A water crossing must have all of its resident physical deck strips.
     // The river guard knows a bridge footprint, but implicit ground=0 must
     // never make a missing bridge look walkable in this landing check.

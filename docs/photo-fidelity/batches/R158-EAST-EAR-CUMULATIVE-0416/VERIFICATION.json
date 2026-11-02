@@ -1,0 +1,199 @@
+{
+  "runtime": "3011dbc2efa6f81e0e2f746abc7a1c2d993e957f",
+  "parentRemote": "5fb4d3ee5d297d27d67472bbd1bb9d8a7e854f75",
+  "productionChanges": [
+    "src/scene/palace/special/NeigeEastTextAnnex.js",
+    "src/ui/Teleport.js"
+  ],
+  "tests": {
+    "components": 19,
+    "normalWorld": 1,
+    "total": 20,
+    "failed": 0,
+    "skipped": 0
+  },
+  "world": {
+    "landing": {
+      "name": "内阁东耳房",
+      "x": -184.25,
+      "z": -374.26,
+      "lookAtX": -184.25,
+      "lookAtZ": -366.26,
+      "distance": 8,
+      "lateral": 0,
+      "entryProfile": "neige-east-text-annex-door",
+      "y": 0,
+      "walk": 9,
+      "approachVerified": true,
+      "fallback": false,
+      "zone": "outer-east"
+    },
+    "heading": [
+      0,
+      0,
+      1
+    ],
+    "rows": [
+      {
+        "name": "real-go-door-axis-in-and-back",
+        "arrived": true,
+        "frames": 152,
+        "end": [
+          -184.25,
+          -374.34674574272793,
+          0
+        ],
+        "maxAbsGap": 0
+      },
+      {
+        "name": "old-center-still-stops-at-visible-post",
+        "arrived": false,
+        "frames": 120,
+        "end": [
+          -182.4,
+          -366.95453963764777,
+          0
+        ],
+        "maxAbsGap": 0
+      },
+      {
+        "name": "off-axis-line-blocked-before-ear-facade",
+        "arrived": false,
+        "frames": 60,
+        "end": [
+          -180.55,
+          -374.131655594373,
+          0
+        ],
+        "maxAbsGap": 0
+      }
+    ],
+    "loaded": [
+      "axis-courts",
+      "outer-east",
+      "ningshou"
+    ]
+  },
+  "comparison": "Same inputs, landing, heading, arrival outcomes and frame counts; real-clock positions are not byte-identical",
+  "build": {
+    "schema": 1,
+    "release": "R158",
+    "buildId": "R158-8a1cbceffc6e",
+    "sourceFingerprint": "d72c8d33c6c7063f084d232324fa478778f920962a1fae2d6f9af099a72dabac",
+    "sourceCommit": "3011dbc2efa6f81e0e2f746abc7a1c2d993e957f",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 662,
+  "source": [
+    {
+      "path": "src/scene/palace/special/NeigeEastTextAnnex.js",
+      "bytes": 9996,
+      "sha256": "f397c8752a812625b3266c5959428463ca0a512ce6ea7bebc19b58cf93eae1dc"
+    },
+    {
+      "path": "src/ui/Teleport.js",
+      "bytes": 20513,
+      "sha256": "74b16ecbc8f8d544c38b95fd6b8f5efa79351b025cf134af3337edc51204717f"
+    }
+  ],
+  "qa": [
+    {
+      "path": "tests/r158-east-ear-entry/baseline.json",
+      "bytes": 565,
+      "sha256": "636d7c20a7e329b45073e305bc1a12171413c76367c150e324682c7d7f4b222c"
+    },
+    {
+      "path": "tests/r158-east-ear-entry/component.test.mjs",
+      "bytes": 3909,
+      "sha256": "1538492db41ac0329b7a495ef7fcd4d53c38fe7b288a55357f8513b349e18b78"
+    },
+    {
+      "path": "tests/r158-east-ear-entry/fixture.mjs",
+      "bytes": 2503,
+      "sha256": "e68d312dbf835e13d26910a499fb2c415fdf17f7718ff51b5bb54cdf2b252225"
+    },
+    {
+      "path": "tests/r158-east-ear-entry/world.test.mjs",
+      "bytes": 5247,
+      "sha256": "bf0890009bc5c9cd5521eb579d19848f48b687008b3861b9f5b5609a1478e071"
+    }
+  ],
+  "protected": [
+    {
+      "path": "main.js",
+      "bytes": 33144,
+      "sha256": "265f62d7f1996420842a6f51d64303ea56ee65902e12a9212c742cdffb5e1d39"
+    },
+    {
+      "path": "src/ui/SettingsMenu.js",
+      "bytes": 31295,
+      "sha256": "df3c5839fa42da7f1f56bc531419cf88bc8c10c02ff6a235adde233fc3272f83"
+    },
+    {
+      "path": "src/render/TourFrameScheduler.js",
+      "bytes": 2913,
+      "sha256": "da6cdc1de9e9c7834ce9e081db79e0f055de94aee2c34d6dc0df90cedc0a700c"
+    },
+    {
+      "path": "src/render/TourPerformancePreference.js",
+      "bytes": 877,
+      "sha256": "1e54583316ad5df9e849076ddb6ce36f8f91946bbedaaa81dbcee5f9c01491c7"
+    },
+    {
+      "path": "src/ui/PublicPlaceNames.js",
+      "bytes": 2163,
+      "sha256": "fc78389d3b350bbbdd48064f39de8caacf634038a175975ea914cbbf29224adf"
+    },
+    {
+      "path": "src/ui/Minimap.js",
+      "bytes": 54063,
+      "sha256": "1d17a39970666a78d3651a8e923cd4aaea6b88d5d25ee326f0639ead24eafd2a"
+    },
+    {
+      "path": "src/scene/zones/ZoneManager.js",
+      "bytes": 17401,
+      "sha256": "b47c4967da7abb82648230a9ce2e3dd961344978f6511c0be54336482964a9cd"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "bytes": 42107,
+      "sha256": "2617776cb1ee3d5ec85eed009719dc2efe4d7a3971890bbbbabae4e68b697a09"
+    },
+    {
+      "path": "src/scene/palace/BPrincipalStairContact.js",
+      "bytes": 10351,
+      "sha256": "a350bd2b2446166269f018a1e54eacaf81f26c7adafe6fb323639ac9cdd1d893"
+    },
+    {
+      "path": "src/scene/palace/special/ZhishengShell.js",
+      "bytes": 7160,
+      "sha256": "1f1f4d8c9e336379c6e0039be46b84381a971447924e9663cb3dc2e7b721d11d"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanGroundFans.js",
+      "bytes": 4572,
+      "sha256": "46abfedc5b2a54ec11d8041891b931fa028e9b377c9ecf2d3718468e37ef9e50"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/flight/FlightState.js",
+      "bytes": 5665,
+      "sha256": "24a1d82aa01b0578b34b21ff4681f23653d483a0e571bf35ad558bce18bdf6a4"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "bytes": 40936,
+      "sha256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56"
+    },
+    {
+      "path": "release.json",
+      "bytes": 24,
+      "sha256": "c4ce92e4cef14055a3597c450ba45a60e6d00e5cc035c817a8dfd44f75a24b82"
+    }
+  ]
+}
