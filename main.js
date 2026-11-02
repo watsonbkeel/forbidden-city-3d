@@ -1,3 +1,5 @@
+import { TourFrameScheduler } from './src/render/TourFrameScheduler.js';
+import { readPerformanceMode, writePerformanceMode, performancePixelRatio } from './src/render/TourPerformancePreference.js';
 import {setBuildingDetailQuality} from './src/render/BuildingDetailQuality.js';
 import {RoomNightLights} from './src/scene/sky/RoomNightLights.js';
 import * as THREE from 'three';
@@ -46,6 +48,7 @@ class ForbiddenCityApp {
     this.collisionManager = null;
     
     this.currentQuality = 'high';
+    this.performanceMode = readPerformanceMode();
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
       (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
     this.lastLocation = null;
@@ -232,7 +235,7 @@ class ForbiddenCityApp {
     this.onResize();
     
     // 开始动画循环
-    this.animate();
+    this.startAnimationLoop();
     
     console.log('故宫 3D 初始化完成');
   }
@@ -375,6 +378,8 @@ class ForbiddenCityApp {
       onDuanmenToggle: enabled => this.environment?.setDuanmenVisible(enabled),
       getCharacterStatus: () => this.characters?.statusSnapshot(),
       initialQuality: this.currentQuality,
+      initialPerformanceMode: this.performanceMode,
+      onPerformanceModeChange: mode => this.setPerformanceMode(mode),
       initialSound: true,
       initialCharacters: this.characters?.enabled ?? true,
       charactersAvailable: this.characters?.contentEnabled === true,
@@ -451,7 +456,50 @@ class ForbiddenCityApp {
    */
   getPixelRatio(quality) {
     const cap = quality === 'low' ? 1 : (this.isMobile ? PERFORMANCE.MOBILE_MAX_PIXEL_RATIO : 2);
-    return Math.min(window.devicePixelRatio || 1, cap);
+    return performancePixelRatio(window.devicePixelRatio, cap, this.performanceMode);
+  }
+
+  setPerformanceMode(mode) {
+    if (mode !== 'eco' && mode !== 'smooth') throw new Error(`Unsupported performance mode: ${mode}`);
+    this.performanceMode = mode;
+    writePerformanceMode(mode);
+    this.frameLoop?.setMode(mode);
+    // Uses the same resize path for canvas, composer and FXAA physical pixels.
+    this.onResize();
+    if (this.settingsMenu) {
+      this.settingsMenu.performanceMode = mode;
+      this.settingsMenu.updatePerformanceButton();
+    }
+  }
+
+  resetAnimationClock(now) {
+    // Idle aircraft recycling is a visible-tour timer, not a background timeout.
+    if (document.hidden) {
+      if (this.hiddenSince === undefined) this.hiddenSince = now;
+    } else if (this.hiddenSince !== undefined) {
+      const idle = this.flight?.state?.lastUnoccupiedAt;
+      if (Number.isFinite(idle)) this.flight.state.lastUnoccupiedAt += Math.max(0, now - this.hiddenSince);
+      this.hiddenSince = undefined;
+    }
+    this.lastFrameTime = null;
+    if (this.controls) {
+      this.controls.stop();
+      this.controls.jumpQueued = false;
+      this.controls.prevTime = now;
+      Object.assign(this.controls.motion ?? {}, {speed: 0, sprint: false, footstep: false});
+    }
+    this.flight?.clearInput();
+    // Do not change positions, airborne state, flight route, map mode or pointer lock.
+  }
+
+  startAnimationLoop() {
+    if (this.disposed) return;
+    if (!this.frameLoop) this.frameLoop = new TourFrameScheduler({
+      mode: this.performanceMode,
+      onFrame: (now, dt) => this.animate(now, dt),
+      onReset: now => this.resetAnimationClock(now),
+    });
+    this.frameLoop.start();
   }
 
   toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
@@ -571,14 +619,12 @@ class ForbiddenCityApp {
   /**
    * 动画循环
    */
-  animate() {
+  animate(now = performance.now(), dt = 0) {
     if (this.disposed) return;
-    this.animationFrame = requestAnimationFrame(this._animate);
-    
-    const now = performance.now();
-    const dt = Math.min((now - (this.lastFrameTime ?? now)) / 1000, 0.1);
+    // First accepted frame after start/visibility reset cannot integrate hidden time.
+    if (this.lastFrameTime === null || this.lastFrameTime === undefined) this.controls.prevTime = performance.now();
     this.lastFrameTime = now;
-    
+
     // 兜底：任何原因漏掉 resize 事件（微信/iOS 转屏）时，发现尺寸变了就立即校正
     const { width, height } = this.getViewportSize();
     if (this._lastSize !== `${width}x${height}`) this.onResize();
@@ -626,7 +672,7 @@ class ForbiddenCityApp {
 
   dispose() {
     this.disposed = true;
-    cancelAnimationFrame(this.animationFrame);
+    this.frameLoop?.dispose();
     this.characters?.dispose();
     this.roomNightLights?.dispose();
     this.flight?.dispose();

@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+let api; try { api = await import('../../src/render/TourFrameScheduler.js'); } catch(e) { if(e.code!=='ERR_MODULE_NOT_FOUND')throw e; }
+function fixture(hidden=false) {
+  assert.equal(typeof api?.TourFrameScheduler,'function','missing unique visibility-aware tour scheduler');
+  let time=0,id=0;const pending=new Map(),all=new Map(),listeners=new Set(),frames=[],resets=[];
+  const doc={hidden,addEventListener:(type,fn)=>listeners.add(fn),removeEventListener:(type,fn)=>listeners.delete(fn)};
+  const loop=new api.TourFrameScheduler({document:doc,request:fn=>{pending.set(++id,fn);all.set(id,fn);return id;},cancel:i=>pending.delete(i),now:()=>time,onFrame:(now,dt)=>frames.push({now,dt}),onReset:now=>resets.push(now)});
+  return {loop,doc,pending,all,frames,resets,listeners,tick(t){time=t;const tasks=[...pending];pending.clear();for(const[,fn]of tasks)fn(t);},visible(v){doc.hidden=!v;for(const fn of listeners)fn();},setTime(t){time=t;}};
+}
+for(const hz of[60,120,144])test(`eco consumes ~30 whole frames/sec from ${hz}Hz RAF`,()=>{const f=fixture();f.loop.start();for(let i=0;i<=hz*10;i++)f.tick(i*1000/hz);assert.ok(f.frames.length>=299&&f.frames.length<=301,String(f.frames.length));assert.equal(f.pending.size,1);assert.ok(f.frames.every(r=>r.dt>=0&&r.dt<=.1));assert.equal(f.frames[0].dt,0);f.loop.dispose();});
+test('smooth retains refresh cadence; changing mode never makes a second loop',()=>{const f=fixture();f.loop.setMode('smooth');f.loop.start();for(let i=0;i<120;i++)f.tick(i*1000/120);assert.equal(f.frames.length,120);f.loop.setMode('eco');f.loop.start();assert.equal(f.pending.size,1);assert.throws(()=>f.loop.setMode('other'));f.loop.dispose();});
+test('hidden start and 100 repeated transitions have no updates / no duplicate RAF',()=>{const f=fixture(true);f.loop.start();assert.equal(f.pending.size,0);for(let i=0;i<100;i++){f.visible(true);f.visible(true);f.loop.start();assert.equal(f.pending.size,1);f.visible(false);f.visible(false);assert.equal(f.pending.size,0);}assert.equal(f.frames.length,0);f.loop.dispose();assert.equal(f.listeners.size,0);});
+test('canceled late RAF cannot revive hidden/resumed/disposed loop',()=>{const f=fixture();f.loop.start();const stale=[...f.pending.values()][0];f.visible(false);stale(50);assert.equal(f.frames.length,0);assert.equal(f.pending.size,0);f.visible(true);stale(60);assert.equal(f.pending.size,1);assert.equal(f.frames.length,0);f.loop.dispose();for(const fn of f.all.values())fn(100);assert.equal(f.pending.size,0);assert.equal(f.frames.length,0);});
+test('resume drops hidden time; visible stalls cap dt and do not catch up in a burst',()=>{const f=fixture();f.loop.start();f.tick(0);f.tick(34);assert.ok(f.frames[1].dt>.03);f.visible(false);f.setTime(60000);f.visible(true);f.tick(60001);assert.equal(f.frames.at(-1).dt,0);f.tick(65000);assert.equal(f.frames.at(-1).dt,.1);assert.equal(f.pending.size,1);assert.ok(f.resets.length>=3);f.loop.dispose();});

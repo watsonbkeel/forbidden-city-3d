@@ -9,6 +9,7 @@ export class SettingsMenu {
     this.launcher = null;
     this.visible = false;
     this.currentQuality = 'high';
+    this.performanceMode = 'eco';
     this.soundEnabled = true;
     this.listeners = [];
     this.inertBeforeOpen = new Map();
@@ -18,11 +19,13 @@ export class SettingsMenu {
     this.characterStatusKey = null;
   }
 
-  init({ onDuanmenToggle, getCharacterStatus, onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true } = {}) {
+  init({ onDuanmenToggle, getCharacterStatus, onOpen, onResume, onQualityChange, onSoundToggle, onCharactersToggle, initialCharacters = true, charactersAvailable = true, charactersApproved = false, allowCharacterPreview = false, characterPreviewActive = false, onCharacterPreviewToggle, initialQuality = 'high', initialSound = true, initialPerformanceMode = 'eco', onPerformanceModeChange } = {}) {
     this.onDuanmenToggle = onDuanmenToggle;
     this.onOpen = onOpen;
     this.onResume = onResume;
     this.onQualityChange = onQualityChange;
+    this.onPerformanceModeChange = onPerformanceModeChange;
+    this.performanceMode = initialPerformanceMode === 'smooth' ? 'smooth' : 'eco';
     this.onSoundToggle = onSoundToggle;
     this.onCharactersToggle = onCharactersToggle;
     this.charactersEnabled = initialCharacters;
@@ -77,6 +80,11 @@ export class SettingsMenu {
           <label for="quality-toggle-btn">画质</label>
           <button id="quality-toggle-btn" type="button" aria-describedby="building-quality-note">高画质</button>
         </div>
+        <div class="settings-control">
+          <label for="performance-mode-toggle-btn">运行模式</label>
+          <button id="performance-mode-toggle-btn" type="button" aria-describedby="performance-mode-note">节能 · 30 FPS</button>
+        </div>
+        <p id="performance-mode-note" class="settings-notice">默认节能：最高 30 FPS、像素比最高 1.5；流畅模式跟随屏幕刷新率。切换不改变画质档位或人物设置，浏览器允许时在本机记住选择；后台暂停游览计算。温度与耗电效果尚未实机测量。</p>
         <p id="building-quality-note" class="settings-notice">织物贴图立即切换；建筑细节在分区重新加载后应用。低档保留主要形制与通路。</p>
         <div class="settings-control">
           <label for="characters-toggle-btn">宫廷人物</label>
@@ -152,6 +160,7 @@ export class SettingsMenu {
     this.bindEvents();
     this.updateSoundButton();
     this.updateQualityButton();
+    this.updatePerformanceButton();
     this.updateCharactersButton();
   }
 
@@ -176,6 +185,11 @@ export class SettingsMenu {
       this.soundEnabled = !this.soundEnabled;
       this.updateSoundButton();
       this.onSoundToggle?.(this.soundEnabled);
+    });
+    this.listen(this.panel.querySelector('#performance-mode-toggle-btn'), 'click', () => {
+      this.performanceMode = this.performanceMode === 'eco' ? 'smooth' : 'eco';
+      this.updatePerformanceButton();
+      this.onPerformanceModeChange?.(this.performanceMode);
     });
     this.listen(this.panel.querySelector('#quality-toggle-btn'), 'click', () => {
       this.currentQuality = this.currentQuality === 'high' ? 'low' : 'high';
@@ -372,6 +386,12 @@ export class SettingsMenu {
     return this.characterPreviewActive;
   }
 
+  updatePerformanceButton() {
+    const button = this.panel.querySelector('#performance-mode-toggle-btn');
+    button.textContent = this.performanceMode === 'eco' ? '节能 · 30 FPS' : '流畅 · 跟随屏幕';
+    button.setAttribute('aria-pressed', String(this.performanceMode === 'eco'));
+  }
+
   updateQualityButton() {
     const button = this.panel.querySelector('#quality-toggle-btn');
     button.textContent = this.currentQuality === 'high' ? '高画质' : '低画质';
@@ -433,6 +453,7 @@ export class SettingsMenu {
     this.launcher = null;
     this.previousFocus = null;
     this.onOpen = this.onResume = this.onQualityChange = this.onSoundToggle = this.onCharactersToggle = null;
+    this.onPerformanceModeChange = null;
     this.onCharacterPreviewToggle = null;
     this.characterPreviewActive = false;
     this.allowCharacterPreview = false;
