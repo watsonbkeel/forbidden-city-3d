@@ -1,0 +1,83 @@
+{
+  "runtime": "0059b6d47eed043a43a1e9f35b5f9f2d5a8f1b63",
+  "baseLocal": "104e8c61fc549a22f3e44eb92a537950055cea8b",
+  "remoteParent": "b1bc8a68eba5a3deec42acecc61e3cd9e6f87784",
+  "productionDiff": [
+    "src/scene/palace/special/WeiyuHall.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 8,
+    "normalWorld": 1,
+    "total": 9,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 41,
+    "falseTops": 2
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 760,
+    "newRoutes": 4,
+    "newFrames": 169,
+    "newPeak": 0.1512329463899252,
+    "validWorldMovementNegative": 1,
+    "validLocalMovementNegatives": 2,
+    "tenReportFieldsExactAuthorWorld": true,
+    "localCompleteIncludingEndExact": true,
+    "necessary30": "same input and arrival, prebuild 2/73 ground routes changed by new true platform; not trajectory preservation"
+  },
+  "rearStartDiagnostic": {
+    "point": [
+      58.8,
+      517.5
+    ],
+    "blocked": true,
+    "scope": "original north wall blocked-start; NOT valid new rear-wall movement test",
+    "owners": [
+      {
+        "min": [
+          10.799999999999997,
+          0,
+          517.8
+        ],
+        "max": [
+          68,
+          3,
+          518.8
+        ],
+        "tag": "garden"
+      }
+    ]
+  },
+  "scopeDelta": {
+    "id": "FC-E83C733B72",
+    "name": "位育斋",
+    "fromHistoricalCodeClass": "UNCLASSIFIED_SCOPE_ONLY",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-6844b6febe44",
+    "sourceFingerprint": "b4fbc9f98ba29f4e68b37a49076344d457323c4ed18afa8811dcd8b92f50bf52",
+    "sourceCommit": "0059b6d47eed043a43a1e9f35b5f9f2d5a8f1b63",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "landscapeChanges": 0,
+  "scan": {
+    "minY": 0.04,
+    "retainedGroundPlanes": [
+      0.012,
+      0.028
+    ],
+    "notFullHeightEmptyColumn": true
+  },
+  "authorPreservation": "Exact source carries original 2735 mesh/1388 collider/94 tops and UI before/after proof; no fake before capture with installed hook",
+  "localRawNonpersistent": true
+}

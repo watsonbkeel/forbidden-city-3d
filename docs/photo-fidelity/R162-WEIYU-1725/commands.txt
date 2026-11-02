@@ -1,0 +1,9 @@
+# Actual bounded author commands. All raw under /tmp/r162-weiyu-1723; DO NOT rerun fixed output paths over author evidence.
+node /tmp/r162-weiyu-static-1721.mjs
+node --test /tmp/r162-weiyu-1723/scan.mjs
+node --test r162-weiyu-1725/tests/r162-weiyu/component.test.mjs # 7 missing-builder RED, then 7 GREEN
+node --test r162-weiyu-1725/tests/r162-weiyu/routes.test.mjs # 1 GREEN
+node --test r162-weiyu-1725/tests/r162-weiyu/world.test.mjs # first extra rear-negative equality RED; authorized QA-only final 1 GREEN
+node r162-weiyu-1725/tests/r162-weiyu/export-cpu.mjs /tmp/r162-weiyu-1723
+for v in front oblique; do python r162-weiyu-1725/tests/r162-weiyu/render-cpu.py /tmp/r162-weiyu-1723/$v.json.gz r162-weiyu-1725/docs/photo-fidelity/R162-WEIYU-1725/$v.png; done
+# no author full suite/build/GPU; official hook and cumulative build pending.
