@@ -1,3 +1,4 @@
+import {buildDunbenFrontHall} from '../palace/special/DunbenFrontHall.js';
 import {buildYuqingFrontHall} from '../palace/special/YuqingFrontHall.js';
 import {buildChengsuFrontHall} from '../palace/special/ChengsuFrontHall.js';
 import {registerFengxianCentralContact} from '../palace/special/FengxianCentralContact.js';
@@ -281,6 +282,7 @@ export class ZoneBase {
     buildZhaigongFrontHall(this.kit,this.zoneJson.id);
     buildChengsuFrontHall(this.kit,this.zoneJson.id);
     buildYuqingFrontHall(this.kit,this.kit.root.name);
+    buildDunbenFrontHall(this.kit,this.kit.root.name);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
