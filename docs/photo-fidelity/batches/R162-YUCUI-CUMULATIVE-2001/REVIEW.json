@@ -1,0 +1,106 @@
+{
+  "authorCommit": "dcf3e1721265c2e84ab3a908eccb1f7f0a9c2246",
+  "parentCommit": "8f687117a6bfdd85989a2cb64657f0c6cb77898c",
+  "reviewStatus": "AUTHOR_AND_NORMAL_INTEGRATION_REVIEW_PASS",
+  "blockingFindings": [],
+  "sourcePreservation": {
+    "addedFiles": 14,
+    "oldSourceDataBlobsByteExact": 739,
+    "oldFilesModified": 0,
+    "manifestPinsExact": 28
+  },
+  "independentTests": {
+    "component": 7,
+    "localRoutes": 1,
+    "authorInjectedWorld": 1,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0
+  },
+  "movement": {
+    "independentReportsAllObjectsExactAuthor": true,
+    "oldRoutes": 4,
+    "oldFrames": 522,
+    "newRoutes": 4,
+    "newFrames": 376,
+    "newPeakFeetGround": 0.1436666648785272,
+    "allFourStandOnRealPlatform": true,
+    "negativeClearStarts": 2,
+    "validNegativeBlocked": 2,
+    "nativeEndClear": 4
+  },
+  "geometry": {
+    "owners": 26,
+    "triangleMeshOwners": 24,
+    "realStoneBoxes": 2,
+    "realRescueFalseTops": 2,
+    "landscapeModified": false
+  },
+  "images": {
+    "reviewerPersonallyViewed": [
+      "/tmp/r162-yucui-own.jpg",
+      "docs/photo-fidelity/R162-YUCUI-1951/front.png",
+      "docs/photo-fidelity/R162-YUCUI-1951/oblique.png"
+    ],
+    "ownImageSha256": "968aee435b98b2cd4f31e36748cf835319d99683b16c44d7969b3c8e155915e8",
+    "scope": "Actual CPU geometry with fallback colors only; coarse three-color fit, not texture/GPU/mobile acceptance"
+  },
+  "limits": [
+    "Build/remote readback are integrator-owned; normal installed hook and World guard verified read-only.",
+    "No full-streaming, whole-object or current-admission acceptance",
+    "Original big-box mountain hit remains recorded; current fit does not clip landscape",
+    "Historical standard suite not rerun; this is bounded relevant review"
+  ],
+  "localPins": [
+    {
+      "path": "/tmp/review-yucui-2000/components.tap",
+      "bytes": 1947,
+      "sha256": "56a66326db2f350baad3e1be13b1a2c20248c0771f06dbcea615c1d51c5ba834"
+    },
+    {
+      "path": "/tmp/review-yucui-2000/routes-world.tap",
+      "bytes": 3525,
+      "sha256": "7cb0ec9c5cd2a3eb6069ecebed7cbc8a3d1ce5f41efb3f1ef0067a51433d5250"
+    },
+    {
+      "path": "/tmp/review-yucui-2000/routes-world.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/review-yucui-2000/redirect.mjs",
+      "bytes": 334,
+      "sha256": "cc886243d428e3a7cd644c68015b0ad63542d22bdcc67d31b3b6ecfe1d5aa6bb"
+    },
+    {
+      "path": "/tmp/review-yucui-2000/local.json.gz",
+      "bytes": 14817,
+      "sha256": "c55fd305c67bbce35f06c70563195dd3746e75d2a6bab0a1447788cda447a574"
+    },
+    {
+      "path": "/tmp/review-yucui-2000/world.json.gz",
+      "bytes": 31013,
+      "sha256": "6db1a70cd774baa60f973c0700645cee601d23b0c6dd9611085730e125bbd6de"
+    },
+    {
+      "path": "/tmp/r162-yucui-cumulative-2001/world.json.gz",
+      "bytes": 30659,
+      "sha256": "06b9aeb478b4bda93309d0ea76200f31eb8b444d9dda48f632a00cd796a39ec1"
+    }
+  ],
+  "normalIntegration": {
+    "commit": "4086b483188af290be1a9e76d12cce026845052b",
+    "uniqueHookBeforeFinish": true,
+    "sourceExactAuthor": true,
+    "oldSourcesProtectedWithOnlyTwoHookLines": 739,
+    "normalJSONOnlyNoCapture": true,
+    "tenReportFieldsExactAuthor": true,
+    "normalGuard": {
+      "records": 1,
+      "owners": 26,
+      "falseTops": 2,
+      "coloredRoofs": 1
+    },
+    "scope": "Read-only fixed code and final normal World outputs; no additional high-memory World rerun."
+  }
+}

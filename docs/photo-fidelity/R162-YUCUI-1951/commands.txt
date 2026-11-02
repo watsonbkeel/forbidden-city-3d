@@ -1,0 +1,7 @@
+node --test /tmp/r162-yucui-1951/baseline.test.mjs
+node --test tests/r162-yucui/component.test.mjs # absent module RED, then GREEN
+node --test tests/r162-yucui/component.test.mjs tests/r162-yucui/routes.test.mjs
+node --test tests/r162-yucui/world.test.mjs
+node tests/r162-yucui/export-cpu.mjs /tmp/r162-yucui-1951
+python tests/r162-yucui/render-cpu.py /tmp/r162-yucui-1951/front.json.gz docs/photo-fidelity/R162-YUCUI-1951/front.png
+python tests/r162-yucui/render-cpu.py /tmp/r162-yucui-1951/oblique.json.gz docs/photo-fidelity/R162-YUCUI-1951/oblique.png
