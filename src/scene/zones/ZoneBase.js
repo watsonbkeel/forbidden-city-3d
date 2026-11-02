@@ -46,6 +46,7 @@ import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js'
 import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
 import {finishArrowSouthHeadBands} from '../palace/special/ArrowSouthHeadBands.js';
 import {finishWenyuanUpperSeat} from '../palace/special/WenyuanUpperSeat.js';
+import {finishWenyuanGroundFans} from '../palace/special/WenyuanGroundFans.js';
 import {finishWenyuanSouthVeranda} from '../palace/special/WenyuanSouthVeranda.js';
 import {finishTiyuanCoverVisual} from '../palace/special/TiyuanCoverVisual.js';
 import {finishTiheSouthVisual} from '../palace/special/TiheSouthVisual.js';
@@ -210,6 +211,7 @@ export class ZoneBase {
     finishTiheSouthVisual(this.kit);
     finishTiyuanCoverVisual(this.kit);
     finishWenyuanUpperSeat(this.kit);
+    finishWenyuanGroundFans(this.kit);
     finishWenyuanSouthVeranda(this.kit);
     finishWenyuanEntryTread(this.kit);
     finishWenhuaSouthWindows(this.kit);
