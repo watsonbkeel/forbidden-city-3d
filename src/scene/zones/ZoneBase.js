@@ -1,3 +1,4 @@
+import {buildYongshouRearEastWing} from '../palace/special/YongshouRearEastWing.js';
 import {buildYongshouRearWestWing} from '../palace/special/YongshouRearWestWing.js';
 import {buildJideRearHall} from '../palace/special/JideRearHall.js';
 import {buildJingrenRearEastWing} from '../palace/special/JingrenRearEastWing.js';
@@ -309,6 +310,7 @@ export class ZoneBase {
     buildJingrenRearEastWing(this.kit,this.kit.root.name);
     buildJideRearHall(this.kit,this.kit.root.name);
     buildYongshouRearWestWing(this.kit,this.kit.root.name);
+    buildYongshouRearEastWing(this.kit,this.kit.root.name);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
