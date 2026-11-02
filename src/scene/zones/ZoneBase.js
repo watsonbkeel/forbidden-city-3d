@@ -1,3 +1,4 @@
+import {buildJiuqingSouthPorchFragment} from '../palace/special/JiuqingSouthPorchFragment.js';
 import {buildJunjiSouthPorchFragment} from '../palace/special/JunjiSouthPorchFragment.js';
 import {buildShangshuSouthFragment} from '../palace/special/ShangshuSouthFragment.js';
 import {publicMapItem} from '../../ui/PublicPlaceNames.js';
@@ -509,6 +510,7 @@ export class ZoneBase {
     const [x2, z2] = item.to;
     const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     if(buildJunjiSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
+    if(buildJiuqingSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     const params = { h: item.h, t: item.t, gaps };
     // Existing courtyard south boundary: appearance-only masonry split,
     // estimated against the retained gate platform, not a surveyed repair datum.
