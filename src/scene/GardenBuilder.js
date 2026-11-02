@@ -1,3 +1,4 @@
+import {splitChengguangCurb} from './garden/ChengguangCurbFit.js';
 import {clipYangxingBedTop,clipYangxingBedBorder,isYangxingWithheldTree,validateYangxingTreeCount} from './garden/YangxingLandscapeFit.js';
 import {clipJiangxueBedRectangle,isJiangxueWithheldPine,validateJiangxuePineCount} from './garden/JiangxueLandscapeFit.js';
 import {sishenRetainedTreeSource,validateSishenTreeCount} from './garden/SishenTreeSource.js';
@@ -212,7 +213,7 @@ export class GardenBuilder {
         const m = new THREE.Mesh(applyBoxUV(geo, lib.tileSize('wall_brick')), curbMat);
         if (horizontal) m.position.set((a + b) / 2, 0.04, side ? e : c);
         else m.position.set(side ? b : a, 0.04, (c + e) / 2);
-        root.add(m);
+        root.add(...splitChengguangCurb(m,lib.tileSize('wall_brick')));
       }
     }
 

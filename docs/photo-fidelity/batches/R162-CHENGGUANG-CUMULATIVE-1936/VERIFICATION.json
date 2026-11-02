@@ -1,0 +1,85 @@
+{
+  "runtime": "cce906ee9f69956277465fcf1c5f6b0d06579cab",
+  "baseLocal": "6eb1e1c91a166770a8acd215509d1b46d10fcc56",
+  "remoteParent": "1df52d125f6aa0651d8c1e0fd0e37af7d20ff3e8",
+  "productionDiff": [
+    "src/scene/GardenBuilder.js",
+    "src/scene/garden/ChengguangCurbFit.js",
+    "src/scene/palace/special/ChengguangGate.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "tests": {
+    "focused": 10,
+    "normalWorld": 1,
+    "neighborNormalWorld": 2,
+    "total": 13,
+    "fail": 0,
+    "skip": 0
+  },
+  "normalGuard": {
+    "records": 1,
+    "owners": 15,
+    "falseTops": 1
+  },
+  "results": {
+    "oldRoutes": 4,
+    "oldFrames": 590,
+    "newRoutes": 4,
+    "newFrames": 270,
+    "newPeak": 0.049930391494160085,
+    "validWorldMovementNegative": 2,
+    "validLocalMovementNegatives": 2,
+    "tenReportFieldsExactAuthorWorld": true,
+    "localCompleteIncludingEndExact": true,
+    "necessary30": "same input and arrival, prebuild ground routes changed by new true threshold; not trajectory preservation"
+  },
+  "scopeDelta": {
+    "id": "FC-A3B03BAB65",
+    "name": "承光门",
+    "fromHistoricalCodeClass": "N",
+    "toCurrentCodeClass": "H_PARTIAL_EXTERIOR",
+    "wholeObjectAcceptance": "NOT_ASSERTED"
+  },
+  "build": {
+    "schema": 1,
+    "release": "R162",
+    "buildId": "R162-59b6c536b98d",
+    "sourceFingerprint": "43cd278f9e7fc04248a59b40a6a73d2971ca379a39a050caef9bdcfb7a7012a5",
+    "sourceCommit": "cce906ee9f69956277465fcf1c5f6b0d06579cab",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "landscapeChanges": {
+    "onlyPositiveXCurbInterval": [
+      512.399999976,
+      513.600000024
+    ],
+    "x": [
+      1.72,
+      1.88
+    ],
+    "height": 0.08,
+    "oldGroundMeshes": 75,
+    "newGroundMeshes": 76,
+    "unchangedGroundMeshes": 74,
+    "negativeXCurbAndRoadSurfaceUnchanged": true,
+    "wholeGlobalUnchanged": false
+  },
+  "groundParentFixture": {
+    "commit": "6eb1e1c91a166770a8acd215509d1b46d10fcc56",
+    "path": "src/scene/GardenBuilder.js",
+    "sha256": "2dff91a988ec6af9afd1d0ea0a315608b8afaff158504529846c7ea39986d13e",
+    "gitBlob": "b76d99a42ae29648f8e9efbd88ae5c1c2f4c862a",
+    "scope": "exact ?chengguangBaseline query in isolated ground test only; New actual normal source; World JSON-only"
+  },
+  "scan": {
+    "minY": 0.04,
+    "retainedGroundPlanes": [
+      0.012,
+      0.028
+    ],
+    "notFullHeightEmptyColumn": true
+  },
+  "authorPreservation": "Exact source carries original 3053 mesh/1706 collider/106 tops and UI before/after proof; no fake before capture with installed hook",
+  "localRawNonpersistent": true
+}
