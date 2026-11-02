@@ -109,6 +109,7 @@ import { buildSouthCourtTrees } from '../palace/special/SouthCourtTrees.js';
 import { buildYudeBath } from '../palace/special/YudeBath.js';
 import { buildBaoyunStorehouse } from '../palace/special/BaoyunStorehouse.js';
 import {finishBaoyunPorchLions} from '../palace/special/BaoyunPorchLions.js';
+import {finishBaoyunExteriorSteps} from '../palace/special/BaoyunExteriorSteps.js';
 import { buildWenyuanPavilion } from '../palace/special/WenyuanPavilion.js';
 import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
 import * as THREE from 'three';
@@ -266,6 +267,7 @@ export class ZoneBase {
     finishLuanjiaSouthPhotoWindows(this.kit, this.zoneJson);
     finishWenhuaCompanionSteps(this.kit, this.zoneJson);
     finishBaoyunPorchLions(this.kit);
+    finishBaoyunExteriorSteps(this.kit);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     

@@ -1,6 +1,9 @@
+import {preserveBaoyunExteriorContactOwner,resolveBaoyunExteriorContact} from './special/BaoyunExteriorContact.js';
+// Prefix-only dispatch keeps the historical toeRect-to-EOF motion source intact.
+function resolveLuanjiaSouthContact(...args){return resolveBaoyunExteriorContact(...args)??resolveOriginalLuanjiaSouthContact(...args);}
 import {zhujingNorthStairGroup,isZhujingNorthStairId,validZhujingNorthStairHost,preserveZhujingNorthStairOwner,validZhujingNorthStairOwner} from './special/ZhujingNorthStairHost.js';
 import {preserveLuanjiaEastContactOwner,resolveLuanjiaEastContact} from './special/LuanjiaEastContact.js';
-import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
+import {preserveLuanjiaSouthContactOwner,resolveLuanjiaSouthContact as resolveOriginalLuanjiaSouthContact} from './special/LuanjiaSouthContact.js';
 import {wenyuanStairGroup,isWenyuanStairId,validWenyuanStairHost,preserveWenyuanStairOwner,validWenyuanStairOwner} from './special/WenyuanStairHost.js';
 import {resolveWenhuaGateDescent} from './special/WenhuaGateDescentContact.js';
 import {nansansuoNorthStairGroups,isNansansuoNorthStairGroup,isNansansuoNorthStairId,validNansansuoNorthStairHost,preserveNansansuoNorthStairOwner,validNansansuoNorthStairOwner} from './special/NansansuoNorthStairHost.js';
@@ -50,6 +53,7 @@ export function registerBPrincipalStairs(builder,parent,groupId,walkableStart){
  rows.forEach(([w],i)=>{w.bPrincipalStairId=group.surfaces[i].id;});return true;
 }
 export function preserveBPrincipalStairOwner(target,original){
+ if(preserveBaoyunExteriorContactOwner(target,original))return;
  if(preserveLuanjiaEastContactOwner(target,original))return;
  if(preserveLuanjiaSouthContactOwner(target,original))return;
  const id=original?.bPrincipalStairId;if(id===undefined)return;
