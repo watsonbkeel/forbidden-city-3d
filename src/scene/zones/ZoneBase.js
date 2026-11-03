@@ -1,3 +1,4 @@
+import {buildFuchenHall} from '../palace/special/FuchenHall.js';
 import {buildYudeWestHall} from '../palace/special/YudeWestHall.js';
 import {buildXiangyunPavilion} from '../palace/special/XiangyunPavilion.js';
 import {buildNinghuiHall} from '../palace/special/NinghuiHall.js';
@@ -384,6 +385,7 @@ export class ZoneBase {
     buildBaohuaDian(this.kit,this.zoneJson);
     buildFanzongLou(this.kit,this.zoneJson);
     buildXiangyunPavilion(this.kit,this.zoneJson);
+    buildFuchenHall(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
