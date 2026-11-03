@@ -1,3 +1,4 @@
+import {buildZhongzhengEastHall} from '../palace/special/ZhongzhengEastHall.js';
 import {buildZhaofuGate} from '../palace/special/ZhaofuGate.js';
 import {buildYuhuaWestLou} from '../palace/special/YuhuaWestLou.js';
 import {buildYuhuaEastLou} from '../palace/special/YuhuaEastLou.js';
@@ -396,6 +397,7 @@ export class ZoneBase {
     buildYuhuaEastLou(this.kit,this.zoneJson);
     buildYuhuaWestLou(this.kit,this.zoneJson);
     buildZhaofuGate(this.kit,this.zoneJson);
+    buildZhongzhengEastHall(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
