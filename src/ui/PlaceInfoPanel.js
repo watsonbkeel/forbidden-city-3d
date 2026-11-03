@@ -1,4 +1,5 @@
 import {modelFidelityFor,bridgeFacilityInfoFor} from './ModelFidelity.js';
+import {placeDisplayName} from './PublicPlaceNames.js';
 const element = (tag, text, className) => {
   const node = document.createElement(tag);
   if (text !== undefined) node.textContent = text;
@@ -21,12 +22,13 @@ export class PlaceInfoPanel {
   }
 
   render({ place, name, facility, sources = [], canTravel, onTravel }) {
+    const displayName = placeDisplayName(name);
     const facilityInfo=!place&&typeof name==='string'?bridgeFacilityInfoFor(facility?.id,name):null;
     const displaySources=place?sources:facilityInfo?.sources??[];
     // Remove nodes (rather than repurpose old buttons) so queued events cannot
     // acquire a newer destination. The caller also checks selection generation.
     while (this.element.children.length) this.element.children[0].remove();
-    const title = element('h2', name); title.id = 'place-title'; title.tabIndex = -1;
+    const title = element('h2', displayName); title.id = 'place-title'; title.tabIndex = -1;
     this.element.appendChild(title);
     if (place) this.element.appendChild(element('p', place.functionTag, 'place-tag'));
     if (evidenceLabels[place?.evidenceStatus]) this.element.appendChild(element('p', evidenceLabels[place.evidenceStatus], 'place-note'));
@@ -38,7 +40,7 @@ export class PlaceInfoPanel {
     if (canTravel && !facilityInfo) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');
       button.id = 'place-travel'; button.type = 'button';
-      button.setAttribute('aria-label', `前往${name}${place?.modelExperience.navigationMode === 'exterior-view' ? '外观观览点' : ''}`);
+      button.setAttribute('aria-label', `前往${displayName}${place?.modelExperience.navigationMode === 'exterior-view' ? '外观观览点' : ''}`);
       let pointerArmed = null;
       button.addEventListener('pointerdown', e => {
         pointerArmed = { id: e.pointerId, x: e.clientX ?? 0, y: e.clientY ?? 0, released: false };

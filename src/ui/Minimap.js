@@ -8,6 +8,7 @@ import { LAYOUT, TELEPORT } from '../config/constants.js';
 import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
 import { PlaceCatalog } from './PlaceCatalog.js';
 import { PlaceInfoPanel } from './PlaceInfoPanel.js';
+import { placeDisplayName } from './PublicPlaceNames.js';
 
 /** Read-only presentation projection of the same actual bridge profiles as physics.
  * No new scene entities, floor, catalog bindings or travel coordinates are created. */
@@ -389,7 +390,7 @@ export class Minimap {
     this.placeHeader.appendChild(this.closeButton);
     this.container.setAttribute('data-detail', 'true');
     this.container.scrollTop = 0;
-    this.placeAnnouncement.textContent = `已选择${label.name}${facility?'，仅定位地图，人物未移动':''}`;
+    this.placeAnnouncement.textContent = `已选择${placeDisplayName(label.name)}${facility?'，仅定位地图，人物未移动':''}`;
     title.focus({ preventScroll: true });
   }
 
@@ -403,7 +404,7 @@ export class Minimap {
     this.container.appendChild(this.closeButton);
     for (const node of this.mapSections) node.hidden = node.inert = false;
     this.resumePlace.hidden = this.resumePlace.inert = !this.selection;
-    this.resumePlace.textContent = this.selection ? `继续阅读${this.selection.name}` : '';
+    this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';
     this.container.setAttribute('data-detail', 'false');
     this.resizeCanvas(true);
     this.drawMap();
@@ -785,6 +786,7 @@ export class Minimap {
   }
 
   drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null, unitScale = 1, facilityId = null) {
+    text = placeDisplayName(text);
     if (this.labelQueue) {
       this.labelQueue.push({ text, x, y, bold, size, targetName, mode, placeId, ...(facilityId?{facilityId}:{}) });
       return;
