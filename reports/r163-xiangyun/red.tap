@@ -1,0 +1,126 @@
+✖ Xiangyun is one H43 square four-door/four-baoxia body with pointed upper yellow roof and no invented tower inventory (1.69863ms)
+✖ Xiangyun geometry is finite/nondegenerate and every physical mesh has its actual distinct owner (0.356609ms)
+✖ Xiangyun fourfold lower platforms/doors and upper roof bearings make real supported construction (0.280937ms)
+✖ Xiangyun wrong-host/transformed/frozen/material failures are atomic, outside zone no-op and duplicate rejected (0.23573ms)
+✖ Xiangyun is installed once in the real zone before material merging (0.640421ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.740615
+
+✖ failing tests:
+
+test at tests/r163-xiangyun.test.mjs:3:1
+✖ Xiangyun is one H43 square four-door/four-baoxia body with pointed upper yellow roof and no invented tower inventory (1.69863ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:3:137)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r163-xiangyun.test.mjs:4:1
+✖ Xiangyun geometry is finite/nondegenerate and every physical mesh has its actual distinct owner (0.356609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:4:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r163-xiangyun.test.mjs:5:1
+✖ Xiangyun fourfold lower platforms/doors and upper roof bearings make real supported construction (0.280937ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:5:117)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r163-xiangyun.test.mjs:6:1
+✖ Xiangyun wrong-host/transformed/frozen/material failures are atomic, outside zone no-op and duplicate rejected (0.23573ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:6:131)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/r163-xiangyun.test.mjs:7:1
+✖ Xiangyun is installed once in the real zone before material merging (0.640421ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:7:178)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
