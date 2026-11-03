@@ -1,0 +1,21 @@
+{
+  "test": "exact allowlist reanchors only two Taihe side stairs and retains all other surfaces, not dais or upper floors",
+  "file": "tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs",
+  "sourceTestSHA256": "4be2b3fdd405702a3689f10f70ba76ebb08c760d68a2cecb6c8c29c277822008",
+  "candidate": {
+    "tests": 9,
+    "pass": 8,
+    "fail": 1,
+    "actual": 71,
+    "expected": 65
+  },
+  "independentExactB0Control": {
+    "tests": 9,
+    "pass": 8,
+    "fail": 1,
+    "actual": 71,
+    "expected": 65
+  },
+  "attribution": "Same stale owned-walkable count on exact no-Baohua b0 control; six legal central contact additions, not a Baohua regression. Old assertion retained unchanged; this testcase stops at its first count assertion so later assertions are not claimed executed.",
+  "noFullSuiteClaim": true
+}

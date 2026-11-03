@@ -1,0 +1,298 @@
+{
+  "targetSourceCommit": "434016cd28a7be0fccfe098ca9c604a074e46254",
+  "execution": "Each file one Node process using --test-isolation=none, files sequential; no simultaneous high-memory verification",
+  "groups": {
+    "component": {
+      "files": 15,
+      "tests": 72,
+      "pass": 72,
+      "fail": 0
+    },
+    "diagnostic": {
+      "files": 1,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0
+    },
+    "local-controller": {
+      "files": 1,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0
+    },
+    "prior-repair": {
+      "files": 7,
+      "tests": 230,
+      "pass": 229,
+      "fail": 1
+    }
+  },
+  "checks": [
+    {
+      "kind": "component",
+      "file": "tests/r163-baohua.test.mjs",
+      "exitCode": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-baohua_test_mjs.tap",
+      "archive": "checks/tests_r163-baohua_test_mjs.tap.gz",
+      "originalSHA256": "3238cb298d35de147e8172c52241a50223fc99203535760758e25d008e508d66"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-baohua/snapshot-hash.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-baohua_snapshot-hash_test_mjs.tap",
+      "archive": "checks/tests_r163-baohua_snapshot-hash_test_mjs.tap.gz",
+      "originalSHA256": "7ef295fbc00b6515f6f8fe4033f0f54e4b49b1b67e7a570d6cdac220d77a3455"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-baohua/b0-baseline-guard.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-baohua_b0-baseline-guard_test_mjs.tap",
+      "archive": "checks/tests_r163-baohua_b0-baseline-guard_test_mjs.tap.gz",
+      "originalSHA256": "f7dcb783500307f9cfa8a09deecf3c4ce6f74444704dad22b5b5c023a536f151"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-baohua/side-owner-probe.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-baohua_side-owner-probe_test_mjs.tap",
+      "archive": "checks/tests_r163-baohua_side-owner-probe_test_mjs.tap.gz",
+      "originalSHA256": "d8f3d2581a6ba633ee1e792c8e324444ad7d4a2befb4009d60b3f41672fec857"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-yuhua.test.mjs",
+      "exitCode": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-yuhua_test_mjs.tap",
+      "archive": "checks/tests_r163-yuhua_test_mjs.tap.gz",
+      "originalSHA256": "48eca8437928da7a3f5be2de38242f3fa72e9d9c9f1c6ebcf6e44933d9394699"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-jingyi.test.mjs",
+      "exitCode": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-jingyi_test_mjs.tap",
+      "archive": "checks/tests_r163-jingyi_test_mjs.tap.gz",
+      "originalSHA256": "0a51a786e082659367d0279ed15cc542d94eb71f441ae43fdf22eb4eb9e99c58"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-shufang-stage.test.mjs",
+      "exitCode": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-shufang-stage_test_mjs.tap",
+      "archive": "checks/tests_r163-shufang-stage_test_mjs.tap.gz",
+      "originalSHA256": "41b34506acb4f161e146dec3db28124ff8c22ff75bd6c7f60094ab272739699e"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-jicui.test.mjs",
+      "exitCode": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-jicui_test_mjs.tap",
+      "archive": "checks/tests_r163-jicui_test_mjs.tap.gz",
+      "originalSHA256": "75c083f13f4367d56e659e4ce39bb411033373759673e5edfc56cdca64472f24"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-jianfu-jiyun.test.mjs",
+      "exitCode": 0,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-jianfu-jiyun_test_mjs.tap",
+      "archive": "checks/tests_r163-jianfu-jiyun_test_mjs.tap.gz",
+      "originalSHA256": "86c7cd6ede98ab07c31482c62a4c396fb90e055d14a290c4bb3620ec316e4d3b"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-jingsheng.test.mjs",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-jingsheng_test_mjs.tap",
+      "archive": "checks/tests_r163-jingsheng_test_mjs.tap.gz",
+      "originalSHA256": "be9d7ca61bc418d4f4e008fc0352b7f97dceb2ad8755de954861e829d63afd3c"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-yanchun-south-rail.test.mjs",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-yanchun-south-rail_test_mjs.tap",
+      "archive": "checks/tests_r163-yanchun-south-rail_test_mjs.tap.gz",
+      "originalSHA256": "abf644fb41c1e6e6eb686c5ae4e929455c8dce8c5c7be00ea4585bb1282e39ff"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r66-h-yanchun-front.test.mjs",
+      "exitCode": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r66-h-yanchun-front_test_mjs.tap",
+      "archive": "checks/tests_r66-h-yanchun-front_test_mjs.tap.gz",
+      "originalSHA256": "6227f8ed5269f03abfd5387558b01871efa9a5d15b9f201c9f7f906f8be0bc71"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r163-yinghua-stele/component.test.mjs",
+      "exitCode": 0,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-yinghua-stele_component_test_mjs.tap",
+      "archive": "checks/tests_r163-yinghua-stele_component_test_mjs.tap.gz",
+      "originalSHA256": "90e1b0eabca1b504fb7fca720b2e0282392c2745ffb4c023a56455586f8b3a0f"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r66-h-yinghua-gate.test.mjs",
+      "exitCode": 0,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r66-h-yinghua-gate_test_mjs.tap",
+      "archive": "checks/tests_r66-h-yinghua-gate_test_mjs.tap.gz",
+      "originalSHA256": "150147ff71e63dad588185e54c6b62e3b79382616cc5a8a2c9a7a1833ffb6403"
+    },
+    {
+      "kind": "component",
+      "file": "tests/r66-h-yinghua-windows.test.mjs",
+      "exitCode": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r66-h-yinghua-windows_test_mjs.tap",
+      "archive": "checks/tests_r66-h-yinghua-windows_test_mjs.tap.gz",
+      "originalSHA256": "e813453233087fe368b72361855356746a557f0777823b672f337234360cef06"
+    },
+    {
+      "kind": "local-controller",
+      "file": "tests/r163-baohua-local.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-baohua-local_test_mjs.tap",
+      "archive": "checks/tests_r163-baohua-local_test_mjs.tap.gz",
+      "originalSHA256": "e9c2a25af61a9c09ded814628e166befaa29cab609893c60a75493ac9b0b6083"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "scripts/r163-tiren-plaque/test.mjs",
+      "exitCode": 0,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/scripts_r163-tiren-plaque_test_mjs.tap",
+      "archive": "checks/scripts_r163-tiren-plaque_test_mjs.tap.gz",
+      "originalSHA256": "c356822574799d9df59a5edfb6b934d02805b5546d1e84cd7c741979400cedd8"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/r163-central-stones.test.mjs",
+      "exitCode": 0,
+      "tests": 158,
+      "pass": 158,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-central-stones_test_mjs.tap",
+      "archive": "checks/tests_r163-central-stones_test_mjs.tap.gz",
+      "originalSHA256": "779671c83b4a105a8d05380a8208abbc942f1066a41de023da2e71b2b684e013"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/r163-taihe-front-porch/current.test.mjs",
+      "exitCode": 0,
+      "tests": 19,
+      "pass": 19,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-taihe-front-porch_current_test_mjs.tap",
+      "archive": "checks/tests_r163-taihe-front-porch_current_test_mjs.tap.gz",
+      "originalSHA256": "403c81b7fb706f513c83dd4570e12b44266d773d0fdc47699da951b87dc33a58"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/r163-taihe-front-porch/retention.test.mjs",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163-taihe-front-porch_retention_test_mjs.tap",
+      "archive": "checks/tests_r163-taihe-front-porch_retention_test_mjs.tap.gz",
+      "originalSHA256": "4fe97252b30743eeae788be99082148cadb1a627d79b535e421bef487e614932"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/r163/qianqing-sprint-handoff.test.mjs",
+      "exitCode": 0,
+      "tests": 32,
+      "pass": 32,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_r163_qianqing-sprint-handoff_test_mjs.tap",
+      "archive": "checks/tests_r163_qianqing-sprint-handoff_test_mjs.tap.gz",
+      "originalSHA256": "9328930a4faef8a0b327035115aeb0538f6bf8829ceacf877b01f41edbbde291"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs",
+      "exitCode": 1,
+      "tests": 9,
+      "pass": 8,
+      "fail": 1,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_photo-fidelity_batches_b-principal-stair-contact_test_mjs.tap",
+      "archive": "checks/tests_photo-fidelity_batches_b-principal-stair-contact_test_mjs.tap.gz",
+      "originalSHA256": "a9f3e782c4b53dc67fac4de5907e4ce341e7c07c11f1577990b7c70766b8a806"
+    },
+    {
+      "kind": "prior-repair",
+      "file": "tests/chuxiu-freeze/npc-square-contact.test.mjs",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_chuxiu-freeze_npc-square-contact_test_mjs.tap",
+      "archive": "checks/tests_chuxiu-freeze_npc-square-contact_test_mjs.tap.gz",
+      "originalSHA256": "0082837e01aee6099cab56a1487718119b1947cc1fb2311c21af1a777afe3f8f"
+    },
+    {
+      "kind": "diagnostic",
+      "file": "tests/chuxiu-freeze/scheduler-diagnostic.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "rawOutputAtRun": "reports/r163-baohua/cumulative-b0/checks/tests_chuxiu-freeze_scheduler-diagnostic_test_mjs.tap",
+      "archive": "checks/tests_chuxiu-freeze_scheduler-diagnostic_test_mjs.tap.gz",
+      "originalSHA256": "a2d001a4e1c3ba776e27939835f54779812e70aa8ba879856502bc7ceaf327db"
+    }
+  ],
+  "knownBaselineFailure": "KNOWN-BASELINE-FAILURE.json",
+  "notRun": "Full test:current-state/history/GPU/browser/mobile not rerun; old full-suite failures remain historical, not claimed green"
+}
