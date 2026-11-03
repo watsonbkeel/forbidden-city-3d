@@ -1,6 +1,6 @@
 ## R163 当前累计开发候选：交付说明与验收边界
 
-本分支是[16521cd0文档候选](https://github.com/watsonbkeel/forbidden-city-3d/commit/16521cd0761c6ecf26ced3a0b2212211c9fe42a7)的H43登记与身份测试后继，继续保留已上传运行候选 [d5b152ae](https://github.com/watsonbkeel/forbidden-city-3d/commit/d5b152ae22a010ca202fcd97fac730360d804872) 的全部运行代码，**游戏运行源码不变**。当前累计代码已包含中正殿东配殿及前序开发、内阁大库正式显示名称、天一门等五处简介卡片。下方“本地冻结／未上传”属于当时的历史阶段，不再代表当前交付状态。
+本分支是[32421fd0候选](https://github.com/watsonbkeel/forbidden-city-3d/commit/32421fd0e1124edaf9372e3c4274f3fb32dd187e)的A37当前代码对账后继，继续保留已上传运行候选 [d5b152ae](https://github.com/watsonbkeel/forbidden-city-3d/commit/d5b152ae22a010ca202fcd97fac730360d804872) 的全部运行代码，**游戏运行源码不变**。当前累计代码已包含中正殿东配殿及前序开发、内阁大库正式显示名称、天一门等五处简介卡片。下方“本地冻结／未上传”属于当时的历史阶段，不再代表当前交付状态。
 
 ### 本候选已核实
 
@@ -13,12 +13,13 @@
 
 - 不是397项全部完成或整栋复原验收。397个必需原始条目、可选端门及7组尚未完整枚举的扩展任务继续保留；原始条目不是独立建筑栋数。
 - [H43代码补充登记](docs/current-state/r163-candidate-20261104/H43-CODE-APPENDIX.json)已覆盖43条原始任务的代码分类：30条有专用局部实现、2条通用拟合、10条未找到明确独立绑定、1条院落聚合项需覆盖核对；没有据此认定的历史项。这不是整项完成数或完成率，未找到绑定也不证明完全没有匿名几何。
+- [A37当前对账附录](docs/current-state/r163-candidate-20261104/A37-CODE-APPENDIX.md)保留37个原ID：均找到已有局部实现或组合绑定，不代表37项完成；R157原始逐项表和旧测试身份不覆盖。旧“待定位／通用占位”结论与现行代码的差异逐项列明。
 - GPU／真实浏览器画面、实体手机、全世界落点安全与全历史套测没有通过声明。既有R6卡片哈希失败仍保留；本次不改变旧断言来伪造全绿。
 - 历史累计通行／结构限制继续有效。本次不改几何、碰撞、导航、0.3米相关容差或游戏逻辑。详见[五张卡片说明](tests/r163-five-place-cards/README.md)。
 
 ### 合并、部署与回滚
 
-只交付新的开发分支，由用户决定是否合并。既有165、d5、[2110597f](https://github.com/watsonbkeel/forbidden-city-3d/commit/2110597f8f8e56713bb9b9a42da73cbd04cb691f)和[06369276](https://github.com/watsonbkeel/forbidden-city-3d/commit/06369276c3a3b91f5c27e12b23a54e0e032f4d92)候选保留。没有修改／合并main或自行部署Pages；用户以后向main合并会触发现有Pages工作流。
+只交付新的开发分支，由用户决定是否合并。既有324、165、d5、[2110597f](https://github.com/watsonbkeel/forbidden-city-3d/commit/2110597f8f8e56713bb9b9a42da73cbd04cb691f)和[06369276](https://github.com/watsonbkeel/forbidden-city-3d/commit/06369276c3a3b91f5c27e12b23a54e0e032f4d92)候选保留。没有修改／合并main或自行部署Pages；用户以后向main合并会触发现有Pages工作流。
 
 ## 历史记录：R163 梵宗楼朝东两层主体
 

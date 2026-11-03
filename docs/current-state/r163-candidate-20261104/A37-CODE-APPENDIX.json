@@ -1,0 +1,1755 @@
+{
+  "schema": 1,
+  "reviewedAtBeijing": "2026-11-04",
+  "reviewedRemoteCommit": "32421fd0e1124edaf9372e3c4274f3fb32dd187e",
+  "sameTreeLocalCommit": "71a7d11d4849f454c7930bed417ef290049e1b77",
+  "reviewedCompleteTree": "7b0ec9e28ef0debcc7e502268cd2fe09e61c95de",
+  "purpose": "Current code-binding appendix, not completion or visual/walkability acceptance; original R157 records unchanged.",
+  "originalStatus": {
+    "path": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+    "gitBlob": "e687700d72f2ba4083a278acc5336950a1763e71",
+    "sha256": "c9e8e9ed71e5dae445d47df79b87e52cc3d6d0914e7f46b7b6f387a6bca03c77",
+    "asOfUTC": "2026-11-01T15:24:00Z",
+    "runtimeCommit": "8564214293cf7ab028f19668097fc79f8c4b360a",
+    "runtimeTree": "e241da150efca91d9942bf025500ac892e53bbef",
+    "rows": 37,
+    "recordedUserAccepted": 0
+  },
+  "earlyStatus": {
+    "path": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+    "gitBlob": "bedb58b72f72311783f412aa05f8d62b8694a22d",
+    "sha256": "5e25140940a9657341b073b53ecf0d4d5aed8797f489e52cee1e0b16c0256eed"
+  },
+  "counts": {
+    "originalRows": 37,
+    "limitedImplementationOrCompoundBindingFound": 37,
+    "noBindingFoundWithinReviewedRows": 0,
+    "wholeObjectAcceptedCount": "NOT_ASSERTED",
+    "freshWorldOrGpuAcceptedCount": 0,
+    "countsAreCompletionRate": false
+  },
+  "method": [
+    "Read all37 original rows and locate present named, exact-index or compound entry points.",
+    "Literal-import reachability is supporting evidence only:34 IDs occur in reachable source,3 require name/compound mapping. An ID mention alone is not a building acceptance.",
+    "Direct lightweight production-profile evaluation covers4 side galleries,2 pavilions and4 bridge groups. No World or full scene is constructed.",
+    "Read and hash-check old raw test logs; preserve their original source identity and distinguish them from current executions."
+  ],
+  "rows": [
+    {
+      "number": 1,
+      "id": "FC-AD4377DF51",
+      "name": "午门",
+      "originalPracticalGroup": "A",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained main tower with practical lower/upper assembly, platforms, wings and ordinary south-deck access.",
+      "normalEntry": "PalaceBuilder.buildWumen -> finalizeWumenPractical -> installWumenPracticalAssembly; scopeIds includes original five Wumen rows.",
+      "evidenceFiles": [
+        "src/scene/palace/special/WumenPracticalAssembly.js",
+        "src/scene/palace/special/WumenPracticalFit.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "整组台亭翼/马道/墙接口、南台边界及正常跳跃已接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "工程拟合；西上行既有0.317/0.385m短帧，非全帧≤0.3"
+    },
+    {
+      "number": 2,
+      "id": "FC-B3B12CF397",
+      "name": "太和门",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Named gate shell, south approach and source-bounded bronze-lion/stair improvements.",
+      "normalEntry": "PalaceBuilder terrace(name=太和门) adds own bronze lions and stair contacts.",
+      "evidenceFiles": [
+        "src/scene/palace/special/TaihemenProfile.js",
+        "src/scene/palace/TaihemenBronzeLions.js",
+        "src/scene/palace/TaihemenStairContact.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原主体保留；铜狮及三梯连续接触改善",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "雕饰/真实纹理光照待用户检查"
+    },
+    {
+      "number": 3,
+      "id": "FC-A478209231",
+      "name": "太和殿",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained hall and18-tripod fit; current R163 also retains three small stairs and recessed front-porch route.",
+      "normalEntry": "PalaceBuilder named Taihe body plus bronze/tripod calls and taiheFrontPorch.",
+      "evidenceFiles": [
+        "src/scene/palace/special/TaiheCore.js",
+        "src/scene/palace/special/TaiheEighteenTripods.js",
+        "src/scene/palace/special/TaiheBronzeSilhouettes.js",
+        "src/scene/palace/special/TaiheFrontPorch.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "主体保留；铜龟鹤轮廓、18鼎分层拟合接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "18总数官文支持；4/4/4/6及坐标为照片判读/工程拟合"
+    },
+    {
+      "number": 4,
+      "id": "FC-5FAA15AE5C",
+      "name": "中和殿",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained hall and slender display stands; current central south/north stone walking surfaces.",
+      "normalEntry": "Named Zhonghe hall/plinth; display-setting calls buildZhongheDisplayStands.",
+      "evidenceFiles": [
+        "src/scene/palace/special/ZhongheDisplaySetting.js",
+        "src/scene/palace/special/ZhongheDisplayStands.js",
+        "src/scene/palace/ZhongheImperialApproach.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "主体及原通路保留；室内两巨桶改轻型陈设",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "器名、背面、细部不可证，不称考古复原"
+    },
+    {
+      "number": 5,
+      "id": "FC-58A3300503",
+      "name": "保和殿",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained hall, plinth and north descent including current central stone walking surfaces.",
+      "normalEntry": "Named Baohe body/plinth and installBaoheNorthDetail in normal three-hall terrace.",
+      "evidenceFiles": [
+        "src/scene/palace/BaoheHallPlinth.js",
+        "src/scene/palace/BaoheNorthApproaches.js",
+        "src/scene/palace/BaoheDaisApproach.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "主体保留；北阶通行及西台/墙接口已验证",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "高程/不可见细部工程处理"
+    },
+    {
+      "number": 6,
+      "id": "FC-8C6502DA44",
+      "name": "体仁阁",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained two-storey body/side connections/chiwen; current own lower west nameboard is enabled.",
+      "normalEntry": "axis-courts item24 surveyed-pavilion/tiren -> CourtKit.hall -> buildSurveyedPavilion.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SurveyedPavilion.js",
+        "src/scene/palace/special/PavilionProfiles.js",
+        "src/scene/palace/special/TirenNameInscription.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原主体、前阶保留；可见U形侧接及两端吻接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "U形接道与1.25m端吻均工程拟合，非历史测绘",
+      "axisCourtItemBindings": [
+        {
+          "index": 24,
+          "kind": "hall",
+          "name": "体仁阁",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "FC-A43B1DAB0B",
+      "name": "弘义阁",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained two-storey body, lower windows, nameboard, side connections and chiwen.",
+      "normalEntry": "axis-courts item25 surveyed-pavilion/hongyi -> CourtKit.hall -> buildSurveyedPavilion.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SurveyedPavilion.js",
+        "src/scene/palace/special/PavilionProfiles.js",
+        "src/scene/palace/special/HongyiLowerWindowLeaves.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原主体、前阶保留；可见U形侧接及两端吻接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "同体仁；U栏不可直穿，须沿真实接道",
+      "axisCourtItemBindings": [
+        {
+          "index": 25,
+          "kind": "hall",
+          "name": "弘义阁",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "FC-9E59B14A3C",
+      "name": "协和门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing named side-gate hall, platform, porch and own bounded detail.",
+      "normalEntry": "axis-courts item0 gateProfile=xiehe -> CourtKit.gate -> buildSideGate.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGate.js",
+        "src/scene/palace/special/SideGateProfiles.js",
+        "src/scene/palace/special/XieheCourtyardKnees.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原门主体及通路保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "保留原门，不将邻廊改善算作整门新建",
+      "axisCourtItemBindings": [
+        {
+          "index": 0,
+          "kind": "gate",
+          "name": "协和门",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "FC-06B1BADE77",
+      "name": "熙和门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing named side-gate hall and bounded exterior; historical source conflict remains.",
+      "normalEntry": "axis-courts item1 gateProfile=xihe -> CourtKit.gate -> buildSideGate.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGate.js",
+        "src/scene/palace/special/SideGateProfiles.js",
+        "src/scene/palace/special/SideGateExteriorDetails.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原门主体及通路保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "自身外观图文存在冲突待核；不据不确定信息盲改",
+      "axisCourtItemBindings": [
+        {
+          "index": 1,
+          "kind": "gate",
+          "name": "熙和门",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "FC-B0439D9BED",
+      "name": "东雁翅楼",
+      "originalPracticalGroup": "A",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "East13-bay wing/body/platform member of the five-row Wumen assembly.",
+      "normalEntry": "Same normal Wumen assembly; original east-wing ID is in scopeIds and fitted target group.",
+      "evidenceFiles": [
+        "src/scene/palace/special/WumenPracticalAssembly.js",
+        "src/scene/palace/special/WumenPracticalFit.js",
+        "src/scene/palace/special/WumenWingPavilionInstances.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "整组翼楼屋面/柱体/实体平台接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "与午门共享整组验证，非独立全量测试"
+    },
+    {
+      "number": 11,
+      "id": "FC-FB99F593DB",
+      "name": "西雁翅楼",
+      "originalPracticalGroup": "A",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "West13-bay wing/body/platform member of the five-row Wumen assembly.",
+      "normalEntry": "Same normal Wumen assembly; original west-wing ID is in scopeIds and fitted target group.",
+      "evidenceFiles": [
+        "src/scene/palace/special/WumenPracticalAssembly.js",
+        "src/scene/palace/special/WumenPracticalFit.js",
+        "src/scene/palace/special/WumenWingPavilionInstances.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "整组翼楼屋面/柱体/实体平台接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "与午门共享整组验证，非独立全量测试"
+    },
+    {
+      "number": 12,
+      "id": "FC-08AF02314B",
+      "name": "午门钟鼓亭",
+      "originalPracticalGroup": "A",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Clock/drum pavilion grouping has explicit current scope; not missing merely because early review was unresolved.",
+      "normalEntry": "Normal Wumen practical upper assembly includes FC-08AF02314B.",
+      "evidenceFiles": [
+        "src/scene/palace/special/WumenPracticalAssembly.js",
+        "src/scene/palace/special/WumenPracticalUpper.js",
+        "src/scene/palace/special/WumenWingPavilionInstances.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "钟鼓亭完整屋面/实体接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "尺寸和隐蔽接头工程拟合",
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待核定（禁止借相似对象充数）",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 13,
+      "id": "FC-86C9330D65",
+      "name": "午门四角方亭",
+      "originalPracticalGroup": "A",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Four fitted corner pavilions and their real platform boundaries; high roof access not certified.",
+      "normalEntry": "Normal Wumen assembly includes FC-86C9330D65 and live south-deck authorization.",
+      "evidenceFiles": [
+        "src/scene/palace/special/WumenPracticalAssembly.js",
+        "src/scene/palace/special/WumenPracticalFit.js",
+        "src/scene/palace/special/WumenSouthDeckBoundary.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "四亭完整主体/平台及外围通路接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "正常跳高范围内完整真实台面授权；非任意空域通行"
+    },
+    {
+      "number": 14,
+      "id": "FC-F838FEF7AB",
+      "name": "昭德门",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing dedicated gate, panel and south-boundary interface.",
+      "normalEntry": "axis-courts item8 gateProfile=zhaode -> buildZhaodeGate.",
+      "evidenceFiles": [
+        "src/scene/palace/special/ZhaodeGate.js",
+        "src/scene/palace/special/ZhaodeSouthPanels.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有专属主体/主门通路保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "现有两门8往返证据；不冒称本收口重测或精细复原",
+      "axisCourtItemBindings": [
+        {
+          "index": 8,
+          "kind": "gate",
+          "name": "昭德门",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "FC-9252CFFDAB",
+      "name": "贞度门",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing dedicated gate, ramp and south-boundary interface.",
+      "normalEntry": "axis-courts item10 gateProfile=zhendu -> buildZhenduGate.",
+      "evidenceFiles": [
+        "src/scene/palace/special/ZhenduGate.js",
+        "src/scene/palace/special/ZhenduGateProfile.js",
+        "src/scene/palace/kit.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有专属主体/实体坡与主门通路保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "现有两门8往返证据；不冒称本收口重测或精细复原",
+      "axisCourtItemBindings": [
+        {
+          "index": 10,
+          "kind": "gate",
+          "name": "贞度门",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "FC-2D6DB6F0EC",
+      "name": "协和门北庑房",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Explicit north Xiehe gallery/porch binding; water below remains excluded.",
+      "normalEntry": "sideGateGalleryOptions(axis-courts,27,item) validates coordinates and FC-2D6DB6F0EC; buildCorridor registers actual deck.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGateGalleryProfiles.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "廊台/实体与既有水域限定通路接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "仅实际登记高廊面，水底仍拒绝",
+      "axisCourtItemBindings": [
+        {
+          "index": 27,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -286.1
+          ],
+          "to": [
+            -103.37,
+            -222.2
+          ]
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待定位/独立实现未证实",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 17,
+      "id": "FC-3489F3B25A",
+      "name": "协和门南庑房",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Explicit south Xiehe gallery/porch binding.",
+      "normalEntry": "sideGateGalleryOptions(axis-courts,26,item) validates coordinates and FC-3489F3B25A.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGateGalleryProfiles.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "廊台主体与实际通行保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "工程高程拟合",
+      "axisCourtItemBindings": [
+        {
+          "index": 26,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -415.5
+          ],
+          "to": [
+            -103.37,
+            -314.5
+          ]
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待定位/独立实现未证实",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 18,
+      "id": "FC-E9A79B1E5E",
+      "name": "熙和门北庑房",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Explicit north Xihe gallery/porch binding; water below remains excluded.",
+      "normalEntry": "sideGateGalleryOptions(axis-courts,33,item) validates coordinates and FC-E9A79B1E5E; buildCorridor registers actual deck.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGateGalleryProfiles.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "廊台/实体与既有水域限定通路接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "仅实际登记高廊面，水底仍拒绝",
+      "axisCourtItemBindings": [
+        {
+          "index": 33,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -287.1
+          ],
+          "to": [
+            107.6,
+            -222.2
+          ]
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待定位/独立实现未证实",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 19,
+      "id": "FC-069E407017",
+      "name": "熙和门南庑房",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Explicit south Xihe gallery/porch binding.",
+      "normalEntry": "sideGateGalleryOptions(axis-courts,32,item) validates coordinates and FC-069E407017.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SideGateGalleryProfiles.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "廊台主体与实际通行保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "工程高程拟合",
+      "axisCourtItemBindings": [
+        {
+          "index": 32,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -415.5
+          ],
+          "to": [
+            107.6,
+            -315.1
+          ]
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待定位/独立实现未证实",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 20,
+      "id": "FC-DFB682AF14",
+      "name": "中左门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing separate south/north facade plus high platform/ramps; not an untouched generic placeholder.",
+      "normalEntry": "axis-courts item12 -> normal gate -> applyMiddleAxisFacades and raiseMiddleLeftPlatform.",
+      "evidenceFiles": [
+        "src/scene/palace/special/MiddleAxisFacades.js",
+        "src/scene/palace/special/MiddleNorthVisibleHall.js",
+        "src/scene/palace/special/MiddleLeftPlatform.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "保原独立南窗/北实/柱网，整体高台宽坡白栏",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "1.8m台与坡长工程估算；墙体高位拒绝已验证",
+      "axisCourtItemBindings": [
+        {
+          "index": 12,
+          "kind": "gate",
+          "name": "中左门",
+          "from": null,
+          "to": null
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "通用模型占位，未完成本体修订",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 21,
+      "id": "FC-85E0528ECA",
+      "name": "中右门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Dedicated middle-right body, unequal facades and approaches.",
+      "normalEntry": "axis-courts item14 middleRightGate -> buildMiddleRightGate.",
+      "evidenceFiles": [
+        "src/scene/palace/special/MiddleRightGate.js",
+        "src/scene/palace/special/MiddleRightRoofProfile.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "完整南北异面/厅内/门叶/双坡栏及通路保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "近景描金等已知简化；非精确照片全还原",
+      "axisCourtItemBindings": [
+        {
+          "index": 14,
+          "kind": "gate",
+          "name": "中右门",
+          "from": null,
+          "to": null
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "通用模型占位，未完成本体修订",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 22,
+      "id": "FC-E3F4369B07",
+      "name": "后左门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Dedicated rear-left gate with own front approach and bounded rear safety fit.",
+      "normalEntry": "axis-courts item16 rearAxisGate=houzuo -> buildRearAxisGate and left platform.",
+      "evidenceFiles": [
+        "src/scene/palace/special/RearAxisGate.js",
+        "src/scene/palace/special/RearLeftPlatform.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "自身高台/南宽坡白栏及北安全接地坡",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "南面有自身图证；北坡与尺寸为安全工程拟合",
+      "axisCourtItemBindings": [
+        {
+          "index": 16,
+          "kind": "gate",
+          "name": "后左门",
+          "from": null,
+          "to": null
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "通用模型占位，未完成本体修订",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 23,
+      "id": "FC-48D7D69238",
+      "name": "后右门",
+      "originalPracticalGroup": "D",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Dedicated rear-right gate and fitted high platform/ramps.",
+      "normalEntry": "axis-courts item18 rearAxisGate=houyou -> buildRearAxisGate and right platform.",
+      "evidenceFiles": [
+        "src/scene/palace/special/RearAxisGate.js",
+        "src/scene/palace/special/RearRightPlatform.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "自身高台/宽坡白栏、原门面刚移保全",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "北坡与尺寸工程拟合",
+      "axisCourtItemBindings": [
+        {
+          "index": 18,
+          "kind": "gate",
+          "name": "后右门",
+          "from": null,
+          "to": null
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "通用模型占位，未完成本体修订",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 24,
+      "id": "FC-BC06FBAC15",
+      "name": "左翼门",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Own five-bay three-opening gate, windows, studs and real approach.",
+      "normalEntry": "ZoneBase special named 左翼门 branch consumes axis-courts item2.",
+      "evidenceFiles": [
+        "src/scene/palace/special/ZuoyiOwnGate.js",
+        "src/scene/palace/special/ZuoyiDoorFront.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "自身五间三门/端窗/九排门钉，高台宽坡白栏",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "自身官图/1932图辅助；非现代米制测绘",
+      "axisCourtItemBindings": [
+        {
+          "index": 2,
+          "kind": "gate",
+          "name": "左翼门",
+          "from": null,
+          "to": null
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "FC-E2A42F047A",
+      "name": "右翼门",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Own five-bay three-opening gate, high platform/ramp and railing contours; old solid-crossing shortcuts remain blocked.",
+      "normalEntry": "ZoneBase special named 右翼门 branch consumes axis-courts item3.",
+      "evidenceFiles": [
+        "src/scene/palace/special/YouyiFreshGate.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "五间三门、高台长坡、下栏板/柱头轮廓",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "36到达与4条穿旧U栏观察分开，后者不是可走捷径",
+      "axisCourtItemBindings": [
+        {
+          "index": 3,
+          "kind": "gate",
+          "name": "右翼门",
+          "from": null,
+          "to": null
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "通用模型占位，未完成本体修订",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 26,
+      "id": "FC-E32F3D1CA3",
+      "name": "太和殿南庑",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Four existing southern corridor strips and bounded gray-brick/red-wall interface, not a new separate northern corridor.",
+      "normalEntry": "ZoneBase.buildCorridor consumes four south strips38..41; buildWall indices9/11 fit the associated gate-height wall/base interface.",
+      "evidenceFiles": [
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有38–41四段保留；9/11灰砖台与红墙分界拟合",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "官方命名视点支持现有南界；1991修缮精确范围仍未证，不增北廊",
+      "axisCourtItemBindings": [
+        {
+          "index": 9,
+          "kind": "wall",
+          "name": null,
+          "from": [
+            -25,
+            -214.2
+          ],
+          "to": [
+            -106.47,
+            -214.2
+          ]
+        },
+        {
+          "index": 11,
+          "kind": "wall",
+          "name": null,
+          "from": [
+            25,
+            -214.2
+          ],
+          "to": [
+            110.7,
+            -214.2
+          ]
+        },
+        {
+          "index": 38,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -105.97,
+            -217.3
+          ],
+          "to": [
+            -69.2,
+            -217.3
+          ]
+        },
+        {
+          "index": 39,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -55.6,
+            -217.3
+          ],
+          "to": [
+            -26.5,
+            -217.3
+          ]
+        },
+        {
+          "index": 40,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            26.5,
+            -217.3
+          ],
+          "to": [
+            57.6,
+            -217.3
+          ]
+        },
+        {
+          "index": 41,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            71.2,
+            -217.3
+          ],
+          "to": [
+            110.2,
+            -217.3
+          ]
+        }
+      ],
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待定位/独立实现未证实",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 27,
+      "id": "FC-D156902D78",
+      "name": "内金水桥",
+      "originalPracticalGroup": "E",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Five retained inner Jinshui bridges including a distinct fitted imperial middle bridge.",
+      "normalEntry": "Layout river -> PalaceBuilder.buildRiver -> buildInnerJinshui; production profile has5 bridges.",
+      "evidenceFiles": [
+        "src/scene/palace/special/InnerJinshui.js",
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原五桥保留，中御桥宽长高等级改善",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "8.1×23/crest1.05为工程拟合"
+    },
+    {
+      "number": 28,
+      "id": "FC-B9097C61D8",
+      "name": "武英门前三座石桥",
+      "originalPracticalGroup": "E",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Three Wuying bridges, shore/rail fit and walkable deck registrations.",
+      "normalEntry": "Same normal river -> buildSouthWaterSystem; family=wuying resolves3 independent bridges.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SouthWaterSystem.js",
+        "src/scene/palace/special/WuyingThreeBridgeRails.js",
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有三桥主体/岸接及通行保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "保留已实测42场景，不宣称重建"
+    },
+    {
+      "number": 29,
+      "id": "FC-74F8C30390",
+      "name": "半壁桥",
+      "originalPracticalGroup": "E",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "One north-south half-bridge, one-sided railing and fitted covered approach.",
+      "normalEntry": "Same normal river -> buildSouthWaterSystem; id=xiehe-banbi/family=half-bridge plus covered crossing.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SouthWaterSystem.js",
+        "src/scene/palace/special/BanbiCoveredCrossing.js",
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "南北桥/东栏及真实覆涵接道接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "位置为官方地图拓扑拟合；须走安全入口，不能从埋台点起步"
+    },
+    {
+      "number": 30,
+      "id": "FC-17AFD38428",
+      "name": "三座门外三座石桥",
+      "originalPracticalGroup": "E",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Three distinct bridge bodies and walk surfaces; not three newly constructed gate buildings.",
+      "normalEntry": "Same normal river -> buildSouthWaterSystem; family=three-gates resolves3 distinct bridges.",
+      "evidenceFiles": [
+        "src/scene/palace/special/SouthWaterSystem.js",
+        "src/scene/Layout.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "三座独立桥与桥上通路、水界保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "桥位工程拟合；不等同新增三座琉璃门建筑",
+      "supersededEarlyClassification": {
+        "source": "docs/photo-fidelity/batches/R157-A37/STATUS.json",
+        "text": "待核定（禁止借相似对象充数）",
+        "why": "Current explicit binding above is later than this historical early classification; not permission to erase the old record."
+      }
+    },
+    {
+      "number": 31,
+      "id": "FC-35BF29ABCB",
+      "name": "三台（外朝三大殿台基）",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Existing shared three-tier terrace and registered stairs/landings; current central contact additions remain separate.",
+      "normalEntry": "Normal three-hall terrace invokes threeHallTerraceProfile and actual stair/landing creation.",
+      "evidenceFiles": [
+        "src/scene/palace/ThreeHallTerrace.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "真实三层台与既有坡/落台保留，有限连续接触",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "限定43真实坡/14台面，后增侧阶8面独立保全，不加隐形台"
+    },
+    {
+      "number": 32,
+      "id": "FC-CA9102BFFB",
+      "name": "太和殿东联庑",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained east linked-gallery strips and visible pavilion side connections; unknown inventory withheld.",
+      "normalEntry": "axis-courts items28..30 carry FC-CA9102BFFB; normal corridor generation and exact pavilion side targets.",
+      "evidenceFiles": [
+        "src/scene/palace/GalleryInventoryPolicy.js",
+        "src/scene/palace/special/PavilionSideConnections.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有东联庑保留，邻阁可见侧接补齐",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "不移动廊轴；U形非历史实测",
+      "axisCourtItemBindings": [
+        {
+          "index": 28,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -213.7
+          ],
+          "to": [
+            -103.37,
+            -141.75
+          ]
+        },
+        {
+          "index": 29,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -76.85
+          ],
+          "to": [
+            -103.37,
+            -59.9
+          ]
+        },
+        {
+          "index": 30,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -46.3
+          ],
+          "to": [
+            -103.37,
+            -12.7
+          ]
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "id": "FC-0D3F161564",
+      "name": "保和殿东联庑",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained east Baohe linked gallery with door/porch passages; not an invented furnished interior.",
+      "normalEntry": "ZoneBase axis-courts item31 -> buildBaoheLinkedGallery; original FC-0D3F161564 binding.",
+      "evidenceFiles": [
+        "src/scene/palace/BaoheLinkedGalleries.js",
+        "src/scene/palace/GalleryInventoryPolicy.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原主体保留，门券/前廊与长程通行接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "原室内未知不虚构陈设",
+      "axisCourtItemBindings": [
+        {
+          "index": 31,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            -103.37,
+            -11.7
+          ],
+          "to": [
+            -103.37,
+            122.5
+          ]
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "FC-B31A272965",
+      "name": "太和殿西联庑",
+      "originalPracticalGroup": "C",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained west linked-gallery strips and visible pavilion side connections; unknown inventory withheld.",
+      "normalEntry": "axis-courts items34..36 carry FC-B31A272965; normal corridor generation and exact pavilion side targets.",
+      "evidenceFiles": [
+        "src/scene/palace/GalleryInventoryPolicy.js",
+        "src/scene/palace/special/PavilionSideConnections.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有西联庑保留，邻阁可见侧接补齐",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "不移动廊轴；U形非历史实测",
+      "axisCourtItemBindings": [
+        {
+          "index": 34,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -213.7
+          ],
+          "to": [
+            107.6,
+            -142.85
+          ]
+        },
+        {
+          "index": 35,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -77.95
+          ],
+          "to": [
+            107.6,
+            -59.6
+          ]
+        },
+        {
+          "index": 36,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -46
+          ],
+          "to": [
+            107.6,
+            -12.7
+          ]
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "id": "FC-86FF7FC2AB",
+      "name": "保和殿西联庑",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Retained west Baohe linked gallery with door/porch passages; not an invented furnished interior.",
+      "normalEntry": "ZoneBase axis-courts item37 -> buildBaoheLinkedGallery; original FC-86FF7FC2AB binding.",
+      "evidenceFiles": [
+        "src/scene/palace/BaoheLinkedGalleries.js",
+        "src/scene/palace/GalleryInventoryPolicy.js",
+        "src/scene/zones/ZoneBase.js",
+        "data/zones/axis-courts.json"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "原主体保留，门券/前廊与长程通行接入",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "原室内未知不虚构陈设",
+      "axisCourtItemBindings": [
+        {
+          "index": 37,
+          "kind": "corridor",
+          "name": null,
+          "from": [
+            107.6,
+            -11.7
+          ],
+          "to": [
+            107.6,
+            122.5
+          ]
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "FC-1ABC6622CB",
+      "name": "太和殿两侧阶梯状封火墙",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Separate stepped east/west walls and retained door/passability boundaries.",
+      "normalEntry": "Normal three-hall terrace identifies east/west Taihe link walls and calls the two firewall builders.",
+      "evidenceFiles": [
+        "src/scene/palace/special/AxisFirewallProfiles.js",
+        "src/scene/palace/special/AxisFirewalls.js",
+        "src/scene/palace/special/TaiheEastWallDoor.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "既有双侧阶梯墙/门洞与拒绝边界保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "墙体不是新增通道，原可行门路保留"
+    },
+    {
+      "number": 37,
+      "id": "FC-526ABE19BB",
+      "name": "保和殿两侧阶梯状封火墙",
+      "originalPracticalGroup": "B",
+      "classification": "LIMITED_IMPLEMENTATION_OR_COMPOUND_BINDING_FOUND",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "currentBindingDescription": "Separate stepped east/west walls including west missing-segment fit; wall solids are not walk shortcuts.",
+      "normalEntry": "Normal three-hall terrace identifies Baohe link walls and invokes both own firewall builders.",
+      "evidenceFiles": [
+        "src/scene/palace/BaoheEastFirewall.js",
+        "src/scene/palace/BaoheWestFirewall.js",
+        "src/scene/PalaceBuilder.js"
+      ],
+      "historicalScopeSummary": {
+        "source": "docs/photo-fidelity/batches/R157-PRACTICAL-CLOSEOUT-1523/37-STATUS.json",
+        "asOfUTC": "2026-11-01T15:24:00Z",
+        "text": "西墙缺段/台面补齐，两侧实际墙拒绝保留",
+        "isFreshAcceptance": false
+      },
+      "retainedLimit": "工程拟合；不称隐蔽结构实测"
+    }
+  ],
+  "evidenceFiles": {
+    "src/scene/palace/special/WumenPracticalAssembly.js": {
+      "gitBlob": "c3e18c9a514ed6c0dc0fc8141a2a2568eabd5998",
+      "sha256": "eaa6d450bddc810f8b9f5c1144ea49e387450d1932436d72984fcb5080c35786"
+    },
+    "src/scene/palace/special/WumenPracticalFit.js": {
+      "gitBlob": "cfa7662c448db65604967e72f3e21a9fbfbd3a2b",
+      "sha256": "3941e0967e9a9652c8ca7b52140ada45024b77b09432091ca2550d3a49115f9a"
+    },
+    "src/scene/PalaceBuilder.js": {
+      "gitBlob": "6e57ba741a5419fcfc19268bb54801976d50dd17",
+      "sha256": "c5be6962e50419f6a56ce46068d78df3c95b56971b053ddf4c2bb278ae9be449"
+    },
+    "src/scene/palace/special/TaihemenProfile.js": {
+      "gitBlob": "c329239e518e52e45cc6182209f42d51394eae97",
+      "sha256": "0a866e4d6ac00907c20789e0f990a89d956140c7c29db715b4adfa2236647cd1"
+    },
+    "src/scene/palace/TaihemenBronzeLions.js": {
+      "gitBlob": "ef4c06e5144e312c60d353e6373b4e16caf3362e",
+      "sha256": "0d87eb37a55fe88a2ea69a313cf1c15a6db760345a84b648741ae32b168c8148"
+    },
+    "src/scene/palace/TaihemenStairContact.js": {
+      "gitBlob": "e131ac3fcb44aec010ca4c1f490dab82886d5150",
+      "sha256": "0f807b3c0a16c26445fe9491066c5561a7651cb91488aefc3b0585987c944087"
+    },
+    "src/scene/palace/special/TaiheCore.js": {
+      "gitBlob": "77d9771c39370fb2d9ede9b8033c165642e2ed5b",
+      "sha256": "b9d62ce2a9a712560193f47478891339898954d9a84a2c216d093753ef05fbd0"
+    },
+    "src/scene/palace/special/TaiheEighteenTripods.js": {
+      "gitBlob": "99c58a2e67a639d5501b08fb91ceeca101747c4a",
+      "sha256": "44726e2a593cbc679c95498820e90681aee14616c16879d6c766774beb8e1214"
+    },
+    "src/scene/palace/special/TaiheBronzeSilhouettes.js": {
+      "gitBlob": "6de24b44a99b8ae632a6c09a5527a36037cc66be",
+      "sha256": "69296c09ed76895ea8a62c221a9c40c965ce360f800f5d8d714f9a9473f5b9c2"
+    },
+    "src/scene/palace/special/TaiheFrontPorch.js": {
+      "gitBlob": "a93ac695156a6d410a2dfc19b543f0621e30bf6d",
+      "sha256": "78f742d9a257389ef40eb7ea7615c6de727903e1bb8b95fdeec1d4d64b7f345c"
+    },
+    "src/scene/palace/special/ZhongheDisplaySetting.js": {
+      "gitBlob": "d86f9e99418aac3f07f54824194f0efad80c3742",
+      "sha256": "57cb9facd06fcf8e9e7e3ba64fbbbf158993b158865a3cbdcee61c415d84674a"
+    },
+    "src/scene/palace/special/ZhongheDisplayStands.js": {
+      "gitBlob": "d51f4ebf8e514de0c97c6cb876e971d347c65ae4",
+      "sha256": "45282929a182f0e8ee44cc29ccd223b2994a5711c1956551a76127b993f6c9a9"
+    },
+    "src/scene/palace/ZhongheImperialApproach.js": {
+      "gitBlob": "f6b29928114b0a5d491131d8fe3bf35bb8eba2dc",
+      "sha256": "170bb1780d555abb9e9343a509bca458fbaca3baf1ca6586ef553b8047fbb818"
+    },
+    "src/scene/palace/BaoheHallPlinth.js": {
+      "gitBlob": "1a55aa6475ce10ef00aa9c0c1237e37205c2922a",
+      "sha256": "f7a125ff5785c4b247655346e711dd12253bb9acd2e23d574b9b349fe9b858cb"
+    },
+    "src/scene/palace/BaoheNorthApproaches.js": {
+      "gitBlob": "baaa4ca554978c7343ee9e4e7b77b471a2d064ae",
+      "sha256": "e9eb8f534aedc76d991099b18ae4a82b85ac1b3c42f856087c22cd30879fe02e"
+    },
+    "src/scene/palace/BaoheDaisApproach.js": {
+      "gitBlob": "01b8da298dc6336feeb13ff78359bad856c138ac",
+      "sha256": "0a1d367dd896441fb0415cc6d0adcc2f2b6d1119c4687e7b72d79b76b82f385f"
+    },
+    "src/scene/palace/special/SurveyedPavilion.js": {
+      "gitBlob": "1ec0876bb665e0fb1d90bdb7e1c3572d902b6a7a",
+      "sha256": "bfaa241d7bae914f7ecbb608985dd98781ddfd78500950e843e280e4bd4b87d8"
+    },
+    "src/scene/palace/special/PavilionProfiles.js": {
+      "gitBlob": "69f91c94e6b42ff47883419d9c861ded283616fc",
+      "sha256": "2cb212f98cf92bf13073f88e3827d6bebf2df59583c34749760f704812934ba5"
+    },
+    "src/scene/palace/special/TirenNameInscription.js": {
+      "gitBlob": "8ee60eb73aefd537ae67ae112832577f50d522ca",
+      "sha256": "f454036354a2b9fce0a8161914a50abdd0b79a10329c0c983ec69baa39eae132"
+    },
+    "src/scene/palace/kit.js": {
+      "gitBlob": "c0b56bd93d347b5b340e5639f408f11b14d33901",
+      "sha256": "c85a88ceb2cb45d8defb0c6a6ffd6929e1a1611276ea0bb1df88bf35508d8ac5"
+    },
+    "src/scene/zones/ZoneBase.js": {
+      "gitBlob": "a9c68057f3baf7fb83eb321a9fe9ee0d5acea8a8",
+      "sha256": "f505200cf7da4965fa2b8a8be4d4033b5ca3df178bd49586772f693d10f5895f"
+    },
+    "data/zones/axis-courts.json": {
+      "gitBlob": "ecf90dbd66ae87b5a08dde8ef419086386d4105a",
+      "sha256": "9b07dd4e08f49991b19359f1f6f47908636b26e7fbcdff97b2c5908513b790be"
+    },
+    "src/scene/palace/special/HongyiLowerWindowLeaves.js": {
+      "gitBlob": "129b1f84510bff36c7ceac09bc3e417f4ca6c5ab",
+      "sha256": "117ed8c28d319c69d85a508bfbe0b68e9566a476dac3471bc2b9d9752f1a41b3"
+    },
+    "src/scene/palace/special/SideGate.js": {
+      "gitBlob": "6f666457be11195233003ce2e32551f9f8911940",
+      "sha256": "8e879da9c4999ffd84d51b16085c8fb15435bddb74463c0a4fedb06626d1bc9c"
+    },
+    "src/scene/palace/special/SideGateProfiles.js": {
+      "gitBlob": "61f43be8342ee6d05e80f7b2c5665850b186a377",
+      "sha256": "54f2d2860f325ab189823ebe1b084c9762ed286d7dcd75170d94dff500a7c5a3"
+    },
+    "src/scene/palace/special/XieheCourtyardKnees.js": {
+      "gitBlob": "b702c13cd17ab8da330038abb3918034341353e4",
+      "sha256": "21eebd032e63c1f2670ea2695697192c03813d396cdedf550a4fd8b8196efd43"
+    },
+    "src/scene/palace/special/SideGateExteriorDetails.js": {
+      "gitBlob": "00df90b37c9e13852ff8df63d1eb8ffe05d74f66",
+      "sha256": "555583e53b2d19273d25d00642596e727b4f6a4e71f3cac33501e3a2a705cc71"
+    },
+    "src/scene/palace/special/WumenWingPavilionInstances.js": {
+      "gitBlob": "22891dcd779a65290cf8bb0661ef6151dc4d7baf",
+      "sha256": "56f1892650d72c3e7cfa6b63df4a59122357c2b818740ee8e8393051d96d641a"
+    },
+    "src/scene/palace/special/WumenPracticalUpper.js": {
+      "gitBlob": "3b6572dee96093119d6dab22ec49646a04391c37",
+      "sha256": "95848e534b85cb818220c5c65703bfad98bd1abdd0d2ed96fa9004bc9bea93a4"
+    },
+    "src/scene/palace/special/WumenSouthDeckBoundary.js": {
+      "gitBlob": "3c2d81d9477109f0783fc706e1e824446a3bdb40",
+      "sha256": "b82e0ef4c671db1e1c3d37135cbb1489a1c18ae7e0c27762621901277a86be09"
+    },
+    "src/scene/palace/special/ZhaodeGate.js": {
+      "gitBlob": "8eec972114e49cf7b1c30d1215aa252a83d693d1",
+      "sha256": "797f8f32f614ec9d7f4232d5889701bbc30de98b14e44104b2db203ae795ee17"
+    },
+    "src/scene/palace/special/ZhaodeSouthPanels.js": {
+      "gitBlob": "05021492435afce21e540ae0250a4e83bdad4793",
+      "sha256": "77bf22bc3412bda5fed71ff2a3cb1d0989bd943d2a48597c80fdc0623733e447"
+    },
+    "src/scene/palace/special/ZhenduGate.js": {
+      "gitBlob": "b69853ff139e2087b3db20d8fe932a0cfdce2016",
+      "sha256": "a7da4bff7c4097f4509cff99fe5ba79253cd7b114db2ae37c83c6ffe736eaf2a"
+    },
+    "src/scene/palace/special/ZhenduGateProfile.js": {
+      "gitBlob": "d122ecc5171503c2e75b4e671898b4b64c892817",
+      "sha256": "1e0153bfc38c8edc93cba9b103a865b845892f714baa7211f4b4f8ee118dd521"
+    },
+    "src/scene/palace/special/SideGateGalleryProfiles.js": {
+      "gitBlob": "cac86ec9511ea05d858acd420d792878d2da22aa",
+      "sha256": "43f6c6ed0c1b6cd66ad8bfd9b89a3bbdbbc5898104257492c9bdb1761abb0acd"
+    },
+    "src/scene/palace/special/MiddleAxisFacades.js": {
+      "gitBlob": "c46b8b5233559fb0830bbe75b4793a34a6ad067c",
+      "sha256": "87efba9126d1b1dbb5076db8fb2c5b621994f4c885d0936c38d911d8301ef7aa"
+    },
+    "src/scene/palace/special/MiddleNorthVisibleHall.js": {
+      "gitBlob": "d6ff25c59c2ed2ef17f351c96c35c3c08f8d3332",
+      "sha256": "63fc9a9ff35c11f9277deb1d9db076302720c381215fa607db26bbb8e48cd282"
+    },
+    "src/scene/palace/special/MiddleLeftPlatform.js": {
+      "gitBlob": "74d6cd7986f5f40a8afe6ba53b78cc043453f944",
+      "sha256": "34d06604041db5fead9f74d4e98e8c23ea973537b206a65fc426bc7eef310f8e"
+    },
+    "src/scene/palace/special/MiddleRightGate.js": {
+      "gitBlob": "9712c6fd02b9ed05adc5f5793a0894c08f8a794f",
+      "sha256": "c01a9cb86f8b9436e3cbf88bc86131405687b31a56687fcc33b92b760702edf9"
+    },
+    "src/scene/palace/special/MiddleRightRoofProfile.js": {
+      "gitBlob": "4268ffc376c7367f202a6f78fba53fb3363e9af3",
+      "sha256": "707ed02456fc7f37b02251bb579a0f61bd9f2f4b12c61ce1fd7b9b6a2116d2a2"
+    },
+    "src/scene/palace/special/RearAxisGate.js": {
+      "gitBlob": "8bee499393c5ddbd8fff6bc01634c702eb24ff85",
+      "sha256": "ae44ad7cf3c58e7260be053d230bad0987323502907dd2ea47cdda2a806b2621"
+    },
+    "src/scene/palace/special/RearLeftPlatform.js": {
+      "gitBlob": "e40e3aabbb64057c3ac140ba19448fe0f72b7174",
+      "sha256": "057aeb18a123b85c532cb4460c5cf6c9a603c853764804bfda7317b3d961c164"
+    },
+    "src/scene/palace/special/RearRightPlatform.js": {
+      "gitBlob": "912ec21e271b5cfda51e3b7282bfc825c8263285",
+      "sha256": "eca55b2728e13ec7dca7f470a4db03d5ed7f2ea69d18fcdaab61aef42ead14a3"
+    },
+    "src/scene/palace/special/ZuoyiOwnGate.js": {
+      "gitBlob": "8c6c67a7935fc80f49d4b79e8a53a15f7a69753c",
+      "sha256": "8ce8423104dbbe870bfdb27c6943071a2b912a0ff354e8a20da8cfb15825f3a7"
+    },
+    "src/scene/palace/special/ZuoyiDoorFront.js": {
+      "gitBlob": "d3d0cd813c36bd08cb6827c9fa7bb0b11d431c99",
+      "sha256": "599d1aedbfa951f270e15d6d880f67435171c07da58af4c1cc9497bea34bfd46"
+    },
+    "src/scene/palace/special/YouyiFreshGate.js": {
+      "gitBlob": "a0e9dc68e2b4ba8df561a1d7d5e5ab96eb17e1dd",
+      "sha256": "6288b85ac9b11c7659b431314b020b62ad633b2a64a5985d2a64d4e0f2be9781"
+    },
+    "src/scene/palace/special/InnerJinshui.js": {
+      "gitBlob": "3c3839fd6fae18347465a6a6b6168a27c8182c51",
+      "sha256": "2a615dfc7242432025b4a073c01f21aa00adab735414248b577264fa5710242e"
+    },
+    "src/scene/Layout.js": {
+      "gitBlob": "fb2405e69fbd4724e9b5491fe4fb63ab0450401f",
+      "sha256": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2"
+    },
+    "src/scene/palace/special/SouthWaterSystem.js": {
+      "gitBlob": "1f396c9cbe4ce4754a6bd080e640fec6bcdfd83a",
+      "sha256": "da5c71a19ebdf6adba82f6948e729e819eee2d1e9e102ab6984496fba7fc4912"
+    },
+    "src/scene/palace/special/WuyingThreeBridgeRails.js": {
+      "gitBlob": "0497bfceb092ca17920354d14a4ee2ed6d326119",
+      "sha256": "3af151fef0f9571c18ec6195568d0bcd83cf67d15b00832e84761406e36788a5"
+    },
+    "src/scene/palace/special/BanbiCoveredCrossing.js": {
+      "gitBlob": "dabe7e73331807e457488876b0f589347e0f83fb",
+      "sha256": "b44e2678b82198341ec50927d4a926b34387c4d50089d462ac95ec57fb5559ea"
+    },
+    "src/scene/palace/ThreeHallTerrace.js": {
+      "gitBlob": "9c94cb58684d23d8011f4b4f032259a8ffcf6127",
+      "sha256": "9b5103df2058368a0c97f07aa184868f6de043dd8aaaf50f6ad6cb769b18aeec"
+    },
+    "src/scene/palace/GalleryInventoryPolicy.js": {
+      "gitBlob": "325d18074c7180092994ab459e4b6b87858c0c5f",
+      "sha256": "303c1448ffb3efe703e1a3e3a0291d4c4a645321dc7fdb278d8587559b0ddfa5"
+    },
+    "src/scene/palace/special/PavilionSideConnections.js": {
+      "gitBlob": "6feefed9a030d68d4b5d6441492e6fc4ea460fa4",
+      "sha256": "e48993ff81eea7b220319485a0f237630cc7bc185afe3e95ca918d0264406e1b"
+    },
+    "src/scene/palace/BaoheLinkedGalleries.js": {
+      "gitBlob": "28154fb0c9a16accbc336fe864186bf889c3117f",
+      "sha256": "1a3c9f38be54f6d1c0e0d673fb8f140c88683a3ebb2bebf36a959d650755c7ea"
+    },
+    "src/scene/palace/special/AxisFirewallProfiles.js": {
+      "gitBlob": "8912a7a3cd0c22f82cb915d57ef67c73b865a138",
+      "sha256": "53c4bd145fa1314de80244625ab8285b27286e2f3ce6f7c687c4d7d8b10b43ca"
+    },
+    "src/scene/palace/special/AxisFirewalls.js": {
+      "gitBlob": "dae9eb3c30b9a240d198f378a0e642b8108f8edd",
+      "sha256": "8e21f1f867973d8f8a8d1070b374f5bfb1f408cd4118b578080b10af07d7b7ae"
+    },
+    "src/scene/palace/special/TaiheEastWallDoor.js": {
+      "gitBlob": "f17b785da08163302df86635821b835cfea263fb",
+      "sha256": "21ccc26a88ecdda41ef4105337987553255962ce88d2f91f97e47fb649f27169"
+    },
+    "src/scene/palace/BaoheEastFirewall.js": {
+      "gitBlob": "b7d79c7bf01305fe2bf79cd712bf09883b5f6086",
+      "sha256": "435559bbbd303b0f57ec041a1ece03379a90990ad1b793c33738072a66ef6d3f"
+    },
+    "src/scene/palace/BaoheWestFirewall.js": {
+      "gitBlob": "c0a029de065e21c412be497570fa5fbd3e3456ef",
+      "sha256": "aeb86884514b168d8c25eb8fecdd4e9ef398a6f5e9a479266343722b6c277482"
+    }
+  },
+  "historicalTestEvidence": {
+    "r157": {
+      "source": "docs/photo-fidelity/batches/R157-CUMULATIVE-1457/EVIDENCE.json",
+      "recordedComponentTests": 44,
+      "recordedWorldTopLevelTests": 1,
+      "recordedRoutesInsideWorldTest": 104,
+      "archiveHashesRechecked": true,
+      "freshRerun": false,
+      "sourcePinCount": 13,
+      "sourcePinsChanged": 4,
+      "pinComparison": [
+        {
+          "path": "src/scene/PalaceBuilder.js",
+          "recordedSHA256": "0f7fab7a5a34dec511761a26199199a57916c5906efa83ea9cb4ec8d7c7ad62f",
+          "currentSHA256": "c5be6962e50419f6a56ce46068d78df3c95b56971b053ddf4c2bb278ae9be449",
+          "unchanged": false
+        },
+        {
+          "path": "src/scene/palace/special/TaiheEighteenTripods.js",
+          "recordedSHA256": "44726e2a593cbc679c95498820e90681aee14616c16879d6c766774beb8e1214",
+          "currentSHA256": "44726e2a593cbc679c95498820e90681aee14616c16879d6c766774beb8e1214",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/RoofBuilder.js",
+          "recordedSHA256": "be8822caed0b1f2cef3071153548c3a1e77cac81f8130222b366e10bcfe33165",
+          "currentSHA256": "be8822caed0b1f2cef3071153548c3a1e77cac81f8130222b366e10bcfe33165",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/special/PavilionProfiles.js",
+          "recordedSHA256": "2cb212f98cf92bf13073f88e3827d6bebf2df59583c34749760f704812934ba5",
+          "currentSHA256": "2cb212f98cf92bf13073f88e3827d6bebf2df59583c34749760f704812934ba5",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/special/SurveyedPavilion.js",
+          "recordedSHA256": "65eb0b6ef60e80bc21046b176e2ada1062ad09dcd601c75d7ae7af536449d284",
+          "currentSHA256": "bfaa241d7bae914f7ecbb608985dd98781ddfd78500950e843e280e4bd4b87d8",
+          "unchanged": false
+        },
+        {
+          "path": "src/utils/Collision.js",
+          "recordedSHA256": "00b009c114fd11bbd45234ced0de906d7780cd89428377dedc4efc8a5b4e3c56",
+          "currentSHA256": "ccc1ee9c9b0bc179ab4226acbeefbf5a2d2524bb5d8eba6d92fa2eca6a53b19e",
+          "unchanged": false
+        },
+        {
+          "path": "src/controls/FirstPerson.js",
+          "recordedSHA256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+          "currentSHA256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c",
+          "unchanged": true
+        },
+        {
+          "path": "data/zones/axis-courts.json",
+          "recordedSHA256": "4f4aeac4786e0452929edfbb8bc5dc29c5b67c734b9ff5e671116126772b593f",
+          "currentSHA256": "9b07dd4e08f49991b19359f1f6f47908636b26e7fbcdff97b2c5908513b790be",
+          "unchanged": false
+        },
+        {
+          "path": "tests/r157-cumulative-1457/world104.test.mjs",
+          "recordedSHA256": "68972e995693ff9a02ce4dddea0645b468e7b0a4fbade5ae409627921d461674",
+          "currentSHA256": "68972e995693ff9a02ce4dddea0645b468e7b0a4fbade5ae409627921d461674",
+          "unchanged": true
+        },
+        {
+          "path": "tests/r157-taihe-tripods/component.test.mjs",
+          "recordedSHA256": "b9c777e3602cf2abc2d082ecff73d4dcd15b3f80ce1e627f2931c6dadd4fcc0d",
+          "currentSHA256": "b9c777e3602cf2abc2d082ecff73d4dcd15b3f80ce1e627f2931c6dadd4fcc0d",
+          "unchanged": true
+        },
+        {
+          "path": "tests/r157-pavilion-chiwen/component.test.mjs",
+          "recordedSHA256": "35ff5d6e0f658849bb2a395ac591414ee0ba96507da1fb62f5ff2d3c19fe2ae9",
+          "currentSHA256": "35ff5d6e0f658849bb2a395ac591414ee0ba96507da1fb62f5ff2d3c19fe2ae9",
+          "unchanged": true
+        },
+        {
+          "path": "docs/photo-fidelity/batches/R157-TAIHE-EIGHTEEN-1441/EVIDENCE.json",
+          "recordedSHA256": "7855f3b1a836cefb0b57db0d98c2841bfade9e28782f147c857257f4e5571233",
+          "currentSHA256": "7855f3b1a836cefb0b57db0d98c2841bfade9e28782f147c857257f4e5571233",
+          "unchanged": true
+        },
+        {
+          "path": "docs/photo-fidelity/batches/R157-PAVILION-CHIWEN-1438/EVIDENCE.json",
+          "recordedSHA256": "e36129f8ca54e1a831e7c649488276741834e75b7d4da4c638ca0dfa2d9cc259",
+          "currentSHA256": "e36129f8ca54e1a831e7c649488276741834e75b7d4da4c638ca0dfa2d9cc259",
+          "unchanged": true
+        }
+      ]
+    },
+    "r163Repairs": {
+      "source": "reports/r163-baohua/cumulative-b0/PRESERVATION.json",
+      "recordedRuntimeSource": "434016cd28a7be0fccfe098ca9c604a074e46254",
+      "currentByteIdenticalRepairFiles": 16,
+      "repairSourceChecks": [
+        {
+          "path": "data/architecture/b-practical-stair-contacts.json",
+          "sha256": "dba886b87d80540ca64a3f38a930319adb196a03ed7e44e95947865235ebc0d2",
+          "unchanged": true
+        },
+        {
+          "path": "data/zones/axis-courts.json",
+          "sha256": "9b07dd4e08f49991b19359f1f6f47908636b26e7fbcdff97b2c5908513b790be",
+          "unchanged": true
+        },
+        {
+          "path": "src/controls/FurnitureMotion.js",
+          "sha256": "ae940ce4bc6c6ad3d335fb7a286dfec510ccf5c9717eca9d4d4bc1168f985e8d",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/PalaceBuilder.js",
+          "sha256": "c5be6962e50419f6a56ce46068d78df3c95b56971b053ddf4c2bb278ae9be449",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/characters/CharacterBody.js",
+          "sha256": "30827730e9fb5325b53c5dd9ae3647d968d8a9174b2537f813110be4b4f8cd6d",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/characters/CharacterInteraction.js",
+          "sha256": "aff1888d9dd5cccace03ffcbd4f55dddbb3d84cdb7f863079c8bf9068f14ad29",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/BPrincipalStairContact.js",
+          "sha256": "19dbdb36f706304f5c51b0eab0d4c86868628a4a0326cc8ae975f8a6bb557b28",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/BaoheHallPlinth.js",
+          "sha256": "f7a125ff5785c4b247655346e711dd12253bb9acd2e23d574b9b349fe9b858cb",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/BaoheNorthApproaches.js",
+          "sha256": "e9eb8f534aedc76d991099b18ae4a82b85ac1b3c42f856087c22cd30879fe02e",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/CentralStoneContactBounds.js",
+          "sha256": "dfcfb060e1c088e64d2b5ed5515ef9cc5de46e8c33645dc1cf60494397927ac5",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/TaiheFrontApproaches.js",
+          "sha256": "91e50ceb9967404f04bb18198faf5d45de39bf58a6eb21b1e7586347e0d1fcac",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/ZhongheImperialApproach.js",
+          "sha256": "170bb1780d555abb9e9343a509bca458fbaca3baf1ca6586ef553b8047fbb818",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/special/SurveyedPavilion.js",
+          "sha256": "bfaa241d7bae914f7ecbb608985dd98781ddfd78500950e843e280e4bd4b87d8",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/special/TaiheFrontPorch.js",
+          "sha256": "78f742d9a257389ef40eb7ea7615c6de727903e1bb8b95fdeec1d4d64b7f345c",
+          "unchanged": true
+        },
+        {
+          "path": "src/scene/palace/special/TirenNameInscription.js",
+          "sha256": "f454036354a2b9fce0a8161914a50abdd0b79a10329c0c983ec69baa39eae132",
+          "unchanged": true
+        },
+        {
+          "path": "src/utils/Collision.js",
+          "sha256": "ccc1ee9c9b0bc179ab4226acbeefbf5a2d2524bb5d8eba6d92fa2eca6a53b19e",
+          "unchanged": true
+        }
+      ],
+      "centralStoneTests": 158,
+      "qianqingEntryTests": 32,
+      "rawLogHashesRechecked": true,
+      "freshMovementRerun": false,
+      "notEvidenceOfWholeWorldGpuOrMobileAcceptance": true
+    }
+  },
+  "knownGaps": [
+    "All37 still lack this review's whole-object/player/GPU/mobile acceptance; code presence is not a visual quality score.",
+    "Xihe own-appearance text/photo conflict remains; do not guess a replacement.",
+    "South-gallery1991 repair extent is not established; retain current four southern strips rather than invent a northern addition.",
+    "The complete Chuxiu frozen-view/unusable-map symptom is not reproduced; only the distinct NPC square-footprint contact defect is repaired.",
+    "Historical R6 catalog hash and old full-suite/baseline failures remain; no all-suite pass is claimed.",
+    "Original397 mandatory rows, optional Duanmen and seven unfinished expansion groups remain outside any completion-rate inference."
+  ],
+  "avoidRepeatWork": [
+    "Do not rebuild Wumen clock/drum pavilions, four named side galleries, middle/rear/wing gates merely from the obsolete early STATUS.",
+    "Do not re-add already present18 tripods, pavilion chiwen, Tiren nameboard, central-stone contacts or Qianqing grounded-entry handoff.",
+    "Treat old small harmless height deviations as recorded observations, not automatic rework; prioritize visible defects and actual inability to move."
+  ],
+  "actionsNotTaken": [
+    "runtime changes",
+    "main changes or merge",
+    "deployment",
+    "full World construction",
+    "browser retry"
+  ]
+}
