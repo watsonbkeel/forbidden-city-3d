@@ -308,9 +308,42 @@ export class Teleport {
     return null;
   }
 
+  capturePose() {
+    try {
+      const p = this.controls.getPosition(), q = this.controls.camera?.quaternion;
+      const pose = [p.x, p.y, p.z, ...(q ? [q.x, q.y, q.z, q.w] : [])];
+      return pose.every(Number.isFinite) ? pose : null;
+    } catch { return null; }
+  }
+
   go(name) {
+    const before = this.capturePose();
+    this.lastFailure = null;
+    try { return this.performTravel(name); }
+    catch (error) {
+      const after = this.capturePose();
+      const changed = before && after && before.length === after.length
+        ? before.some((value, i) => value !== after[i]) : null;
+      this.lastFailure = { name, error, poseChanged: changed };
+      console.error('地点传送失败', error);
+      clearTimeout(this.overlayTimer);
+      this.overlay.setAttribute('role', 'alert');
+      this.overlay.style.width = 'min(88vw, 480px)';
+      this.overlay.style.boxSizing = 'border-box';
+      const location = changed === true ? '位置或朝向已改变，但传送未完成。'
+        : changed === false ? '当前位置未改变。' : '未能确认当前位置，传送未完成。';
+      this.overlay.textContent = `${placeDisplayName(name)}传送失败。${location}请重试其他地点或重新加载游览。`;
+      this.overlay.style.display = 'block';
+      return null;
+    }
+  }
+
+  performTravel(name) {
     const g = this.geometryFor(name);
     const displayName = placeDisplayName(name);
+    this.overlay.setAttribute('role', 'status');
+    this.overlay.style.width = '';
+    this.overlay.style.boxSizing = '';
     this.overlay.textContent = `前往 ${displayName}…`;
     this.overlay.style.display = 'block';
     clearTimeout(this.overlayTimer);

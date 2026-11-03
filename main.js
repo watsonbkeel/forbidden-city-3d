@@ -1,3 +1,4 @@
+import { TourFailureNotice } from './src/ui/TourFailureNotice.js';
 import { readQualityPreference, writeQualityPreference } from './src/render/QualityPreference.js';
 import { TourFrameScheduler } from './src/render/TourFrameScheduler.js';
 import { readPerformanceMode, writePerformanceMode, performancePixelRatio } from './src/render/TourPerformancePreference.js';
@@ -501,8 +502,23 @@ class ForbiddenCityApp {
       mode: this.performanceMode,
       onFrame: (now, dt) => this.animate(now, dt),
       onReset: now => this.resetAnimationClock(now),
+      onError: error => this.handleFrameFailure(error),
     });
     this.frameLoop.start();
+  }
+
+  handleFrameFailure(error) {
+    if (this.disposed || this.frameFailureHandled) return;
+    this.frameFailureHandled = true;
+    this.frameFailure = error;
+    console.error('游览主帧异常，已停止更新', error);
+    // Input cleanup must not hide the original failure or prevent recovery UI.
+    try { this.controls?.stop(); } catch { /* Keep the recovery entry available. */ }
+    if (this.controls) this.controls.jumpQueued = false;
+    try { this.flight?.clearInput(); } catch { /* Keep the recovery entry available. */ }
+    try { this.controls?.unlock(); } catch { /* Pointer lock can also be lost externally. */ }
+    this.failureNotice ??= new TourFailureNotice(document.body);
+    this.failureNotice.show();
   }
 
   toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
@@ -676,6 +692,7 @@ class ForbiddenCityApp {
   dispose() {
     this.disposed = true;
     this.frameLoop?.dispose();
+    this.failureNotice?.dispose();
     this.characters?.dispose();
     this.roomNightLights?.dispose();
     this.flight?.dispose();

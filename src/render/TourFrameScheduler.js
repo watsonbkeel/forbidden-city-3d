@@ -3,12 +3,13 @@
  * Generation checks reject callbacks already dispatched when cancellation occurs.
  */
 export class TourFrameScheduler {
-  constructor({onFrame, onReset = () => {}, mode = 'eco', document: doc = document,
+  constructor({onFrame, onReset = () => {}, onError = error => { throw error; }, mode = 'eco', document: doc = document,
     request = fn => requestAnimationFrame(fn), cancel = id => cancelAnimationFrame(id),
     now = () => performance.now()} = {}) {
     if (typeof onFrame !== 'function') throw new TypeError('onFrame is required');
     this.doc = doc; this.request = request; this.cancel = cancel; this.now = now;
-    this.onFrame = onFrame; this.onReset = onReset;
+    if (typeof onError !== 'function') throw new TypeError('onError must be a function');
+    this.onFrame = onFrame; this.onReset = onReset; this.onError = onError; this.failed = false;
     this.running = false; this.disposed = false; this.pending = null; this.generation = 0;
     this.lastTime = null; this.deadline = null;
     this.setMode(mode);
@@ -32,7 +33,7 @@ export class TourFrameScheduler {
     this.pending = null;
   }
   start() {
-    if (this.running || this.disposed) return;
+    if (this.running || this.disposed || this.failed) return;
     this.running = true;
     this.doc.addEventListener('visibilitychange', this.visibility);
     this.resetClock();
@@ -53,7 +54,15 @@ export class TourFrameScheduler {
         if (this.deadline === null || this.mode === 'smooth') this.deadline = now + interval;
         else this.deadline += Math.max(1, Math.floor((now - this.deadline + 1e-6) / interval) + 1) * interval;
         this.lastTime = now;
-        this.onFrame(now, dt);
+        try { this.onFrame(now, dt); }
+        catch (error) {
+          // Never repeat a partially completed world frame or revive it on visibility.
+          this.failed = true; this.running = false;
+          this.invalidate();
+          this.doc.removeEventListener('visibilitychange', this.visibility);
+          this.onError(error);
+          return;
+        }
       }
       this.schedule();
     });
