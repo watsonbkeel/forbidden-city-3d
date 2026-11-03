@@ -1,0 +1,90 @@
+{
+  "productCommit": "295ee91001cfe4311143a41ed538c1d0e73bed98",
+  "predecessor": "5e7dcdd4833f6621ea6b3ffceba3a6fcbcc0efd8",
+  "productSourceChangedDuringVerification": false,
+  "normalWorld": {
+    "pass": true,
+    "exitCode": 0,
+    "routeVariants": 76,
+    "predecessorChainRoutes": 60,
+    "predecessorChainFrames": 92146,
+    "predecessorChainNativeContacts": 0,
+    "earVariants": 16,
+    "earNewNativeContacts": 0,
+    "retainedMainStairContactCounts": [
+      1,
+      2,
+      3,
+      2
+    ],
+    "blockedControls": 17,
+    "boundaryProbes": 9,
+    "legacyExactFields": [
+      "loaded",
+      "instances",
+      "colliderCount",
+      "colliders",
+      "walkableCount",
+      "walkables",
+      "maps",
+      "rooms",
+      "regions",
+      "architecture"
+    ],
+    "legacyComparisonMethod": "Omit only new ear owners/tops/architecture and independently restore original west-wall collider, then unchanged f4 hashes; no product-world owner mutated by this view",
+    "silhouette": {
+      "oldPositionScalars": 75945,
+      "oldIndices": 136152,
+      "currentPositionScalars": 84276,
+      "currentIndices": 152400,
+      "removedOldWestCapTriangles": 24,
+      "addedWestCapTriangles": 120,
+      "scope": "Exact triangle multiset with independently verified old/new west-cap delta; no coordinate exclusion mask"
+    }
+  },
+  "keyRegressions": {
+    "tests": 252,
+    "pass": 249,
+    "fail": 3,
+    "failures": [
+      "Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves",
+      "Hongyi, including its six original windows and upper gallery, is byte-identical",
+      "lower nine bays are brick, three windows, double plank door, three windows, brick"
+    ],
+    "sameFailuresReproducedIndependentlyAt5e7": true,
+    "independentPredecessor": {
+      "tests": 21,
+      "pass": 18,
+      "fail": 3
+    },
+    "knownEarlierBPrincipal65vs71Status": "Not rerun or fixed by this task; historical report preserved"
+  },
+  "sealedPredecessorFilesPreserved": 64,
+  "cleanBuild": {
+    "schema": 1,
+    "release": "R163",
+    "buildId": "R163-cd35cbf1dc48",
+    "sourceFingerprint": "57879ed5e1bc4bf36e00ab04004ce70b9fee3f5979d8f84bd9810ab14dab52d3",
+    "sourceCommit": "295ee91001cfe4311143a41ed538c1d0e73bed98",
+    "sourceDirty": false,
+    "base": "/",
+    "artifactDirectory": "/tmp/r163-ywe-cumulative-295ee910-clean-0605",
+    "freshOutputDirectory": true
+  },
+  "http": {
+    "scope": "Local HTTP at the exact build.base path; all file bytes/hash, HTML/JS/CSS paths and MIME. Not remote/GPU/browser/mobile execution.",
+    "build": {
+      "schema": 1,
+      "release": "R163",
+      "buildId": "R163-cd35cbf1dc48",
+      "sourceFingerprint": "57879ed5e1bc4bf36e00ab04004ce70b9fee3f5979d8f84bd9810ab14dab52d3",
+      "sourceCommit": "295ee91001cfe4311143a41ed538c1d0e73bed98",
+      "sourceDirty": false,
+      "base": "/"
+    },
+    "root": 200,
+    "missing": 404,
+    "files": 137,
+    "totalBytes": 44294970
+  }
+}

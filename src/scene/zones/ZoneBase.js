@@ -1,3 +1,4 @@
+import {buildYinghuaWestEarHall,buildYinghuaWestEarCourtWalls} from '../palace/special/YinghuaWestEarHall.js';
 import {buildBaohuaDian} from '../palace/special/BaohuaDian.js';
 import {buildFanzongLou} from '../palace/special/FanzongLou.js';
 import {buildYuhuaGe} from '../palace/special/YuhuaGe.js';
@@ -356,6 +357,7 @@ export class ZoneBase {
     buildYucuiPavilion(this.kit,this.kit.root.name);
     buildQinanIncensePavilions(this.kit,this.kit.root.name);
     buildYinghuaStelePavilion(this.kit,this.zoneJson);
+    buildYinghuaWestEarHall(this.kit,this.zoneJson);
     buildJingshengZhai(this.kit,this.zoneJson);
     buildJianfuJiyunLou(this.kit,this.zoneJson);
     buildJicuiPavilion(this.kit,this.zoneJson);
@@ -634,6 +636,7 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
+    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华门')))return;
     if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 
