@@ -1,0 +1,79 @@
+{
+  "frame": {
+    "x": 82,
+    "z": 497.7,
+    "rotationY": 0
+  },
+  "openings": [
+    {
+      "id": "front-veranda-central-arrival",
+      "kind": "door",
+      "wall": "Intentional open south porch boundary, not an enclosed wall",
+      "clearWidth": 3.3,
+      "clearHeight": 5.2,
+      "depth": 2,
+      "threshold": 0.6,
+      "physicalStair": "Three real .8m treads, four .15m rises including platform",
+      "destination": "Walkable exterior veranda, closed central wind screen2m beyond columns",
+      "construction": "Actual split rail geometry, no AABB or opaque wall spans the central gap"
+    },
+    {
+      "id": "front-wind-screen",
+      "kind": "door",
+      "width": 2.48,
+      "height": 4.05,
+      "threshold": 0.6,
+      "state": "CLOSED_OPAQUE_FIT",
+      "destination": "No invented room/admission",
+      "construction": "Actual green/red framed leaf with coarse opaque glass/curtain backing"
+    },
+    {
+      "id": "front-sill-window-1",
+      "kind": "window",
+      "localX": -5.6,
+      "width": 2.6,
+      "height": 3.17,
+      "sillY": 1.42,
+      "depth": 0.16,
+      "state": "CLOSED_BACKED_FIT",
+      "destination": "Unmodeled interior behind closed opaque panes",
+      "construction": "Separate frame and backed leaf group in actual bay, not painted hole in uncut full wall"
+    },
+    {
+      "id": "front-sill-window-2",
+      "kind": "window",
+      "localX": -2.8,
+      "width": 2.6,
+      "height": 3.17,
+      "sillY": 1.42,
+      "depth": 0.16,
+      "state": "CLOSED_BACKED_FIT",
+      "destination": "Unmodeled interior behind closed opaque panes",
+      "construction": "Separate frame and backed leaf group in actual bay, not painted hole in uncut full wall"
+    },
+    {
+      "id": "front-sill-window-3",
+      "kind": "window",
+      "localX": 2.8,
+      "width": 2.6,
+      "height": 3.17,
+      "sillY": 1.42,
+      "depth": 0.16,
+      "state": "CLOSED_BACKED_FIT",
+      "destination": "Unmodeled interior behind closed opaque panes",
+      "construction": "Separate frame and backed leaf group in actual bay, not painted hole in uncut full wall"
+    },
+    {
+      "id": "front-sill-window-4",
+      "kind": "window",
+      "localX": 5.6,
+      "width": 2.6,
+      "height": 3.17,
+      "sillY": 1.42,
+      "depth": 0.16,
+      "state": "CLOSED_BACKED_FIT",
+      "destination": "Unmodeled interior behind closed opaque panes",
+      "construction": "Separate frame and backed leaf group in actual bay, not painted hole in uncut full wall"
+    }
+  ]
+}

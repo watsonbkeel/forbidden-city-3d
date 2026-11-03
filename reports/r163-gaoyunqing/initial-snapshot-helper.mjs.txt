@@ -1,0 +1,15 @@
+import crypto from'node:crypto';import * as T from'three';
+import{currentSnapshot as legacySnapshot}from'../r163-jinzhao-rear/snapshot.mjs';
+const fields=m=>({name:m?.name,type:m?.type,color:m?.color?.getHex(),roughness:m?.roughness,metalness:m?.metalness,side:m?.side,transparent:m?.transparent,opacity:m?.opacity,depthWrite:m?.depthWrite});
+export function snapshot(W){
+ // Existing helper skips only the Jinzhao host materials; the entire host is
+ // independently checked below by an exact triangle/material multiset.
+ const dropped=[];W.scene.traverse(m=>{if(m.isMesh&&m.material?.name?.startsWith('r163_gaoyun_'))dropped.push([m,m.visible,m.material]);});
+ // Build a QA-only scene traversal view, not a production geometry mutation.
+ const original=W.scene,view={updateMatrixWorld:(...a)=>original.updateMatrixWorld(...a),traverse(fn){original.traverse(m=>{if(m.isMesh&&m.material?.name?.startsWith('r163_gaoyun_'))return;fn(m);});}};
+ const cm={...W.cm,colliders:W.cm.colliders.filter(c=>!c.triangleSupport?.id?.startsWith('gaoyunqing/'))};
+ const zoneManager={...W.zoneManager,loaded:new Map([...W.zoneManager.loaded].map(([id,q])=>[id,{...q,data:{...q.data,group:{...q.data.group,userData:{...q.data.group.userData,architecture:(q.data.group.userData.architecture??[]).filter(a=>a.sourceObjectId!=='FC-700739D144')}}}}]))};
+ return legacySnapshot({...W,scene:view,cm,zoneManager});
+}
+export function hostTriangles(scene,{normalization=null}={}){scene.updateMatrixWorld(true);const rows=[];scene.traverse(m=>{if(!m.isMesh||!m.geometry?.attributes.position)return;let mat=m.material;if(mat?.name?.startsWith('r163_gaoyun_view_glass_')){if(!normalization?.[mat.name])throw Error('Exact window-only material normalization missing');mat=normalization[mat.name];}else if(!mat?.name?.startsWith('r163_jinzhao_rear_'))return;const info=mat.isMaterial?fields(mat):mat,g=m.geometry,a=g.attributes.position,ix=g.index;for(let i=0;i<(ix?.count??a.count);i+=3){const vertex=[];for(let j=0;j<3;j++){const k=ix?.getX(i+j)??i+j,v=new T.Vector3().fromBufferAttribute(a,k).applyMatrix4(m.matrixWorld);vertex.push({position:v.toArray().map(Math.fround),attributes:Object.fromEntries(Object.entries(g.attributes).filter(([n])=>n!=='position').sort(([a],[b])=>a.localeCompare(b)).map(([n,q])=>[n,Array.from(q.array.slice(k*q.itemSize,(k+1)*q.itemSize))]))});}rows.push(JSON.stringify({material:info,vertex}));}});return rows.sort();}
+export function windowMaterialNormalization(lib){const result={};for(const[name,color,suffix]of[['wood_column',0x685047,'backing'],['wood_column',0x536568,'pane']]){const m=lib.material(name).clone();try{m.name='r163_jinzhao_rear_'+name+'_'+color;m.color.setHex(color);m.map=null;m.normalMap=null;result['r163_gaoyun_view_glass_'+suffix]=fields(m);}finally{m.dispose();}}return result;}

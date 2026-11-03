@@ -1,3 +1,8 @@
+import {buildFengyacun} from '../palace/special/Fengyacun.js';
+import {buildGaoyunqing} from '../palace/special/Gaoyunqing.js';
+import {buildJinzhaoYucui} from '../palace/special/JinzhaoYucui.js';
+import {buildShufangFrontHall} from '../palace/special/ShufangFrontHall.js';
+import {buildBilinGuan} from '../palace/special/BilinGuan.js';
 import {buildYinghuaWestEarHall,buildYinghuaWestEarCourtWalls} from '../palace/special/YinghuaWestEarHall.js';
 import {buildBaohuaDian} from '../palace/special/BaohuaDian.js';
 import {buildFanzongLou} from '../palace/special/FanzongLou.js';
@@ -359,9 +364,14 @@ export class ZoneBase {
     buildYinghuaStelePavilion(this.kit,this.zoneJson);
     buildYinghuaWestEarHall(this.kit,this.zoneJson);
     buildJingshengZhai(this.kit,this.zoneJson);
+    buildBilinGuan(this.kit,this.zoneJson);
     buildJianfuJiyunLou(this.kit,this.zoneJson);
     buildJicuiPavilion(this.kit,this.zoneJson);
     buildShufangStage(this.kit,this.zoneJson);
+    buildShufangFrontHall(this.kit,this.zoneJson);
+    buildJinzhaoYucui(this.kit,this.zoneJson);
+    buildGaoyunqing(this.kit,this.zoneJson);
+    buildFengyacun(this.kit,this.zoneJson);
     buildJingyiXuan(this.kit,this.zoneJson);
     buildYuhuaGe(this.kit,this.zoneJson);
     buildBaohuaDian(this.kit,this.zoneJson);
