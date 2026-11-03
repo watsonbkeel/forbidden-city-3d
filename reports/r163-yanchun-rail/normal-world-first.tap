@@ -1,0 +1,27 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=53, 三角面=257,052, 树木=31棵, 碰撞器=2031
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 276 个 region, 254 个 mapItem
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.0ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 garden
+✖ R163 south pale rail reaches normal merged world; complete prior collision/navigation/architecture streams stay exact (14253.798684ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14947.621431
+
+✖ failing tests:
+
+test at tests/r163-yanchun-south-rail-normal.test.mjs:16:1
+✖ R163 south pale rail reaches normal merged world; complete prior collision/navigation/architecture streams stay exact (14253.798684ms)
+  TypeError [Error]: Cannot read properties of null (reading 'count')
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-yanchun-visual-2221/tests/r163-yanchun-south-rail-normal.test.mjs:27:39)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

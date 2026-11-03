@@ -1,3 +1,6 @@
+import {buildJicuiPavilion} from '../palace/special/JicuiPavilion.js';
+import {buildJianfuJiyunLou} from '../palace/special/JianfuJiyunLou.js';
+import {buildJingshengZhai} from '../palace/special/JingshengZhai.js';
 import {buildYinghuaStelePavilion} from '../palace/special/YinghuaStelePavilion.js';
 import {applyGardenStreetGatePins} from '../palace/special/GardenStreetGatePins.js';
 import {buildQinanIncensePavilions} from '../palace/special/QinanIncensePavilions.js';
@@ -348,6 +351,9 @@ export class ZoneBase {
     buildYucuiPavilion(this.kit,this.kit.root.name);
     buildQinanIncensePavilions(this.kit,this.kit.root.name);
     buildYinghuaStelePavilion(this.kit,this.zoneJson);
+    buildJingshengZhai(this.kit,this.zoneJson);
+    buildJianfuJiyunLou(this.kit,this.zoneJson);
+    buildJicuiPavilion(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     

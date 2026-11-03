@@ -1,0 +1,378 @@
+[GardenBuilder] 已构建御花园：CPU mesh objects=53, 三角面=257,052, 树木=31棵, 碰撞器=2031
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 276 个 region, 254 个 mapItem
+[ZoneManager] 加载区域 outer-west（外西路），耗时 0.0ms
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 加载区域 garden（内廷中路与御花园），耗时 0.1ms
+[ZoneManager] 卸载区域 outer-west
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 卸载区域 garden
+✖ R163 south pale rail reaches normal merged world; complete prior collision/navigation/architecture streams stay exact (15342.031357ms)
+✔ R163 south-only pale turned railing distinguishes observed appearance from retained fitted repeats (149.346556ms)
+✔ R163 all non-south/corner mesh bytes, complete collision, routes and whole-building envelope match independent baseline (103.118974ms)
+✔ R163 exact-host and complete-member guard rejects foreign or repeated application without mutation (84.540287ms)
+✔ R66 Yanchun finished south photo: plaque mounted on front beam, not low on recessed wall (163.136897ms)
+✔ R66 withdrawn turned rail is absent and final plaque remains the only new Yanchun fit (57.910464ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17022.178848
+
+✖ failing tests:
+
+test at tests/r163-yanchun-south-rail-normal.test.mjs:18:1
+✖ R163 south pale rail reaches normal merged world; complete prior collision/navigation/architecture streams stay exact (15342.031357ms)
+  AssertionError [ERR_ASSERTION]: all 38 existing Yinghua owners retained exactly
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/stele-base/77e5d831-db4c-4f07-895e-23738a0a9c31'
+  -     id: 'yinghua-stele-pavilion/stele-base/19973123-85ae-476e-b502-0217f00ce001'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/stele/a6ea697c-b528-4d8c-abd6-a6a645e89e08'
+  -     id: 'yinghua-stele-pavilion/stele/3a121f53-ce41-4824-80bf-afb77c8df62d'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/6f3b2fb0-800a-47b3-a0f0-311393e7c569'
+  -     id: 'yinghua-stele-pavilion/column/4bf38089-2a8c-454c-b8ce-65f9f5f0d9cf'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/418a46b9-18bc-43f8-9370-046b0d7fbb15'
+  -     id: 'yinghua-stele-pavilion/column/13b757e8-79f9-4470-bce1-8b06d8a8081a'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/843053be-d3f3-4696-b919-a795c9a502e6'
+  -     id: 'yinghua-stele-pavilion/column/00535e49-87b9-4d6d-b6f1-42bf1d77165d'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/6103f36a-0dcf-43ef-be82-7fdacf74515d'
+  -     id: 'yinghua-stele-pavilion/column/a7e98f3f-838d-45aa-aaf8-52c0d21dc383'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/f7bf7d23-60db-463c-bf5f-09ff7c80defd'
+  -     id: 'yinghua-stele-pavilion/column/a0eb7add-fa6b-4071-bcd6-50f2af1682db'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/e1e8d186-ac4f-47f3-ad58-b5636a807ea5'
+  -     id: 'yinghua-stele-pavilion/column/97bf6ff8-ca52-4284-99df-8cd1eb505523'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/8fe6c2ba-06c0-453c-997a-e1cb2e057460'
+  -     id: 'yinghua-stele-pavilion/column/57bd555b-2fee-4866-85d6-761fb6b103a2'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/column/78e34977-0cf9-4208-9297-faf6a6fe0cad'
+  -     id: 'yinghua-stele-pavilion/column/2b6a3f8c-c29a-4f7e-b565-4668905b43de'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/beam/63cc76e8-a7bd-489f-b0b4-8f0f25ec1782'
+  -     id: 'yinghua-stele-pavilion/beam/89d15f66-193c-4197-8049-86117b7062b8'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/beam/472c77fc-a331-4166-bac4-1fe71605a70a'
+  -     id: 'yinghua-stele-pavilion/beam/5d10b8c0-f1a0-4523-9d2a-ccace15ea3fe'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/beam/b5be26ed-02bc-4022-848a-a1cd6ad5c05a'
+  -     id: 'yinghua-stele-pavilion/beam/fc21948b-c2fb-4714-89d6-4afa8da35628'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/beam/082ff30c-2899-457b-bf9c-140830e787eb'
+  -     id: 'yinghua-stele-pavilion/beam/c9eea13a-31c1-4a7d-a00a-ce57b2cc7f73'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/79dbb5da-5f6a-4e1e-9f3d-7e6b75a30bce'
+  -     id: 'yinghua-stele-pavilion/rail/63b30d57-4641-41a5-969e-3bb91a95d591'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/99979ac9-9154-4528-9490-2a8b75bf4019'
+  -     id: 'yinghua-stele-pavilion/rail/2f317f9f-7f14-459d-9c3a-930c14af4a1b'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/d997f201-118c-4228-9fc7-e0d9883035b5'
+  -     id: 'yinghua-stele-pavilion/rail/cb9f4123-b649-4547-ad6d-6b9223016244'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/74ffe228-ad1e-4a2f-9e1d-29a8a141b857'
+  -     id: 'yinghua-stele-pavilion/rail/00d451f7-9f62-44f4-89f1-70e6537f04b8'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/dc2e0adb-c511-4235-976f-9f62c8f7adb3'
+  -     id: 'yinghua-stele-pavilion/rail/726f7b8d-c041-43cc-8327-03e394a9e4e5'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/67fd6667-5e4b-4fdb-af03-792b6c2267c6'
+  -     id: 'yinghua-stele-pavilion/rail/8b5a73aa-ce30-4fd4-a712-292db3215d20'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/db83ae14-3278-45a6-8c88-17f410d397da'
+  -     id: 'yinghua-stele-pavilion/rail/bf884b1d-1477-491e-9f04-852c87b1ccf6'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/821276f7-ab94-45f5-b3cb-e998812f85ad'
+  -     id: 'yinghua-stele-pavilion/rail/a326bba8-2696-41c4-a147-fdbd6b98bb4f'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/b033f787-ec99-416c-b091-73131d6ea570'
+  -     id: 'yinghua-stele-pavilion/rail/229a0f12-206c-41cf-9532-0ab7dfbd1a97'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/e4a34eda-05f7-4ec5-af06-4e4801bba40c'
+  -     id: 'yinghua-stele-pavilion/rail/5b4ad8e0-9d67-4e69-9588-818272207dd2'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/3a1de193-e4ea-4dc6-87e7-0f91cb6fdfb1'
+  -     id: 'yinghua-stele-pavilion/rail/aa469802-7b32-419f-9c86-cbf30382916d'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail/4203837c-c1c7-413e-b690-88596a0a8a52'
+  -     id: 'yinghua-stele-pavilion/rail/9eb041fd-f70a-437c-9a2e-adec706440a8'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/ebb9e726-9711-4557-89b6-db15ae4c6915'
+  -     id: 'yinghua-stele-pavilion/rail-post/02f0da4c-162b-4cfb-b397-882e3d23914b'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/a789b326-5461-4519-a46f-28adecdef7c2'
+  -     id: 'yinghua-stele-pavilion/rail-post/b5b3ce0e-6afe-413e-9428-8c7aafcda29c'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/ab2e5e90-c27c-412c-bb7f-0f013f647a32'
+  -     id: 'yinghua-stele-pavilion/rail-post/61084776-346f-45a6-80d0-c2f0afe1818e'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/2df838cd-fe4a-4bb8-9888-3679ca0e04a4'
+  -     id: 'yinghua-stele-pavilion/rail-post/901cf0ae-06c4-4405-94de-d6c172f434fd'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/7a1c77b4-74e7-4990-894a-f12093a95f79'
+  -     id: 'yinghua-stele-pavilion/rail-post/dbee97a0-ff25-4f5e-8851-571a9e736c8b'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/fbd83335-b241-4ff1-85be-efa70d94e150'
+  -     id: 'yinghua-stele-pavilion/rail-post/a305723c-ea48-4aa4-a7b6-dc8b2817d6bb'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/646adffa-17ba-4a3b-ab4e-36d73f24e2cc'
+  -     id: 'yinghua-stele-pavilion/rail-post/deb855df-239c-4a4c-9132-92bbc50ba014'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/rail-post/4da0cef9-8315-4476-9cbb-af61be806a48'
+  -     id: 'yinghua-stele-pavilion/rail-post/cc65927c-5481-452a-818f-68b663fb8d2d'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/roof/ed580981-2899-4a76-85a1-3155fc9a345d'
+  -     id: 'yinghua-stele-pavilion/roof/f5341072-0a1f-46dc-945c-2184f91982a5'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/finial/6b1a63a4-63a0-4111-ab65-8e601a317efc'
+  -     id: 'yinghua-stele-pavilion/finial/4c72d42b-b794-4ea6-801b-d16d972c5587'
+      },
+      {
+        box: {
+          isBox3: true,
+          max: {
+  ...
+        },
+  +     id: 'yinghua-stele-pavilion/finial-tip/700ca735-ef16-495b-85fc-4d6ce61c2144'
+  -     id: 'yinghua-stele-pavilion/finial-tip/b887ee16-172a-4880-9607-d93d4a8c6598'
+      }
+    ]
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-yanchun-cumulative-2232/tests/r163-yanchun-south-rail-normal.test.mjs:29:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: null, box: [Object] }, { id: 'yinghua-stele-pavilion/stele-base/77e5d831-db4c-4f07-895e-23738a0a9c31', box: [Object] }, { id: 'yinghua-stele-pavilion/stele/a6ea697c-b528-4d8c-abd6-a6a645e89e08', box: [Object] }, { id: 'yinghua-stele-pavilion/column/6f3b2fb0-800a-47b3-a0f0-311393e7c569', box: [Object] }, { id: 'yinghua-stele-pavilion/column/418a46b9-18bc-43f8-9370-046b0d7fbb15', box: [Object] }, { id: 'yinghua-stele-pavilion/column/843053be-d3f3-4696-b919-a795c9a502e6', box: [Object] }, { id: 'yinghua-stele-pavilion/column/6103f36a-0dcf-43ef-be82-7fdacf74515d', box: [Object] }, { id: 'yinghua-stele-pavilion/column/f7bf7d23-60db-463c-bf5f-09ff7c80defd', box: [Object] }, { id: 'yinghua-stele-pavilion/column/e1e8d186-ac4f-47f3-ad58-b5636a807ea5', box: [Object] }, { id: 'yinghua-stele-pavilion/column/8fe6c2ba-06c0-453c-997a-e1cb2e057460', box: [Object] }, { id: 'yinghua-stele-pavilion/column/78e34977-0cf9-4208-9297-faf6a6fe0cad', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/63cc76e8-a7bd-489f-b0b4-8f0f25ec1782', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/472c77fc-a331-4166-bac4-1fe71605a70a', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/b5be26ed-02bc-4022-848a-a1cd6ad5c05a', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/082ff30c-2899-457b-bf9c-140830e787eb', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/79dbb5da-5f6a-4e1e-9f3d-7e6b75a30bce', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/99979ac9-9154-4528-9490-2a8b75bf4019', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/d997f201-118c-4228-9fc7-e0d9883035b5', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/74ffe228-ad1e-4a2f-9e1d-29a8a141b857', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/dc2e0adb-c511-4235-976f-9f62c8f7adb3', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/67fd6667-5e4b-4fdb-af03-792b6c2267c6', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/db83ae14-3278-45a6-8c88-17f410d397da', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/821276f7-ab94-45f5-b3cb-e998812f85ad', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/b033f787-ec99-416c-b091-73131d6ea570', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/e4a34eda-05f7-4ec5-af06-4e4801bba40c', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/3a1de193-e4ea-4dc6-87e7-0f91cb6fdfb1', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/4203837c-c1c7-413e-b690-88596a0a8a52', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/ebb9e726-9711-4557-89b6-db15ae4c6915', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/a789b326-5461-4519-a46f-28adecdef7c2', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/ab2e5e90-c27c-412c-bb7f-0f013f647a32', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/2df838cd-fe4a-4bb8-9888-3679ca0e04a4', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/7a1c77b4-74e7-4990-894a-f12093a95f79', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/fbd83335-b241-4ff1-85be-efa70d94e150', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/646adffa-17ba-4a3b-ab4e-36d73f24e2cc', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/4da0cef9-8315-4476-9cbb-af61be806a48', box: [Object] }, { id: 'yinghua-stele-pavilion/roof/ed580981-2899-4a76-85a1-3155fc9a345d', box: [Object] }, { id: 'yinghua-stele-pavilion/finial/6b1a63a4-63a0-4111-ab65-8e601a317efc', box: [Object] }, { id: 'yinghua-stele-pavilion/finial-tip/700ca735-ef16-495b-85fc-4d6ce61c2144', box: [Object] } ],
+    expected: [ { id: null, box: [Object] }, { id: 'yinghua-stele-pavilion/stele-base/19973123-85ae-476e-b502-0217f00ce001', box: [Object] }, { id: 'yinghua-stele-pavilion/stele/3a121f53-ce41-4824-80bf-afb77c8df62d', box: [Object] }, { id: 'yinghua-stele-pavilion/column/4bf38089-2a8c-454c-b8ce-65f9f5f0d9cf', box: [Object] }, { id: 'yinghua-stele-pavilion/column/13b757e8-79f9-4470-bce1-8b06d8a8081a', box: [Object] }, { id: 'yinghua-stele-pavilion/column/00535e49-87b9-4d6d-b6f1-42bf1d77165d', box: [Object] }, { id: 'yinghua-stele-pavilion/column/a7e98f3f-838d-45aa-aaf8-52c0d21dc383', box: [Object] }, { id: 'yinghua-stele-pavilion/column/a0eb7add-fa6b-4071-bcd6-50f2af1682db', box: [Object] }, { id: 'yinghua-stele-pavilion/column/97bf6ff8-ca52-4284-99df-8cd1eb505523', box: [Object] }, { id: 'yinghua-stele-pavilion/column/57bd555b-2fee-4866-85d6-761fb6b103a2', box: [Object] }, { id: 'yinghua-stele-pavilion/column/2b6a3f8c-c29a-4f7e-b565-4668905b43de', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/89d15f66-193c-4197-8049-86117b7062b8', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/5d10b8c0-f1a0-4523-9d2a-ccace15ea3fe', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/fc21948b-c2fb-4714-89d6-4afa8da35628', box: [Object] }, { id: 'yinghua-stele-pavilion/beam/c9eea13a-31c1-4a7d-a00a-ce57b2cc7f73', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/63b30d57-4641-41a5-969e-3bb91a95d591', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/2f317f9f-7f14-459d-9c3a-930c14af4a1b', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/cb9f4123-b649-4547-ad6d-6b9223016244', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/00d451f7-9f62-44f4-89f1-70e6537f04b8', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/726f7b8d-c041-43cc-8327-03e394a9e4e5', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/8b5a73aa-ce30-4fd4-a712-292db3215d20', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/bf884b1d-1477-491e-9f04-852c87b1ccf6', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/a326bba8-2696-41c4-a147-fdbd6b98bb4f', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/229a0f12-206c-41cf-9532-0ab7dfbd1a97', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/5b4ad8e0-9d67-4e69-9588-818272207dd2', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/aa469802-7b32-419f-9c86-cbf30382916d', box: [Object] }, { id: 'yinghua-stele-pavilion/rail/9eb041fd-f70a-437c-9a2e-adec706440a8', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/02f0da4c-162b-4cfb-b397-882e3d23914b', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/b5b3ce0e-6afe-413e-9428-8c7aafcda29c', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/61084776-346f-45a6-80d0-c2f0afe1818e', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/901cf0ae-06c4-4405-94de-d6c172f434fd', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/dbee97a0-ff25-4f5e-8851-571a9e736c8b', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/a305723c-ea48-4aa4-a7b6-dc8b2817d6bb', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/deb855df-239c-4a4c-9132-92bbc50ba014', box: [Object] }, { id: 'yinghua-stele-pavilion/rail-post/cc65927c-5481-452a-818f-68b663fb8d2d', box: [Object] }, { id: 'yinghua-stele-pavilion/roof/f5341072-0a1f-46dc-945c-2184f91982a5', box: [Object] }, { id: 'yinghua-stele-pavilion/finial/4c72d42b-b794-4ea6-801b-d16d972c5587', box: [Object] }, { id: 'yinghua-stele-pavilion/finial-tip/b887ee16-172a-4880-9607-d93d4a8c6598', box: [Object] } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
