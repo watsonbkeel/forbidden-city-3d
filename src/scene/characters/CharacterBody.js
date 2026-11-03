@@ -32,7 +32,9 @@ export function bodyPenetration(body,player){
  const [x,y,z]=player.position;let depth=0;
  for(const p of body.parts){
   if(y>=p.maxY-EPS||y+player.height<=p.minY+EPS)continue;
-  depth=Math.max(depth,p.radius+player.radius-pointSegmentDistance(x,z,p));
+  depth=Math.max(depth,player.footprint==='square'
+   ? p.radius-segmentSquareDistance(p,x,z,player.radius)
+   : p.radius+player.radius-pointSegmentDistance(x,z,p));
  }
  return Math.max(0,depth);
 }
@@ -41,6 +43,17 @@ function segmentDistance(a,b){
  const ux=a.bx-a.ax,uz=a.bz-a.az,vx=b.bx-b.ax,vz=b.bz-b.az,wx=b.ax-a.ax,wz=b.az-a.az,den=ux*vz-uz*vx;
  if(Math.abs(den)>1e-12){const s=(wx*vz-wz*vx)/den,t=(wx*uz-wz*ux)/den;if(s>=0&&s<=1&&t>=0&&t<=1)return 0;}
  return Math.min(pointSegmentDistance(a.ax,a.az,b),pointSegmentDistance(a.bx,a.bz,b),pointSegmentDistance(b.ax,b.az,a),pointSegmentDistance(b.bx,b.bz,a));
+}
+// Furniture-domain walking uses an axis-aligned square footprint. Match that
+// exact footprint for NPC yielding/activation; ordinary walking stays circular.
+function segmentSquareDistance(segment,x,z,radius){
+ const x0=x-radius,x1=x+radius,z0=z-radius,z1=z+radius;
+ const inside=(x,z)=>x>=x0&&x<=x1&&z>=z0&&z<=z1;
+ if(inside(segment.ax,segment.az)||inside(segment.bx,segment.bz))return 0;
+ return Math.min(...[
+  {ax:x0,az:z0,bx:x1,bz:z0},{ax:x1,az:z0,bx:x1,bz:z1},
+  {ax:x1,az:z1,bx:x0,bz:z1},{ax:x0,az:z1,bx:x0,bz:z0},
+ ].map(edge=>segmentDistance(segment,edge)));
 }
 /** Exact horizontal capsule sweep, clipped to the interval of vertical overlap.
  * Detects a short grazing chord even when both movement endpoints are clear. */

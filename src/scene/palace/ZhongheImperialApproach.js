@@ -10,7 +10,7 @@ export const ZHONGHE_IMPERIAL_APPROACH = Object.freeze({
   source: 'https://www.dpm.org.cn/explore/building/236464.html',
   image: 'https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff05cd7866d.jpg',
   evidenceClass: 'OFFICIAL_TOPOLOGY_INHERITED_PROVISIONAL_DIMENSIONS',
-  walkingPolicy: 'NO_GAMEPLAY_WALKABLE', currentVisitorAccess: 'UNKNOWN',
+  walkingPolicy: 'GAMEPLAY_RAMP_ON_EXISTING_STONE', currentVisitorAccess: 'UNKNOWN',
 });
 
 export function buildZhongheImperialApproach(b, g, { zEdge, dir, y0, y1, run, width }) {
@@ -31,8 +31,11 @@ export function buildZhongheImperialApproach(b, g, { zEdge, dir, y0, y1, run, wi
       side*(width/2-cw/2),(y0+y1)/2+.1,zc,{box:b.library.tileSize('marble')});
     cheek.rotation.x = angle; cheek.name = `${id}:cheek:${side}`;
   }
-  // Tight segments follow the actual visible stone, rather than a tall invisible
-  // fence. No ramp is registered: players use either adjacent staircase.
-  for (let j=0;j<16;j++) b.col(-width/2,y0,zEdge+dir*j*run/16,
-    width/2,y1-j*rise/16+.25,zEdge+dir*(j+1)*run/16);
+  // Keep the carved stone and side cheeks visually unchanged. Its central
+  // surface is a game route, without implying present-day visitor admission.
+  // Only the cheeks block lateral entry, as on the neighbouring staircases.
+  for (const side of [-1,1]) for (let j=0;j<16;j++) b.col(
+    side < 0 ? -width/2 : inner/2,y0,zEdge+dir*j*run/16,
+    side < 0 ? -inner/2 : width/2,y1-j*rise/16+.25,zEdge+dir*(j+1)*run/16);
+  b.walkRampZ(-inner/2,inner/2,zEdge,zEdge+dir*run,y1,y0);
 }

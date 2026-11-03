@@ -16,14 +16,14 @@ const W=await buildWorld();
 // Current R19 crossing is separately exercised with the original real controller.
 const historicalR18World=await buildHistoricalR18World();
 
-test('only two central ramps disappear; official north/south stones have no walking surface',()=>{
+test('north/south central stones retain game walking surfaces without claiming visitor admission',()=>{
  const p=captureZhongheApproaches();assert.equal(P.currentVisitorAccess,'UNKNOWN');
  for(const {stone:s} of Object.values(p)){
   assert.equal(s.y0,8);assert.equal(s.y1,8.6);assert.equal(s.width,4.6);
-  assert.equal(W.cm.walkables.filter(r=>r.type==='ramp'&&r.axis==='z'&&r.a0===s.zEdge&&r.minX<0&&r.maxX>0).length,0);
-  assert.equal(W.cm.walkables.filter(r=>r.type==='ramp'&&r.axis==='z'&&r.a0===s.zEdge&&r.y0===s.y1).length,2);
+  assert.equal(W.cm.walkables.filter(r=>r.type==='ramp'&&r.axis==='z'&&r.a0===s.zEdge&&r.minX<0&&r.maxX>0).length,1);
+  assert.equal(W.cm.walkables.filter(r=>r.type==='ramp'&&r.axis==='z'&&r.a0===s.zEdge&&r.y0===s.y1).length,3);
   const r=walkStraight(W,[0,s.zEdge+s.dir*2],[0,s.zEdge-s.dir*.7],{feet0:8,step:.04});
-  assert.ok(r.reached<r.total-1,JSON.stringify(r));assert.equal(r.feet,8);
+  assert.ok(r.reached>=r.total-.051,JSON.stringify(r));assert.equal(r.feet,8.6);
  }
 });
 
@@ -40,7 +40,7 @@ for(const dir of [-1,1])test(`stone is closed, nondegenerate and reuses material
  const mats=new Map(),lib={material:n=>mats.get(n)??(mats.set(n,new THREE.MeshStandardMaterial({name:n})),mats.get(n)),tileSize:()=>2};
  const b=new PalaceBuilder(new THREE.Scene(),lib),g=new THREE.Group();
  buildZhongheImperialApproach(b,g,{zEdge:51,dir,y0:8,y1:8.6,run:.96,width:4.6});
- assert.equal(b.walkables.length,0);assert.equal(b.colliders.length,16);assert.deepEqual([...mats.keys()].sort(),['marble','yulu']);
+ assert.equal(b.walkables.length,1);assert.equal(b.colliders.length,32);assert.deepEqual([...mats.keys()].sort(),['marble','yulu']);
  let triangles=0;
  for(const m of g.children){const geo=m.geometry,p=geo.attributes.position,idx=geo.index,edges=new Map();triangles+=(idx?.count??p.count)/3;let volume=0;
   for(let i=0;i<(idx?.count??p.count);i+=3){const v=[0,1,2].map(j=>new THREE.Vector3().fromBufferAttribute(p,idx?idx.getX(i+j):i+j));

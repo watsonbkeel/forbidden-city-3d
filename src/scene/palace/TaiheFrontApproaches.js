@@ -18,9 +18,9 @@ export const TAIHE_FRONT_APPROACHES = Object.freeze({
   ],
 });
 
-export function taiheSouthTier({ zEdge, y0, y1, run, halfWidth, tier, plinth = false }) {
+export function taiheSouthTier({ zEdge, y0, y1, run, halfWidth, tier, plinth = false, smallStairCenters }) {
   const p = TAIHE_FRONT_APPROACHES;
-  const centers = plinth ? [p.centers[0], 0, p.centers[1]] : p.centers;
+  const centers = plinth ? smallStairCenters ?? [p.centers[0], 0, p.centers[1]] : p.centers;
   const flights = centers.map(centerX => ({
     id: `${p.id}:${plinth ? 'plinth' : tier}:${centerX}`, centerX, zEdge,
     zToe: zEdge - run, y0, y1, run, width: p.width, cheekWidth: p.cheekWidth,

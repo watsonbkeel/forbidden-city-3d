@@ -64,6 +64,8 @@ export function buildBaoheHallPlinth(b,parent,input) {
   const body=new THREE.Mesh(applyBoxUV(solid,tile),marble);body.name=p.id+':solid-stone';body.castShadow=body.receiveShadow=true;g.add(body);
   const face=new THREE.PlaneGeometry(p.stoneWidth,length);face.rotateX(-Math.PI/2+angle);face.translate(0,(p.y0+p.y1)/2+.04,zc);
   const slab=new THREE.Mesh(face,b.library.material('yulu'));slab.name=p.id+':carved-surface';slab.receiveShadow=true;g.add(slab);
-  for(let j=0;j<16;j++)b.col(-p.stoneWidth/2,p.y0,p.zEdge+j*p.run/16,p.stoneWidth/2,p.y1-j*p.rise/16+.08,p.zEdge+(j+1)*p.run/16);
+  // Continue the same game route from the hall landing to the north terraces;
+  // the central carved stone is visible support, not a closed body-height wall.
+  b.walkRampZ(-p.stoneWidth/2,p.stoneWidth/2,p.zEdge,p.zToe,p.y1,p.y0);
   return p.y1;
 }

@@ -1,0 +1,87 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 56 个 region, 38 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 56 个 region, 38 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✖ patrol cannot enter the actual Chuxiu square player footprint at its circular edge (1554.245118ms)
+✖ square body contact distinguishes corners, clear edges, vertical separation and ordinary circle semantics (0.40467ms)
+✖ late activation waits at the square corner while the same circle-only location remains unchanged (855.161057ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2857.640788
+
+✖ failing tests:
+
+test at tests/chuxiu-freeze/npc-square-contact.test.mjs:11:1
+✖ patrol cannot enter the actual Chuxiu square player footprint at its circular edge (1554.245118ms)
+  AssertionError [ERR_ASSERTION]: frame 41: NPC must not enter player square geometry
+  + actual - expected
+
+  + {
+  +   actorId: 'chuxiu-maid-02',
+  +   existingOverlap: true,
+  +   fraction: 0,
+  +   kind: 'dynamic'
+  + }
+  - null
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-chuxiu-freeze-0345/tests/chuxiu-freeze/npc-square-contact.test.mjs:23:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { fraction: 0, kind: 'dynamic', actorId: 'chuxiu-maid-02', existingOverlap: true },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/chuxiu-freeze/npc-square-contact.test.mjs:30:1
+✖ square body contact distinguishes corners, clear edges, vertical separation and ordinary circle semantics (0.40467ms)
+  AssertionError [ERR_ASSERTION]: real square corner contact must be recognized
+
+  false !== true
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-chuxiu-freeze-0345/tests/chuxiu-freeze/npc-square-contact.test.mjs:36:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/chuxiu-freeze/npc-square-contact.test.mjs:40:1
+✖ late activation waits at the square corner while the same circle-only location remains unchanged (855.161057ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - 'square'
+
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-chuxiu-freeze-0345/tests/chuxiu-freeze/npc-square-contact.test.mjs:50:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'square',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
