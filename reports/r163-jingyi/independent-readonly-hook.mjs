@@ -1,0 +1,2 @@
+import {registerHooks} from 'node:module';
+registerHooks({load(url,context,next){const r=next(url,context);if(url.endsWith('/tests/r163-jingyi-normal.test.mjs')){const src=Buffer.isBuffer(r.source)?r.source.toString():String(r.source);const old="const output=new URL('../reports/r163-jingyi/normal-world.json',import.meta.url);";if(!src.includes(old))throw Error('Readonly output hook mismatch');return {...r,source:src.replace(old,"const output=new URL('file:///tmp/r163-reviewer-normal-world.json');")};}return r;}});

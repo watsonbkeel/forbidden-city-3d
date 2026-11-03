@@ -1,0 +1,109 @@
+{
+  "result": "PASS_BOUNDED_MINIMAL_EXTERIOR_NO_BLOCKING_FINDINGS",
+  "product": "e0a55779c03987fc7f05b55a556ccc3480d53a08",
+  "independentTests": {
+    "component": 6,
+    "normalWorld": 1,
+    "routes": 32,
+    "frames": 35606,
+    "nativeContacts": 0,
+    "negativeControls": [
+      {
+        "name": "original-Jiyun-x185-straight-approach-now-occupied-by-new-Jingyi",
+        "arrived": false,
+        "end": [
+          185,
+          478.278764245512,
+          0
+        ]
+      },
+      {
+        "name": "closed-five-bay-front-door-supported-negative",
+        "arrived": false,
+        "end": [
+          187.5,
+          484.4916165647115,
+          0.600000011920929
+        ]
+      },
+      {
+        "name": "front-low-green-rail-supported-negative",
+        "arrived": false,
+        "end": [
+          190,
+          482.06630464512966,
+          0.600000011920929
+        ]
+      },
+      {
+        "name": "side-perimeter-column-supported-negative",
+        "arrived": false,
+        "end": [
+          194,
+          490.94131811432413,
+          0.600000011920929
+        ]
+      }
+    ],
+    "oldStreamsExact": true,
+    "geometry": {
+      "meshes": 14,
+      "triangles": 5400
+    },
+    "colliderOwners": 132,
+    "oldVisibleTrianglesInCompleteNewEnvelope": 0,
+    "silhouette": {
+      "oldPositionScalars": 44967,
+      "newPositionScalars": 3792,
+      "oldIndices": 74640,
+      "newIndices": 7344
+    }
+  },
+  "independentLifecycle": [
+    {
+      "mode": "unmerged",
+      "geometryAllocations": 352,
+      "privateMaterials": 22,
+      "sharedMaterials": 5,
+      "finalMeshes": 132,
+      "nonStoneTriangleOwners": 124,
+      "ownerGeometryExact": true,
+      "disposal": "all owned allocations once; shared handles untouched"
+    },
+    {
+      "mode": "merged",
+      "geometryAllocations": 498,
+      "privateMaterials": 22,
+      "sharedMaterials": 5,
+      "finalMeshes": 14,
+      "nonStoneTriangleOwners": 124,
+      "ownerGeometryExact": true,
+      "disposal": "all owned allocations once; shared handles untouched"
+    }
+  ],
+  "personallyViewed": [
+    "/tmp/r163-next-jingyi.jpg",
+    "reports/r163-jingyi/cpu/south-front.png",
+    "reports/r163-jingyi/cpu/south-oblique.png",
+    "reports/r163-jingyi/cpu/closed-back-fit.png"
+  ],
+  "sourceHashMatchesCPU": true,
+  "productionSourceEqualsCommit": true,
+  "notIndependentlyRerun": [
+    "author54affectedComponents",
+    "authorBuildAnd137HTTP",
+    "actualBrowserGPU_PBR_Mobile_FullStreaming"
+  ],
+  "limits": [
+    "approximate compressed dimensions, hidden closure and repeats explicitly FIT",
+    "same origin/destination Jiyun via authorized196 detour; old185 route intentionally blocked and preserved",
+    "not public building admission or full-building/historical acceptance"
+  ],
+  "evidence": [
+    "/tmp/r163-reviewer-tests.tap",
+    "/tmp/r163-reviewer-normal-world.json",
+    "/tmp/r163-reviewer-readonly-hook.mjs",
+    "/tmp/r163-reviewer-lifecycle.mjs",
+    "/tmp/r163-reviewer-lifecycle.json"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "r163-stage-jingyi-cumulative-verification/v1",
+  "localMerge": "bddc5d9f36624169dddd0105e38ac304b72f5f41",
+  "mergeParents": [
+    "0f08df0a6833b310da445badc1a2632329c866ed",
+    "6d852ab511bf6c346e4cd451751e309d940364eb"
+  ],
+  "bothParentsAncestors": true,
+  "fourItemDocs13FilesExact": true,
+  "runtimeExactFrozenJingyi": "e0a55779c03987fc7f05b55a556ccc3480d53a08",
+  "remoteSingleParent": "1b4c5dce53fd5e754cb8ac41730fdd04231e6f2b",
+  "productionPaths": [
+    "src/scene/palace/special/JingyiXuan.js",
+    "src/scene/palace/special/ShufangStage.js",
+    "src/scene/zones/ZoneBase.js"
+  ],
+  "oldSrcDataPaths": 746,
+  "oldUnchanged": 745,
+  "onlyOldModified": "src/scene/zones/ZoneBase.js",
+  "newBuilders": 2,
+  "dataChanges": 0,
+  "freshTests": {
+    "components": 54,
+    "normalWorld": 1,
+    "totalPassed": 55,
+    "fail": 0,
+    "skip": 0
+  },
+  "normal": {
+    "routes": 32,
+    "frames": 35606,
+    "allArrived": true,
+    "nativeContacts": 0,
+    "completeJSONExactAuthorAndAstra": true,
+    "negativeCount": 4,
+    "old185StraightLineBlocked": true,
+    "new196DetourSameEndpointsAndOldStair": true,
+    "maxFeetGround": 0.4203333452542754,
+    "removedFrontRail": {
+      "arrived": true,
+      "end": [
+        190,
+        481.89006108451014,
+        0.600000011920929
+      ],
+      "scope": "Short supported capsule probe isolated before retained stair post; not across-rail egress, off-platform descent or building entry"
+    }
+  },
+  "build": {
+    "schema": 1,
+    "release": "R163",
+    "buildId": "R163-2f161fc9b3ac",
+    "sourceFingerprint": "f59ee7d66da45ce7cbb1ca02b04b8a856d846a17d7abef443f480c81c67ecc01",
+    "sourceCommit": "bddc5d9f36624169dddd0105e38ac304b72f5f41",
+    "sourceDirty": false,
+    "base": "/gugong/"
+  },
+  "modules": 726,
+  "httpFilesByteSHA256Exact": 137,
+  "independentCurrent": {
+    "bounded": "PASS",
+    "critical": 0,
+    "important": 0,
+    "freshComponents": 11,
+    "actualTriangleOwnersMatched": 207,
+    "solidBoxesAndNonRescueTopsMatched": 9,
+    "sourceAnd6FinalCPUHashesExact": true,
+    "WorldBuildHTTPNotIndependentlyRerun": true
+  },
+  "diagnostic": {
+    "initialSparseRunOnly5Not54": true,
+    "missingTrackedFilesMaterializedFromExactHEAD": true,
+    "productAndBaselinesUnmodified": true
+  },
+  "limits": [
+    "original397/H43 two partial exteriors only; no whole-object/current admission acceptance",
+    "old185 QA line is blocked;196detour explicit, not unchanged old line",
+    "real steps/native support only; short on-platform negative probes do not prove stage/public entry or egress",
+    "old sprint stair peak .420334m remains; no global physics/route data change",
+    "GPU/PBR/mobile/full streaming/full historical suite not verified",
+    "new development ref only; no main merge/Pages dispatch or deployment"
+  ]
+}
