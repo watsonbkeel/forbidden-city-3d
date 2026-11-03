@@ -67,3 +67,20 @@ then 猗兰馆 and the two full rear-wing locator names; open each detail and ve
 its source link and independent travel destination. Keep `2110597f` and
 `06369276` unchanged as rollback candidates. Merging main later would trigger
 the existing Pages workflow; this delivery does not merge or deploy.
+
+## Documentation-only successor: real Teleport parsing
+
+The subsequent release-note candidate retains the exact d5 runtime bytes and
+adds `teleport.test.mjs`. Run the command above with
+`tests/r163-five-place-cards/*.test.mjs` instead of only `cards.test.mjs` to include
+all six additional checks: five real component/production-target cases and one
+all-five uniqueness case. Combined bounded result: 156/156.
+
+The production Teleport constructor and `landingFor` are not mocked. Existing
+zone targets, canonical-name rejection and distinct approach coordinates are
+checked. `resolveLanding`, `isSafe` and `go` are deliberately not invoked; this
+is not full-World collision/landing safety or actual travel acceptance. No
+runtime change or fresh build is made by that documentation/test-only step.
+The preserved build remains R163-ff9834c19984, actually built from local
+`d2f65984528179154fef0022cf9692e03bcf12f0` (the same complete tree as remote d5),
+not from the later documentation commit.
