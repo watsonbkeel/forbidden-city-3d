@@ -38,3 +38,10 @@ Also run the nine existing Wumen inherited/live equivalence test files listed in
 ## Acceptance limits
 
 This change affects QA source loading only. It does not resolve the integrated candidate's 223 current-state failures (five additional historical contract failures), establish whole-object completion, authorize release, or provide GPU/browser acceptance. Original candidate full-suite evidence remains 1313 tests / 1090 pass / 223 fail. No new full current-state run is claimed by this portability experiment.
+
+
+## Taihemen c376 dependency snapshot (2026-11-03)
+
+`c376ef094e0377ecee183a31252d3eadb95c54a2.json` additionally pins only the nine static dependencies of the old `TaihemenObservedApproach.js` builder. It is not a complete c376 source snapshot or a new historical-runner allowlist member. Five original blobs are added and four existing originals reused. The separate `tests/r158-taihemen-open/frozen-parent.mjs` consumer loads them in an isolated module namespace and verifies every source on each explicit load; current modules are not redirected. See the [Taihemen test-loading correction](../../../docs/photo-fidelity/r158-taihemen-open/README.md#historical-source-portability-correction-2026-11-03).
+
+The older generator above covers its listed Wumen snapshots only; it must not overwrite the pin file or delete this reviewed partial snapshot when refreshing those outputs. The c376 content can be compared byte-for-byte with `git show c376ef094e0377ecee183a31252d3eadb95c54a2:<manifest path>` when the original objects are available; a clean clone uses the tracked authenticated bytes.
