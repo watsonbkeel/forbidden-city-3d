@@ -1,3 +1,4 @@
+import { readQualityPreference, writeQualityPreference } from './src/render/QualityPreference.js';
 import { TourFrameScheduler } from './src/render/TourFrameScheduler.js';
 import { readPerformanceMode, writePerformanceMode, performancePixelRatio } from './src/render/TourPerformancePreference.js';
 import {setBuildingDetailQuality} from './src/render/BuildingDetailQuality.js';
@@ -47,10 +48,10 @@ class ForbiddenCityApp {
     this.postProcessing = null;
     this.collisionManager = null;
     
-    this.currentQuality = 'high';
     this.performanceMode = readPerformanceMode();
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
       (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    this.currentQuality = readQualityPreference(this.isMobile ? 'low' : 'high');
     this.lastLocation = null;
     this.lastShadowUpdate = 0;
     this.shadowObjects = [];
@@ -95,7 +96,7 @@ class ForbiddenCityApp {
     // LoadingManager 不会自动收到进度，onLoad 也不会触发（之前加载界面卡在 0% 的根因）。
     // 这里把每个构建步骤手动登记到 LoadingManager：先全部 itemStart，每完成一步 itemEnd，
     // 这样 onProgress 能正常推进进度条，最后一步完成时 onLoad 自动触发并关闭加载界面。
-    const quality = this.isMobile ? 'low' : 'high';
+    const quality = this.currentQuality;
     const steps = [
       ['渲染器', () => {
         this.createScene();
@@ -303,7 +304,7 @@ class ForbiddenCityApp {
     });
     
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(this.getPixelRatio(this.isMobile ? 'low' : 'high'));
+    this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     // 电影感色调映射：高光不过曝、红墙黄瓦饱和度自然
@@ -410,6 +411,8 @@ class ForbiddenCityApp {
       },
       onQualityChange: (quality) => {
         this.toggleQuality(quality);
+        // Persist only this explicit UI choice, not startup or programmatic changes.
+        writeQualityPreference(quality);
       },
       onSoundToggle: (enabled) => {
         if (!enabled) {
