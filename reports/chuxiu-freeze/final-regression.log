@@ -1,0 +1,73 @@
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 56 个 region, 38 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+[ZoneManager] 收集所有区的 regions 和 mapItems...
+[ZoneManager] 共 56 个 region, 38 个 mapItem
+[ZoneManager] ?zones=all 模式：加载所有区...
+[ZoneManager] 加载区域 west-six（西六宫与养心殿），耗时 0.0ms
+[ZoneManager] 卸载区域 west-six
+✔ patrol cannot enter the actual Chuxiu square player footprint at its circular edge (1471.967261ms)
+✔ square body contact distinguishes corners, clear edges, vertical separation and ordinary circle semantics (0.361466ms)
+✔ late activation waits at the square corner while the same circle-only location remains unchanged (768.551023ms)
+✔ searchable place directory preserves keyboard card/back state (85.544259ms)
+✔ searchable place directory preserves touch card/back state (27.162668ms)
+✔ official name aliases and evidence limits appear as safe text in card (21.306918ms)
+✔ place selection preserves held keyboard timing and map lifecycle (82.784198ms)
+✔ place selection preserves held joystick timing and map lifecycle (22.048306ms)
+✔ known and unknown cards need a separately resolved explicit travel button (18.031462ms)
+✔ replace invalidates pending and detached travel clicks (17.447485ms)
+✔ back invalidates pending and detached travel clicks (12.159066ms)
+✔ compact invalidates pending and detached travel clicks (16.777172ms)
+✔ close invalidates pending and detached travel clicks (13.838806ms)
+✔ dispose invalidates pending and detached travel clicks (15.171432ms)
+✔ travel failure keeps card; second-finger success deduplicates compatibility click (20.860235ms)
+✔ map has 159 keyboard information buttons, separate unchanged quick travel, safe sources and nonmodal region (22.141003ms)
+✔ compact hides details and returns to summary with explicit continue-reading (8.936829ms)
+✔ repeated map tap and resize while reading do not redraw or reset selection/view (5.854419ms)
+✔ missing or ambiguous side binding never borrows a card and unknown ID is inert (6.75876ms)
+✔ compatibility and double clicks alone cannot activate newly shown travel (9.56517ms)
+✔ travel pointercancel cannot activate through a later native click (5.505581ms)
+✔ travel drag cannot activate through a later native click (5.683296ms)
+✔ source links accept the existing validated second-finger tap without travel (7.188006ms)
+✔ settings pauses and resumes the same detail card with fresh inputs (5.961038ms)
+✔ detail controls retain native keyboard behavior and release held movement after focus changes (9.523369ms)
+✔ closed/disposed maps reject new cards, and re-open starts with the existing player view (7.515471ms)
+✔ ambiguous side-items cannot offer name-only travel even when the existing target map resolves (5.90259ms)
+✔ ambiguous canvas-labels cannot offer name-only travel even when the existing target map resolves (5.015455ms)
+✔ ambiguous layout-and-side cannot offer name-only travel even when the existing target map resolves (7.880162ms)
+✔ travel cancels a mouse drag that exits and re-enters the button near its press point (5.819428ms)
+✔ non-hover touch pointerleave after a valid release retains its native click (6.215484ms)
+✔ authored standing, seated and kneeling bodies have distinct height/footprint and finite rotated parts (3.722108ms)
+✔ owner-scoped dynamic bodies do not become architectural colliders, supports or broadphase entries (12.446332ms)
+✔ player swept walking/sprinting cannot tunnel through a standing person but can leave an initial overlap (189.366575ms)
+✔ NPC swept proposals detect a player even when both endpoint bodies are clear (5.585721ms)
+✔ short grazing player chord cannot cut a capsule between clear endpoints; overlap escape cannot cross through the centre (2.210707ms)
+✔ dynamic vertical sweep blocks upward and downward penetration without making an architectural ground (0.490577ms)
+✔ invalid or duplicate dynamic records fail atomically, owners clear independently and static clear removes all bodies (1.003337ms)
+✔ bounded dynamic channel accepts128 synthetic bodies and rejects129 without discarding the prior valid set (8.797692ms)
+✔ a stationary player blocks the actual patrol, bounded retreat stays on route, then resume has no catch-up (29.809682ms)
+✔ mutual player/NPC sweep, formation=1, dt=0.016666666666666666 (171.340686ms)
+✔ mutual player/NPC sweep, formation=1, dt=0.1 (39.107091ms)
+✔ mutual player/NPC sweep, formation=3, dt=0.016666666666666666 (47.960541ms)
+✔ mutual player/NPC sweep, formation=3, dt=0.1 (24.528573ms)
+✔ turning away never removes a near body; toggles, background, revisions and missing support clear ownership (1.883663ms)
+✔ late support activation overlapping a teleported player waits rather than materializing around them (0.682872ms)
+✔ flight callback null is not replaced by follow-camera position (0.947735ms)
+✔ a patrol at route-clock zero resumes after a near-start pedestrian leaves (3.481672ms)
+✔ elevated retreat sweeps the same facing that it commits, including legs (0.443938ms)
+✔ low-tier suppression then high restoration waits when the player occupies an omitted role (6.733623ms)
+✔ near render-budget suppression is a fresh physical activation on restoration (0.400383ms)
+✔ background-cleared bodies recheck an occupied spawn on resume without refading clear actors (0.427244ms)
+✔ UTC+08 rest schedule crosses midnight with exact 21:00 and 06:00 boundaries (1.366746ms)
+✔ all 108 IDs retained, all 28 women assigned sleep role, only one emperor (0.265694ms)
+✔ near actor waiting for its exact pose geometry is not an invisible dynamic blocker (61.182217ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 55
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2794.627732

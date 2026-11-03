@@ -2,7 +2,7 @@
   "schema": "existing-b-principal-stair-contacts-v1",
   "basisCommit": "e64098e80ba563d15af78f410df2b6f1298e6f26",
   "basisInventorySHA256": "f9c5c2c4f9d082aff43f43a78c01f027cee40d15f597b38159a78990c5643da4",
-  "scope": "Existing registered surfaces only. No survey claim, new surface or changed geometry. Three halls exclude throne/dais; Original 57 records retain their values. Four existing pavilion side slopes and four landings additionally permit the guarded engineering links; upper storeys remain excluded.",
+  "scope": "R163 adds six gameplay ramps to existing central imperial stones and re-anchors the two Taihe side stairs to their central bays; other original surfaces retain their values. Three halls exclude throne/dais; pavilion engineering links are guarded and upper storeys excluded. Locations are fits, not surveys.",
   "groups": [
     {"id":"three-halls","surfaces":[
       {"id":"three-halls/retained-0","type":"box","min":[-65,2.6666666666666665,-54],"max":[65,2.6666666666666665,23.5]},
@@ -39,9 +39,9 @@
       {"id":"three-halls/baohe-north-separated-approaches:3:inner:1","type":"ramp","axis":"z","minX":1.535,"maxX":3.035,"minZ":167.06666666666666,"maxZ":171.33333333333334,"a0":167.06666666666666,"a1":171.33333333333334,"y0":8,"y1":5.333333333333333},
       {"id":"three-halls/baohe-north-separated-approaches:3:outer:1","type":"ramp","axis":"z","minX":9.649999999999999,"maxX":13.350000000000001,"minZ":167.06666666666666,"maxZ":171.33333333333334,"a0":167.06666666666666,"a1":171.33333333333334,"y0":8,"y1":5.333333333333333},
       {"id":"three-halls/retained-33","type":"box","min":[-33,9.9375,-20],"max":[33,9.9375,20]},
-      {"id":"three-halls/taihe-south-separated-approaches:plinth:-10.5","type":"ramp","axis":"z","minX":-12.55,"maxX":-8.45,"minZ":-23.1,"maxZ":-20,"a0":-20,"a1":-23.1,"y0":9.9375,"y1":8},
+      {"id":"three-halls/taihe-south-separated-approaches:plinth:-7.0061","type":"ramp","axis":"z","minX":-9.0561,"maxX":-4.9561,"minZ":-23.1,"maxZ":-20,"a0":-20,"a1":-23.1,"y0":9.9375,"y1":8},
       {"id":"three-halls/taihe-south-separated-approaches:plinth:0","type":"ramp","axis":"z","minX":-2.05,"maxX":2.05,"minZ":-23.1,"maxZ":-20,"a0":-20,"a1":-23.1,"y0":9.9375,"y1":8},
-      {"id":"three-halls/taihe-south-separated-approaches:plinth:10.5","type":"ramp","axis":"z","minX":8.45,"maxX":12.55,"minZ":-23.1,"maxZ":-20,"a0":-20,"a1":-23.1,"y0":9.9375,"y1":8},
+      {"id":"three-halls/taihe-south-separated-approaches:plinth:7.01335","type":"ramp","axis":"z","minX":4.96335,"maxX":9.06335,"minZ":-23.1,"maxZ":-20,"a0":-20,"a1":-23.1,"y0":9.9375,"y1":8},
       {"id":"three-halls/retained-37","type":"ramp","axis":"z","minX":-5.55,"maxX":5.55,"minZ":20,"maxZ":23.1,"a0":20,"a1":23.1,"y0":9.9375,"y1":8},
       {"id":"three-halls/retained-68","type":"box","min":[-14,8.6,51],"max":[14,8.6,79]},
       {"id":"three-halls/retained-69","type":"ramp","axis":"x","minX":-14.96,"maxX":-14,"minZ":63.150000000000006,"maxZ":66.85,"a0":-14,"a1":-14.96,"y0":8.6,"y1":8},
@@ -55,7 +55,13 @@
       {"id":"three-halls/baohe-individual-north-plinth:inner:-1","type":"ramp","axis":"z","minX":-2.7,"maxX":-1.45,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8},
       {"id":"three-halls/baohe-individual-north-plinth:outer:-1","type":"ramp","axis":"z","minX":-8.250000000000002,"maxX":-4.55,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8},
       {"id":"three-halls/baohe-individual-north-plinth:inner:1","type":"ramp","axis":"z","minX":1.45,"maxX":2.7,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8},
-      {"id":"three-halls/baohe-individual-north-plinth:outer:1","type":"ramp","axis":"z","minX":4.55,"maxX":8.250000000000002,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8}
+      {"id":"three-halls/baohe-individual-north-plinth:outer:1","type":"ramp","axis":"z","minX":4.55,"maxX":8.250000000000002,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8},
+      {"id":"three-halls/central-stone:zhonghe-south","type":"ramp","axis":"z","minX":-1.8499999999999999,"maxX":1.8499999999999999,"minZ":50.04,"maxZ":51,"a0":51,"a1":50.04,"y0":8.6,"y1":8},
+      {"id":"three-halls/central-stone:zhonghe-north","type":"ramp","axis":"z","minX":-1.8499999999999999,"maxX":1.8499999999999999,"minZ":79,"maxZ":79.96,"a0":79,"a1":79.96,"y0":8.6,"y1":8},
+      {"id":"three-halls/central-stone:baohe-plinth","type":"ramp","axis":"z","minX":-1.45,"maxX":1.45,"minZ":137.2,"maxZ":138.79999999999998,"a0":137.2,"a1":138.79999999999998,"y0":9,"y1":8},
+      {"id":"three-halls/central-stone:baohe-north-1","type":"ramp","axis":"z","minX":-1.535,"maxX":1.535,"minZ":178,"maxZ":194.35401445789043,"a0":178,"a1":194.35401445789043,"y0":2.6666666666666665,"y1":0},
+      {"id":"three-halls/central-stone:baohe-north-2","type":"ramp","axis":"z","minX":-1.535,"maxX":1.535,"minZ":172.53333333333333,"maxZ":176.8,"a0":172.53333333333333,"a1":176.8,"y0":5.333333333333333,"y1":2.6666666666666665},
+      {"id":"three-halls/central-stone:baohe-north-3","type":"ramp","axis":"z","minX":-1.535,"maxX":1.535,"minZ":167.06666666666666,"maxZ":171.33333333333334,"a0":167.06666666666666,"a1":171.33333333333334,"y0":8,"y1":5.333333333333333}
     ]},
     {"id":"tiren","surfaces":[
       {"id":"tiren/retained-0","type":"box","min":[-107.60000000000001,3.6999999999999997,-140.95],"max":[-80.1,3.6999999999999997,-77.64999999999999]},

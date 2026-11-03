@@ -24,7 +24,26 @@ node --test tests/r158-taihemen-open/component.test.mjs tests/r158-taihemen-open
 node tests/r158-taihemen-open/export-cpu.mjs /tmp/r158-taihemen-open-cpu
 python tests/r158-taihemen-open/render-cpu.py /tmp/r158-taihemen-open-cpu/after.json.gz docs/photo-fidelity/r158-taihemen-open/after.png
 ```
-Before comparison fixture currently reads the locked sibling `r158-wenhua-route-1821` source at c376ef09; preserve this identity or provide an equivalent base checkout before replaying old-vs-new component/CPU comparisons. Normal World test uses only this candidate's production source. No raw World logs or user screenshot need be published.
+Before comparison now imports `tests/r158-taihemen-open/frozen-parent.mjs`. It authenticates the exact c376ef094e0377ecee183a31252d3eadb95c54a2 nine-file dependency graph using the existing original commit/tree/blob reader and the tracked snapshot. It never reads the old mutable sibling directory. Fresh Git clones need neither that original commit object nor a sibling checkout. Current production modules and every original assertion remain unchanged. Normal World test still uses this candidate's production source; it was not rerun for this test-loading change.
 
 ## Independent-review correction
 Astra found that raw `checkCollision(to,from)` is continuous for triangle/dynamic actors but only endpoint-checks ordinary boxes. New central thin-Box test, with both endpoints explicitly clear, reproduced a true RED. The helper now reuses the existing `wumenJointBodySweep`, including ordinary continuous body checks, rather than claiming old-route negatives cover the new route. Production change is only this local helper import/call. After correction: five new components plus all nine unchanged old stair tests pass (14/14); four actual complete Taihemen-host central roundtrips pass, 1,969 frames, same max 0.24434904644233946m gap. This lightweight post-review host replay is NOT a new full World run. The six-route normal World evidence above belongs to pre-review f0561d96; cumulative normal World on final source is left to the unique integrator. Review RED/GREEN and host raw SHA are in summary.json. No tolerances widened, geometry/material/CPU unchanged.
+
+
+## Historical-source portability correction (2026-11-03)
+
+The formerly hard-coded sibling had advanced from c376 to41944818. Two comparisons then failed because the supposed old geometry already lacked the removed barriers/placeholder. This was a drifting test input, not a current game regression.
+
+The tracked c376 manifest covers only the nine static source dependencies of the old approach builder, not all c376 source. It includes authentic original commit/tree objects, exact blob identities, SHA256 and byte lengths. Five blobs are new; four reuse already versioned originals. The reader and production source are unchanged. Historical modules load into a separate test-only namespace; all current source imports remain current.
+
+Run the bounded checks (do not glob in world.test.mjs):
+
+```
+node --test --test-concurrency=1 tests/r158-taihemen-open/component.test.mjs tests/r158-taihemen-open/review-contact.test.mjs tests/r158-taihemen-open/portable-parent.test.mjs
+```
+
+The10new tests cover an isolated no-original-history repository, all5original assertions without a sibling checkout, missing/changed manifest, missing/changed/symlink source, changed bytes after module caching, and two actual regression injections. Restoring a visible/collidable fence and corrupting dragon UVs in separate in-memory child runs must fail the unchanged original assertions. Neither injection writes game files. The barrier injection also records the fence in its profile so the first small-object assertion fails without formatting the entire Three scene in an assertion diff.
+
+An initial child runner inherited Node's test-worker context and skipped nested runs; the harness now explicitly starts an independent runner. An earlier large-object barrier failure was terminated by SIGKILL and was not accepted as a negative-control pass. Final negative controls require ERR_ASSERTION and exactly one failed original test, not a crash, timeout or import error.
+
+This change repairs test reproducibility only. No game behavior, visuals, physics, deploy settings or original tolerances changed. It does not add World/GPU/mobile evidence or make all historical suites portable. The existing742 clean build remains evidence for its exact runtime bytes, not a newly built source commit.

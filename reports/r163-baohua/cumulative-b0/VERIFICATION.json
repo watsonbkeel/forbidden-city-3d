@@ -1,0 +1,118 @@
+{
+  "status": "BOUNDED_AUTHOR_VERIFICATION_COMPLETE_WITH_ONE_REPRODUCED_OLD_BASELINE_COUNT_FAILURE",
+  "targetSourceCommit": "434016cd28a7be0fccfe098ca9c604a074e46254",
+  "repairBase": "b0b055479c35b74804dce8edab5a4afbb0af29e2",
+  "productionChangedInVerification": false,
+  "sourceHashBaohua": "0d4d87b0e1cbfdebc33a48662b8a4c02a3b6262de39a8f815b339e125b10b64d",
+  "historicalEc50FixtureSHA256": "18cbbfb3018b4df344c04af2f3a31300598b2e38f24f57eba84fc79fea3bae3f",
+  "separateB0FixtureSHA256": "8829ec07af6f0b77021a5720663bf5d2682ef5016d6ae9c428dd56624f49282d",
+  "strictNormalWorld": {
+    "passed": 1,
+    "routes": 52,
+    "recordedMovementFrames": 77501,
+    "nativeContacts": 0,
+    "realBlockedNegatives": 8,
+    "singleRealWallSensitivity": {
+      "arrived": true,
+      "end": [
+        207.41559343808515,
+        373,
+        0.600000011920929
+      ],
+      "scope": "Only a short supported low-stone ownership probe, not an admitted interior route"
+    },
+    "oldStreamExactlyEqualsIndependentB0": true,
+    "oldEc50AndRoofPrefixPreserved": true,
+    "newGeometry": {
+      "meshes": 9,
+      "triangles": 8792
+    },
+    "newOwners": 115,
+    "newLowNonRescueTops": 8,
+    "completeNewEnvelopeOldTriangles": 0,
+    "silhouette": {
+      "oldPositionScalars": 70269,
+      "newPositionScalars": 5676,
+      "oldIndices": 124656,
+      "newIndices": 11496
+    },
+    "maxNaturalFeetGroundDifference": 0.4203333452542754
+  },
+  "focusedChecks": {
+    "component": {
+      "files": 15,
+      "tests": 72,
+      "pass": 72,
+      "fail": 0
+    },
+    "diagnostic": {
+      "files": 1,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0
+    },
+    "local-controller": {
+      "files": 1,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0
+    },
+    "prior-repair": {
+      "files": 7,
+      "tests": 230,
+      "pass": 229,
+      "fail": 1
+    }
+  },
+  "localController16": {
+    "variants": 16,
+    "frames": 4109,
+    "nativeContacts": 0,
+    "actualBlockedNegatives": 2
+  },
+  "knownBaselineFailure": {
+    "test": "exact allowlist reanchors only two Taihe side stairs and retains all other surfaces, not dais or upper floors",
+    "file": "tests/photo-fidelity/batches/b-principal-stair-contact.test.mjs",
+    "sourceTestSHA256": "4be2b3fdd405702a3689f10f70ba76ebb08c760d68a2cecb6c8c29c277822008",
+    "candidate": {
+      "tests": 9,
+      "pass": 8,
+      "fail": 1,
+      "actual": 71,
+      "expected": 65
+    },
+    "independentExactB0Control": {
+      "tests": 9,
+      "pass": 8,
+      "fail": 1,
+      "actual": 71,
+      "expected": 65
+    },
+    "attribution": "Same stale owned-walkable count on exact no-Baohua b0 control; six legal central contact additions, not a Baohua regression. Old assertion retained unchanged; this testcase stops at its first count assertion so later assertions are not claimed executed.",
+    "noFullSuiteClaim": true
+  },
+  "cleanBuild": {
+    "schema": 1,
+    "release": "R163",
+    "buildId": "R163-a1f89617f00b",
+    "sourceFingerprint": "bf74bd8c7fdca4f821871c79cb2498fbf56e3bf47b3488211aef3cfcad65fd2f",
+    "sourceCommit": "434016cd28a7be0fccfe098ca9c604a074e46254",
+    "sourceDirty": false,
+    "base": "/"
+  },
+  "localHTTP": {
+    "files": 137,
+    "bytes": 44273309,
+    "allFileBytesAndSHA256Match": true,
+    "root": 200,
+    "missing": 404,
+    "remote": false
+  },
+  "executionAttribution": "All current b0 baseline capture, target World, focused tests, build and localHTTP author executed. Previous Astra source/body/local observations are only prior orally reported scope; no fabricated current independent attachment.",
+  "limits": [
+    "CPU production geometry/physics only; no GPU/PBR/browser/mobile/Mac heat/full streaming/full history/whole-building or real admission acceptance",
+    "NPC scoped footprint fix verified; original full Chuxiu map-teleport freeze still not reproduced and not claimed fixed",
+    "Historical full-suite failures not rerun or relabeled green",
+    "No remote upload/main/Pages operation by this author"
+  ]
+}

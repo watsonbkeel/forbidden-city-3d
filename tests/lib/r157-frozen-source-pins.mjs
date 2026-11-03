@@ -1,5 +1,6 @@
 // Generated from original Git objects; these identities require explicit review to change.
 export const R157_FROZEN_SOURCE_PINS=Object.freeze({
+  "c376ef094e0377ecee183a31252d3eadb95c54a2": "78a22d168e81c0e5d1317813c24ac7f9158dc1117034263429c031965eb14ef1",
   "c9b25a712e286877f2abbc88f4522add3fc0caea": "a18083d218638fa05693dea1cc98dcd10cccb53ac86bc3f32a7e460f31c17dff",
   "929e346745b7295ad1aae0caa581e8cdf22723ff": "88575241172d49219b7d5411665904d023ea3def50bb0a67ad3a34a1f19e7392",
   "4d614c22a8318027e51e149e435a3198f78ca4e5": "cc8fefd7c77ae3d7245bd767a1e3fd272d5b195914878b78f32d4439ce4192a5",

@@ -1,0 +1,76 @@
+{
+  "basisCommit": "ec50ea010340dc3b04f18ec052f36a05c3862702",
+  "productionFiles": [
+    "src/scene/palace/ZhongheImperialApproach.js",
+    "src/scene/palace/BaoheHallPlinth.js",
+    "src/scene/palace/BaoheNorthApproaches.js",
+    "src/scene/palace/CentralStoneContactBounds.js",
+    "src/scene/palace/BPrincipalStairContact.js",
+    "data/architecture/b-practical-stair-contacts.json"
+  ],
+  "tdd": {
+    "originalCentralTraversal": {
+      "pass": 0,
+      "fail": 24
+    },
+    "addedGroundContact": {
+      "beforeGroundGapChecksFailed": 20
+    },
+    "seamGroundContact": {
+      "beforeSeamChecksFailed": 64
+    },
+    "finalFocused": {
+      "pass": 155,
+      "fail": 0
+    }
+  },
+  "routes": {
+    "count": 152,
+    "centralAndSeams": 88,
+    "leftRightControls": 64,
+    "allArrived": true,
+    "centralAndSeamMaxFeetGroundGap": 0
+  },
+  "preservation": {
+    "unchangedMeshes": {
+      "count": 73,
+      "sha256": "9b66afe97973c47729616833d62e015822cf2eda62cf870c4e7bacd57a6934f5"
+    },
+    "unchangedColliders": {
+      "count": 1577,
+      "sha256": "d21682dd396c4043d02db14c17f0bc3e96ef2c04f2b80095273968a033358218"
+    },
+    "unchangedWalkables": {
+      "count": 101,
+      "sha256": "b29299572ac497029bfb4250b8c6ff064e1fd0bcf8681c65dbe7c3d2828b061c"
+    }
+  },
+  "aggregate": {
+    "baselineCommand": "npm run test:current-state",
+    "baseline": {
+      "tests": 1153,
+      "pass": 875,
+      "fail": 278
+    },
+    "laterParallelSample": {
+      "tests": 1145,
+      "pass": 865,
+      "fail": 280
+    },
+    "comparison": "Not a clean pass or a stable failure comparison. Parallel runs exhibited unrelated fixture failures/resource-dependent file initialization. A serial baseline checkout attempt failed for disk capacity and does not establish a result."
+  },
+  "acceptance": "CPU production movement/collision and unchanged render geometry only; not GPU/browser/mobile acceptance.",
+  "finalBuild": {
+    "status": "NOT_VERIFIED",
+    "ordinaryAttemptExit": 137,
+    "ordinaryAttemptStage": "vite transforming / process killed",
+    "bounded512MBAttemptExit": 134,
+    "boundedAttemptReason": "JavaScript heap out of memory",
+    "next": "Run final integrated build serially after other heavy World checks finish."
+  },
+  "legacyBaohePlinth": {
+    "pass": 43,
+    "fail": 1,
+    "existingFailure": "full world connects8m shared terrace to9m hall through every registered north strip: Fengxian existing dimensions/platform mismatch"
+  }
+}

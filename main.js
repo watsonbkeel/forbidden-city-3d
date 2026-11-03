@@ -1,3 +1,5 @@
+import { TourFailureNotice } from './src/ui/TourFailureNotice.js';
+import { readQualityPreference, writeQualityPreference } from './src/render/QualityPreference.js';
 import { TourFrameScheduler } from './src/render/TourFrameScheduler.js';
 import { readPerformanceMode, writePerformanceMode, performancePixelRatio } from './src/render/TourPerformancePreference.js';
 import {setBuildingDetailQuality} from './src/render/BuildingDetailQuality.js';
@@ -47,10 +49,10 @@ class ForbiddenCityApp {
     this.postProcessing = null;
     this.collisionManager = null;
     
-    this.currentQuality = 'high';
     this.performanceMode = readPerformanceMode();
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
       (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    this.currentQuality = readQualityPreference(this.isMobile ? 'low' : 'high');
     this.lastLocation = null;
     this.lastShadowUpdate = 0;
     this.shadowObjects = [];
@@ -95,7 +97,7 @@ class ForbiddenCityApp {
     // LoadingManager 不会自动收到进度，onLoad 也不会触发（之前加载界面卡在 0% 的根因）。
     // 这里把每个构建步骤手动登记到 LoadingManager：先全部 itemStart，每完成一步 itemEnd，
     // 这样 onProgress 能正常推进进度条，最后一步完成时 onLoad 自动触发并关闭加载界面。
-    const quality = this.isMobile ? 'low' : 'high';
+    const quality = this.currentQuality;
     const steps = [
       ['渲染器', () => {
         this.createScene();
@@ -203,7 +205,7 @@ class ForbiddenCityApp {
         this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);
         this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,
           collisionManager:this.collisionManager,zoneManager:this.zoneManager,envelope:this.flightEnvelope,
-          isPaused:()=>this.settingsTourSession?.paused === true,
+          isPaused:()=>this.frameFailureHandled === true || this.settingsTourSession?.paused === true,
           onModeChange:occupied=>this.onFlightModeChange(occupied)});
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
@@ -303,7 +305,7 @@ class ForbiddenCityApp {
     });
     
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(this.getPixelRatio(this.isMobile ? 'low' : 'high'));
+    this.renderer.setPixelRatio(this.getPixelRatio(this.currentQuality));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     // 电影感色调映射：高光不过曝、红墙黄瓦饱和度自然
@@ -410,6 +412,8 @@ class ForbiddenCityApp {
       },
       onQualityChange: (quality) => {
         this.toggleQuality(quality);
+        // Persist only this explicit UI choice, not startup or programmatic changes.
+        writeQualityPreference(quality);
       },
       onSoundToggle: (enabled) => {
         if (!enabled) {
@@ -473,6 +477,7 @@ class ForbiddenCityApp {
   }
 
   resetAnimationClock(now) {
+    if (!document.hidden && this.checkGraphicsContext()) return;
     // Idle aircraft recycling is a visible-tour timer, not a background timeout.
     if (document.hidden) {
       if (this.hiddenSince === undefined) this.hiddenSince = now;
@@ -492,14 +497,64 @@ class ForbiddenCityApp {
     // Do not change positions, airborne state, flight route, map mode or pointer lock.
   }
 
+  bindGraphicsContext() {
+    const canvas = this.renderer?.domElement;
+    if (this.disposed || !canvas || this.contextCanvas === canvas) return;
+    this.unbindGraphicsContext();
+    this.contextCanvas = canvas;
+    this._onContextLost = event => {
+      if (this.disposed) return;
+      // Preserve the renderer's own restoration handling; do not consume its event.
+      event.preventDefault();
+      this.handleFrameFailure(new Error('WebGL rendering context lost'), 'graphics');
+    };
+    canvas.addEventListener('webglcontextlost', this._onContextLost);
+  }
+
+  unbindGraphicsContext() {
+    this.contextCanvas?.removeEventListener('webglcontextlost', this._onContextLost);
+    this.contextCanvas = null;
+    this._onContextLost = null;
+  }
+
+  checkGraphicsContext() {
+    if (this.disposed || this.frameFailureHandled) return true;
+    if (this.renderer?.getContext?.()?.isContextLost?.() !== true) return false;
+    this.handleFrameFailure(new Error('WebGL rendering context is lost'), 'graphics');
+    return true;
+  }
+
   startAnimationLoop() {
-    if (this.disposed) return;
+    if (this.disposed || this.frameFailureHandled) return;
+    this.bindGraphicsContext();
+    if (this.checkGraphicsContext()) return;
     if (!this.frameLoop) this.frameLoop = new TourFrameScheduler({
       mode: this.performanceMode,
       onFrame: (now, dt) => this.animate(now, dt),
       onReset: now => this.resetAnimationClock(now),
+      onError: error => this.handleFrameFailure(error),
     });
     this.frameLoop.start();
+  }
+
+  handleFrameFailure(error, reason = 'frame') {
+    if (this.disposed || this.frameFailureHandled) return;
+    this.frameFailureHandled = true;
+    this.frameFailure = error;
+    this.frameFailureReason = reason;
+    // Context loss arrives outside onFrame, so this boundary must stop RAF itself.
+    this.frameLoop?.dispose();
+    console.error(reason === 'graphics' ? '图形显示已中断，游览已停止' : '游览主帧异常，已停止更新', error);
+    // Retire the earlier window/focus owner without resuming the failed tour.
+    // Restore its background snapshot before the recovery dialog captures it.
+    try { this.settingsMenu?.dispose(); } catch { /* Still present the recovery entry. */ }
+    // Input cleanup must not hide the original failure or prevent recovery UI.
+    try { this.controls?.stop(); } catch { /* Keep the recovery entry available. */ }
+    if (this.controls) this.controls.jumpQueued = false;
+    try { this.flight?.clearInput(); } catch { /* Keep the recovery entry available. */ }
+    try { this.controls?.unlock(); } catch { /* Pointer lock can also be lost externally. */ }
+    this.failureNotice ??= new TourFailureNotice(document.body);
+    this.failureNotice.show(reason);
   }
 
   toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
@@ -672,7 +727,9 @@ class ForbiddenCityApp {
 
   dispose() {
     this.disposed = true;
+    this.unbindGraphicsContext();
     this.frameLoop?.dispose();
+    this.failureNotice?.dispose();
     this.characters?.dispose();
     this.roomNightLights?.dispose();
     this.flight?.dispose();

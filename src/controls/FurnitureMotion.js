@@ -249,6 +249,23 @@ function bodySweep(cm,fromFeet,toFeet,radius,height,staticMemo=null){
   return first;
 }
 export function furnitureBodySweep(cm,fromFeet,toFeet,radius=.5,height=PLAYER.HEIGHT){return bodySweep(cm,fromFeet,toFeet,radius,height);}
+const blockedQianqingHandoffs=new WeakMap();
+/** The native stair solver tracks a logical floor while the camera feet ease
+ * upward. On entry to Qianqing's exact-contact domain, preserve that existing
+ * live floor before switching to exact feet. Never rescue an airborne player,
+ * invent a support, or lift through any static/dynamic body. */
+export function qianqingGroundedFloorHandoff(cm,from,to,ground,motion,radius=.5){
+  if(motion?.kind!=='player'||motion.airborne||!Number.isFinite(ground)||from.y>=ground||ground-from.y>(PLAYER.STEP_UP??.6))return null;
+  const source=furnitureMotionSource(cm);
+  const floor=furnitureRegionIndex(cm).regions.find(r=>r.kind==='qianqing-assemblies'&&r.floor?.height===ground&&registeredQianqingFloor(source,r,from.x,from.z,radius)&&registeredQianqingFloor(source,r,to.x,to.z,radius));
+  if(!floor)return null;
+  const raised=from.clone();raised.y=ground;
+  if(furnitureBodySweep(cm,from,raised,radius)){
+    blockedQianqingHandoffs.set(cm,ground);
+    return false; // Applicable but blocked, never fall back to a lower floor.
+  }
+  return ground;
+}
 export function furnitureContact(cm,x,z,maxTop,radius=.5,height=PLAYER.HEIGHT){
   const bounds=new THREE.Box3(new THREE.Vector3(x-radius,-Infinity,z-radius),new THREE.Vector3(x+radius,Infinity,z+radius));
   const owners=furnitureLocalColliders(cm,bounds).filter(c=>bounds.intersectsBox(c.box));
@@ -302,6 +319,19 @@ export function furnitureTryStep(cm,from,to,radius,stepUp,motion){
  * Dynamic impact stops velocity but is never a floor/jump-reset event. */
 export function resolveFurnitureVertical(cm,state,delta,radius=.5){
   const from=new THREE.Vector3(state.x,state.feetY,state.z);
+  const pending=blockedQianqingHandoffs.get(cm);
+  if(pending!==undefined){
+    // A blocked transition can stop just outside the exact domain. Preserve
+    // its already validated logical floor while the body-clear lift is blocked,
+    // including a queued jump, then settle normally when clearance returns.
+    // Revalidate the live floor and full body on every update; no cached support.
+    const handoff=qianqingGroundedFloorHandoff(cm,from,from,pending,{kind:'player',airborne:false},radius);
+    if(handoff!==null){
+      if(handoff!==false)blockedQianqingHandoffs.delete(cm);
+      return{...state,feetY:handoff===false?state.feetY:handoff,groundY:pending,verticalVelocity:0,airborne:false,onSupport:true,landed:false};
+    }
+    blockedQianqingHandoffs.delete(cm);
+  }
   const jiyunUpwardFeet=state.airborne&&state.feetY<3&&state.verticalVelocity>0?state.feetY+Math.max(0,state.verticalVelocity-(PLAYER.GRAVITY??14)*delta)*delta:undefined;
   if(!furnitureScope(cm,from,from,radius,state.feetY,jiyunUpwardFeet,state.feetY))return null;
   const contact=furnitureContact(cm,state.x,state.z,state.feetY,radius);

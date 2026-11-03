@@ -12,10 +12,10 @@ const pathFor=(kind,side)=>{const rows=tiers.map(t=>t.flights.find(f=>f.kind===k
 test('published exposed bottom stone and three grouped approaches remain distinct from ordinary stairs',()=>{
  assert.equal(tiers.length,3);assert.equal(flights.length,12);assert.deepEqual(tiers.map(t=>t.y1),[8/3,16/3,8]);
  near(Math.hypot(tiers[0].run,tiers[0].y1-tiers[0].y0),16.57);near(P.stoneWidth,3.07);
- assert.equal(P.publicAccessStatus,'UNKNOWN');assert.equal(P.stoneWalkingPolicy,'NO_GAMEPLAY_WALKABLE');
+ assert.equal(P.publicAccessStatus,'UNKNOWN');assert.equal(P.stoneWalkingPolicy,'GAMEPLAY_RAMP_ON_EXISTING_STONE');
  for(const t of tiers){assert.equal(t.openings.length,3);assert.equal(t.flights.length,4);assert.ok(t.flights.every(f=>f.minX*f.maxX>0));
   for(const f of t.flights){assert.equal(W.cm.walkables.filter(w=>w.type==='ramp'&&Object.keys(f.ramp).every(k=>w[k]===f.ramp[k])).length,1,f.id);assert.ok(f.maxX-f.minX>=1.5-1e-7);}
-  assert.equal(W.cm.walkables.filter(w=>w.type==='ramp'&&w.axis==='z'&&w.a0===t.zEdge&&w.minX<0&&w.maxX>0).length,0);
+  assert.equal(W.cm.walkables.filter(w=>w.type==='ramp'&&w.axis==='z'&&w.a0===t.zEdge&&w.minX<0&&w.maxX>0).length,1);
  }
 });
 for(const kind of ['inner','outer'])for(const side of [-1,1])for(const fps of [60,10])for(const sprint of [false,true])for(const backward of [false,true])test(`real controller round trip ${kind}/${side}/${fps}/${sprint}/${backward}`,t=>{
@@ -29,7 +29,7 @@ for(const f of flights)test(`missing registered ramp fails rather than platform 
  const saved=W.cm.walkables;W.cm.walkables=saved.flatMap(w=>w.type==='box'?[{...w,rescue:false}]:w.type==='ramp'&&Object.keys(f.ramp).every(k=>w[k]===f.ramp[k])?[]:[w]);
  try{const r=replayTerrace(t,W,pathFor(f.kind,f.side),{fps:10,sprint:true});assert.ok(!r.arrived||r.maxFeet<8,JSON.stringify(r));}finally{W.cm.walkables=saved;}
 });
-for(const x of [0,-6,6,-17,17])test(`stone or retaining front is not an ordinary stair at x=${x}`,()=>{
+for(const x of [-6,6,-17,17])test(`retaining front is not an ordinary stair at x=${x}`,()=>{
  const t=tiers[0],r=walkStraight(W,[x,t.zToe+1.4],[x,t.zEdge-1],{feet0:0,step:.05});assert.ok(r.reached>=0&&r.reached<r.total-.4&&r.end[1]>=t.zEdge+.49,JSON.stringify(r));assert.equal(r.feet,0);
 });
 test('near/far stairs are closed, slope toward north, and LOD never changes colliders or walks',()=>{

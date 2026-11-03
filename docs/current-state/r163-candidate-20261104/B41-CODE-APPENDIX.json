@@ -1,0 +1,1436 @@
+{
+  "schema": "r163-b41-current-code-appendix/v1",
+  "classification": "CODE_BINDING_EVIDENCE_NOT_COMPLETION_OR_ACCEPTANCE",
+  "reviewDateBeijing": "2026-11-04",
+  "runtimeBasis": {
+    "remoteCommit": "73f6e2da734c33c293b5c7559835f451e7e9a9c4",
+    "localCommit": "35f7692b3b6e3229107ed08869a1eefa24557e80",
+    "completeTree": "d7f2c2fb56d2d6123d5b65f4c1140bfe6762c275",
+    "currentSuccessorChanges": "Documentation and tests only; runtime bytes unchanged."
+  },
+  "originalLedger": {
+    "path": "docs/photo-fidelity/batches/R158-41-STATUS-0201/STATUS.json",
+    "pin": {
+      "path": "docs/photo-fidelity/batches/R158-41-STATUS-0201/STATUS.json",
+      "gitBlob": "cedeccb0372d5b9df92fe30b0d4c72373faee5cc",
+      "bytes": 25159,
+      "sha256": "9130fdc2993f423416cb39ab208d918fc26e593ed029db3f5597cf690f6c9a04"
+    },
+    "originalBasis": {
+      "localCommit": "ebe22f654a99ac5dc268b0a1f7980e95df4ecd7e",
+      "localTree": "0591e28dc67b230303d3751a65b7d1db98131756",
+      "initialCommit": "901eddb194b4658eb1401362dd73bc5c6ce26b56",
+      "remoteVerification": {
+        "commit": "9d9bd891c84724220d11135ec1e887b3e39c4df4",
+        "tree": "0591e28dc67b230303d3751a65b7d1db98131756",
+        "files": 23525,
+        "receiptSHA256": "7ae9ba881ad999edb2abcacbd7648cce6622472cc7b0906205ab958bbcd4b5b3"
+      },
+      "originalList": "docs/photo-fidelity/THIRTEEN-RELEASES.md R59-B lines49–91",
+      "method": "Read-only Git source/data/normal ZoneBase hooks and explicit metadata; no World, GPU, mobile or new acceptance test"
+    },
+    "preservedByteUnchanged": true
+  },
+  "countsNotCompletion": {
+    "主体": 19,
+    "拟合": 12,
+    "未建": 5,
+    "待核": 5
+  },
+  "countCaveats": [
+    "19主体 means visible partial implementation, not19 accepted buildings. It includes the Nansansuo aggregate.",
+    "Rows36/41 share a candidate existing OE15 shell reference; neither a second building nor an accepted identity merge is claimed.",
+    "12拟合 entries retain model/text fits and unresolved current identity; no completion rate is inferred.",
+    "No whole-object, GPU, mobile or user acceptance is asserted."
+  ],
+  "entries": [
+    {
+      "number": 1,
+      "id": "FC-CD0B5AC9DE",
+      "name": "文华殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/SouthCourtHalls.js",
+        "src/scene/palace/special/WenhuaCentralDoors.js"
+      ],
+      "mapping": "OE2",
+      "scope": "可见文华殿主体；非整殿视觉验收",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 2,
+      "id": "FC-FD3D76E74D",
+      "name": "文渊阁",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/WenyuanPavilion.js",
+        "src/scene/palace/special/WenyuanUpperSeat.js",
+        "src/scene/palace/special/WenyuanSouthVeranda.js",
+        "src/scene/palace/special/WenyuanStairHost.js",
+        "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+        "src/scene/palace/special/WenyuanGroundFans.js",
+        "src/scene/palace/special/WenyuanEntryTread.js"
+      ],
+      "mapping": "OE8",
+      "scope": "阁体、前廊及西梯已接；非完整雕饰复原",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 3,
+      "id": "FC-C8AD5BD621",
+      "name": "东华门",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/EastWestCityGate.js"
+      ],
+      "mapping": "OE21",
+      "scope": "现门体及马道；非整城墙通行声明",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 4,
+      "id": "FC-E09ED30C27",
+      "name": "内阁大堂",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeCourt.js"
+      ],
+      "mapping": "objectId",
+      "scope": "大堂及前门短院；非内阁十一项总完成",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 5,
+      "id": "FC-40EB11CF20",
+      "name": "内阁大库",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeStorehouse.js",
+        "src/scene/palace/special/NeigeSecondStorehouse.js"
+      ],
+      "mapping": "objectId / parentObjectId",
+      "scope": "两库体已存在；红本库与实录库具体对应未核",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 6,
+      "id": "FC-F608EC3356",
+      "name": "传心殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/ChuanxinHall.js"
+      ],
+      "mapping": "objectId",
+      "scope": "主殿可见主体；初始 withheldIdentities 不是累计缺建清单",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 7,
+      "id": "FC-AF36D75128",
+      "name": "箭亭",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/EnclosedPavilions.js",
+        "src/scene/palace/special/ArrowSouthHeadBands.js"
+      ],
+      "mapping": "OE19",
+      "scope": "箭亭主体及局部门头等可见修复",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 8,
+      "id": "FC-5652FA389B",
+      "name": "文华门",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/SouthCourtGates.js",
+        "src/scene/palace/special/WenhuaGateApproaches.js"
+      ],
+      "mapping": "OE0",
+      "scope": "文华门专属现体；南阶局部认证不等于全城控制器验收",
+      "wholeObjectAcceptance": "NOT_ASSERTED",
+      "historicalIncorrectPath": [
+        "src/scene/palace/special/XiqingGate.js"
+      ],
+      "dispatch": "ZoneBase.buildGate sees southGateProfile=wenhua and calls buildSouthCourtGate; final producer calls applyWenhuaGateApproaches."
+    },
+    {
+      "number": 9,
+      "id": "FC-B7C67C602B",
+      "name": "主敬殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/SouthCourtHalls.js",
+        "src/scene/palace/special/ZhujingNorthWindows.js"
+      ],
+      "mapping": "OE3",
+      "scope": "现主敬殿及北四窗；中央通路为游戏适配",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 10,
+      "id": "FC-4D5AAFEDA4",
+      "name": "本仁殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/RemainingOuterHalls.js",
+        "src/scene/palace/special/WenhuaCompanionSteps.js"
+      ],
+      "mapping": "OE4",
+      "scope": "本仁主体及真实入口短阶；尺寸拟合",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 11,
+      "id": "FC-BEE00AE333",
+      "name": "集义殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/RemainingOuterHalls.js",
+        "src/scene/palace/special/WenhuaCompanionSteps.js"
+      ],
+      "mapping": "OE5",
+      "scope": "集义主体及真实入口短阶；尺寸拟合",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 12,
+      "id": "FC-0B08F51957",
+      "name": "文华殿穿廊",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/SouthCourtHalls.js"
+      ],
+      "mapping": "OE23 southCourtProfile=wenhua-connector",
+      "scope": "无名 data 项明确为文华连接体，不是传心殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 13,
+      "id": "FC-F23B7824D4",
+      "name": "文渊阁碑亭",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/WenyuanStelePavilion.js"
+      ],
+      "mapping": "objectId",
+      "scope": "照片指导亭体与一通素碑，不猜碑文",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 14,
+      "id": "FC-905A51A8BC",
+      "name": "治牲所",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/ZhishengShell.js"
+      ],
+      "mapping": "objectId",
+      "scope": "暂定硬山外壳；官网正文硬山与词条歇山冲突仍保留",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 15,
+      "id": "FC-CE6964B462",
+      "name": "景行门",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/JingxingGate.js"
+      ],
+      "mapping": "objectId",
+      "scope": "官文形制拟合；办公室现况未复原，中央通路为游戏适配",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 16,
+      "id": "FC-73FC3BE9A7",
+      "name": "传心殿祝版房",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/ChuanxinZhubanShell.js"
+      ],
+      "mapping": "objectId",
+      "scope": "三间文字暂定体量；身份位置屋顶未核，不是内阁同名或 L 形认定",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 17,
+      "id": "FC-D852D8A192",
+      "name": "传心殿神厨",
+      "classification": "未建",
+      "evidencePaths": [
+        "src/scene/palace/special/ChuanxinHall.js"
+      ],
+      "mapping": "withheldIdentities only",
+      "scope": "无该对象正常 builder；存续官源冲突，不等于现实已拆或可任意造",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 18,
+      "id": "FC-92B6D8420A",
+      "name": "传心殿值房",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/ZhifangShell.js"
+      ],
+      "mapping": "objectId",
+      "scope": "五间文字暂定壳；屋顶颜色朝向现况均未证",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 19,
+      "id": "FC-F539E5D64D",
+      "name": "内阁汉票签房",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeTextSideWings.js"
+      ],
+      "mapping": "historicalIdentityCandidate east",
+      "scope": "东三间黄瓦厢候选；未正式绑定现存汉票签房身份",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 20,
+      "id": "FC-32A68E9C3E",
+      "name": "内阁蒙古堂",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeTextSideWings.js"
+      ],
+      "mapping": "historicalIdentityCandidate west",
+      "scope": "西三间黄瓦厢候选；未正式绑定现存蒙古堂身份",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 21,
+      "id": "FC-2C486A3479",
+      "name": "内阁汉本堂",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeHanbenTextVolume.js"
+      ],
+      "mapping": "historicalIdentityCandidate",
+      "scope": "三间文字体量；存续位置屋型开门未核，无正式 objectId 绑定",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 22,
+      "id": "FC-4A84B24027",
+      "name": "内阁满本堂",
+      "classification": "未建",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeCourt.js"
+      ],
+      "mapping": "withheldIdentities only",
+      "scope": "无独立满本堂运行体；不可重命名 UNKNOWN 旧壳凑数",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 23,
+      "id": "FC-15E0B02776",
+      "name": "内阁祝版房",
+      "classification": "未建",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeCourt.js"
+      ],
+      "mapping": "withheldIdentities only",
+      "scope": "无内阁祝版房独立运行体；不得借传心同名体替代",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 24,
+      "id": "FC-12AA4B4366",
+      "name": "内阁满票签房",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeEastTextAnnex.js"
+      ],
+      "mapping": "historicalIdentityCandidate",
+      "scope": "东四间灰瓦文字候选，非现存身份闭合",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 25,
+      "id": "FC-93081154E4",
+      "name": "内阁稽查房",
+      "classification": "待核",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeWestAnnexSegment.js"
+      ],
+      "mapping": "historicalIdentityCandidate",
+      "scope": "仅官图灰瓦红格扇可见片段；不是稽查房完整四间",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 26,
+      "id": "FC-DA0F70A4C4",
+      "name": "内阁典籍厅",
+      "classification": "未建",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeCourt.js"
+      ],
+      "mapping": "withheldIdentities only",
+      "scope": "无典籍厅独立运行体，现存与位置须另核",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 27,
+      "id": "FC-6555093DAA",
+      "name": "内阁满票签档子房",
+      "classification": "未建",
+      "evidencePaths": [
+        "src/scene/palace/special/NeigeCourt.js"
+      ],
+      "mapping": "withheldIdentities only",
+      "scope": "无满票签档子房独立运行体，不以邻接旧壳强配",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 28,
+      "id": "FC-4591AC1E97",
+      "name": "文渊阁池桥",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/SouthWaterSystem.js",
+        "src/scene/palace/special/WenyuanBridgeAxis.js",
+        "src/scene/palace/special/WenyuanPondBridgeRails.js"
+      ],
+      "mapping": "pond bridge axis",
+      "scope": "桥、支承、岸口、栏及水判定已对齐；工程轴位非测绘",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 29,
+      "id": "FC-C640AE8651",
+      "name": "南三所",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoCommonGate.js",
+        "src/scene/palace/special/NansansuoFrontHalls.js",
+        "src/scene/palace/special/NansansuoMiddleHall.js",
+        "src/scene/palace/special/NansansuoEastMiddleHall.js",
+        "src/scene/palace/special/NansansuoWestMiddleHall.js"
+      ],
+      "mapping": "OE10–18 + normal hooks",
+      "scope": "区域主体已存在，不代表九殿身份及细部全部完成",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 30,
+      "id": "FC-B0B56A63EE",
+      "name": "南三所共用宫门",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoCommonGate.js"
+      ],
+      "mapping": "objectId; OE10",
+      "scope": "共用宫门可见主体，保原墙洞",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 31,
+      "id": "FC-2E6207278C",
+      "name": "南三所东所前殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoFrontHalls.js"
+      ],
+      "mapping": "OE16; front ID",
+      "scope": "东前殿已替为三间绿歇山工程主体",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 32,
+      "id": "FC-D2A4662D07",
+      "name": "南三所东所中殿",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoEastMiddleHall.js"
+      ],
+      "mapping": "objectId",
+      "scope": "东中殿文字形制拟合，缺自身立面照，不重绑 OE17",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 33,
+      "id": "FC-4642F5088E",
+      "name": "南三所东所后殿",
+      "classification": "待核",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoNorthEaves.js"
+      ],
+      "mapping": "OE17; MIDDLE_REAR_UNRESOLVED",
+      "scope": "东侧既有北壳保留；新中殿不自动证实其后殿身份",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 34,
+      "id": "FC-C1914091EC",
+      "name": "南三所中所前殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoFrontHalls.js"
+      ],
+      "mapping": "OE14; front ID",
+      "scope": "中前殿已替为三间绿歇山工程主体",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 35,
+      "id": "FC-B875FF665E",
+      "name": "南三所中所中殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoMiddleHall.js"
+      ],
+      "mapping": "objectId; ownPhotoIdentity",
+      "scope": "官图题名中所中殿主体；位置尺寸拟合，不重绑 OE15",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 36,
+      "id": "FC-5E024932AE",
+      "name": "南三所中所后殿",
+      "classification": "待核",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoNorthEaves.js"
+      ],
+      "mapping": "OE15; MIDDLE_REAR_UNRESOLVED",
+      "scope": "OE15 is a candidate reference shared with row41; no second physical hall, accepted alias or resolved rear-hall identity is asserted.",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 37,
+      "id": "FC-172C8CBF68",
+      "name": "南三所西所前殿",
+      "classification": "主体",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoFrontHalls.js"
+      ],
+      "mapping": "OE12; front ID",
+      "scope": "西前殿已替为三间绿歇山工程主体",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 38,
+      "id": "FC-D4F3E359DE",
+      "name": "南三所西所中殿",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoWestMiddleHall.js"
+      ],
+      "mapping": "objectId; normal ZoneBase hook",
+      "scope": "901初账尚未接入；ebe 已正常接入文字形制候选，不重绑 OE13",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 39,
+      "id": "FC-3F2EBD1B02",
+      "name": "南三所西所后殿",
+      "classification": "待核",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoNorthEaves.js"
+      ],
+      "mapping": "OE13; MIDDLE_REAR_UNRESOLVED",
+      "scope": "西侧既有北壳保留；中后身份仍待核",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 40,
+      "id": "FC-33770DFDD3",
+      "name": "銮驾库",
+      "classification": "拟合",
+      "evidencePaths": [
+        "src/scene/palace/special/LuanjiaEastWing.js",
+        "src/scene/palace/special/LuanjiaSouthWing.js",
+        "src/scene/palace/special/LuanjiaEastTwoLevel.js",
+        "src/scene/palace/special/LuanjiaSouthTwoLevel.js"
+      ],
+      "mapping": "parent group / normal hooks",
+      "scope": "东、南两翼双层已接；空置内层梯板为游戏拟合，非全历史库群或现实开放",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    },
+    {
+      "number": 41,
+      "id": "FC-1DB501EB23",
+      "name": "南三所中所后殿撷芳殿",
+      "classification": "待核",
+      "evidencePaths": [
+        "src/scene/palace/special/NansansuoNorthEaves.js"
+      ],
+      "mapping": "OE15; same entity as row36",
+      "scope": "原名单明确仓库身份待核记录；不得另外复制一栋撷芳殿",
+      "wholeObjectAcceptance": "NOT_ASSERTED"
+    }
+  ],
+  "currentSourcePins": [
+    {
+      "path": "data/zones/outer-east.json",
+      "gitBlob": "9ec0daeded0d41c22ce62769ab615be25a7acd0f",
+      "bytes": 7983,
+      "sha256": "b943383090570f93772a35f39240dfdd1bccec4be265a9fb30dc40b48a956417"
+    },
+    {
+      "path": "docs/photo-fidelity/B-REVIEW/RUNTIME-BINDINGS.json",
+      "gitBlob": "469ab13e3fb1397e5bb1ad4ed039ff51b4ea0c51",
+      "bytes": 63273,
+      "sha256": "a3448c688038654d17ff5ed03391cee8f6977c534e50f610085db67d6ad22be3"
+    },
+    {
+      "path": "docs/photo-fidelity/MASTER-PROMPT.md",
+      "gitBlob": "6807a3ca9cda30807651e9fd7b8829c3d3540b62",
+      "bytes": 244402,
+      "sha256": "58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0"
+    },
+    {
+      "path": "docs/photo-fidelity/THIRTEEN-RELEASES.md",
+      "gitBlob": "224d12aaae7ff991b7665eba5ee370eefa5d21d3",
+      "bytes": 37667,
+      "sha256": "903874a607edf3e55c3c90031ed2b84312a0e753ccf5ac7a146e51e220e09ec2"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R158-41-STATUS-0201/STATUS.json",
+      "gitBlob": "cedeccb0372d5b9df92fe30b0d4c72373faee5cc",
+      "bytes": 25159,
+      "sha256": "9130fdc2993f423416cb39ab208d918fc26e593ed029db3f5597cf690f6c9a04"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R158-B41/wenhua-gate/README.md",
+      "gitBlob": "114220b4dbf579a94c1f9a3f1cac09f5556f47f8",
+      "bytes": 9413,
+      "sha256": "e77cf5676d1734c608996f16eaeaafb8ce6f3536147a57ef22f15bb6dfe65796"
+    },
+    {
+      "path": "docs/photo-fidelity/batches/R158-USER-FEEDBACK-CUMULATIVE-0243/README.md",
+      "gitBlob": "c259d043175f0ab2bf682c4927f5e3bd7515c3c9",
+      "bytes": 4032,
+      "sha256": "3ab149d85f42d807e52ce6b188f4d99b357fd3feac3ffedca29010bf0c63066b"
+    },
+    {
+      "path": "src/controls/FirstPerson.js",
+      "gitBlob": "7c4aa776ab64890840981ebd497cd27b7536fa2d",
+      "bytes": 33730,
+      "sha256": "c90de689a5710d1ed272482429b25b14774591eb0f6dd09731cf6bc8c4d5c61c"
+    },
+    {
+      "path": "src/scene/Layout.js",
+      "gitBlob": "fb2405e69fbd4724e9b5491fe4fb63ab0450401f",
+      "bytes": 7205,
+      "sha256": "bf1165d6d0c8fd2cad21d5ae6d99fe2d6af6ec66983282b6a2537c05de6427f2"
+    },
+    {
+      "path": "src/scene/palace/special/ArrowSouthHeadBands.js",
+      "gitBlob": "0d25d69f668eb857c0c77ee59e1c722b73dc643d",
+      "bytes": 11674,
+      "sha256": "45411e045a9cd9810fcc0f0552ac5276356f040fea668666488a96f709af1f22"
+    },
+    {
+      "path": "src/scene/palace/special/ChuanxinHall.js",
+      "gitBlob": "c2a4ce86413fa9f5ec9604d217f4c7ee59d33586",
+      "bytes": 9303,
+      "sha256": "84d21ec1470af467c1be496627611b4cc1bbc935dc323d2517cc256b2d838873"
+    },
+    {
+      "path": "src/scene/palace/special/ChuanxinZhubanShell.js",
+      "gitBlob": "749c9a44764f7ffd4ebad5330fee329bdad3b8a5",
+      "bytes": 6839,
+      "sha256": "4aab882ad54f2572e2373fc76d5851483490a88cacd0c58446fe5aa63d565c4d"
+    },
+    {
+      "path": "src/scene/palace/special/EastWestCityGate.js",
+      "gitBlob": "926e265aeff61041c6e3d6c7e7f8d84bd4850e20",
+      "bytes": 5734,
+      "sha256": "02b4093bb9782b1e28196770b64d1ff183db950509c701bb3c4c4417dc3e56a5"
+    },
+    {
+      "path": "src/scene/palace/special/EnclosedPavilions.js",
+      "gitBlob": "f479a0c8a2f619c08ff5ec4ae68e3cb458340570",
+      "bytes": 11468,
+      "sha256": "450c5490ca3bac819c2ade8b2c9adac2bcd8ef1decfb51b9ca1e102e4b95ea5b"
+    },
+    {
+      "path": "src/scene/palace/special/JingxingGate.js",
+      "gitBlob": "9b389723f388020e8fbfa95f24056e44ae7e80ba",
+      "bytes": 7431,
+      "sha256": "6f5690ef02ee5a05961984931149c6cdd65de8438f3352041eab6f00e53342e3"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaEastTwoLevel.js",
+      "gitBlob": "4dc35b2199933006ceb4b89183342832e9692bb6",
+      "bytes": 9613,
+      "sha256": "e06833f5bd01bacd5030d546ab2147561fe62d6f295af87446def736a49d5984"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaEastWing.js",
+      "gitBlob": "9144f09e9d11641ec396e9d77d7836b7e7a93c12",
+      "bytes": 5884,
+      "sha256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthTwoLevel.js",
+      "gitBlob": "5914f5825ec080af3d3d5f721098899caf7a5582",
+      "bytes": 9703,
+      "sha256": "2fcfda8b1081c21229c33557bfe6d0d9bf10aca19ad60f281dede9eb9f53ad8c"
+    },
+    {
+      "path": "src/scene/palace/special/LuanjiaSouthWing.js",
+      "gitBlob": "644bd73f7ad6231a2129faef10b17c1dc7f4f0ac",
+      "bytes": 6191,
+      "sha256": "35120125795a71fdbc489064d17474605a8d9ec5540e885682c8a471d1b3c7d2"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoCommonGate.js",
+      "gitBlob": "9a785fe7247615ff1bd70264d9dc683ac6190b58",
+      "bytes": 9753,
+      "sha256": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoEastMiddleHall.js",
+      "gitBlob": "98bf5d80a2e56c7cbd9d9a30845762b41445a2d2",
+      "bytes": 7205,
+      "sha256": "f4d41c0c771e1887433b027b2ab9192f38c49acdc9edeb7d78e77f204778969b"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoFrontHalls.js",
+      "gitBlob": "2a24d072b9318bf706c820f7a988a2d4391e43e0",
+      "bytes": 9932,
+      "sha256": "e5ab91c9ab3281e402c184a722ebb6de7fc9c04165c45134babae1ab2248c5e6"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoMiddleHall.js",
+      "gitBlob": "7ab9b3044cd857475168bf118445b72b85e9bede",
+      "bytes": 7167,
+      "sha256": "836d249512f22385365be7cd9570fbce6c82527ef25bc37029a84e931f15ede8"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoNorthEaves.js",
+      "gitBlob": "9585ffdc08714c424a886f54db6092d8525e1506",
+      "bytes": 14361,
+      "sha256": "edd9740d3d1f964681519e66c3b1a5b6713af4462fbd50ab3bc7014ef1124f49"
+    },
+    {
+      "path": "src/scene/palace/special/NansansuoWestMiddleHall.js",
+      "gitBlob": "f1987ba0d9c75e2df9a28dea08943775b34ab9de",
+      "bytes": 7205,
+      "sha256": "5e881ab17840f1eb65aaeef75ef964b08738916c57594da29c7501035cf9a860"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeCourt.js",
+      "gitBlob": "63b57d5e061607461249b9e38fdce90a4ff1be35",
+      "bytes": 11002,
+      "sha256": "80fe42ee6fc913b6735a328761f6b1c93ce2517bf46cc5f3e108ed9c07697d5a"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeEastTextAnnex.js",
+      "gitBlob": "c4225a4d12e6fe2f5d1e5d352409f680fc9038b6",
+      "bytes": 9996,
+      "sha256": "f397c8752a812625b3266c5959428463ca0a512ce6ea7bebc19b58cf93eae1dc"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeHanbenTextVolume.js",
+      "gitBlob": "23429d34651b04d17322fac1a8381e6e4718594e",
+      "bytes": 7444,
+      "sha256": "42f9a6e276b84d523d7c6e61052c1bb9f3f9324aa5da705d1179ba3d68c7d045"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeSecondStorehouse.js",
+      "gitBlob": "856964bd9dafc0153c3edd53c54912784a0d80f2",
+      "bytes": 11348,
+      "sha256": "d81ccfd729059894621e2221ea1e4cd25e39943f7d76e3f11aedebc7a58befcc"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeStorehouse.js",
+      "gitBlob": "1cdc9fee9f4edd24e6f4ea2167ec0db2fafe7092",
+      "bytes": 9600,
+      "sha256": "a87b03a3850a5497a23860eb1819d745b24c1834b5b817a3fb23aa0dd8162960"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeTextSideWings.js",
+      "gitBlob": "6a0a1ef7597789ea9bd3c3c1d7d3af82dc73fa19",
+      "bytes": 8643,
+      "sha256": "77b18d69439f685759c16198bc72a1b71ee22663603825bc3112b19eb8237087"
+    },
+    {
+      "path": "src/scene/palace/special/NeigeWestAnnexSegment.js",
+      "gitBlob": "da7f7beca72f9e8ddd1497e0525c456ef835e3cb",
+      "bytes": 7370,
+      "sha256": "424918bb5f57fdec655c45406c7e3bd5a06b003a893a64ffe1d1ae2743f1bc45"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingOuterHalls.js",
+      "gitBlob": "4c216a5f139be6ffe8b5679a27e33598e55727f7",
+      "bytes": 145664,
+      "sha256": "3f819ce60f913d4121f8147b16f11f3ad92d9c43198eb3268d9540e9d3f6f2d5"
+    },
+    {
+      "path": "src/scene/palace/special/SourceGuidedNameboardMounts.js",
+      "gitBlob": "65c3ac99ffb95e848262862428bee41c7a29af5b",
+      "bytes": 7199,
+      "sha256": "85c3e2da76c026987d93f54e10122b923351884917f32c11b7590e2ede479598"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtGates.js",
+      "gitBlob": "68440c11671fdfef12fc1dcb2c7cce262996df99",
+      "bytes": 3746,
+      "sha256": "63bbc6569067a0aa7605c68d758cf6388dd6a910586ca8371149971c5aa4b45c"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtHalls.js",
+      "gitBlob": "c4261bacc46b29fc7102ee08be01030ab7458b99",
+      "bytes": 5584,
+      "sha256": "b3693e40a06e5377a88f1af36923f9bb6a383eb4ae62c128a7597178f1e6400b"
+    },
+    {
+      "path": "src/scene/palace/special/SouthCourtProfiles.js",
+      "gitBlob": "088f54a60db727920090b7be297f985dfd7b1294",
+      "bytes": 4880,
+      "sha256": "c56a3ea0b3ff822798ed6cba2b21ec1df85583de365086696ac17fe3ce7e40be"
+    },
+    {
+      "path": "src/scene/palace/special/SouthWaterSystem.js",
+      "gitBlob": "1f396c9cbe4ce4754a6bd080e640fec6bcdfd83a",
+      "bytes": 17160,
+      "sha256": "da5c71a19ebdf6adba82f6948e729e819eee2d1e9e102ab6984496fba7fc4912"
+    },
+    {
+      "path": "src/scene/palace/special/WenhuaCentralDoors.js",
+      "gitBlob": "ffd5f097d7312a4b230b18e59ef26a50d6ce3768",
+      "bytes": 9640,
+      "sha256": "f89fcb8c4dea871992020c7854ac227bf6f54f82f4a28512670f259f16cdf5ca"
+    },
+    {
+      "path": "src/scene/palace/special/WenhuaCompanionSteps.js",
+      "gitBlob": "091e65083fdea814711d608429be39b2810cc9ba",
+      "bytes": 3237,
+      "sha256": "47d085ee124cf540d194cf66b2d3daa67ce2a53a4d3d254780a2616b38125a12"
+    },
+    {
+      "path": "src/scene/palace/special/WenhuaGateApproaches.js",
+      "gitBlob": "ace03db5140a302e9679267ba923af80c2419306",
+      "bytes": 16165,
+      "sha256": "251e959a63ac747b41119a73ea917716d9b9040a705e5c0c1dca6a9bf37c2b86"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanBridgeAxis.js",
+      "gitBlob": "9190aef42c4468bea3d35dc6bbbb623c99bc344d",
+      "bytes": 793,
+      "sha256": "29cf8d273ca1be2ffc055035f5dd201ddc5646bf190942b625eba3207b81f3b7"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanEntryTread.js",
+      "gitBlob": "ddd8dcf1ea4c158980995ca767974af475483546",
+      "bytes": 1598,
+      "sha256": "6f080bea16957c4a8b22203a3fc9a78acfdb1b92cac93dee5886e7a4e29af198"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanGroundFans.js",
+      "gitBlob": "fac1e44bb46a17604e9aca4e700a1e6e310520fd",
+      "bytes": 4572,
+      "sha256": "46abfedc5b2a54ec11d8041891b931fa028e9b377c9ecf2d3718468e37ef9e50"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanPavilion.js",
+      "gitBlob": "49e61e1be90d8736b4ecbafdce329fb28b1df8ea",
+      "bytes": 4441,
+      "sha256": "d67690e57a5fb376cd5b271690d84d69119d86438554851f1b8fcfc1a7b8544b"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanPondBridgeRails.js",
+      "gitBlob": "cfc0d245304d6f0b1e5b224604ffa5ff82917879",
+      "bytes": 10204,
+      "sha256": "4fd41af358d9afd0d46d778142d70d5f25bce8ec5435b6dcbff55b8fd56c09f0"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanSouthVeranda.js",
+      "gitBlob": "674dd76fcab9a86fffcfb7413f534706fedf993f",
+      "bytes": 10995,
+      "sha256": "7cf3804e85204464c1f4785c08bc7584e507d53e500d895d253c0ed1dbe3d7dc"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanStairHost.js",
+      "gitBlob": "67846182eb4e0f262155a005230f1482ad68b8e5",
+      "bytes": 2640,
+      "sha256": "d11f4a44cdf6a56ed9ea626e22cf1f3c93893c671b17cf5ee1a363a71ac2443b"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanStelePavilion.js",
+      "gitBlob": "df39fd4476d30de681eecd2a536633baa4ae832b",
+      "bytes": 6710,
+      "sha256": "8f62b634290c96e7c235aad28b1393e672c5bf8093c243a35de1626197817f02"
+    },
+    {
+      "path": "src/scene/palace/special/WenyuanUpperSeat.js",
+      "gitBlob": "40fa0be6fa7eb99245e04ca1f1565f200f52d3c9",
+      "bytes": 9139,
+      "sha256": "ef2db969d7926bf21d7747275cb37dd4487a34bc92880f24c697b79be8d39a19"
+    },
+    {
+      "path": "src/scene/palace/special/XiqingGate.js",
+      "gitBlob": "e29e4f291be34ab6a614656484d6ca4e6ad1bdf8",
+      "bytes": 8632,
+      "sha256": "307d0c0973054f8c0967d67bf8f09ccfe05b82b510566340e83857d302bfb8a0"
+    },
+    {
+      "path": "src/scene/palace/special/ZhifangShell.js",
+      "gitBlob": "1bc15950ea596ebfffbb5f9e5e1490a28ecc9499",
+      "bytes": 6677,
+      "sha256": "34495920e9330327319ec0404db34132cb396489fd32eb131f810ee1f71336e5"
+    },
+    {
+      "path": "src/scene/palace/special/ZhishengShell.js",
+      "gitBlob": "e18f018c889f6d15bf02b2658c194bd1a38a4b26",
+      "bytes": 7160,
+      "sha256": "1f1f4d8c9e336379c6e0039be46b84381a971447924e9663cb3dc2e7b721d11d"
+    },
+    {
+      "path": "src/scene/palace/special/ZhujingNorthWindows.js",
+      "gitBlob": "658443732058f5dd72ff7730b40d599c9b78c530",
+      "bytes": 6915,
+      "sha256": "2ffb214d79664814cf168d099688456fc48c15edc0984ef7bfdc3ffa529f33f5"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "gitBlob": "a9c68057f3baf7fb83eb321a9fe9ee0d5acea8a8",
+      "bytes": 52383,
+      "sha256": "f505200cf7da4965fa2b8a8be4d4033b5ca3df178bd49586772f693d10f5895f"
+    },
+    {
+      "path": "src/utils/Collision.js",
+      "gitBlob": "a241caa24288da6c0f3f9435c2023d83e68fc412",
+      "bytes": 41156,
+      "sha256": "ccc1ee9c9b0bc179ab4226acbeefbf5a2d2524bb5d8eba6d92fa2eca6a53b19e"
+    },
+    {
+      "path": "tests/lib/inner-palace-fixture.mjs",
+      "gitBlob": "b2ca9ea41747507ca3b26845c995e64454a3ba69",
+      "bytes": 2312,
+      "sha256": "2b83059860f50b61d12b2c432355b6e142a2ed2018b6c67c0b3bf464e1ee25b1"
+    },
+    {
+      "path": "tests/lib/kunning-walk.mjs",
+      "gitBlob": "051dd300758ef06ee98a0336ff8532ebdc03a82c",
+      "bytes": 3662,
+      "sha256": "af6028450af6ba509e56201efe94b39b913a85e7d00021b63a96a95ca4e211f1"
+    },
+    {
+      "path": "tests/lib/physical-waypoints.mjs",
+      "gitBlob": "d88d090c62877b914741ad8664eedf368311d4d7",
+      "bytes": 2123,
+      "sha256": "a23729b2b7adaabc82b3ff95102c14e6c2db60be8bb297d3c24522eb3eef0463"
+    },
+    {
+      "path": "tests/lib/r48-real-texture-library.mjs",
+      "gitBlob": "79ff11488f4f5ef3bbd65713ac87aae43c095c5c",
+      "bytes": 462,
+      "sha256": "a8dacf41e8ac8e6a6af84b9c3371acd0b124ac08ab4b0b3b2c506249de3003a1"
+    },
+    {
+      "path": "tests/r158-wenhua-central-open/component.test.mjs",
+      "gitBlob": "159b1feef3b3488a2ab3bbc85f414fdcd5aae575",
+      "bytes": 3860,
+      "sha256": "af701795b9ab33d7fa738cfb21158f3a6658a6eab025f982dff128eb9464bc03"
+    },
+    {
+      "path": "tests/r158-wenyuan-bridge-axis/alignment.test.mjs",
+      "gitBlob": "7a02aa8e7d073c32bdedd5a04f98aa66f5b410ea",
+      "bytes": 2799,
+      "sha256": "0abf91c8c5dfa1f225b1eadc1038ff36edfb358dfeda3fd0aebe6b36c945c524"
+    },
+    {
+      "path": "tests/r158-wenyuan-nameboard/component.test.mjs",
+      "gitBlob": "afab41c5630ffce45bdbcb0b821e8822ff35cfae",
+      "bytes": 1410,
+      "sha256": "4ac47d2b9e5559ee45d44aada95bf5b20ad786ff2447a92a66f42b3acb666088"
+    }
+  ],
+  "historicalPinComparison": {
+    "total": 43,
+    "unchanged": 37,
+    "comparison": [
+      {
+        "path": "data/zones/outer-east.json",
+        "historicalSHA256": "b943383090570f93772a35f39240dfdd1bccec4be265a9fb30dc40b48a956417",
+        "currentSHA256": "b943383090570f93772a35f39240dfdd1bccec4be265a9fb30dc40b48a956417",
+        "unchanged": true
+      },
+      {
+        "path": "docs/photo-fidelity/MASTER-PROMPT.md",
+        "historicalSHA256": "58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0",
+        "currentSHA256": "58f198ab96acb2a8c578b30913b36de79b1f3f275557ba02e5018dc378ac80d0",
+        "unchanged": true
+      },
+      {
+        "path": "docs/photo-fidelity/THIRTEEN-RELEASES.md",
+        "historicalSHA256": "903874a607edf3e55c3c90031ed2b84312a0e753ccf5ac7a146e51e220e09ec2",
+        "currentSHA256": "903874a607edf3e55c3c90031ed2b84312a0e753ccf5ac7a146e51e220e09ec2",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/ArrowSouthHeadBands.js",
+        "historicalSHA256": "45411e045a9cd9810fcc0f0552ac5276356f040fea668666488a96f709af1f22",
+        "currentSHA256": "45411e045a9cd9810fcc0f0552ac5276356f040fea668666488a96f709af1f22",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/ChuanxinHall.js",
+        "historicalSHA256": "84d21ec1470af467c1be496627611b4cc1bbc935dc323d2517cc256b2d838873",
+        "currentSHA256": "84d21ec1470af467c1be496627611b4cc1bbc935dc323d2517cc256b2d838873",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/ChuanxinZhubanShell.js",
+        "historicalSHA256": "4aab882ad54f2572e2373fc76d5851483490a88cacd0c58446fe5aa63d565c4d",
+        "currentSHA256": "4aab882ad54f2572e2373fc76d5851483490a88cacd0c58446fe5aa63d565c4d",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/EastWestCityGate.js",
+        "historicalSHA256": "02b4093bb9782b1e28196770b64d1ff183db950509c701bb3c4c4417dc3e56a5",
+        "currentSHA256": "02b4093bb9782b1e28196770b64d1ff183db950509c701bb3c4c4417dc3e56a5",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/EnclosedPavilions.js",
+        "historicalSHA256": "450c5490ca3bac819c2ade8b2c9adac2bcd8ef1decfb51b9ca1e102e4b95ea5b",
+        "currentSHA256": "450c5490ca3bac819c2ade8b2c9adac2bcd8ef1decfb51b9ca1e102e4b95ea5b",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/JingxingGate.js",
+        "historicalSHA256": "6f5690ef02ee5a05961984931149c6cdd65de8438f3352041eab6f00e53342e3",
+        "currentSHA256": "6f5690ef02ee5a05961984931149c6cdd65de8438f3352041eab6f00e53342e3",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/LuanjiaEastTwoLevel.js",
+        "historicalSHA256": "e06833f5bd01bacd5030d546ab2147561fe62d6f295af87446def736a49d5984",
+        "currentSHA256": "e06833f5bd01bacd5030d546ab2147561fe62d6f295af87446def736a49d5984",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/LuanjiaEastWing.js",
+        "historicalSHA256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026",
+        "currentSHA256": "4f33b078a72b27e623faa7f1da30087e6b3049884d6b8cd71d0473dd6d78f026",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/LuanjiaSouthTwoLevel.js",
+        "historicalSHA256": "2fcfda8b1081c21229c33557bfe6d0d9bf10aca19ad60f281dede9eb9f53ad8c",
+        "currentSHA256": "2fcfda8b1081c21229c33557bfe6d0d9bf10aca19ad60f281dede9eb9f53ad8c",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/LuanjiaSouthWing.js",
+        "historicalSHA256": "35120125795a71fdbc489064d17474605a8d9ec5540e885682c8a471d1b3c7d2",
+        "currentSHA256": "35120125795a71fdbc489064d17474605a8d9ec5540e885682c8a471d1b3c7d2",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoCommonGate.js",
+        "historicalSHA256": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a",
+        "currentSHA256": "6ea725bbfc431f514d4049d39bcfaec89cad71c1e23671115aa34f1e59c36e2a",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoEastMiddleHall.js",
+        "historicalSHA256": "f4d41c0c771e1887433b027b2ab9192f38c49acdc9edeb7d78e77f204778969b",
+        "currentSHA256": "f4d41c0c771e1887433b027b2ab9192f38c49acdc9edeb7d78e77f204778969b",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoFrontHalls.js",
+        "historicalSHA256": "e5ab91c9ab3281e402c184a722ebb6de7fc9c04165c45134babae1ab2248c5e6",
+        "currentSHA256": "e5ab91c9ab3281e402c184a722ebb6de7fc9c04165c45134babae1ab2248c5e6",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoMiddleHall.js",
+        "historicalSHA256": "836d249512f22385365be7cd9570fbce6c82527ef25bc37029a84e931f15ede8",
+        "currentSHA256": "836d249512f22385365be7cd9570fbce6c82527ef25bc37029a84e931f15ede8",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoNorthEaves.js",
+        "historicalSHA256": "edd9740d3d1f964681519e66c3b1a5b6713af4462fbd50ab3bc7014ef1124f49",
+        "currentSHA256": "edd9740d3d1f964681519e66c3b1a5b6713af4462fbd50ab3bc7014ef1124f49",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NansansuoWestMiddleHall.js",
+        "historicalSHA256": "5e881ab17840f1eb65aaeef75ef964b08738916c57594da29c7501035cf9a860",
+        "currentSHA256": "5e881ab17840f1eb65aaeef75ef964b08738916c57594da29c7501035cf9a860",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NeigeCourt.js",
+        "historicalSHA256": "80fe42ee6fc913b6735a328761f6b1c93ce2517bf46cc5f3e108ed9c07697d5a",
+        "currentSHA256": "80fe42ee6fc913b6735a328761f6b1c93ce2517bf46cc5f3e108ed9c07697d5a",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NeigeEastTextAnnex.js",
+        "historicalSHA256": "fbf0d9bc1c63551a7bb762d5fffbe78ae371c8a6a1339d61bd00306d9c2d4b50",
+        "currentSHA256": "f397c8752a812625b3266c5959428463ca0a512ce6ea7bebc19b58cf93eae1dc",
+        "unchanged": false
+      },
+      {
+        "path": "src/scene/palace/special/NeigeHanbenTextVolume.js",
+        "historicalSHA256": "42f9a6e276b84d523d7c6e61052c1bb9f3f9324aa5da705d1179ba3d68c7d045",
+        "currentSHA256": "42f9a6e276b84d523d7c6e61052c1bb9f3f9324aa5da705d1179ba3d68c7d045",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NeigeSecondStorehouse.js",
+        "historicalSHA256": "fdc80f81a2a19943e6fef53a4cb3ed690fd3e799759d4f435ed4e18d32de983a",
+        "currentSHA256": "d81ccfd729059894621e2221ea1e4cd25e39943f7d76e3f11aedebc7a58befcc",
+        "unchanged": false
+      },
+      {
+        "path": "src/scene/palace/special/NeigeStorehouse.js",
+        "historicalSHA256": "a87b03a3850a5497a23860eb1819d745b24c1834b5b817a3fb23aa0dd8162960",
+        "currentSHA256": "a87b03a3850a5497a23860eb1819d745b24c1834b5b817a3fb23aa0dd8162960",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NeigeTextSideWings.js",
+        "historicalSHA256": "77b18d69439f685759c16198bc72a1b71ee22663603825bc3112b19eb8237087",
+        "currentSHA256": "77b18d69439f685759c16198bc72a1b71ee22663603825bc3112b19eb8237087",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/NeigeWestAnnexSegment.js",
+        "historicalSHA256": "424918bb5f57fdec655c45406c7e3bd5a06b003a893a64ffe1d1ae2743f1bc45",
+        "currentSHA256": "424918bb5f57fdec655c45406c7e3bd5a06b003a893a64ffe1d1ae2743f1bc45",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/RemainingOuterHalls.js",
+        "historicalSHA256": "b87bc9208f3745de7ecbc246dda3a37ead1a42f23f90f477ebd9e36258db5737",
+        "currentSHA256": "3f819ce60f913d4121f8147b16f11f3ad92d9c43198eb3268d9540e9d3f6f2d5",
+        "unchanged": false
+      },
+      {
+        "path": "src/scene/palace/special/SouthCourtHalls.js",
+        "historicalSHA256": "13e795d7787cc8f0915391b8a631dbfdf9f16771e686ef3852c4eb4149c2fd8f",
+        "currentSHA256": "b3693e40a06e5377a88f1af36923f9bb6a383eb4ae62c128a7597178f1e6400b",
+        "unchanged": false
+      },
+      {
+        "path": "src/scene/palace/special/SouthWaterSystem.js",
+        "historicalSHA256": "da5c71a19ebdf6adba82f6948e729e819eee2d1e9e102ab6984496fba7fc4912",
+        "currentSHA256": "da5c71a19ebdf6adba82f6948e729e819eee2d1e9e102ab6984496fba7fc4912",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenhuaCentralDoors.js",
+        "historicalSHA256": "f89fcb8c4dea871992020c7854ac227bf6f54f82f4a28512670f259f16cdf5ca",
+        "currentSHA256": "f89fcb8c4dea871992020c7854ac227bf6f54f82f4a28512670f259f16cdf5ca",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenhuaCompanionSteps.js",
+        "historicalSHA256": "47d085ee124cf540d194cf66b2d3daa67ce2a53a4d3d254780a2616b38125a12",
+        "currentSHA256": "47d085ee124cf540d194cf66b2d3daa67ce2a53a4d3d254780a2616b38125a12",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanBridgeAxis.js",
+        "historicalSHA256": "29cf8d273ca1be2ffc055035f5dd201ddc5646bf190942b625eba3207b81f3b7",
+        "currentSHA256": "29cf8d273ca1be2ffc055035f5dd201ddc5646bf190942b625eba3207b81f3b7",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanPavilion.js",
+        "historicalSHA256": "d67690e57a5fb376cd5b271690d84d69119d86438554851f1b8fcfc1a7b8544b",
+        "currentSHA256": "d67690e57a5fb376cd5b271690d84d69119d86438554851f1b8fcfc1a7b8544b",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanPondBridgeRails.js",
+        "historicalSHA256": "4fd41af358d9afd0d46d778142d70d5f25bce8ec5435b6dcbff55b8fd56c09f0",
+        "currentSHA256": "4fd41af358d9afd0d46d778142d70d5f25bce8ec5435b6dcbff55b8fd56c09f0",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanSouthVeranda.js",
+        "historicalSHA256": "7cf3804e85204464c1f4785c08bc7584e507d53e500d895d253c0ed1dbe3d7dc",
+        "currentSHA256": "7cf3804e85204464c1f4785c08bc7584e507d53e500d895d253c0ed1dbe3d7dc",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanStairHost.js",
+        "historicalSHA256": "d11f4a44cdf6a56ed9ea626e22cf1f3c93893c671b17cf5ee1a363a71ac2443b",
+        "currentSHA256": "d11f4a44cdf6a56ed9ea626e22cf1f3c93893c671b17cf5ee1a363a71ac2443b",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanStelePavilion.js",
+        "historicalSHA256": "8f62b634290c96e7c235aad28b1393e672c5bf8093c243a35de1626197817f02",
+        "currentSHA256": "8f62b634290c96e7c235aad28b1393e672c5bf8093c243a35de1626197817f02",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/WenyuanUpperSeat.js",
+        "historicalSHA256": "ef2db969d7926bf21d7747275cb37dd4487a34bc92880f24c697b79be8d39a19",
+        "currentSHA256": "ef2db969d7926bf21d7747275cb37dd4487a34bc92880f24c697b79be8d39a19",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/XiqingGate.js",
+        "historicalSHA256": "307d0c0973054f8c0967d67bf8f09ccfe05b82b510566340e83857d302bfb8a0",
+        "currentSHA256": "307d0c0973054f8c0967d67bf8f09ccfe05b82b510566340e83857d302bfb8a0",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/ZhifangShell.js",
+        "historicalSHA256": "34495920e9330327319ec0404db34132cb396489fd32eb131f810ee1f71336e5",
+        "currentSHA256": "34495920e9330327319ec0404db34132cb396489fd32eb131f810ee1f71336e5",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/palace/special/ZhishengShell.js",
+        "historicalSHA256": "fd732bdff9c0d2562c8c547fbc42f0eb26bd424a1899aeb1b4955c709e13e5e3",
+        "currentSHA256": "1f1f4d8c9e336379c6e0039be46b84381a971447924e9663cb3dc2e7b721d11d",
+        "unchanged": false
+      },
+      {
+        "path": "src/scene/palace/special/ZhujingNorthWindows.js",
+        "historicalSHA256": "2ffb214d79664814cf168d099688456fc48c15edc0984ef7bfdc3ffa529f33f5",
+        "currentSHA256": "2ffb214d79664814cf168d099688456fc48c15edc0984ef7bfdc3ffa529f33f5",
+        "unchanged": true
+      },
+      {
+        "path": "src/scene/zones/ZoneBase.js",
+        "historicalSHA256": "4eac08995766b5f9e5b386d4418b111be0bd22818d2f45c07baae788d27b2982",
+        "currentSHA256": "f505200cf7da4965fa2b8a8be4d4033b5ca3df178bd49586772f693d10f5895f",
+        "unchanged": false
+      }
+    ],
+    "changedFileInterpretation": {
+      "NeigeEastTextAnnex.js": "Existing fitted door navigation/loaded-owner checks and marker fields; no new building identity.",
+      "NeigeSecondStorehouse.js": "Existing open-bay navigation/loaded-owner checks and marker fields; no resolved store attribution.",
+      "RemainingOuterHalls.js": "Yanchun south rail addition outside B41; B41 profile mapping retained.",
+      "SouthCourtHalls.js": "Zhujing original north stair host/contact registration; existing visible geometry retained.",
+      "ZhishengShell.js": "Existing north-facing map entry rotation corrected to Math.PI; provisional roof identity unchanged.",
+      "ZoneBase.js": "Later cumulative finalizers and clean public map names; B41 hooks retained."
+    }
+  },
+  "missingBindings": {
+    "method": "Search all tracked src/data .js/.json by these five exact original IDs and names, then inspect matched code; no absence of anonymous geometry or current real-world building asserted.",
+    "filesSearched": 769,
+    "results": [
+      {
+        "number": 17,
+        "id": "FC-D852D8A192",
+        "name": "传心殿神厨",
+        "hits": [
+          {
+            "path": "src/scene/palace/special/ChuanxinHall.js",
+            "line": 56,
+            "meaning": "withheldIdentities metadata only, not a builder binding"
+          }
+        ]
+      },
+      {
+        "number": 22,
+        "id": "FC-4A84B24027",
+        "name": "内阁满本堂",
+        "hits": [
+          {
+            "path": "src/scene/palace/special/NeigeCourt.js",
+            "line": 121,
+            "meaning": "withheldIdentities metadata only, not a builder binding"
+          }
+        ]
+      },
+      {
+        "number": 23,
+        "id": "FC-15E0B02776",
+        "name": "内阁祝版房",
+        "hits": [
+          {
+            "path": "src/scene/palace/special/NeigeCourt.js",
+            "line": 121,
+            "meaning": "withheldIdentities metadata only, not a builder binding"
+          }
+        ]
+      },
+      {
+        "number": 26,
+        "id": "FC-DA0F70A4C4",
+        "name": "内阁典籍厅",
+        "hits": [
+          {
+            "path": "src/scene/palace/special/NeigeCourt.js",
+            "line": 121,
+            "meaning": "withheldIdentities metadata only, not a builder binding"
+          }
+        ]
+      },
+      {
+        "number": 27,
+        "id": "FC-6555093DAA",
+        "name": "内阁满票签档子房",
+        "hits": [
+          {
+            "path": "src/scene/palace/special/NeigeCourt.js",
+            "line": 121,
+            "meaning": "withheldIdentities metadata only, not a builder binding"
+          }
+        ]
+      }
+    ]
+  },
+  "obsoleteConclusions": [
+    {
+      "source": "docs/photo-fidelity/B-REVIEW/RUNTIME-BINDINGS.json",
+      "correction": "R59 no-implementation classifications for Neige main/store, Chuanxin and several associated bodies predate the current dedicated/fitted normal builders."
+    },
+    {
+      "source": "docs/photo-fidelity/batches/R158-41-STATUS-0201/STATUS.json",
+      "entry": 8,
+      "correction": "XiqingGate.js is the wrong cited builder for Wenhua gate. Use SouthCourtGates.js and WenhuaGateApproaches.js. Original record remains unchanged."
+    },
+    {
+      "source": "docs/photo-fidelity/batches/R158-B41/wenhua-gate/README.md",
+      "correction": "Historical retained transverse end-panels and central detour text predates the later user-feedback removal. Current central approach is open; side guards remain."
+    },
+    {
+      "source": "src/scene/palace/special/NeigeCourt.js and ChuanxinHall.js",
+      "correction": "Each module own withheldIdentities is a bounded construction exclusion, not the current cumulative missing-building list."
+    }
+  ],
+  "freshVerification": {
+    "testFile": "tests/r163-b41-preservation/current.test.mjs",
+    "positiveTests": 3,
+    "embeddedNegativeControls": 3,
+    "result": "PASS",
+    "details": {
+      "scope": "BOUNDED_PRODUCTION_COMPONENTS_NOT_WHOLE_WORLD_OR_BROWSER",
+      "results": {
+        "wenyuan": {
+          "bridgeX": -189.875,
+          "wallGapX": -189.875,
+          "entry": {
+            "x": -189.875,
+            "z": -141.75
+          },
+          "plaqueFace": [
+            -189.875,
+            8.79,
+            -141.68
+          ],
+          "plaqueBack": [
+            -189.875,
+            8.841961524227067,
+            -141.65
+          ],
+          "samples": [
+            {
+              "z": -141.4,
+              "blocked": false
+            },
+            {
+              "z": -140.4,
+              "blocked": false
+            },
+            {
+              "z": -139.5,
+              "blocked": false
+            }
+          ],
+          "plaquePoseNegativeDetected": true,
+          "fullBridgeWalkNotExecuted": true
+        },
+        "wenhuaGeometry": {
+          "crossPanels": 0,
+          "posts": 6,
+          "longitudinalRails": 4,
+          "colliders": 30,
+          "walkables": 1,
+          "missingSideOwnerNegativeDetected": true,
+          "wholeObjectAccepted": false
+        },
+        "wenhuaRoutes": {
+          "rows": [
+            {
+              "fps": 10,
+              "sprint": false,
+              "arrived": true,
+              "frames": 162,
+              "peakFeetGround": 0.018204219311591885,
+              "framesAbove03": 0
+            },
+            {
+              "fps": 10,
+              "sprint": true,
+              "arrived": true,
+              "frames": 70,
+              "peakFeetGround": 0.13177467201245835,
+              "framesAbove03": 0
+            },
+            {
+              "fps": 60,
+              "sprint": false,
+              "arrived": true,
+              "frames": 967,
+              "peakFeetGround": 0.07653755264489465,
+              "framesAbove03": 0
+            },
+            {
+              "fps": 60,
+              "sprint": true,
+              "arrived": true,
+              "frames": 421,
+              "peakFeetGround": 0.44417641998547114,
+              "framesAbove03": 9
+            }
+          ],
+          "blockingWallNegativeDetected": true,
+          "fullZoneOrWorldNotExecuted": true
+        }
+      }
+    },
+    "limitations": [
+      "No full World or whole outer-east construction.",
+      "Wenyuan only has axis/configuration, actual final plaque and three doorway collision probes; no new complete bridge-to-hall route replay.",
+      "Wenhua uses an actual gate component and native controller with controlled DOM/clock; no surrounding objects or NPCs.",
+      "60Hz sprint retains0.44417641998547114m peak and9 frames above0.3m while arriving; not all frames<=0.3m.",
+      "Browser/GPU/physical phone/current visitor access and user acceptance unverified."
+    ]
+  },
+  "historicalUserFeedbackEvidence": {
+    "path": "docs/photo-fidelity/batches/R158-USER-FEEDBACK-CUMULATIVE-0243/README.md",
+    "freshWorldRerun": false,
+    "recordedWorldRoutes": 28,
+    "recordedWorldFrames": 8470,
+    "meaning": "Historical checkpoint only, not the three fresh component tests and not current whole-World acceptance."
+  },
+  "testCoverageCaution": [
+    "Original Wenyuan nameboard comparison returns early without BEFORE_CAPTURE; no fresh historical-byte comparison is claimed.",
+    "Original Wenhua exact delta test is explicitly skipped without BASELINE_SNAPSHOT; it is unchanged.",
+    "The new three regressions require no historical capture and contain actual geometry/owner/blocking-wall negatives."
+  ],
+  "remainingWork": [
+    "Retain five unresolved standalone bindings until sufficient independent identity/location evidence; do not guess buildings or rebind another court's same-name room.",
+    "Retain south/middle/north Nansansuo identity uncertainty instead of duplicating OE15.",
+    "Prioritize a concrete visible defect or blocked route over harmless small geometric differences."
+  ],
+  "unchangedAreas": [
+    "src",
+    "data",
+    "public",
+    "scripts",
+    "package manifests",
+    "workflow",
+    "all original historical ledgers and tests"
+  ],
+  "actionsNotTaken": [
+    "main modification or merge",
+    "old branch update",
+    "deployment",
+    "browser retry",
+    "full World construction",
+    "runtime geometry or player physics changes"
+  ]
+}

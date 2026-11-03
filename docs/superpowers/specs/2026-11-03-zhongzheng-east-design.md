@@ -1,0 +1,11 @@
+# Zhongzheng east side hall FC-E5EEAB2373
+
+H43/31, base783b40d3. This is the rebuilt east side of Zhongzheng/Xiangyun court, NOT the south Yuhua east two-storey portrait hall. Official2021journal PDF7/printed20 plan and southeast group view support east-of-Xiangyun position, a one-storey yellow roof with straight ridge/two slopes/red walls. No named near facade is verified; hard/hanging/hipped-gable roof type, bay count/door-window divisions/steps/interior are unknown. West-facing orientation is plan/location/step cross-inference, not survey. Official2012-11-27 completion announcement explicitly lists the side halls destroyed1923 and rebuilt; page-end glossary about Long'en Gate five-bay/two-depth side halls is unrelated and excluded.
+
+Use one new CourtKit special component/private materials/true owners/exact host/one hook. Minimal fitted single-storey yellow straight-ridge/two-slope roof, closed red body/coarse green framed central partition and sill windows, actual .45low exterior ledge/two .15treads. A three-bay-looking grid is engineering fit only, NOT a sourced bay count; no named facade from another side hall is borrowed. Chosen conservative generic gable shell/short end overhang is not a verified roof classification. No interior/upper route/plaque/altars/new maps or claims of real admission.
+
+Provisional frame191.2,397.5 faces west(+X),11x5.1body,12x7.4platform, maximum185.2..197.2/391..404. Verify actual783b World before placement, keep183.7longitudinal,406crossroad, all Xiangyun four real approaches/loop and old nearby features/walls. No old wall move/global physics. Real Box3 stair/top plus float32 actual geometry owners, no hidden ramp.
+
+Alternatives rejected: copying a photographed different side hall falsely imports identity/details; a billboard cannot provide physical exterior; inventing full historical inventory exceeds evidence. Selected limited source-labelled recognizable side-hall fit, reused tested geometry/owner machinery only.
+
+Local component/visibility/owner/host/native route proof then early product/CPU for parent review. Complete serial staticCPUWorld/three-zone actual preservation/farroof/old-route tests and clean/gugong/build137HTTP; preserve all failures/baselines. No upload/main/agents.

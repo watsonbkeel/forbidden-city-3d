@@ -12,7 +12,7 @@ import {addYanchunSouthVessels} from './YanchunSouthVessels.js';
 import {buildWenyuanUpperFrame} from './WenyuanUpperFrame.js';
 import { buildNanxunCaissonRings } from './NanxunCaissonRings.js';
 import {withholdHUnknownInventory} from './HUnknownInventory.js';
-import { fitYanchunFrontPlaque } from './YanchunSouthPhotoFit.js';
+import { fitYanchunFrontPlaque, fitYanchunSouthTurnedRail } from './YanchunSouthPhotoFit.js';
 import { applyYudeDomeBrickCourses } from './YudeDomeBrickCourses.js';
 import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from './NanxunReviewedInterior.js';
 import * as THREE from 'three';
@@ -1111,6 +1111,7 @@ function buildYanchunPavilion(kit,item,p) {
   for(const z of[-upperD/2,upperD/2])for(let k=0;k<3;k++)face(-upperW/2+k*upperW/3,-upperW/2+(k+1)*upperW/3,z,upperY,upperH-.35,{role:'yanchun-upper-three-bay-window',leafCount:4,sill:.7});
   for(const z of[-balconyD/2+.08,balconyD/2-.08])rail(c,'yanchun-upper-balcony-rail',-balconyW/2+.08,balconyW/2-.08,z,z,upperY,info);
   for(const x of[-balconyW/2+.08,balconyW/2-.08])rail(c,'yanchun-upper-balcony-rail',x,x,-balconyD/2+.08,balconyD/2-.08,upperY,info);
+  fitYanchunSouthTurnedRail(c);
   const start=c.f.children.length,ow=A+.8,od=B+.8,iw=balconyW/2,id=balconyD/2,low=g.y+lowerH+.08,high=upperY-.10;
   for(const side of[-1,1]){
     sheet(c,'yanchun-open-center-lower-roof','yellow_glaze',10,24,(u,v)=>[(v*2-1)*(iw+(ow-iw)*u),high-(high-low)*Math.pow(u,.8)+.14*Math.pow(Math.abs(v*2-1),8)*u*u,side*(id+(od-id)*u)]);

@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+import * as THREE from 'three';
+import {ZoneBase} from '../../src/scene/zones/ZoneBase.js';
+import {realTextureLibrary} from '../../tests/lib/r48-real-texture-library.mjs';
+import {CollisionManager} from '../../src/utils/Collision.js';
+const {createCanvas,GlobalFonts}=createRequire(import.meta.url)('@napi-rs/canvas');
+assert.ok(GlobalFonts.registerFromPath('/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc','SimSun'));
+globalThis.document={createElement:()=>createCanvas(1,1),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};
+const data=JSON.parse(fs.readFileSync('data/zones/axis-courts.json'));
+const item=data.items.find(i=>i.name==='体仁阁');
+const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+function build(plaque=item.plaque,name=item.name){const lib=realTextureLibrary(),zone=new ZoneBase(lib,data),b=zone.buildHall({...data.items.find(i=>i.name===name),plaque});return{lib,zone,kit:zone.kit,b,dispose(){zone.kit.dispose(zone.kit.root);lib.dispose();}};}
+function find(f,role){const rows=[];f.traverse(m=>{if(m.userData.role===role)rows.push(m);});assert.equal(rows.length,1,role);return rows[0];}
+function retained(w){w.kit.root.updateMatrixWorld(true);const meshes=[];w.kit.root.traverse(m=>{if(!m.isMesh||m.userData.r163TirenNameInscription)return;meshes.push({name:m.name,matrix:m.matrixWorld.toArray(),material:m.material?.name,attributes:Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,a])=>[k,[a.itemSize,...a.array]])),index:m.geometry.index?[...m.geometry.index.array]:null});});return{geometry:hash(meshes),navigation:hash({colliders:w.kit.colliders,walkables:w.kit.walkables,rooms:w.kit.rooms,mapItems:w.kit.mapItems,regions:w.kit.regions}),meshes:meshes.length};}
+
+test('configured Tiren builds its independently sourced traditional lower west-front nameboard',()=>{assert.equal(item.plaque,true);const w=build();try{const p=find(w.b.f,'tiren-lower-front-nameboard');assert.equal(p.userData.text,'體仁閣');assert.equal(p.userData.source,'https://www.meipian.cn/2yl5ic7b');assert.match(p.userData.sourceImage,/220c5360/);assert.match(p.userData.textStatus,/SEMANTIC/);assert.equal(w.kit.plaques.length,1);assert.equal(w.kit.plaques[0].text,'體仁閣');assert.equal(p.position.x,0);assert.equal(w.b.geometry.facing,'west');assert.equal(w.b.f.userData.pavilion.nameInscription.text,'體仁閣');const back=find(w.b.f,'tiren-lower-front-nameboard-backing');assert.equal(back.material,w.kit.lacquer);assert.ok(back.position.y+back.geometry.parameters.height/2<w.b.geometry.elevations.lower_eave);assert.ok(back.position.y-back.geometry.parameters.height/2>w.b.geometry.lower.columnTop-.8,'red surround stays wholly above the retained door head');}finally{w.dispose();}});
+
+test('three complete glyph rows stay visible from supported terrace and west court after actual material merge',()=>{const w=build();try{const p=find(w.b.f,'tiren-lower-front-nameboard'),f=w.b.f,g=w.b.geometry,front=g.lower.front;f.updateMatrixWorld(true);const targets=[-.45,0,.45].map(y=>p.localToWorld(new THREE.Vector3(0,y,0))),origins=[[0,g.platform.y+1.7,front-6],[0,g.elevations.front_court+1.7,front-32],[-4,g.platform.y+1.7,front-12],[4,g.platform.y+1.7,front-12]];const root=w.kit.finish();root.updateMatrixWorld(true);for(const xyz of origins)for(const target of targets){const eye=f.localToWorld(new THREE.Vector3(...xyz)),d=target.clone().sub(eye),hit=new THREE.Raycaster(eye,d.clone().normalize(),0,d.length()+.02).intersectObject(root,true)[0];assert.equal(hit?.object.material,p.material,`hidden from ${xyz} by ${hit?.object.material?.name}`);assert.ok(hit.point.distanceTo(target)<.01);}assert.equal(p.material.name,'kit_plaques');assert.equal(p.material.map.colorSpace,THREE.SRGBColorSpace);}finally{w.dispose();}});
+
+test('real CPU atlas has three distinct traditional gold glyphs rather than missing-font boxes',()=>{const w=build();try{find(w.b.f,'tiren-lower-front-nameboard');w.kit.buildPlaqueAtlas();const canvas=w.kit.plaques[0].mesh.material.map.image,c=createCanvas(96,256),ctx=c.getContext('2d');ctx.drawImage(canvas,0,0,96,256,0,0,96,256);const glyphs=[];for(let i=0;i<3;i++){const y0=Math.ceil(22+212/3*i),y1=Math.floor(22+212/3*(i+1)),px=ctx.getImageData(24,y0,48,y1-y0).data,mask=[];for(let k=0;k<px.length;k+=4)mask.push(px[k]>200&&px[k+1]>170&&px[k+2]<140?1:0);assert.ok(mask.reduce((a,b)=>a+b,0)>80);glyphs.push(hash(mask));}assert.equal(new Set(glyphs).size,3);if(process.env.REPORT_DIR){fs.mkdirSync(process.env.REPORT_DIR,{recursive:true});fs.writeFileSync(process.env.REPORT_DIR+'/tiren-glyphs.png',c.toBuffer('image/png'));fs.writeFileSync(process.env.REPORT_DIR+'/glyphs.json',JSON.stringify({text:'體仁閣',hashes:glyphs,cpuFontAliasOnly:true,gpuAcceptance:false},null,2));}}finally{w.dispose();}});
+
+test('all original geometry and complete navigation stay byte-exact with the plaque disabled',()=>{const before=build(false),after=build();try{assert.deepEqual(retained(after),retained(before));}finally{before.dispose();after.dispose();}});
+
+test('lower central entry stays clear to actual player collision in both directions and at side offsets',()=>{const w=build();try{const cm=new CollisionManager();cm.addColliders(w.kit.colliders);w.kit.walkables.forEach(a=>cm.addWalkable(a));const g=w.b.geometry;for(const x of [-.7,0,.7])for(const sign of [-1,1])for(let i=0;i<=32;i++){const z=g.lower.front+sign*(-1.6+i*.1),[wx,wz]=g.toWorld(x,z),ground=cm.getGroundHeight(wx,wz,g.lower.floorY);assert.ok(Math.abs(ground-g.lower.floorY)<.11);assert.equal(cm.checkCollision(new THREE.Vector3(wx,ground+1.7,wz),.5),false);}}finally{w.dispose();}});
+
+test('Hongyi keeps its separate original plaque evidence and inscription',()=>{const w=build(true,'弘义阁');try{const p=find(w.b.f,'hongyi-lower-front-nameboard');assert.equal(p.userData.text,'弘義閣');assert.match(p.userData.source,/1980/);assert.equal(w.kit.plaques.length,1);}finally{w.dispose();}});

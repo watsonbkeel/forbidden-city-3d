@@ -1,0 +1,84 @@
+{
+  "auditedAtUTC": "2026-11-03T03:29:00Z",
+  "commit": "ec50ea010340dc3b04f18ec052f36a05c3862702",
+  "sourceObjectId": "FC-F0C6383E88",
+  "name": "宝华殿",
+  "runtimeAudit": {
+    "command": "git grep -n -i -E 宝华|baohua|F0C6383E88 HEAD -- src data main.js",
+    "matches": 0,
+    "conclusion": "No named or identified Baohua runtime body at frozen HEAD. Generic anonymous geometry identity is not independently proved.",
+    "note": "There is no tracked src/data directory; runtime data is top-level data/.",
+    "ledgerPath": "docs/photo-fidelity/H-REVIEW/OBJECT-OBSERVATIONS.json",
+    "ledgerStatus": "NO_NAMED_OR_ALIAS_RUNTIME_BINDING"
+  },
+  "sources": [
+    {
+      "url": "https://www.dpm.org.cn/explore/building/236532.html",
+      "type": "official building entry",
+      "freshRead": "success",
+      "supports": [
+        "sits north and faces south",
+        "3 frontage bays, 1 depth bay",
+        "yellow glazed xieshan roof",
+        "one central bay rear/north projection",
+        "beyond Zhaofu gate north of Yuhua",
+        "surviving hall with changed furnishing layout"
+      ],
+      "caution": "Capture date not supplied; embedded Zhongzheng glossary still says ruins and must not override 2012 dated rebuilding report."
+    },
+    {
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/8202.jpg",
+      "type": "official own photo linked from the building entry",
+      "freshRead": "link resolved; actual local pixels inspected",
+      "localPath": "/tmp/r163-next-baohua-exterior.jpg",
+      "sha256": "445658fee7358ed460d8e9a7bc9877e740cfba18c9981807850bc6d114b79251",
+      "pixels": [
+        343,
+        400
+      ],
+      "exif": {},
+      "captureDate": null
+    },
+    {
+      "url": "https://www.dpm.org.cn/classify_detail/181812.html",
+      "type": "official dated reconstruction report",
+      "publicationDate": "2012-11-27",
+      "freshRead": "success",
+      "supports": [
+        "Baohua was the intact survivor of the 1923 fire within the courtyard north of Zhaofu",
+        "Zhongzheng, Xiangyun and other north-court buildings burned and were reconstructed, completion 2012"
+      ]
+    },
+    {
+      "url": "https://www.dpm.org.cn/Uploads/File/2019/11/14/u5dcd36e4aa651.pdf",
+      "type": "Palace Museum scholarly primary research by Luo Wenhua, 故宫学刊 2006",
+      "freshRead": "PDF text success; screenshot did not yield inspectable images",
+      "pages": [
+        399,
+        400
+      ],
+      "supports": [
+        "south-to-north topology: Yuhua, Zhaofu, Baohua, Xiangyun, Zhongzheng, Danyuan",
+        "Baohua 3x1 bays, slightly smaller bays than Zhongzheng",
+        "rear Baohua projection complements Zhongzheng front projection; connecting terrace creates I-form historical plan"
+      ],
+      "caution": "Historical scholarly topology, not surveyed current metric dimensions or complete current interior."
+    }
+  ],
+  "pixelObservations": [
+    "Baohua is the larger rear/upper-half hall, not the smaller foreground gate.",
+    "Main silhouette is one-storey, single-eave, broad ridged roof with hipped-gable form and upswept corners. Roof shows yellow/ochre glazed ridges over dark/weathered valleys.",
+    "Facade has dark-red/brown timber and joinery; central doorway is flanked by two grille-window bays; low pale gray stone base is visible.",
+    "The slender paired poles stand in the forecourt and align with official flagpole description. Do not treat them as evidence of a deep porch.",
+    "Rear/north projection is not actually exposed in this frontal elevated photo. Its existence is text-supported; exact roof geometry/joins remain unseen.",
+    "Foreground gate, nearby enclosure walls, courtyard censer and vegetation are context, not part of the hall body.",
+    "04:12 review follow-up: paired main-ridge ends project upward in the preserved own photo; new closed simplified chiwen outlines fit only that visible silhouette, not detailed original sculptures or an eave-beast inventory."
+  ],
+  "uncertainties": [
+    "No capture timestamp or EXIF. Do not claim current appearance/date from photo age, vegetation or web crawl.",
+    "No surveyed dimensions/coordinates/heights or complete rear and side views.",
+    "No verified exact ridge-beast count, paint scheme, plaque lettering, interior inventory or upstairs routes.",
+    "Current admission and walkability are unverified; a viewing route or low stair may only be labeled gameplay fit."
+  ],
+  "recommendation": "Implement a separately identified Baohua exterior body, south-facing 3x1 yellow xieshan with text-supported north central projection. Preserve all existing objects/routes, keep unknown interiors and site precision unclaimed."
+}

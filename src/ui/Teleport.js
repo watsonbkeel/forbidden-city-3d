@@ -11,6 +11,7 @@ import { TELEPORT, PLAYER } from '../config/constants.js';
 import { yanxiRuinGeometry } from '../scene/palace/special/YanxiRuin.js';
 import { qinanGeometry } from '../scene/palace/special/QinanProfile.js';
 import { KUNNING_PROFILE, bindKunningProfile } from '../scene/palace/special/KunningProfile.js';
+import { placeDisplayName } from './PublicPlaceNames.js';
 
 const rotations = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 };
 
@@ -307,9 +308,43 @@ export class Teleport {
     return null;
   }
 
+  capturePose() {
+    try {
+      const p = this.controls.getPosition(), q = this.controls.camera?.quaternion;
+      const pose = [p.x, p.y, p.z, ...(q ? [q.x, q.y, q.z, q.w] : [])];
+      return pose.every(Number.isFinite) ? pose : null;
+    } catch { return null; }
+  }
+
   go(name) {
+    const before = this.capturePose();
+    this.lastFailure = null;
+    try { return this.performTravel(name); }
+    catch (error) {
+      const after = this.capturePose();
+      const changed = before && after && before.length === after.length
+        ? before.some((value, i) => value !== after[i]) : null;
+      this.lastFailure = { name, error, poseChanged: changed };
+      console.error('地点传送失败', error);
+      clearTimeout(this.overlayTimer);
+      this.overlay.setAttribute('role', 'alert');
+      this.overlay.style.width = 'min(88vw, 480px)';
+      this.overlay.style.boxSizing = 'border-box';
+      const location = changed === true ? '位置或朝向已改变，但传送未完成。'
+        : changed === false ? '当前位置未改变。' : '未能确认当前位置，传送未完成。';
+      this.overlay.textContent = `${placeDisplayName(name)}传送失败。${location}请重试其他地点或重新加载游览。`;
+      this.overlay.style.display = 'block';
+      return null;
+    }
+  }
+
+  performTravel(name) {
     const g = this.geometryFor(name);
-    this.overlay.textContent = `前往 ${name}…`;
+    const displayName = placeDisplayName(name);
+    this.overlay.setAttribute('role', 'status');
+    this.overlay.style.width = '';
+    this.overlay.style.boxSizing = '';
+    this.overlay.textContent = `前往 ${displayName}…`;
     this.overlay.style.display = 'block';
     clearTimeout(this.overlayTimer);
     this.overlayTimer = setTimeout(() => { this.overlay.style.display = 'none'; }, TELEPORT.OVERLAY_MS);
@@ -320,16 +355,16 @@ export class Teleport {
     const point = this.resolveLanding(name);
     if (!point) {
       this.overlay.textContent = g.navigation?.mode === 'exterior-view'
-        ? `${name}地面外观观览点尚未就绪或受阻，暂不能传送`
-        : `${name}门前受阻，暂不能传送`;
+        ? `${displayName}地面外观观览点尚未就绪或受阻，暂不能传送`
+        : `${displayName}门前受阻，暂不能传送`;
       return null;
     }
     this.controls.teleportTo(point.x, point.z, point.lookAtX, point.lookAtZ);
     if (point.mode === 'exterior-view') {
       this.controls.camera.lookAt(point.lookAtX, point.lookAtY, point.lookAtZ);
       this.overlay.textContent = g.navigation?.gameAccess === 'virtual-interior-return'
-        ? `${name} · 地面观览点，可沿东西侧阶入殿并原路返回（不代表现场开放）`
-        : `${name} · 地面外观预览（不代表现场开放）`;
+        ? `${displayName} · 地面观览点，可沿东西侧阶入殿并原路返回（不代表现场开放）`
+        : `${displayName} · 地面外观预览（不代表现场开放）`;
     }
     this.zoneManager.update(this.controls.getPosition());
     this.lastPoint = { ...point, y: this.controls.getFeetY(), zone: this.zoneManager.getCurrentId() };

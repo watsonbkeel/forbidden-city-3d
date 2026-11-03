@@ -9,7 +9,7 @@ import {canRecoverInwardFromWuyingRail} from '../scene/palace/special/WuyingThre
 import {canCrossFubiPool} from '../scene/garden/FubiArchPool.js';
 import {canCrossLinxiPool} from '../scene/palace/special/LinxiBridgePool.js';
 import {cloneXiqingSurface,xiqingSurfaceFootContact,xiqingSurfaceBodyIntersects,xiqingSurfaceSweep} from '../controls/XiqingRoofSurface.js';
-import {cloneFurnitureMotionScope,furnitureScope,furnitureContact,furnitureTryStep,resolveFurnitureVertical} from '../controls/FurnitureMotion.js';
+import {cloneFurnitureMotionScope,furnitureScope,furnitureContact,furnitureTryStep,resolveFurnitureVertical,qianqingGroundedFloorHandoff} from '../controls/FurnitureMotion.js';
 import {duixiuScope,duixiuContact,duixiuTryStep,resolveDuixiuVertical} from '../scene/garden/DuixiuMotion.js';
 import {DuixiuTerrainIndex} from '../scene/garden/DuixiuTerrain.js';
 import {triangleInstance, triangleFootContact, triangleBodyIntersects, triangleBodySweptIntersects, triangleBodySweepFraction} from './TriangleSupport.js';
@@ -419,6 +419,9 @@ export class CollisionManager {
       const proposed = new THREE.Vector3(x,valid.y,z);
       if(furnitureScope(this,valid,proposed,radius,motion?.kind==='player'?furnitureFeet:undefined,undefined,furnitureFeet)) {
         const fromFeet=new THREE.Vector3(valid.x,furnitureFeet,valid.z),toFeet=new THREE.Vector3(x,furnitureFeet,z);
+        const handoff=qianqingGroundedFloorHandoff(this,fromFeet,toFeet,ground,motion,radius);
+        if(handoff===false)return false;
+        if(handoff!==null)fromFeet.y=toFeet.y=handoff;
         const result=furnitureTryStep(this,fromFeet,toFeet,radius,stepUp,motion);
         if(!result.accepted)return false;
         furnitureFeet=result.feetY;valid.set(result.position.x,furnitureFeet+PLAYER.HEIGHT,result.position.z);ground=result.groundY;

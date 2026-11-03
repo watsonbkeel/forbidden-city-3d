@@ -6,8 +6,8 @@ import {PlaceInfoPanel} from '../src/ui/PlaceInfoPanel.js';
 import {createDOM} from './lib/ui-dom.mjs';
 const read=path=>JSON.parse(readFileSync(new URL(`../${path}`,import.meta.url)));
 const zones=['garden','outer-east','outer-west','axis-courts','east-six','west-six','ningshou'];
-test('all 159 displayed place names resolve once, with 145 new source-backed cards',()=>{
- const c=new PlaceCatalog();assert.equal(c.places.length,159);assert.equal(new Set(c.places.map(p=>p.id)).size,159);
+test('all 164 displayed place names resolve once, including five restored source-backed cards',()=>{
+ const c=new PlaceCatalog();assert.equal(c.places.length,164);assert.equal(new Set(c.places.map(p=>p.id)).size,164);
  for(const zoneId of zones) for(const item of read(`data/zones/${zoneId}.json`).items.filter(i=>i.name && ['hall','gate','cityGate','nineDragonWall'].includes(i.kind))){
   const p=c.forBinding({kind:'zone',zoneId,name:item.name});assert.ok(p,`${zoneId}/${item.name}`);assert.equal(p.name,item.name);
  }
@@ -36,7 +36,7 @@ test('non-residential activities and intended use are never coerced into residen
  assert.ok(byName('养性殿').people.some(p=>p.relation==='dining-user'));
  for(const p of c.places)for(const person of p.people.filter(x=>['resident','temporary-resident'].includes(x.relation)))assert.ok(p.residenceNote?.sourceIds.length,`${p.name}/${person.name}`);
 });
-test('partial evidence labels and all 159 cards render as plain nonmodal text',t=>{
+test('partial evidence labels and all 164 cards render as plain nonmodal text',t=>{
  const dom=createDOM(),saved=globalThis.document;globalThis.document=dom.document;t.after(()=>{globalThis.document=saved});
  const c=new PlaceCatalog(),panel=new PlaceInfoPanel();
  for(const p of c.places){panel.render({place:p,name:p.name,sources:c.sourcesFor(p),canTravel:true,onTravel(){}});assert.ok(panel.element.textContent.includes(p.summary.text));assert.equal(panel.element.querySelectorAll('#place-travel').length,1);assert.equal(panel.element.querySelectorAll('iframe,script,img').length,0);}

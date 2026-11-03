@@ -85,7 +85,7 @@ export class SettingsMenu {
           <button id="performance-mode-toggle-btn" type="button" aria-describedby="performance-mode-note">节能 · 30 FPS</button>
         </div>
         <p id="performance-mode-note" class="settings-notice">默认节能：最高 30 FPS、像素比最高 1.5；流畅模式跟随屏幕刷新率。切换不改变画质档位或人物设置，浏览器允许时在本机记住选择；后台暂停游览计算。温度与耗电效果尚未实机测量。</p>
-        <p id="building-quality-note" class="settings-notice">织物贴图立即切换；建筑细节在分区重新加载后应用。低档保留主要形制与通路。</p>
+        <p id="building-quality-note" class="settings-notice">织物贴图立即切换；建筑细节在分区重新加载后应用。低档保留主要形制与通路。浏览器允许时，在本机记住所选画质，刷新后恢复。</p>
         <div class="settings-control">
           <label for="characters-toggle-btn">宫廷人物</label>
           <button id="characters-toggle-btn" type="button" aria-describedby="characters-status characters-acceptance">宫廷人物已开启（候选）</button>

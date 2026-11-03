@@ -1,12 +1,21 @@
 import {characterBody, bodyIntersectsPlayer, sweptBodyIntersectsPlayer} from './CharacterBody.js';
 import {characterQualityEligibleIds} from './CharacterLOD.js';
+import {furnitureScope} from '../../controls/FurnitureMotion.js';
+
+function playerCollisionState(cm,state){
+ if(!state||!Array.isArray(state.position)||state.position.length!==3||!state.position.every(Number.isFinite)||!(state.radius>0)||!Number.isFinite(state.radius)||!(state.height>0)||!Number.isFinite(state.height)||typeof cm?._duixiuGrid!=='function')return state;
+ const [x,y,z]=state.position,eye={x,y:y+state.height,z};
+ // Mirror the live player's domain selection, including authoritative feet
+ // for height-gated scopes. Routine and patrol callers share this same getter.
+ return {...state,footprint:furnitureScope(cm,eye,eye,state.radius,y,undefined,y)?'square':'circle'};
+}
 
 /** Owns committed route time and the pedestrian body channel, never architecture.
  * Formation clocks stop together. Retreat is only backwards on the same checked
  * polyline, not an unvalidated lateral sidestep or teleport around the player. */
 export class CharacterInteraction {
  constructor({collisionManager,getPlayerState,registry}){
-  this.cm=collisionManager;this.getPlayerState=getPlayerState;this.registry=registry;
+  this.cm=collisionManager;this.getPlayerState=()=>playerCollisionState(this.cm,getPlayerState?.());this.registry=registry;
   this.groups=new Map();this.samples=new Map();this.player=null;this.last={bodies:0,blockedGroups:0,retreatingGroups:0,activationWaiting:0};
   for(const actor of registry.actors)if(actor.placement?.mode==='path')this.groups.set(actor.placement.pathRef,{time:0,blockedSeconds:0,retreat:false,retreatMeters:0});
  }

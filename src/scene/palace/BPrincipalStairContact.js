@@ -1,3 +1,4 @@
+import {centralStoneCrossBounds} from './CentralStoneContactBounds.js';
 import {preserveFengxianCentralContactOwner,resolveFengxianCentralContact} from './special/FengxianCentralContact.js';
 function resolveFengxianFrontContact(...args){return resolveFengxianCentralContact(...args)??resolveOriginalFengxianFrontContact(...args);}
 import {preserveFengxianFrontContactOwner,resolveFengxianFrontContact as resolveOriginalFengxianFrontContact} from './special/FengxianFrontContact.js';
@@ -24,7 +25,8 @@ import donghuaSource from '../../../data/architecture/donghua-madao-contacts.jso
 import {pathFootprintCovered} from '../../controls/WumenJointAscentCoverage.js';
 import {wumenJointBodySweep} from '../../controls/WumenJointAscentSweep.js';
 
-// An allowlist of existing builder-authored surfaces, not generated supports.
+// An allowlist of builder-authored surfaces, not generated supports. Six R163
+// game ramps follow existing central stones without changing their visible mesh.
 // Original group dimensions come from the unchanged e640 runtime inventory;
 // the separately host-bound Donghua group comes from its c0f5548b built surfaces. Neither this
 // module nor its hooks allocate a mesh, collider, walkable or alternative ground.
@@ -106,7 +108,8 @@ export function resolveBPrincipalStairContact(cm,state,delta,radius=.5){
  if(owned||toe)previous.set(cm,{group:group.id,x:state.x,z:state.z,ground,ramp:ramp?.bPrincipalStairId});
  if(!prior||prior.group!==group.id||!(owned||toe)||(!ramp&&!prior.ramp)||Math.abs(state.groundY-prior.ground)>.3||Math.abs(state.feetY-prior.ground)>.3||Math.abs(ground-prior.ground)<1e-6)return null;
  if(Math.hypot(state.x-prior.x,state.z-prior.z)>PLAYER.SPRINT_SPEED*delta+1e-6)return null;
- const active=ramp??ramps.find(r=>r.bPrincipalStairId===prior.ramp),cross=active.axis==='x'?'z':'x',lo=active.axis==='x'?active.minZ:active.minX,hi=active.axis==='x'?active.maxZ:active.maxX;
+ const active=ramp??ramps.find(r=>r.bPrincipalStairId===prior.ramp),cross=active.axis==='x'?'z':'x';
+ const [lo,hi]=centralStoneCrossBounds(active,ramps)??(active.axis==='x'?[active.minZ,active.maxZ]:[active.minX,active.maxX]);
  // Never turn a lateral edge departure into attachment to a lower terrace.
  if([prior,state].some(p=>p[cross]-radius<lo||p[cross]+radius>hi))return null;
  const x0=Math.min(prior.x,state.x)-radius,x1=Math.max(prior.x,state.x)+radius,z0=Math.min(prior.z,state.z)-radius,z1=Math.max(prior.z,state.z)+radius;

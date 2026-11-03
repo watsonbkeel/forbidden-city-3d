@@ -1,0 +1,1 @@
+Intermediate unaccepted two-window viewpoint candidates. These four images are NOT the final five-image CPU proof. Final views and exact hashes live in ../cpu/proof.json. The original single-window candidate has its separate original proof in ../cpu-initial-c5bd52f4.

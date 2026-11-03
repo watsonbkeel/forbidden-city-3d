@@ -5,6 +5,7 @@ import { pavilionGeometry } from './PavilionProfiles.js';
 import { buildTirenLowerWindowLeaves } from './PavilionLowerWindowLeaves.js';
 import { buildHongyiLowerWindowLeaves } from './HongyiLowerWindowLeaves.js';
 import { buildHongyiNameInscription } from './SourcedNameInscriptions.js';
+import { buildTirenNameInscription } from './TirenNameInscription.js';
 import { prunePavilionCoveredFaces, splitPavilionDeckFaces } from '../../../render/PavilionRenderGeometry.js';
 
 const tag=(object,role,data={})=>{object.name=role;Object.assign(object.userData,{role,...data});return object;};
@@ -250,7 +251,7 @@ export function buildSurveyedPavilion(kit,opts={}) {
   }
   const roof=tag(kit.roof(f,{type:'wudian',pavilionChiwen:g.profile,width:g.gallery.width,depth:g.gallery.depth,baseY:g.roof.baseY,height:g.roof.height,overhang:g.roof.overhang,brackets:true,layers:1},0,g.roof.centerZ),'upper-hip-roof',{roofType:'wudian',layers:1,ridgeReference:g.elevations.ridge,ridgeReferenceObject:g.roof.ridgeReferenceObject,ornamentFidelity:g.roof.ornamentFidelity,eaveReference:g.elevations.upper_eave});
   if(enter)kit.registerRoom(f,{name,kind:'hall',...g.roomBounds,doors:[{x:0,z:lo.front}]});
-  const nameInscription=g.profile==='hongyi'&&opts.plaque===true?buildHongyiNameInscription(kit,f,g):null;
+  const nameInscription=opts.plaque===true?(g.profile==='hongyi'?buildHongyiNameInscription(kit,f,g):g.profile==='tiren'?buildTirenNameInscription(kit,f,g):null):null;
   if(!nameInscription&&opts.plaque===true)kit.plaque(f,name,0,lo.columnTop-.5,lo.front-.35,1.1,1.5);
   if(opts.map!==false) {
     const centre=g.toWorld(0,(p.z0+p.z1)/2),q=Math.abs(Math.sin(g.rot))>.5;

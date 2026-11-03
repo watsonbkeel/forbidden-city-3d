@@ -1,3 +1,4 @@
+import {restoreBeforeR163FiveCards} from './r163-five-cards-retention.mjs';
 import {restoreReviewedR39FengxianDisclaimer} from './r39-place-retention.mjs';
 import {restoreR31CombinedSourceIfPresent} from './r31-combined-source-retention.mjs';
 import assert from 'node:assert/strict';
@@ -6,6 +7,7 @@ import baseline from '../fixtures/r6-complete-place-cards.json' with {type:'json
 export {baseline};
 const sha=v=>createHash('sha256').update(v).digest('hex');
 export function restoreR6PlaceCatalog(raw){
+ raw=restoreBeforeR163FiveCards(raw);
  const reviewed=JSON.parse(raw);
  assert.equal(raw,JSON.stringify(reviewed,null,2)+'\n','canonical input catalog before R39 inverse');
  restoreReviewedR39FengxianDisclaimer(reviewed);

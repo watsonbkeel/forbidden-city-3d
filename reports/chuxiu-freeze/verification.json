@@ -1,0 +1,113 @@
+{
+  "base": "ec50ea01",
+  "completeUserFreezeReproduced": false,
+  "npcEdgeDefectReproduced": true,
+  "negativeControl": {
+    "originalSourceFailed": true,
+    "testsFailed": 3,
+    "firstOriginalPatrolFailureFrame": 41
+  },
+  "selectedRegressionTests": {
+    "tests": 55,
+    "pass": 55,
+    "fail": 0
+  },
+  "projectCurrentStateCommand": {
+    "tests": 0,
+    "fullSuiteAcceptance": false
+  },
+  "build": {
+    "success": true,
+    "warning": "large Vite chunk"
+  },
+  "scheduler": {
+    "changed": false,
+    "injectedExceptionStopsFutureRAF": true,
+    "actualChuxiuExceptionObserved": false
+  },
+  "baseline": {
+    "frames": 5548,
+    "errors": [],
+    "successfulMapButtons": 6,
+    "npcContact": [
+      {
+        "label": "approach NPC",
+        "position": [
+          98.71928039071275,
+          1.7,
+          413.2119234140886
+        ],
+        "existingSquareOverlap": true,
+        "blockedDirections": 5
+      },
+      {
+        "label": "retreat from NPC",
+        "position": [
+          98.71928039071275,
+          1.7,
+          413.2119234140886
+        ],
+        "existingSquareOverlap": true,
+        "blockedDirections": 5
+      }
+    ],
+    "reloads": []
+  },
+  "candidate": {
+    "frames": 6448,
+    "errors": [],
+    "successfulMapButtons": 6,
+    "npcContact": [
+      {
+        "label": "approach NPC",
+        "position": [
+          98.71894967898928,
+          1.7,
+          413.21174505172576
+        ],
+        "existingSquareOverlap": false,
+        "blockedDirections": 3
+      },
+      {
+        "label": "retreat from NPC",
+        "position": [
+          85.28063336457369,
+          2.2899999737739565,
+          417.0650201852622
+        ],
+        "existingSquareOverlap": false,
+        "blockedDirections": 1
+      }
+    ],
+    "reloads": [
+      {
+        "label": "reload retain=true",
+        "requestedRetain": true,
+        "actualRetained": false,
+        "success": true
+      },
+      {
+        "label": "reload retain=false",
+        "requestedRetain": false,
+        "actualRetained": false,
+        "success": true
+      },
+      {
+        "label": "reload retain=true",
+        "requestedRetain": true,
+        "actualRetained": false,
+        "success": true
+      }
+    ]
+  },
+  "sourceHashes": {
+    "src/scene/characters/CharacterBody.js": {
+      "before": "b476473c19501083ef499ffe998f4c7eed421e48a5c92214717488de71bfcee6",
+      "after": "30827730e9fb5325b53c5dd9ae3647d968d8a9174b2537f813110be4b4f8cd6d"
+    },
+    "src/scene/characters/CharacterInteraction.js": {
+      "before": "43603c030bd727415d848626eab1c194d32696bf3174ff2ccefb9306d75f0099",
+      "after": "aff1888d9dd5cccace03ffcbd4f55dddbb3d84cdb7f863079c8bf9068f14ad29"
+    }
+  }
+}

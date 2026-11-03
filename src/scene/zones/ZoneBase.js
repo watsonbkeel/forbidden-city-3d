@@ -1,3 +1,31 @@
+import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
+import {buildZhongzhengWestHall} from '../palace/special/ZhongzhengWestHall.js';
+import {buildZhongzhengEastHall} from '../palace/special/ZhongzhengEastHall.js';
+import {buildZhaofuGate} from '../palace/special/ZhaofuGate.js';
+import {buildYuhuaWestLou} from '../palace/special/YuhuaWestLou.js';
+import {buildYuhuaEastLou} from '../palace/special/YuhuaEastLou.js';
+import {buildHuifengPavilion} from '../palace/special/HuifengPavilion.js';
+import {buildJianfuMainHall} from '../palace/special/JianfuMainHall.js';
+import {buildFuchenHall} from '../palace/special/FuchenHall.js';
+import {buildYudeWestHall} from '../palace/special/YudeWestHall.js';
+import {buildXiangyunPavilion} from '../palace/special/XiangyunPavilion.js';
+import {buildNinghuiHall} from '../palace/special/NinghuiHall.js';
+import {buildChongjingHall} from '../palace/special/ChongjingHall.js';
+import {buildFengyacun} from '../palace/special/Fengyacun.js';
+import {buildGaoyunqing} from '../palace/special/Gaoyunqing.js';
+import {buildJinzhaoYucui} from '../palace/special/JinzhaoYucui.js';
+import {buildShufangFrontHall} from '../palace/special/ShufangFrontHall.js';
+import {buildBilinGuan} from '../palace/special/BilinGuan.js';
+import {buildYinghuaWestEarHall,buildYinghuaWestEarCourtWalls} from '../palace/special/YinghuaWestEarHall.js';
+import {buildBaohuaDian} from '../palace/special/BaohuaDian.js';
+import {buildFanzongLou} from '../palace/special/FanzongLou.js';
+import {buildYuhuaGe} from '../palace/special/YuhuaGe.js';
+import {buildJingyiXuan} from '../palace/special/JingyiXuan.js';
+import {buildShufangStage} from '../palace/special/ShufangStage.js';
+import {buildJicuiPavilion} from '../palace/special/JicuiPavilion.js';
+import {buildJianfuJiyunLou} from '../palace/special/JianfuJiyunLou.js';
+import {buildJingshengZhai} from '../palace/special/JingshengZhai.js';
+import {buildYinghuaStelePavilion} from '../palace/special/YinghuaStelePavilion.js';
 import {applyGardenStreetGatePins} from '../palace/special/GardenStreetGatePins.js';
 import {buildQinanIncensePavilions} from '../palace/special/QinanIncensePavilions.js';
 import {buildYucuiPavilion} from '../palace/special/YucuiPavilion.js';
@@ -346,6 +374,34 @@ export class ZoneBase {
     buildChengguangGate(this.kit,this.kit.root.name);
     buildYucuiPavilion(this.kit,this.kit.root.name);
     buildQinanIncensePavilions(this.kit,this.kit.root.name);
+    buildYinghuaStelePavilion(this.kit,this.zoneJson);
+    buildYinghuaWestEarHall(this.kit,this.zoneJson);
+    buildJingshengZhai(this.kit,this.zoneJson);
+    buildBilinGuan(this.kit,this.zoneJson);
+    buildNinghuiHall(this.kit,this.zoneJson);
+    buildJianfuJiyunLou(this.kit,this.zoneJson);
+    buildJicuiPavilion(this.kit,this.zoneJson);
+    buildShufangStage(this.kit,this.zoneJson);
+    buildShufangFrontHall(this.kit,this.zoneJson);
+    buildJinzhaoYucui(this.kit,this.zoneJson);
+    buildGaoyunqing(this.kit,this.zoneJson);
+    buildFengyacun(this.kit,this.zoneJson);
+    buildChongjingHall(this.kit,this.zoneJson);
+    buildYudeWestHall(this.kit,this.zoneJson);
+    buildJingyiXuan(this.kit,this.zoneJson);
+    buildYuhuaGe(this.kit,this.zoneJson);
+    buildBaohuaDian(this.kit,this.zoneJson);
+    buildFanzongLou(this.kit,this.zoneJson);
+    buildXiangyunPavilion(this.kit,this.zoneJson);
+    buildFuchenHall(this.kit,this.zoneJson);
+    buildJianfuMainHall(this.kit,this.zoneJson);
+    buildHuifengPavilion(this.kit,this.zoneJson);
+    buildYuhuaEastLou(this.kit,this.zoneJson);
+    buildYuhuaWestLou(this.kit,this.zoneJson);
+    buildZhaofuGate(this.kit,this.zoneJson);
+    buildZhongzhengEastHall(this.kit,this.zoneJson);
+    buildZhongzhengWestHall(this.kit,this.zoneJson);
+    buildBaozhongEastHall(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -616,6 +672,7 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
+    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华门')))return;
     if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 

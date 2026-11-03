@@ -1,0 +1,58 @@
+{
+  "scope": "ACTUAL_PRODUCTION_TRIANGLES_HD_ALBEDO_CPU_NOT_WEBGL",
+  "sourcePhotoRedistributed": false,
+  "source": "https://www.dpm.org.cn/explore/building/236524.html",
+  "sourcePhoto": "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg",
+  "sourceSHA256": "fda0c35ed50b0d23f5b4151702faec1089f74fff3c9e999d170579d159e162f9",
+  "sourceCommit": "d689182a667974cafdd166fbcfc28efe366c638c",
+  "modifiedSourceHashes": {
+    "src/scene/palace/special/RemainingOuterHalls.js": "b87bc9208f3745de7ecbc246dda3a37ead1a42f23f90f477ebd9e36258db5737",
+    "src/scene/palace/special/YanchunSouthPhotoFit.js": "365e4fbee49994c61ad1e87841fe33ae64d7dffe2d705616fee750300779c530"
+  },
+  "limitation": "No GPU PBR, normal maps or contact shadows; fixed camera before/after, no historical measured reconstruction.",
+  "views": [
+    {
+      "state": "before",
+      "view": {
+        "name": "south",
+        "eye": [
+          0,
+          2.3,
+          -40
+        ],
+        "target": [
+          0,
+          5,
+          0
+        ],
+        "fov": 51
+      },
+      "path": "reports/r163-yanchun-rail/views/south-before.png",
+      "sha256": "3630c703087fa3bb5f668288378aa5811030b425343644b6e62a2d505433f0ff",
+      "geometrySHA256": "30397b0b993dfd7407e983a54f8546b7eb4a6934fcdc1112caac441e3191df79",
+      "triangles": 20660
+    },
+    {
+      "state": "before",
+      "view": {
+        "name": "front-detail",
+        "eye": [
+          0,
+          2.3,
+          -25
+        ],
+        "target": [
+          0,
+          5,
+          -12
+        ],
+        "fov": 65
+      },
+      "path": "reports/r163-yanchun-rail/views/front-detail-before.png",
+      "sha256": "bb91b08ce3f7be6d06f917eae700ad31c8b89318c5703104f96ff0b17068acea",
+      "geometrySHA256": "30397b0b993dfd7407e983a54f8546b7eb4a6934fcdc1112caac441e3191df79",
+      "triangles": 20660
+    }
+  ],
+  "relocation": "Original baseline render outputs copied unchanged from reports/r66-h-stage/yanchun-preview to this task evidence directory; only path strings updated."
+}

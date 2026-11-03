@@ -1,0 +1,11 @@
+# Zhaofu gate FC-2953884F94: real small passage
+
+H43/36, baseb5232e21, isolated local implementation. Official2021journal PDF7/8 printed20/21 plan/text place Yuhua rear baoxia -> Zhaofu -> Baohua; two tall incense burners lie on the intervening imperial path, banners inside the north court. Own official8202 image shows one rectangular opening, yellow/gold doors/frame, red side piers/walls, single yellow tiled roof with ridge/turning slopes. Hipped-gable interpretation is photo-only, not independent official roof-type text. The black tower behind roof is separate incense burner, NOT gate finial/upper floor. No adjacent-gate substitution or unknown historic interior inventory.
+
+Use one new CourtKit special component/private namespace/exact host/one hook, all real triangle collision owners plus one real .12m stone threshold/top. Provisional216,352.8 footprint210.8..221.2,z350..355.4 requires actualb523 World reserve first. A roughly6.2m gate body with3.0m central opening and short photo-supported capped red cheeks, one small7.5x3.7m yellow roof; all dimensions/profile/repeats/hidden rear/short cheek extent are fit. No long new courtyard wall or old wall movement.
+
+Model photograph's partly open golden leaves with right narrow partial leaf and left turned leaf, axis remains physically clear about2.1m. Exact leaf count/angle/current opening unverified: engineering gameplay fit, not real public admission. Threshold .12m high, no hidden ramp/support. Lower red piers/wing walls stay solid. Preserve z356 horizontal route and old198/229/248 bypasses. The existing Yuhua rear enclosure is not opened or claimed newly seamless.
+
+Alternatives rejected: placing the incense burner on gate ridge would be wrong identity; a closed billboard would not make a usable gate; copying a different grand gate invents scale/details. Selected minimal photo-based small gate and real aperture with closed solid cheeks. No incense burners/banner reconstruction/unknown ornament inventory/lettered plaque/second floor/teleports.
+
+Prove local native30/60 walk/sprint passage and wall/leaf negatives, actual merged normal viewpoints/CPU plus strictoldWorld stream/farroof/near old routes, clean/gugong/build137HTTP serially. Parent owns fresh review; no upload/main/agents.

@@ -1,0 +1,52 @@
+✖ R163 south-only pale turned railing distinguishes observed appearance from retained fitted repeats (119.511021ms)
+✔ R163 all non-south/corner mesh bytes, complete collision, routes and whole-building envelope match independent baseline (105.464115ms)
+✖ R163 exact-host and complete-member guard rejects foreign or repeated application without mutation (43.663414ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 481.285757
+
+✖ failing tests:
+
+test at tests/r163-yanchun-south-rail.test.mjs:10:1
+✖ R163 south-only pale turned railing distinguishes observed appearance from retained fitted repeats (119.511021ms)
+  AssertionError [ERR_ASSERTION]: the 25 retained south bars must be turned, not square
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-yanchun-visual-2221/tests/r163-yanchun-south-rail.test.mjs:13:39)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/r163-yanchun-south-rail.test.mjs:39:1
+✖ R163 exact-host and complete-member guard rejects foreign or repeated application without mutation (43.663414ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-yanchun-visual-2221/tests/r163-yanchun-south-rail.test.mjs:40:36)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

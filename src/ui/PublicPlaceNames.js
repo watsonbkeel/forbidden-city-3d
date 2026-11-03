@@ -23,6 +23,13 @@ const names = new Map([
  ['内阁大库第二体（文字拟合、库别待核）', '内阁大库第二体'],
 ]);
 export const publicPlaceName = name => names.get(name) ?? name;
+/** User-facing text is separate from the existing unique map/teleport keys.
+ * The fitted second store has no verified individual identity. Use the official
+ * aggregate name, without inventing a red-book/records-store attribution. */
+export function placeDisplayName(name) {
+ const key = publicPlaceName(name);
+ return key === '内阁大库第二体' ? '内阁大库' : key;
+}
 export function publicMapItem(item) {
  const name = publicPlaceName(item.name);
  return name === item.name ? item : {...item, name};

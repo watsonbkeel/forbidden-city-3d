@@ -1,0 +1,37 @@
+✔ Xiangyun is one H43 square four-door/four-baoxia body with pointed upper yellow roof and no invented tower inventory (101.410318ms)
+✔ Xiangyun geometry is finite/nondegenerate and every physical mesh has its actual distinct owner (53.888353ms)
+✔ Xiangyun fourfold lower platforms/doors and upper roof bearings make real supported construction (55.419727ms)
+✔ Xiangyun wrong-host/transformed/frozen/material failures are atomic, outside zone no-op and duplicate rejected (110.620821ms)
+✔ Xiangyun is installed once in the real zone before material merging (0.580384ms)
+✖ Xiangyun late material/tile failures free every staged geometry once and retain shared handles (2.960175ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 511.76598
+
+✖ failing tests:
+
+test at tests/r163-xiangyun.test.mjs:8:1
+✖ Xiangyun late material/tile failures free every staged geometry once and retain shared handles (2.960175ms)
+  AssertionError [ERR_ASSERTION]: roof geometry allocation leaked
+  
+  undefined !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r163-xiangyun-1054/tests/r163-xiangyun.test.mjs:8:941)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

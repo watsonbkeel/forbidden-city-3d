@@ -1,0 +1,43 @@
+{
+  "localAndWorldExactNativeContactFrameParity": true,
+  "totalOwnRoutes": 20,
+  "totalOwnNegatives": 8,
+  "allArrived": true,
+  "ownNativeContactFrames": 12,
+  "contactsByCase": [
+    {
+      "name": "south-real-stair-open-axis-north-return",
+      "fps": 30,
+      "sprint": true,
+      "count": 1
+    },
+    {
+      "name": "south-real-stair-open-axis-north-return",
+      "fps": 60,
+      "sprint": true,
+      "count": 3
+    },
+    {
+      "name": "north-game-stair-open-axis-south-return",
+      "fps": 30,
+      "sprint": true,
+      "count": 2
+    },
+    {
+      "name": "north-game-stair-open-axis-south-return",
+      "fps": 60,
+      "sprint": true,
+      "count": 6
+    }
+  ],
+  "minFeet": 0,
+  "maxFeet": 0.6000000014901161,
+  "maxSingleFrameFeetChange": 0.12166040051109095,
+  "maxAbsoluteFeetGroundInterpolationGap": 0.4502777792678965,
+  "maxActualNativeBodyEdgeDepth": 0.07984580149893511,
+  "owners": [
+    "huifeng-pavilion/1/real-white-sumeru-waist-fit",
+    "real-white-sumeru-top-platform-fit"
+  ],
+  "acceptance": "Actual traversal/no stuck, no below-ground feet and bounded foot-edge contact retained. Not zero-contact, not GPU walking capture. Original physical geometry and native controls unchanged."
+}

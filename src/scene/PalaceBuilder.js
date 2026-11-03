@@ -1,3 +1,4 @@
+import {taiheFrontPorch} from './palace/special/TaiheFrontPorch.js';
 import {buildTaiheEighteenTripods} from './palace/special/TaiheEighteenTripods.js';
 import {buildTaiheBronze} from './palace/special/TaiheBronzeSilhouettes.js';
 import {registerBPrincipalStairs} from './palace/BPrincipalStairContact.js';
@@ -564,6 +565,7 @@ export class PalaceBuilder {
         const ph = Math.min(spec.plinth ?? 1.3, room / 1.6);
         const plinth = { z0: h.position.z, w: w + 2 * PLINTH_PAD, d: d + 2 * PLINTH_PAD, y: top, ph, stairW: sw,
           taiheSouth: h.name === '太和殿',
+          smallStairCenters: h.name === '太和殿' ? taiheFrontPorch(w,d).stairCenters : undefined,
           zhongheImperial: h.name === '中和殿',
           stairCenters: h.name === '中和殿' ? [-(w - 6) / 3, 0, (w - 6) / 3] : [0],
           stairSides: h.name === '中和殿' ? ['south', 'north', 'east', 'west'] : ['south', 'north'] };
@@ -601,7 +603,7 @@ export class PalaceBuilder {
    * 单殿台明：高 ph 的须弥座，前后台阶可分组，并可加东西出阶；四面挡墙只挡台下的人。
    * @returns {number} 台明顶面高度
    */
-  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0], taiheSouth = false, zhongheImperial = false }) {
+  buildPlinth(g, { z0, w, d, y, ph, stairW, stairSides = ['south', 'north'], stairCenters = [0], taiheSouth = false, smallStairCenters, zhongheImperial = false }) {
     const half = stairW / 2;
     const run = ph * 1.6;
     const t = 0.5;
@@ -621,7 +623,7 @@ export class PalaceBuilder {
     for (const s of [-1, 1]) {
       const ze = z0 + s * d / 2;
       if (taiheSouth && s === -1) {
-        buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0: y, y1, run, halfWidth: w / 2, plinth: true }));
+        buildTaiheSouthTier(this, g, taiheSouthTier({ zEdge: ze, y0: y, y1, run, halfWidth: w / 2, plinth: true, smallStairCenters }));
         continue;
       }
       let cursor = -w / 2;
@@ -766,6 +768,8 @@ export class PalaceBuilder {
     const taiheCore = data.name === '太和殿';
     const baoheColumns = data.name === '保和殿';
     const taiheGrid = taiheCore ? taiheColumnGrid(w, d) : null;
+    const taihePorch = taiheCore ? taiheFrontPorch(w,d) : null;
+    if(taihePorch)g.userData.taiheFrontPorch=taihePorch;
     const qianqingFrontage = qianqingDepth ? qianqingFrontageGrid(w) : null;
     if(qianqingFrontage) g.userData.qianqingFrontageFit = qianqingFrontage;
     const facadeGrid = taiheGrid ?? qianqingFrontage ?? (data.name === '保和殿' ? baoheColumnGrid(w) : null);
@@ -847,7 +851,7 @@ export class PalaceBuilder {
         continue; // Includes replacing the old south infills and broad collision walls.
       }
       const depthFrame = qianqingDepth ?? baoheDepth;
-      const zf = z0 + (depthFrame ? (s < 0 ? depthFrame.frontDoorZ : depthFrame.rearDoorZ) : s * d / 2);
+      const zf = z0 + (taihePorch && s < 0 ? taihePorch.doorZ : depthFrame ? (s < 0 ? depthFrame.frontDoorZ : depthFrame.rearDoorZ) : s * d / 2);
       for (let i = 0; i < bays; i++) {
         const xc = facadeGrid ? x0 + (facadeGrid.x[i] + facadeGrid.x[i + 1]) / 2 : x0 - w / 2 + (i + 0.5) * bayW;
         const facadeBayW = facadeGrid ? facadeGrid.x[i + 1] - facadeGrid.x[i] : bayW;
@@ -889,8 +893,9 @@ export class PalaceBuilder {
       this.col(x0 + openRight, y, zf - 0.25, x0 + solidEnd, y + 3, zf + 0.25);
     }
     // 门槛（矮，可跨过）
-    for (const s of (data.name === '太和门' ? [1] : [-1, 1])) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (qianqingDepth ? (s < 0 ? qianqingDepth.frontDoorZ : qianqingDepth.rearDoorZ) : baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
+    for (const s of (data.name === '太和门' ? [1] : [-1, 1])) this.libBox(g, 'wood_column', openRight - openLeft, 0.25, 0.3, x0 + (openLeft + openRight) / 2, y + 0.125, z0 + (taihePorch && s < 0 ? taihePorch.doorZ : qianqingDepth ? (s < 0 ? qianqingDepth.frontDoorZ : qianqingDepth.rearDoorZ) : baoheDepth ? (s < 0 ? baoheDepth.frontDoorZ : baoheDepth.rearDoorZ) : s * d / 2), 'box');
     // The recessed door/header does not replace the separate south eave beam.
+    if(taihePorch)this.libBox(g,'caihua_beam',w+.6,beamH,.6,x0,y+H-beamH/2,z0+taihePorch.frontColumnZ,'band');
     if (baoheDepth) this.libBox(g, 'caihua_beam', w + 0.6, beamH, 0.6, x0, y + H - beamH / 2, z0 + baoheDepth.southEaveZ, 'band');
     if (qianqingDepth) for(const z of [qianqingDepth.southEaveZ,qianqingDepth.northEaveZ])
       this.libBox(g,'caihua_beam',w+.6,beamH,.6,x0,y+H-beamH/2,z0+z,'band');

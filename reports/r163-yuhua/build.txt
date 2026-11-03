@@ -1,0 +1,25 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> forbidden-city-3d@1.0.0 build
+> vite build --base=/ --outDir=/tmp/r163-yuhua-pre-review
+
+vite v5.4.21 building for production...
+transforming...
+✓ 727 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../tmp/r163-yuhua-pre-review/build-info.json                0.26 kB │ gzip:     0.20 kB
+../../../../tmp/r163-yuhua-pre-review/index.html                     4.54 kB │ gzip:     2.28 kB
+../../../../tmp/r163-yuhua-pre-review/assets/index-XCSIJ6--.css     16.93 kB │ gzip:     4.07 kB
+../../../../tmp/r163-yuhua-pre-review/assets/index-BjrG_QZV.js   5,610.17 kB │ gzip: 1,597.60 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.78s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

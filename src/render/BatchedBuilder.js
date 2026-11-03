@@ -89,6 +89,17 @@ function batchKeys(meshes, scene) {
   });
 }
 
+// Compare the complete source matrix, not its rounded GPU copy. Non-finite
+// inputs always use the original write path; signed zero remains distinct.
+function sameWorldMatrix(previous, current) {
+  if (!previous) return false;
+  for (let i = 0; i < 16; i++) {
+    const value = current.elements[i];
+    if (!Number.isFinite(value) || !Object.is(previous.elements[i], value)) return false;
+  }
+  return true;
+}
+
 // 跨组材质批次仍保留每个源网格的矩阵与包围球；源对象保留供碰撞和释放。
 export class BatchedBuilder {
   constructor(scene) {
@@ -161,7 +172,13 @@ export class BatchedBuilder {
         for (let p = mesh.parent; p && visible; p = p.parent) visible &&= p.visible;
         entry.visible = visible;
         batch.setVisibleAt(id, visible);
-        batch.setMatrixAt(id, mesh.matrixWorld);
+        // Entries are owned by this batch and replaced on every rebuild.
+        // Cache only a successful write; all visibility/shadow work stays live.
+        if (!sameWorldMatrix(entry.worldMatrix, mesh.matrixWorld)) {
+          batch.setMatrixAt(id, mesh.matrixWorld);
+          if (entry.worldMatrix) entry.worldMatrix.copy(mesh.matrixWorld);
+          else entry.worldMatrix = mesh.matrixWorld.clone();
+        }
         batch.castShadow ||= visible && mesh.castShadow;
         this.hidden.push([mesh, mesh.visible]);
         mesh.visible = false;

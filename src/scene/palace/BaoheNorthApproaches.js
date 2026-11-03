@@ -14,7 +14,7 @@ export const BAOHE_NORTH_APPROACHES = Object.freeze({
   innerClearWidth: 1.5, innerOuterCheek: .3, bottomTreads: 28,
   lodDistance: 120, lodHysteresis: .1, lodCenterZ: 178,
   dimensionsStatus: 'PUBLISHED_STONE_EXPOSED_SIZE_WITH_PROVISIONAL_STAIRS_AND_LEVELS',
-  publicAccessStatus: 'UNKNOWN', stoneWalkingPolicy: 'NO_GAMEPLAY_WALKABLE',
+  publicAccessStatus: 'UNKNOWN', stoneWalkingPolicy: 'GAMEPLAY_RAMP_ON_EXISTING_STONE',
 });
 
 export function baoheNorthTier({ zEdge, y0, y1, run, halfWidth, tier }) {
@@ -82,7 +82,9 @@ export function buildBaoheNorthTier(b,parent,p,detail) {
   face.translate(0,(p.y0+p.y1)/2+.04,(p.zEdge+p.zToe)/2);
   const slab=new THREE.Mesh(face,b.library.material('yulu'));slab.name=p.id+':carved-surface';slab.receiveShadow=true;
   slab.userData.walkingPolicy=C.stoneWalkingPolicy;parent.add(slab);
-  for(let j=0;j<32;j++)b.col(-C.stoneWidth/2,p.y0,p.zEdge+j*p.run/32,C.stoneWidth/2,p.y1-j*rise/32+.08,p.zEdge+(j+1)*p.run/32);
+  // The existing visible imperial stone is also a game route. Do not turn its
+  // segmented solid proxy into an invisible fence across the central descent.
+  b.walkRampZ(-C.stoneWidth/2,C.stoneWidth/2,p.zEdge,p.zToe,p.y1,p.y0);
 }
 
 export function installBaoheNorthDetail(root,detail){

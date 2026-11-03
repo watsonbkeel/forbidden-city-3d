@@ -1,0 +1,184 @@
+{
+  "sourceObjectId": "FC-737B0B10BA",
+  "baseSource": "aa978fe65c403c6c2cf74b045072421aabb9be53",
+  "initialProduct": "9da5818b96886db4a8238bcc110ce73c6a32d0d4",
+  "currentProduct": "3f3706f58d967bcfa67de27b675967e9fefb9d6a",
+  "baselineSha256": "96e9eaefda0ec05a4b7fafa83a6d3c0ec6724258ab19964ed32584facd647a63",
+  "componentAndLocal": {
+    "passed": 6,
+    "failed": 0
+  },
+  "affectedComponents": {
+    "passed": 22,
+    "failed": 0,
+    "wholeHistoricalSuite": false
+  },
+  "normalWorld": {
+    "passed": true,
+    "durationMs": 67393.565651,
+    "geometry": {
+      "meshes": 10,
+      "triangles": 8700,
+      "owners": 212,
+      "actualStoneTops": 5
+    },
+    "silhouette": {
+      "old": 66568,
+      "new": 4480,
+      "current": 71048
+    },
+    "positiveRoutes": 84,
+    "negativeRoutes": 24,
+    "strictAa978StreamsPreserved": true,
+    "oldOwners": 20009,
+    "oldTops": 1385,
+    "oldMiddleHistoricalContactsExact": true,
+    "mergedHighGableRays": [
+      {
+        "sign": -1,
+        "fromOutside": true,
+        "origin": [
+          181,
+          5.4,
+          428
+        ],
+        "hit": [
+          183,
+          5.4,
+          428
+        ],
+        "material": "r163_fuchen_wood_column_9977648"
+      },
+      {
+        "sign": -1,
+        "fromOutside": false,
+        "origin": [
+          183.5,
+          5.4,
+          428
+        ],
+        "hit": [
+          183.13999938964844,
+          5.4,
+          428
+        ],
+        "material": "r163_fuchen_wood_column_9977648"
+      },
+      {
+        "sign": 1,
+        "fromOutside": true,
+        "origin": [
+          194,
+          5.4,
+          428
+        ],
+        "hit": [
+          192,
+          5.4,
+          428
+        ],
+        "material": "r163_fuchen_wood_column_9977648"
+      },
+      {
+        "sign": 1,
+        "fromOutside": false,
+        "origin": [
+          191.5,
+          5.4,
+          428
+        ],
+        "hit": [
+          191.86000061035156,
+          5.4,
+          428
+        ],
+        "material": "r163_fuchen_wood_column_9977648"
+      }
+    ],
+    "normalNativeSupportedCpuPoses": [
+      {
+        "name": "south-player",
+        "x": 187.5,
+        "z": 417,
+        "feet": 0,
+        "ground": 0,
+        "eye": 1.7,
+        "nativeClear": true
+      },
+      {
+        "name": "southeast-player",
+        "x": 196,
+        "z": 419,
+        "feet": 0,
+        "ground": 0,
+        "eye": 1.7,
+        "nativeClear": true
+      },
+      {
+        "name": "front-porch-player",
+        "x": 191,
+        "z": 425.3,
+        "feet": 0.45,
+        "ground": 0.4499999940395355,
+        "eye": 2.15,
+        "nativeClear": true
+      },
+      {
+        "name": "rear-porch-player",
+        "x": 184.1,
+        "z": 430.7,
+        "feet": 0.45,
+        "ground": 0.4499999940395355,
+        "eye": 2.15,
+        "nativeClear": true
+      }
+    ],
+    "outsideScopeOldVertexNegative": true,
+    "failures": []
+  },
+  "build": {
+    "artifact": "/workspace/scratch/02a8023d1a85/r163-fuchen-3f3706f5-clean-1151",
+    "build": {
+      "schema": 1,
+      "release": "R163",
+      "buildId": "R163-79edd538fa9d",
+      "sourceFingerprint": "2eb99f2086852f98d928ff737e24015e1229ce919a113e8eeb4bc3151870194a",
+      "sourceCommit": "3f3706f58d967bcfa67de27b675967e9fefb9d6a",
+      "sourceDirty": false,
+      "base": "/gugong/"
+    },
+    "sourceVerified": true
+  },
+  "http": {
+    "base": "/gugong/",
+    "files": 137,
+    "bytes": 44401793,
+    "root": 200,
+    "missing": 404
+  },
+  "finalCpuImages": 6,
+  "historicalCpuImages": 5,
+  "finalCpuVsSourceAndImageHashesVerified": true,
+  "retainedFailures": [
+    "original missing builder/hook RED",
+    "CPU renderer sparse-checkout ENOENT, no image generated",
+    "test sparse-checkout/import setup error, separate from actual RED",
+    "real high-gable y5.4 missing-face RED",
+    "first upper-gable wrong underside selection RED"
+  ],
+  "sourceOriginalsRedistributed": false,
+  "newRooms": 0,
+  "newMapItems": 0,
+  "interiorComplete": false,
+  "rearCorridorToJianfuComplete": false,
+  "currentAdmissionVerified": false,
+  "wholeObjectAccepted": false,
+  "notVerified": [
+    "GPU/browser/PBR",
+    "mobile/all-zone streaming/dynamic crowd",
+    "all historical tests",
+    "remote HTTP or Pages",
+    "surveyed dimensions/fine lattice or unseen interior",
+    "real admission/whole item"
+  ]
+}

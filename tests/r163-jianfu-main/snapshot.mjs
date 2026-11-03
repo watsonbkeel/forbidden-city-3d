@@ -1,0 +1,13 @@
+import crypto from 'node:crypto';
+export const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:JSON.stringify(x)).digest('hex');
+const replaceUUID=(k,v)=>typeof v==='string'?v.replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/g,'RUNTIME_UUID'):v;
+// Same canonical JSON array byte stream, one row at a time. Do not clone all
+// 17k actual triangle-owner graphs merely to serialize them a second time.
+export function streamedCanonicalRows(rows){const h=crypto.createHash('sha256');h.update('[');for(let i=0;i<rows.length;i++){if(i)h.update(',');h.update(JSON.stringify(rows[i],replaceUUID)??'null');}h.update(']');return h.digest('hex');}
+export function currentSnapshot(W,{newTops=[]}={}){
+ const h=crypto.createHash('sha256');let meshes=0,instances=0;W.scene.updateMatrixWorld(true);
+ W.scene.traverse(m=>{if(!m.isMesh||!m.geometry?.attributes.position||m.name==='outer-west-silhouette')return;const mats=Array.isArray(m.material)?m.material:[m.material];if(mats.some(m=>m?.name?.startsWith('r163_jianfu_main_')))return;meshes++;h.update(JSON.stringify({name:m.name,matrix:m.matrixWorld.toArray(),material:mats.map(q=>({name:q?.name,type:q?.type,color:q?.color?.getHex(),roughness:q?.roughness,metalness:q?.metalness,side:q?.side,transparent:q?.transparent,opacity:q?.opacity,depthWrite:q?.depthWrite})),groups:m.geometry.groups}));for(const key of Object.keys(m.geometry.attributes).sort()){const a=m.geometry.attributes[key];h.update(key+':'+a.itemSize+':'+a.normalized+':'+a.array.constructor.name+':');h.update(Buffer.from(a.array.buffer,a.array.byteOffset,a.array.byteLength));}if(m.geometry.index){const a=m.geometry.index.array;h.update('index:'+a.constructor.name);h.update(Buffer.from(a.buffer,a.byteOffset,a.byteLength));}if(m.isInstancedMesh){instances+=m.count;h.update('instances:'+m.count);for(const a of[m.instanceMatrix,m.instanceColor])if(a)h.update(Buffer.from(a.array.buffer,a.byteOffset,a.array.byteLength));}});
+ const c=W.cm.colliders.filter(q=>!q.triangleSupport?.id?.startsWith('jianfu-main-hall/')&&!q.mesh.jianfuMainStoneTop&&!q.mesh.jianfuMainLowSolid),w=W.cm.walkables.filter(q=>!newTops.some(b=>q.box?.equals(b)));
+ const rowHash=streamedCanonicalRows;
+ return {loaded:[...W.zoneManager.loaded.keys()],meshes,instances,geometry:h.digest('hex'),colliderCount:c.length,colliders:rowHash(c.map(({mesh,...q})=>q)),walkableCount:w.length,walkables:rowHash(w),maps:rowHash(W.zoneManager.allMapItems),rooms:rowHash(W.zoneManager.allRooms),regions:rowHash([...W.zoneManager.loaded].map(([id,q])=>[id,q.data.regions??[]])),architecture:rowHash([...W.zoneManager.loaded].map(([id,q])=>[id,(q.data.group.userData.architecture??[]).filter(a=>a.sourceObjectId!=='FC-255E648E8D')]))};
+}
