@@ -1,0 +1,3 @@
+# 梵宗檐角修正前的已过作者证据
+
+这些原JSON/三CPU图对应初版产品c47734e8及证据源5137dc0e（源码72c774640ec25fb54c7d1c028ac6978b02c81d1a76cb1c861489a970d0ff75ae），不冒作58135a5c最终源。其原始日志归档仍保留在上级目录，ARCHIVE-MANIFEST按阶段区分。旧构建R163-ec885fe3021d也保留可回滚。最终结果以父目录CHECKS/README和新controlled输出为准。

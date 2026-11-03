@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "58135a5c6f18d74896fdb4b0ed33c28f0624cf2f",
+  "sourceHash": "a14dd5a140deb57ca5c74d4c70cc19afc0f45c3d16d0d71d6d3a23767467e5b3",
+  "outcome": "SHELL_REPORTED_KILLED_BEFORE_FINAL_JSON",
+  "childExitCode": null,
+  "cause": "No Node heap or assertion terminal diagnostic; resource pressure suspected, exact kill cause not established.",
+  "observedToolStderr": "/bin/bash: line 16:    23 Killed                  node --max-old-space-size=2048 --expose-gc --test-isolation=none --test --test-concurrency=1 tests/r163-fanzong-normal.test.mjs > reports/r163-fanzong/review-eave-normal-world.tap 2>&1",
+  "preservedPreviousJSON": "before-eave-review/normal-world.json",
+  "followup": "Parent verified competing heavy process stopped and authorized one actual controlled rerun. That rerun exited0 and passed without assertion changes."
+}
