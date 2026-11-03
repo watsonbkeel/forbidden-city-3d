@@ -14,7 +14,7 @@ export async function fixture(t,{mobile=false}={}){
  const s=await setupMap(t,{mobile});s.document.hidden=false;const errors=[];let reloads=0;s.window.location={reload:()=>reloads++};
  let id=0;const queue=new Map(),renders=[],error=new Error('Deliberate diagnostic frame exception; NOT an observed Chuxiu error');let fail=false;
  const request=fn=>{queue.set(++id,fn);return id;},cancel=n=>queue.delete(n);
- const env={document:s.document,window:s.window,performance,PERFORMANCE:{MOBILE_MAX_PIXEL_RATIO:2,LOD_DISTANCE_LOW:150,LOD_DISTANCE_HIGH:80},...preferences,TourFailureNotice:Notice,console:{error:(...args)=>errors.push(args)}};
+ const env={document:s.document,window:s.window,performance,clearTimeout,PERFORMANCE:{MOBILE_MAX_PIXEL_RATIO:2,LOD_DISTANCE_LOW:150,LOD_DISTANCE_HIGH:80},...preferences,TourFailureNotice:Notice,console:{error:(...args)=>errors.push(args)}};
  env.TourFrameScheduler=class extends TourFrameScheduler{constructor(options){super({...options,document:s.document,request,cancel,now:()=>s.now()});}};
  const body=source.slice(source.indexOf('class ForbiddenCityApp'),source.indexOf('// 本地开发暴露')).replaceAll('import.meta.env','({DEV:false,BASE_URL:"/forbidden-city-3d/"})');
  const App=vm.runInNewContext(`${body};ForbiddenCityApp`,env),a=Object.create(App.prototype);
@@ -24,7 +24,7 @@ export async function fixture(t,{mobile=false}={}){
  palaceBuilder:{update(){}},enclosure:{update(){}},garden:{update(){}},interiors:{update(){}},characters:{update(){}},ambience:{update(){}},minimap:s.map,
  zoneManager:{getMapItems:()=>[],getCurrentId:()=>null,ensureLoadedAt(){},update(){}}});
  const tp=new Teleport(s.c,a.zoneManager,s.cm);s.map.hasTeleportTarget=name=>tp.targets.has(name);s.map.onTeleport=name=>tp.go(name);
- cleanup=()=>{a.flight?.dispose();a.frameLoop?.dispose();a.failureNotice?.dispose();tp.dispose();};
+ cleanup=()=>{a.unbindGraphicsContext?.();a.flight?.dispose();a.frameLoop?.dispose();a.failureNotice?.dispose();tp.dispose();};
  function tick(ms=34){s.advance(ms);const pending=[...queue.values()];queue.clear();for(const cb of pending)cb(s.now());}
  function visibility(hidden){s.document.hidden=hidden;s.dispatch(s.document,'visibilitychange');}
  function travel(){if(!s.map.visible)s.map.toggle();s.map.showPlace('taihe');const b=s.map.container.querySelector('#place-travel');assert.ok(b);s.dispatch(b,'pointerdown',{pointerId:1,clientX:10,clientY:10});s.dispatch(b,'pointerup',{pointerId:1,clientX:10,clientY:10});s.dispatch(b,'click',{detail:1});}

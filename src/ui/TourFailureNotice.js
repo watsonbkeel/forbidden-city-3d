@@ -4,7 +4,7 @@ export class TourFailureNotice {
     this.parent = parent; this.reload = reload; this.disposed = false;
     this.background = new Map(); this.reloadRequested = false;
   }
-  show() {
+  show(reason = 'frame') {
     if (this.disposed) return;
     if (this.overlay) { this.focusRecovery(); return; }
     this.previousFocus = document.activeElement;
@@ -19,6 +19,7 @@ export class TourFailureNotice {
       <p id="tour-failure-description">运行中出现异常，画面已停止更新。请重新加载游览；重新加载后会回到起点。</p>
       <button id="tour-reload-btn" type="button" style="min-height:44px;padding:12px 20px;font:inherit;font-weight:bold;background:#ffd764;color:#251c16;border:2px solid #fff;border-radius:6px;cursor:pointer">重新加载游览</button>
     </section>`;
+    if (reason === 'graphics') overlay.querySelector('#tour-failure-description').textContent = '图形显示已中断，游览已暂停。请重新加载游览；重新加载后会回到起点。';
     this.overlay = overlay; this.button = overlay.querySelector('#tour-reload-btn');
     for (const child of this.parent.children) { this.background.set(child, child.inert); child.inert = true; }
     this.parent.appendChild(overlay);

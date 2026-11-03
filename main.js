@@ -477,6 +477,7 @@ class ForbiddenCityApp {
   }
 
   resetAnimationClock(now) {
+    if (!document.hidden && this.checkGraphicsContext()) return;
     // Idle aircraft recycling is a visible-tour timer, not a background timeout.
     if (document.hidden) {
       if (this.hiddenSince === undefined) this.hiddenSince = now;
@@ -496,8 +497,37 @@ class ForbiddenCityApp {
     // Do not change positions, airborne state, flight route, map mode or pointer lock.
   }
 
+  bindGraphicsContext() {
+    const canvas = this.renderer?.domElement;
+    if (this.disposed || !canvas || this.contextCanvas === canvas) return;
+    this.unbindGraphicsContext();
+    this.contextCanvas = canvas;
+    this._onContextLost = event => {
+      if (this.disposed) return;
+      // Preserve the renderer's own restoration handling; do not consume its event.
+      event.preventDefault();
+      this.handleFrameFailure(new Error('WebGL rendering context lost'), 'graphics');
+    };
+    canvas.addEventListener('webglcontextlost', this._onContextLost);
+  }
+
+  unbindGraphicsContext() {
+    this.contextCanvas?.removeEventListener('webglcontextlost', this._onContextLost);
+    this.contextCanvas = null;
+    this._onContextLost = null;
+  }
+
+  checkGraphicsContext() {
+    if (this.disposed || this.frameFailureHandled) return true;
+    if (this.renderer?.getContext?.()?.isContextLost?.() !== true) return false;
+    this.handleFrameFailure(new Error('WebGL rendering context is lost'), 'graphics');
+    return true;
+  }
+
   startAnimationLoop() {
-    if (this.disposed) return;
+    if (this.disposed || this.frameFailureHandled) return;
+    this.bindGraphicsContext();
+    if (this.checkGraphicsContext()) return;
     if (!this.frameLoop) this.frameLoop = new TourFrameScheduler({
       mode: this.performanceMode,
       onFrame: (now, dt) => this.animate(now, dt),
@@ -507,11 +537,14 @@ class ForbiddenCityApp {
     this.frameLoop.start();
   }
 
-  handleFrameFailure(error) {
+  handleFrameFailure(error, reason = 'frame') {
     if (this.disposed || this.frameFailureHandled) return;
     this.frameFailureHandled = true;
     this.frameFailure = error;
-    console.error('游览主帧异常，已停止更新', error);
+    this.frameFailureReason = reason;
+    // Context loss arrives outside onFrame, so this boundary must stop RAF itself.
+    this.frameLoop?.dispose();
+    console.error(reason === 'graphics' ? '图形显示已中断，游览已停止' : '游览主帧异常，已停止更新', error);
     // Retire the earlier window/focus owner without resuming the failed tour.
     // Restore its background snapshot before the recovery dialog captures it.
     try { this.settingsMenu?.dispose(); } catch { /* Still present the recovery entry. */ }
@@ -521,7 +554,7 @@ class ForbiddenCityApp {
     try { this.flight?.clearInput(); } catch { /* Keep the recovery entry available. */ }
     try { this.controls?.unlock(); } catch { /* Pointer lock can also be lost externally. */ }
     this.failureNotice ??= new TourFailureNotice(document.body);
-    this.failureNotice.show();
+    this.failureNotice.show(reason);
   }
 
   toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
@@ -694,6 +727,7 @@ class ForbiddenCityApp {
 
   dispose() {
     this.disposed = true;
+    this.unbindGraphicsContext();
     this.frameLoop?.dispose();
     this.failureNotice?.dispose();
     this.characters?.dispose();
