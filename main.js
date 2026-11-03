@@ -205,7 +205,7 @@ class ForbiddenCityApp {
         this.dayNightPanel = new DayNightPanel(this.environment,this.historicalLamps);
         this.flight = new FlightTour({scene:this.scene,camera:this.camera,controls:this.controls,
           collisionManager:this.collisionManager,zoneManager:this.zoneManager,envelope:this.flightEnvelope,
-          isPaused:()=>this.settingsTourSession?.paused === true,
+          isPaused:()=>this.frameFailureHandled === true || this.settingsTourSession?.paused === true,
           onModeChange:occupied=>this.onFlightModeChange(occupied)});
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
@@ -512,6 +512,9 @@ class ForbiddenCityApp {
     this.frameFailureHandled = true;
     this.frameFailure = error;
     console.error('游览主帧异常，已停止更新', error);
+    // Retire the earlier window/focus owner without resuming the failed tour.
+    // Restore its background snapshot before the recovery dialog captures it.
+    try { this.settingsMenu?.dispose(); } catch { /* Still present the recovery entry. */ }
     // Input cleanup must not hide the original failure or prevent recovery UI.
     try { this.controls?.stop(); } catch { /* Keep the recovery entry available. */ }
     if (this.controls) this.controls.jumpQueued = false;
