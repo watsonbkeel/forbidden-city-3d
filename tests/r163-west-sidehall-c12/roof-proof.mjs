@@ -1,0 +1,5 @@
+import crypto from 'node:crypto';
+import {buildSilhouette} from '../../src/render/SilhouetteBuilder.js';
+export function roofRows(group){const s=buildSilhouette(group),rows=new Map();if(!s)return rows;try{const p=s.geometry.attributes.position,ix=s.geometry.index,a=p.array,bits=new Uint32Array(a.buffer,a.byteOffset,a.length);for(let i=0;i<(ix?.count??p.count);i+=3){const key=[];for(let j=0;j<3;j++){const k=(ix?.getX(i+j)??i+j)*3;key.push(bits[k],bits[k+1],bits[k+2]);}const k=key.join(',');rows.set(k,(rows.get(k)??0)+1);}return rows;}finally{s.geometry.dispose();s.material.dispose();}}
+export function subtractRows(all,added){const r=new Map(all);for(const[k,n]of added){if((r.get(k)??0)<n)throw Error('New roof triangle missing from actual production silhouette: '+k);const v=r.get(k)-n;if(v)r.set(k,v);else r.delete(k);}return r;}
+export function roofHash(rows){const h=crypto.createHash('sha256');for(const[k,v]of [...rows].sort(([a],[b])=>a.localeCompare(b,'en')))h.update(k+':'+v+'\n');return{triangles:[...rows.values()].reduce((a,b)=>a+b,0),sha256:h.digest('hex')};}
