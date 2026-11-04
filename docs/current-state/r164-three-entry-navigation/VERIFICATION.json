@@ -1,0 +1,90 @@
+{
+  "recordedUTC": "2026-11-04T12:35:51.573942+00:00",
+  "baseCommit": "d84a1639476ee52f5a0fdb6a46c27f6b1886bd37",
+  "runtimeSHA256": {
+    "src/scene/palace/special/ThreeHallSouthApproaches.js": "218561ed5ac1c95aaf70cdc36203b3ef67cb3ef2685487cb5a58c4c511279a96",
+    "src/scene/palace/special/RemainingNingshouHalls.js": "c8f4fec017e63577dde17e12f755528ff5426702d346be088411a16a3182f1c4"
+  },
+  "selfVerification": {
+    "currentLight": 29,
+    "boundedGroups": [
+      345,
+      47,
+      2,
+      23,
+      1,
+      24,
+      25,
+      19,
+      29
+    ],
+    "boundedPassed": 515,
+    "newProduction": 1,
+    "previousSharedStairProduction": 1,
+    "differentFormalTotal": 517,
+    "newProductionSeconds": 4.440743004,
+    "newProductionMaxRSSKiB": 835612,
+    "failedFinal": 0,
+    "commands": [
+      "bash tests/r164-three-entry-navigation/run-bounded.sh",
+      "node --test tests/r164-three-entry-navigation/production-zone.test.mjs",
+      "node --test tests/r164-fori-fanhua-stair/production-zone.test.mjs"
+    ],
+    "previousSharedStairProductionSeconds": 22.537291269,
+    "previousSharedStairProductionMaxRSSKiB": 882676
+  },
+  "independentReview": {
+    "differentFormalPassed": 36,
+    "breakdown": {
+      "currentLight": 29,
+      "productionZones": 2,
+      "olderHistory": 5
+    },
+    "newProductionSeconds": 4.23,
+    "newProductionMaxRSSKiB": 835432,
+    "previousSharedStairSeconds": 23.0,
+    "previousSharedStairMaxRSSKiB": 885096,
+    "status": "No newly introduced blocker found within bounded code/CPU scope; final result documents independently read and accepted"
+  },
+  "scope": {
+    "corrected": [
+      "阅是楼",
+      "佛日楼",
+      "倦勤斋"
+    ],
+    "unchangedOtherProfiles": 16,
+    "strictResults": {
+      "success": 16,
+      "historicalNull": [
+        "遂初堂",
+        "萃赏楼",
+        "梵华楼"
+      ]
+    },
+    "controllerRoutes": 72,
+    "controllerRates": [
+      10,
+      60,
+      144
+    ],
+    "realGoCasesWithRecordingZoneManager": 12,
+    "geometryAndPhysics": "All exact d84:28498 meshes/614818 triangles/7685 contacts/335 walks/22436 roof triangles; architecture equality only after exact three approach normalization",
+    "runtimeChanges": "One pure helper plus one import and two pre-freeze factory calls; no shared physics/Teleport edit",
+    "notVerified": [
+      "World",
+      "browser",
+      "GPU",
+      "mobile",
+      "Node20",
+      "actual museum route/access",
+      "Mac temperature"
+    ]
+  },
+  "redGreen": [
+    "Old declared ground on ramp rejects three strict entries; new data accepts and missing ramps/blockers/old routes reject",
+    "Three old component snapshot comparisons initially omitted production nameboard postprocess; exact before chain corrected, not geometry assertions",
+    "Initial four-hall single-component success was insufficient: real zone found old Jingfu rear-stair furniture domain overrides Fanhua ramp; Fanhua removed and entire old profile preserved"
+  ],
+  "buildPolicy": "Fresh Node24 Pages base after clean source commit; actual sourceCommit/tree and HTTP artifact hashes are delivered separately; no deployment",
+  "diffCheck": "Clean excluding seven pre-existing trailing-whitespace lines in exact frozen ZoneBase.d84; kept byte-identical to Git source"
+}

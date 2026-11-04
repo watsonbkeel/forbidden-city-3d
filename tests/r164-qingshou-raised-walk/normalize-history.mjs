@@ -1,6 +1,8 @@
+import{normalizeThreeApproaches}from'../r164-three-entry-navigation/normalize-history.mjs';
 import fs from'node:fs';import assert from'node:assert/strict';
 const old=JSON.parse(fs.readFileSync(new URL('./frozen/profiles.ee19.json',import.meta.url)));
 export function normalizeQingshouNavigationForEE19(p){
+ normalizeThreeApproaches(p);
  if(!['xunyan','qingshou'].includes(p.key))return p;
  const before=old.find(x=>x.key===p.key),index=p.key==='xunyan'?1:0;
  assert.equal(p.id,before.id);assert.equal(p.name,before.name);
