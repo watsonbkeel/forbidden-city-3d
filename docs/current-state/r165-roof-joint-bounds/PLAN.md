@@ -1,0 +1,7 @@
+# Reduce repeated internal polygon bounds in roof clipping
+
+Base adc306fcac0cff588ee2ae348ed7ae5a6c99338f, preserving adc/5030/main. The previous synchronous iterator exposed Chongjing construction as the largest west-six step (~234–241ms in two Node samples). A separate isolated CPU profile of five builds (222–255ms) concentrated samples at its CanopyRoofSurfaceJoint call. Those are diagnostic observations, not a performance improvement.
+
+Candidate change: within one fitCanopyToMainRoof call only, memoize the XZ bounds of each internal polygon array after its copied Vector3 points are established. The clipping algorithm creates new arrays for new polygons and does not mutate existing polygon points; interpolation, epsilon tests, patch order, emitted attributes, caps, resources and all public collision code remain unchanged. This is not a scene cache, cross-call cache, source certificate shortcut, or changed 32MiB zone admission policy.
+
+Before inclusion: fail a deterministic test proving old repeated numeric bounds visits, verify exact geometry/index/normal/UV/material/metadata/contact arrays for all three consumers (Chongjing, Chonghua, Yonghe), clipping boundary tests and degenerate/invalid cases, repeated calls/partial failures, original route protection and real west-six/east-six before/after. Use alternating warmed measurements with full identical payload assertions; a single timing comparison or sampled hot path does not prove a gain. If output or ownership differs, abandon the attempt; no precision/appearance tradeoff is authorized.

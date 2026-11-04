@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {fixture,countBounds} from './fixture.mjs';
+test('real Chongjing internal polygon X/Z projection occurs at most once per axis rather than once per roof patch',()=>{const f=fixture();try{const r=countBounds(()=>f.run()),n=r.counts();console.log(JSON.stringify(n));assert.ok(n.polygons>100);assert.equal(n.maxPerPolygon,2,'old polygon bounds are repeatedly allocated for every patch');assert.equal(n.projections,2*n.polygons)}finally{f.dispose()}});

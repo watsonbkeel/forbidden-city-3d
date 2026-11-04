@@ -48,6 +48,9 @@ export function fitCanopyToMainRoof({hall,mainRoof,meshes,capParent,capMaterial,
   }
  }
  if(!patches.length)throw Error('Main-roof upper triangle envelope is empty');
+ // Internal polygons own copied points; split/blend never mutate those points.
+ // Reuse only their numeric XZ bounds within this invocation, not source data.
+ const polygonBounds=new WeakMap(),boundsOf=poly=>{let b=polygonBounds.get(poly);if(!b){const xs=poly.map(v=>v.point.x),zs=poly.map(v=>v.point.z);b={maxX:Math.max(...xs),minX:Math.min(...xs),maxZ:Math.max(...zs),minZ:Math.min(...zs)};polygonBounds.set(poly,b);}return b;};
  let beforeTriangles=0,afterTriangles=0;
  for(const m of meshes){
   const old=m.geometry,attrs=Object.entries(old.attributes),idx=old.index,M=invHall.clone().multiply(m.matrixWorld),out=Object.fromEntries(attrs.map(([k])=>[k,[]]));
@@ -55,8 +58,8 @@ export function fitCanopyToMainRoof({hall,mainRoof,meshes,capParent,capMaterial,
   const append=poly=>{for(let j=1;j<poly.length-1;j++){const tri=[poly[0],poly[j],poly[j+1]];if(new THREE.Triangle(...tri.map(v=>v.point)).getArea()<1e-10)continue;for(const v of tri)for(const[k]of attrs)out[k].push(...v.values[k]);afterTriangles++;}};
   for(let i=0;i<(idx?.count??old.attributes.position.count);i+=3){beforeTriangles++;let pending=[[0,1,2].map(j=>vertex(idx?idx.getX(i+j):i+j))];
    for(const p of patches){const next=[];
-    for(const poly of pending){const xs=poly.map(v=>v.point.x),zs=poly.map(v=>v.point.z);
-     if(Math.max(...xs)<p.minX-EPS||Math.min(...xs)>p.maxX+EPS||Math.max(...zs)<p.minZ-EPS||Math.min(...zs)>p.maxZ+EPS){next.push(poly);continue;}
+    for(const poly of pending){const bounds=boundsOf(poly);
+     if(bounds.maxX<p.minX-EPS||bounds.minX>p.maxX+EPS||bounds.maxZ<p.minZ-EPS||bounds.minZ>p.maxZ+EPS){next.push(poly);continue;}
      let inside=poly;
      for(const side of p.sides){const s=split(inside,side);if(s.no.length>=3)next.push(s.no);inside=s.yes;if(inside.length<3)break;}
      if(inside.length>=3){const s=split(inside,q=>p.plane.distanceToPoint(q)+penetration*p.plane.normal.y);append(s.yes);p.cuts.push(...s.cuts);}
