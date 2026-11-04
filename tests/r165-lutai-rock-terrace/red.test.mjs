@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('Lutai requires its dedicated sourced rock terrace and one synchronous hook, not an unrelated reused pavilion',()=>{assert.ok(fs.existsSync('src/scene/palace/special/LutaiRockTerrace.js'),'dedicated Lutai component missing');const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');assert.equal((s.match(/buildLutaiRockTerrace\(this.kit,this.zoneJson\)/g)||[]).length,1);assert.ok(s.includes("yield {phase:'hook',index:139}"));});

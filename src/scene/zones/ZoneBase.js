@@ -1,3 +1,4 @@
+import {buildLutaiRockTerrace} from '../palace/special/LutaiRockTerrace.js';
 import {buildYunguangMainShell} from '../palace/special/YunguangMainShell.js';
 import {buildJutingMainPavilion} from '../palace/special/JutingMainPavilion.js';
 import {buildZhuxiangMainShell} from '../palace/special/ZhuxiangMainShell.js';
@@ -609,6 +610,8 @@ export class ZoneBase {
     buildJutingMainPavilion(this.kit,this.zoneJson);
     yield {phase:'hook',index:138};
     buildYunguangMainShell(this.kit,this.zoneJson);
+    yield {phase:'hook',index:139};
+    buildLutaiRockTerrace(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};

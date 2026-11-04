@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('20 spatial starts by4 rates: settle on rocks/terrace/stairs then continuous exit without position reset',()=>{const f=fixture();try{highExits(collision(f))}finally{f.dispose()}});
