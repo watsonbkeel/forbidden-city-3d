@@ -761,6 +761,14 @@ export class ZoneBase {
     // 九龙壁是 SideCourts 私有函数，需直接内联或在 kit 注册为方法
     // 这里直接复制 SideCourts.nineDragonWall 的实现
     const k = this.kit;
+    // FC-FF99BC5DC0: the Palace Museum identifies a yellow-glazed hip roof.
+    // Only this known wall's roof changes. Dimensions/overhang remain a model fit.
+    const knownNingshouWall = this.zoneJson.id === 'ningshou' && item.name === '九龙壁';
+    if (knownNingshouWall && (this.zoneJson.items.indexOf(item) !== 10 ||
+        item.kind !== 'nineDragonWall' || item.x !== -295 || item.z !== 123 ||
+        item.length !== 29.4 || item.height !== 3.5 || item.rot !== 'north')) {
+      throw new Error('Nine Dragon Wall source changed');
+    }
     const x = item.x;
     const z = item.z;
     const len = item.length;
@@ -788,7 +796,17 @@ export class ZoneBase {
     k.mesh(f, fg, face, 0, 0.9 + fh / 2 + 0.1, -0.56).castShadow = false;
     // 壁心上方的檐下琉璃带（蓝绿）
     k.mesh(f, new THREE.BoxGeometry(len - 0.2, h - fh - 0.1, 1.16), wave, 0, 0.9 + fh + 0.1 + (h - fh - 0.1) / 2, 0);
-    k.roof(f, { type: 'gable', width: len + 0.4, depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7 });
+    k.roof(f, { type: knownNingshouWall ? 'wudian' : 'gable', width: len + 0.4,
+      depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7,
+      ...(knownNingshouWall ? { overhang: 0.3 } : {}) });
+    if (knownNingshouWall) f.userData.structure = {
+      id: 'place-ningshou-ff99bc5dc0-roof', originalObjectId: 'FC-FF99BC5DC0',
+      name: '九龙壁', scope: 'SOURCE_GUIDED_ROOF_TYPE_FIT_ONLY',
+      wholeObjectAccepted: false, surveyed: false,
+      source: 'https://www.dpm.org.cn/explore/building/236477.html',
+      roofFit: { type: 'wudian', overhang: 0.3, detail: 'low', retainedBaseY: 5.1 },
+      remaining: 'Overall height/base definition, ridge dragons, brackets and detailed glazed decoration are not reconstructed or accepted; existing wall/photo/physics retained.',
+    };
     k.col(f, -len / 2, 0, -0.8, len / 2, 3, 0.8);
     k.mapRect(f, 'hall', item.name ?? '九龙壁', len, 1.6);
   }
