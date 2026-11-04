@@ -29,5 +29,8 @@ export function buildSuichuSouthSteps(c){
   const id=`suichu-south-cheek-${sign<0?'east':'west'}`,shape=createXiqingSurface(faces,id),b=shape.box.clone();b.xiqingRoofSurface=shape;b.suichuSouthStep=true;kit.colliders.push(b);m.userData.suichuStepContact=id;
  }
  owner.furnitureMotionScope={kind:'suichu-south-steps',id:'suichu-south-steps',groundY:0,minOffsetX:p.x-width/2-cheekWidth-.5-owner.min.x,maxOffsetX:p.x+width/2+cheekWidth+.5-owner.min.x,minOffsetZ:p.z+toe-.75-owner.min.z,maxOffsetZ:p.z+edge+1.25-owner.min.z};
+ // Retained solid platform, only within the south-stair handoff footprint.
+ // Keep outer side/rear platform edges unchanged; a full box blocks the old rear route.
+ kit.col(f,-width/2-cheekWidth-.5,0,edge,width/2+cheekWidth+.5,p.ph,p.portals.find(q=>q.side==='front').z);
  f.userData.suichuSouthSteps={originalObjectId:'FC-E604D58704',source:PHOTO,photographyDate:null,scope:'ONE_SOUTH_CENTRAL_FLIGHT_AND_TWO_SLOPED_CHEEKS',dimensionStatus:'MODEL_FIT_TO_RETAINED_PLATFORM_NOT_SURVEY',treadCountStatus:'SEVEN_MODEL_SUBDIVISIONS_ORIGINAL_COMPLETE_COUNT_UNVERIFIED',...FIT,toe,platformY:p.ph,tops,wholeObjectAccepted:false,remaining:['Complete original step count cropped in source','True absolute platform/stair dimensions','Stone detail/carving and whole facade/interior']};return true;
 }
