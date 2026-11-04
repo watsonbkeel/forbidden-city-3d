@@ -1,3 +1,4 @@
+import {applyYangxinWestNorthFinish} from './YangxinWestNorthFinish.js';
 import * as THREE from 'three';
 
 const deepFreeze = value => {
@@ -212,6 +213,7 @@ export function buildYangxinWestWarmRooms(kit, item, f) {
   const scopeOwner=kit.colliders[firstCollider];
   const scopeBox=new THREE.Box3(new THREE.Vector3(east-.8,0,south-.8),new THREE.Vector3(west+.8,0,Math.max(north,sNorth)+.8)).applyMatrix4(f.matrixWorld);
   scopeOwner.furnitureMotionScope={kind:'yangxin-furniture',id:'yangxin-west-furniture',groundY:0,minOffsetX:scopeBox.min.x-scopeOwner.min.x,maxOffsetX:scopeBox.max.x-scopeOwner.min.x,minOffsetZ:scopeBox.min.z-scopeOwner.min.z,maxOffsetZ:scopeBox.max.z-scopeOwner.min.z};
+  metadata.northBoundaryFinish = applyYangxinWestNorthFinish(kit,item,f,g,plan);
   f.userData.yangxinWestWarmRooms = metadata;
   return metadata;
 }
