@@ -1,0 +1,3 @@
+import test from'node:test';import assert from'node:assert/strict';import{Teleport}from'../r164-qingshou-raised-walk/fixture.mjs';import{fixture,zone}from'./fixture.mjs';import{BeforeZone}from'./frozen.mjs';
+import{landing}from'./landing-proof.mjs';
+test('map-selected Lushun target keeps every original safe landing field without fallback',()=>{const before=fixture(BeforeZone),now=fixture();try{const a=landing(before.kit,before.cm),b=landing(now.kit,now.cm);assert.ok(a);assert.deepEqual(b,a);assert.equal(b.fallback,false);assert.equal(b.y,0);console.log(JSON.stringify(b));}finally{before.dispose();now.dispose()}});

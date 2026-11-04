@@ -1,3 +1,4 @@
+import {buildLushunGate} from '../palace/special/LushunGate.js';
 import {buildDaoheGate} from '../palace/special/DaoheGate.js';
 import {buildZhenshunGate} from '../palace/special/ZhenshunGate.js';
 import {buildQingshouRaisedWalk} from '../palace/special/QingshouRaisedWalk.js';
@@ -619,6 +620,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===4){const b=buildLushunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:4,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===5){const b=buildDaoheGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:5,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===9){const b=buildZhenshunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:9,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===1){const b=buildLianxiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:1,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
