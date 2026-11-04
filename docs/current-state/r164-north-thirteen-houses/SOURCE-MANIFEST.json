@@ -1,0 +1,63 @@
+{
+  "base": "0c5fa7aa50b3803922acd6f5c87f628d959c32df",
+  "officialText": "https://www.dpm.org.cn/explore/building/236528.html",
+  "officialPhotos": [
+    {
+      "name": "row-house",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/8283%5B1024%5D.jpg",
+      "bytes": 136583,
+      "sha256": "ffdd9f9de03700f710cc003430fb5ee978c1dce60fce9820f7b68e6a007bc968"
+    },
+    {
+      "name": "north",
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/8286.jpg",
+      "bytes": 131765,
+      "sha256": "b0dba3276878a43b1ac3798bd73e6224bc52add622da2002fd93aee22e995add"
+    }
+  ],
+  "fittedLayout": {
+    "x": -361.6,
+    "firstZ": 350,
+    "lastZ": 506,
+    "pitch": 13,
+    "count": 13,
+    "northBoundaryMaxZ": 510.1,
+    "existingCornerSouthZ": 516.2,
+    "cornerTurningLaneEndZ": 514
+  },
+  "sourceBoundary": "Only North helper and one ZoneBase import/call. South helper unchanged. Enclosure builder is exercised in tests, not changed.",
+  "notSurveyed": [
+    "coordinates",
+    "group boundary/spacing",
+    "opening pose",
+    "sizes and window/roof detailing"
+  ],
+  "noClaims": [
+    "North historic gate placement",
+    "current office interiors",
+    "complete object acceptance",
+    "current admission or north passage through tower"
+  ],
+  "files": [
+    {
+      "path": "src/scene/palace/special/NorthThirteenHouses.js",
+      "sha256": "4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "sha256": "08db03fe951d53a4ed545680b74fe66e410b315a8d88c12bc75f2a52ecd3d39e"
+    },
+    {
+      "path": "src/scene/palace/special/SouthThirteenHouses.js",
+      "sha256": "bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea"
+    },
+    {
+      "path": "src/scene/Enclosure.js",
+      "sha256": "bc04b06d5d4999340bfd66c4d6423a504a7e0b5819c42acd4c5472e69fc2713a"
+    },
+    {
+      "path": "tests/r164-north-thirteen-houses/frozen/ZoneBase.0c5.js",
+      "sha256": "1e40890b95910291599e6f6a39fe914d26d64edd8ff8bcca86e9c98f3e53d26f"
+    }
+  ]
+}
