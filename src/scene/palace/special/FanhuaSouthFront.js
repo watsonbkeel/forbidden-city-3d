@@ -1,3 +1,4 @@
+import {addFanhuaStairContacts} from './FanhuaStairContact.js';
 import * as THREE from 'three';
 // Own south photos only. Plain round-ended grille relationships are fitted;
 // no longevity character, Buddhist inventory or original carved art is made.
@@ -43,5 +44,6 @@ export function buildFanhuaSouthFront(c){
   const a=edge-run+.1,b=edge-.1,base=z=>y*(z-(edge-run))/run,shape=new THREE.Shape();shape.moveTo(a,base(a)-.03);shape.lineTo(b,base(b)-.03);shape.lineTo(b,base(b)+.56);shape.lineTo(a,base(a)+.56);shape.closePath();const geo=new THREE.ExtrudeGeometry(shape,{depth:.13,bevelEnabled:false});geo.applyMatrix4(new THREE.Matrix4().set(0,0,-1,0,0,1,0,0,1,0,0,0,0,0,0,1));c.tag(c.kit.mesh(c.f,geo,c.mats.stone,x+.065,0,0),'fanhua-south-stone-panel',{relief:'PLAIN_NO_ORIGINAL_CARVING'});
   for(let j=0;j<8;j++){const z0=a+(b-a)*j/8,z1=a+(b-a)*(j+1)/8;c.kit.col(c.f,x-.065,base(z0)-.03,z0,x+.065,base(z1)+.56,z1);}
  }
+ addFanhuaStairContacts(c);
  const data={object:'FC-D40CEF5893',source:'https://www.dpm.org.cn/explore/building/236572.html',accepted:false,scope:'TWO_LEVEL_SEVEN_BAY_SOUTH_JOINERY_GALLERY_SOFFIT_AND_CENTRAL_APPROACH',dimensions:'MODEL_FIT_NOT_SURVEY',upperCentralState:'CLOSED_GLAZED_JOINERY_PHOTO_STATE_NOT_PROOF_OF_PERMANENT_FIXED_WINDOW',lowerDoorPose:'FOUR_FOLDED_LEAVES_MODEL_CIRCULATION_FIT',stair:'FITTED_GROUND_TRANSITION_NOT_PHOTO_MEASURED_TREAD_COUNT',newGroundRamps:1,newUpperDestinations:0,retained:['previous source balustrade and floor fascia','roof and six floor voids','all interior partitions and altar outlines'],missing:['exact original lattice characters and carving','painted decoration','unseen six-category Buddhist inventories','full stair dimensions']};c.f.userData.fanhuaSouthFront=data;return data;
 }

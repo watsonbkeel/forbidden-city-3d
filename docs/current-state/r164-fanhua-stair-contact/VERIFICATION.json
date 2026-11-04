@@ -1,0 +1,110 @@
+{
+  "recordedUTC": "2026-11-04T14:31:53.157593+00:00",
+  "baseCommit": "2e80fcbe7321f93fde594d3695c3cd7b2eeb565b",
+  "scope": "FIVE_EXISTING_TREAD_CONTACTS_AND_FIRST_TWO_GROUND_APPROACH_POINTS",
+  "runtimeFiles": {
+    "src/scene/palace/special/FanhuaStairContact.js": "2588ef739c34df13b139c693e07f894dfd7b73c59749f27b5b0d5d995f5199d3",
+    "src/scene/palace/special/FanhuaSouthFront.js": "c2f4573b5c1878314df14edcc957c28aa617d6c8c501ba6132a6d11ef00ac0a2",
+    "src/scene/palace/special/RemainingNingshouHalls.js": "838208211d9f0303c59ecdf0283e9fe7752533cffc43c352c457ce71a68f65bf"
+  },
+  "currentRequiredTests": {
+    "light": 29,
+    "actualNingshou": 1,
+    "passed": 30
+  },
+  "broaderBounded": {
+    "distinct": 614,
+    "passed": 612,
+    "preExistingFailures": 2,
+    "initialRun": {
+      "distinct": 611,
+      "passed": 609,
+      "failed": 2
+    },
+    "laterJumpAndLedgerPassed": 3,
+    "notClaimedAllGreen": true
+  },
+  "selfDistinctFormal": 615,
+  "selfFormalPassed": 613,
+  "selfPreExistingFailures": 2,
+  "preExistingReference": "PREEXISTING-TEST-FAILURES.md",
+  "independentStatus": "PASSED_FINAL_TEXT_REVIEW",
+  "independentFormalAtDocumentation": 51,
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28519,
+      "triangles": 613996,
+      "geometry": "34f3cb6f0a93ebb40c5ac17c27a88346e5f4692eea583700d4137dea5d12dc43"
+    },
+    "data": {
+      "colliderCount": 7721,
+      "colliders": "4ed63159e5f23e4a6091bec2792b0433b501d371725ea5e5040929d8be86960c",
+      "walkableCount": 335,
+      "walkables": "ddc5b471dea026315b9d6f05c5cc2890c397a9b28320acb24a5e35d956d0e737",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "2d7c5b323b9cd9ad2b4279242fe1c7e92bdb8df04925c763c82b95047c70d9b8"
+    },
+    "roof": {
+      "triangles": 22104,
+      "sha256": "e27060bb409fd0fb06af69a32e2e101dff0f5144d9dd90cf5fd2a7ab344ccf5a"
+    },
+    "maxRSSKiB": 1034756
+  },
+  "delta": {
+    "geometry": 0,
+    "material": 0,
+    "texture": 0,
+    "walkable": 0,
+    "contact": 5
+  },
+  "routes": {
+    "current": 24,
+    "frozenPrevious": 24,
+    "neighborJingfuRearFrameComparison": 16,
+    "highStartsThenExit": 24,
+    "normalJumpCurrentVersusOldPositionsRates": 12,
+    "newTreadNormalJump": 4,
+    "goZoneManager": "RECORDING_STUB_REAL_CONTROLS_AND_TELEPORT"
+  },
+  "landing": {
+    "name": "梵华楼",
+    "x": -340,
+    "z": 504.35,
+    "lookAtX": -340,
+    "lookAtZ": 507.85,
+    "distance": 3.5,
+    "lateral": 0,
+    "entryProfile": "place-ningshou-d40cef5893",
+    "y": 0,
+    "walk": 4.2,
+    "approachVerified": true,
+    "fallback": false
+  },
+  "landingCoverage": "20 checked targets succeed:19 specialprofiles plus Baotai. Only Fanhua null-to-success; other19 equal2e80. Not all map targets or whole object acceptance.",
+  "existingHeadOverlap": "Fanhua front/upper-floor normal jumps retain exact old frame results; central lintel overlap is not repaired. Prior Jingqi high-jump head boundary and144Hz Fanhua altar-base jump-to-exit remain.",
+  "build": {
+    "status": "PENDING_AFTER_CLEAN_COMMIT",
+    "base": "/forbidden-city-3d/",
+    "release": "R164",
+    "availableNode": "v24.22.1",
+    "Node20": "NOT_AVAILABLE_NOT_TESTED"
+  },
+  "remote": "PENDING_NEW_BRANCH_ONLY_NO_MAIN_OR_DEPLOY_ACTION",
+  "notTested": [
+    "full World",
+    "real browser/GPU",
+    "mobile",
+    "Node20",
+    "Mac temperature",
+    "current physical inventory",
+    "whole397 completion"
+  ],
+  "independentDiagnosticOldBaseline": {
+    "tests": 7,
+    "passed": 5,
+    "samePreExistingFailed": 2,
+    "notIncludedInGreenFormal": true
+  }
+}

@@ -1,3 +1,4 @@
+import {fitFanhuaStairApproach} from './FanhuaStairContact.js';
 import {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';
 import {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';
 import {fitQingshouConnectionApproach} from './QingshouConnectionApproach.js';
@@ -87,6 +88,7 @@ function profile(row) {
  fitQingshouConnectionApproach(p);
  fitThreeHallSouthApproaches(p);
  fitCuishangPlatformApproach(p);
+ fitFanhuaStairApproach(p);
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }
@@ -111,6 +113,7 @@ function finalProfile(row) {
  return{...q,approachX:q.x,localX:q.x,localZ:q.z,worldX:world.x,worldZ:world.z,normalLocalX:0,normalLocalZ:sign,normalWorldX:Math.sin(rot)*sign,normalWorldZ:Math.cos(rot)*sign,status:'OFFICIAL_BAY_POSITION_WITH_FITTED_CLEAR_OPENING_AND_MODEL_ACCESS',approachPoints:points.map(a=>toWorld(...a))};});
  fitThreeHallSouthApproaches(p);
  fitCuishangPlatformApproach(p);
+ fitFanhuaStairApproach(p);
  const spawn={x:key==='juanqin'?-7:0,z:key==='yangxing'?-3:key==='changyin'?-3:key==='huangji'?-5:key==='fuwang'?-7:key==='leshou'?-4:0};
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals.find(q=>q.side==='front').approachPoints,spawn,status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
