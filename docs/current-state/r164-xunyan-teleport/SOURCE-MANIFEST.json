@@ -1,0 +1,25 @@
+{
+  "baseCommit": "27b8f9dcfe5d362cadea100c402ac7f806e4e0a5",
+  "sourceScope": "Game navigation correction against retained real production geometry, not new historical reconstruction",
+  "evidence": [
+    {
+      "path": "src/scene/palace/special/XunyanSouthFront.js",
+      "fact": "Existing five solid treads, 1.35m run and .5m rise remain byte-for-byte unchanged"
+    },
+    {
+      "path": "tests/r164-xunyan-teleport/frozen/RemainingNingshouHalls.27b8.js",
+      "fact": "Exact git object from 27b8. Old first approach z416.8 declares ground0, actual retained second tread is float32 .2"
+    },
+    {
+      "url": "https://www.dpm.org.cn/explore/building/236539.html",
+      "fact": "Previously verified official Qingshou group text names Xunyan and the five-bay front/rear-porch halls; it does not establish these game coordinates or step dimensions"
+    }
+  ],
+  "fitted": [
+    "World coordinates and staircase dimensions are existing model fits, not survey measurements",
+    "No raised inter-hall path or new current museum access claim"
+  ],
+  "unchanged": [
+    "All meshes, geometry, materials, collision shapes, floors, map targets, public Teleport checks and every other building profile"
+  ]
+}

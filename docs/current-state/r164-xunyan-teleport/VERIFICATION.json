@@ -1,0 +1,147 @@
+{
+  "baseCommit": "27b8f9dcfe5d362cadea100c402ac7f806e4e0a5",
+  "scope": "NAVIGATION_ONLY_WITH_ACTUAL_NINGSHOU_CPU_NOT_WORLD_OR_GPU",
+  "actualLanding": {
+    "name": "寻沿书屋",
+    "x": -334.5,
+    "z": 415.5,
+    "lookAtX": -334.5,
+    "lookAtZ": 419.59999999999997,
+    "distance": 4.099999999999966,
+    "lateral": 0,
+    "entryProfile": "place-ningshou-9a08e177bc",
+    "y": 0,
+    "walk": 4.8,
+    "approachVerified": true,
+    "fallback": false
+  },
+  "retainedOtherLandings": {
+    "庆寿堂": {
+      "name": "庆寿堂",
+      "x": -334.8,
+      "z": 433.15000000000003,
+      "lookAtX": -334.8,
+      "lookAtZ": 435.95000000000005,
+      "distance": 2.8000000000000114,
+      "lateral": 0,
+      "entryProfile": "place-ningshou-0d5f3d5831",
+      "y": 0,
+      "walk": 3.5,
+      "approachVerified": true,
+      "fallback": false
+    },
+    "颐和轩": {
+      "name": "颐和轩",
+      "x": -293.7,
+      "z": 451.35,
+      "lookAtX": -293.7,
+      "lookAtZ": 470.8,
+      "distance": 8,
+      "lateral": 0,
+      "y": 0,
+      "walk": 5,
+      "fallback": false
+    },
+    "景祺阁": {
+      "name": "景祺阁",
+      "x": -293.3,
+      "z": 487.72,
+      "lookAtX": -293.3,
+      "lookAtZ": 492.5,
+      "distance": 4.779999999999973,
+      "lateral": 0,
+      "entryProfile": "place-ningshou-15c0d4e6bc",
+      "y": 0,
+      "walk": 5.48,
+      "approachVerified": true,
+      "fallback": false
+    }
+  },
+  "actualRoutes": 36,
+  "cumulativeRetained": {
+    "scope": "ACTUAL_NINGSHOU_ONLY_NOT_WORLD_OR_GPU",
+    "raw": {
+      "meshes": 28235,
+      "triangles": 614284,
+      "geometry": "127dae518b87b424312e21f485496174f51cdebc07b87f629ba849952a07f521"
+    },
+    "data": {
+      "colliderCount": 7487,
+      "colliders": "af246be7b8c0db5df02661aae9112bb4e2ae9a8b4f14b22a9dfe979505efb167",
+      "walkableCount": 254,
+      "walkables": "cd15f69e6396b7d65babda82770340c1ce172e7fdd9af0a7eb7fa3c99217e016",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "8bb71f3d31b11fc29bd37bdb2781beb3df0dac37987fa475a9eb81907f795170"
+    },
+    "roof": {
+      "triangles": 22532,
+      "sha256": "c11844828875d48f06200401f90e7bfbd549afbace056f967c265171cb7e6fe6"
+    },
+    "targets": {
+      "meshes": 137,
+      "triangles": 2244
+    },
+    "routes": [
+      64,
+      8,
+      20
+    ],
+    "landings": [
+      {
+        "name": "颐和轩",
+        "x": -293.7,
+        "z": 451.35,
+        "lookAtX": -293.7,
+        "lookAtZ": 470.8,
+        "distance": 8,
+        "lateral": 0,
+        "y": 0,
+        "walk": 5,
+        "fallback": false
+      },
+      {
+        "name": "景祺阁",
+        "x": -293.3,
+        "z": 487.72,
+        "lookAtX": -293.3,
+        "lookAtZ": 492.5,
+        "distance": 4.779999999999973,
+        "lateral": 0,
+        "entryProfile": "place-ningshou-15c0d4e6bc",
+        "y": 0,
+        "walk": 5.48,
+        "approachVerified": true,
+        "fallback": false
+      }
+    ],
+    "maxRSSKiB": 893176
+  },
+  "changed": "Only exact Xunyan front approach metadata; all source geometry, collisions, floors and public Teleport unchanged",
+  "historyNormalization": "Assert exact unique Xunyan and five aliases of frozen new points, normalize only those lists for historical architecture hash. All other old assertions stay intact. Original RemainingNingshouHalls hash preserved after uniquely stripping the two authorized lines.",
+  "unverified": [
+    "Full World",
+    "Browser/WebGL/GPU",
+    "Mobile",
+    "Node20 CI",
+    "Real Mac temperature",
+    "Surveyed coordinates or step dimensions",
+    "Current museum admission"
+  ],
+  "sourceSHA256": {
+    "src/scene/palace/special/XunyanSouthApproach.js": "d62869528f0badc38d483e57f7e5698e9551cca40d3a5606a92ace1796d52e9b",
+    "src/scene/palace/special/RemainingNingshouHalls.js": "eb9c76f12484e20eeddd19716981763967a143047b1f0810655f8072db7bbbf5"
+  },
+  "executedChecks": {
+    "boundedPrior": 345,
+    "newLightIncludingGoAndLedger": 17,
+    "priorXunyanGeometry": 8,
+    "actualNingShouTarget": 1,
+    "actualNingShouCumulative": 1,
+    "actualYangxinBaseStructure": 1,
+    "actualFengxianGardenTeleport": 1,
+    "selfTotalDistinct": 374,
+    "independentFormal": 21
+  }
+}
