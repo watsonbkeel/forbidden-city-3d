@@ -1,3 +1,4 @@
+import {fitQingshouConnectionApproach} from './QingshouConnectionApproach.js';
 import {fitXunyanSouthApproach} from './XunyanSouthApproach.js';
 import {buildForiFrontBalustrade} from './ForiFrontBalustrade.js';
 import {fitYueshiPaleSidewalls} from './YueshiPaleSidewalls.js';
@@ -81,6 +82,7 @@ function profile(row) {
  if(key==='xishang')for(const q of p.portals.flatMap(q=>q.approachPoints)){const halfW=localW*.66*.78/2,center=-localD*.32,halfD=localD*.32/2;if(Math.abs(q.localX)<=halfW&&Math.abs(q.localZ-center)<=halfD)q.feetY=ph+.2;}
  fitSuichuSouthApproach(p);
  fitXunyanSouthApproach(p);
+ fitQingshouConnectionApproach(p);
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }

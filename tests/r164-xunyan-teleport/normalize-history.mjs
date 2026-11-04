@@ -1,3 +1,4 @@
+import {normalizeQingshouNavigationForEE19} from '../r164-qingshou-raised-walk/normalize-history.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const old = JSON.parse(fs.readFileSync(new URL('./frozen/profiles.27b8.json', import.meta.url))).find(p => p.key === 'xunyan').portals[0].approachPoints;
@@ -5,6 +6,7 @@ const expected = JSON.parse(fs.readFileSync(new URL('./frozen/approach.expected.
 // Historical architecture hashes may normalize exactly this intentional metadata
 // change only. Physical, material, mesh and all other metadata checks stay intact.
 export function normalizeXunyanApproachFor27b8(records) {
+  for (const p of records) normalizeQingshouNavigationForEE19(p);
   const found = records.filter(p => p.id === 'place-ningshou-9a08e177bc');
   assert.equal(found.length, 1, 'exactly one retained Xunyan structure');
   const p = found[0];

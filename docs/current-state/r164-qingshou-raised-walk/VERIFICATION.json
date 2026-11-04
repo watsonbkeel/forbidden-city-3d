@@ -1,0 +1,95 @@
+{
+  "baseCommit": "ee19cd0d013735cf44075cc1b8c6f1d5c178f399",
+  "scope": "ACTUAL_NINGSHOU_CPU_WITH_INDEPENDENT_FINAL_REPLAY_NOT_WORLD_OR_GPU",
+  "retained": {
+    "base": "ee19cd0d013735cf44075cc1b8c6f1d5c178f399",
+    "raw": {
+      "meshes": 28372,
+      "triangles": 616528,
+      "geometry": "1f21d9c58ec9df7767186e1d27a7db7961625d3ea15bafb6a11ba718bf812350"
+    },
+    "data": {
+      "colliderCount": 7520,
+      "colliders": "eb4b85cd5eb4fb361544b7a3e6fa426532a3aef774b0aaf74b9867768a3d03a3",
+      "walkableCount": 264,
+      "walkables": "6fa6622c2bb550f48e82acee6cfc7650e918338b36091b58a3eb796c0418c17d",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "8eca1233bf32c1a2913da352831f585f8c7e9a5bfda69f0c5f4d5d6e51629934"
+    },
+    "roof": {
+      "triangles": 23432,
+      "sha256": "2081bc10dc36c663a370a2ad51e147d5695b6089587cf5e74a879b31a9f77394"
+    }
+  },
+  "added": {
+    "meshes": 9,
+    "triangles": 108,
+    "colliders": 9,
+    "walkables": 9,
+    "materials": 0,
+    "textures": 0
+  },
+  "navigation": {
+    "changedOnlyFourHeights": [
+      "Xunyan rear first two points: 0 to .5",
+      "Qingshou front first two points: 0 to .5"
+    ],
+    "xunyanSouthLanding": [
+      -334.5,
+      0,
+      415.5
+    ],
+    "qingshouLanding": [
+      -334.8,
+      0.5,
+      433.15000000000003
+    ],
+    "fallback": false,
+    "approachVerified": true
+  },
+  "finalIndependentProduction": {
+    "positive": 84,
+    "negative": 8,
+    "center": 24,
+    "sideSteps": 24,
+    "groundBypasses": 12,
+    "xunyanSouthThroughConnection": 24,
+    "maxRSSKiB": 883320,
+    "seconds": 19.2,
+    "source": "Independent reviewer final run on 0ca63c38 helper and def34638 ZoneBase"
+  },
+  "cpuLocalCost": {
+    "newSourceGeometryBytes": 7560,
+    "mergedBeforeBytes": 2953344,
+    "mergedAfterBytes": 2963712,
+    "deltaBytes": 10368,
+    "mergedMeshesBefore": 14,
+    "mergedMeshesAfter": 14,
+    "scope": "TWO_LOCAL_HALLS_ONLY_NOT_FULL_ZONE_OR_GPU"
+  },
+  "sourceSHA256": {
+    "src/scene/palace/special/QingshouRaisedWalk.js": "0ca63c38b33b766f1ad783b4f8cff388c1a08d8aa52a611e820f65b70a2c1a4e",
+    "src/scene/palace/special/QingshouConnectionApproach.js": "fd9c27be5658e776373d2fa4e92bedde365e9c58d114622c7ad80a0bb6a8ce82",
+    "src/scene/palace/special/RemainingNingshouHalls.js": "8cf31a7b6c8cb59360696ebc8fc8c06878b74b60a9c5b0e54451a9f0faa96007",
+    "src/scene/zones/ZoneBase.js": "def34638d8df41b59ac650c9e05c58dae7af507ba26c6d47efb7a4f341db39de"
+  },
+  "unverified": [
+    "Full World",
+    "GPU/browser/phone",
+    "Node20 CI",
+    "Mac thermal/performance",
+    "Surveyed geometry",
+    "Qingshou group versus second-hall identity boundary",
+    "Current museum admission"
+  ],
+  "executedChecks": {
+    "selfLightweight": 392,
+    "selfCrossZone": 2,
+    "selfTotal": 394,
+    "independentFormalAtDocumentation": 24,
+    "independentFinalActualNingshouIncluded": true,
+    "note": "Self 345 bounded + 47 related passed; two separate Yangxin B/S and actual Fengxian/garden cross-zone tests passed. Independent 24 formal checks include final actual NingShou replay, final merged lifecycle and old Xunyan strict history negative control. Independent checks are not added to self count."
+  }
+}
