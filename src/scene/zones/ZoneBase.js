@@ -1,3 +1,4 @@
+import {buildYiheCourtCensers} from '../palace/special/YiheCourtCensers.js';
 import {fitNingshouFrontHall} from '../palace/special/NingshouFrontHall.js';
 import {buildNingshouSideApproach} from '../palace/special/NingshouSideApproach.js';
 import {releaseUnusedConstructionBranches,forgetConstructionSources} from '../palace/ConstructionSources.js';
@@ -407,6 +408,7 @@ export class ZoneBase {
     buildZhongzhengWestHall(this.kit,this.zoneJson);
     buildBaozhongEastHall(this.kit,this.zoneJson);
     buildZhenfeiWell(this.kit,this.zoneJson);
+    buildYiheCourtCensers(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
