@@ -1,0 +1,60 @@
+{
+  "base": "d8d56c3066352cc6ca1fd8751156b1527ce5c719",
+  "status": "CHECKED_PENDING_BUILD_AND_UPLOAD",
+  "runtimeSHA256": {
+    "src/scene/palace/special/YunguangMainShell.js": "2b253db7727fe1f8918ed5ffce424de1b167eeb08b06b065623bb8dda73530a6",
+    "src/scene/zones/ZoneBase.js": "01799b5211a94d9ca8d0e75e4479cda692a369472c1820103de741c8eefd81fc"
+  },
+  "self": {
+    "newLight": 18,
+    "realNingshou": 1,
+    "bounded": {
+      "files": 281,
+      "tests": 1030,
+      "pass": 1027,
+      "fail": 3,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 280425.382208
+    },
+    "distinctFormal": {
+      "tests": 1031,
+      "passed": 1028,
+      "failed": 3,
+      "calculation": "1030 bounded +1 final actual NingShou; production not among281 unique files; repeats and exploration not recounted."
+    }
+  },
+  "independent": {
+    "distinctFormalPassed": 39,
+    "light": 38,
+    "realNingshou": 1,
+    "breakdown": "18 current light +20 historical source/order +1 final NingShou",
+    "extra": "18 eastern-wing high-start samples and resource probes are not additional formal tests"
+  },
+  "textReview": "PASSED",
+  "cleanBuild": "PENDING",
+  "remoteReadback": "PENDING",
+  "newWholeObjectAcceptances": 0,
+  "newTeleportTargets": 0,
+  "runtimeScope": "ONE_L_EXTERIOR_COMPONENT_AND_UNIQUE_SYNCHRONOUS_HOOK_138",
+  "performanceImprovementClaim": false,
+  "crashRootCauseFixedClaim": false,
+  "World": "ABORTED_LEGACY_ZONE_LINT_FIXTURE_NOT_COMPLETED_NOT_RETRIED",
+  "browserGpuMobileNode20MacTemperature": "NOT_RUN",
+  "extraDiagnostics": {
+    "zoneSchemaNoGeo": {
+      "exit": 0,
+      "errors": 0,
+      "warnings": 9
+    },
+    "legacyAnchor": {
+      "exit": 1,
+      "compared": 114,
+      "outOfTolerance": 1,
+      "reason": "Existing Shenwumen Layout11m; input/scripts identical to d8d"
+    },
+    "legacyDefaultZoneLint": "Mistaken invocation entered legacy World fixture and aborted at existing Fengxian dimensions/platform guard; NOT completion/pass; not retried",
+    "sourceComparison": "Six relevant scripts/data unchanged from exact d8d; prior same fixture issue recorded in r165-yizhai-main-shell/RESULT.md",
+    "legacyDefaultZoneLintEvidence": "Implementer tool execution report at 2026-11-04T20:44Z; original terminal output not separately saved; independent review read disclosure and exact source comparison, did not rerun World."
+  }
+}

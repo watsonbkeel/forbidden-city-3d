@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "r165-j-incremental-evidence/v2",
+  "basisCommit": "d8d56c3066352cc6ca1fd8751156b1527ce5c719",
+  "identitySource": "docs/photo-fidelity/J-REVIEW/REQUIRED-MATRIX-SNAPSHOT.json",
+  "identitySourceSHA256": "ff7bc32c90d2cd06eaa02874096f4f8f20aa19b0d3afa1be51ebeea06ef69165",
+  "historicalSourceIsNotCurrentAcceptance": true,
+  "currentIncrementAssessed": 1,
+  "wholeObjectAcceptancesAdded": 0,
+  "full397CompletionRate": null,
+  "retainedI29": "docs/current-state/r164-qingshou-north-halls/I29-CODE-APPENDIX.json",
+  "objects": [
+    {
+      "id": "FC-453DB70001",
+      "name": "宁寿宫花园",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-F4D12B27E6",
+      "name": "倦勤斋",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-A1EA21A7C3",
+      "name": "古华轩",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-F5886C9CA9",
+      "name": "露台",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-FADD286B97",
+      "name": "禊赏亭",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-90734D8F6D",
+      "name": "旭辉庭",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-FA6119DC49",
+      "name": "矩亭",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "implementation": "src/scene/palace/special/JutingMainPavilion.js",
+      "dispatch": "src/scene/zones/ZoneBase.js",
+      "scope": "Square east-facing yellow/green four-corner pointed pavilion, closed west sill-window and south/north/east passage",
+      "evidence": "tests/r165-juting-main-pavilion",
+      "limits": [
+        "Exact position/scale/post count/steps and lattice are fitting",
+        "Connecting corridors, terrace, unique woven ceiling, plaque and detailed painting not built",
+        "No new teleport or map target; no current admission claim"
+      ]
+    },
+    {
+      "id": "FC-29F4099DA5",
+      "name": "抑斋",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "implementation": "src/scene/palace/special/YizhaiMainShell.js",
+      "dispatch": "src/scene/zones/ZoneBase.js",
+      "scope": "Asymmetric south-facing shell, front/rear exterior galleries and shallow real steps",
+      "evidence": "tests/r165-yizhai-main-shell",
+      "limits": [
+        "Location, dimensions, rear door position and decorative lattice are fitted, not survey",
+        "Closed unknown interior; no invented Buddha, covert connection, furniture or admission permission",
+        "No full-object, World, browser, GPU or mobile acceptance"
+      ]
+    },
+    {
+      "id": "FC-AA65E64A96",
+      "name": "撷芳亭",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-E604D58704",
+      "name": "遂初堂",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-4B9C091388",
+      "name": "耸秀亭",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-B6CDE8615B",
+      "name": "萃赏楼",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-C7215A0EDA",
+      "name": "延趣楼",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-FEB4BD3F2F",
+      "name": "三友轩",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "runtime": "src/scene/palace/special/SanyouMainShell.js",
+      "scope": "Three-bay south-facing asymmetric shell and south/north/west galleries only; .3m platform and two shallow steps are fitted. Unknown interior closed; no new teleport target.",
+      "evidence": "docs/current-state/r165-sanyou-main-shell/RESULT.md"
+    },
+    {
+      "id": "FC-722E40E471",
+      "name": "符望阁",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-47EC73915D",
+      "name": "碧螺亭",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-177C99C806",
+      "name": "玉粹轩",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "runtime": "src/scene/palace/special/YucuiMainShell.js",
+      "scope": "Three-bay exterior, closed core and accessible front porch/stair only",
+      "notBuilt": [
+        "Three interior rooms/north passage",
+        "Northern connecting gallery and southern rock hill",
+        "Colored-stone short wall and full court",
+        "Exact ornament, hidden elevations, current admission"
+      ]
+    },
+    {
+      "id": "FC-2465BC98A2",
+      "name": "竹香馆",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "implementation": "src/scene/palace/special/ZhuxiangMainShell.js",
+      "dispatch": "src/scene/zones/ZoneBase.js",
+      "scope": "East-facing two-storey main three-bay mass plus two one-bay ear masses; closed exterior only",
+      "evidence": "tests/r165-zhuxiang-main-shell",
+      "limits": [
+        "Coordinates, scale, hidden facades, lower windows and ear roofing are game fits, not measured reconstruction",
+        "Stone hill, bow wall/octagonal portal, diagonal galleries, upper access and interior remain unbuilt",
+        "No new teleport, map target or admission claim; preserve adjacent circulation",
+        "CPU component/production checks are not GPU or whole-object acceptance"
+      ]
+    },
+    {
+      "id": "FC-9B2BEC50D8",
+      "name": "云光楼",
+      "currentAudit": "EXPLICIT_PARTIAL_RUNTIME_BINDING",
+      "wholeObjectAccepted": false,
+      "implementation": "src/scene/palace/special/YunguangMainShell.js",
+      "dispatch": "src/scene/zones/ZoneBase.js",
+      "scope": "Two-storey L exterior, distinct north hip-gable/east hard-gable and ground galleries",
+      "source": "https://www.dpm.org.cn/explore/building/236462.html",
+      "limits": [
+        "Dimensions, bay count, roof junction, color, window/rail detail are fitted",
+        "No rock hill, northern upper bridge, two-level Cuishang link or upper access stairs",
+        "Unknown interior stays closed, no map destination or whole-object acceptance"
+      ]
+    },
+    {
+      "id": "FC-2932CF1D3B",
+      "name": "衍祺门",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "FC-7C2F339F91",
+      "name": "倦勤斋戏台",
+      "currentAudit": "NOT_REAUDITED_BY_THIS_INCREMENT",
+      "wholeObjectAccepted": false
+    }
+  ],
+  "limits": [
+    "R165 regional work; application release remains R164, not online deployment.",
+    "This increment assesses only Yunguang; other20 object records retained, not declared missing.",
+    "Official236462 supports plan/storeys/roof categories/front gallery; photo1566 only a partial elevation and surrounding rock.",
+    "Dimensions, bay counts, gallery rail pattern/ends, hidden surfaces, colors and roof junction are game fits.",
+    "Unknown interior/upper access/rock hill/northern bridge/Cuishang upper link remain unbuilt; no whole acceptance."
+  ],
+  "previousAppendix": "docs/current-state/r165-juting-main-pavilion/J21-CODE-APPENDIX.json",
+  "cumulativeExplicitPartialBindings": 6,
+  "currentIncrement": "Yunguang limited L exterior and ground galleries, no whole acceptance",
+  "corrections": [
+    "d8d5 historical record: Previous appendices remain immutable historical records. Their inherited currentIncrement/only-Sanyou/only-Yizhai text is not a current-state assertion for this candidate.",
+    "d8d5 historical record: Only Juting gains current partial evidence. Other20 object records remain byte-equivalent by fields and are not declared missing.",
+    "d8d5 historical record: The merge-bounds in-memory experiment was not adopted because custom exception semantics changed; no public MergeUtils optimization is included.",
+    "Current increment adds only Yunguang limited exterior; previous Juting and other records are retained, not re-audited as whole buildings."
+  ],
+  "scope": "One L-shaped two-storey exterior and ground gallery route, not bridge/rock hill or full building",
+  "otherObjectsNotReauditedThisIncrement": 20
+}

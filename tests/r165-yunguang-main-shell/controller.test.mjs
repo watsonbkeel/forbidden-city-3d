@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{galleryRoutes}from'./route-runner.mjs';test('L ground gallery and four outside paths 60 positive/8 closed-core blocking routes',t=>{const f=fixture();try{galleryRoutes(t,collision(f))}finally{f.dispose()}});
