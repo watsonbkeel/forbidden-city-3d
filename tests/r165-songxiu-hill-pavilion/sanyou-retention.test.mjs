@@ -1,0 +1,2 @@
+import test from'node:test';import{fixture,zone}from'../r165-sanyou-main-shell/fixture.mjs';import{buildSongxiuHillPavilion}from'../../src/scene/palace/special/SongxiuHillPavilion.js';import{collision}from'./fixture.mjs';import{highExits}from'../r165-sanyou-main-shell/high-runner.mjs';
+test('all 60 original Sanyou high-exit paths stay unchanged beside the compact Songxiu hill',()=>{const f=fixture();try{buildSongxiuHillPavilion(f.kit,zone);highExits(collision(f))}finally{f.dispose()}});
