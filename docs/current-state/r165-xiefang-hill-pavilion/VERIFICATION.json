@@ -1,0 +1,106 @@
+{
+  "base": "d4c40891e8082038d949b69aa94651a5a1478fee",
+  "status": "LOCAL_IMPLEMENTATION_VERIFIED_INDEPENDENT_REVIEW_PASS_EXTERNAL_CLOSEOUT_NOT_PERFORMED",
+  "runtimeSHA256": {
+    "src/scene/palace/special/XiefangHillPavilion.js": "acc80ab35f9e843148af44b14bf895e0bfa74c10dcbba4234659bc401c4c149f",
+    "src/scene/zones/ZoneBase.js": "d8373ca880b5491e8a5200c25050a2cbf6f0807049aa5e83b00b996af4b24632"
+  },
+  "self": {
+    "newLight": {
+      "tests": 25,
+      "pass": 25,
+      "fail": 0,
+      "duration_ms": 32871.089156,
+      "finalAssertions": "All25 current increment tests also pass in final bounded run; stricter corner assertion additionally re-run1/1, not counted again."
+    },
+    "realNingshouFinalCurved": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "duration_ms": 102015.091668,
+      "maxRSSKiB": 1362052,
+      "source": "acc80ab_CURVED_CORNER_OUTWARD_CONTINUOUS_EXIT"
+    },
+    "boundedFinal": {
+      "files": 317,
+      "tests": 1093,
+      "pass": 1090,
+      "fail": 3,
+      "cancelled": 0,
+      "skipped": 0,
+      "duration_ms": 337459.535067,
+      "failures": "ONLY_TWO_RETAINED_NINGSHOU_SIDE_STEP_SNAPSHOTS_AND_R72_BED_COUNT"
+    },
+    "historicalStraightRoofProduction": {
+      "tests": 1,
+      "pass": 1,
+      "duration_ms": 116620.717558,
+      "maxRSSKiB": 1352788,
+      "supersededAndNotAddedToFinalCount": true
+    },
+    "distinctFormal": {
+      "tests": 1094,
+      "pass": 1091,
+      "fail": 3,
+      "calculation": "1093 bounded +1 final curved-source actual NingShou. Light25, targeted repeats, baseline capture and straight-roof history are not added again."
+    },
+    "targetedCornerEvidence": "CORNER-EXIT-EVIDENCE.json; stricter final negative and same-drop outward exit re-run1/1, not additional distinct test"
+  },
+  "sourceBoundary": "ALL_OLD_SRC_DATA_MAIN_RELEASE_BYTES_EXACT_EXCEPT_UNIQUE_THREE_LINE_ZONEBASE_DELTA",
+  "synchronousOrder": "ORIGINAL156_PLUS_EXACTLY6_SOURCE_AUDITED_INERT_HOOKS_FOR_TEST_EMPTY",
+  "geometry": "ALL_SOLIDS_FINITE_WELDED_CLOSED_POSITIVE_VOLUME; EVERY_TRIANGLE_CONTACT_VERTEX_EQUALS_VISIBLE_WORLD_GEOMETRY",
+  "independentReview": {
+    "status": "PASS_WITH_MINOR_MAINTAINABILITY_NOTE",
+    "specification": "FINITE_INCREMENT_CONFORMS_NOT_WHOLE_OBJECT_ACCEPTANCE",
+    "quality": "NO_NEW_P0_P1_P2_FOUND_IN_BOUNDED_REVIEW",
+    "independentSourceComparison": {
+      "oldFiles": 824,
+      "bytes": 9090928,
+      "result": "EXACT_AFTER_ONLY_UNIQUE_XIEFANG_IMPORT_HOOK141_CALL_REMOVAL"
+    },
+    "independentBuildIdentity": "verifyBuildSource recomputed runtime fingerprint and HTML/JS identity PASS",
+    "deferredMinor": "P3: long lines in self-contained component and tests reduce future maintainability; defer pure formatting, no behavior refactor in frozen version."
+  },
+  "cleanBuild": {
+    "status": "PASS",
+    "command": "VITE_BASE=/forbidden-city-3d/ npm run build",
+    "duration_s": 8.06,
+    "sourceCommit": "36d83814fbddc9b676f87a13bd6982cd8e5b17c6",
+    "sourceDirty": false,
+    "base": "/forbidden-city-3d/",
+    "buildId": "R164-d687bdbaf1ab",
+    "sourceFingerprint": "7d23fabb144381b9ca73fd4beab9c3ebfa6c8bdfb443ee8489b294553273bec8",
+    "releaseMetadataRetained": "R164",
+    "warning": "Existing >500kB chunk reminder; not a performance acceptance."
+  },
+  "localHTTPIdentity": {
+    "status": "PASS",
+    "command": "VITE_BASE=/forbidden-city-3d/ node tests/r165-xiefang-hill-pavilion/http-identity.mjs",
+    "html": 200,
+    "buildInfo": 200,
+    "entryJS": 200,
+    "entry": "/forbidden-city-3d/assets/index-DMkXhU0_.js",
+    "identity": "HTML,build-info andJS match each other and current runtime source fingerprint",
+    "scope": "LOOPBACK_BYTES_ONLY_NOT_BROWSER_OR_GPU"
+  },
+  "remoteReadback": "NOT_PERFORMED_LOCAL_ONLY_INCREMENT",
+  "wholeObjectAccepted": false,
+  "surveyed": false,
+  "currentAdmissionVerified": false,
+  "newWholeObjectAcceptances": 0,
+  "newTeleportTargets": 0,
+  "newMapItems": 0,
+  "runtimeScope": "ONE_LIMITED_FITTED_ROCK_TOP_SQUARE_PAVILION_AND_SIDE_STAIRS_UNIQUE_HOOK141",
+  "World": "NOT_RUN",
+  "browserGpuMobileNode20": "NOT_RUN",
+  "performanceImprovementClaim": false,
+  "highTests": "18 unchanged start positions x4 frame rates=72. Final settled state after5s and every subsequent continuous-exit movement frame checked, not all initial descent frames or all possible directions. North-eave10Hz cross-corner blocked path retained as negative; same actual drop point exits outward without reset.",
+  "oldRoutes": "Original Yizhai porch/bypass/60high exits and Juting/Lutai neighbor paths unchanged; complete cumulative routes including Songxiu reused unchanged.",
+  "roofCurve": "Photograph-informed0.32m four-corner local lift; both green and yellow use exact same function and closed thickness. GAME_FIT_NOT_SURVEY.",
+  "cpuPreview": "CPU-FIT.png is depth-tested flat-color component diagnostic, not browser/GPU/texture/shadow or photo acceptance.",
+  "cost": "COST.json; local component CPU buffers only, not GPU or whole-zone performance",
+  "rollback": "d4c40891e8082038d949b69aa94651a5a1478fee",
+  "cpuPreviewSHA256": "95f73c5d573680f1c97fa3a4b7e74f3c536293e76eaeaf7ac858f543f848d07e",
+  "implementationCommit": "36d83814fbddc9b676f87a13bd6982cd8e5b17c6",
+  "whitespace": "Only7 inherited trailing-whitespace lines inside byte-frozen ZoneBase.d4c4.js are intentionally retained; all non-frozen changes pass git diff --check."
+}
