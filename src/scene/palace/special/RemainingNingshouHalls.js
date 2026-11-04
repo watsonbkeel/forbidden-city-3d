@@ -1,3 +1,4 @@
+import {fitYueshiPaleSidewalls} from './YueshiPaleSidewalls.js';
 import {buildXishangFrontTransom,registerXishangRoofTransom} from './XishangFrontTransom.js';
 import {buildHuangjiSouthFront} from './HuangjiSouthFront.js';
 import {buildNingshouSouthFrieze} from './NingshouSouthFrieze.js';
@@ -588,13 +589,13 @@ function buildCuishang(c) {
  return finish(c,{...(c.f.userData.cuishangSouthFront?{southFront:c.f.userData.cuishangSouthFront}:{}),legacyInventory,upperFrontGallery:{openBays:[0,1,2,3],enclosedWestEndBay:4},upperBridgeStatus:'KNOWN_LINK_TO_BILUO_NOT_YET_FITTED_OR_WALKABLE',interiorPolicy:'REAL_TWO_LEVEL_GALLERIES_WITH_SOURCE_BACKED_ASYMMETRIC_UPPER_FRONT'});
 }
 function buildYueshi(c) {
- const{p}=c,southEnabled=c.kit.yueshiSouthFront!==false;twoLevelFrame(c,{pattern:'glass',wall:'brick',skipSouth:southEnabled});upperFloor(c);if(southEnabled)buildYueshiSouthFront(c);else perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
+ const{p}=c,southEnabled=c.kit.yueshiSouthFront!==false;twoLevelFrame(c,{pattern:'glass',wall:'brick',skipSouth:southEnabled});fitYueshiPaleSidewalls(c);upperFloor(c);if(southEnabled)buildYueshiSouthFront(c);else perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
  // Ground central doors have three visual leaves, upper six. Open side leaves
  // remain outside the clear aperture; counts are ornament bands, not extra walls.
  if(!southEnabled)for(const[y,n]of[[p.ph,3],[p.upperFloorY,6]])for(let i=0;i<n;i++)c.box('yueshi-glass-door-transom','glass',p.localW/5/n-.06,.55,.055,-p.localW/10+(i+.5)*p.localW/5/n,y+2.95,-p.localD/2+p.gallery);
  const legacyInventory=retainLegacyHall(c,{central:true});
  rolledRoof(c,{tile:'yellow',trim:'green',sourceVerge:true});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{...(c.f.userData.yueshiSouthFront?{southFront:c.f.userData.yueshiSouthFront}:{}),legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
+ return finish(c,{paleSidewalls:c.f.userData.yueshiPaleSidewalls,...(c.f.userData.yueshiSouthFront?{southFront:c.f.userData.yueshiSouthFront}:{}),legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
 }
 function altarOutline(c,{x,z,w,d,y=c.p.ph,role='dated-altar-plinth'}) {
  const m=c.box(role,'wood',w,.46,d,x,y+.23,z,true);m.userData.inventoryStatus='ARCHITECTURAL_DAIS_OUTLINE_NOT_FABRICATED_STATUE';m.userData.currentInventoryVerified=false;
