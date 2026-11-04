@@ -1,3 +1,4 @@
+import {buildNingshouSideApproach} from '../palace/special/NingshouSideApproach.js';
 import {releaseUnusedConstructionBranches,forgetConstructionSources} from '../palace/ConstructionSources.js';
 import {buildZhenfeiWell} from '../palace/special/ZhenfeiWell.js';
 import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
@@ -634,6 +635,7 @@ export class ZoneBase {
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
+    buildNingshouSideApproach(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyGardenStreetGatePins(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     raiseMiddleLeftPlatform(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item,colliderStart:ownGateColliderStart,walkableStart:ownGateWalkableStart});
