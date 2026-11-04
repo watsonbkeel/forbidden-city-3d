@@ -1,3 +1,4 @@
+import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';
 import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';
 import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';
 import {buildYiheCourtCensers} from '../palace/special/YiheCourtCensers.js';
@@ -644,6 +645,7 @@ export class ZoneBase {
     const width = this.kit.gate(params);
     buildNingshouSideApproach(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     fitNingshouFrontHall(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyGardenStreetGatePins(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     raiseMiddleLeftPlatform(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item,colliderStart:ownGateColliderStart,walkableStart:ownGateWalkableStart});
