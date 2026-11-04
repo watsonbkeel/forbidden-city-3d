@@ -1,3 +1,4 @@
+import {sanitizeZoneLoadSnapshot} from '../scene/zones/ZoneLoadMetrics.js';
 import {BUILD_INFO} from './ReleaseIdentityPanel.js';
 
 const stages = new Set(['viewport','controls','flight','location','environment','lighting','palace','enclosure','garden','interiors','zones','characters','audio','map','shadows','render','performance','graphics','idle']);
@@ -12,7 +13,7 @@ function codeFor(value) {
 }
 
 /** Local, once-per-failure summary. Never include arbitrary error text, stack or URLs. */
-export function captureFailureDiagnostic(error, {stage,zone,info = BUILD_INFO} = {}) {
+export function captureFailureDiagnostic(error, {stage,zone,zoneLoad,info = BUILD_INFO} = {}) {
   const name = text(read(() => error?.name, ''));
   const message = text(read(() => error?.message, ''));
   const zoneId = read(() => typeof zone === 'function' ? zone() : zone, null);
@@ -24,7 +25,8 @@ export function captureFailureDiagnostic(error, {stage,zone,info = BUILD_INFO} =
   else if (/^Duplicate triangle owner\b/.test(message)) cause = '三角碰撞身份重复';
   else if (/^[A-Za-z -]{1,80}source copy changed\b/.test(message)) cause = '建筑接触来源发生变化';
   else if (/^WebGL rendering context (?:is )?lost$/.test(message)) cause = '图形上下文丢失';
-  return Object.freeze({schema:1,stage:stages.has(stage)?stage:'unknown',zone:zones.has(zoneId)?zoneId:'unknown',
+  const loadSummary=sanitizeZoneLoadSnapshot(read(()=>typeof zoneLoad==='function'?zoneLoad():zoneLoad,null));
+  return Object.freeze({schema:1,...(loadSummary?{zoneLoad:loadSummary}:{}),stage:stages.has(stage)?stage:'unknown',zone:zones.has(zoneId)?zoneId:'unknown',
     buildId:/^R\d+[A-Za-z0-9.-]*-[a-f0-9]{12}$/.test(buildId)&&buildId.length<=80?buildId:'DEV-unbuilt',
     sourceCommit:/^[a-f0-9]{40}$/.test(commit)?commit:null,
     errorType:types.has(name)?name:'UnknownError',cause,code:codeFor(`${types.has(name)?name:'UnknownError'}:${stages.has(stage)?stage:'unknown'}:${cause}`)});

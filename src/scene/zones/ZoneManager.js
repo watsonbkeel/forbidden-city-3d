@@ -1,3 +1,4 @@
+import {ZoneLoadMetrics,beginZoneLoad,measureZonePhase,finishZoneLoad,beginZoneQueue,finishZoneQueue,kitMergeMs} from './ZoneLoadMetrics.js';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../controls/SishenEnvironmentWitness.js';
 import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../controls/WestWellEnvironmentWitness.js';
 import {bindEastWellEnvironmentWitness,unbindEastWellEnvironmentWitness} from '../../controls/EastWellEnvironmentWitness.js';
@@ -20,7 +21,7 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
  * - 当前区与已加载邻区保留；新增预载只排距玩家 40m 内的区
  * - 距离 ≤ 40m 预载
  * - 其余卸载（保留 silhouette 如果有）
- * - 构建时间切片（每帧 ≤ 8ms）
+ * - 队列在同步任务之间检查8ms预算；单个任务不可抢占
  * 
  * 启动时行为：
  * - 立即获取所有区的 regions 和 mapItems（供 Minimap 和位置显示用）
@@ -30,6 +31,7 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
  */
 export class ZoneManager {
   constructor({reuseInactive=false}={}) {
+    this.loadMetrics = new ZoneLoadMetrics();
     this.inactiveCache = reuseInactive ? new InactiveZoneCache() : null;
     /** 已注册的 zone 配置：{ id, name, bounds, neighbors, items, BuilderClass } */
     this.zones = new Map();
@@ -51,7 +53,7 @@ export class ZoneManager {
     this.buildStartTime = 0;
     /** 所有区的 rooms（启动时收集，供后续玩法使用） */
     this.allRooms = [];
-    /** 单区构建耗时记录：id → ms（最近一次） */
+    /** 旧准备耗时：id → ms，不含登记/通知；完整阶段见getLoadMetrics。 */
     this.buildTimes = new Map();
     /** 可选回调：区加载/卸载时通知外部（如阴影 LOD 列表维护） */
     this.lifecycleListeners = new Set();
@@ -96,20 +98,24 @@ export class ZoneManager {
     // 收集所有区的 regions 和 mapItems（dry 模式：只构建不加入场景）
     console.log('[ZoneManager] 收集所有区的 regions 和 mapItems...');
     for (const [id, config] of this.zones) {
-      const builder = new config.BuilderClass(this.library, config);
-      const data = builder.build();
+      const trace = beginZoneLoad(this.loadMetrics,id,'startup');
+      let builder, data, outcome='error';
+      try {
+      measureZonePhase(trace,'build',()=>{ builder = new config.BuilderClass(this.library, config); data = builder.build(); });
       this.allRegions.push(...data.regions);
       this.allMapItems.push(...data.mapItems);
       this.allRooms.push(...data.rooms);
       // 启动时预合并；流式加载只提交已完成的结果，不再重复构建。
       this.prebuilt.set(id, { builder, data, detailQuality: this.detailQualityFor(id), config });
-      const silhouette = buildSilhouette(data.group);
+      const silhouette = measureZonePhase(trace,'silhouette',()=>buildSilhouette(data.group));
       if (silhouette) {
         data.silhouette = silhouette;
         this.silhouettes.set(id, silhouette);
         silhouette.visible = true;
         scene.add(silhouette);
       }
+      outcome='ok';
+      } finally { finishZoneLoad(this.loadMetrics,trace,outcome,kitMergeMs(builder)); }
     }
     console.log(`[ZoneManager] 共 ${this.allRegions.length} 个 region, ${this.allMapItems.length} 个 mapItem`);
 
@@ -182,7 +188,7 @@ export class ZoneManager {
       }
     }
 
-    // 推进构建队列（时间切片：每帧 ≤ 8ms）
+    // 推进构建队列（同步任务之间检查8ms预算）
     this.processBuildQueue();
   }
 
@@ -226,19 +232,25 @@ export class ZoneManager {
   }
 
   /**
-   * 推进构建队列：每帧最多 8ms
+   * 推进构建队列：任务之间检查8ms，单个同步加载可能超过预算
    */
   processBuildQueue() {
+    if (!this.buildQueue.length) return;
+    const trace=beginZoneQueue(this.loadMetrics); let processed=0, outcome='error';
+    try {
     const frameStart = performance.now();
     const timeLimit = 8; // ms
 
     while (this.buildQueue.length > 0 && performance.now() - frameStart < timeLimit) {
       const { zoneId } = this.buildQueue.shift();
       if (this.loaded.has(zoneId)) continue;
+      processed++;
       this.loadZone(zoneId);
       // 如果 loadZone 耗时超过 8ms，下一帧继续
       if (performance.now() - frameStart >= timeLimit) break;
     }
+    outcome='ok';
+    } finally { finishZoneQueue(this.loadMetrics,trace,outcome,processed,this.buildQueue.length); }
   }
 
   /**
@@ -268,7 +280,11 @@ export class ZoneManager {
 
     const start = performance.now();
     const detailQuality = this.detailQualityFor(zoneId);
-    const cached = this.prebuilt.get(zoneId) ?? this.inactiveCache?.take(zoneId,config,detailQuality);
+    const trace=beginZoneLoad(this.loadMetrics,zoneId,'cold');
+    let cached, outcome='error';
+    try { cached=measureZonePhase(trace,'cache',()=>this.prebuilt.get(zoneId) ?? this.inactiveCache?.take(zoneId,config,detailQuality)); }
+    catch(error) { finishZoneLoad(this.loadMetrics,trace,'error',null); throw error; }
+    try { if(trace) trace.mode=cached?(this.prebuilt.has(zoneId)?'prebuilt':'cached'):'cold'; } catch { /* Optional trace. */ }
     let builder = cached?.builder, data = cached?.data;
     const silhouette = this.silhouettes.get(zoneId);
     const notified = [], previousTime = this.buildTimes.get(zoneId);
@@ -278,26 +294,27 @@ export class ZoneManager {
     // disposed, never returned to prebuilt or the inactive cache for reuse.
     this.prebuilt.delete(zoneId);
     try {
-      builder ??= new config.BuilderClass(this.library, config);
-      data ??= builder.build();
+      if (!builder || !data) measureZonePhase(trace,'build',()=>{ builder ??= new config.BuilderClass(this.library, config); data ??= builder.build(); });
       const elapsed = performance.now() - start;
-      data.group.visible = true;
-      this.scene.add(data.group);
-      if (silhouette) silhouette.visible = false;
-      this.collisionManager.addColliders(data.colliders, zoneId);
-      this.collisionManager.addWalkables(data.walkables, zoneId);
+      measureZonePhase(trace,'scene',()=>{ data.group.visible = true; this.scene.add(data.group); if (silhouette) silhouette.visible = false; });
+      measureZonePhase(trace,'colliders',()=>this.collisionManager.addColliders(data.colliders, zoneId));
+      measureZonePhase(trace,'walkables',()=>this.collisionManager.addWalkables(data.walkables, zoneId));
       const entry = cached ?? { builder, data, config, detailQuality };
       entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
       this.loaded.set(zoneId, entry);
       this.buildTimes.set(zoneId, +elapsed.toFixed(1));
+      measureZonePhase(trace,'notify',()=>{
       for (const listener of this.lifecycleListeners) {
         notified.push(listener);
         listener('load', zoneId, data);
       }
       if (this.onLoad) { onLoadStarted = true; this.onLoad(zoneId, data.group); }
-      console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
+      });
+      console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），构建/复用准备 ${elapsed.toFixed(1)}ms（完整加载见F3）`);
+      outcome='ok';
     } catch (error) {
       const cleanupErrors = [];
+      measureZonePhase(trace,'rollback',()=>{
       const clean = fn => { try { fn(); } catch (e) { cleanupErrors.push(e); } };
       // Compensate only callbacks whose load notification started, including a
       // callback that partially changed its state and then threw. Keep the entry
@@ -310,10 +327,14 @@ export class ZoneManager {
       this.loaded.delete(zoneId);
       if (silhouette) silhouette.visible = true;
       if (hadTime) this.buildTimes.set(zoneId, previousTime); else this.buildTimes.delete(zoneId);
+      });
       if (cleanupErrors.length) throw new AggregateError([error, ...cleanupErrors], `Zone ${zoneId} admission failed: ${error.message}`, {cause:error});
       throw error;
-    }
+    } finally { finishZoneLoad(this.loadMetrics,trace,outcome,cached?0:kitMergeMs(builder)); }
   }
+
+  /** Local immutable CPU observations; never drives admission or eviction. */
+  getLoadMetrics() { try { return this.loadMetrics.snapshot(); } catch { return null; } }
 
   /**
    * 卸载一个区：移除场景 + 删除碰撞 + dispose
@@ -439,5 +460,6 @@ export class ZoneManager {
     delete this.scene.userData.zoneManager;
     this.zones.clear();
     this.buildQueue.length = 0;
+    try { this.loadMetrics.clear(); } catch { /* Optional observations cannot break disposal. */ }
   }
 }

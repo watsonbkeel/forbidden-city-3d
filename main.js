@@ -210,6 +210,7 @@ class ForbiddenCityApp {
         this.bindAudioStart();
         this.perfHUD = new PerfHUD(this.renderer, {
           characterProvider: () => this.characters?.snapshot(),
+          zoneLoadProvider: () => this.zoneManager?.getLoadMetrics(),
           zoneProvider: () => ({
             current: this.zoneManager?.getCurrentId() ?? '-',
             loaded: this.zoneManager?.getLoadedIds() ?? []
@@ -545,7 +546,7 @@ class ForbiddenCityApp {
     // Context loss arrives outside onFrame, so this boundary must stop RAF itself.
     this.frameLoop?.dispose();
     // Optional diagnostic capture must never block the existing recovery boundary.
-    try { this.failureDiagnostic = TourFailureNotice.captureDiagnostic(error, {stage:reason === 'graphics' ? 'graphics' : this.frameStage, zone:() => this.zoneManager?.getCurrentId()}); }
+    try { this.failureDiagnostic = TourFailureNotice.captureDiagnostic(error, {stage:reason === 'graphics' ? 'graphics' : this.frameStage, zone:() => this.zoneManager?.getCurrentId(), zoneLoad:() => this.zoneManager?.getLoadMetrics?.()}); }
     catch { this.failureDiagnostic = null; }
     console.error(reason === 'graphics' ? '图形显示已中断，游览已停止' : '游览主帧异常，已停止更新', error);
     // Retire the earlier window/focus owner without resuming the failed tour.
