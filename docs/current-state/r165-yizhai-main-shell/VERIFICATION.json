@@ -1,0 +1,54 @@
+{
+  "base": "c080d0e100be6dc9c3c152adac7aada35481afd9",
+  "status": "CHECKED_PENDING_BUILD_AND_UPLOAD",
+  "production": {
+    "oldMeshes": 28958,
+    "oldTriangles": 625732,
+    "oldContacts": 7908,
+    "oldWalkables": 363,
+    "oldRoofTriangles": 28268,
+    "oldLandings": 20,
+    "retained": true
+  },
+  "independentReview": {
+    "passed": 21,
+    "light": 20,
+    "productionNingshou": 1
+  },
+  "textReview": "PASSED",
+  "bounded": {
+    "files": 240,
+    "tests": 934,
+    "passed": 931,
+    "failed": 3,
+    "failureAttribution": "3 preserved baseline assertion failures",
+    "durationMs": 216416.929958
+  },
+  "cleanBuild": "PENDING",
+  "remoteReadback": "PENDING",
+  "wholeObjectAcceptance": false,
+  "performanceImprovementClaim": false,
+  "distinctFormalSelf": {
+    "tests": 935,
+    "passed": 932,
+    "failed": 3,
+    "calculation": "934 bounded + 1 production NingShou; repeats/neighbor exploration not added"
+  },
+  "extra": {
+    "zoneSchemaNoGeo": {
+      "files": 7,
+      "errors": 0,
+      "warnings": 9
+    },
+    "legacyAnchorCheck": "114 comparisons, 1 old Shenwu Layout difference, 1 kind mismatch not compared",
+    "legacyZoneLintWithoutNoGeo": "ABORTED at old Fengxian source fixture; NOT WORLD PASS, not retried",
+    "neighborRoutes": 24,
+    "notCountedAgain": true
+  },
+  "runtimeSHA256": {
+    "src/scene/palace/special/YizhaiMainShell.js": "e06556f6b91d0170b4aa411d721786206fd4414f8cd5e4d981ce39c77c38cff0",
+    "src/scene/zones/ZoneBase.js": "65e0b22f9e81faa86e4031c5275e10e23e1fbf1535814cd4744df579a26dd5ba"
+  },
+  "world": "ABORTED_LEGACY_FIXTURE_NOT_COMPLETED",
+  "gpuMobileBrowserNode20": "NOT_RUN"
+}

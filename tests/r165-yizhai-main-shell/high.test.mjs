@@ -1,0 +1,1 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture,collision}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('15 high origins at four frame rates settle and continuously exit without pose reset or body overlap',()=>{const f=fixture();try{assert.equal(highExits(collision(f)).length,60)}finally{f.dispose()}});

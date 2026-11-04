@@ -1,3 +1,4 @@
+import {buildYizhaiMainShell} from '../palace/special/YizhaiMainShell.js';
 import {buildSanyouMainShell} from '../palace/special/SanyouMainShell.js';
 import {buildYucuiMainShell} from '../palace/special/YucuiMainShell.js';
 import {buildQingshouNorthHalls} from '../palace/special/QingshouNorthHalls.js';
@@ -435,6 +436,7 @@ export class ZoneBase {
     buildQingshouNorthHalls(this.kit,this.zoneJson);
     buildYucuiMainShell(this.kit,this.zoneJson);
     buildSanyouMainShell(this.kit,this.zoneJson);
+    buildYizhaiMainShell(this.kit,this.zoneJson);
     buildForiFanhuaStair(this.kit,this.zoneJson);
     buildYiheCourtCensers(this.kit,this.zoneJson);
     buildChangyinMiddleNameboard(this.kit,this.zoneJson);
