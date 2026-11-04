@@ -1,3 +1,4 @@
+import {buildZhenshunGate} from '../palace/special/ZhenshunGate.js';
 import {buildQingshouRaisedWalk} from '../palace/special/QingshouRaisedWalk.js';
 import {buildYiheJingqiConnector} from '../palace/special/YiheJingqiConnector.js';
 import {buildThirteenSouthEntry} from '../palace/special/ThirteenSouthEntry.js';
@@ -617,6 +618,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===9){const b=buildZhenshunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:9,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===1){const b=buildLianxiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:1,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='outer-east'&&item.name==='南三所宫门'){const built=buildNansansuoCommonGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),zoneJson:this.zoneJson});if(!built)throw Error('Nansansuo common gate dispatch mismatch');this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
