@@ -1,3 +1,4 @@
+import {buildLianxiGate,lianxiWallGaps} from '../palace/special/LianxiGate.js';
 import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';
 import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';
 import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';
@@ -606,6 +607,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===1){const b=buildLianxiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:1,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='outer-east'&&item.name==='南三所宫门'){const built=buildNansansuoCommonGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),zoneJson:this.zoneJson});if(!built)throw Error('Nansansuo common gate dispatch mismatch');this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
@@ -662,7 +664,7 @@ export class ZoneBase {
     if(buildShangshuSouthFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item)))return;
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
-    const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
+    const gaps = this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===43 ? lianxiWallGaps(item,this.gateGeometries.get('敛禧门'),this.gateWidths) : item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     if(buildJunjiSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     if(buildJiuqingSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     const params = { h: item.h, t: item.t, gaps };

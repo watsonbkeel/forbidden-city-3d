@@ -1,0 +1,3 @@
+import fs from'node:fs';import crypto from'node:crypto';
+const root=new URL('../../',import.meta.url),url=new URL('src/scene/zones/ZoneBase.js',root),source=fs.readFileSync(new URL('../fixtures/r164-lianxi-521/ZoneBase.source.js',import.meta.url),'utf8'),record=JSON.parse(fs.readFileSync(new URL('./source.json',import.meta.url)));if(crypto.createHash('sha256').update(source).digest('hex')!==record.sha256)throw Error('Frozen 521 ZoneBase changed');
+const code=source.replace(/(^import[^\n]*?\bfrom\s*)(['"])([^'"]+)\2/gm,(_m,prefix,q,p)=>prefix+q+(p==='three'?new URL('node_modules/three/build/three.module.js',root).href:new URL(p,url).href)+q);export const FrozenZone=(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).ZoneBase;
