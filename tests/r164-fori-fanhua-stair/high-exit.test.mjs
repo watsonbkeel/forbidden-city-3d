@@ -1,0 +1,3 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture,collision}from'./fixture.mjs';import{highExits}from'./high-exit-runner.mjs';
+test('both side-lintel high falls preserve real turn-and-exit without reset at10/30/60/144Hz',()=>{const f=fixture();try{assert.equal(highExits(collision(f)),8)}finally{f.dispose()}});
+test('restoring the four new gable segments to ordinary boxes reproduces the10Hz embedding',()=>{const f=fixture();try{for(const c of f.result.colliders)if(c.foriFanhuaMesh.includes('/retained-gable-'))delete c.triangleSupport;assert.throws(()=>highExits(collision(f)),e=>e.code==='ERR_ASSERTION'&&e.message.includes('approach'))}finally{f.dispose()}});
