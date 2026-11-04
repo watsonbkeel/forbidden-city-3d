@@ -1,3 +1,4 @@
+import {buildZhuxiangMainShell} from '../palace/special/ZhuxiangMainShell.js';
 import {consumeSynchronousBuild, getBuildStepMetrics} from './ZoneBuildSteps.js';
 import {buildYizhaiMainShell} from '../palace/special/YizhaiMainShell.js';
 import {buildSanyouMainShell} from '../palace/special/SanyouMainShell.js';
@@ -600,6 +601,8 @@ export class ZoneBase {
     buildChangyinMiddleNameboard(this.kit,this.zoneJson);
     yield {phase:'hook',index:135};
     buildChangyinLowerNameboard(this.kit,this.zoneJson);
+    yield {phase:'hook',index:136};
+    buildZhuxiangMainShell(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};
