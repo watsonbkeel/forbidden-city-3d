@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('two high starting offsets at four rates naturally fall then continuously exit east, without pose reset',()=>{const f=fixture();try{console.log(JSON.stringify(highExits(f.cm)))}finally{f.dispose()}});

@@ -1,0 +1,152 @@
+{
+  "recordedUTC": "2026-11-04T13:34:03.597071+00:00",
+  "baseCommit": "e999537f2224acb5ae557f4067965415cb61cc2a",
+  "scope": "BAOTAI_LIMITED_LOW_GLAZED_BODY_WITH_RETAINED_SINGLE_GAME_PASSAGE",
+  "runtimeFiles": {
+    "src/scene/palace/special/BaotaiGate.js": "6b6a3b6d3b6c87a04f6931e8523885752c6cf3bf0a9ba185e49076cf12a9c833",
+    "src/scene/zones/ZoneBase.js": "8eb5fdc7fabfc35b2c3598c96b6e90171a71a35f969dc830616612cd86f2fc01"
+  },
+  "selfBoundedStatus": "PASSED",
+  "selfCurrentFormal": 28,
+  "independentStatus": "PASSED_FINAL_TEXT_REVIEW",
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28482,
+      "triangles": 613560,
+      "geometry": "d8f92f1896558912a7445bdb086a90b61fdb86381cd6d458e0d130d1d800dbea"
+    },
+    "data": {
+      "colliderCount": 7684,
+      "colliders": "79c344d97ecdc56c5df300a11992184783b053a85ce37f8b7ff0bf0182b9ad59",
+      "walkableCount": 335,
+      "walkables": "ddc5b471dea026315b9d6f05c5cc2890c397a9b28320acb24a5e35d956d0e737",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "840a93c59eb5969f8620f2502c3f09f67779371164630c6e8d7bef64e52fc338",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "8bf723a79bdd8fcb9b8017b509a5259f2710c7efe980f2bbc12585bb112ba0a8"
+    },
+    "roof": {
+      "triangles": 22076,
+      "sha256": "22227b5b79251b51fe44fafe0123f9685a76c63e639bcfb3ace66cfe40b3d418"
+    },
+    "targets": {
+      "meshes": 37,
+      "triangles": 436
+    },
+    "targetContacts": {
+      "children": 1,
+      "colliders": 36
+    },
+    "maxRSSKiB": 890804
+  },
+  "currentRoutes": {
+    "positive": 48,
+    "negative": 32,
+    "headJumps": 12,
+    "highFallAndContinuousExit": 8
+  },
+  "landingEvidence": {
+    "all20Fields": "EQUAL_E999",
+    "nineteenSpecialProfiles": {
+      "success": 17,
+      "historicalNulls": [
+        "萃赏楼",
+        "梵华楼"
+      ]
+    },
+    "baotai": {
+      "name": "保泰门",
+      "x": -363.2,
+      "z": 336.5,
+      "lookAtX": -353.8,
+      "lookAtZ": 336.5,
+      "distance": 8,
+      "lateral": 0,
+      "y": 0,
+      "walk": 5,
+      "fallback": false
+    }
+  },
+  "resourceDelta": {
+    "targetBefore": {
+      "meshes": 16,
+      "triangles": 1258,
+      "contacts": 2,
+      "rawGeometryBytes": 119780
+    },
+    "targetAfter": {
+      "meshes": 37,
+      "triangles": 436,
+      "contacts": 36,
+      "rawGeometryBytes": 31248
+    },
+    "localMergedBefore": {
+      "bytes": 487872,
+      "meshes": 14
+    },
+    "localMergedAfter": {
+      "bytes": 408960,
+      "meshes": 14
+    },
+    "scope": "CPU_BAOTAI_LIANXI_AND_COMPLETE_EAST_WALL_ONLY_NOT_GPU_BENCHMARK"
+  },
+  "redEvidence": [
+    "Original dispatch lacks Baotai identity/body marker; observed red before runtime implementation",
+    "Removing the eleven actual pier contacts makes its blocker negative control fail"
+  ],
+  "historicalAssertions": "Exact unique two-line Baotai source delta stripped before original source assertions; only unverified Baotai atlas entry explicitly removed, other four gate name-to-UV bindings remain. No physics tolerances relaxed.",
+  "build": "PENDING_CLEAN_SOURCE_COMMIT_AND_PAGES_BASE_BUILD",
+  "remote": "PENDING_NEW_BRANCH_UPLOAD_AND_FULL_READBACK",
+  "notVerified": [
+    "Complete present-day Baotai elevation or measured dimensions",
+    "Historical exact portal count",
+    "Complete World",
+    "Browser/GPU/mobile",
+    "Node20",
+    "Mac temperature"
+  ],
+  "wholeObjectAccepted": false,
+  "independentFormalCount": 37,
+  "independentBreakdown": {
+    "currentLight": 27,
+    "actualNingshou": 1,
+    "historicalAtlasAndSource": 9
+  },
+  "independentActual": {
+    "elapsedMs": 24067,
+    "maxRSSKiB": 890536
+  },
+  "independentExploration": {
+    "localHighStartsAndEastWestContinuousExits": 16,
+    "allEndFeet": 0,
+    "movingCollisionFrames": 0,
+    "lateContactCopyFailure": {
+      "newGeometryDisposesOnce": 73,
+      "privateMaterialDisposesOnce": 5,
+      "oldLianxiResourcesDisposed": 0,
+      "hostUnchanged": true,
+      "retry": true
+    },
+    "countedAsFormal": false
+  },
+  "selfFormalCount": 567,
+  "selfFormalBreakdown": {
+    "boundedGroups": [
+      345,
+      47,
+      2,
+      23,
+      1,
+      24,
+      25,
+      19,
+      29,
+      24,
+      27
+    ],
+    "boundedTotal": 566,
+    "currentActualNingshou": 1,
+    "oldNingShouSnapshotsRerun": false,
+    "duplicatesAndExploratoryRunsNotCounted": true
+  }
+}
