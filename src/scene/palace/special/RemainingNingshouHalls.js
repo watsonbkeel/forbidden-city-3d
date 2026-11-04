@@ -1,3 +1,4 @@
+import {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';
 import {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';
 import {fitQingshouConnectionApproach} from './QingshouConnectionApproach.js';
 import {fitXunyanSouthApproach} from './XunyanSouthApproach.js';
@@ -85,6 +86,7 @@ function profile(row) {
  fitXunyanSouthApproach(p);
  fitQingshouConnectionApproach(p);
  fitThreeHallSouthApproaches(p);
+ fitCuishangPlatformApproach(p);
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }
@@ -108,6 +110,7 @@ function finalProfile(row) {
  p.portals=openings.map(q=>{if(['east','west'].includes(q.side)){const sign=q.side==='east'?-1:1,edge=sign*(w/2+.8),toe=edge+sign*ph*2.1,world=toWorld(q.x,q.z,ph),points=[[toe+sign,q.z,0],[toe,q.z,0],[(toe+edge)/2,q.z,ph/2],[edge-sign*.15,q.z,ph],[q.x,q.z,ph],[q.x-sign*.7,q.z,ph]];return{...q,approachX:q.x,localX:q.x,localZ:q.z,worldX:world.x,worldZ:world.z,normalLocalX:sign,normalLocalZ:0,normalWorldX:Math.cos(rot)*sign,normalWorldZ:-Math.sin(rot)*sign,status:'OFFICIAL_CARDINAL_DOOR_WITH_FITTED_GROUND_ACCESS',approachPoints:points.map(a=>toWorld(...a))};}const sign=q.side==='rear'?1:-1,pad=key==='huangji'?1.2:key==='juanqin'?.5:.8,edge=sign*(d/2+pad),toe=edge+sign*(ph>.55?ph*2.1:.05),world=toWorld(q.x,q.z,ph),points=[[q.x,toe+sign,0],[q.x,toe,0],...(ph>.55?[[q.x,(toe+edge)/2,ph/2]]:[]),[q.x,edge-sign*.15,ph],[q.x,q.z,ph],[q.x,q.z-sign*.7,ph]];
  return{...q,approachX:q.x,localX:q.x,localZ:q.z,worldX:world.x,worldZ:world.z,normalLocalX:0,normalLocalZ:sign,normalWorldX:Math.sin(rot)*sign,normalWorldZ:Math.cos(rot)*sign,status:'OFFICIAL_BAY_POSITION_WITH_FITTED_CLEAR_OPENING_AND_MODEL_ACCESS',approachPoints:points.map(a=>toWorld(...a))};});
  fitThreeHallSouthApproaches(p);
+ fitCuishangPlatformApproach(p);
  const spawn={x:key==='juanqin'?-7:0,z:key==='yangxing'?-3:key==='changyin'?-3:key==='huangji'?-5:key==='fuwang'?-7:key==='leshou'?-4:0};
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals.find(q=>q.side==='front').approachPoints,spawn,status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);

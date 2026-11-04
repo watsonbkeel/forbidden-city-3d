@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture}from'../r164-three-entry-navigation/fixture.mjs';
+test('Cuishang retained south platform supports its strict ground entry without fallback',()=>{const f=fixture('萃赏楼');try{const p=f.t.resolveLanding('萃赏楼');assert.ok(p,'real retained south contact must make the explicit approach safe');assert.equal(p.approachVerified,true);assert.equal(p.fallback,false);assert.equal(p.y,0)}finally{f.dispose()}});

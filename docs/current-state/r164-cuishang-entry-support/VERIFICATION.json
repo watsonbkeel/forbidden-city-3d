@@ -1,0 +1,109 @@
+{
+  "recordedUTC": "2026-11-04T14:04:17.786228+00:00",
+  "baseCommit": "f638d92721f857312d77a70ea1169b7afda1802c",
+  "scope": "CUISHANG_RETAINED_PLATFORM_CONTACT_AND_FOOTPRINT_CLEAR_APPROACH_WITH_R164_SINGLE_RELEASE_SOURCE",
+  "runtimeFiles": {
+    "src/scene/palace/special/CuishangPlatformContact.js": "0c3a917fd514c6311ffa613146b20a245279f975f3379de0cf9de74c66acbefc",
+    "src/scene/palace/special/CuishangSouthFront.js": "7d1ea31aa8d9dcd78645ac183f5fc7e4e903c1d095eab87656b5ee40ea102056",
+    "src/scene/palace/special/RemainingNingshouHalls.js": "a7ad02170f7db521832f93ccee6883a062ada789722aca9f321dc3bee0b8af2c",
+    "release.json": "1c3ad73e872554b0c056a5e6a3c9d976d4ef2b5e9e2a9476864755069ddcd8fd"
+  },
+  "selfBoundedStatus": "PASSED",
+  "selfDistinctFormal": 608,
+  "selfBoundedDistinct": 607,
+  "selfCurrentLight": 30,
+  "selfActualNingshouFormal": 1,
+  "selfBoundedGroups": [
+    345,
+    47,
+    2,
+    23,
+    1,
+    24,
+    25,
+    19,
+    29,
+    24,
+    27,
+    40,
+    1
+  ],
+  "independentStatus": "PASSED_FINAL_TEXT_REVIEW",
+  "independentFormal": 49,
+  "independentBreakdown": {
+    "currentLight": 30,
+    "actualNingshou": 1,
+    "oldChecks": 18
+  },
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28519,
+      "triangles": 613996,
+      "geometry": "34f3cb6f0a93ebb40c5ac17c27a88346e5f4692eea583700d4137dea5d12dc43"
+    },
+    "data": {
+      "colliderCount": 7720,
+      "colliders": "b353abe35824a8b5913df6ebe31765b89cbcca1dd0201d244029b379b3e20f13",
+      "walkableCount": 335,
+      "walkables": "ddc5b471dea026315b9d6f05c5cc2890c397a9b28320acb24a5e35d956d0e737",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "7d42d202e4e8d370b5bc7bc805617b0e493cd7de8fb2a58ed7b1ee1d2d0e275c"
+    },
+    "roof": {
+      "triangles": 22104,
+      "sha256": "e27060bb409fd0fb06af69a32e2e101dff0f5144d9dd90cf5fd2a7ab344ccf5a"
+    },
+    "maxRSSKiB": 910808
+  },
+  "delta": {
+    "geometry": 0,
+    "material": 0,
+    "texture": 0,
+    "walkable": 0,
+    "contact": 1
+  },
+  "routes": {
+    "current": 72,
+    "frozenPrevious": 72,
+    "currentHighFallExit": 24,
+    "normalJumpProbes": 12,
+    "go": {
+      "actualControlAndTeleport": true,
+      "zoneManager": "RECORDING_STUB"
+    }
+  },
+  "landing": {
+    "name": "萃赏楼",
+    "x": -260.7,
+    "z": 449.15000000000003,
+    "lookAtX": -260.7,
+    "lookAtZ": 452.1,
+    "distance": 2.9499999999999886,
+    "lateral": 0,
+    "entryProfile": "place-ningshou-b6cde8615b",
+    "y": 0,
+    "walk": 3.65,
+    "approachVerified": true,
+    "fallback": false
+  },
+  "landingCoverage": "Twenty checked targets; only Cuishang null-to-success, nineteen other results exact f638. Eighteen of nineteen special entries succeed; Fanhua remains null.",
+  "build": {
+    "status": "PENDING_AFTER_CLEAN_COMMIT",
+    "base": "/forbidden-city-3d/",
+    "release": "R164",
+    "availableNode": "v24.22.1",
+    "Node20": "NOT_AVAILABLE_NOT_TESTED"
+  },
+  "remote": "PENDING_NO_MAIN_OR_DEPLOY_ACTION",
+  "notTested": [
+    "full World",
+    "real browser/GPU",
+    "mobile",
+    "Node20",
+    "Mac temperature",
+    "current physical inventory",
+    "whole397 completion"
+  ]
+}
