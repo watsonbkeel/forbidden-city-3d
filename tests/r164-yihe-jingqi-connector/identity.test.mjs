@@ -1,0 +1,8 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import crypto from'node:crypto';import{stripYiheConnectorDelta,callLine,importLine}from'./source-boundary.mjs';
+const old=fs.readFileSync(new URL('./frozen/ZoneBase.9e686.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');
+test('only one new import and dispatch extend exact frozen 9e686 production ZoneBase',()=>{assert.equal(crypto.createHash('sha256').update(old).digest('hex'),'778ae0fd9e4172d32334e0dc99e2940cfe80244bb6c268ce4fdaee431f1d4d1a');assert.equal(stripYiheConnectorDelta(cur),old)});
+test('boundary rejects missing/double import or call and exposes unrelated source mutation',()=>{for(const p of[callLine,importLine]){assert.throws(()=>stripYiheConnectorDelta(cur.replace(p,'')));assert.throws(()=>stripYiheConnectorDelta(cur+p))}assert.notEqual(stripYiheConnectorDelta(cur+'// unrelated\n'),old)});
+
+test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});
+
+test('the entire uploaded North component remains exact 98f bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/NorthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8')});

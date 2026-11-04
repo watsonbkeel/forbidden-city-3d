@@ -1,0 +1,2 @@
+import test from'node:test';import{fixture}from'./fixture.mjs';import{CollisionManager}from'../../src/utils/Collision.js';import{proveLandings}from'./teleport-proof.mjs';
+test('actual Teleport preserves the old Yihe and Jingqi targets, floor heights and strict approach proof',()=>{const f=fixture(),cm=new CollisionManager();try{cm.rivers=[];cm.addColliders(f.kit.colliders,'ningshou');cm.addWalkables(f.kit.walkables,'ningshou');proveLandings(f.kit,cm)}finally{f.dispose()}});

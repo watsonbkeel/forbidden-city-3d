@@ -1,3 +1,4 @@
+import {buildYiheJingqiConnector} from '../palace/special/YiheJingqiConnector.js';
 import {buildThirteenSouthEntry} from '../palace/special/ThirteenSouthEntry.js';
 import {buildNorthThirteenHouses} from '../palace/special/NorthThirteenHouses.js';
 import {buildSouthThirteenHouses} from '../palace/special/SouthThirteenHouses.js';
@@ -420,6 +421,7 @@ export class ZoneBase {
     buildSouthThirteenHouses(this.kit,this.zoneJson);
     buildNorthThirteenHouses(this.kit,this.zoneJson);
     buildThirteenSouthEntry(this.kit,this.zoneJson);
+    buildYiheJingqiConnector(this.kit,this.zoneJson);
     buildYiheCourtCensers(this.kit,this.zoneJson);
     buildChangyinMiddleNameboard(this.kit,this.zoneJson);
     buildChangyinLowerNameboard(this.kit,this.zoneJson);
