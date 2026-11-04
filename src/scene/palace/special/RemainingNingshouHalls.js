@@ -1,3 +1,10 @@
+import {fitFanhuaStairApproach} from './FanhuaStairContact.js';
+import {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';
+import {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';
+import {fitQingshouConnectionApproach} from './QingshouConnectionApproach.js';
+import {fitXunyanSouthApproach} from './XunyanSouthApproach.js';
+import {buildForiFrontBalustrade} from './ForiFrontBalustrade.js';
+import {fitYueshiPaleSidewalls} from './YueshiPaleSidewalls.js';
 import {buildXishangFrontTransom,registerXishangRoofTransom} from './XishangFrontTransom.js';
 import {buildHuangjiSouthFront} from './HuangjiSouthFront.js';
 import {buildNingshouSouthFrieze} from './NingshouSouthFrieze.js';
@@ -77,6 +84,11 @@ function profile(row) {
  // Local stone-field support only; route coordinates and the pavilion floor stay fixed.
  if(key==='xishang')for(const q of p.portals.flatMap(q=>q.approachPoints)){const halfW=localW*.66*.78/2,center=-localD*.32,halfD=localD*.32/2;if(Math.abs(q.localX)<=halfW&&Math.abs(q.localZ-center)<=halfD)q.feetY=ph+.2;}
  fitSuichuSouthApproach(p);
+ fitXunyanSouthApproach(p);
+ fitQingshouConnectionApproach(p);
+ fitThreeHallSouthApproaches(p);
+ fitCuishangPlatformApproach(p);
+ fitFanhuaStairApproach(p);
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals[0].approachPoints,spawn:key==='ningshou'?{x:-localW/7,z:-localD*.15}:key==='xishang'?{x:0,z:-localD*.3}:{x:0,z:0},status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
 }
@@ -99,6 +111,9 @@ function finalProfile(row) {
  const toWorld=(lx,lz,feetY)=>({localX:lx,localZ:lz,x:x+Math.cos(rot)*lx+Math.sin(rot)*lz,z:z-Math.sin(rot)*lx+Math.cos(rot)*lz,feetY});
  p.portals=openings.map(q=>{if(['east','west'].includes(q.side)){const sign=q.side==='east'?-1:1,edge=sign*(w/2+.8),toe=edge+sign*ph*2.1,world=toWorld(q.x,q.z,ph),points=[[toe+sign,q.z,0],[toe,q.z,0],[(toe+edge)/2,q.z,ph/2],[edge-sign*.15,q.z,ph],[q.x,q.z,ph],[q.x-sign*.7,q.z,ph]];return{...q,approachX:q.x,localX:q.x,localZ:q.z,worldX:world.x,worldZ:world.z,normalLocalX:sign,normalLocalZ:0,normalWorldX:Math.cos(rot)*sign,normalWorldZ:-Math.sin(rot)*sign,status:'OFFICIAL_CARDINAL_DOOR_WITH_FITTED_GROUND_ACCESS',approachPoints:points.map(a=>toWorld(...a))};}const sign=q.side==='rear'?1:-1,pad=key==='huangji'?1.2:key==='juanqin'?.5:.8,edge=sign*(d/2+pad),toe=edge+sign*(ph>.55?ph*2.1:.05),world=toWorld(q.x,q.z,ph),points=[[q.x,toe+sign,0],[q.x,toe,0],...(ph>.55?[[q.x,(toe+edge)/2,ph/2]]:[]),[q.x,edge-sign*.15,ph],[q.x,q.z,ph],[q.x,q.z-sign*.7,ph]];
  return{...q,approachX:q.x,localX:q.x,localZ:q.z,worldX:world.x,worldZ:world.z,normalLocalX:0,normalLocalZ:sign,normalWorldX:Math.sin(rot)*sign,normalWorldZ:Math.cos(rot)*sign,status:'OFFICIAL_BAY_POSITION_WITH_FITTED_CLEAR_OPENING_AND_MODEL_ACCESS',approachPoints:points.map(a=>toWorld(...a))};});
+ fitThreeHallSouthApproaches(p);
+ fitCuishangPlatformApproach(p);
+ fitFanhuaStairApproach(p);
  const spawn={x:key==='juanqin'?-7:0,z:key==='yangxing'?-3:key==='changyin'?-3:key==='huangji'?-5:key==='fuwang'?-7:key==='leshou'?-4:0};
  p.navigation={floorY:ph,upperDestinations:false,portals:p.portals,approachPoints:p.portals.find(q=>q.side==='front').approachPoints,spawn,status:'MODEL_CIRCULATION_NOT_MUSEUM_PERMISSION'};
  return freeze(p);
@@ -588,20 +603,20 @@ function buildCuishang(c) {
  return finish(c,{...(c.f.userData.cuishangSouthFront?{southFront:c.f.userData.cuishangSouthFront}:{}),legacyInventory,upperFrontGallery:{openBays:[0,1,2,3],enclosedWestEndBay:4},upperBridgeStatus:'KNOWN_LINK_TO_BILUO_NOT_YET_FITTED_OR_WALKABLE',interiorPolicy:'REAL_TWO_LEVEL_GALLERIES_WITH_SOURCE_BACKED_ASYMMETRIC_UPPER_FRONT'});
 }
 function buildYueshi(c) {
- const{p}=c,southEnabled=c.kit.yueshiSouthFront!==false;twoLevelFrame(c,{pattern:'glass',wall:'brick',skipSouth:southEnabled});upperFloor(c);if(southEnabled)buildYueshiSouthFront(c);else perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
+ const{p}=c,southEnabled=c.kit.yueshiSouthFront!==false;twoLevelFrame(c,{pattern:'glass',wall:'brick',skipSouth:southEnabled});fitYueshiPaleSidewalls(c);upperFloor(c);if(southEnabled)buildYueshiSouthFront(c);else perimeterRail(c,p.upperFloorY,{rear:false,sides:false});
  // Ground central doors have three visual leaves, upper six. Open side leaves
  // remain outside the clear aperture; counts are ornament bands, not extra walls.
  if(!southEnabled)for(const[y,n]of[[p.ph,3],[p.upperFloorY,6]])for(let i=0;i<n;i++)c.box('yueshi-glass-door-transom','glass',p.localW/5/n-.06,.55,.055,-p.localW/10+(i+.5)*p.localW/5/n,y+2.95,-p.localD/2+p.gallery);
  const legacyInventory=retainLegacyHall(c,{central:true});
  rolledRoof(c,{tile:'yellow',trim:'green',sourceVerge:true});ceiling(c,{y:p.ph+p.colH-.25,nx:5,nz:3});
- return finish(c,{...(c.f.userData.yueshiSouthFront?{southFront:c.f.userData.yueshiSouthFront}:{}),legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
+ return finish(c,{paleSidewalls:c.f.userData.yueshiPaleSidewalls,...(c.f.userData.yueshiSouthFront?{southFront:c.f.userData.yueshiSouthFront}:{}),legacyInventory,removedTerracesRecreated:false,roofForm:'SINGLE_ROLLED_HIP_GABLE_OVER_TWO_STOREYS',interiorPolicy:'ARCHITECTURAL_THEATRE_VIEWING_HALL_NOT_RECREATED_HISTORIC_THRONE_IN_CURRENT_EXHIBITION',upperNavigation:'VIEW_ONLY_STAIR_LOCATION_UNKNOWN'});
 }
 function altarOutline(c,{x,z,w,d,y=c.p.ph,role='dated-altar-plinth'}) {
  const m=c.box(role,'wood',w,.46,d,x,y+.23,z,true);m.userData.inventoryStatus='ARCHITECTURAL_DAIS_OUTLINE_NOT_FABRICATED_STATUE';m.userData.currentInventoryVerified=false;
  c.box('altar-upper-edge','gold',w+.04,.05,d+.04,x,y+.485,z,false);
 }
 function buildFori(c) {
- const{p}=c,h0=p.upperFloorY-p.ph;twoLevelFrame(c,{rearInset:0});upperFloor(c);perimeterRail(c,p.upperFloorY,{rear:false,sides:false});hangingFrieze(c);
+ const{p}=c,h0=p.upperFloorY-p.ph;twoLevelFrame(c,{rearInset:0});upperFloor(c);buildForiFrontBalustrade(c);hangingFrieze(c);
  for(const x of[-p.localW/6,p.localW/6])wallLine(c,{a0:-p.localD/2+p.gallery,a1:p.localD/2,at:x,y:p.ph,h:h0-.2,side:true,doors:[{at:-1.7,w:1.7}],mat:'wood',role:'fori-lower-shrine-partition'});
  for(const x of[-p.localW/3,0,p.localW/3])altarOutline(c,{x,z:2.6,w:2.15,d:.8,role:'fori-lower-altar-outline'});
  // Upper three-sided offering-table arrangement only. No unsourced Buddha
@@ -610,7 +625,7 @@ function buildFori(c) {
  for(const sign of[-1,1])altarOutline(c,{x:sign*(p.localW/2-.65),z:0,w:.65,d:4.6,y:p.upperFloorY,role:'fori-upper-side-offering-outline'});
  rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:3,nz:1});
  if(c.kit.foriForecourt!==false)buildForiForecourt(c);
- return finish(c,{...(c.f.userData.foriForecourt?{forecourt:c.f.userData.foriForecourt}:{}),interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
+ return finish(c,{frontBalustrade:c.f.userData.foriFrontBalustrade,...(c.f.userData.foriForecourt?{forecourt:c.f.userData.foriForecourt}:{}),interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
 }
 function buildFanhua(c) {
  const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[],southEnabled=c.kit.fanhuaSouthFront!==false;twoLevelFrame(c,{rearInset:0,skipSouth:southEnabled});if(southEnabled)buildFanhuaSouthFront(c);buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);

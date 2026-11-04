@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture}from'./fixture.mjs';import{BeforeZone}from'./before.mjs';import{routes}from'./route-runner.mjs';
+for(const [label,Builder]of[['candidate',undefined],['frozen-f638',BeforeZone]])test(label+' real72 through-hall/rear/side walk-run backward routes at10/60/144Hz remain passable',t=>{const f=fixture(Builder);try{assert.equal(routes(t,f.cm).length,72)}finally{f.dispose()}});

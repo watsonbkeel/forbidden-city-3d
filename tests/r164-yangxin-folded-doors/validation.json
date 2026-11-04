@@ -1,0 +1,33 @@
+{
+  "base": "44091382053b50349f86d9e3064275e0b605b82b",
+  "scope": "CPU_LOCAL_REAL_B_PLUS_S_NOT_WORLD_OR_GPU",
+  "recordedUTC": "2026-11-04T03:39:00Z",
+  "node": "v24.22.1",
+  "checks": {
+    "componentLifecycleIdentityR88": 144,
+    "realWestSixBS": 1,
+    "realFengxianGardenTeleport": 1,
+    "total": 146,
+    "independentReview": 23,
+    "lintErrors": 0,
+    "lintInheritedWarnings": 9
+  },
+  "sha256": {
+    "src/scene/interior/YangxinFoldedDoors.js": "e3d32f29a1583943455eb8c3b0ec305fc5ca9649b4614519ab484252556e4eb1",
+    "src/scene/interior/InteriorLoader.js": "eccbb839a3a5e5b899483074f9ebacc2a2242ae76f9d82da8b8508e5daed6cb0",
+    "public/models/interiors/yangxin.glb": "1444305ea47251a69cd51456096663e5528cf5e33a2f3dd9534016a77afe22ea",
+    "tests/fixtures/r164-yangxin-4409/InteriorLoader.source.js": "b325941e36928a830d80370729402c968d3d96d16d5118962e18a75bd8456380"
+  },
+  "redEvidence": [
+    "missing helper: visible paired board leaves required",
+    "duplicate-object fixture initially had non-indexed empty geometry; fixed fixture only",
+    "north edge route initially assumed all clear; frozen4409 proves same blockage; all48 before/current edge frames equal"
+  ],
+  "limits": [
+    "candidate original room16positive8negative; old+current total32positive16negative",
+    "candidate24edge probes12arrived12pre-existingblocked; old+current total48=24arrived24blocked",
+    "24candidatehead/jump and24/8woodscreen",
+    "full-open posture/dimensions are fits; whole interior not accepted",
+    "Node20, browser, GPU, mobile, full World, Mac temperature unverified"
+  ]
+}

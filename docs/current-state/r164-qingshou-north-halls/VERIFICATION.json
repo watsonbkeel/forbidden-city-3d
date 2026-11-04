@@ -1,0 +1,95 @@
+{
+  "recordedUTC": "2026-11-04T15:06:55.237387+00:00",
+  "baseCommit": "b421288f81895612e57712b7460f0c91ae1f13bc",
+  "scope": "TWO_MISSING_QINGSHOU_NORTH_MAIN_HALL_SHELLS_ONLY",
+  "runtimeFiles": {
+    "src/scene/palace/special/QingshouNorthHalls.js": "8b037607624e675246c83570d20600df46c99c8d93c5313cbedf43d3ecb1391e",
+    "src/scene/zones/ZoneBase.js": "d1e2b1099801c44103447677a36f12a0ab468f3eb4ecd7848b0e5f64686bb32c"
+  },
+  "currentRequiredTests": {
+    "light": 18,
+    "actualNingshou": 1,
+    "passed": 19
+  },
+  "broaderBounded": {
+    "distinct": 633,
+    "passed": 631,
+    "preExistingFailures": 2,
+    "notClaimedAllGreen": true
+  },
+  "selfDistinctFormal": 634,
+  "selfFormalPassed": 632,
+  "selfPreExistingFailures": 2,
+  "independentStatus": "PASSED_FINAL_TEXT_REVIEW",
+  "independentFormalAtDocumentation": 24,
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28519,
+      "triangles": 613996,
+      "geometry": "34f3cb6f0a93ebb40c5ac17c27a88346e5f4692eea583700d4137dea5d12dc43"
+    },
+    "data": {
+      "colliderCount": 7726,
+      "colliders": "f0d68366c60d7e9ef189af6a864d7522687c893112bf17baf81dc9527a843b10",
+      "walkableCount": 335,
+      "walkables": "ddc5b471dea026315b9d6f05c5cc2890c397a9b28320acb24a5e35d956d0e737",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "de0724424290a3c495e13fa93599866a4572a1592e59ed439ce5f87a6c122cd1"
+    },
+    "roof": {
+      "triangles": 22104,
+      "sha256": "e27060bb409fd0fb06af69a32e2e101dff0f5144d9dd90cf5fd2a7ab344ccf5a"
+    },
+    "rawAll": {
+      "meshes": 28743,
+      "triangles": 618156,
+      "geometry": "268e8541d09b95625ce7a1264ea8b9eb8da25a804e71e906c26a9da7167ec9c9"
+    },
+    "addedRoof": {
+      "triangles": 1272,
+      "sha256": "28551489c2be689456a8be3b03f82aa3fe23a739f6b5afc37a3fe58ce0944aee"
+    },
+    "maxRSSKiB": 1051776
+  },
+  "delta": {
+    "rawMeshes": 224,
+    "triangles": 4160,
+    "contacts": 104,
+    "walkables": 18,
+    "privateMaterials": 5,
+    "newTextureFiles": 0,
+    "sourceBufferBytes": 215424,
+    "localMergedMeshes": 6,
+    "localMergedBufferBytes": 399360
+  },
+  "routes": {
+    "through": 48,
+    "bypass": 24,
+    "solidWindows": 16,
+    "twoNewHalls": 12,
+    "oldQingshouToJingfu": 12,
+    "naturalHighStartsContinuousSouthExit": 24,
+    "normalDoorJumps": 16,
+    "independentExtraEastWestNorthHighExits": 24
+  },
+  "additionalChecks": {
+    "zoneData": "0 ERRORS, 9 PRE_EXISTING_WARNINGS, --no-geo",
+    "anchors": "114 compared, one pre-existing Shenwumen11m versus5m tolerance; script and all inputs byte-identical to b421"
+  },
+  "knownBoundaries": [
+    "Two older NingShou side-step snapshots fail exactly as before",
+    "Existing Fanhua/Jingqi normal high jump head overlap not addressed",
+    "Two new hall shells, not complete courts or current inventory",
+    "20 checked strict targets, not all map targets",
+    "WholeWorld, browser/GPU, mobile, Node20 and Mac temperature untested"
+  ],
+  "build": "PENDING_CLEAN_COMMIT",
+  "remote": "PENDING_NEW_BRANCH_READBACK",
+  "additionalCriticalRetention": {
+    "distinct": 95,
+    "passed": 95,
+    "scope": "R163 public names, quality persistence, failure/input isolation, WebGL loss, matrix write, B41 and Taihemen portable baseline; separate from R164634"
+  }
+}

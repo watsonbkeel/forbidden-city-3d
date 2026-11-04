@@ -1,0 +1,70 @@
+{
+  "baseCommit": "98f70ee2ede15f404a64bfed278727560b2cb2eb",
+  "scope": "ACTUAL_NINGSHOU_ONLY_NOT_WORLD_OR_GPU",
+  "retained": {
+    "raw": {
+      "meshes": 28159,
+      "triangles": 610516,
+      "geometry": "f78b3aec3f8045c33d819bbbdcb2028a05830cbd8c78a6687204ce60d8e0d95f"
+    },
+    "data": {
+      "colliderCount": 7467,
+      "colliders": "e24c38532f2d15569a9103d08542c80c0b7377d32e45837a005cb7c8a8103347",
+      "walkableCount": 249,
+      "walkables": "998b120218f5afe0e7e33e6c1a9b2810fbf0adc2d25bd4db6a2ebe8603ad72bc",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "4251a9d033ec6dcf37878db4160d9c8c422319177fbff39823bf61e9861c565a"
+    },
+    "roof": {
+      "triangles": 19628,
+      "sha256": "5a786b2a14d0b801798d60e1fa96f7587e9113b4e059acc0cd14225ffe0d579f"
+    }
+  },
+  "added": {
+    "rawMeshes": 77,
+    "rawTriangles": 3780,
+    "colliders": 21,
+    "walkables": 5,
+    "privateMaterials": 6,
+    "textureFiles": 0,
+    "mapItems": 0,
+    "teleportTargets": 0
+  },
+  "newRouteCounts": {
+    "positive": 32,
+    "negative": 12,
+    "connections": 8,
+    "heads": 12
+  },
+  "headRule": "Existing overhead clips jump to about 3.359m below actual lintel bottom3.36m, not free-jump clearance",
+  "unverified": [
+    "Full World",
+    "Browser/WebGL/GPU visual rendering",
+    "Mobile",
+    "Node20 CI environment",
+    "Mac temperature/performance",
+    "Surveyed facade/hidden rear/current museum access"
+  ],
+  "sourceSHA256": {
+    "src/scene/palace/special/ThirteenSouthEntry.js": "ad0eb1326dcb5b6281557484903622772c7bed051dd3af428d1fa6fcf4de3661",
+    "src/scene/zones/ZoneBase.js": "778ae0fd9e4172d32334e0dc99e2940cfe80244bb6c268ce4fdaee431f1d4d1a"
+  },
+  "executedChecks": {
+    "boundedLight": 318,
+    "actualNingShou": 1,
+    "actualYangxinBaseAndStructure": 1,
+    "actualFengxianGardenTeleport": 1,
+    "selfTotalDistinct": 321,
+    "independentFormal": 20
+  },
+  "cpuGeometryCost": {
+    "sourceNewBytes": 115224,
+    "localSouthBeforeMergedBytes": 1121280,
+    "localSouthAfterMergedBytes": 1484160,
+    "localDeltaBytes": 362880,
+    "localDeltaMergedMeshes": 6,
+    "scope": "LOCAL_SAME_SOUTH_HOST_NOT_FULL_ZONE_OR_GPU"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "baseCommit": "9e68601aa473bb58459dc6936047c068b5c8d160",
+  "scope": "ACTUAL_NINGSHOU_ONLY_NOT_WORLD_OR_GPU",
+  "retained": {
+    "raw": {
+      "meshes": 28235,
+      "triangles": 614284,
+      "geometry": "127dae518b87b424312e21f485496174f51cdebc07b87f629ba849952a07f521"
+    },
+    "data": {
+      "colliderCount": 7487,
+      "colliders": "af246be7b8c0db5df02661aae9112bb4e2ae9a8b4f14b22a9dfe979505efb167",
+      "walkableCount": 254,
+      "walkables": "cd15f69e6396b7d65babda82770340c1ce172e7fdd9af0a7eb7fa3c99217e016",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "8bb71f3d31b11fc29bd37bdb2781beb3df0dac37987fa475a9eb81907f795170"
+    },
+    "roof": {
+      "triangles": 22532,
+      "sha256": "c11844828875d48f06200401f90e7bfbd549afbace056f967c265171cb7e6fe6"
+    }
+  },
+  "retentionExclusions": "Exactly one old closed door mesh/contact; one shape-identical rear lintel gains overhead and is asserted before normalization",
+  "added": {
+    "rawMeshes": 137,
+    "rawTriangles": 2244,
+    "colliders": 33,
+    "walkables": 10,
+    "privateMaterials": 4,
+    "textures": 0,
+    "mapItems": 0,
+    "teleportTargets": 0
+  },
+  "netAfterOldPanelRemoval": {
+    "rawMeshes": 136,
+    "rawTriangles": 2232,
+    "colliders": 32
+  },
+  "newRouteCounts": {
+    "positive": 64,
+    "negative": 8,
+    "heads": 20
+  },
+  "retainedTeleport": {
+    "yihe": [
+      -293.7,
+      0,
+      451.35
+    ],
+    "jingqi": [
+      -293.3,
+      0,
+      487.72
+    ],
+    "fallback": false,
+    "jingqiApproachVerified": true
+  },
+  "existingBoundary": "Jingqi original front lintel has existing high-frame-rate jump penetration; old/new full per-frame feet tracks match at 10/30/60/144Hz",
+  "unverified": [
+    "Full World",
+    "Browser/WebGL/GPU visuals",
+    "Mobile",
+    "Node20 CI environment",
+    "Mac temperature/performance",
+    "Surveyed junctions and historical floor levels",
+    "Current museum admission"
+  ],
+  "sourceSHA256": {
+    "src/scene/palace/special/YiheJingqiConnector.js": "df21a6c262d18a9398e8716634744ed75b3eb0a10b0af01bb534a8d8b46aa681",
+    "src/scene/zones/ZoneBase.js": "143efdf15eff238f46c2404918b641991389f4cf420fa5c370bed0bfc2a96fc2"
+  },
+  "executedChecks": {
+    "boundedLight": 345,
+    "actualNingShou": 1,
+    "actualYangxinBaseAndStructure": 1,
+    "actualFengxianGardenTeleport": 1,
+    "selfTotalDistinct": 348,
+    "independentFormal": 28
+  },
+  "cpuGeometryCost": {
+    "sourceNetBytes": 114640,
+    "twoBuildingBeforeMergedBytes": 3443904,
+    "twoBuildingAfterMergedBytes": 3658176,
+    "deltaBytes": 214272,
+    "deltaMergedMeshes": 4,
+    "scope": "LOCAL_TWO_HOSTS_NOT_FULL_ZONE_OR_GPU"
+  }
+}

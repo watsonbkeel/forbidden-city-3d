@@ -1,3 +1,4 @@
+import {retainConstructionBranch} from '../ConstructionSources.js';
 import * as T from 'three';
 import {PLAYER} from '../../../config/constants.js';
 import {pathFootprintCovered} from '../../../controls/WumenJointAscentCoverage.js';
@@ -34,7 +35,7 @@ export function authorizeKunningGateStairContact(kit,f){
  }
  if(new Set(meshes).size!==33||new Set(solids).size!==33)throw Error('Kunning duplicated original owner');
  const p={kit,f,meta:f.userData.kunningGate,rows,solids,meshes,tops:rows.map(w=>w.box.clone()),boxes:solids.map(c=>c.clone()),poses:meshes.map(m=>m.position.toArray()),geometries:meshes.map(m=>m.geometry),vertices:meshes.map(m=>[...m.geometry.attributes.position.array])};
- if(!valid(p))throw Error('Kunning completed source/owner differs');hosts.set(f,p);rows.forEach((w,i)=>owners.set(w,{p,i}));
+ if(!valid(p))throw Error('Kunning completed source/owner differs');hosts.set(f,p);rows.forEach((w,i)=>owners.set(w,{p,i}));retainConstructionBranch(kit,f);
 }
 export function preserveKunningGateStairOwner(target,original){const o=owners.get(original);if(!o)return false;if(!valid(o.p)||!sameTop(original,o.p.tops[o.i])||!sameTop(target,o.p.tops[o.i]))throw Error('Kunning private original support cannot drift');owners.set(target,o);return true;}
 function live(cm){const rows=cm.walkables.filter(w=>owners.has(w));if(rows.length!==33)return null;const p=owners.get(rows[0]).p;if(!valid(p))return null;const seen=new Set();for(const w of rows){const o=owners.get(w);if(o.p!==p||seen.has(o.i)||!sameTop(w,p.tops[o.i]))return null;seen.add(o.i)}

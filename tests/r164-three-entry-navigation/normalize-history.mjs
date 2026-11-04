@@ -1,0 +1,5 @@
+import{normalizeFanhuaProfile}from'../r164-fanhua-stair-contact/normalize-history.mjs';
+import{normalizeCuishangProfile}from'../r164-cuishang-entry-support/normalize-history.mjs';
+import fs from'node:fs';import assert from'node:assert/strict';
+const old=JSON.parse(fs.readFileSync(new URL('./frozen/profiles.d84.json',import.meta.url))),expected=JSON.parse(fs.readFileSync(new URL('./frozen/expected-points.json',import.meta.url)));
+export function normalizeThreeApproaches(p){normalizeFanhuaProfile(p);normalizeCuishangProfile(p);if(!Object.hasOwn(expected,p.key))return p;const b=old.find(q=>q.key===p.key);assert.equal(p.id,b.id);assert.equal(p.name,b.name);const lists=[p.portals[0].approachPoints,p.navigation.approachPoints,p.navigation.portals[0].approachPoints];if(p.groundNavigation)lists.push(p.groundNavigation.approachPoints,p.groundNavigation.portals[0].approachPoints);for(const a of lists)assert.deepEqual(a,expected[p.key],'exact later three-hall route only');for(const a of new Set(lists))a.splice(0,a.length,...structuredClone(b.portals[0].approachPoints));return p}

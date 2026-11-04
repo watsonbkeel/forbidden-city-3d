@@ -1,0 +1,117 @@
+{
+  "recordedUTC": "2026-11-04T13:10:07.573025+00:00",
+  "baseCommit": "1f6e583065d50eb655d66c3772fb798a25656e49",
+  "scope": "ONE_RETAINED_PLATFORM_INTERNAL_HANDOFF_CONTACT",
+  "runtimeFiles": {
+    "src/scene/palace/special/SuichuSouthSteps.js": "e31420f789b3271927086399f7d534839af1c12e1b5a1d970c981f4b0b1ac444"
+  },
+  "selfBoundedStatus": "PASSED",
+  "selfFormalCount": 562,
+  "independentFormalCount": 31,
+  "independentBreakdown": {
+    "currentLight": 24,
+    "actualNingshou": 1,
+    "oldSuichuDetails": 6
+  },
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28498,
+      "triangles": 614818,
+      "geometry": "d1b5a675b6a413d81c073cb2eef93ab6989e235a9f3d4323dc679e5d2fa5147c"
+    },
+    "data": {
+      "colliderCount": 7685,
+      "colliders": "2838bbf4a5d00efbe1ad833b0c49d69d6c7d119d19f0c34a3c5527ca52d1129d",
+      "walkableCount": 335,
+      "walkables": "ddc5b471dea026315b9d6f05c5cc2890c397a9b28320acb24a5e35d956d0e737",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "eea9c3c35d83716996252c5d3bcf2af54838168673c303edbb689b7663656735"
+    },
+    "actualContacts": 7686,
+    "roof": {
+      "triangles": 22436,
+      "sha256": "4327179c30f2fb8807960c112beea1145446a9f9e908ccac7fb2a5e6537e6e44"
+    },
+    "maxRSSKiB": 833040,
+    "elapsedMs": 5405.544916
+  },
+  "actualRoutes": {
+    "suichu": 60,
+    "highFallThenSouthExit": 24,
+    "previousThreeEntries": 72,
+    "strictPhysicalNegatives": 3
+  },
+  "teleport": {
+    "suichu": {
+      "name": "遂初堂",
+      "x": -253.1,
+      "z": 414.15000000000003,
+      "lookAtX": -253.1,
+      "lookAtZ": 418.3,
+      "distance": 4.149999999999977,
+      "lateral": 0,
+      "entryProfile": "place-ningshou-e604d58704",
+      "y": 0,
+      "walk": 4.85,
+      "approachVerified": true,
+      "fallback": false
+    },
+    "other18": "ALL_FIELDS_EQUAL_1F6",
+    "success19": 17,
+    "remainingHistoricalNulls": [
+      "萃赏楼",
+      "梵华楼"
+    ],
+    "go": "REAL_FIRST_PERSON_AND_TELEPORT_WITH_RECORDING_ZONE_MANAGER_NOT_REAL_FULL_MANAGER"
+  },
+  "resourceDelta": {
+    "visibleMeshes": 0,
+    "visibleTriangles": 0,
+    "materials": 0,
+    "textures": 0,
+    "walkables": 0,
+    "ordinaryBoxContacts": 1,
+    "scope": "CPU_COUNTS_NOT_GPU_BENCHMARK"
+  },
+  "redEvidence": [
+    "strict original landing null",
+    "whole-platform box passes teleport but blocks original rear route in both directions; excluded",
+    "fixture forgot Box3.isBox3; corrected test without runtime changes",
+    "exploration changed source kit box without rebuilding CollisionManager clone; invalid probe corrected, not a product regression"
+  ],
+  "historicalAssertions": "Exactly one new contact six-coordinate match required before stripping; old source and geometry assertions remain. Only Suichu new landing is allowed via complete strict object equality.",
+  "build": "PENDING_FRESH_CLEAN_PAGES_BASE_BUILD_AFTER_SOURCE_COMMIT",
+  "remote": "PENDING_NEW_BRANCH_UPLOAD_AND_COMPLETE_READBACK",
+  "notVerified": [
+    "complete World",
+    "browser UI",
+    "GPU",
+    "mobile",
+    "Node20",
+    "Mac temperature"
+  ],
+  "wholeObjectAccepted": false,
+  "selfFormalBreakdown": {
+    "boundedGroups": [
+      345,
+      47,
+      2,
+      23,
+      1,
+      24,
+      25,
+      19,
+      29,
+      24,
+      20
+    ],
+    "boundedTotal": 559,
+    "currentNingshou": 1,
+    "priorThreeNingshou": 1,
+    "sharedStairCumulativeNingshou": 1,
+    "deduplication": "Repeated exploratory/red/rerun cases not counted; route subcases are not counted as formal tests."
+  },
+  "independentFinalTextReview": "COMPLETED_NO_NEW_RELEASE_BLOCKER"
+}

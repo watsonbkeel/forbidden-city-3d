@@ -1,0 +1,9 @@
+import fs from'node:fs';import crypto from'node:crypto';import{CourtKit}from'../../src/scene/palace/kit.js';import{library}from'../lib/inner-palace-fixture.mjs';import*as live from'../../src/scene/palace/special/RemainingNingshouHalls.js';
+const root=new URL('../../',import.meta.url),src=new URL('src/scene/palace/special/RemainingNingshouHalls.js',root),source=fs.readFileSync(new URL('../fixtures/r164-fori-dfd/RemainingNingshouHalls.source.js',import.meta.url),'utf8');
+const expected=JSON.parse(fs.readFileSync(new URL('./source.json',import.meta.url)));if(crypto.createHash('sha256').update(source).digest('hex')!==expected.sha256)throw Error('Frozen dfd source changed');
+const s=source.replace(/from\s*(['"])([^'"]+)\1/g,(_m,q,p)=>'from '+q+(p==='three'?new URL('node_modules/three/build/three.module.js',root).href:new URL(p,src).href)+q)+'\nexport {context as testContext};';
+export const frozen=await import('data:text/javascript;base64,'+Buffer.from(s).toString('base64'));
+export function fixture({before=false,name='佛日楼'}={}){const zone=JSON.parse(fs.readFileSync(new URL('data/zones/ningshou.json',root))),item=zone.items.find(i=>i.name===name&&i.kind==='hall'),kit=new CourtKit(library(),'ningshou'),api=before?frozen:live,p=api.resolveRemainingProfile('ningshou',item),built=api.buildRemainingHall(kit,item,p);return{...built,kit,p,item,dispose:()=>kit.dispose(kit.root)}};
+export function empty(){const item=JSON.parse(fs.readFileSync(new URL('data/zones/ningshou.json',root))).items.find(i=>i.name==='佛日楼'&&i.kind==='hall'),kit=new CourtKit(library(),'ningshou'),p=frozen.resolveRemainingProfile('ningshou',item),c=frozen.testContext(kit,item,p);return{...c,dispose:()=>kit.dispose(kit.root)}};
+export const isOld=m=>m.userData.identity==='place-ningshou-2318b5f73b'&&m.userData.role==='gallery-rail';
+export const isNew=m=>m.userData.r164ForiFront===true;

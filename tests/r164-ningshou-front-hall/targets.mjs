@@ -1,0 +1,2 @@
+export const isTarget=m=>m.isMesh&&['wall_red','wall_brick','wall_red_material','wall_brick_material'].includes(m.material?.name)&&Math.abs(Math.abs(m.position.x)-3.14)<1e-8&&m.position.z===0&&m.parent?.position.x===-294&&m.parent?.position.z===224;
+export const isOldCol=c=>Math.abs(c.min.y-.45)<1e-8&&Math.abs(c.max.y-3.45)<1e-8&&Math.abs(c.min.z-(224-4.31))<1e-8&&Math.abs(c.max.z-(224+4.31))<1e-8&&[-3.14,3.14].some(x=>Math.abs(c.min.x-(-294+x-.5))<1e-8&&Math.abs(c.max.x-(-294+x+.5))<1e-8);

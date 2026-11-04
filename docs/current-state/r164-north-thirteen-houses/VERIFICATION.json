@@ -1,0 +1,91 @@
+{
+  "baseCommit": "0c5fa7aa50b3803922acd6f5c87f628d959c32df",
+  "scope": "Actual NingShou and existing outer-wall/corner builders, no full World or GPU",
+  "runtimeFiles": {
+    "src/scene/palace/special/NorthThirteenHouses.js": "4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8",
+    "src/scene/zones/ZoneBase.js": "08db03fe951d53a4ed545680b74fe66e410b315a8d88c12bc75f2a52ecd3d39e",
+    "src/scene/palace/special/SouthThirteenHouses.js": "bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea"
+  },
+  "localChecks": {
+    "newLightweight": 23,
+    "previousBoundedLightweight": 276,
+    "actualNingShou": 1,
+    "actualYangxinBaseOptional": 1,
+    "actualFengxianGardenTeleportReuse": 1,
+    "totalDistinct": 302,
+    "allPassed": true
+  },
+  "independentReview": {
+    "formalDistinctChecks": 24,
+    "allPassed": true,
+    "extraChecks": [
+      "26 doorway jumps at30/144Hz",
+      "all109 actual enclosure wall/corner meshes separated from new North AABB",
+      "last roof copy failure cleans1080 geometry and6 private materials, unchanged South",
+      "CPU geometry budget comparison"
+    ]
+  },
+  "routes": {
+    "northPositive": 128,
+    "northNegative": 104,
+    "northLongitudinal": 8,
+    "northDoorJumps": 26,
+    "baoTaiNorthEnd": 8,
+    "southPositive": 128,
+    "southNegative": 104,
+    "southLongitudinal": 8,
+    "southDoorJumps": 26,
+    "lianxiBaoTaiConnections": 8,
+    "input": "Scripted view and turn braking, real FirstPersonControls at10/60Hz"
+  },
+  "preserved": {
+    "raw": {
+      "meshes": 27190,
+      "triangles": 598836,
+      "geometry": "064ccfe3d78e6393204847ba7e113ee83ded465a3aca8eec368fb44d58747ba0"
+    },
+    "data": {
+      "colliderCount": 7226,
+      "colliders": "4c8f63f4f1c0d93b51169bec1ec24367a4ef1ed68013a776f4d69ce32c4e2f82",
+      "walkableCount": 236,
+      "walkables": "15f7aa8eca66de0677c3b112910af1116a12c8cc44b4b92c9dd4bfbf883d0d38",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "b304da8800239a09ec1def0be901f0b09f2879dd609a38a9053aa8ed03520695"
+    },
+    "roof": {
+      "triangles": 13336,
+      "sha256": "88cc070b67501861585059a1f96e0aa3f1b02b03e1b3cc406712b43dd4858e61"
+    }
+  },
+  "added": {
+    "meshesBeforeMerge": 969,
+    "triangles": 11680,
+    "colliders": 241,
+    "walkables": 13,
+    "privateMaterials": 6,
+    "textureFiles": 0,
+    "mapItems": 0,
+    "teleportTargets": 0,
+    "CPUBufferBytes": 1121280
+  },
+  "pagesBuild": {
+    "command": "VITE_BASE=/forbidden-city-3d/ npm run build -- --outDir <isolated>/dist --emptyOutDir",
+    "passedRuntimePreflight": true,
+    "runtime": "Node24.22.1 npm11.9.0 Vite5.4.21",
+    "base": "/forbidden-city-3d/",
+    "identityPolicy": "Final clean build must report its actual local commit and sourceDirty=false; uploaded remote commit has a distinct object identity but must have the complete same tree. Exact delivery identities are verified after readback.",
+    "warning": "Existing large JS chunk remains; no GPU performance claim"
+  },
+  "notVerified": [
+    "World",
+    "browser/GPU",
+    "mobile",
+    "Node20",
+    "Mac temperature/performance",
+    "surveyed coordinates",
+    "current admission"
+  ],
+  "sourceWhitespace": "Current new files pass diff --check; frozen exact0c5 ZoneBase preserves seven original whitespace-only lines."
+}

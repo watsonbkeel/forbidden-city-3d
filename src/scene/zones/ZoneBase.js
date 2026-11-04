@@ -1,3 +1,24 @@
+import {buildQingshouNorthHalls} from '../palace/special/QingshouNorthHalls.js';
+import {buildBaotaiGate} from '../palace/special/BaotaiGate.js';
+import {buildForiFanhuaStair} from '../palace/special/ForiFanhuaStair.js';
+import {buildLushunGate} from '../palace/special/LushunGate.js';
+import {buildDaoheGate} from '../palace/special/DaoheGate.js';
+import {buildZhenshunGate} from '../palace/special/ZhenshunGate.js';
+import {buildQingshouRaisedWalk} from '../palace/special/QingshouRaisedWalk.js';
+import {buildYiheJingqiConnector} from '../palace/special/YiheJingqiConnector.js';
+import {buildThirteenSouthEntry} from '../palace/special/ThirteenSouthEntry.js';
+import {buildNorthThirteenHouses} from '../palace/special/NorthThirteenHouses.js';
+import {buildSouthThirteenHouses} from '../palace/special/SouthThirteenHouses.js';
+import {buildLianxiGate,lianxiWallGaps} from '../palace/special/LianxiGate.js';
+import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';
+import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';
+import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';
+import {buildYiheCourtCensers} from '../palace/special/YiheCourtCensers.js';
+import {fitNingshouFrontHall} from '../palace/special/NingshouFrontHall.js';
+import {buildNingshouSideApproach} from '../palace/special/NingshouSideApproach.js';
+import {releaseUnusedConstructionBranches,forgetConstructionSources} from '../palace/ConstructionSources.js';
+import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';
+import {buildZhenfeiWell} from '../palace/special/ZhenfeiWell.js';
 import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
 import {buildZhongzhengWestHall} from '../palace/special/ZhongzhengWestHall.js';
 import {buildZhongzhengEastHall} from '../palace/special/ZhongzhengEastHall.js';
@@ -402,6 +423,18 @@ export class ZoneBase {
     buildZhongzhengEastHall(this.kit,this.zoneJson);
     buildZhongzhengWestHall(this.kit,this.zoneJson);
     buildBaozhongEastHall(this.kit,this.zoneJson);
+    buildZhenfeiWell(this.kit,this.zoneJson);
+    buildJingfuWenfeng(this.kit,this.zoneJson);
+    buildSouthThirteenHouses(this.kit,this.zoneJson);
+    buildNorthThirteenHouses(this.kit,this.zoneJson);
+    buildThirteenSouthEntry(this.kit,this.zoneJson);
+    buildYiheJingqiConnector(this.kit,this.zoneJson);
+    buildQingshouRaisedWalk(this.kit,this.zoneJson);
+    buildQingshouNorthHalls(this.kit,this.zoneJson);
+    buildForiFanhuaStair(this.kit,this.zoneJson);
+    buildYiheCourtCensers(this.kit,this.zoneJson);
+    buildChangyinMiddleNameboard(this.kit,this.zoneJson);
+    buildChangyinLowerNameboard(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -422,10 +455,11 @@ export class ZoneBase {
 
   /** Cache admission only: mergeByMaterial already disposed these source
    * geometries and moved noMerge/LOD objects into the finished group. Drop
-   * obsolete construction references; never dispose live merged resources. */
+   * only unused construction references. Private contact certificates retain
+   * their real source branches; never dispose live merged resources. */
   releaseConstructionReferences() {
     if (!this.group || this.group === this.kit.root) throw new Error('Zone is not finished');
-    this.kit.root.clear();
+    releaseUnusedConstructionBranches(this.kit);
     this.kit.plaques.length = 0;
   }
 
@@ -434,11 +468,15 @@ export class ZoneBase {
   }
 
   dispose() {
-    if (this.group) {
-      this.kit.dispose(this.group);
-      this.group.removeFromParent();
-      this.group = null;
-    }
+    if (this.disposed) return;
+    this.disposed = true;
+    // A failed build may own source resources before a merged group exists.
+    this.kit.dispose(this.group ?? this.kit.root);
+    this.group?.removeFromParent();
+    this.group = null;
+    this.kit.root.clear();
+    this.kit.plaques.length = 0;
+    forgetConstructionSources(this.kit);
     this.gateWidths.clear();
     this.gateGeometries.clear();
   }
@@ -587,6 +625,11 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===6){const b=buildBaotaiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:6,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===4){const b=buildLushunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:4,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===5){const b=buildDaoheGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:5,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===9){const b=buildZhenshunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:9,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
+    if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===1){const b=buildLianxiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:1,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='outer-east'&&item.name==='南三所宫门'){const built=buildNansansuoCommonGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),zoneJson:this.zoneJson});if(!built)throw Error('Nansansuo common gate dispatch mismatch');this.gateGeometries.set(item.name,built.geometry);return built.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='左翼门'){const b=buildZuoyiOwnGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='axis-courts'&&item.name==='右翼门'){const b=buildYouyiFreshGate(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item));this.gateGeometries.set(item.name,b.geometry);return b.width;}
@@ -626,6 +669,9 @@ export class ZoneBase {
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
+    buildNingshouSideApproach(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    fitNingshouFrontHall(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
+    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyGardenStreetGatePins(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     applyMiddleAxisFacades(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     raiseMiddleLeftPlatform(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item,colliderStart:ownGateColliderStart,walkableStart:ownGateWalkableStart});
@@ -640,7 +686,7 @@ export class ZoneBase {
     if(buildShangshuSouthFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item)))return;
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
-    const gaps = item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
+    const gaps = this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===43 ? lianxiWallGaps(item,this.gateGeometries.get('敛禧门'),this.gateWidths) : item.gaps?.some(g=>g.gate==='锡庆门') ? xiqingWallGaps(item,this.gateGeometries.get('锡庆门'),this.gateWidths) : this.resolveGaps(item.gaps);
     if(buildJunjiSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     if(buildJiuqingSouthPorchFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item),gaps))return;
     const params = { h: item.h, t: item.t, gaps };
@@ -749,6 +795,14 @@ export class ZoneBase {
     // 九龙壁是 SideCourts 私有函数，需直接内联或在 kit 注册为方法
     // 这里直接复制 SideCourts.nineDragonWall 的实现
     const k = this.kit;
+    // FC-FF99BC5DC0: the Palace Museum identifies a yellow-glazed hip roof.
+    // Only this known wall's roof changes. Dimensions/overhang remain a model fit.
+    const knownNingshouWall = this.zoneJson.id === 'ningshou' && item.name === '九龙壁';
+    if (knownNingshouWall && (this.zoneJson.items.indexOf(item) !== 10 ||
+        item.kind !== 'nineDragonWall' || item.x !== -295 || item.z !== 123 ||
+        item.length !== 29.4 || item.height !== 3.5 || item.rot !== 'north')) {
+      throw new Error('Nine Dragon Wall source changed');
+    }
     const x = item.x;
     const z = item.z;
     const len = item.length;
@@ -776,7 +830,17 @@ export class ZoneBase {
     k.mesh(f, fg, face, 0, 0.9 + fh / 2 + 0.1, -0.56).castShadow = false;
     // 壁心上方的檐下琉璃带（蓝绿）
     k.mesh(f, new THREE.BoxGeometry(len - 0.2, h - fh - 0.1, 1.16), wave, 0, 0.9 + fh + 0.1 + (h - fh - 0.1) / 2, 0);
-    k.roof(f, { type: 'gable', width: len + 0.4, depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7 });
+    k.roof(f, { type: knownNingshouWall ? 'wudian' : 'gable', width: len + 0.4,
+      depth: 1.6, baseY: 0.9 + h, brackets: false, height: 0.7,
+      ...(knownNingshouWall ? { overhang: 0.3 } : {}) });
+    if (knownNingshouWall) f.userData.structure = {
+      id: 'place-ningshou-ff99bc5dc0-roof', originalObjectId: 'FC-FF99BC5DC0',
+      name: '九龙壁', scope: 'SOURCE_GUIDED_ROOF_TYPE_FIT_ONLY',
+      wholeObjectAccepted: false, surveyed: false,
+      source: 'https://www.dpm.org.cn/explore/building/236477.html',
+      roofFit: { type: 'wudian', overhang: 0.3, detail: 'low', retainedBaseY: 5.1 },
+      remaining: 'Overall height/base definition, ridge dragons, brackets and detailed glazed decoration are not reconstructed or accepted; existing wall/photo/physics retained.',
+    };
     k.col(f, -len / 2, 0, -0.8, len / 2, 3, 0.8);
     k.mapRect(f, 'hall', item.name ?? '九龙壁', len, 1.6);
   }

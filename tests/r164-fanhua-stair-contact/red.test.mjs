@@ -1,0 +1,1 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture,name,expected}from'./fixture.mjs';test('strict Fanhua entry across real Jingfu rear stair domain succeeds without fallback',()=>{const f=fixture();try{const p=f.t.resolveLanding(name);assert.ok(p);assert.deepEqual([p.x,p.y,p.z],expected);assert.equal(p.fallback,false)}finally{f.dispose()}});

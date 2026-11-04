@@ -1,0 +1,55 @@
+{
+  "baseCommit": "1f6e583065d50eb655d66c3772fb798a25656e49",
+  "scope": "EXISTING_MODEL_PHYSICAL_SUPPORT_ONLY_NOT_HISTORICAL_OR_VISITOR_ACCESS_CLAIM",
+  "identity": {
+    "name": "遂初堂",
+    "id": "FC-E604D58704",
+    "profile": "place-ningshou-e604d58704",
+    "inOriginalI29": false
+  },
+  "references": [
+    {
+      "url": "https://www.dpm.org.cn/explore/building/236512.html",
+      "usedFor": "既有profile来源链接；本轮不新增史实、形制或测绘判断，未将新contact当官方尺度"
+    },
+    {
+      "url": "https://img.dpm.org.cn/Uploads/Picture/dc/1533[1024].jpg",
+      "usedFor": "既有南阶/石盆模型来源；本轮保留几何，不重新推断照片细节"
+    }
+  ],
+  "engineeringSources": [
+    "src/scene/palace/special/SuichuSouthSteps.js",
+    "src/scene/palace/special/RemainingNingshouHalls.js",
+    "src/scene/palace/special/SuichuFrontBasins.js",
+    "src/controls/FurnitureMotion.js",
+    "src/utils/Collision.js",
+    "src/ui/Teleport.js"
+  ],
+  "modelFit": {
+    "oldPlatform": [
+      18.1,
+      0.5,
+      11.1
+    ],
+    "newContact": [
+      5.8,
+      0.5,
+      1.75
+    ],
+    "bounds": [
+      -256,
+      0,
+      416.55,
+      -250.2,
+      0.5,
+      418.3
+    ],
+    "meaning": "仅既有台明实体内、原南阶所有权宽度至原前门位置的接触子体；不是新可见几何，也不是现实测绘"
+  },
+  "notClaimed": [
+    "museum visitor route",
+    "new architecture",
+    "whole building acceptance",
+    "GPU/browser/World/mobile/Node20/Mac thermal verification"
+  ]
+}

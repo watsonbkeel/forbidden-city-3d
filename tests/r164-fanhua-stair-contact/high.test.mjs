@@ -1,0 +1,1 @@
+import test from'node:test';import assert from'node:assert/strict';import{fixture}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('24 two/ten-meter real falls then continuous south exits',()=>{const f=fixture();try{assert.equal(highExits(f.cm).length,24)}finally{f.dispose()}});

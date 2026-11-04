@@ -1,3 +1,4 @@
+import {retainConstructionBranch} from '../ConstructionSources.js';
 import * as T from 'three';
 import group from '../../../../data/architecture/wenyuan-west-stair-contacts.json' with {type:'json'};
 import {isBuiltWenyuanStairFrame} from './WenyuanPavilion.js';
@@ -11,7 +12,7 @@ export function authorizeWenyuanStairHost(builder,parent){
  if(!frameValid(builder,parent)||hosts.has(parent))return false;
  const rows=group.surfaces.map(p=>builder.walkables.filter(w=>matches(w,p)));
  if(rows.some(a=>a.length!==1||!Object.isExtensible(a[0])||a[0].bPrincipalStairId!==undefined||owners.has(a[0])))return false;
- const surfaces=rows.map(a=>a[0]),proof={builder,parent,surfaces};hosts.set(parent,proof);surfaces.forEach((w,i)=>owners.set(w,{id:group.surfaces[i].id,proof}));return true;
+ const surfaces=rows.map(a=>a[0]),proof={builder,parent,surfaces};hosts.set(parent,proof);surfaces.forEach((w,i)=>owners.set(w,{id:group.surfaces[i].id,proof}));retainConstructionBranch(builder,parent);return true;
 }
 export function validWenyuanStairHost(builder,parent){const p=hosts.get(parent);return !!p&&p.builder===builder&&frameValid(builder,parent)&&p.surfaces.every((w,i)=>builder.walkables.includes(w)&&matches(w,group.surfaces[i])&&owners.get(w)?.id===group.surfaces[i].id);}
 export const isWenyuanStairId=id=>group.surfaces.some(p=>p.id===id);

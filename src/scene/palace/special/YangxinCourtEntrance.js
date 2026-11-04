@@ -1,3 +1,4 @@
+import {applyYangxinWoodScreenSurface} from './YangxinWoodScreenSurface.js';
 import {applyYangxinGlazedFront} from './YangxinGlazedFront.js';
 import * as THREE from 'three';
 import profile from '../../../../data/architecture/yangxin-court-entrance.json' with {type:'json'};
@@ -39,5 +40,6 @@ export function buildYangxinCourtEntrance(kit,zone){
  kit.plaque(f,'养心门',0,p.plaque.centreY,-hd-.16,p.plaque.width,p.plaque.height);
  kit.mapRect(f,'gate','养心门',p.totalWidth,p.depth);
  applyYangxinGlazedFront(kit,f,p);
+ applyYangxinWoodScreenSurface(kit,f,p);
  return f;
 }

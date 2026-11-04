@@ -1,0 +1,422 @@
+{
+  "recordedUTC": "2026-11-04T03:00:00Z",
+  "baseCommit": "8f7c253b37d74aadf01981a5aca3581c4dfe00d0",
+  "candidateDelta": "ZoneBase.buildNineDragonWall only: known wall gable roof becomes low-detail wudian with fitted 0.3m overhang; original wall/photo/physics retained.",
+  "sourceScope": "Original397 I29 IDs preserved, source required-I29 research copied from original repository registry, not AUX list",
+  "method": "Current source/data binding audit, with bounded actual NingShou CPU checks. Not physical count, full visual acceptance or completion rate.",
+  "classificationCounts": {
+    "EXPLICIT_PARTIAL_IMPLEMENTATION": 17,
+    "EMBEDDED_HISTORICAL_FIT_IDENTITY_UNVERIFIED": 1,
+    "IDENTITY_BOUNDARY_UNRESOLVED": 2,
+    "NO_EXPLICIT_RUNTIME_BINDING_FOUND": 3,
+    "GENERIC_FITTED_RUNTIME": 6
+  },
+  "wholeObjectAcceptancesAdded": 0,
+  "objects": [
+    {
+      "ordinal": 1,
+      "id": "FC-E66DFE768F",
+      "name": "宁寿宫",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildNingshou",
+        "src/scene/palace/special/NingshouSouthPhotoWindows.js",
+        "src/scene/palace/special/NingshouSouthFrieze.js"
+      ],
+      "limits": "东次间入口和局部窗/檐下；仪式陈设与完整内景未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 2,
+      "id": "FC-B607AA467B",
+      "name": "皇极殿",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildHuangji",
+        "src/scene/palace/special/HuangjiSouthFront.js"
+      ],
+      "limits": "原平台/宝座兼局部南面；藻井、侧后完整细部未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 3,
+      "id": "FC-E32471B7C3",
+      "name": "养性殿",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildYangxing",
+        "src/scene/palace/special/YangxingSouthEntrance.js"
+      ],
+      "limits": "前门/抱厦及局部分隔；各暖阁实景、家具未全核",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 4,
+      "id": "FC-C715F850DA",
+      "name": "乐寿堂",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildLeshou",
+        "src/scene/palace/special/LeshouSouthFront.js"
+      ],
+      "limits": "局部南立面/进路；仙楼及玉山当下陈列未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 5,
+      "id": "FC-D653A5843E",
+      "name": "颐和轩",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/YiheHall.js",
+        "src/scene/palace/special/YiheSouthPorch.js"
+      ],
+      "limits": "基于2025平面图的单层/抱厦拟合；后接廊、完整屋面交接和室内装饰仍未复原",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 6,
+      "id": "FC-15C0D4E6BC",
+      "name": "景祺阁",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildJingqi",
+        "src/scene/palace/special/JingqiSouthGallery.js"
+      ],
+      "limits": "南廊/上层窗及拟合东端楼梯；戏台现状未核",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 7,
+      "id": "FC-82E7771BD4",
+      "name": "畅音阁",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildChangyin",
+        "src/scene/palace/special/ChangyinNorthFront.js"
+      ],
+      "limits": "北向主立面/三层轮廓；机械装置和完整后台未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 8,
+      "id": "FC-78E6A34C2D",
+      "name": "阅是楼",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildYueshi",
+        "src/scene/palace/special/YueshiSouthFront.js",
+        "src/scene/palace/special/YueshiPaleSidewalls.js"
+      ],
+      "limits": "a7四块山墙饰色累计保留；上层仅观赏，室内陈列未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 9,
+      "id": "FC-4B61FC64EC",
+      "name": "景祺阁戏台",
+      "classification": "EMBEDDED_HISTORICAL_FIT_IDENTITY_UNVERIFIED",
+      "codeEvidence": [
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildJingqi roles=jingqi-concave-stage,jingqi-stage-backdrop"
+      ],
+      "limits": "原景祺阁宿主中已有凹形台及带两小门背板的历史形制局部拟合。未单独绑定原戏台ID，现存形制与陈设未核；不得重复建，也不据历史照片称当前实景或整项完成。",
+      "wholeObjectAccepted": false,
+      "sources": [
+        "https://www.dpm.org.cn/research_talk/251976.html",
+        "https://www.dpm.org.cn/explode/others/252733.html",
+        "https://www.dpm.org.cn/explore/building/236564.html"
+      ]
+    },
+    {
+      "ordinal": 10,
+      "id": "FC-1E971B3E74",
+      "name": "宁寿门",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate",
+        "src/scene/palace/special/NingshouSideApproach.js",
+        "src/scene/palace/special/NingshouFrontHall.js"
+      ],
+      "limits": "f823两侧实体白石阶保留，本次仅收回两内门垛前半部使前三间前廊横向通行。五级/尺寸、前后分界及剩余后门垛深度是拟合；中央丹陛、栏杆、铜狮和精确门制仍未复原，不视作完整三出阶或整门验收。",
+      "wholeObjectAccepted": false,
+      "sources": [
+        "https://www.dpm.org.cn/explore/building/236520.html",
+        "https://img.dpm.org.cn/Uploads/Picture/dc/1628[1024].jpg"
+      ]
+    },
+    {
+      "ordinal": 11,
+      "id": "FC-7616C3B4B6",
+      "name": "景福宫",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildJingfu",
+        "src/scene/palace/special/JingfuSouthGallery.js"
+      ],
+      "limits": "南廊/卷顶与出入口局部；室内完整原貌未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 12,
+      "id": "FC-ECB2C6B896",
+      "name": "皇极门",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/HuangjiGate.js",
+        "src/scene/zones/ZoneBase.js#buildGate"
+      ],
+      "limits": "专用局部门体；比例/设色仍拟合，不代表背面及细部整项验收",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 13,
+      "id": "FC-2318B5F73B",
+      "name": "佛日楼",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildFori",
+        "src/scene/palace/special/ForiForecourt.js",
+        "src/scene/palace/special/ForiFrontBalustrade.js"
+      ],
+      "limits": "b6c只前上层栏杆；月门/下层保留，东侧连梵华楼台阶未拟合，上层不开放",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 14,
+      "id": "FC-D40CEF5893",
+      "name": "梵华楼",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildFanhua",
+        "src/scene/palace/special/FanhuaSouthFront.js",
+        "src/scene/palace/special/FanhuaFrontBalustrade.js",
+        "src/scene/palace/special/FanhuaFloorFascia.js"
+      ],
+      "limits": "前立面/栏杆/饰带及六个楼板孔；不代表佛堂各部或供像完成",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 15,
+      "id": "FC-77F449D2FE",
+      "name": "锡庆门",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/XiqingGate.js",
+        "src/scene/zones/ZoneBase.js#buildGate"
+      ],
+      "limits": "专用局部门体；比例/设色仍拟合，不代表背面及细部整项验收",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 16,
+      "id": "FC-FF99BC5DC0",
+      "name": "九龙壁",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildNineDragonWall",
+        "public/textures/nine_dragon.webp",
+        "tests/r164-nine-dragon-roof/production-zone.test.mjs"
+      ],
+      "limits": "本轮官源支持黄琉璃庑殿顶，专用墙顶改四坡低细节拟合，保留原壁身/照片/位置/碰撞。0.3m出檐为拟合；官方3.5m、数据3.5m与旧整体6.1324m含座/帽口径待核，未整体缩放；脊上九龙、斗栱、精确浮雕/背面及整壁未完成。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 17,
+      "id": "FC-9A08E177BC",
+      "name": "寻沿书屋",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildThroughHall key=xunyan",
+        "src/scene/palace/special/XunyanSouthFront.js"
+      ],
+      "limits": "正面门窗、前廊和局部阶；全院抄手游廊及室内未验",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 18,
+      "id": "FC-0D5F3D5831",
+      "name": "庆寿堂",
+      "classification": "IDENTITY_BOUNDARY_UNRESOLVED",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildThroughHall key=qingshou"
+      ],
+      "limits": "存在单座庆寿堂拟合，但官方同名同时指四进组群与第二进正殿。当前坐标/院序不足以确认条目边界，不重复建、不将同一主体算两项完成",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 19,
+      "id": "FC-EBADA47212",
+      "name": "珍妃井",
+      "classification": "EXPLICIT_PARTIAL_IMPLEMENTATION",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/ZhenfeiWell.js",
+        "src/scene/zones/ZoneBase.js#buildZhenfeiWell"
+      ],
+      "limits": "9a3独立井栏/真孔与实体浅底；坐标尺度拟合，浅底不是实际井深，侧孔/铁件未复原",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 20,
+      "id": "FC-ABA67505AC",
+      "name": "南、北十三排",
+      "classification": "NO_EXPLICIT_RUNTIME_BINDING_FOUND",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "limits": "src及data/zones中未找到该原名称/独立实例绑定；不证明完全没有匿名房屋。南北组边界、实例与复数数量仍需核，不凭名字造26栋",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 21,
+      "id": "FC-AEA7555B5E",
+      "name": "敛禧门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 22,
+      "id": "FC-1557E43903",
+      "name": "履顺门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 23,
+      "id": "FC-D8C97162AC",
+      "name": "蹈和门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 24,
+      "id": "FC-9C909CC168",
+      "name": "保泰门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 25,
+      "id": "FC-65CDB57C48",
+      "name": "养性门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 26,
+      "id": "FC-FFF2A55955",
+      "name": "贞顺门",
+      "classification": "GENERIC_FITTED_RUNTIME",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js#buildGate",
+        "src/scene/palace/kit.js#gate"
+      ],
+      "limits": "已由同名数据进入通用门体；不把静态名称或五间门型视作实景完整复原。目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 27,
+      "id": "FC-2D04E0B566",
+      "name": "南十三排",
+      "classification": "NO_EXPLICIT_RUNTIME_BINDING_FOUND",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "limits": "src及data/zones中未找到该原名称/独立实例绑定；不证明完全没有匿名房屋。南北组边界、实例与复数数量仍需核，不凭名字造26栋",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 28,
+      "id": "FC-2A2E866229",
+      "name": "北十三排",
+      "classification": "NO_EXPLICIT_RUNTIME_BINDING_FOUND",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/zones/ZoneBase.js"
+      ],
+      "limits": "src及data/zones中未找到该原名称/独立实例绑定；不证明完全没有匿名房屋。南北组边界、实例与复数数量仍需核，不凭名字造26栋",
+      "wholeObjectAccepted": false
+    },
+    {
+      "ordinal": 29,
+      "id": "FC-9059FCD5EB",
+      "name": "庆寿堂第二进正殿",
+      "classification": "IDENTITY_BOUNDARY_UNRESOLVED",
+      "codeEvidence": [
+        "data/zones/ningshou.json",
+        "src/scene/palace/special/RemainingNingshouHalls.js#buildThroughHall key=qingshou"
+      ],
+      "limits": "存在单座庆寿堂拟合，但官方同名同时指四进组群与第二进正殿。当前坐标/院序不足以确认条目边界，不重复建、不将同一主体算两项完成",
+      "wholeObjectAccepted": false
+    }
+  ],
+  "supersedesForCurrentCode": "The two prior R164 appendices remain dated historical records; this adds only the front-hall partial correction. Original 29 IDs and zero whole-object acceptances remain.",
+  "corrections": [
+    {
+      "id": "FC-4B61FC64EC",
+      "finding": "The old audit omitted existing anonymous jingqi-concave-stage and jingqi-stage-backdrop geometry inside buildJingqi. There is historical-form partial geometry; a separate original object-ID binding and current physical state remain unverified. Do not duplicate the stage or count it as accepted.",
+      "runtimeChange": false
+    },
+    {
+      "id": "FC-1E971B3E74",
+      "finding": "New south-side approach component attached to the existing generic gate, not a complete gate rebuild or acceptance.",
+      "runtimeChange": true
+    },
+    {
+      "id": "FC-1E971B3E74",
+      "finding": "Two full-depth inner piers incorrectly split the front hall into tunnels. Only their front halves are removed; front crossing becomes possible while original rear half, columns, gate routes and side approaches stay. Door-plane boundary and residual depth are fitted, not surveyed.",
+      "runtimeChange": true
+    }
+  ]
+}

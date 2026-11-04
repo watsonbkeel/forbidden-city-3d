@@ -1,0 +1,1 @@
+import fs from'node:fs';import test from'node:test';import assert from'node:assert/strict';test('South Thirteen has an explicit hanging-flower entrance hook, separate from unchanged row houses',()=>{const s=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');assert.match(s,/buildThirteenSouthEntry\(this.kit,this.zoneJson\)/)});

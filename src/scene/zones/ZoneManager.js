@@ -269,32 +269,50 @@ export class ZoneManager {
     const start = performance.now();
     const detailQuality = this.detailQualityFor(zoneId);
     const cached = this.prebuilt.get(zoneId) ?? this.inactiveCache?.take(zoneId,config,detailQuality);
-    const builder = cached?.builder ?? new config.BuilderClass(this.library, config);
-    const data = cached?.data ?? builder.build();
-    this.prebuilt.delete(zoneId);
-    const elapsed = performance.now() - start;
-
-    // A cached group may have been hidden by the previous view-only cull.
-    // Re-entered architecture is ready before render policy evaluates it again.
-    data.group.visible = true;
-    // 加入场景
-    this.scene.add(data.group);
+    let builder = cached?.builder, data = cached?.data;
     const silhouette = this.silhouettes.get(zoneId);
-    if (silhouette) silhouette.visible = false;
-
-    // 注册碰撞（带 tag，用于卸载时删除）
-    this.collisionManager.addColliders(data.colliders, zoneId);
-    this.collisionManager.addWalkables(data.walkables, zoneId);
-
-    const entry = cached ?? { builder, data, config, detailQuality };
-    // A background preload is not a player visit. Giving it a newer age can
-    // evict the just-visited current zone before the very first return.
-    entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
-    this.loaded.set(zoneId, entry);
-    this.buildTimes.set(zoneId, +elapsed.toFixed(1));
-    for (const listener of this.lifecycleListeners) listener('load',zoneId,data);
-    this.onLoad?.(zoneId, data.group);
-    console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
+    const notified = [], previousTime = this.buildTimes.get(zoneId);
+    const hadTime = this.buildTimes.has(zoneId);
+    let onLoadStarted = false;
+    // Transfer ownership before building/registration. Failed admissions are
+    // disposed, never returned to prebuilt or the inactive cache for reuse.
+    this.prebuilt.delete(zoneId);
+    try {
+      builder ??= new config.BuilderClass(this.library, config);
+      data ??= builder.build();
+      const elapsed = performance.now() - start;
+      data.group.visible = true;
+      this.scene.add(data.group);
+      if (silhouette) silhouette.visible = false;
+      this.collisionManager.addColliders(data.colliders, zoneId);
+      this.collisionManager.addWalkables(data.walkables, zoneId);
+      const entry = cached ?? { builder, data, config, detailQuality };
+      entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
+      this.loaded.set(zoneId, entry);
+      this.buildTimes.set(zoneId, +elapsed.toFixed(1));
+      for (const listener of this.lifecycleListeners) {
+        notified.push(listener);
+        listener('load', zoneId, data);
+      }
+      if (this.onLoad) { onLoadStarted = true; this.onLoad(zoneId, data.group); }
+      console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），耗时 ${elapsed.toFixed(1)}ms`);
+    } catch (error) {
+      const cleanupErrors = [];
+      const clean = fn => { try { fn(); } catch (e) { cleanupErrors.push(e); } };
+      // Compensate only callbacks whose load notification started, including a
+      // callback that partially changed its state and then threw. Keep the entry
+      // claimed until cleanup completes to prevent callback-driven re-admission.
+      if (onLoadStarted) clean(() => this.onUnload?.(zoneId, data.group));
+      for (const listener of notified.reverse()) clean(() => listener('unload', zoneId, data));
+      clean(() => this.collisionManager.removeByTag(zoneId));
+      clean(() => data?.group.removeFromParent());
+      clean(() => builder?.dispose());
+      this.loaded.delete(zoneId);
+      if (silhouette) silhouette.visible = true;
+      if (hadTime) this.buildTimes.set(zoneId, previousTime); else this.buildTimes.delete(zoneId);
+      if (cleanupErrors.length) throw new AggregateError([error, ...cleanupErrors], `Zone ${zoneId} admission failed: ${error.message}`, {cause:error});
+      throw error;
+    }
   }
 
   /**
