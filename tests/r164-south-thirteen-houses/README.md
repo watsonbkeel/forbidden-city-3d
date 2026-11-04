@@ -1,0 +1,18 @@
+# South Thirteen main row-house shells, phase 1
+
+Baseline b24ead39d288837c17663c42d20c70a597e34ac1. New South subject FC-2D04E0B566, parent FC-ABA67505AC. North child FC-2A2E866229 is not built. No whole-object acceptance.
+
+Official source https://www.dpm.org.cn/explore/building/236528.html describes thirteen rows per group, twelve paired into six courts, three bays by one depth, front galleries, central doors, gray hard-gable tile roofs and west court gates. Official 8283/8285 photos support the simple row form and lane, not measured coordinates. The thirteenth main row is represented; its small annex rooms are not. Exact spacing, footprints, wall/gate sizes, fitted colors and open game doors are not measurements or current museum admission claims. South hanging-flower gate, North group, furniture and current office features are excluded. No extra historic plaque text.
+
+Commands:
+- `node --test --test-concurrency=1 tests/r164-south-thirteen-houses/{component,controller,identity,missing,lifecycle,ledger}.test.mjs`
+- `SOUTH_THIRTEEN_EVIDENCE_DIR=<existing directory> node --test tests/r164-south-thirteen-houses/production-zone.test.mjs`
+- `node tests/r164-south-thirteen-houses/preview.mjs <output.png>` is a CPU flat-shaded projection, not WebGL or texture/shadow acceptance.
+
+`frozen/ZoneBase.b24.js` is exact Git content, verified by SHA256 and independent direct comparison. Only one import and one dispatch line are removed for equality. The shared Lianxi source-boundary helper now strips that exact unique pair first, without relaxing previous assertions. `baseline.capture.mjs` ran on clean b24 before runtime edits; all old objects, materials, triangles, physics, rooms/maps/regions/architecture and roof triangles remain under hash protection. New objects alone carry a private target marker for subtraction.
+
+The controller runs 128 door/court/diagonal arrivals, 104 solid-wall/window refusals, eight full longitudinal traversals and 26 doorway jumps at 10/60Hz, plus eight full Lianxi-to-BaoTai connections. Connection paths fully exit existing Lianxi leaves at x=-358 before turning, rather than cutting through old door leaves. The production Enclosure's exact east-wall segment builder and wall parameters are included, cropped to this band; this is not a full Enclosure/World. The actual NingShou zone additionally includes its original west lane boundary and gates. Scripted heading/braking is not all arbitrary human movement acceptance. A removed actual window collider is a failing-physics negative control.
+
+Red/green history: missing component, blocked thirteenth-row approach, jump-through new lintel, and stretched long-wall brick UV failed first. The terminal row now has a fitted open west approach beyond the sixth court, not a claimed seventh historic gate. Lintel/gallery beam use existing explicit overhead shape handling, with no global physics change. UV conversion first mishandled the existing helper's replacement ownership and double-disposed source geometry; tracked non-indexed conversion fixed both resource and tiling tests. Independent review then injected a failure inside toNonIndexed before its return, exposing a temporary-geometry leak; the final version registers an empty BufferGeometry first and expands each indexed attribute into that owned target. The faulting object itself must be disposed, not merely have unique disposal counts. A fixture initially used exact Float32 platform bounds and lacked library ownership support; corrected fixtures do not change runtime geometry. Failed runs are not counted as passing evidence.
+
+No full World, browser, GPU, mobile, Node20 or temperature benchmarks. No main merge or deployment.

@@ -1,0 +1,87 @@
+{
+  "baseCommit": "b24ead39d288837c17663c42d20c70a597e34ac1",
+  "scope": "Bounded actual NingShou + exact production outer-wall segment; no World/GPU/browser",
+  "runtimeFiles": {
+    "src/scene/palace/special/SouthThirteenHouses.js": "bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea",
+    "src/scene/zones/ZoneBase.js": "1e40890b95910291599e6f6a39fe914d26d64edd8ff8bcca86e9c98f3e53d26f"
+  },
+  "localChecks": {
+    "newLightweight": 20,
+    "previousBoundedLightweight": 256,
+    "productionNingShou": 1,
+    "productionYangxinBaseAndOptional": 1,
+    "productionFengxianGardenTeleportReuse": 1,
+    "totalDistinct": 279,
+    "allPassed": true
+  },
+  "routes": {
+    "newDoorCourtDiagonalPositive": 128,
+    "newWallWindowNegative": 104,
+    "longitudinal": 8,
+    "doorJumps": 26,
+    "lianxiToBaoTaiConnections": 8,
+    "fps": [
+      10,
+      60
+    ],
+    "input": "Real controller, scripted view, turn braking; not unrestricted manual movement"
+  },
+  "preserved": {
+    "raw": {
+      "meshes": 26221,
+      "triangles": 587156,
+      "geometry": "4bd20a251a5ff9d2bdef9c61d8d0ebf13d2acf10f702f378d6119c0ab48f4a17"
+    },
+    "data": {
+      "colliderCount": 6985,
+      "colliders": "0c7136727e12415ae91f20d0b3797df8813d55dd76018b8d601784a9a295e797",
+      "walkableCount": 223,
+      "walkables": "0ebda2b290b70ea72822731b23f11ce62b3c45f1b1dcf702ca5582c673058870",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "d8c3611b3fa9fd37ccdb2f3c7f63e40277e9e86507b3796318af9678f9ccaee4"
+    },
+    "roof": {
+      "triangles": 7044,
+      "sha256": "330e6cd1f9a716724d7336857f3919d8787def0f8b6b26e791c126d5f2a82a63"
+    }
+  },
+  "added": {
+    "meshesBeforeMerge": 969,
+    "triangles": 11680,
+    "colliders": 241,
+    "walkables": 13,
+    "privateMaterials": 6,
+    "textureFiles": 0,
+    "mapTargets": 0,
+    "teleportTargets": 0
+  },
+  "pagesBuild": {
+    "command": "VITE_BASE=/forbidden-city-3d/ npm run build -- --outDir <isolated-output>/dist --emptyOutDir",
+    "passedRuntimePreflight": true,
+    "runtime": "Node 24.22.1; npm 11.9.0; Vite 5.4.21",
+    "base": "/forbidden-city-3d/",
+    "warning": "Large JS chunk remains (~5.95 MB uncompressed)",
+    "identityPolicy": "Final clean build must name its actual local source commit with sourceDirty=false. Remote commit is a separately created Git object; complete trees must match. Delivery report records exact identities after build and readback."
+  },
+  "notVerified": [
+    "Full World",
+    "Browser/GPU",
+    "Mobile",
+    "Node20 deployment runtime",
+    "Mac heat or frame-rate benchmark",
+    "Current museum admission",
+    "Surveyed positions/scales"
+  ],
+  "redGreen": [
+    "missing component",
+    "terminal main-row access",
+    "new lintel jump-through",
+    "stretched brick UV",
+    "UV conversion ownership",
+    "partial toNonIndexed initialization leak"
+  ],
+  "independentReview": "Final source reviewed with targeted routes/lifecycle and all-original snapshots; exact report retained in delivery evidence. No code or main changes by reviewer.",
+  "sourceWhitespace": "New/current files pass diff --check. Frozen exact b24 source preserves seven original whitespace-only lines; intentionally not rewritten."
+}
