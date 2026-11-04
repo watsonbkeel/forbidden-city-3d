@@ -1,3 +1,4 @@
+import {installYangxinMainPartitions} from './YangxinMainPartitions.js';
 import {installYangxinEastNorthSurface} from './YangxinEastNorthSurface.js';
 import {registerTaiheReplacement,revokeTaiheReplacement} from './TaiheReplacementOwnership.js';
 import { validateYangxinEast } from './YangxinEastContract.js';
@@ -164,7 +165,7 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
-    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); }
+    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); installYangxinMainPartitions(root); }
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
@@ -201,9 +202,10 @@ export class InteriorLoader {
       if (name.startsWith('COL_') || name.startsWith('WALK_')) {
         const box = new THREE.Box3().setFromObject(o);
         o.visible = false;
-        if (h.id === 'yangxin' && name === 'COL_R88_YX_PALE_CEILING') {
-          // A fitted visible ceiling catches heads but is never a walkable upper storey.
-          box.overhead = {type:'piecewise-linear-x', sourceId:'r88-yangxin-east-ceiling', points:[[box.min.x,box.min.y],[box.max.x,box.min.y]], minZ:box.min.z,maxZ:box.max.z,topY:box.max.y};
+        if (h.id === 'yangxin' && (name === 'COL_R88_YX_PALE_CEILING' || name === 'COL_R164_YX_PART_-1_head')) {
+          // The east ceiling/header use native head sweep; the west header stays an
+          // ordinary solid for the existing Yangxin furniture full-body sweep.
+          box.overhead = {type:'piecewise-linear-x', sourceId:name === 'COL_R88_YX_PALE_CEILING' ? 'r88-yangxin-east-ceiling' : name, points:[[box.min.x,box.min.y],[box.max.x,box.min.y]], minZ:box.min.z,maxZ:box.max.z,topY:box.max.y};
         }
         if (name.startsWith('COL_')) colliders.push(box); else walkables.push({ type: 'box', box, rescue: false });
         return;
