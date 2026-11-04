@@ -1,3 +1,4 @@
+import {buildForiFrontBalustrade} from './ForiFrontBalustrade.js';
 import {fitYueshiPaleSidewalls} from './YueshiPaleSidewalls.js';
 import {buildXishangFrontTransom,registerXishangRoofTransom} from './XishangFrontTransom.js';
 import {buildHuangjiSouthFront} from './HuangjiSouthFront.js';
@@ -602,7 +603,7 @@ function altarOutline(c,{x,z,w,d,y=c.p.ph,role='dated-altar-plinth'}) {
  c.box('altar-upper-edge','gold',w+.04,.05,d+.04,x,y+.485,z,false);
 }
 function buildFori(c) {
- const{p}=c,h0=p.upperFloorY-p.ph;twoLevelFrame(c,{rearInset:0});upperFloor(c);perimeterRail(c,p.upperFloorY,{rear:false,sides:false});hangingFrieze(c);
+ const{p}=c,h0=p.upperFloorY-p.ph;twoLevelFrame(c,{rearInset:0});upperFloor(c);buildForiFrontBalustrade(c);hangingFrieze(c);
  for(const x of[-p.localW/6,p.localW/6])wallLine(c,{a0:-p.localD/2+p.gallery,a1:p.localD/2,at:x,y:p.ph,h:h0-.2,side:true,doors:[{at:-1.7,w:1.7}],mat:'wood',role:'fori-lower-shrine-partition'});
  for(const x of[-p.localW/3,0,p.localW/3])altarOutline(c,{x,z:2.6,w:2.15,d:.8,role:'fori-lower-altar-outline'});
  // Upper three-sided offering-table arrangement only. No unsourced Buddha
@@ -611,7 +612,7 @@ function buildFori(c) {
  for(const sign of[-1,1])altarOutline(c,{x:sign*(p.localW/2-.65),z:0,w:.65,d:4.6,y:p.upperFloorY,role:'fori-upper-side-offering-outline'});
  rolledRoof(c,{tile:'yellow',trim:'green'});ceiling(c,{y:p.ph+p.colH-.25,nx:3,nz:1});
  if(c.kit.foriForecourt!==false)buildForiForecourt(c);
- return finish(c,{...(c.f.userData.foriForecourt?{forecourt:c.f.userData.foriForecourt}:{}),interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
+ return finish(c,{frontBalustrade:c.f.userData.foriFrontBalustrade,...(c.f.userData.foriForecourt?{forecourt:c.f.userData.foriForecourt}:{}),interiorPolicy:'SOURCED_PARTITIONS_AND_THREE_SIDED_ALTAR_LAYOUT_NO_INVENTED_BUDDHA',externalStairStatus:'OFFICIAL_EAST_STONE_CONNECTION_NOT_FITTED_IN_RETAINED_ENVELOPE',historicalFigureCountsNotModelled:[378],upperNavigation:'VIEW_ONLY_NO_FALSE_STAIR'});
 }
 function buildFanhua(c) {
  const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[],southEnabled=c.kit.fanhuaSouthFront!==false;twoLevelFrame(c,{rearInset:0,skipSouth:southEnabled});if(southEnabled)buildFanhuaSouthFront(c);buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);
