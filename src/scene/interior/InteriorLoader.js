@@ -1,3 +1,4 @@
+import {installYangxinEastNorthSurface} from './YangxinEastNorthSurface.js';
 import {registerTaiheReplacement,revokeTaiheReplacement} from './TaiheReplacementOwnership.js';
 import { validateYangxinEast } from './YangxinEastContract.js';
 import { huangjiColumnSafetyBoxes } from './HuangjiColumnSafety.js';
@@ -163,7 +164,7 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
-    if (h.id === 'yangxin') validateYangxinEast(root);
+    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); }
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
