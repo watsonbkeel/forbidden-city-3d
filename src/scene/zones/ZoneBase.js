@@ -5,6 +5,7 @@ import {buildYiheCourtCensers} from '../palace/special/YiheCourtCensers.js';
 import {fitNingshouFrontHall} from '../palace/special/NingshouFrontHall.js';
 import {buildNingshouSideApproach} from '../palace/special/NingshouSideApproach.js';
 import {releaseUnusedConstructionBranches,forgetConstructionSources} from '../palace/ConstructionSources.js';
+import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';
 import {buildZhenfeiWell} from '../palace/special/ZhenfeiWell.js';
 import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
 import {buildZhongzhengWestHall} from '../palace/special/ZhongzhengWestHall.js';
@@ -411,6 +412,7 @@ export class ZoneBase {
     buildZhongzhengWestHall(this.kit,this.zoneJson);
     buildBaozhongEastHall(this.kit,this.zoneJson);
     buildZhenfeiWell(this.kit,this.zoneJson);
+    buildJingfuWenfeng(this.kit,this.zoneJson);
     buildYiheCourtCensers(this.kit,this.zoneJson);
     buildChangyinMiddleNameboard(this.kit,this.zoneJson);
     buildChangyinLowerNameboard(this.kit,this.zoneJson);
