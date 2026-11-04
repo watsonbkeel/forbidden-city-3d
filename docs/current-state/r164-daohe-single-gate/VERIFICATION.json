@@ -1,0 +1,99 @@
+{
+  "baseCommit": "72f50a05b012fc36ba08ffc3193ae73f71d6c6ad",
+  "scope": "ACTUAL_NINGSHOU_CPU_ONLY_NOT_WORLD_OR_GPU",
+  "retained": {
+    "base": "72f50a05b012fc36ba08ffc3193ae73f71d6c6ad",
+    "raw": {
+      "meshes": 28385,
+      "triangles": 614544,
+      "geometry": "ca7a66fd87cebbf9d850dde05469f7ca42e07deebf431c888685617b073e525b"
+    },
+    "data": {
+      "colliderCount": 7560,
+      "colliders": "494b106fe6151d1db55dcbcf2ecd97d3609922292ce70caf7bcc87a0224ccd76",
+      "walkableCount": 273,
+      "walkables": "b21d4b9652adee27333e2f02158b54665f5545ae81500e68f1674a3d164bd652",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "0173356a8475f5e0c6f9cd952737330854cc494f0ecf786f533fa1ff05bba33e",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "e373859dfb7d24ecdac01a39b1b9450a9221054cd6cf0019e0153acefeac498e"
+    },
+    "roof": {
+      "triangles": 22740,
+      "sha256": "96bc7bae512cb6597cbd1af20096af847750fec7963b6b8e26c74ec6199317b1"
+    },
+    "target": {
+      "children": 1,
+      "colliders": 2
+    },
+    "targetGeometry": {
+      "meshes": 16,
+      "triangles": 1258
+    }
+  },
+  "newTarget": {
+    "meshes": 42,
+    "triangles": 496,
+    "contacts": 41,
+    "walkables": 0,
+    "privateMaterials": 5,
+    "newTextures": 0
+  },
+  "selfChecks": {
+    "boundedPrior": 418,
+    "newLightweight": 24,
+    "actualNingshou": 1,
+    "totalDistinct": 443
+  },
+  "independentFormalAtDocumentation": 29,
+  "independentExtraProbes": {
+    "westStreetConnections": 16,
+    "highStartCanExit": 16,
+    "scope": "Exploratory real single-zone checks, not added again to formal count; some high starts already reached ground before exit, not stable-roof assertions"
+  },
+  "finalSelfProduction": {
+    "seconds": 20.812857,
+    "maxRSSKiB": 872320,
+    "positive": 48,
+    "blocked": 32,
+    "jump": 12,
+    "westStreetConnections": 16,
+    "priorZhenshunPositive": 48,
+    "priorZhenshunNeighborConnections": 24
+  },
+  "cpuLocalCost": {
+    "rawTargetBeforeBytes": 119780,
+    "rawTargetAfterBytes": 35448,
+    "threeGatesAndWestWallMergedBeforeBytes": 682944,
+    "threeGatesAndWestWallMergedAfterBytes": 609792,
+    "threeGatesAndWestWallMergedMeshesBefore": 12,
+    "threeGatesAndWestWallMergedMeshesAfter": 17,
+    "scope": "Independent local CPU geometry only; contact increase 2 to41 and 5 extra merged meshes, no GPU/performance inference"
+  },
+  "teleport": {
+    "name": "蹈和门",
+    "x": -224.1,
+    "z": 304.3,
+    "lookAtX": -233.5,
+    "lookAtZ": 304.3,
+    "distance": 8,
+    "lateral": 0,
+    "y": 0,
+    "walk": 5,
+    "fallback": false
+  },
+  "sourceSHA256": {
+    "src/scene/palace/special/DaoheGate.js": "b9eea737b5d92c65e2a659a130de93f65ca1f6f19f85676ccddbecd37d46e473",
+    "src/scene/zones/ZoneBase.js": "fa05cedc2c82491245025ee3b2bb43c73ca2f781abdddcabd30ba7089e0cc583"
+  },
+  "unverified": [
+    "World",
+    "GPU/browser/phone",
+    "Node20CI",
+    "Macthermal/performance",
+    "Surveyed geometry",
+    "Full carved ornaments/calligraphy/Manchu",
+    "Hidden rear/current admission",
+    "Existing Jingqi front lintel jump penetration remains"
+  ]
+}
