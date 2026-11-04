@@ -1,3 +1,4 @@
+import {retainConstructionBranch} from '../ConstructionSources.js';
 import * as T from 'three';
 import {triangleBodySweptIntersects} from '../../../utils/TriangleSupport.js';
 import {PLAYER} from '../../../config/constants.js';
@@ -22,7 +23,7 @@ export function authorizeLuanjiaEastContact(kit,f,{detail,meta,walkables,collide
  const definitions=walkables.map(w=>w.box.clone()),solids=colliders.map((c,i)=>({object:c,box:c.clone(),shape:c.triangleSupport,overhead:c.overhead,floorShape:c.luanjiaEastAccess?.floorTriangles,mesh:meshes[i]}));
  const proof={kit,f,detail,meta,rows:walkables,definitions,solids,inverse:f.matrixWorld.clone().invert(),rects:walkables.map(rect)};
  for(let i=0;i<walkables.length;i++){walkables[i].luanjiaEastContactId=PREFIX+i;owners.set(walkables[i],{proof,index:i});}hosts.set(f,proof);
- if(!validHost(proof))throw Error('Luanjia actual host publication differs');
+ if(!validHost(proof))throw Error('Luanjia actual host publication differs');retainConstructionBranch(kit,f);
 }
 export function preserveLuanjiaEastContactOwner(target,original){
  const id=original?.luanjiaEastContactId;if(id===undefined)return false;const p=owners.get(original);

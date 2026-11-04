@@ -1,3 +1,4 @@
+import {releaseUnusedConstructionBranches,forgetConstructionSources} from '../palace/ConstructionSources.js';
 import {buildZhenfeiWell} from '../palace/special/ZhenfeiWell.js';
 import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
 import {buildZhongzhengWestHall} from '../palace/special/ZhongzhengWestHall.js';
@@ -424,10 +425,11 @@ export class ZoneBase {
 
   /** Cache admission only: mergeByMaterial already disposed these source
    * geometries and moved noMerge/LOD objects into the finished group. Drop
-   * obsolete construction references; never dispose live merged resources. */
+   * only unused construction references. Private contact certificates retain
+   * their real source branches; never dispose live merged resources. */
   releaseConstructionReferences() {
     if (!this.group || this.group === this.kit.root) throw new Error('Zone is not finished');
-    this.kit.root.clear();
+    releaseUnusedConstructionBranches(this.kit);
     this.kit.plaques.length = 0;
   }
 
@@ -436,11 +438,15 @@ export class ZoneBase {
   }
 
   dispose() {
-    if (this.group) {
-      this.kit.dispose(this.group);
-      this.group.removeFromParent();
-      this.group = null;
-    }
+    if (this.disposed) return;
+    this.disposed = true;
+    // A failed build may own source resources before a merged group exists.
+    this.kit.dispose(this.group ?? this.kit.root);
+    this.group?.removeFromParent();
+    this.group = null;
+    this.kit.root.clear();
+    this.kit.plaques.length = 0;
+    forgetConstructionSources(this.kit);
     this.gateWidths.clear();
     this.gateGeometries.clear();
   }

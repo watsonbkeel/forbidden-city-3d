@@ -1,3 +1,4 @@
+import {retainConstructionBranch} from '../ConstructionSources.js';
 import * as T from 'three';
 import source from '../../../../data/architecture/nansansuo-north-stair-contacts.json' with {type:'json'};
 import {isCertifiedNansansuoNorthHost} from './NansansuoNorthEaves.js';
@@ -16,7 +17,7 @@ export function authorizeNansansuoNorthStairHost(builder,parent,zoneJson,itemInd
  const addons=parent.children.filter(c=>c.userData.nansansuoNorthEaves?.itemIndex===itemIndex);if(addons.length!==1||addons[0].userData.nansansuoNorthEaves.retainedSourceId!==h.remainingId)return false;
  validateNansansuoInventoryPolicy({zoneId:zoneJson.id,itemIndex,item});
  if(surfaces.some((w,i)=>!Object.isExtensible(w)||w.bPrincipalStairId!==undefined||owners.has(w)||!matches(w,group.surfaces[i])||!builder.walkables.includes(w)||builder.walkables.filter(q=>matches(q,group.surfaces[i])).length!==1))return false;
- const proof={builder,parent,group,surfaces:[...surfaces]};hosts.set(parent,proof);surfaces.forEach((w,i)=>owners.set(w,{id:group.surfaces[i].id,proof}));return true;
+ const proof={builder,parent,group,surfaces:[...surfaces]};hosts.set(parent,proof);surfaces.forEach((w,i)=>owners.set(w,{id:group.surfaces[i].id,proof}));retainConstructionBranch(builder,parent);return true;
 }
 export function validNansansuoNorthStairHost(builder,parent,groupId){const p=hosts.get(parent),h=p?.group.host,g=parent?.userData.structure;return !!p&&p.builder===builder&&p.group.id===groupId&&parent.parent===builder.root&&builder.root.children.includes(parent)&&parent.position.x===h.x&&parent.position.y===0&&parent.position.z===h.z&&parent.rotation.toArray().slice(0,3).every(v=>v===0)&&parent.scale.equals(new T.Vector3(1,1,1))&&g?.remainingId===h.remainingId&&g.remainingProfile===h.remainingProfile&&p.surfaces.every((w,i)=>builder.walkables.includes(w)&&matches(w,p.group.surfaces[i])&&owners.get(w)?.id===p.group.surfaces[i].id);}
 export function preserveNansansuoNorthStairOwner(target,original,id){const p=owners.get(original);if(!p||p.id!==id)return false;owners.set(target,p);return true;}
