@@ -1,3 +1,4 @@
+import {installYangxinFoldedDoors} from './YangxinFoldedDoors.js';
 import {installYangxinMainPartitions} from './YangxinMainPartitions.js';
 import {installYangxinEastNorthSurface} from './YangxinEastNorthSurface.js';
 import {registerTaiheReplacement,revokeTaiheReplacement} from './TaiheReplacementOwnership.js';
@@ -165,7 +166,7 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
-    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); installYangxinMainPartitions(root); }
+    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); installYangxinMainPartitions(root); installYangxinFoldedDoors(root); }
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
