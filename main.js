@@ -544,6 +544,9 @@ class ForbiddenCityApp {
     this.frameFailureReason = reason;
     // Context loss arrives outside onFrame, so this boundary must stop RAF itself.
     this.frameLoop?.dispose();
+    // Optional diagnostic capture must never block the existing recovery boundary.
+    try { this.failureDiagnostic = TourFailureNotice.captureDiagnostic(error, {stage:reason === 'graphics' ? 'graphics' : this.frameStage, zone:() => this.zoneManager?.getCurrentId()}); }
+    catch { this.failureDiagnostic = null; }
     console.error(reason === 'graphics' ? '图形显示已中断，游览已停止' : '游览主帧异常，已停止更新', error);
     // Retire the earlier window/focus owner without resuming the failed tour.
     // Restore its background snapshot before the recovery dialog captures it.
@@ -554,7 +557,7 @@ class ForbiddenCityApp {
     try { this.flight?.clearInput(); } catch { /* Keep the recovery entry available. */ }
     try { this.controls?.unlock(); } catch { /* Pointer lock can also be lost externally. */ }
     this.failureNotice ??= new TourFailureNotice(document.body);
-    this.failureNotice.show(reason);
+    this.failureNotice.show(reason, this.failureDiagnostic);
   }
 
   toggleQuality(quality = this.currentQuality === 'high' ? 'low' : 'high') {
@@ -681,33 +684,46 @@ class ForbiddenCityApp {
     this.lastFrameTime = now;
 
     // 兜底：任何原因漏掉 resize 事件（微信/iOS 转屏）时，发现尺寸变了就立即校正
+    this.frameStage = 'viewport';
     const { width, height } = this.getViewportSize();
     if (this._lastSize !== `${width}x${height}`) this.onResize();
 
     // 更新控制器（含走路镜头起伏；motion = { speed, sprint, footstep }）
+    this.frameStage = 'controls';
     if (this.flight?.occupied) this.controls.prevTime = now;
     else if (this.settingsTourSession) this.settingsTourSession.updateControls();
     else this.controls.update();
+    this.frameStage = 'flight';
     this.flight?.update(dt, now);
     const motion = this.controls.motion ?? { speed: 0, sprint: false, footstep: false };
     
     // 更新位置信息
+    this.frameStage = 'location';
     this.updateLocationInfo();
     
+    this.frameStage = 'environment';
     this.environment.update(this.camera, dt);
+    this.frameStage = 'lighting';
     this.dayNightPanel?.update();
     this.historicalLamps?.update(this.environment.dayCycle.lighting.daylight);
     this.roomNightLights?.update(this.environment.dayCycle.lighting.daylight,this.camera.position,this.currentQuality,this.environment.dayCycle.beijingTime);
+    this.frameStage = 'palace';
     this.palaceBuilder.update?.(dt);
+    this.frameStage = 'enclosure';
     this.enclosure.update(dt);
+    this.frameStage = 'garden';
     this.garden.update(dt);
+    this.frameStage = 'interiors';
     this.interiors?.update(this.camera.position);
+    this.frameStage = 'zones';
     this.zoneManager.update(this.flight?.occupied ? this.flight.position : this.camera.position);
+    this.frameStage = 'characters';
     this.characters?.update(dt, { beijingTime:this.environment.dayCycle.beijingTime, daylight: this.environment.dayCycle.lighting.daylight, quality: this.currentQuality, viewportHeight: height });
     // Keep the DEV notice honest after a runtime failure automatically disables
     // the same System. No extra update loop, renderer, or persistent setting.
     this._syncCharacterStatus?.();
     this._syncCharacterPreviewState?.();
+    this.frameStage = 'audio';
     this.ambience.update({
       dt,
       speed: motion.speed,
@@ -715,14 +731,19 @@ class ForbiddenCityApp {
       footstep: motion.footstep,
       inTunnel: this.isInGatePassage(this.camera.position),
     });
+    this.frameStage = 'map';
     this.minimap?.update(this.camera, this.flight?.getMapMarker());
+    this.frameStage = 'shadows';
     if (now - this.lastShadowUpdate >= 250) {
       const distance = this.currentQuality === 'high' ? PERFORMANCE.LOD_DISTANCE_LOW : PERFORMANCE.LOD_DISTANCE_HIGH;
       this.shadowSetup.updateShadowLOD(this.camera, this.shadowObjects, distance);
       this.lastShadowUpdate = now;
     }
+    this.frameStage = 'render';
     this.postProcessing.render();
+    this.frameStage = 'performance';
     this.perfHUD?.update(now);
+    this.frameStage = 'idle';
   }
 
   dispose() {

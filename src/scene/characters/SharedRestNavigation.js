@@ -11,10 +11,13 @@ import {resolveChuxiuSharedRest,SHARED_REST_IDS} from './SharedRestSlots.js';
 import emperorRoute from '../../../data/characters/emperor-night-route.json' with {type:'json'};
 import routes from '../../../data/characters/night-routes.json' with {type:'json'};
 export const SHARED_REST_PATHS=new Map([[SHARED_REST_IDS[0],emperorRoute.points],[SHARED_REST_IDS[1],routes.paths.find(p=>p.bedId==='chuxiu-northwest-canopy').points]]);
+// The emperor no longer walks between palaces. Keep his two certified endpoints
+// disconnected; only the consort's local polyline owns a movement corridor.
+export const SHARED_REST_CORRIDORS=Object.freeze([SHARED_REST_PATHS.get(SHARED_REST_IDS[1]),Object.freeze([emperorRoute.points[0]]),Object.freeze([emperorRoute.points.at(-1)])]);
 const numeric=o=>JSON.stringify(Object.fromEntries(Object.entries(o).filter(([key])=>key!=='mesh')));
 const numericProof=root=>{const rows=[],visit=o=>{const keys=Object.keys(o),values=[],refs=[];for(const key of keys){const value=o[key];if(value&&typeof value==='object'){refs.push([key,new WeakRef(value)]);if(key!=='mesh')visit(value);}else values.push([key,value]);}rows.push({object:new WeakRef(o),count:keys.length,values,refs});};visit(root);return rows;};
 const numericCurrent=(object,rows)=>{if(object!==rows.at(-1).object.deref())return false;for(const r of rows){const o=r.object.deref();if(!o||Object.keys(o).length!==r.count)return false;for(const[k,v]of r.values)if(o[k]!==v)return false;for(const[k,v]of r.refs)if(o[k]!==v.deref())return false;}return true;};
-/** The two authored routes own a numeric corridor, never player collision or
+/** The consort route and disconnected emperor endpoints own numeric evidence, never player collision or
  * remote render resources. Normal ZoneManager unload is the only transition
  * authorizing offline use; changed/detached live sources fail closed. */
 export class SharedRestNavigation {
@@ -23,10 +26,10 @@ export class SharedRestNavigation {
   if(!this.zm?.prebuilt||!world.scene||!world.cm)return;
   const start=performance.now(),cells=new Set(),size=2;
   const mark=p=>{for(let x=-1;x<=1;x++)for(let z=-1;z<=1;z++)cells.add(`${Math.floor(p[0]/size)+x},${Math.floor(p[2]/size)+z}`);};
-  for(const points of SHARED_REST_PATHS.values()){mark(points[0]);for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[2]-a[2])/size));for(let j=1;j<=n;j++)mark([a[0]+(b[0]-a[0])*j/n,0,a[2]+(b[2]-a[2])*j/n]);}}
+  for(const points of SHARED_REST_CORRIDORS){mark(points[0]);for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[2]-a[2])/size));for(let j=1;j<=n;j++)mark([a[0]+(b[0]-a[0])*j/n,0,a[2]+(b[2]-a[2])*j/n]);}}
   const cellPoints=[...cells].map(k=>k.split(',').map(Number));
   const relevant=box=>{if(!box?.min)return false;const x0=Math.floor(box.min.x/size),x1=Math.floor(box.max.x/size),z0=Math.floor(box.min.z/size),z1=Math.floor(box.max.z/size);if((x1-x0+1)*(z1-z0+1)<=cells.size){for(let x=x0;x<=x1;x++)for(let z=z0;z<=z1;z++)if(cells.has(`${x},${z}`))return true;}else for(const[x,z]of cellPoints)if(x>=x0&&x<=x1&&z>=z0&&z<=z1)return true;return false;};
-  this.relevant=relevant;
+  this.relevant=relevant;this.corridorCellCount=cells.size;
   const nav=this.nav=new CollisionManager();nav.colliders=world.cm.colliders.filter(c=>relevant(c.box)).map(c=>({...c,mesh:undefined,box:c.box.clone()}));nav.walkables=world.cm.walkables.filter(w=>relevant(w.box??{min:{x:w.minX,z:w.minZ},max:{x:w.maxX,z:w.maxZ}})).map(w=>({...w,...(w.box?{box:w.box.clone()}:{})}));
   for(const[id,entry]of this.zm.prebuilt){const selected=entry.data.colliders.filter(c=>relevant(c.isBox3?c:new THREE.Box3().setFromObject(c)));nav.addColliders(selected,id);nav.addWalkables(entry.data.walkables.filter(w=>relevant(w.box??{min:{x:w.minX,z:w.minZ},max:{x:w.maxX,z:w.maxZ}})),id);}
   for(const c of nav.colliders)delete c.mesh;
@@ -88,6 +91,22 @@ export class SharedRestNavigation {
   for(const row of this.staticMeshes){if(positions&&!near(row.bounds))continue;const object=row.object.deref();let attached=false;for(let p=object;p;p=p.parent)if(p===this.world.scene)attached=true;if(!attached||!proofCurrent(row.proof,(mesh,visible)=>visible===true&&mesh.visible===false&&taiheReplacement?.fallback.includes(mesh)===true))return fail('Verified static route geometry changed or detached');}
   if(!this.syncTaiheSurfaces(taiheReplacement))return fail('Taihe replacement support is unavailable');
   this.status='ready';this.reason=null;return true;
+ }
+ /** Re-read real endpoint support only when an atomic relocation is about to
+  * commit. This bypasses cached scalar poses without rescanning a cross-palace
+  * path or creating remote resources. */
+ validateEndpoint(actor,night){
+  const fail=reason=>{this.status='error';this.reason=reason;return false;};
+  if(night){
+   const entry=this.zm.loaded.get('west-six')??this.zm.prebuilt.get('west-six');
+   if(!entry||this.sources.get('west-six')?.offline)return fail('Rest endpoint source is unavailable');
+   const bed=resolveChuxiuSharedRest(entry.data.group,{allowDetached:this.zm.prebuilt.has('west-six')});
+   if(bed.status!=='ready'||bed.sourceIdentity!==this.bedIdentity||JSON.stringify(bed.slots)!==JSON.stringify(this.slots))return fail('Actual rest endpoint support changed');
+  }else{
+   const actual=this.world._resolveSeat(actor,characterContactMetrics('seated',actor.behavior.seatVariant)),day=this.seeds.get(actor.id);
+   if(actual.status!=='ready'||!day||JSON.stringify(actual.position)!==JSON.stringify(day.position)||actual.rotationYRad!==day.rotationYRad)return fail('Actual throne endpoint support changed');
+  }
+  return true;
  }
  syncTaiheSurfaces(replacement){
   const fallback=replacement?.fallback??[];

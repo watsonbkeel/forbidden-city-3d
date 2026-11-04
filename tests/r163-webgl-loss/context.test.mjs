@@ -49,12 +49,12 @@ for(const gpuFirst of [false,true])test(`first failure wins across JS and graphi
 for(const mobile of [false,true])test(`context loss preserves settings/map failure input ownership (mobile=${mobile})`,async t=>{
  const f=await fixture(t,{mobile}),g=graphics(f);f.map.toggle();f.menu.show();f.a.startAnimationLoop();g.emit('webglcontextlost');const b=recovery(f),pose=f.camera.position.toArray();
  for(const code of ['Escape','Tab','KeyW','KeyH'])f.dispatch(b,'keydown',{code,key:code==='Tab'?'Tab':code==='Escape'?'Escape':code.slice(3).toLowerCase()});
- assert.equal(f.menu.visible,false);assert.equal(f.settingsSession.paused,true);assert.equal(f.map.visible,true);assert.equal(f.map.container.inert,true);assert.equal(f.document.activeElement,b);assert.equal(f.c.controls.isLocked,false);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(f.queue.size,0);
+ assert.equal(f.menu.visible,false);assert.equal(f.settingsSession.paused,true);assert.equal(f.map.visible,true);assert.equal(f.map.container.inert,true);assert.equal(f.document.activeElement.id,'tour-copy-diagnostic');assert.equal(f.c.controls.isLocked,false);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(f.queue.size,0);
 });
 for(const settings of [false,true])test(`context loss preserves real flight and late pointer-lock ownership (settings=${settings})`,async t=>{
  const f=await fixture(t),g=graphics(f),flight=flightFor(f);if(settings)f.menu.show();f.a.startAnimationLoop();g.emit('webglcontextlost');const b=recovery(f),pose=f.camera.position.toArray();
  for(const code of ['KeyH','Escape','Tab','KeyF','KeyW'])f.dispatch(b,'keydown',{code,key:code==='Tab'?'Tab':code==='Escape'?'Escape':code.slice(3).toLowerCase()});
- f.document.pointerLockElement=f.c.domElement;f.dispatch(f.document,'pointerlockchange');assert.equal(flight.occupied,true);assert.equal(f.c.controls.isLocked,false);assert.equal(f.document.activeElement,b);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(flight.keys.size,0);assert.equal(f.queue.size,0);
+ f.document.pointerLockElement=f.c.domElement;f.dispatch(f.document,'pointerlockchange');assert.equal(flight.occupied,true);assert.equal(f.c.controls.isLocked,false);assert.equal(f.document.activeElement.id,'tour-copy-diagnostic');assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(flight.keys.size,0);assert.equal(f.queue.size,0);
 });
 test('real application disposal removes the canvas observer and stale callbacks cannot show a new notice',async t=>{
  const f=await fixture(t),g=graphics(f);f.a.startAnimationLoop();const registered=[...(g.canvas.listeners.get('webglcontextlost')??[])];assert.equal(registered.length,1);

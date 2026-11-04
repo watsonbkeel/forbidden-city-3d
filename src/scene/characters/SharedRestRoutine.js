@@ -5,16 +5,42 @@ import {SharedRestNavigation,SHARED_REST_PATHS} from './SharedRestNavigation.js'
 import {SHARED_REST_IDS} from './SharedRestSlots.js';
 import {characterBody,bodiesIntersect,sweptBodiesIntersect,sweptBodyIntersectsPlayer} from './CharacterBody.js';
 const sample=(position,rotationYRad=0,speedMetersPerSecond=0)=>({position:[...position],rotationYRad,speedMetersPerSecond});
-/** Exactly two actors and two stable slots, on a single reversible checked
- * polyline each. Time changes reverse from the current position, never route 0. */
+/** Two stable adults and slots. The consort keeps her checked local path;
+ * the emperor uses certified time-selected endpoints without a cross-palace path. */
 export class SharedRestRoutine {
  constructor(owner){this.owner=owner;this.navigation=new SharedRestNavigation(owner.world,owner.registry);this.states=[];}
  get status(){return this.navigation.status;}
  prepareState(state){if(!SHARED_REST_IDS.includes(state.actor.id)||!this.navigation.seeds.has(state.actor.id))return false;if(!state.binding)state.binding=this.navigation.seeds.get(state.actor.id);state.pending=false;return true;}
  safe(beforeActor,before,afterActor,after){if(!this.owner.safeTransfer(beforeActor,before,afterActor,after))return false;return this.states.every(s=>{if(s.actor.id===afterActor.id||!s.binding)return true;const other=characterBody(s.actor,this.owner.current(s));return!bodiesIntersect(characterBody(afterActor,after),other)&&!sweptBodiesIntersect(characterBody(beforeActor,before),characterBody(beforeActor,after),other)&&!sweptBodiesIntersect(characterBody(afterActor,before),characterBody(afterActor,after),other);});}
+ /** The user requested time-selected endpoints, not a straight-line movement.
+  * Keep the original throne and two-slot source certificates, and never load a
+  * remote zone merely to reposition this logical actor. */
+ updateEmperor(state,night){
+  const original=state.dayActor??state.actor,current=this.owner.current(state);
+  if(!night&&!state.routine)return;
+  const nav=this.navigation,slot=nav.slots?.find(s=>s.actorId===state.actor.id),day=nav.seeds.get(state.actor.id);
+  if(!day||night&&(!slot||nav.sources.get('west-six')?.offline)){this.owner.stats.waiting++;return;}
+  const actor=night?this.owner.effective(original,'sleeping'):original;
+  const point=night?sample(slot.position,slot.rotationYRad):sample(day.position,day.rotationYRad);
+  if(night&&state.routine?.kind==='endpoint-rest'){
+   state.routine.sourceIdentity=nav.bedIdentity;state.routineRenderable=nav.renderable(point.position);this.owner.stats.sleeping++;return;
+  }
+  if(!nav.validate([current.position,point.position])){state.routineRenderable=false;this.owner.stats.waiting++;return;}
+  const body=characterBody(actor,point);
+  const free=this.owner.safePose(actor,point)&&this.states.every(other=>other===state||!other.binding||!bodiesIntersect(body,characterBody(other.actor,this.owner.current(other))));
+  if(!free){this.owner.stats.waiting++;return;}
+  if(!nav.validateEndpoint(original,night)){state.routineRenderable=false;this.owner.stats.waiting++;return;}
+  // Publish one coherent pose, with no old walking/interaction sample left over.
+  state.patrol?.dispose?.();state.patrol=null;
+  delete state.routine;delete state.routineSample;delete state.interactionSample;delete state.dayActor;
+  state.interactionActivated=false;state.actor=actor;state.binding=day;
+  if(night){state.dayActor=original;state.routine={kind:'endpoint-rest',phase:'sleeping',slotId:slot.id,sourceIdentity:nav.bedIdentity};state.routineSample=point;this.owner.stats.sleeping++;}
+  state.routineRenderable=nav.renderable(point.position);
+ }
  update(states,dt,night){
   this.states=states.filter(s=>SHARED_REST_IDS.includes(s.actor.id));for(const state of this.states)this.prepareState(state);const valid=this.navigation.validate(this.states.filter(s=>s.binding).map(s=>this.owner.current(s).position));
-  for(const state of this.states){this.prepareState(state);if(!state.binding)continue;const current=this.owner.current(state);state.routineRenderable=valid&&this.navigation.renderable(current.position);if(!valid){if(state.routineSample)state.routineSample={...state.routineSample,speedMetersPerSecond:0};this.owner.stats.waiting++;continue;}
+  for(const state of this.states){this.prepareState(state);if(!state.binding)continue;const current=this.owner.current(state);state.routineRenderable=valid&&this.navigation.status==='ready'&&this.navigation.renderable(current.position);if(!valid||this.navigation.status!=='ready'){if(state.routineSample)state.routineSample={...state.routineSample,speedMetersPerSecond:0};this.owner.stats.waiting++;continue;}
+   if(state.actor.id===SHARED_REST_IDS[0]){this.updateEmperor(state,night);continue;}
    if(!state.routine&&night){const original=state.actor,points=SHARED_REST_PATHS.get(original.id),standing=this.owner.effective(original),first=sample(points[0],current.rotationYRad);
     // A validated S asset can bake a profile height to a slightly higher F32
     // plane. Bind the first standing sample to that actual source as movement

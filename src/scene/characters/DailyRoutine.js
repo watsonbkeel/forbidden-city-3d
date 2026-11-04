@@ -11,14 +11,14 @@ import {PLAYER} from '../../config/constants.js';
 const distance=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));
 const sample=(position,rotationYRad=0,speed=0)=>({position:[...position],rotationYRad,speedMetersPerSecond:speed});
 /** Requested game routine. Stable IDs, checked routes, no midnight despawning.
- * Transitioning a posture is discrete and occupancy-checked; walking itself is
- * continuous, and a blocked player pauses progress rather than being crossed. */
+ * Emperor endpoints are time-selected and occupancy-checked. Other walking
+ * stays continuous, and a blocked player pauses progress rather than being crossed. */
 export class DailyRoutine {
  constructor({world,collisionManager,interaction,registry}){Object.assign(this,{world,cm:collisionManager,interaction,registry});this.beds=new Map(NIGHT_BEDS.filter(b=>b.actorId).map(b=>[b.actorId,b]));this.paths=new Map(routes.paths.map(p=>[p.bedId,p.points]));this.night=false;this.stats={sleeping:0,travelling:0,duty:0,waiting:0};this.shared=new SharedRestRoutine(this);}
  prepareState(state){return this.shared.prepareState(state);}
  dispose(){this.shared.dispose();}
  effective(original,pose='standing') {return{...original,placement:{mode:'path',pathRef:`routine:${original.id}`},behavior:{...original.behavior,basePose:pose,seatVariant:'standard',followerIndex:0}};}
- reset(states){for(const state of states){if(state.dayActor)state.actor=state.dayActor;delete state.routine;delete state.routineSample;delete state.dayActor;}}
+ reset(states){for(const state of states){if(state.dayActor)state.actor=state.dayActor;delete state.routine;delete state.routineSample;delete state.dayActor;if(state.actor.id===SHARED_REST_IDS[0]){delete state.interactionSample;delete state.routineRenderable;state.interactionActivated=false;}}}
  current(state){return state.routineSample??state.interactionSample??sample(state.binding.position,state.binding.rotationYRad);}
  playerState(){return this.interaction?.getPlayerState?this.interaction.getPlayerState():this.interaction?.player;}
  safePose(actor,point){return!bodyIntersectsPlayer(characterBody(actor,point),this.playerState());}

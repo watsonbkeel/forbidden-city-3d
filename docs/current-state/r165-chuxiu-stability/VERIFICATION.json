@@ -1,0 +1,119 @@
+{
+  "recordedUTC": "2026-11-04T16:43:04.648622+00:00",
+  "mainBase": "b7ef2a4fa85db0b859cf2d57f2b02779ba2ec153",
+  "cumulativeBase": "23f224f4c286c432c12f0a61eb90055da30254fb",
+  "localMerge": "53d0bfb2b23b510b70f158b691517cd616c66043",
+  "localMergeTree": "67a6bb4d3dc5e652272144246226b47b611632c6",
+  "scope": "LOCAL_FIRST_FAILURE_SUMMARY_AND_CERTIFIED_EMPEROR_ENDPOINTS",
+  "runtimeFiles": {
+    "main.js": "1f2c9709a050cbdd9c0f3661ad4cef9908a6eca41665a14b0552fc0f33ad6c63",
+    "src/ui/TourFailureDiagnostic.js": "104d708e67aaa790c8f873db279c84bdb6973cc0c5363f11e9289c3bffae6c9b",
+    "src/ui/TourFailureNotice.js": "2f997b49debdcfc6a291abd66d592c293f1e67c6265054ef19a0be366e7ac8bf",
+    "src/scene/characters/DailyRoutine.js": "fb99c5fbbe29db6f2a12e95e80fd100af068f3b9d8f5a1eb0b334dbefba93eb5",
+    "src/scene/characters/SharedRestRoutine.js": "334ba26ddedfa4adf2645f8962189f2fd3addd62a0bfcb2bc38439787ac6d95d",
+    "src/scene/characters/SharedRestNavigation.js": "6368766eaed37e3898b9f9070e233d8ad504dffc11a5e671aac06e6c069be119"
+  },
+  "selfFormal": {
+    "distinct": 220,
+    "passed": 219,
+    "preExistingFailure": 1,
+    "notAllGreen": true
+  },
+  "testFiles": [
+    "tests/r128/checkpoint-priority.test.mjs",
+    "tests/r128/path-checkpoint.test.mjs",
+    "tests/r128/resumable-geometry.test.mjs",
+    "tests/r129/sloped-footprint.test.mjs",
+    "tests/r141-fix/exact-bytes.test.mjs",
+    "tests/r146-fix/environment-ownership.test.mjs",
+    "tests/r163-batch-matrix-write/current.test.mjs",
+    "tests/r163-failure-recovery/integration.test.mjs",
+    "tests/r163-failure-recovery/notice.test.mjs",
+    "tests/r163-failure-recovery/ownership.test.mjs",
+    "tests/r163-failure-recovery/scheduler.test.mjs",
+    "tests/r163-quality-preference/preference.test.mjs",
+    "tests/r163-webgl-loss/context.test.mjs",
+    "tests/r164-zone-source-lifecycle/atomic-load.test.mjs",
+    "tests/r164-zone-source-lifecycle/dispose.test.mjs",
+    "tests/r164-zone-source-lifecycle/retention.test.mjs",
+    "tests/r164-zone-source-lifecycle/source-boundary.test.mjs",
+    "tests/r164-zone-source-lifecycle/teleport-neighbors.test.mjs",
+    "tests/r165-emperor-endpoints/corridor.test.mjs",
+    "tests/r165-emperor-endpoints/cost.test.mjs",
+    "tests/r165-emperor-endpoints/coverage.test.mjs",
+    "tests/r165-emperor-endpoints/interior.test.mjs",
+    "tests/r165-emperor-endpoints/lifecycle.test.mjs",
+    "tests/r165-emperor-endpoints/manager.test.mjs",
+    "tests/r165-emperor-endpoints/prebuilt.test.mjs",
+    "tests/r165-emperor-endpoints/production.test.mjs",
+    "tests/r165-emperor-endpoints/routine.test.mjs",
+    "tests/r165-emperor-endpoints/source.test.mjs",
+    "tests/r165-emperor-endpoints/support.test.mjs",
+    "tests/r165-first-failure-diagnostic/diagnostic.test.mjs",
+    "tests/r165-first-failure-diagnostic/integration.test.mjs",
+    "tests/r165-first-failure-diagnostic/notice.test.mjs",
+    "tests/r65-all-day-availability.test.mjs",
+    "tests/r65-character-bodies.test.mjs",
+    "tests/r65-mutual-character-interaction.test.mjs",
+    "tests/r72-bed-registry.test.mjs",
+    "tests/r72-blocked-wakeup.test.mjs",
+    "tests/r72-routine-clock.test.mjs",
+    "tests/r72-routine-path.test.mjs",
+    "tests/settings-inputs.test.mjs",
+    "tests/settings-menu.test.mjs",
+    "tests/settings-tour-session.test.mjs"
+  ],
+  "independent": {
+    "diagnosticPassed": 59,
+    "emperorPassed": 21,
+    "extraCoveragePending": false,
+    "textReview": "PASSED",
+    "distinctPassed": 80,
+    "oldBaselineDiagnosticFailure": 1
+  },
+  "observedCpuFixture": {
+    "scope": "actual Taihe component + west-six only; not World or GPU",
+    "corridorCells": [
+      1304,
+      40
+    ],
+    "colliders": [
+      329,
+      28
+    ],
+    "walkables": [
+      63,
+      13
+    ],
+    "numericBytesEstimate": [
+      58688,
+      5728
+    ],
+    "surfaceTriangles": [
+      106,
+      30
+    ],
+    "surfaceNumericBytes": [
+      18656,
+      5280
+    ],
+    "staticMeshes": [
+      117,
+      31
+    ],
+    "owners": [
+      392,
+      41
+    ],
+    "emperorAdvanceCalls": 0
+  },
+  "buildAndRemote": "Reported separately after clean commit build and complete new-branch readback; not a deployment claim",
+  "unverified": [
+    "real user crash root cause",
+    "browser/GPU/mobile",
+    "Mac temperature",
+    "true clipboard permission",
+    "complete World",
+    "Node20"
+  ]
+}
