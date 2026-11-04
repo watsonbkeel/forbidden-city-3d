@@ -1,3 +1,4 @@
+import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';
 import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';
 import {buildYiheCourtCensers} from '../palace/special/YiheCourtCensers.js';
 import {fitNingshouFrontHall} from '../palace/special/NingshouFrontHall.js';
@@ -411,6 +412,7 @@ export class ZoneBase {
     buildZhenfeiWell(this.kit,this.zoneJson);
     buildYiheCourtCensers(this.kit,this.zoneJson);
     buildChangyinMiddleNameboard(this.kit,this.zoneJson);
+    buildChangyinLowerNameboard(this.kit,this.zoneJson);
     this.group = this.kit.finish();
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
