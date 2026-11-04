@@ -1,0 +1,7 @@
+import fs from 'node:fs';import * as T from 'three';import{CourtKit}from '../../src/scene/palace/kit.js';import{library}from '../lib/inner-palace-fixture.mjs';
+const url=new URL('../../src/scene/palace/special/RemainingNingshouHalls.js',import.meta.url);
+const original=fs.readFileSync(url,'utf8').replace(/from\s*['"]([^'"]+)['"]/g,(_,path)=>`from '${path==='./JingfuSouthGallery.js'?new URL('./frozen/JingfuSouthGallery.c99.js',import.meta.url).href:path==='three'?import.meta.resolve('three'):new URL(path,url).href}'`);
+const old=await import('data:text/javascript;base64,'+Buffer.from(original).toString('base64'));
+const items=JSON.parse(fs.readFileSync(new URL('../../data/zones/ningshou.json',import.meta.url)));
+export function fixture(){const item=items.items.find(i=>i.name==='景福宫'),kit=new CourtKit(library(),'ningshou'),p=old.resolveRemainingProfile('ningshou',item),r=old.buildRemainingHall(kit,item,p),targets=r.f.children.filter(m=>m.userData.role==='jingfu-south-base-shoulder');return{...r,kit,p,targets,c:{kit,p,item,f:r.f,mats:{stone:targets[0].material}},dispose(){kit.dispose(r.f)}}}
+export const rows=f=>f.children.filter(m=>m.isMesh).map(m=>({name:m.name,position:m.position.toArray(),rotation:m.rotation.toArray(),scale:m.scale.toArray(),material:m.material?.uuid??null,geometry:m.geometry.uuid,positions:[...m.geometry.attributes.position.array],index:[...(m.geometry.index?.array??[])],data:structuredClone(m.userData)}));

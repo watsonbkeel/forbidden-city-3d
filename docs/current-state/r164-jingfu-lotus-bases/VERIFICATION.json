@@ -1,0 +1,72 @@
+{
+  "baseCommit": "c99f8eff9eb0e4a5f965eb263cf4305345b41ef9",
+  "scope": "BOUNDED_CPU_COMPONENTS_AND_REAL_ZONES_NOT_ALL_REPOSITORY_OR_GPU",
+  "tests": {
+    "boundedLight": 256,
+    "realNingShou": 1,
+    "realYangxinBPlusS": 1,
+    "realFengxianEastGarden": 1,
+    "total": 259,
+    "independentReview": 27
+  },
+  "jingfuRoutes": {
+    "positive": 24,
+    "negative": 32,
+    "beforeAfterFramesIdentical": true,
+    "removedContactsNegativeControl": true
+  },
+  "retained": {
+    "base": "c99f8eff9eb0e4a5f965eb263cf4305345b41ef9",
+    "tree": "6a8cec50fb9ec3820b99672798d2c24a77d36450",
+    "raw": {
+      "meshes": 26215,
+      "triangles": 579092,
+      "geometry": "3ca07bfa8a7be834ee9bef057e99ab69a2a277345564ce750c46ce062a1bcd36"
+    },
+    "data": {
+      "colliderCount": 6985,
+      "colliders": "0c7136727e12415ae91f20d0b3797df8813d55dd76018b8d601784a9a295e797",
+      "walkableCount": 223,
+      "walkables": "0ebda2b290b70ea72822731b23f11ce62b3c45f1b1dcf702ca5582c673058870",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "4842bae0a88b0550eba20cd47c0a65cfc652599146750c88bea035df0040985a"
+    },
+    "roof": {
+      "triangles": 7044,
+      "sha256": "330e6cd1f9a716724d7336857f3919d8787def0f8b6b26e791c126d5f2a82a63"
+    },
+    "targetTriangles": 480
+  },
+  "delta": {
+    "meshes": 0,
+    "triangles": 7584,
+    "materials": 0,
+    "textures": 0,
+    "colliders": 0,
+    "walkables": 0,
+    "sourceBufferBytes": 189696,
+    "localMergedBufferBytes": 728064,
+    "cpuOnly": true
+  },
+  "runtimeSha256": {
+    "src/scene/palace/special/JingfuLotusBases.js": "235c02c1638c22136e4caf823aaf2da60556360035043546bac814a6b510bd15",
+    "src/scene/palace/special/JingfuSouthGallery.js": "d0f49f03782a0d9bd9c4b828599e2196373319baa1560e1595f57f65fd640682"
+  },
+  "notVerified": [
+    "World",
+    "Browser",
+    "GPU",
+    "Mobile",
+    "Node20",
+    "Mac temperature"
+  ],
+  "initialFailures": [
+    "Missing-relief red test failed on c99 as intended",
+    "Exact source-radius guard arithmetic corrected; no source tolerance loosened",
+    "Fixture null plaque material handling corrected",
+    "Source-versus-merged ray Float32 threshold clarified, observed max 0.000012709m",
+    "Mistyped neighbors.test.mjs did not run; actual teleport-neighbors.test.mjs passed"
+  ]
+}

@@ -1,3 +1,4 @@
+import {fitJingfuLotusBases} from './JingfuLotusBases.js';
 // Own official front-gallery view (7411), not an interior photograph.
 // Grid counts, colours and member dimensions are model fits, not surveys.
 export function buildJingfuSouthGallery(c){
@@ -34,6 +35,7 @@ export function buildJingfuSouthGallery(c){
  }
  for(let i=0;i<=5;i++)box('jingfu-south-cross-beam','green',.16,.24,span+.14,-w/2+i*w/5,cy-.06,(z0+z1)/2);
  for(const z of[z0,z1])box('jingfu-south-ceiling-edge','green',w,.19,.12,0,cy-.05,z);
- const data={object:'FC-7616C3B4B6',source:'https://www.dpm.org.cn/explore/building/236571.html',image:'https://img.dpm.org.cn/Uploads/Picture/dc/7411.jpg',scope:'SOUTH_GALLERY_JOINERY_OVERHEAD_AND_SOUTH_COLUMN_PALETTE_ONLY',accepted:false,dimensionStatus:'PHOTO_RELATIONSHIPS_MODEL_FITS_NOT_SURVEY',doorPose:'OPEN_MODEL_CIRCULATION_FIT_NOT_CONFIRMED_PHOTO_LEAF_INVENTORY',columnPalette:'WARM_OCHRE_NOT_CONFIRMED_BARE_WOOD',ceiling:'PLAIN_GREEN_FIELDS_NO_SU_STYLE_PICTURE_RECONSTRUCTION',baseRelief:'PLAIN_VOLUME_NOT_CARVED_LOTUS',missing:['EXACT_JOINERY_INVENTORY','LOTUS_CARVING','SU_STYLE_PAINTING','FIVE_FU_FIVE_GENERATIONS_INTERIOR_PHOTOS'],newWalkables:0};
+ const lotusBases=fitJingfuLotusBases(c);
+ const data={lotusBases,object:'FC-7616C3B4B6',source:'https://www.dpm.org.cn/explore/building/236571.html',image:'https://img.dpm.org.cn/Uploads/Picture/dc/7411.jpg',scope:'SOUTH_GALLERY_JOINERY_OVERHEAD_AND_SOUTH_COLUMN_PALETTE_ONLY',accepted:false,dimensionStatus:'PHOTO_RELATIONSHIPS_MODEL_FITS_NOT_SURVEY',doorPose:'OPEN_MODEL_CIRCULATION_FIT_NOT_CONFIRMED_PHOTO_LEAF_INVENTORY',columnPalette:'WARM_OCHRE_NOT_CONFIRMED_BARE_WOOD',ceiling:'PLAIN_GREEN_FIELDS_NO_SU_STYLE_PICTURE_RECONSTRUCTION',baseRelief:'SOUTH_SIX_SHALLOW_LOTUS_FIT_OTHER_BASES_UNCHANGED',missing:['EXACT_JOINERY_INVENTORY','OTHER_COLUMNS_AND_EXACT_LOTUS_CARVING','SU_STYLE_PAINTING','FIVE_FU_FIVE_GENERATIONS_INTERIOR_PHOTOS'],newWalkables:0};
  c.f.userData.jingfuSouthGallery=data;return data;
 }
