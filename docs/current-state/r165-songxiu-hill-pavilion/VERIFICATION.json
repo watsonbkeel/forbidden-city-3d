@@ -1,6 +1,6 @@
 {
   "base": "dcd3d15c78d22d6667716375e6f57737eb21ad91",
-  "status": "CHECKED_PENDING_BUILD_AND_UPLOAD",
+  "status": "CHECKED_BUILT_REMOTE_READBACK",
   "runtimeSHA256": {
     "src/scene/palace/special/SongxiuHillPavilion.js": "b117909b6073f46c88e4954a2bee2b58cfa3ba194561a00baed006b0d08ef6d5",
     "src/scene/zones/ZoneBase.js": "6b1062b6004c375a27add873a740effea404d13c7ee13acf163987761e0e329f"
@@ -47,8 +47,29 @@
     "maxRSSKiB": 1313544
   },
   "textReview": "PASSED",
-  "cleanBuild": "PENDING",
-  "remoteReadback": "PENDING",
+  "cleanBuild": {
+    "status": "PASSED",
+    "localCommit": "97af6517198ac0d0b71359cff0a025ca79474e23",
+    "sourceDirty": false,
+    "base": "/forbidden-city-3d/",
+    "buildId": "R164-767428815519",
+    "buildLogElapsedSeconds": 8.51,
+    "localHttpResourcesVerified": 137,
+    "httpReverifiedAtUTC": "2026-11-04T22:18:44.705Z",
+    "scope": "LOCAL_HTTP_ONLY_NOT_REMOTE_PAGES_DEPLOYMENT_OR_BROWSER_GPU"
+  },
+  "remoteReadback": {
+    "status": "PASSED",
+    "branch": "dev/r165-songxiu-hill-pavilion-20261105",
+    "commit": "d4c40891e8082038d949b69aa94651a5a1478fee",
+    "parent": "dcd3d15c78d22d6667716375e6f57737eb21ad91",
+    "tree": "6f16aca60ac3e037aa77d8ec4d4344016a149b11",
+    "treeEqualsLocalTestedCommit": true,
+    "changedFilesByteVerified": 36,
+    "verifiedAtUTC": "2026-11-04T22:17:25.811Z",
+    "mainObservedUnchanged": "b7ef2a4fa85db0b859cf2d57f2b02779ba2ec153",
+    "scope": "HISTORICAL_SONGXIU_CANDIDATE_IDENTITY_NOT_SUBSEQUENT_DOC_ONLY_UPDATE_OR_DEPLOYMENT"
+  },
   "newWholeObjectAcceptances": 0,
   "newTeleportTargets": 0,
   "runtimeScope": "ONE_FITTED_HILLTOP_PAVILION_AND_UNIQUE_SYNCHRONOUS_HOOK_140",
@@ -105,5 +126,13 @@
     "maxRSSKiB": 1338204,
     "supersededAndNotAddedToFinalCount": true
   },
-  "interruptedBounded": "Previous run stopped after final-width source change; not counted as final pass."
+  "interruptedBounded": "Previous run stopped after final-width source change; not counted as final pass.",
+  "resumeIndependentReview": {
+    "lightTests": 20,
+    "pass": 20,
+    "durationMs": 28650.242618,
+    "duplicatesNotAddedToDistinctFormalCount": true,
+    "sourceHashesMatch": true,
+    "scope": "LIGHT_ONLY_NO_REPEAT_WORLD_OR_FULL_ZONE"
+  }
 }

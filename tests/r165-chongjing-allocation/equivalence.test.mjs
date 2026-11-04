@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {fixture,rawSnapshot} from './fixture.mjs';
+test('actual raw and merged geometry, materials, physical supports and all metadata equal exact public d4c4 source',()=>{let before;for(const old of [true,false]){const f=fixture({before:old});try{f.run();const raw=f.snapshot(),merged=rawSnapshot(f.kit.finish()),value={raw,merged};if(old)before=value;else assert.deepEqual(value,before);console.log(JSON.stringify({before:old,...value}));}finally{f.dispose()}}});
+test('repeat separate builds do not retain scratch state or alias earlier physical data',()=>{const a=fixture(),b=fixture();try{a.run();const snap=a.snapshot();b.run();assert.deepEqual(b.snapshot(),snap);assert.deepEqual(a.snapshot(),snap);b.kit.colliders.at(-1).min.x+=1;assert.deepEqual(a.snapshot(),snap)}finally{a.dispose();b.dispose()}});

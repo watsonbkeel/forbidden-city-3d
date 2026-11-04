@@ -1,0 +1,270 @@
+{
+  "status": "LOCAL_CUMULATIVE_TESTS_REVIEW_BUILD_ALL_RESOURCE_HTTP_PASS_EXTERNAL_CLOSEOUT_SEPARATE",
+  "publicXiefangBase": "022050ba3902e421bdd4ffc967572f20e914ee53",
+  "publicSongxiuComparisonBase": "d4c40891e8082038d949b69aa94651a5a1478fee",
+  "publicSongxiuTree": "6f16aca60ac3e037aa77d8ec4d4344016a149b11",
+  "performanceCommit": "1698dd921bbf585bf2aac6a19595ae9905e7205c",
+  "contractCommits": [
+    "1227615cf14bc61fed18ac229fdae46d14f95dd8",
+    "cc277979472a585d4654e83dc8f25643287b36a1",
+    "43b13670a9730a2fcbe0eb44b5fa33d6132a0f71"
+  ],
+  "codeTestsFreeze": "43b13670a9730a2fcbe0eb44b5fa33d6132a0f71",
+  "runtimeSHA256": {
+    "src/scene/palace/special/ChongjingHall.js": "7c91888b9478eb562a0ef434e25ac6c5b7f8adb1363967ecd52c665ba9fad494",
+    "src/scene/palace/special/XiefangHillPavilion.js": "acc80ab35f9e843148af44b14bf895e0bfa74c10dcbba4234659bc401c4c149f",
+    "src/scene/zones/ZoneBase.js": "d8373ca880b5491e8a5200c25050a2cbf6f0807049aa5e83b00b996af4b24632"
+  },
+  "patchInputs": {
+    "files": 19,
+    "exactBeforeAndPatchOutputManifestMatch": true,
+    "integratedAdaptation": "public-base labels and exactly scoped cumulative source guards only; runtime output remains immutable patch SHA"
+  },
+  "staleRed": {
+    "tests": 8,
+    "pass": 5,
+    "fail": 3,
+    "scope": "UNCHANGED_PRE_MAINTENANCE_TESTS_NOT_RUNTIME_BUGS"
+  },
+  "performanceTargeted": {
+    "tests": 25,
+    "pass": 25,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "command": "node --test --test-concurrency=1 tests/r165-xiefang-hill-pavilion/source.test.mjs tests/r165-chongjing-allocation/{source,allocation,equivalence,lifecycle}.test.mjs tests/r165-{roof-joint-bounds,zhuxiang-main-shell,juting-main-pavilion,yunguang-main-shell,lutai-rock-terrace,songxiu-hill-pavilion}/source.test.mjs"
+  },
+  "contractsAndMandatoryCompanions": {
+    "tests": 59,
+    "pass": 59,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "gateMutationTests": 21,
+    "bedMutationTests": 8,
+    "earlyHarnessLimit": "Unknown-marked ceiling failure attempted to print a whole cyclic Three.js group, yielding SIGKILL. Replaced reference assertions with equally strict boolean identity checks; final full negative suite passed. Killed runs are not counted as passes.",
+    "command": "node --test --test-concurrency=1 tests/r164-ningshou-side-steps/{component,contract-negative}.test.mjs tests/r72-bed-registry{,-negative}.test.mjs tests/r164-ningshou-front-hall/component.test.mjs tests/r164-yangxing-ceiling/component.test.mjs tests/r165-emperor-endpoints/coverage.test.mjs"
+  },
+  "bounded": {
+    "files": 323,
+    "list": "BOUNDED-TEST-FILES.json",
+    "status": "PASS",
+    "scope": "EXPLICIT_CUMULATIVE_CPU_COMPONENT_CONTROLLER_SOURCE_LIST_NOT_ALL_REPOSITORY_TESTS",
+    "command": "node --test --test-concurrency=1 --test-reporter=tap $(node -e \"process.stdout.write(JSON.parse(require('node:fs').readFileSync('docs/current-state/r165-cumulative-20261105/BOUNDED-TEST-FILES.json')).join(' '))\")",
+    "uniqueFileCountChecked": true,
+    "tests": 1134,
+    "suites": 0,
+    "pass": 1134,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 345615.254927,
+    "afterFinalCodeAndTestFreeze": true,
+    "sourceUnchangedDuringRun": true
+  },
+  "heavy": {
+    "files": 2,
+    "list": "HEAVY-TEST-FILES.json",
+    "serialOnly": true,
+    "status": "PASS",
+    "results": {
+      "ningshou": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 109344.998645,
+        "maxRSSKiB": 1130016,
+        "test_duration_ms": 108613.966768
+      },
+      "westSix": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "duration_ms": 8189.555025,
+        "maxRSSKiB": 483844,
+        "test_duration_ms": 7526.834124
+      }
+    },
+    "countsNotAddedToRepeatedTargetedRuns": true,
+    "commands": [
+      "node --max-old-space-size=1536 --expose-gc --test --test-concurrency=1 tests/r165-xiefang-hill-pavilion/production-zone.test.mjs",
+      "CHONGJING_ALLOCATION_EVIDENCE_DIR=/existing/output node --max-old-space-size=640 --expose-gc --test --test-concurrency=1 tests/r165-chongjing-allocation/production-zone.test.mjs"
+    ]
+  },
+  "schema": {
+    "command": "node tests/zone-lint.cjs --no-geo",
+    "exit": 0,
+    "files": 7,
+    "errors": 0,
+    "warnings": 9,
+    "buildsWorld": false
+  },
+  "anchors": {
+    "command": "node tests/anchor-check.cjs",
+    "exit": 1,
+    "compared": 114,
+    "outOfTolerance": 1,
+    "retained": "Layout.js 神武门 dz=11m, tolerance=5m"
+  },
+  "historicalTimingSamplesOnly": {
+    "componentMedianMs": [
+      115.227,
+      91.934
+    ],
+    "westSixMedianMs": [
+      785.1,
+      782.76
+    ],
+    "reliableWholeZoneImprovementClaim": false,
+    "MacOrCrashClaim": false
+  },
+  "independentReview": {
+    "status": "PASS_NO_OUTSTANDING_P0_P1_P2",
+    "freeze": "43b13670a9730a2fcbe0eb44b5fa33d6132a0f71",
+    "checkedFreezeHashes": 27,
+    "tests": 59,
+    "pass": 59,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 3029.720363,
+    "resultSource": "Parent confirmed independent read-only scoped review; no concurrent test process remained.",
+    "reportSHA256": "a566695eff0cf3e7f5c421d0fb8fb40a406db9d5918074f6f405fbaf94d2a7d1",
+    "testLogSHA256": "5de3429dd8b5c402fe6dd2dcf6cf04ae116db35ed27e0028f9d23d3e34445296",
+    "repeatedChecksNotAddedToDistinctFormalCount": true,
+    "optionalP3": "Compact/minified assertion readability, deferred pure formatting only."
+  },
+  "cleanBuild": {
+    "status": "PASS",
+    "command": "VITE_BASE=/forbidden-city-3d/ npm run build -- --outDir /workspace/scratch/02a8023d1a85/r165-cumulative-build-43b1367",
+    "outputDirectory": "NEW_EMPTY_SIBLING_r165-cumulative-build-43b1367",
+    "duration_s": 8.05,
+    "schema": 1,
+    "release": "R164",
+    "buildId": "R164-3359aa5494d9",
+    "sourceFingerprint": "30b337a1d2d0ebc190498105e0be5d084312bb4083962401ddcd6979b364c08f",
+    "sourceCommit": "43b13670a9730a2fcbe0eb44b5fa33d6132a0f71",
+    "sourceDirty": false,
+    "base": "/forbidden-city-3d/",
+    "sourceScope": "Clean committed runtime/build inputs; final documentation-only closeout is later and leaves the runtime fingerprint unchanged.",
+    "warning": "Inherited >500kB chunk advisory; no package upgrade was performed."
+  },
+  "localHTTPIdentity": {
+    "status": "PASS",
+    "scope": "LOOPBACK_HTML_BUILDINFO_ENTRY_BYTES_AND_SOURCE_IDENTITY_NOT_BROWSER_GPU_OR_ALL_RESOURCE_AUDIT",
+    "htmlStatus": 200,
+    "buildInfoStatus": 200,
+    "entryStatus": 200,
+    "entry": "/forbidden-city-3d/assets/index-BplvJUU5.js",
+    "entryBytes": 6410694
+  },
+  "remoteUpload": "NOT_PERFORMED_BY_THIS_INTEGRATION",
+  "Pages": "NOT_DEPLOYED_BY_THIS_INTEGRATION",
+  "main": "UNMODIFIED",
+  "WorldGpuBrowserMobileNode20Mac": "NOT_RUN",
+  "ChuxiuRootCause": "UNKNOWN_NOT_REPRODUCED",
+  "coldPreloadPrototype": "EXCLUDED",
+  "newWholeObjectAcceptances": 0,
+  "newMapItems": 0,
+  "newTeleportTargets": 0,
+  "runtimeBoundary": {
+    "base": "d4c40891e8082038d949b69aa94651a5a1478fee",
+    "checkedOldFiles": 824,
+    "checkedOldBytes": 9090928,
+    "delta": [
+      "M\tsrc/scene/palace/special/ChongjingHall.js",
+      "A\tsrc/scene/palace/special/XiefangHillPavilion.js",
+      "M\tsrc/scene/zones/ZoneBase.js"
+    ],
+    "normalization": "Exact unique Xiefang3lines plus exact reviewed ChongjingSHA7c91888→frozenSHAca611695 only",
+    "result": "PASS"
+  },
+  "evidenceLogs": {
+    "performance-source-red.tap": {
+      "bytes": 2237,
+      "sha256": "aeae31aa8fcfb7b3a44f66c821ca8beededefd83172a6ac23bcc9032ede990c7"
+    },
+    "performance-small.tap": {
+      "bytes": 4870,
+      "sha256": "6963043527c54307ae9521d3fa0152d2d6a0eec2fb64a39e81e3e373bac8ca8e"
+    },
+    "performance-production-west-six.tap": {
+      "bytes": 501,
+      "sha256": "139abb9e5f9a608ca06c950866b8abff0a67880748f8e85eaa9345579c917155"
+    },
+    "stale-contracts-red.tap": {
+      "bytes": 4468,
+      "sha256": "f0769ca970ff064ccf62cc0221bf352e96a8417daa6f25105c68e954474bacb8"
+    },
+    "contracts-and-companions-final-freeze.tap": {
+      "bytes": 5363,
+      "sha256": "5138cc15c42910831b1ecb834b81e6bc71631856b6d22dec417dcd926a781c8d"
+    },
+    "exact-exclusion-red.tap": {
+      "bytes": 1985,
+      "sha256": "40c8327698dec314189efbf109717b49bbf0921ebf1d96b62f78f3ab303dbd92"
+    },
+    "final-production-ningshou.tap": {
+      "bytes": 1973,
+      "sha256": "6bdd0dc1045bb8dc5e9faf28d9beb06e21bf745e1a91e38e6ca1ae0bdbc04dc1"
+    },
+    "final-production-west-six.tap": {
+      "bytes": 508,
+      "sha256": "189a04da4a585781964e69aca37165f748e9af29e665b73ee57786bf8f1ad6d1"
+    },
+    "zone-schema-no-geo.log": {
+      "bytes": 1783,
+      "sha256": "87321b23e015db769b3db3e3e4dcc9c1dedab3d087bd44780ad43af26cce8d73"
+    },
+    "anchors.log": {
+      "bytes": 10054,
+      "sha256": "dfe6cab416a10c2645b3633d82cbfc56176b3247bc13b0a093aed9a2d0e3baf7"
+    },
+    "final-aggregate.tap": {
+      "bytes": 316725,
+      "sha256": "56aa4581e41a98f66366106b6f863e7e9c616cd911a3d0690f3761f77bd80dfc"
+    },
+    "clean-build.log": {
+      "bytes": 1280,
+      "sha256": "d90f5f18af4a3dbdae321f34578caf29bb8d12f448b6db2a5b9e748b1264c5a2"
+    },
+    "local-http-identity.json": {
+      "bytes": 738,
+      "sha256": "896253577aed0dd17cbe06242a348bf1e6d84997eb7ad10fc9d29e5bd2e36508"
+    }
+  },
+  "distinctFormal": {
+    "tests": 1136,
+    "pass": 1136,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "calculation": "1134 bounded + 1 final actual NingShou + 1 final actual west-six. Targeted/independent 59, earlier performance 25/production and all prior histories are repeats, not added."
+  },
+  "parentAllResourceHTTPAudit": {
+    "verifiedAtUTC": "2026-11-04T23:13:41.585Z",
+    "passed": true,
+    "scope": "Local HTTP real Pages base, all asset status/MIME/hash; not remote deployment/browser/GPU",
+    "files": 137,
+    "totalBytes": 44781948,
+    "root": 200,
+    "missing": 404,
+    "wrongBase": 404,
+    "entryAssets": [
+      "/forbidden-city-3d/assets/index-BplvJUU5.js",
+      "/forbidden-city-3d/assets/index-XCSIJ6--.css"
+    ],
+    "textureFiles": 92,
+    "buildSourceCommit": "43b13670a9730a2fcbe0eb44b5fa33d6132a0f71",
+    "buildId": "R164-3359aa5494d9",
+    "allStatusMimeAndSha256Match": true,
+    "reportSHA256": "e359e370d13122c74b530fb0f15e2eb76b8634a3c8201ab18a62ec185575881d"
+  }
+}

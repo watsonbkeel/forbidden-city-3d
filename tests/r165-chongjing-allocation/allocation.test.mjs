@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {fixture,countTransient} from './fixture.mjs';
+test('actual Chongjing reuses triangle scratch and does not allocate a rounding array for every physical vertex',()=>{const rows=[];for(const before of [true,false]){const f=fixture({before});try{const r=countTransient(()=>f.run());rows.push(r.counts())}finally{f.dispose()}}console.log(JSON.stringify(rows));assert.equal(rows[1].areaCalls,rows[0].areaCalls);assert.ok(rows[1].triangles<rows[0].triangles/2,JSON.stringify(rows));assert.equal(rows[1].roundArrays,0);assert.ok(rows[0].roundArrays>10000)});
