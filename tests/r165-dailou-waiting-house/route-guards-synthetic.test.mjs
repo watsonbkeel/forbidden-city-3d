@@ -1,0 +1,12 @@
+// Pure query/result mocks. No controller or production CM/fixture runs.
+import test from 'node:test';import assert from 'node:assert/strict';import * as T from 'three';
+import {assertJiuqingTop,assertNativeStart,assertNativeFrames} from './route-guards.mjs';
+const d={points:[[-94.6,151],[-94.6,156],[-94.6,151]],fps:1,startFeet:.25,expected:true,newContacts:{requirePlatform:true}};
+const cm={getGroundHeight:(x,z)=>z<=152.2?.25:0,checkCollision:()=>false};
+const result=()=>({arrived:true,startFeet:.25,maxFeet:.25,minFeet:0,frames:[{x:-94.6,z:151,feet:.25,ground:.25},{x:-94.6,z:156,feet:0,ground:0}]});
+function observed(cm,q){const samples=[...q.frames,...(q.arrived?Array.from({length:d.fps*2},()=>q.frames.at(-1)):[])],rows=samples.map((f,index)=>({index,pre:{x:f.x,z:f.z,feet:f.feet,ground:f.ground,airborne:false,tracked:null,lastGroundY:null},walkQueries:[{args:[f.x,f.z,Math.max(f.feet,f.ground),.6],result:cm.getGroundHeight(f.x,f.z,f.feet,.6)}],supportQueries:[{args:[f.x,f.z,f.feet+.05],result:-Infinity}],forwardCalls:1,post:{...f,airborne:false}}));return{value:q,rows,proof:{readOnlyObservation:true,extraNativeQueries:0,methodDescriptorsRestored:true,controllers:1,updates:rows.length}};}
+const check=(cm,d,q)=>assertNativeFrames(cm,d,q,observed(cm,q));
+test('Jiuqing original exactly one real box top and rescuefalse guard retained',()=>{const w={type:'box',box:new T.Box3(new T.Vector3(-91.8,.2,198.8),new T.Vector3(-82.8,.2,204.4)),rescue:false};assert.equal(assertJiuqingTop([w]).tops,1);assert.throws(()=>assertJiuqingTop([]));assert.throws(()=>assertJiuqingTop([w,w]));assert.throws(()=>assertJiuqingTop([{...w,rescue:true}]));});
+test('native porch start must really support.25 and be collision-free',()=>{assertNativeStart(cm,d);assert.throws(()=>assertNativeStart({...cm,getGroundHeight:()=>0},d));assert.throws(()=>assertNativeStart({...cm,checkCollision:()=>true},d));});
+test('valid native frames witness actual platform height and contact',()=>{const r=check(cm,d,result());assert.equal(r.framesChecked,2);assert.equal(r.platformTopVisited,true);});
+test('finite but feet99, collision, wrong ground and missing platform visit are all refused',()=>{for(const bad of[q=>q.frames[0].feet=99,q=>q.startFeet=0,q=>q.frames[0].ground=0,q=>{q.frames=[{x:-94.6,z:156,feet:0,ground:0}];}]){const q=result();bad(q);assert.throws(()=>check(cm,d,q));}assert.throws(()=>check({...cm,checkCollision:()=>true},d,result()));assert.throws(()=>check({...cm,getGroundHeight:()=>0},d,result()));});
