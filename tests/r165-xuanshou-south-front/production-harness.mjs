@@ -1,3 +1,7 @@
+import {captureChenghuangDelta} from '../r165-chenghuang-entry/production-delta.mjs';
+import {runChenghuangRoutes} from '../r165-chenghuang-entry/route-runner.mjs';
+import {runGroundAccess as runChenghuangOldAccess} from '../r165-chenghuang-entry/route-baseline.mjs';
+import {loadChenghuangBaseline} from '../r165-chenghuang-entry/baseline-reader.mjs';
 import {captureDanyuanDelta} from '../r165-danyuan-eleven-bay/production-delta.mjs';
 import {runDanyuanRoutes} from '../r165-danyuan-eleven-bay/route-runner.mjs';
 import {runGroundAccess} from '../r165-danyuan-eleven-bay/route-baseline.mjs';
@@ -52,11 +56,13 @@ export function actualOuterWest() {
   const builder = new ZoneBase(library, zone);
   const record = {scope: 'ACTUAL_OUTER_WEST_ONLY_NOT_WORLD_GPU_OR_MOBILE', publicBase: baseline.publicBase};
   const newObjects = new Set(), newMaterials = new Set(), newUUIDs = new Set(), stoneTops = [];
-  let oldState, oldMerged, data, fuyi, watch, zhongzheng, danyuan;
+  let oldState, oldMerged, data, fuyi, watch, zhongzheng, danyuan, chenghuang;
   const originalFinish = builder.kit.finish;
   builder.kit.finish = function () {
-    danyuan = captureDanyuanDelta(this);
-    const danyuanRetained = danyuan.projectKit(this);
+    chenghuang = captureChenghuangDelta(this);
+    const chenghuangRetained = chenghuang.projectKit(this);
+    danyuan = captureDanyuanDelta(chenghuangRetained);
+    const danyuanRetained = danyuan.projectKit(chenghuangRetained);
     zhongzheng = captureZhongzhengDelta(danyuanRetained);
     const zhongzhengRetained = zhongzheng.projectKit(danyuanRetained);
     watch = captureWatchDelta(zhongzhengRetained);
@@ -124,7 +130,10 @@ export function actualOuterWest() {
   return {
     verify(t) {
       const completeData = builder.build();
-      const danyuanRetained = danyuan.projectData(completeData);
+      const chenghuangRetained = chenghuang.projectData(completeData);
+      record.chenghuang = chenghuang.proof;
+      record.withoutChenghuangMerged = rawSnapshot(chenghuangRetained.group);
+      const danyuanRetained = danyuan.projectData(chenghuangRetained);
       record.danyuan = danyuan.proof;
       record.withoutDanyuanMerged = rawSnapshot(danyuanRetained.group);
       const zhongzhengRetained = zhongzheng.projectData(danyuanRetained);
@@ -189,7 +198,9 @@ export function actualOuterWest() {
       }
       assert.equal(record.withoutZhongzhengMerged.triangles - record.withoutWatchMerged.triangles, 2216, 'independent L3 complete-region delta');
       assert.equal(record.withoutDanyuanMerged.triangles - record.withoutZhongzhengMerged.triangles, 1248, 'independent H29 complete-region delta');
-      assert.equal(record.completeActualMerged.triangles - record.withoutDanyuanMerged.triangles, 1052, 'independent H30 complete-region delta');
+      assert.equal(record.withoutChenghuangMerged.triangles - record.withoutDanyuanMerged.triangles, 1052, 'independent H30 complete-region delta');
+
+      assert.equal(record.completeActualMerged.triangles - record.withoutChenghuangMerged.triangles, 4380, 'independent L11 complete-region delta');
 
       record.zhongzhengOldAccess = runOldAccess(t, completeData);
       assert.deepEqual(record.zhongzhengOldAccess, loadZhongzhengBaseline().routes, 'exact pre-H29 existing gate-bypass frames on complete zone data');
@@ -203,6 +214,13 @@ export function actualOuterWest() {
       assert.equal(record.danyuanRoutes.routes.length, 6);
       assert.equal(record.danyuanRoutes.stoneSupports.length, 4);
       assert.equal(record.danyuanRoutes.historicalAxisBlocked, true);
+      record.chenghuangOldAccess = runChenghuangOldAccess(t, completeData);
+      assert.deepEqual(record.chenghuangOldAccess, loadChenghuangBaseline().ground, 'exact pre-L11 NW access frames on complete zone contacts');
+      record.chenghuangRoutes = runChenghuangRoutes(t, completeData);
+      assert.equal(record.chenghuangRoutes.routes.length, 6);
+      assert.equal(record.chenghuangRoutes.supports.length, 4);
+      assert.equal(record.chenghuangRoutes.closedLeaves.arrived, false);
+      assert.equal(record.chenghuangRoutes.oldOpenedLeafStillBlocks, true);
       record.maxRSSKiB = process.resourceUsage().maxRSS; record.memory = process.memoryUsage(); record.execArgv = process.execArgv;
       record.routeLimits = 'Sprint flag walks within2m of turns/endpoints; not full-speed staircase running. Actual outer-west only.';
       record.complete = true;

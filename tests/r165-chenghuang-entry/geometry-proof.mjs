@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import * as T from 'three';
+export {closure} from '../r165-danyuan-eleven-bay/geometry-proof.mjs';
+const reserves=[[324,0,457,330,6.5,469],[322,0,461,324,1,465]].map(q=>new T.Box3(new T.Vector3(...q.slice(0,3)),new T.Vector3(...q.slice(3))));
+export const inUnion=p=>reserves.some(b=>p.x>=b.min.x-2e-5&&p.x<=b.max.x+2e-5&&p.y>=b.min.y-2e-5&&p.y<=b.max.y+2e-5&&p.z>=b.min.z-2e-5&&p.z<=b.max.z+2e-5);
+export function assertUnion(frame){frame.updateWorldMatrix(true,true);const volume=b=>Math.max(0,b.max.x-b.min.x)*Math.max(0,b.max.y-b.min.y)*Math.max(0,b.max.z-b.min.z);frame.traverse(m=>{if(!m.isMesh)return;const b=new T.Box3().setFromObject(m),v=volume(b),covered=reserves.reduce((s,r)=>s+volume(b.clone().intersect(r)),0);assert.ok(Math.abs(v-covered)<=Math.max(2e-5,v*2e-6),m.name+' actual AABB faces/interior outside exact two-box union');for(const x of[b.min.x,b.max.x])for(const y of[b.min.y,b.max.y])for(const z of[b.min.z,b.max.z])assert.ok(inUnion(new T.Vector3(x,y,z)),m.name+' actual union corner')})}

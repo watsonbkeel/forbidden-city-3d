@@ -1,0 +1,2 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+export function loadChenghuangBaseline(){const bytes=fs.readFileSync(new URL('./baseline-9a.json',import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),'a18e98cff208ff0738268cb387a87d5aef711d1b0c94ed08b7767688105e42a0','immutable pre-L11 public9a bounded baseline');return JSON.parse(bytes)}

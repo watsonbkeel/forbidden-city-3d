@@ -1,3 +1,4 @@
+import {buildChenghuangGlazedEntry} from '../palace/special/ChenghuangGlazedEntry.js';
 import {buildDanyuanElevenBayHall} from '../palace/special/DanyuanElevenBayHall.js';
 import {buildZhongzhengMainHall} from '../palace/special/ZhongzhengMainHall.js';
 import {buildYanxiRearEarHall} from '../palace/special/YanxiRearEarHall.js';
@@ -642,6 +643,8 @@ export class ZoneBase {
     buildZhongzhengMainHall(this.kit,this.zoneJson);
     yield {phase:'hook',index:149};
     buildDanyuanElevenBayHall(this.kit,this.zoneJson);
+    yield {phase:'hook',index:150};
+    buildChenghuangGlazedEntry(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};
