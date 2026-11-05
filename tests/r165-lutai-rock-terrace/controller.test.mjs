@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{terraceRoutes}from'./route-runner.mjs';test('60 real controller stair/entry/ground passages and8 rock-blocked routes',t=>{const f=fixture();try{terraceRoutes(t,collision(f))}finally{f.dispose()}});

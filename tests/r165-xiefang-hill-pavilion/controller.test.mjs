@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{pavilionRoutes}from'./route-runner.mjs';test('60 real walk/run/bidirectional routes climb and leave the hill pavilion or bypass it; eight rock-wall attempts remain blocked',t=>{const f=fixture();try{pavilionRoutes(t,collision(f))}finally{f.dispose()}});

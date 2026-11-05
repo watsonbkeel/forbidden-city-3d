@@ -1,0 +1,87 @@
+{
+  "recordedUTC": "2026-11-04T15:47:04.131830+00:00",
+  "baseCommit": "eeee6aa816be0f70ddc18bef6d1aa8cd979709d3",
+  "scope": "YUCUI_THREE_BAY_CLOSED_SHELL_FRONT_GALLERY_ONLY",
+  "releaseLabelUnchanged": "R164",
+  "runtimeFiles": {
+    "src/scene/palace/special/YucuiMainShell.js": "d74cc652b3adc03e4eeac2c708ebcdcd788836a8b6f4c2fede1b6e4b9232d617",
+    "src/scene/zones/ZoneBase.js": "c9cb81bb1b898230c948d10379a81ab4968411787d5a565a6906516e7032f8af"
+  },
+  "currentRequiredTests": {
+    "light": 19,
+    "actualNingshou": 1,
+    "passed": 20
+  },
+  "broaderBounded": {
+    "distinct": 652,
+    "passed": 650,
+    "preExistingFailures": 2,
+    "notClaimedAllGreen": true
+  },
+  "selfDistinctFormal": 653,
+  "selfFormalPassed": 651,
+  "selfPreExistingFailures": 2,
+  "independentStatus": "PASSED_FINAL_TEXT_REVIEW",
+  "independentFormalAtDocumentation": 22,
+  "actualNingshou": {
+    "raw": {
+      "meshes": 28743,
+      "triangles": 618156,
+      "geometry": "268e8541d09b95625ce7a1264ea8b9eb8da25a804e71e906c26a9da7167ec9c9"
+    },
+    "data": {
+      "colliderCount": 7830,
+      "colliders": "fe0987978c380537ff56e1d35035f9ad5a3e24dfbf90c0c45ad4c2f774bdb109",
+      "walkableCount": 353,
+      "walkables": "32738c1f728a2e12e953cf26c5a0145f1381a964f47b3824f7d9e92a4d4889e0",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "46d0a2131a8c836ebe76153995db2d406a3717d56ccc93bde56f777eb0969896"
+    },
+    "roof": {
+      "triangles": 23376,
+      "sha256": "c98f5ef7a7d529c411417fb0b8e70108f60cce60fb03d3339ef951a67cdae0be"
+    },
+    "rawAll": {
+      "meshes": 28833,
+      "triangles": 621512,
+      "geometry": "c9b42446a5b4fbbe514d0f3a891707076e85474fb847987eaaedc2bdbfa0f08f"
+    },
+    "addedRoof": {
+      "triangles": 2264,
+      "sha256": "bd68b0d658fc25971d38c8417fc47654c625b8427640183bb23036d94e111741"
+    },
+    "maxRSSKiB": 1094524
+  },
+  "delta": {
+    "rawMeshes": 90,
+    "triangles": 3356,
+    "sourceBufferBytes": 121064,
+    "contacts": 32,
+    "triangleContacts": 27,
+    "walkables": 5,
+    "privateMaterials": 5,
+    "localMergedMeshes": 6,
+    "localMergedBufferBytes": 322176,
+    "newTextureFiles": 0
+  },
+  "routes": {
+    "approach": 12,
+    "galleryEnds": 24,
+    "bypass": 24,
+    "closedFields": 12,
+    "fuwangConnection": 12,
+    "naturalHighContinuousExits": 48,
+    "normalGalleryJumps": 12
+  },
+  "knownBoundaries": [
+    "Two old side-step snapshots remain red",
+    "Existing Fanhua/Jingqi jump overlap and old144Hz tower-base jump requirement retained",
+    "Only Yucui shell and front gallery; unknown interior closed and ancillary structures absent",
+    "20 checked strict targets, not all map targets",
+    "WholeWorld, browser/GPU, mobile, Node20, Mac temperature untested"
+  ],
+  "build": "PENDING_CLEAN_COMMIT",
+  "remote": "PENDING_NEW_BRANCH_READBACK"
+}

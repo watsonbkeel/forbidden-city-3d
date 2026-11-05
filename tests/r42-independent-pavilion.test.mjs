@@ -1,3 +1,4 @@
+import{historicalGuhuaRoot}from'./r165-guhua-roof/historical.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -13,12 +14,13 @@ const role = (root, name) => { const out = []; root.traverse(o => { if (o.userDa
 function fixture() { const b = new ZoneBase(library(), config); const { f } = b.buildHall(item); b.kit.root.updateMatrixWorld(true); const cm = new CollisionManager(); cm.rivers = []; cm.addColliders(b.kit.colliders); cm.addWalkables(b.kit.walkables); return { b, f, cm }; }
 function finish(b) { const root = b.kit.finish(); b.kit.dispose(root); }
 
-test('R42 independent original R41 roof and platform actual geometry remain byte-equivalent', () => {
- const { b, f } = fixture(); b.kit.buildPlaqueAtlas();
- const retained = new Set(['wall_brick', 'stone_slab', 'dougong_band', 'rafters', 'roof_tile', 'kit_ridge']);
- // Captured independently from the frozen R41 checkout, not the candidate.
- assert.equal(hash(hallSurfaces(f, 0).filter(r => retained.has(r.material))), '05d568718ecdf2acf24c9ec87ef5473e8618c8a119ce8bbd0fbc388f2232496f');
- finish(b);
+const R41_RETAINED_HASH='05d568718ecdf2acf24c9ec87ef5473e8618c8a119ce8bbd0fbc388f2232496f';
+function verifyR41Retained(b){b.kit.buildPlaqueAtlas();const retained=new Set(['wall_brick','stone_slab','dougong_band','rafters','roof_tile','kit_ridge']),proof=historicalGuhuaRoot(b.kit.root,b.kit.lib);try{assert.ok(proof.proof,'exact complete roof delta required');const wrapper={updateMatrixWorld:()=>b.kit.root.updateMatrixWorld(true),traverse:fn=>proof.root.traverse(fn)};assert.equal(hash(hallSurfaces(wrapper,0).filter(r=>retained.has(r.material))),R41_RETAINED_HASH)}finally{proof.dispose()}}
+test('R42 independent original R41 roof/platform hash remains exact after verified unique Guhua roof substitution',()=>{
+ const{b}=fixture();try{verifyR41Retained(b)}finally{finish(b)}
+ // The old R41 constant is immutable. Real platform, retained bearing and new
+ // target mutations must remain visible to the split proof, never broad skips.
+ for(const mutate of[f=>f.children.find(m=>m.material?.name==='stone_slab').geometry.attributes.position.setY(0,9),f=>f.getObjectByName('roof_xieshan_dougong_band').geometry.attributes.uv.setX(0,9),f=>f.getObjectByName('guhua-roof/continuous-yellow-field').geometry.attributes.position.setY(0,9)]){const{b,f}=fixture();try{mutate(f);assert.throws(()=>verifyR41Retained(b))}finally{finish(b)}}
 });
 
 test('R42 independent seat collision matches visible tops and the original step has real support', () => {
@@ -68,7 +70,11 @@ test('R42 independent whole Ningshou merge retains material geometry, flight cov
    before=stats(b.kit.root);sourceGeometries=new Set();
    b.kit.root.traverse(o=>{if(o.geometry){watch(o.geometry);sourceGeometries.add(o.geometry);}if(o.isMesh&&o.material?.name.startsWith('guhua_')){const p=o.geometry.attributes.position;for(let i=0;i<p.count;i++)vertices.push(new THREE.Vector3().fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld));}});
    for(const o of b.kit.owned)watch(o);for(const o of b.kit.ownedTextures??[])watch(o);
-   assert.equal(b.kit.owned.filter(m=>m.name.startsWith('guhua_')).length,6);
+   const oldNames=['guhua_stone_fit','guhua_wood_fit','guhua_black_fit','guhua_gold_fit','guhua_red_fit','guhua_green_fit'],roofNames=['guhua_roof_roof_tile_yellow_field_fit','guhua_roof_roof_tile_green_edge_fit','guhua_roof_plain_bearing_fit'];
+   const materials=b.kit.owned.filter(m=>m.name.startsWith('guhua_'));
+   assert.deepEqual(materials.map(m=>m.name).sort(),[...oldNames,...roofNames].sort());
+   for(const name of [...oldNames,...roofNames]){const owned=materials.filter(m=>m.name===name);assert.equal(owned.length,1);let used=0;b.kit.root.traverse(o=>{if(o.isMesh&&o.material===owned[0])used++});assert.ok(used>0,'exact privately owned material identity remains used: '+name)}
+   assert.equal(new Set(materials).size,9);
    return original();
   };
   const {group}=b.build(),after=stats(group);for(const o of b.kit.owned)watch(o);for(const o of b.kit.ownedTextures??[])watch(o);assert.equal(after.size,before.size);

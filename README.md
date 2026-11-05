@@ -1,3 +1,189 @@
+# 3D 故宫 · 旭辉庭有限主体与连续南廊候选
+
+从公开14d81f71累计版补宁寿花园旭辉庭：封闭三开间一进深壳体、黄瓦绿边卷棚歇山、东南外廊、十级实体爬山阶及接禊赏亭北平台的低落台。照片只覆盖局部南廊；主体依官方文字和平面简化，全部尺寸、支承和岩形为游戏拟合，不称整座照片复原或测绘。
+
+- 保留全部旧建筑/数据/接触/通路，运行时仅新增专用组件及hook142，不改公共物理。没有新房间、地图点、传送点、家具或洞室。
+- 新路验证包含72单向和36同控制器完整往返、96邻接、12带名屋面真实冲击/指定向外退出；实际旧古华轩座凳阻挡保留为负控，真实前院/中央开口通路另证，不移除旧障碍。
+- 最终测试冻结a8de58573已独审通过，338文件累计与两个真实区域共1187/1187通过；完整压缩干净构建、源码身份与137文件全资产本地HTTP已通过，未声明远端上传或发布完成。正式结果见下方记录。CPU图不是浏览器/GPU或手机验收，整座建筑新增验收0。
+- 本地候选未声明发布完成，main与Pages未改；保留公开14d81f71与阶段提交可回滚。储秀宫现场问题、完整World、真实设备/Node20/Mac温度及神武门历史锚点偏差不由本轮消除。
+
+[旭辉庭结果](docs/current-state/r165-xuhui-gallery/RESULT.md) · [验证记录](docs/current-state/r165-xuhui-gallery/VERIFICATION.json) · [来源](docs/current-state/r165-xuhui-gallery/SOURCE-MANIFEST.md) · [拟合/接口](docs/current-state/r165-xuhui-gallery/FIT-AND-JUNCTION.md) · [已知限制](docs/current-state/r165-xuhui-gallery/KNOWN-LIMITS.md) · [独立审查](docs/current-state/r165-xuhui-gallery/INDEPENDENT-REVIEW.md)
+
+## 以下为公开14d81累计阶段及更早历史记录
+
+# 3D 故宫 · 累计候选：撷芳亭、崇敬分配优化与严格契约维护
+
+保留耸秀亭累计花园，新增已核来源的有限撷芳亭岩台、红柱绿瓦黄边上翘方亭与实体侧阶；叠加崇敬殿私有三角转换循环的临时分配减少，几何/物理/元数据严格等价。坐标、尺度、岩形、通路与屋面曲率为明确游戏拟合，不称整座复原。
+
+- 旧三条失败先原样保留，再按独立固定几何/接触、精确天花成员及完整 28 女性覆盖维护测试；不改运行时或数据来迎合测试，不是储秀宫崩溃修复。
+- 最终 323 文件聚合 1134/1134，真实宁寿与西六区串行各 1/1，不同正式用例 1136/1136；重复定点和独审不累加，不以用例数宣称建筑完成率。干净构建身份见下方验证记录。
+- 保留各公开/本地阶段可回滚；该历史累计阶段后来已完成开发分支上传及完整回读，未改 main、未部署 Pages。完整 World、真实 GPU/浏览器/手机、Node20、Mac 温度与储秀宫现场根因未验，神武门历史锚点差异保留。
+
+[累计结果](docs/current-state/r165-cumulative-20261105/RESULT.md) · [验证记录](docs/current-state/r165-cumulative-20261105/VERIFICATION.json) · [检查列表](docs/current-state/r165-cumulative-20261105/BOUNDED-TEST-FILES.json) · [已知限制](docs/current-state/r165-cumulative-20261105/KNOWN-LIMITS.md) · [撷芳亭来源与拟合](docs/current-state/r165-xiefang-hill-pavilion/SOURCE-MANIFEST.md) · [严格契约说明](tests/r164-ningshou-side-steps/CONTRACT-MAINTENANCE.md)
+
+## 以下为各阶段历史记录
+
+# 3D 故宫 · R164累计后继：耸秀亭山顶方亭与通路一期
+
+从dcd露台累计版补宁寿花园耸秀亭：有限岩丘托起方亭、绿瓦黄檐脊四角攒尖、栏座与侧向实体登亭阶。官源支持山顶方亭形制；坐标、台高、岩形、级数和路径为明确游戏拟合，不称测绘或整座假山复原。
+
+- 最终真实宁寿旧29480网格、8110接触/408面、20落点与累计通路保持；新60通行/8阻挡、36邻接、72指定高落退出和24普通跳跃通过，三友原60高落退出未改。
+- 原阶顶5cm真缝曾阻断奔跑，实体接台连通并保留负控；完整洞谷/植被、匾字/精雕和历史所有登山路径未建，不新增传送。J21累计8局部证据，整项新增验收0，397计划继续。
+- 本轮1069不同正式用例1066过/3旧红，独审40通过。新增66网格6956三角/66接触，组件合批6网格667776B仅CPU计数，不称性能提升。
+- 保留dcd和main，不自行合并/部署。前序稳定性、首错摘要、皇帝端点、计量及屋顶缓存同树保留；储秀宫真实根因、完整World/GPU/浏览器/手机/Node20/Mac温度未验。
+
+[本轮结果](docs/current-state/r165-songxiu-hill-pavilion/RESULT.md) · [验证记录](docs/current-state/r165-songxiu-hill-pavilion/VERIFICATION.json) · [来源与拟合](docs/current-state/r165-songxiu-hill-pavilion/SOURCE-MANIFEST.md) · [复现方法](tests/r165-songxiu-hill-pavilion/README.md) · [J21登记](docs/current-state/r165-songxiu-hill-pavilion/J21-CODE-APPENDIX.json)
+
+## dcd及更早历史记录
+
+# 3D 故宫 · R164累计后继：露台岩台与通路一期
+
+从da2云光楼累计版补宁寿花园露台：有限太湖石形体、白石栏台、东入口及南北实体登台阶。官文支持主体/入口，坐标、1.8m高度、级数与岩形有说明地拟合，不称测绘或整项完成。
+
+- 最终真实宁寿旧29404网格、8034接触/382面、20落点及累计通路保持；新60通行/8阻挡、36邻接、80指定高落退出和20普通跳跃通过。初版曾挡原抑斋退出，整体北移2.2m后原60条路径一字不改通过。
+- 保留原北阶上爬短暂普通阶体clearance重叠，峰值约0.163601m，松键迅速清空；有正式有界回归，不宣称零接触。洞室、窄洞门、完整山体/植被及佛龛内装未建，不新增传送。
+- 本轮1049不同正式用例1046过/3预存红，独审36通过；J21累计7项局部证据，整项新增验收0，不计算397完成率。新增76网格2260三角/76接触，局部合批4网格216960B仅CPU统计。
+- da2与main保留，不合并不部署。前序稳定性/计量/屋顶缓存优化同树保留；储秀宫现场根因、完整World/GPU/浏览器/手机/Node20及Mac温度未验。
+
+[本轮结果](docs/current-state/r165-lutai-rock-terrace/RESULT.md) · [验证记录](docs/current-state/r165-lutai-rock-terrace/VERIFICATION.json) · [来源与拟合](docs/current-state/r165-lutai-rock-terrace/SOURCE-MANIFEST.md) · [复现方法](tests/r165-lutai-rock-terrace/README.md) · [J21登记](docs/current-state/r165-lutai-rock-terrace/J21-CODE-APPENDIX.json)
+
+## da2及更早历史记录
+
+# 3D 故宫 · R164累计后继：云光楼主体一期
+
+从d8d矩亭累计版补宁寿花园云光楼：可辨的两层L形主体、北段歇山/东段硬山及地面前廊浅阶。坐标、比例、窗间数和隐面有说明地拟合，官图只含局部屋角/上廊，不称测绘复原或整项完成。
+
+- 最终真实宁寿旧29263网格、8000接触/376面、20落点和累计通路保持；新60通行/8核心阻挡、36邻接、60指定高落退出和20普通跳跃通过。高落核静落末状态及后续退出逐帧，不称全部下降段或任意方向。
+- 未建楼前假山、北上层石桥、通萃赏的二层游廊、登楼路线和未知室内；不新增地图/传送。J21累计6项明确局部证据，整项新增验收0，397项继续。
+- 本轮1031不同正式用例1028过/3旧红，独审39不同正式用例通过。新增141网格/3628三角、34接触，组件合批6网格/348288B仅CPU局部，不冒称性能改善。
+- 保留d8d与main，不合并不部署。前序首错摘要、皇帝端点、加载计量和屋顶缓存优化同树保留；储秀宫根因、GPU/浏览器/手机/Node20及Mac温度未验；完整World未完成，额外旧zone-lint误启动后守卫中止及anchor旧差另列。
+
+[本轮结果](docs/current-state/r165-yunguang-main-shell/RESULT.md) · [验证记录](docs/current-state/r165-yunguang-main-shell/VERIFICATION.json) · [来源与拟合](docs/current-state/r165-yunguang-main-shell/SOURCE-MANIFEST.md) · [复现方法](tests/r165-yunguang-main-shell/README.md) · [J21登记](docs/current-state/r165-yunguang-main-shell/J21-CODE-APPENDIX.json)
+
+## d8d及更早历史记录
+
+# 3D 故宫 · R164累计后继：矩亭主体一期
+
+从8230竹香馆累计版补宁寿花园矩亭：方亭朝东、黄瓦绿边四角攒尖、西槛窗及三向实际通行。位置、尺度和简化立面为有说明的拟合，官图仅提供内侧参考，不称外立面测绘或整项完成。
+
+- 真实宁寿原29224网格、7972接触/369面、20落点及累计通路保持；新60通行/8西窗阻挡、36邻接、36指定高落退出及20普通跳跃通过。高落核静落末状态及其后逐帧退出，不称任意方向或全部下降段扫描。
+- 连接游廊、北露台、原编织纹天花/细纹和匾字未建；不新增地图/传送项。J21仅5项明确局部绑定，整项新增验收0，397项继续。
+- 本轮1013不同正式用例1010过/3旧红，独审35通过。新增39网格/5592三角、28接触，组件合批6网格/536832B仅CPU局部，新增内容有资源成本，不冒称性能优化。
+- 保留8230与main，不合并不部署。首错诊断、皇帝端点、加载计量和屋顶缓存优化同树保留；储秀宫根因、World/GPU/浏览器/手机/Node20及Mac温度未验。
+
+[本轮结果](docs/current-state/r165-juting-main-pavilion/RESULT.md) · [验证记录](docs/current-state/r165-juting-main-pavilion/VERIFICATION.json) · [来源及拟合](docs/current-state/r165-juting-main-pavilion/SOURCE-MANIFEST.md) · [复现方法](tests/r165-juting-main-pavilion/README.md) · [J21登记](docs/current-state/r165-juting-main-pavilion/J21-CODE-APPENDIX.json)
+
+## 8230及更早历史记录
+
+# 3D 故宫 · R164累计后继：竹香馆主体一期
+
+在ae712屋顶裁接减负版上继续宁寿花园分区，新增竹香馆东向两层三间主楼、两侧耳楼及可辨认卷棚/山面/下部收坡。坐标、比例与隐面为有说明的拟合，不是实景测绘或整项完成。
+
+- 真实宁寿旧29083网格、7947接触/368面、20受测落点和累计通路保持；新48外绕/8阻挡、24邻接、60高落退出及24室外普通跳跃通过。高落按较近坡面/绕端路线退出，不称任意方向可行。
+- 石山、前弓墙/八方门、两端斜廊、上层通行和室内未建，未知内景闭合；没有新增传送/地图项。J21原身份保留，明确局部绑定4项，整项新增验收0，397项继续。
+- 本轮997不同正式用例994过/3旧红；独审34通过。新增141原网格/8440三角、25接触，组件合批6网格/810240B仅CPU局部，不称性能改善。
+- ae712及main保留，不合并、不部署。前序首错诊断、皇帝端点、分阶段计量和屋顶缓存优化源码保持；储秀宫实际崩溃根因、World/GPU/手机/浏览器/Node20及Mac温度未验。
+
+[本轮结果](docs/current-state/r165-zhuxiang-main-shell/RESULT.md) · [验证记录](docs/current-state/r165-zhuxiang-main-shell/VERIFICATION.json) · [官方依据与拟合](docs/current-state/r165-zhuxiang-main-shell/SOURCE-MANIFEST.md) · [复现方法](tests/r165-zhuxiang-main-shell/README.md) · [J21登记](docs/current-state/r165-zhuxiang-main-shell/J21-CODE-APPENDIX.json)
+
+## ae712及更早历史记录
+
+# 3D 故宫 · R164累计后继：屋顶裁接减负
+
+在adc同步步骤累计版上，只减少三个真实组件中重复的屋顶边界计算，保持完整几何/材质/碰撞和同步加载行为。受控Node组件CPU样本改善，不等同整机降温、消除整区长任务或已修储秀宫崩溃。
+
+- 十轮交错样本中位数：崇敬228→114ms、重华60→36ms、永和158→76ms；独立样本方向一致，每次完整输出比较相同。临时WeakMap有JS成本，未测GPU或Mac。
+- 真实西六宫与东六宫完整对象/地图/屋顶/碰撞/走面保持，释放后重新注册及崇敬通行保持。本轮981不同用例978过/3旧红，独审39不同用例通过，不冒称全套全绿。
+- 不增加32MiB缓存，不放松认证，不改人物/首错摘要/控制器，不加异步开关；三友、玉粹、抑斋与前序修复同树保留。宁寿本轮仅源码保护，不冒称重跑其完整区。
+- adc/5030和main保留，不合并、不部署。World、浏览器/GPU/手机、Node20、真实Mac温度未验，397项继续开发。
+
+[本轮结果](docs/current-state/r165-roof-joint-bounds/RESULT.md) · [验证记录](docs/current-state/r165-roof-joint-bounds/VERIFICATION.json) · [CPU原样本](docs/current-state/r165-roof-joint-bounds/BENCHMARK.json) · [复现方法](tests/r165-roof-joint-bounds/README.md)
+
+## adc及更早历史记录
+
+# 3D 故宫 · R164累计后继：同步构建步骤定位
+
+在5030抑斋累计候选上，保持同一调用栈及原构建顺序，增加每区有界步骤计时；没有分帧、移动/碰撞改动或异步加载开关。它帮助定位长任务，不代表已经加速或修好储秀宫现场崩溃。
+
+- 真实西六宫前后完整几何、3223接触/138面、地图及默认32MiB缓存拒绝保持；本机冷重建仍约0.9–1.1秒，崇敬殿单步约0.24秒。冷热单样本不能用于宣称提速。
+- 同步构造返回、原错误身份与清理、gate-first及全部钩子顺序已验证；真实宁寿20落点与抑斋/三友/玉粹等累计路线保持。本轮953不同用例950过/3旧红，独审24通过，不冒称全套全绿。
+- builder本地记录最多8个最慢步骤，仅固定枚举/数字；现有F3、首错复制摘要和皇帝端点行为不变。没有对外发送诊断。
+- 5030及以前候选保留回滚，不改main、不部署。完整World、浏览器/GPU/手机、Node20、Mac温度未验，397项与实际加载缓解仍继续。
+
+[本轮结果](docs/current-state/r165-synchronous-build-steps/RESULT.md) · [验证记录](docs/current-state/r165-synchronous-build-steps/VERIFICATION.json) · [固定步骤映射](docs/current-state/r165-synchronous-build-steps/STEP-MAP.json) · [原三项旧红](docs/current-state/r165-yizhai-main-shell/PREEXISTING-TEST-FAILURES.md)
+
+## 5030及更早历史记录
+
+# 3D 故宫 · R164累计后继：抑斋主体与前后廊
+
+从c080分区加载计量候选继续J21，新增抑斋南向非对称主体、前后廊与两处错位浅阶。官源支持主要形制，坐标、尺度、后门位置和简化门窗为有标注的游戏拟合；未知内景闭合，不造暗道或新增传送，不计整项完成。
+
+- 保留首错本地可复制诊断、皇帝端点、分阶段加载计量、三友轩/玉粹轩与此前全部累计源代码；不改main、不覆盖冻结c080、不部署。
+- 真实宁寿原28958网格、7908接触、363面及20受测落点全保持；新72正/16负、24普通起跳、60沿坡高落退出和24邻接通过。完整World与任意屋顶方向均未验收。
+- 本轮935不同正式用例932过/3项既有红；独审21不同用例通过。额外旧综合脚本中止/锚点偏差另列，不冒称全套全绿。
+- 碰撞临时索引因认证语义风险撤回，替代循环没有可靠稳定收益也未纳入；本轮不称修复储秀宫根因、消除西六宫长任务或Mac降温。
+- 浏览器/GPU/手机、Node20、真机温度未验。应用标识仍R164，R165为分区增量目录；构建/远端身份以最终回读为准，不表示已上线。
+
+[本轮结果](docs/current-state/r165-yizhai-main-shell/RESULT.md) · [验证记录](docs/current-state/r165-yizhai-main-shell/VERIFICATION.json) · [来源和拟合](docs/current-state/r165-yizhai-main-shell/SOURCE-MANIFEST.md) · [J21登记](docs/current-state/r165-yizhai-main-shell/J21-CODE-APPENDIX.json) · [三项旧红](docs/current-state/r165-yizhai-main-shell/PREEXISTING-TEST-FAILURES.md)
+
+## c080及更早历史记录
+
+# 3D 故宫 · R164累计后继：本地分区加载计量
+
+在b5三友轩累计版上增加F3分阶段CPU耗时和首错可复制摘要的白名单加载线索。只帮助定位，不改变几何、碰撞、缓存32MiB上限、人物、画质或队列策略，不称已经修复储秀宫崩溃或Mac卡顿。
+
+- 最近加载显示完整总时、构建及其合批子项、碰撞/走面登记和最近非空队列耗时；8ms为任务间预算，不是单任务硬上限。
+- 本轮920项917过/3项已知旧红；独审109项通过。真实west-six前后全摘要、奉先缓存及east/garden失败重试保持。
+- 首错摘要不自动上传，不含原消息/栈/路径；原开发者控制台仍保留原错误。最近加载/队列可能不属于首错事务，不能单凭它归因。
+- 保留三友轩、玉粹轩、皇帝端点和之前累计修复。b5与0c冻结可回滚；不改main、不部署，397项仍在开发。
+- 完整World、浏览器/GPU/手机、真实剪贴板、Node20和Mac温度未验。应用标识仍R164；构建与远端身份以最终回读为准，不表示已上线。
+
+[本轮结果](docs/current-state/r165-zone-load-metrics/RESULT.md) · [验证记录](docs/current-state/r165-zone-load-metrics/VERIFICATION.json) · [三项旧红](docs/current-state/r165-zone-load-metrics/PREEXISTING-TEST-FAILURES.md)
+
+## b5及更早历史记录
+
+# 3D 故宫 · R164累计后继：三友轩主体与三面廊
+
+从0c068稳定性候选继续J21分区，补三友轩南向三间、非对称黄瓦卷棚和三面可行走廊。位置、0.3m浅台/两级、比例和门窗为有据的游戏拟合，内景仍闭合，不计整项完成。
+
+- 保留首错可复制诊断、皇帝昼夜端点、玉粹轩及此前累计修复，main与冻结分支不改、不部署。
+- 本轮880项877过、3项既有红；独审22项通过。真实宁寿原全部对象/地图和20受测落点保持，新60高落与24邻接连接通过。不是全World或全地图验收。
+- 旧0.5m原型两种通行红测、ramp空区守卫红测均保留并闭环；没有改公共玩家物理。
+- 用户储秀宫实际崩溃根因仍未确定，未测Mac降温。World、浏览器/GPU/手机、Node20未验；旧快照2红/R72床位1红如实保留。
+- 应用标识仍R164，R165是分区增量目录；准确构建与远端身份以最终回读为准，不代表已上线。397项继续进行。
+
+[本轮结果](docs/current-state/r165-sanyou-main-shell/RESULT.md) · [验证记录](docs/current-state/r165-sanyou-main-shell/VERIFICATION.json) · [残项与旧红](docs/current-state/r165-sanyou-main-shell/PREEXISTING-TEST-FAILURES.md)
+
+## 0c068及更早历史记录
+
+# 3D 故宫 · R164累计后继：首错诊断与皇帝定点
+
+本轮优先处理储秀宫异常反馈和不必要人物负载：故障后可主动复制去敏首错摘要；皇帝按游戏时间白天留太和殿、夜间切换原储秀宫床位，目标受阻等待，妃子活动保留。尚未获得用户现场首错，不能称崩溃根因已修或Mac已降温。
+
+- 保留用户main b7ef2a4f与累计23f224f4两个祖先，玉粹轩和此前累计改动同树保留；只新开发分支，不改main、不部署。
+- 本轮220个有界用例219过、1个既有R72床位登记断言红；不称全套全绿。诊断59项、皇帝专项21项通过。
+- 皇帝跨宫advance为0，活动认证网格1304→40；原108身份/两床/建筑/玩家碰撞不变。只量化CPU数据，未测GPU或温度。
+- 完整World、浏览器/GPU/手机、真实剪贴板权限和Node20未验。397项仍未完成，I29/J21及建筑残项保留。
+- 应用版本仍R164；新构建/远端身份以交付回读与build-info为准，不能据本文认为线上已更新。
+
+[本轮结果](docs/current-state/r165-chuxiu-stability/RESULT.md) · [验证记录](docs/current-state/r165-chuxiu-stability/VERIFICATION.json) · [旧测试失败](docs/current-state/r165-chuxiu-stability/PREEXISTING-TEST-FAILURES.md)
+
+## 23f及更早历史交付记录
+
+# 3D 故宫 · R164累计后继：玉粹轩主体一期
+
+补J21玉粹轩三间主体、前廊和正阶，保留符望西阶与后侧绕路。官方支持身份/朝向/黄绿卷棚歇山，坐标、尺度与简化门窗为拟合；内部闭合，不造未知家具或新增传送。应用版本仍R164，本目录是R165/J21开发增量，不表示已上线新大版本。
+
+- 基于并保留eeee6aa816be0f70ddc18bef6d1aa8cd979709d3；仅新开发分支，不改main、不部署。
+- 新19轻量+1真实宁寿通过；扩大653项651过/2旧快照红，不能称全套全绿。初版高落入旧墙风险已按原起点/路径关闭，48高落及符望连接12条通过。
+- 原28743网格、7830接触、353面、23376屋顶及20受测落点保持；新增90网格/3356三角、32接触、5面、5私材。CPU成本不代表GPU或温度测量。
+- J21仅玉粹新增局部证据，其他20本轮未重审；I29保留，397未全部完成。北连廊、竹香馆通道、南山石/短垣及内景未做。
+- 完整World、GPU/浏览器/手机、Node20未验，原梵华/景祺高跳边界保留。构建/远端身份以实际交付回读为准。
+
+[本轮结果](docs/current-state/r165-yucui-main-shell/RESULT.md) · [验证记录](docs/current-state/r165-yucui-main-shell/VERIFICATION.json) · [来源和拟合](docs/current-state/r165-yucui-main-shell/SOURCE-MANIFEST.md) · [J21身份登记](docs/current-state/r165-yucui-main-shell/J21-CODE-APPENDIX.json)
+
+## eeee及更早历史交付记录
+
 # 3D 故宫 · R164 累计开发后继候选
 
 本轮补庆寿堂北部缺失的福履堂、天庆堂两座五间前后廊主体，保留原地图与20个已检查传送落点，前后中央通行及两侧绕行已做真实宁寿CPU验证。名称/院序据故宫及合作测绘资料，位置、尺度、开放空壳与简化饰面明确拟合；不造未知匾额或家具。

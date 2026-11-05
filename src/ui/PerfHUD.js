@@ -1,3 +1,4 @@
+import {sanitizeZoneLoadSnapshot} from '../scene/zones/ZoneLoadMetrics.js';
 /**
  * 性能面板（F3 切换）：fps、整帧 draw calls / 三角面、显存中的几何体 / 贴图数量、当前 zone / 已加载 zone。
  *
@@ -11,10 +12,11 @@ const DOM_INTERVAL_MS = 250;
 const FPS_WINDOW_MS = 500;
 
 export class PerfHUD {
-  constructor(renderer, { zoneProvider = null, characterProvider = null, visible = Boolean(import.meta.env?.DEV), parent = document.body } = {}) {
+  constructor(renderer, { zoneProvider = null, characterProvider = null, zoneLoadProvider = null, visible = Boolean(import.meta.env?.DEV), parent = document.body } = {}) {
     this.renderer = renderer;
     this.zoneProvider = zoneProvider;
     this.characterProvider = characterProvider;
+    this.zoneLoadProvider = zoneLoadProvider;
     renderer.info.autoReset = false;
     renderer.info.reset();
 
@@ -102,8 +104,11 @@ export class PerfHUD {
       textures: this.stats.textures,
       ...this.getZones(),
       characters: this.characterProvider?.() ?? null,
+      zoneLoad: this.getZoneLoadMetrics(),
     };
   }
+
+  getZoneLoadMetrics() { try { return sanitizeZoneLoadSnapshot(this.zoneLoadProvider?.()); } catch { return null; } }
 
   _render() {
     const s = this.stats;
@@ -120,6 +125,14 @@ export class PerfHUD {
       (Number.isFinite(c.resident)?`\nModels ${c.residentModels??0}/${c.resident} / tasks ${c.modelPending??0} / resident batches ${c.residentBatches??0}`:'') +
       `\nCopies ${c.renderCopies} / batches ${c.batches} / tris~ ${c.trianglesEstimate}` +
       `\nCPU p50/p95 ${(c.updateP50Ms ?? 0).toFixed(2)}/${(c.updateP95Ms ?? 0).toFixed(2)} ms`;
+    const timing=this.getZoneLoadMetrics(), load=timing?.lastLoad, startup=timing?.lastStartup, queue=timing?.lastQueue;
+    const ms=value=>value===null?'?':value.toFixed(1);
+    if(load) this.el.textContent += `\nLoad ${load.zone} ${load.mode} ${load.outcome} ${ms(load.totalMs)} ms` +
+      `\nBuild ${ms(load.buildMs)} / Merge ${ms(load.mergeMs)} included` +
+      `\nRegister C/W ${ms(load.colliderMs)}/${ms(load.walkableMs)} / Notify ${ms(load.notifyMs)}`;
+    if(startup) this.el.textContent += `\nStartup ${startup.zone} ${ms(startup.totalMs)} ms`;
+    if(queue) this.el.textContent += `\nQueue ${ms(queue.totalMs)} ms / budget 8 nonpreemptive`;
+
 
   }
 

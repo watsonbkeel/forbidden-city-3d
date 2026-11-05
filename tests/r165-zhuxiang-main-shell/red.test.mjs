@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const path=new URL('../../src/scene/palace/special/ZhuxiangMainShell.js',import.meta.url);
+test('missing original J21 Zhuxiang gets its own two-storey shell component and one bounded synchronous hook',async()=>{assert.equal(fs.existsSync(path),true,'Zhuxiang dedicated component missing');const m=await import(path);assert.equal(typeof m.buildZhuxiangMainShell,'function');const s=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');assert.equal(s.split('buildZhuxiangMainShell(this.kit,this.zoneJson);').length,2);assert.ok(s.includes("yield {phase:'hook',index:136};\n    buildZhuxiangMainShell"));});

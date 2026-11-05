@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{pavilionRoutes}from'./route-runner.mjs';test('60 actual controller three-direction crossings and bypasses, eight west-window blocked approaches',t=>{const f=fixture();try{pavilionRoutes(t,collision(f))}finally{f.dispose()}});

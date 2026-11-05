@@ -12,10 +12,12 @@ for(const mobile of [false,true])for(const map of [false,true])test(`terminal re
  f.menu.show();assert.equal(f.settingsSession.paused,true);assert.equal(normal.inert,true);
  f.a.startAnimationLoop();f.tick();f.setFail(true);f.tick();
  const b=f.document.getElementById('tour-reload-btn'),dialog=f.document.getElementById('tour-failure-dialog');assert.ok(b);
+ let expectedFocus=b;
  for(const key of ['Escape','Tab','Enter',' ','Escape']){
+  if(key==='Tab')expectedFocus=f.document.getElementById('tour-copy-diagnostic');
   f.dispatch(b,'keydown',{key,code:key===' '?'Space':key});f.dispatch(b,'keyup',{key,code:key===' '?'Space':key});
   assert.equal(resumes,0,'fatal shutdown must never call settings resume');
-  assert.notEqual(f.document.pointerLockElement,f.c.domElement);assert.equal(f.document.activeElement,b);
+  assert.notEqual(f.document.pointerLockElement,f.c.domElement);assert.equal(f.document.activeElement.id,expectedFocus.id);
   assert.equal(normal.inert,true);assert.equal(priorInert.inert,true);assert.equal(f.map.container.inert,true);
  }
  assert.equal(f.menu.visible,false);assert.equal(f.menu.overlay,null);assert.equal(f.menu.inertBeforeOpen.size,0);assert.equal(f.map.visible,map);assert.equal(f.queue.size,0);
@@ -34,13 +36,15 @@ for(const operationsOpen of [false,true])for(const settingsOpen of [false,true])
  f.a.flight=flight;f.c.setPosition(22,1.7,-494);assert.equal(flight.board(),true);
  if(operationsOpen)flight.openOperations();if(settingsOpen)f.menu.show();const pose=f.camera.position.toArray();f.a.handleFrameFailure(f.error);
  const b=f.document.getElementById('tour-reload-btn');assert.ok(b);
+ let expectedFocus=b;
  for(const code of ['KeyH','Escape','Tab','KeyW','KeyF','KeyV','KeyL','KeyT','Space']){
+  if(code==='Tab')expectedFocus=f.document.getElementById('tour-copy-diagnostic');
   f.dispatch(b,'keydown',{code,key:code==='Tab'?'Tab':code==='Escape'?'Escape':code==='Space'?' ':code.slice(3).toLowerCase()});
-  f.dispatch(b,'keyup',{code});assert.equal(flight.occupied,true);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(f.document.activeElement,b);assert.equal(flight.keys.size,0);
+  f.dispatch(b,'keyup',{code});assert.equal(flight.occupied,true);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(f.document.activeElement.id,expectedFocus.id);assert.equal(flight.keys.size,0);
  }
  assert.equal(flight.isPaused(),true);
  f.document.pointerLockElement=f.c.domElement;f.dispatch(f.document,'pointerlockchange');assert.notEqual(f.document.pointerLockElement,f.c.domElement,'a delayed lock must be released');assert.equal(f.c.controls.isLocked,false);
  for(const child of f.document.body.children)if(child.id!=='tour-failure-dialog')assert.equal(child.inert,true,'late handlers must preserve recovery background');
- assert.equal(flight.occupied,true);assert.equal(f.document.activeElement,b);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(flight.resumeOperations(),false);
+ assert.equal(flight.occupied,true);assert.equal(f.document.activeElement.id,expectedFocus.id);assert.deepEqual(f.camera.position.toArray(),pose);assert.equal(flight.resumeOperations(),false);
  b.click();assert.equal(f.reloads(),1);
 });

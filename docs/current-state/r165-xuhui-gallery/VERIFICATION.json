@@ -1,0 +1,341 @@
+{
+  "status": "FINAL_A8_1187_TESTS_CLEAN_BUILD_AND_ALL_RESOURCE_HTTP_PASS_LOCAL_CANDIDATE",
+  "base": "14d81f71b3acd0eedfe1f2e12bd01190765f77ea",
+  "baseTree": "7838e551f1c48dd4325b3963e3b273a57bef855b",
+  "codeTestsFreeze": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+  "codeTestsTree": "b37a53e0221794d3943c55ce32fdf30fe8849689",
+  "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+  "runtimeSHA256": {
+    "src/scene/palace/special/XuhuiGallery.js": "132e2da23fd7a142ca60f71d9fe6dfeb2f749f2fd8dfeb1e0f8e2cb3fc7e4b21",
+    "src/scene/zones/ZoneBase.js": "ce02417888b50ac22803ba344005756d697fca26b6e61e97fd39ede2e9568a2c"
+  },
+  "sourceBoundary": "ONE_NEW_XUHUI_MODULE_PLUS_EXACT_IMPORT_HOOK142_CALL_ONLY_OLD_RUNTIME_DATA_EXACT",
+  "independentReview": {
+    "status": "PASS_ALL_FOUR_P2_ADDRESSED_NO_NEW_P0_P1_P2",
+    "firstPassP0P1": 0,
+    "firstPassP2": 4,
+    "fixCommit": "97e5e63f865c94b6a35baa3031daf92b3b6fb4bb",
+    "findings": [
+      "ACTUAL_NAMED_ROOF_VERTICAL_IMPACT_AND_REMOVED_ROOF_NEGATIVE",
+      "UNIQUE_BASE_AND_PAVING_WITH_BOTH_REPLACEMENT_NEGATIVES",
+      "ONE_CONTROLLER_FULL_ROUND_TRIPS_WITH_SEPARATE_MOVE_SETTLE_HISTORY",
+      "VISIBLE_EAST_ROOF_BEARING_WITH_ACTUAL_SURFACE_INTERSECTION"
+    ],
+    "acceptedAt": "2026-11-05T00:18:00Z",
+    "hashesVerified": 33,
+    "hashMismatches": 0
+  },
+  "focusedRegression": {
+    "finalFocused": {
+      "tests": 34,
+      "pass": 34,
+      "fail": 0,
+      "duration_ms": 20516.869295
+    },
+    "affectedGeometryOwnershipNeighborsSourcesRender": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "duration_ms": 58935.145604
+    },
+    "priorChongjingSourceGuard": {
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "duration_ms": 2470.003515
+    },
+    "notAddedToFormalCount": true
+  },
+  "controllerMatrix": {
+    "oneWay": 72,
+    "singleControllerRoundTrips": 36,
+    "rates": [
+      10,
+      30,
+      60,
+      144
+    ],
+    "modes": [
+      "walk",
+      "sprint",
+      "backward"
+    ],
+    "offsets": [
+      -0.3,
+      0,
+      0.3
+    ],
+    "eachReplayControllerCount": 1,
+    "eachReplayPositionInitializations": 1,
+    "movementAndExistingTwoSecondReleaseFramesExplicit": true,
+    "neighbors": 96,
+    "namedRoofImpactsAndExplicitOutwardExits": 12,
+    "arbitraryHighExitGuarantee": false
+  },
+  "component": {
+    "scope": "SMALL_REAL_XISHANG_COMPONENT_NOT_WORLD_OR_GPU",
+    "newMeshes": 233,
+    "newTriangles": 9440,
+    "colliders": 233,
+    "triangleContacts": 23,
+    "ordinaryBoxContacts": 210,
+    "walkables": 13,
+    "ownedMaterials": 8,
+    "visibleBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -241.60000610351562,
+        "y": -2.384185793236071e-08,
+        "z": 377.97999997377394
+      },
+      "max": {
+        "x": -234.6999969482422,
+        "y": 7.300000190734863,
+        "z": 397.70001220703125
+      }
+    },
+    "allocationBoundaries": 256
+  },
+  "formalBounded": {
+    "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+    "startedAt": "2026-11-05T00:38:30.004Z",
+    "endedAt": "2026-11-05T00:45:32.761Z",
+    "elapsed_ms": 422752,
+    "exitCode": 0,
+    "status": "PASS_COMPLETE_FINAL_A8_FREEZE",
+    "files": 338,
+    "tests": 1185,
+    "pass": 1185,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 422679.999629,
+    "uniqueList": "BOUNDED-TEST-FILES.json",
+    "priorFilesRetained": 323,
+    "logSHA256": "06148379b1c33ea51df31db2a24c5b97d0020e754963619237e189bdf80d2dad"
+  },
+  "actualNingshouFinal": {
+    "status": "PASS_COMPLETE_FROZEN_TEST_WITH_EXPLICIT_NORMAL_GC_HEAP_CONSTRAINT",
+    "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "duration_ms": 123585.52641,
+    "maxRSSKiB": 1225592,
+    "explicitMaxOldSpaceMiB": 1024,
+    "scope": "ACTUAL_NINGSHOU_NOT_FULL_WORLD",
+    "unchangedDestinations": 20,
+    "xuhuiRouteReplays": 108,
+    "xuhuiNeighbors": 96,
+    "xuhuiNamedRoofImpactExits": 12,
+    "fullEvidenceSHA256": "0a4d1a51a571aece44322045e73b64b9e5f579ab8967ef7febfb58d8ba420ec8"
+  },
+  "actualWestSixFinal": {
+    "status": "PASS_UNCHANGED_COMPLETE_CHONGJING_TEST",
+    "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "duration_ms": 7899.060391,
+    "maxRSSKiB": 477744,
+    "explicitMaxOldSpaceMiB": 1024,
+    "snapshotQueriesRoutesThreeReregistrationsBeforeAfterExact": true,
+    "fullEvidenceSHA256": "4908a4cd462825d7c93b0fa7e43cf3fd6cd81baf1aaa8c286ee75fb29e2f7665"
+  },
+  "supersededAggregates": [
+    {
+      "sourceCommit": "7986d95a0e28710dfc7aa81eb9fd64ce63eeeeec",
+      "exitCode": 130,
+      "formalCount": 0
+    },
+    {
+      "sourceCommit": "f0dcbf85dd54209b301c1cd87a6f8c9ccfabd105",
+      "exitCode": 130,
+      "formalCount": 0
+    }
+  ],
+  "schemaNoGeo": {
+    "status": "PASS_FINAL_FREEZE",
+    "zones": 7,
+    "errors": 0,
+    "inheritedBoundsWarnings": 9,
+    "exitCode": 0
+  },
+  "anchorLimit": {
+    "status": "INHERITED_FAILURE_PRESERVED",
+    "anchors": 114,
+    "overTolerance": 1,
+    "name": "神武门",
+    "axis": "z",
+    "deviationMetres": 11,
+    "toleranceMetres": 5
+  },
+  "cleanBuild": {
+    "status": "PASS_COMPLETE_COMPRESSED_CLEAN_BUILD_AND_SOURCE_IDENTITY",
+    "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "sourceDirty": false,
+    "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+    "buildId": "R164-aba2a766422d",
+    "base": "/forbidden-city-3d/",
+    "node": "v24.22.1",
+    "vite": "5.4.21",
+    "command": "GOMAXPROCS=2 GOMEMLIMIT=192MiB VITE_BASE=/forbidden-city-3d/ node --max-old-space-size=768 --max-semi-space-size=16 --import <memory-only observer> node_modules/vite/bin/vite.js build --outDir <new empty sibling output>",
+    "constraints": {
+      "nodeMaxOldSpaceMiB": 768,
+      "nodeMaxSemiSpaceMiB": 16,
+      "GOMAXPROCS": 2,
+      "GOMEMLIMIT": "192MiB",
+      "npmParentRemoved": true,
+      "memoryObserverOnly": true
+    },
+    "startedAt": "2026-11-05T01:04:44.057Z",
+    "endedAt": "2026-11-05T01:04:55.279Z",
+    "exitCode": 0,
+    "signal": null,
+    "viteDurationSeconds": 10.79,
+    "wrapperElapsed_ms": 11222,
+    "observed250msTreePeakRssKiB": 1208720,
+    "observedProcessPeaksKiB": {
+      "node": 1252,
+      "MainThread": 1005316,
+      "esbuild": 222288
+    },
+    "logBytes": 952,
+    "logSHA256": "327cf3b310b7ac1a3417a04f9415bd31bd23ad5dfdcbae3d87904ede934e5b4e",
+    "moduleCount": 802,
+    "jsGzipBytesApprox": 1738550,
+    "inheritedLargeChunkWarningRetained": true,
+    "configMinificationOrProductChange": false,
+    "kernelCauseOfEarlierSIGKILLProven": false,
+    "wholeDevicePerformanceClaim": false,
+    "identity": "BUILD-IDENTITY.json",
+    "actualEntryJSBytes": 6425408,
+    "actualEntryJSSHA256": "3961a315614607eb1e6039c0c279f72400d68b4d39bfe08362bdbeb8576d8a79",
+    "viteReportedJSKilobytes": 6148.12
+  },
+  "browserWebGLGPU": "UNVERIFIED_EXISTING_PROBE_BLOCKED_BEFORE_CONTEXT_NO_WEAKENING",
+  "fullWorldDeviceNode20Mac": "NOT_RUN",
+  "runtimeFreezeUnchanged": "97e5e63f865c94b6a35baa3031daf92b3b6fb4bb",
+  "priorReviewedAggregate": {
+    "status": "PASS_COMPLETED_SUPERSEDED_TEST_FREEZE_NOT_FINAL_COUNT",
+    "files": 338,
+    "tests": 1184,
+    "pass": 1184,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 425093.991052,
+    "elapsed_ms": 425163,
+    "exitCode": 0,
+    "sourceCommit": "97e5e63f865c94b6a35baa3031daf92b3b6fb4bb",
+    "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+    "startedAt": "2026-11-05T00:19:43.792Z",
+    "endedAt": "2026-11-05T00:26:48.958Z",
+    "uniqueList": "BOUNDED-TEST-FILES.json",
+    "priorFilesRetained": 323,
+    "logSHA256": "3a3266ad69bf72f66cd0b20629ff4d075d8cfe5f15e6bc81186e0b01613d39f4"
+  },
+  "actualNingshouRed": {
+    "status": "FAILED_INVALID_NEW_POSITIVE_PATH_CROSSED_RETAINED_GUHUA_BENCH",
+    "sourceCommit": "97e5e63f865c94b6a35baa3031daf92b3b6fb4bb",
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "exitCode": 1,
+    "duration_ms": 22562.176638,
+    "identicalPublic14CurrentEnd": [
+      -249.20884305653425,
+      382.24303880236357,
+      0
+    ],
+    "retainedVisibleSource": "guhua-seat-top",
+    "contactMin": [
+      -251.17666666666668,
+      0.8599999999999999,
+      382.84
+    ],
+    "contactMax": [
+      -247.09,
+      0.98,
+      383.26
+    ],
+    "fixtureError": "OLD_NEW_NEIGHBOR_FIXTURE_BUILT_XISHANG_ONLY_OMITTED_GUHUA"
+  },
+  "neighborVerificationCorrection": {
+    "status": "SCOPED_REVIEW_ACCEPTED_NO_NEW_P0_P1_P2",
+    "commit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "runtimeChanged": false,
+    "changedTestFiles": 3,
+    "sameOldPathRetainedAsBlockedNegative": true,
+    "actualPublic14CurrentSourceBlockerAndReplayExact": true,
+    "actualCentralConnectionPassesEach": 24,
+    "realContextFocusedTests": 5,
+    "realContextFocusedPass": 5,
+    "duration_ms": 4419.895157,
+    "manifestHashesVerified": 33,
+    "manifestHashMismatches": 0
+  },
+  "actualNingshouExecutionFailures": [
+    {
+      "log": "final-neighbor-reviewed-ningshou.log",
+      "status": "FILE_LEVEL_FAILED_DEFAULT_REPORTER",
+      "elapsed_ms": 60401,
+      "outerExitCode": 1,
+      "childSignal": "NOT_REPORTED"
+    },
+    {
+      "log": "actual-failure-diagnostic-tap.log",
+      "status": "UNCHANGED_FULL_TEST_EXPLICIT_TAP_CHILD_SIGKILL",
+      "duration_ms": 61798.855709,
+      "outerExitCode": 1,
+      "childSignal": "SIGKILL",
+      "childExitCode": null,
+      "failureType": "testCodeFailure"
+    }
+  ],
+  "executionRecovery": {
+    "status": "COMPLETE_ACTUAL_NINGSHOU_AND_WEST_SIX_PASS_WITH_EXPLICIT_1024_MIB_HEAP_LIMIT",
+    "node": "v24.22.1",
+    "defaultHeapLimitBytes": 2348810240,
+    "explicitMaxOldSpaceMiB": 1024,
+    "testSubprocessIsolation": "UNCHANGED",
+    "rssMethod": "ACTUAL_TEST_SELF_RESOURCEUSAGE_MAXRSS_EXTERNAL_TASK_CHILDREN_PATH_UNIMPLEMENTED",
+    "OOMConfirmed": false,
+    "kernelMemoryEvents": "UNAVAILABLE_SYS_ABSENT_DMESG_READ_DENIED_NO_RETRY",
+    "sourceOrAssertionsChanged": false,
+    "performanceClaim": false
+  },
+  "formalDistinct": {
+    "files": 340,
+    "tests": 1187,
+    "pass": 1187,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "bounded": 1185,
+    "actualNingshou": 1,
+    "actualWestSix": 1,
+    "duplicateFocusedDiagnosticOrInterruptedAddition": 0
+  },
+  "allResourceHTTP": {
+    "status": "PASS",
+    "scope": "LOCAL_HTTP_REAL_PAGES_BASE_NOT_REMOTE_DEPLOYMENT_BROWSER_GPU",
+    "verifiedAtUTC": "2026-11-05T01:05:18.436Z",
+    "files": 137,
+    "totalBytes": 44796662,
+    "textureFiles": 92,
+    "statusMIMESHA256AllEqual": true,
+    "root": 200,
+    "missing": 404,
+    "wrongBase": 404,
+    "receipt": "PAGES-BASE-HTTP.json",
+    "receiptSHA256": "a42c3756fbf16208dd0aaf88e44928f2eb259e9ac6a646697603652b1907b22f",
+    "identityMatchesBuildSource": true
+  },
+  "documentationCloseout": "RECORDED_IN_THIS_DOCS_ONLY_COMMIT_BUILD_ACTUAL_SOURCE_STAYS_A8",
+  "localCandidateDoesNotClaimRemotePublication": true
+}

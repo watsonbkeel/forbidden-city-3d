@@ -1,0 +1,3 @@
+import{normalizeGuhuaSource}from'../r165-guhua-roof/source-boundary.mjs';
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';export const record=JSON.parse(fs.readFileSync(new URL('./source-boundary.json',import.meta.url))),sha=x=>createHash('sha256').update(x).digest('hex');
+export function normalizeChongjingSource(path,bytes){bytes=normalizeGuhuaSource(path,bytes);if(path!==record.path)return bytes;assert.equal(sha(bytes),record.after,'exact allocation-only Chongjing source, no arbitrary exclusion');const old=fs.readFileSync(new URL('./frozen/ChongjingHall.97af.js',import.meta.url));assert.equal(sha(old),record.before);return old}

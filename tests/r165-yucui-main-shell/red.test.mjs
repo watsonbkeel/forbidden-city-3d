@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';
+test('Yucui original J identity has a dedicated shell and one production hookup',()=>{const p=new URL('../../src/scene/palace/special/YucuiMainShell.js',import.meta.url);assert.ok(fs.existsSync(p),'missing dedicated Yucui shell');const s=fs.readFileSync(p,'utf8'),z=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');assert.ok(s.includes('FC-177C99C806'));assert.equal(z.match(/buildYucuiMainShell\(this\.kit,this\.zoneJson\)/g)?.length,1)});

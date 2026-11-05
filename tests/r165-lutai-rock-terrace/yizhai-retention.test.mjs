@@ -1,0 +1,2 @@
+import test from'node:test';import{fixture,collision,zone}from'../r165-yizhai-main-shell/fixture.mjs';import{buildLutaiRockTerrace}from'../../src/scene/palace/special/LutaiRockTerrace.js';import{highExits}from'../r165-yizhai-main-shell/high-runner.mjs';
+test('all 60 unchanged original Yizhai high-exit paths remain passable beside fitted Lutai',()=>{const f=fixture();try{buildLutaiRockTerrace(f.kit,zone);highExits(collision(f))}finally{f.dispose()}});

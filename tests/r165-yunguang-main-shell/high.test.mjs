@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('15 high origins x four rates settle then continuously exit without body overlap',()=>{const f=fixture();try{highExits(collision(f))}finally{f.dispose()}});

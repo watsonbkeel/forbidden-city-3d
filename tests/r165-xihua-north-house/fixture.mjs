@@ -1,0 +1,5 @@
+import fs from'node:fs';import assert from'node:assert/strict';
+export{fixture,meshes,state,zone}from'../r165-xuanshou-south-front/fixture.mjs';
+import{library}from'../lib/inner-palace-fixture.mjs';import{ZoneBase}from'../../src/scene/zones/ZoneBase.js';import{zone}from'../r165-xuanshou-south-front/fixture.mjs';
+export async function api(){assert.ok(fs.existsSync(new URL('../../src/scene/palace/special/XihuaNorthWatchHouse.js',import.meta.url)),'L3 independent private source absent');return import('../../src/scene/palace/special/XihuaNorthWatchHouse.js')}
+export function neighborhood(){const lib=library(),builder=new ZoneBase(lib,zone),kit=builder.kit;for(const i of[30,31,32,33,34,35]){const item=zone.items[i];if(item.kind==='gate'){const w=builder.buildGate(item);builder.gateWidths.set(item.name,w)}else if(item.kind==='courtWalls')builder.buildCourtWalls(item);else if(item.kind==='hall')builder.buildHall(item);else if(item.kind==='cityGate')builder.buildCityGate(item);else builder.buildRegion(item)}return{lib,builder,kit,dispose(){builder.dispose()}}}

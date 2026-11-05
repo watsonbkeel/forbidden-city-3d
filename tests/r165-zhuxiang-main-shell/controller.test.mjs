@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{exteriorRoutes}from'./route-runner.mjs';test('48 real controller exterior bypasses remain ground routes and eight unknown-core entries remain blocked',t=>{const f=fixture();try{exteriorRoutes(t,collision(f))}finally{f.dispose()}});

@@ -1,0 +1,41 @@
+{
+  "base": "adc306fcac0cff588ee2ae348ed7ae5a6c99338f",
+  "status": "CHECKED_PENDING_BUILD_AND_UPLOAD",
+  "runtimeSHA256": {
+    "src/scene/palace/special/CanopyRoofSurfaceJoint.js": "df13d3bb09c72cc6fb567e72d5cbf10b99e3cadf3313013029ae9d0b1c141767"
+  },
+  "self": {
+    "newLight": 20,
+    "realZones": 2,
+    "bounded": {
+      "files": 252,
+      "tests": 979,
+      "passed": 976,
+      "failed": 3,
+      "cancelled": 0,
+      "skipped": 0,
+      "durationMs": 237618.137862
+    },
+    "distinctFormal": {
+      "tests": 981,
+      "passed": 978,
+      "failed": 3,
+      "calculation": "979 bounded + west-six1 + east-six1; production-zone.test.mjs absent from the 252 unique bounded files; repeats/explorations excluded"
+    }
+  },
+  "independent": {
+    "distinctFormalPassed": 39,
+    "light": 37,
+    "realZones": 2,
+    "extraSyntheticProbes": 15,
+    "interleavedComponentSamples": "2 warmup pairs + 10 alternating AB/BA pairs per component; not counted as formal test cases"
+  },
+  "textReview": "PASSED",
+  "cleanBuild": "PENDING",
+  "remoteReadback": "PENDING",
+  "performanceClaimScope": "LOCAL_REAL_COMPONENT_NODE_CPU_SAMPLES_ONLY",
+  "crashRootCauseFixedClaim": false,
+  "asyncMode": false,
+  "collisionOrAdmissionChange": false,
+  "worldBrowserGpuMobileNode20MacTemperature": "NOT_RUN"
+}

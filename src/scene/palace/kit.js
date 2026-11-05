@@ -1,3 +1,4 @@
+import {measureKitMerge} from '../zones/ZoneLoadMetrics.js';
 import {buildShunzhenGate} from './special/ShunzhenGate.js';
 import {southCourtGeometry} from './special/SouthCourtProfiles.js';
 import { buildYinghuaGate } from './special/YinghuaGate.js';
@@ -760,7 +761,7 @@ export class CourtKit {
       const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);
       if (record) architecture.push(structuredClone(record));
     });
-    const merged = mergeByMaterial(this.root, { name: this.root.name });
+    const merged = measureKitMerge(this,()=>mergeByMaterial(this.root, { name: this.root.name }));
     merged.userData.architecture = architecture;
     merged.traverse(o => { if (o.isMesh) o.receiveShadow = true; });
     return merged;

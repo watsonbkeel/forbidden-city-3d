@@ -1,0 +1,76 @@
+{
+  "scope": "COMPLETE_ACTUAL_NINGSHOU_AND_WEST_SIX_CPU_NOT_WORLD_GPU_OR_DEVICE_BENCHMARK",
+  "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+  "node": "v24.22.1",
+  "explicitMaxOldSpaceMiB": 1024,
+  "ningshou": {
+    "tests": 1,
+    "pass": 1,
+    "duration_ms": 123585.52641,
+    "maxRSSKiB": 1225592,
+    "oldRaw": {
+      "meshes": 29608,
+      "triangles": 663028,
+      "geometry": "c4dd0b2ddaca959e41887e72e8cd0647b7df1e191c30679e322e5c7ace49c0b5"
+    },
+    "allRaw": {
+      "meshes": 29841,
+      "triangles": 672468,
+      "geometry": "5980488ec308e6ca98a440683d5de3ca21c11dcfe0e66c25de2bc9e7ee8c2e81"
+    },
+    "oldData": {
+      "colliderCount": 8238,
+      "colliders": "525b617b206d3364712d16ed45cfa0ade52923e221aa913ba74ccc8d13ed7319",
+      "walkableCount": 440,
+      "walkables": "9befba563b72ad9012f569da2732b30b82a12881351045dad66d4f79bcb9763f",
+      "rooms": "4134d7d87000419f1dcedd0604a5fbe250bd0901876035c039b9d9139bcf8b05",
+      "maps": "ddfb0cb3c173b48d10e8880a8f414ce3aa3b78e26012a5e9f071f925d6ef0a03",
+      "regions": "39ee2f4fcf22238e2e1dd56f38c1f8cf9a9508a37f057228f0c948df85f3c87e",
+      "architecture": "f248a0916487aa47ae817dbcb3ed36652caa07ac3f5e2eeb218dea2503bd60ce"
+    },
+    "oldRoof": {
+      "triangles": 54648,
+      "sha256": "c04eee30104a1f7f34ab9b0e27c65909c15fb15ef1d5aaf10c9cfbeca96204d6"
+    },
+    "unchangedDestinations": 20,
+    "xuhuiOneWayReplays": 72,
+    "xuhuiSingleControllerRoundTrips": 36,
+    "xuhuiRoutesTotal": 108,
+    "xuhuiNeighbors": 96,
+    "xuhuiNamedRoofImpactExits": 12,
+    "retainedGuhuaBenchNegativeBeforeAfterExact": true,
+    "allPriorCumulativeRoutesExecuted": true,
+    "fullEvidenceSHA256": "0a4d1a51a571aece44322045e73b64b9e5f579ab8967ef7febfb58d8ba420ec8"
+  },
+  "westSix": {
+    "tests": 1,
+    "pass": 1,
+    "duration_ms": 7899.060391,
+    "maxRSSKiB": 477744,
+    "snapshot": {
+      "geometry": {
+        "meshes": 292,
+        "triangles": 165126,
+        "geometry": "35a6ae07a8201d9992ace3b3116250ef919edb265c68efb19462b82563d06942"
+      },
+      "colliders": "9fb25e8961fe18aa63916c44b4f52b72d758a46fe716a6b749a0aebc3ae679c6",
+      "walkables": "ab88e8b6b8d2a0fe53ef354b227111e2f78c37fe27cb61649fc8e5794c542198",
+      "counts": [
+        3223,
+        138
+      ],
+      "maps": "e4fbf9eeca594ee90c8f3f98f1405fe767591dfba1c7620c23355fc5457d74f2",
+      "rooms": "7fe461b008dde1d87d94c283914cbee783736486a8624c30c5972b04d197e821",
+      "regions": "1ea38e89518b0ece50c577b161e9ad1934d53a0551287c943e74585e0396b025",
+      "architecture": "0e71a1c25be6699d9d05df118e4f44467986671e284f9286a6af5a6e240f9450",
+      "roof": {
+        "triangles": 23060,
+        "sha256": "cf409904d32088d5c8d555848505959b097953758157461507e833ce0076e68f"
+      }
+    },
+    "queriesRoutesAndThreeReregistrationsBeforeAfterEqual": true,
+    "fullEvidenceSHA256": "4908a4cd462825d7c93b0fa7e43cf3fd6cd81baf1aaa8c286ee75fb29e2f7665"
+  },
+  "observedExternalRSSSamplerLimit": "ACTUAL_TEST_WRAPPER_ONLY_SEEN_BECAUSE_TASK_CHILDREN_PATH_UNIMPLEMENTED_USE_TEST_SELF_MAXRSS",
+  "performanceOrCrashFixClaim": false
+}

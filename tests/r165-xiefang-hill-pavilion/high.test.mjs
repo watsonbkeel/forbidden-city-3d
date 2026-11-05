@@ -1,0 +1,1 @@
+import test from'node:test';import{fixture,collision}from'./fixture.mjs';import{highExits}from'./high-runner.mjs';test('18 hill/roof/stair start positions times four frame rates settle then continuously exit to ground without reset',()=>{const f=fixture();try{highExits(collision(f))}finally{f.dispose()}});
