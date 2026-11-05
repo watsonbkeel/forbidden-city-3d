@@ -1,0 +1,2 @@
+import fs from'node:fs';import assert from'node:assert/strict';import{createHash}from'node:crypto';
+export function loadZhongzhengBaseline(){const b=fs.readFileSync(new URL('./baseline-e4.json',import.meta.url));assert.equal(createHash('sha256').update(b).digest('hex'),'a7d0138b55eb2e1278c7ac2bcecd0a0efb046a576a85a56f6cb0ea5eacc6c84f','immutable before-H29 actual-library fixture');return JSON.parse(b)}

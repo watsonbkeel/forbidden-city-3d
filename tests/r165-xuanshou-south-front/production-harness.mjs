@@ -1,3 +1,7 @@
+import {captureZhongzhengDelta} from '../r165-zhongzheng-main/production-delta.mjs';
+import {runZhongzhengRoutes} from '../r165-zhongzheng-main/route-runner.mjs';
+import {runOldAccess} from '../r165-zhongzheng-main/route-baseline.mjs';
+import {loadZhongzhengBaseline} from '../r165-zhongzheng-main/baseline-reader.mjs';
 import {captureWatchDelta} from '../r165-xihua-north-house/production-delta.mjs';
 import {loadWatchRouteBaseline} from '../r165-xihua-north-house/route-baseline.mjs';
 import {captureFuyiDelta} from '../r165-fuyi-three-bay/production-delta.mjs';
@@ -44,11 +48,13 @@ export function actualOuterWest() {
   const builder = new ZoneBase(library, zone);
   const record = {scope: 'ACTUAL_OUTER_WEST_ONLY_NOT_WORLD_GPU_OR_MOBILE', publicBase: baseline.publicBase};
   const newObjects = new Set(), newMaterials = new Set(), newUUIDs = new Set(), stoneTops = [];
-  let oldState, oldMerged, data, fuyi, watch;
+  let oldState, oldMerged, data, fuyi, watch, zhongzheng;
   const originalFinish = builder.kit.finish;
   builder.kit.finish = function () {
-    watch = captureWatchDelta(this);
-    const watchRetained = watch.projectKit(this);
+    zhongzheng = captureZhongzhengDelta(this);
+    const zhongzhengRetained = zhongzheng.projectKit(this);
+    watch = captureWatchDelta(zhongzhengRetained);
+    const watchRetained = watch.projectKit(zhongzhengRetained);
     fuyi = captureFuyiDelta(watchRetained);
     const retained = fuyi.projectKit(watchRetained);
     const targets = retained.root.children.filter(m => m.userData.structure?.sourceObjectId === 'FC-73284DA281');
@@ -112,7 +118,10 @@ export function actualOuterWest() {
   return {
     verify(t) {
       const completeData = builder.build();
-      const watchRetained = watch.projectData(completeData);
+      const zhongzhengRetained = zhongzheng.projectData(completeData);
+      record.zhongzheng = zhongzheng.proof;
+      record.withoutZhongzhengMerged = rawSnapshot(zhongzhengRetained.group);
+      const watchRetained = watch.projectData(zhongzhengRetained);
       record.watch = watch.proof;
       record.withoutWatchMerged = rawSnapshot(watchRetained.group);
       data = fuyi.projectData(watchRetained);
@@ -169,8 +178,15 @@ export function actualOuterWest() {
         assert.ok(Math.abs(result.end[2]) < 1e-6);
         record.routes.push(summarize(result, 'L3-two-fitted-treads-north-front-return', fps));
       }
-      assert.equal(record.completeActualMerged.triangles - record.withoutWatchMerged.triangles, 2216, 'independent L3 complete-region delta');
+      assert.equal(record.withoutZhongzhengMerged.triangles - record.withoutWatchMerged.triangles, 2216, 'independent L3 complete-region delta');
+      assert.equal(record.completeActualMerged.triangles - record.withoutZhongzhengMerged.triangles, 1248, 'independent H29 complete-region delta');
 
+      record.zhongzhengOldAccess = runOldAccess(t, completeData);
+      assert.deepEqual(record.zhongzhengOldAccess, loadZhongzhengBaseline().routes, 'exact pre-H29 existing gate-bypass frames on complete zone data');
+      record.zhongzhengRoutes = runZhongzhengRoutes(t, completeData);
+      assert.equal(record.zhongzhengRoutes.routes.length, 6);
+      assert.equal(record.zhongzhengRoutes.stoneSupports.length, 6);
+      assert.equal(record.zhongzhengRoutes.historicalAxisBlocked, true);
       record.maxRSSKiB = process.resourceUsage().maxRSS; record.memory = process.memoryUsage(); record.execArgv = process.execArgv;
       record.routeLimits = 'Sprint flag walks within2m of turns/endpoints; not full-speed staircase running. Actual outer-west only.';
       record.complete = true;
