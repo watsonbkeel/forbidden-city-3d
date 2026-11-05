@@ -1,4 +1,3 @@
-import'../lib/changyin-test-font.mjs';
 import test from'node:test';import assert from'node:assert/strict';import*as T from'three';import{fixture}from'./fixture.mjs';import{rawSnapshot,hash}from'./snapshot.mjs';
 const api=await import('../../src/scene/palace/special/ChangyinLowerNameboard.js').catch(e=>{if(e.code==='ERR_MODULE_NOT_FOUND')return{};throw e});const apply=b=>{assert.equal(typeof api.buildChangyinLowerNameboard,'function','missing official lower-eave title');return api.buildChangyinLowerNameboard(b.kit,b.zone)};
 const physics=b=>hash({c:b.kit.colliders,w:b.kit.walkables,rooms:b.kit.rooms,maps:b.kit.mapItems,regions:b.kit.regions});
