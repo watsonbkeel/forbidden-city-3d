@@ -1,0 +1,987 @@
+{
+  "schema": 2,
+  "base": "ad0f3086e32d8f101bb29c1a7a7b04fc441861ab",
+  "commit": "8ae5a1506c1239574d4235e016b158b543ddfc41",
+  "tree": "3e20c2a31d41bd0d2aa8979f89ff5c2e2d716385",
+  "localFreezeLabelOnly": true,
+  "scope": [
+    "Guhua rolled roof",
+    "K19 Xuanshou south front",
+    "K18 Fuyi three bay",
+    "L3 Xihua north watch house",
+    "F51/F52 Yangxin companions"
+  ],
+  "excludes": [
+    "F50 Yangxin front porch",
+    "main changes",
+    "deployment"
+  ],
+  "sourceFingerprint": "169cb8001e69dd59d71b1f122f7d50f3a19bed97a4076e485e8aa56b42198be9",
+  "runtimeInputs": 970,
+  "runtimeBytes": 47632926,
+  "changed": [
+    {
+      "path": ".github/workflows/r165-guhua-validation.yml",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 25936,
+      "sha256": "d9e04ff41266c0c7b7097b630c28172e85b879c47de16a43ea008d5a2e4c3660"
+    },
+    {
+      "path": ".github/workflows/r165-guhua-xuanshou-validation.yml",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 29265,
+      "sha256": "daa30b812927f8546f1c58f9e041aabeb34d056eefcd5ba6022c8c1e4721ef81"
+    },
+    {
+      "path": "data/architecture/building-fidelity.json",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 503367,
+      "sha256": "860c5251695a96a94c526126483529959471eb904988c3a23d9b0c6cab07b9e2"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-roof/BOUNDED-TEST-FILES.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 18411,
+      "sha256": "3b2ae9394596beb8735ae817653ec2b39579a3ca952fbb9163728fe413bac75a"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-roof/HEAVY-TEST-FILES.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 120,
+      "sha256": "4ccdcef2e34cd52c98c92441fbb819b0a19f839c222b7c3a5611ba1f796281b9"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-roof/SOURCE-TESTS-FREEZE.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 8590,
+      "sha256": "3e1956c46fcad4563be9a9cf9f3f8b15b5851816472d052836d787774d519726"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-roof/TEST-PLAN.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3258,
+      "sha256": "dd5a3410e2f435cf6c30b9928a3546f887647d44d062ba6bed76f49eb1b33f45"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-xuanshou-combined/BOUNDED-TEST-FILES.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 18797,
+      "sha256": "fa5d75426eef03347201945593557367dc61e0e56c62e99ae8319887d83eca04"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-xuanshou-combined/HEAVY-TEST-FILES.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 182,
+      "sha256": "dcc0226f5d71598977eb5f609921c7958739f3a42e2e3dddc109df0660d57298"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-xuanshou-combined/SOURCE-TESTS-FREEZE.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 12591,
+      "sha256": "296ed65472d367b3b90c6bd8da803f4231420fd19a20fc3989f1008c275cc8ff"
+    },
+    {
+      "path": "docs/current-state/r165-guhua-xuanshou-combined/TEST-PLAN.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5934,
+      "sha256": "93e20957ad974f4968ea569f036995a8086e22d64cef4132796bd709ad18c91b"
+    },
+    {
+      "path": "docs/current-state/r165-xuanshou-south-front/COMPONENT-VERIFICATION.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 9265,
+      "sha256": "ca634f44c2c340a0e4cafb7183e0205263ed62cca14667ce83cf95c90fe403db"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-05-xuanshou-south-front.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4025,
+      "sha256": "e4753745cc4345915e9d3009a481c2498a870055edb5b13e2e96be8832fe94f9"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-05-yangxin-companions.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2968,
+      "sha256": "b737430dfeb7c111b383f2cd26f54e65b63936e99fcb5df9dee8f78fefe5901a"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-11-05-xuanshou-south-front-design.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2344,
+      "sha256": "6cfe6c8d1276ea421762b838542613254795c06dd3c15c14a3ef30dd40444b36"
+    },
+    {
+      "path": "src/scene/palace/special/FuyiThreeBay.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 8351,
+      "sha256": "bcc567d776112c2afc10613ab2ce6e39d5064003dd8b72cae5e5db68b5412f0b"
+    },
+    {
+      "path": "src/scene/palace/special/GuhuaPavilion.js",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 6885,
+      "sha256": "58cec6f2c3e047c3efd82a26793b4af89c37875cf187cc1b534f11a0ce8a9cc1"
+    },
+    {
+      "path": "src/scene/palace/special/GuhuaRolledRoof.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 11246,
+      "sha256": "9bb8bed241adb5e834c36167a1c7a3ab8966f18379333556b271373c7fe3aaf8"
+    },
+    {
+      "path": "src/scene/palace/special/XihuaNorthWatchHouse.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 9035,
+      "sha256": "96289a2c4e99b9e27f1b82d454622fdc4af26692a0e700cc9bef0f54761fbd32"
+    },
+    {
+      "path": "src/scene/palace/special/XuanshouSouthFront.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 12900,
+      "sha256": "98b5894304b1b217cfd18f420a118f2c500211ca6e3d5ef1d0fffdfb736b4356"
+    },
+    {
+      "path": "src/scene/palace/special/YangxinCompanionHalls.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 10280,
+      "sha256": "5d40067569b24c947aa581ee32635a166eb93dc2085b200ca682c312dfae3c4b"
+    },
+    {
+      "path": "src/scene/zones/ZoneBase.js",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 66146,
+      "sha256": "112a226e29c580c8fc0316c61571b920283f540b0cce6127e2bfdc7d91386a37"
+    },
+    {
+      "path": "tests/r139/details.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 9476,
+      "sha256": "4e3098d7b10c8aca0c5c2a8bfb9c6ff200dafb34356f0072f62bcd27a1c43276"
+    },
+    {
+      "path": "tests/r164-zhenshun-single-gate/harness.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 2574,
+      "sha256": "54fc0cfe5126e356480327c450651326e2b8130c2f8e2e9319ae431c3e8fff37"
+    },
+    {
+      "path": "tests/r165-chongjing-allocation/source-boundary.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 694,
+      "sha256": "1b41a34288a077e58045c6be604bc3d746d689321fdaf070594dca907f489497"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/baseline-ae5.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 396,
+      "sha256": "1fc443f49f68e1b92d1f415cca5db04b13123eab3e247e8f8792d82536ae53ce"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2793,
+      "sha256": "ded2f94ba5e84ce3ccf5021f23bc5cca51fd02f48501bcfc46a3c2b53a602eca"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/compound.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5043,
+      "sha256": "7abfc8971aae7589bf754f9b0055e903c2ac66395ca348b434135c0357236728"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1254,
+      "sha256": "571d576195ccf5141699d053994428539db41b862f9977b7301556c1f334e84e"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/frozen/ZoneBase.ae5.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 65639,
+      "sha256": "116c248afa21fa59fdc10db5ad38732ad7506040a667c36a302465a3f60fae48"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/geometry.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4969,
+      "sha256": "34010d571ce2dc040212b21ee4279d3efa67e7dfb5ce545a10c0c655cf154f5d"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4612,
+      "sha256": "44a380396f53726d28f8491098ed48d0b69ef614f2eb759ef452b01a514bbeb3"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/merge-flight.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1176,
+      "sha256": "6bdefbd370a5d86591ff7d90382eb5264601b77be671a15838d69a6d05f24d9b"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/preview.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3023,
+      "sha256": "3dc55f2052950844d34925e798faf6a41fa27e872b4ded433a7be9097e85e62e"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/production-delta.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 552,
+      "sha256": "eb35f8e23b352ce5bedd73220acef975fe50ddb357981b5f8c46179cba121d71"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/production-delta.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4365,
+      "sha256": "e647b67df9687a0b13ed3ba0eda5778d7eca78ac59c0f021f82e1a029be89e72"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/route.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2718,
+      "sha256": "57410c75963c107b2f03f743fa523fbe74ec3be3abdb5c93205429ca1111781b"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/source-boundary.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 473,
+      "sha256": "118f43c75ae2bb0038a9650815e969d87ff4d5d7b869bef5db5b7267481638b5"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/source-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 888,
+      "sha256": "42a2c5a3533fff6a286efcc5a2ab0ed37bb18fbd358f4fa3df7d6a4fb115a0f9"
+    },
+    {
+      "path": "tests/r165-fuyi-three-bay/source.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4006,
+      "sha256": "fa39bcb1508c1ca684ed643d5dac0be288d324d464e09c7d501303eaadec5596"
+    },
+    {
+      "path": "tests/r165-guhua-roof/actual-component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4425,
+      "sha256": "00a7cfe1dbdd84a2d20655b1a45bcd13afd87100dc05f09ce3c087319fe59372"
+    },
+    {
+      "path": "tests/r165-guhua-roof/actual-fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 621,
+      "sha256": "6aba76c6a27aa5857724090b79fb680cc9b7a71ef0c835bcd4b0352a6d9fd27f"
+    },
+    {
+      "path": "tests/r165-guhua-roof/actual-lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3134,
+      "sha256": "910dbe62c769ae98f6d68be786f557562d38245b2d71bfce0ce1b8b7f90959c4"
+    },
+    {
+      "path": "tests/r165-guhua-roof/assertions.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1956,
+      "sha256": "f361db9a97f30437a2ee65f77bf43daa245f699849c81113c13adbc8e4ef897d"
+    },
+    {
+      "path": "tests/r165-guhua-roof/baseline-actual.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 690722,
+      "sha256": "8bcb840cabd10c0029ca26b34d2c4568cba5bb327d45463354d1fc5bdd0099e6"
+    },
+    {
+      "path": "tests/r165-guhua-roof/baseline-uv-profiles.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 7400,
+      "sha256": "4c3175b4fab131c30b222221c34ce77c2d95a7e617ef46dffbd414dc6904be31"
+    },
+    {
+      "path": "tests/r165-guhua-roof/baseline.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 687882,
+      "sha256": "5d3ff0fa88ba4f1ec23cce7e2d71f78bdec07b2c11fae3f64fbe9a43ce6ca258"
+    },
+    {
+      "path": "tests/r165-guhua-roof/candidate-actual.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 904,
+      "sha256": "607d7bf71aed80b28d20339dce3c5baad6e8b99fb310a03b34bd6775b5540164"
+    },
+    {
+      "path": "tests/r165-guhua-roof/candidate.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 886,
+      "sha256": "2ae4246dfd16fcf318aa4a9af8b0e7a220f3651ee8f3e85703f97027248a98d2"
+    },
+    {
+      "path": "tests/r165-guhua-roof/collider-hash.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1952,
+      "sha256": "955544a54f7f3f37102999539e85bdff473f25039339de5543730e5f2dcb36e5"
+    },
+    {
+      "path": "tests/r165-guhua-roof/component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2502,
+      "sha256": "8536ea75f4d2f993ac036dab3b052aa9efda474ccb7eb0f0f2fcfe3a79be4f6d"
+    },
+    {
+      "path": "tests/r165-guhua-roof/fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2395,
+      "sha256": "a77c52f34b63045d93cf312a466e174180692d151658abf6b76538aa024df499"
+    },
+    {
+      "path": "tests/r165-guhua-roof/frozen/GuhuaPavilion.ad0.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 6768,
+      "sha256": "54fce1b142d843de5482bd9e02c3ea9aa29bdf7d2ac920e90ec649bfff03d6e5"
+    },
+    {
+      "path": "tests/r165-guhua-roof/frozen/building-fidelity.ad0.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 503065,
+      "sha256": "adf36522eccf477950b80a4d0ab5b5a0f8d82839f6b1bcc7ba7f49e368b4862d"
+    },
+    {
+      "path": "tests/r165-guhua-roof/geometry.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5589,
+      "sha256": "72e7180c692231071ed145b5ce8699c64aaac5eef903b57421bd20d4249f8d1e"
+    },
+    {
+      "path": "tests/r165-guhua-roof/historical.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2659,
+      "sha256": "2c515d5e85bc2b644675369e3b2fb3dd545c3fb43b9de85fb05e30c55a33295f"
+    },
+    {
+      "path": "tests/r165-guhua-roof/historical.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3499,
+      "sha256": "c459e20c1e3a874ecadb2ca2b2b97a48d6bac93b75fc671d5662689307428f1f"
+    },
+    {
+      "path": "tests/r165-guhua-roof/interpolation.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1165,
+      "sha256": "d116ff0f455ad5bba25c60708f5a792bcc41ee00483b75f0290d4279b25004d5"
+    },
+    {
+      "path": "tests/r165-guhua-roof/lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4327,
+      "sha256": "22a5a34ed795a9d97990d6acd5ce7e5135c04e788f3a785d19206fa9b4b531a9"
+    },
+    {
+      "path": "tests/r165-guhua-roof/load-profiles.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1385,
+      "sha256": "7a35fc3a27ab60e68db3f62660485a2b1a33a680e64d16379ad28dedd69182b8"
+    },
+    {
+      "path": "tests/r165-guhua-roof/merge-flight.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1818,
+      "sha256": "9373e99298ff423ac05fe8b4c371912d188bfc424dd8aa77bc36dafc921329f7"
+    },
+    {
+      "path": "tests/r165-guhua-roof/negative.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1646,
+      "sha256": "010ddeb8740c7fafc140fecf5a9d28b3c16433659993d44d2470108891a17486"
+    },
+    {
+      "path": "tests/r165-guhua-roof/preview.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3231,
+      "sha256": "db0f03eaffe9c2a75e402fee1d8b6c237f438bc5f1c2d0deca359ed1b949d472"
+    },
+    {
+      "path": "tests/r165-guhua-roof/roof-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 987,
+      "sha256": "c6bee4d783f6c4b5f56a5b46b4d134ea2f5b97b15dce3ad0b703681b2b2c0a4e"
+    },
+    {
+      "path": "tests/r165-guhua-roof/source-boundary.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 746,
+      "sha256": "9334bdce5c2b4205d4f7fa3a505f7c5fb5b56f833ae836a93e817ca24c3e8ec5"
+    },
+    {
+      "path": "tests/r165-guhua-roof/source-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 768,
+      "sha256": "0bc143c5c97470df65cde64a03d2cdc612fc70e7eb38d3311875e008d073fe46"
+    },
+    {
+      "path": "tests/r165-guhua-roof/source.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3885,
+      "sha256": "45589038c48f72109b99d3ad9ab52d7e642a53f2c54c26268a23baa6e56e3e7b"
+    },
+    {
+      "path": "tests/r165-guhua-roof/update-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 788,
+      "sha256": "9213f5c9f64d57879818f7b72bca367464b35b42179edeccab5444eb06422719"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/baseline-4ed.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 334,
+      "sha256": "b2a520e1a2a304da443af0cf15e3cf1597e8cea4d3e4e610ca3f89f20e384565"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1862,
+      "sha256": "d4167ded2794455280771dd25527073e2ab0cf6ddcca20042394444d15c88eda"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/compound.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5077,
+      "sha256": "d96f56b7a3c2de38e04f8e4aaf1ca6f15525cb226f86af70e029d4ca04f661b2"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1069,
+      "sha256": "f671f0220be9a2e1c5f2265bc0d3fbc17950ef1c2dcf0fdc0b87bf1385b00407"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/frozen/ZoneBase.4ed.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 65791,
+      "sha256": "b4c9b08eb70a48d90453e5b9080ac1a63ae8df9e2a15b2cbd69932ff40c66a14"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/geometry.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4991,
+      "sha256": "dc8d8737b35333a46d524d56b1a70d361ec6c732e685abd0d5998a09ee0db95b"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4636,
+      "sha256": "ea442e343f03ef829498b04c938f98f793009ec0a9c228f8914e558b5820b9a3"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/merge-flight.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1186,
+      "sha256": "2eb94b56fbadfadcc75434f3ba65d6f3fd76d0cfc28fc6ec99c05d6456cb7f28"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/neighborhood-snapshot.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 296,
+      "sha256": "fb9fafd6e4a32fffe6580e7c5d1f3e5e587ff5ec8a5f9bf366eb68e3e20b29d4"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/preview.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3180,
+      "sha256": "4c0c0129b6aed106ef50d5ca9691b07c8258d78efbda05a94abd93ff086a9d7e"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/production-delta.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 648,
+      "sha256": "6da8073015d8b70492cf5f6447836e0d12943b294ba9108d10282e4c0fd8e1e4"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/production-delta.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4358,
+      "sha256": "72ce32dd79e7514723365c7abe2752e34867a81334f4de381a64e77b1894c298"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/route-baseline.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 443,
+      "sha256": "2d9f61bc6e9ab1a5d4241794b56113145e2e34961a0a3640a845fe58e54e6f61"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/route.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3128,
+      "sha256": "b6cc9884b50280f519ff9cd5b47164d32248543cfb624179673f589cabd23cfc"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/routes-4ed.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5129,
+      "sha256": "a5f156731afae77170a53c871ae20c5d4710834d7fee4c551bc0e9f9c7a2358b"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/source-boundary.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 481,
+      "sha256": "bd3397c4204a429804b2b19696cfe48eb25271c115c82a9ad30b641e865a48d6"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/source-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 888,
+      "sha256": "b1fd3c0f66f0a7ff70581695d1d1fc80c5a62b65f0833f74c7a04275eca5aa9e"
+    },
+    {
+      "path": "tests/r165-xihua-north-house/source.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3960,
+      "sha256": "26c2d0ca0bc48829d5153daa6e7af7da05e429ebdf0a452bae99c0f8d0567134"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/baseline-compound.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 741817,
+      "sha256": "4f68ca46302e30994d0c2030f46836e239833a0a162ee11280dde11a2c1b1f1d"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/baseline-host.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1243,
+      "sha256": "bff342f05db1a4309ecbe551f81c01091cad30f122a424c6bc35bb59f2020baf"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3008,
+      "sha256": "8b0d20154dc5debd8d518043dfdd2c2f7ccc5cfdaa73900be38596ca192605b0"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/compound-snapshot.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1471,
+      "sha256": "dc3cad7f2b3e735769505c6d87f9a86d7043cc9871b78035786e4f1da211ce36"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/compound.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2843,
+      "sha256": "75a32722459d0e3969253c29e820731114f7671816d8118f01f20ddc6d08823c"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1201,
+      "sha256": "88e6ca44aed515f4f85127a639922d5345ce9a5fd6526803401d31c432be1102"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/frozen/ZoneBase.ad0.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 65469,
+      "sha256": "ce02417888b50ac22803ba344005756d697fca26b6e61e97fd39ede2e9568a2c"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/geometry.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 6303,
+      "sha256": "5106ca0f319354cb36c0807be4297c5ce0bc834c50551b3d36620201e392ce8a"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 6067,
+      "sha256": "767edb781bcbbffe82ec868b8ea7c0fe8779b45eae62730977d6730e3cfc7e78"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/merge-flight.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1320,
+      "sha256": "ae8acd3b02c1a52ca0d4ca784a9a16dc89dc4b03fff67d6d2945adb065f5ae41"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/preview.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3096,
+      "sha256": "801adaa06c0003ca18a6cec4a81d0b2a6b7fa3448a756576ed60592158f541c0"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/production-baseline.ad0.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2921,
+      "sha256": "64c3b0a4130cf43da1b6ef8231f3a3d00ebe08a2379c454d8b46f3db00a80764"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/production-harness.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 11898,
+      "sha256": "a1d1dbf0514a0c816a22185aeef07f41661e919d90f127b43910d55d328f949d"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/production-zone.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 938,
+      "sha256": "1811dadf3d6092cdbafa8ce569aa3a32ef51ccd985baa4d62306df92830cedd2"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/route.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2401,
+      "sha256": "4c6c9b7cbc3f82b0d032ddc8264128f1fe5972f9ecc91f08909b94562e93c489"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/source-boundary.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 479,
+      "sha256": "ef36e8fbd3b3941414f0d2e4805179024ee42ba2fa5b0746d6e56d63b5a0c79c"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/source-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 941,
+      "sha256": "0794f23d6409e1cac2b1bf92ca499a1f40ad7d0fc4f168d9e15a870cdad51e76"
+    },
+    {
+      "path": "tests/r165-xuanshou-south-front/source.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5071,
+      "sha256": "cdc5c559f31afa06fa2a9597dc3de9d47ca3f058d15874377dc320d3d196c7fd"
+    },
+    {
+      "path": "tests/r165-xuhui-gallery/harness.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 2787,
+      "sha256": "32adc864e3073260dfb6863236cf4cb22597667439a29c0f07f66063b11c4fc8"
+    },
+    {
+      "path": "tests/r165-xuhui-gallery/production-zone.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 15683,
+      "sha256": "eb2e2f2f80d9c82edcbfb460b8ba2ee538c5c6324c9009cd33d5f960e1a70a26"
+    },
+    {
+      "path": "tests/r165-xuhui-gallery/source-boundary.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 1496,
+      "sha256": "27b2e2473555c47d303a009b1bac614bb0667aeceb377a2808ab8084c894a96c"
+    },
+    {
+      "path": "tests/r165-xuhui-gallery/source.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 3171,
+      "sha256": "eb4b2d8af5e95586d4dc1b5d22dfcaf2e0e61c530cbe441588e955f1fa4c87fb"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/baseline-c598.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 12249,
+      "sha256": "c463992e978b30678e3bb8ae33e76b902b2fee83efbb041f03a985407fef2cac"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/baseline.capture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 694,
+      "sha256": "14822a57c68a785b07522af38f10e2ff7ee10fa4ed6e1b39bdae909cd22ed5a4"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/component.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2168,
+      "sha256": "73c65938619ac1cd8684774e32ae68b025a6b186a7ec4d666235cf6358e106fa"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/compound-snapshot.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1079,
+      "sha256": "46eae83d5d23d07c0a3d6a6200040307a3abd678f8ec215d4a7470aaa461e33f"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/compound.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4445,
+      "sha256": "853ded6cacd30d32fbff6c1c4b856edf9684655ff7ad729210d870291cbbbae2"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/fixture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1448,
+      "sha256": "28f9f951567ed327a4ca4f797472d9db325a3efb4075c2599a47a5b486fd5b35"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/frozen/ZoneBase.c598.js",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 65967,
+      "sha256": "70e314ef08649bfc02ae213f8a92cd240411a3759f67ab34b08a8fcee99ec285"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/geometry.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4190,
+      "sha256": "c35fc4a9938ba3ed4e6ad8827ae34f99876f60cc2ed20e9c27c4db10f1d731de"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/lifecycle.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 5037,
+      "sha256": "1a2d8662856fa30c039bc9c47e4f99452ffb4972f4d4b9639b152d5d317ae639"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/merge-flight.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1276,
+      "sha256": "f72659a7f38227b0d0b8f26a1cba3928142fb1cdeaab0cb684ab8ef84f81ebc3"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/preview.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2814,
+      "sha256": "21e97361d643e6c900b7329518d7ea417ad70741689a348f66d59392e83c884f"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/production-delta.capture.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1266,
+      "sha256": "5f01aada69ed584fdf2a172fe04ee974821546aeb2423d9f6d164e1e7e8317d3"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/production-delta.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1051,
+      "sha256": "8531cef55381272888a519a045208c77b63acab57d32013aabcd8db1f5bace19"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/production-delta.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4030,
+      "sha256": "c6290910d768ce9f9f67b2d3094aaed9bee13286feeb12368f64f50bea4fd991"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/production-zone.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4844,
+      "sha256": "d817baa5cd7369acd478570dfa1ae3b4646b575e41515f5eeb2627ec8514eeec"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/route-runner.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3230,
+      "sha256": "e15a9ddc54aa057c0b925fa3fa06c39c4b55cbc48b6e8a4894d419220a3d57c6"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/route.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 3427,
+      "sha256": "12b06db2163629d8a5193a2bc46c6adde8811449d335bf66b9d7dc913734ac18"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/source-boundary.json",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 482,
+      "sha256": "20f8dcaa0774623f258cdef10c984f77ef3e02f69482c174c7a33ce82317164c"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/source-boundary.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1001,
+      "sha256": "f3461c8b0c19a6ff5ef26443852bbd0f511a8594d23ce0025e4cd7a818a9595f"
+    },
+    {
+      "path": "tests/r165-yangxin-companions/source.test.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2823,
+      "sha256": "55d83660fa688491e38a4ecc6f4260921441081ffad5886bd505178541e2188a"
+    },
+    {
+      "path": "tests/r42-fidelity-navigation.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 3214,
+      "sha256": "5b8bddbf61973a9e86a7f2fd0dfee2ba0611d0cc7b0482c5b96cccaa45d0d7d7"
+    },
+    {
+      "path": "tests/r42-guhua-pavilion.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 4870,
+      "sha256": "cf9026084b658260d43489e48f3be42fb868e93adbc40c0fae5827bbda34feb7"
+    },
+    {
+      "path": "tests/r42-independent-pavilion.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 9115,
+      "sha256": "42e9dccbc3e2effab155d6aac9788251789a54eaab65f7c18abb57a7810f5508"
+    }
+  ],
+  "formal": {
+    "bounded": 376,
+    "heavy": 4,
+    "uniqueFiles": 380,
+    "fullRun": false
+  },
+  "requiredGitBaselines": [
+    "0c068d6b1b003f0d0d2ff6433b492cb18801e7b5",
+    "14d81f71b3acd0eedfe1f2e12bd01190765f77ea",
+    "1f6e583065d50eb655d66c3772fb798a25656e49",
+    "23f224f4c286c432c12f0a61eb90055da30254fb",
+    "27b8f9dcfe5d362cadea100c402ac7f806e4e0a5",
+    "2e80fcbe7321f93fde594d3695c3cd7b2eeb565b",
+    "5030d7a4171eb7c5fd13c7e7d5bce259255f18a9",
+    "8230da2568b628d8b3687e7a4246ed9b172b18e4",
+    "9e68601aa473bb58459dc6936047c068b5c8d160",
+    "ad0f3086e32d8f101bb29c1a7a7b04fc441861ab",
+    "adc306fcac0cff588ee2ae348ed7ae5a6c99338f",
+    "ae712bcdc160113aca5dbd1e00e221b58ea94dd3",
+    "b421288f81895612e57712b7460f0c91ae1f13bc",
+    "b5d78251f93e86a46b0fc0b169cb29076313305a",
+    "c080d0e100be6dc9c3c152adac7aada35481afd9",
+    "cc9963dccfb3633ac6837361eb83e9a314a794a2",
+    "d4c40891e8082038d949b69aa94651a5a1478fee",
+    "d84a1639476ee52f5a0fdb6a46c27f6b1886bd37",
+    "d8d56c3066352cc6ca1fd8751156b1527ce5c719",
+    "da2cb44791efe4ae160aeb3e545efc1b1f256232",
+    "dcd3d15c78d22d6667716375e6f57737eb21ad91",
+    "e999537f2224acb5ae557f4067965415cb61cc2a",
+    "ee19cd0d013735cf44075cc1b8c6f1d5c178f399",
+    "eeee6aa816be0f70ddc18bef6d1aa8cd979709d3",
+    "f638d92721f857312d77a70ea1169b7afda1802c"
+  ],
+  "conditionalGitBaselines": [
+    "a7a215cb32b4580c899228961ed979fe57db8da1"
+  ],
+  "publicAliasMapping": {
+    "c598e52cc185ebb46183f9a1473a562f049f456b": "cc9963dccfb3633ac6837361eb83e9a314a794a2"
+  },
+  "provenance": {
+    "originalFreeze": "66dcdad7698467060cb94f2fa62e1187071551d6",
+    "reviewFixFreeze": "a60c139caf8cabace93fd77c47d6c9c554e1fe6b",
+    "sourceFreezeFileSha256": "45eeb801c703b486a09b9b6050ea91d1c5257b9b051419b999e4d28039e6ba3f",
+    "reviewFixFreezeFileSha256": "df618c23ccb4ca44a44478786721d9b0d67aa4eaf7fa8845b4a2ccc674b70ddd",
+    "newRowsReadFromExactGitTree": true
+  }
+}

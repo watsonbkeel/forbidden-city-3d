@@ -1,3 +1,4 @@
+import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,23 +14,23 @@ test('every public-ad0 runtime/data byte survives exact Guhua/K19/K18/L3 composi
   const {normalizeWatchSource:norm,record}=await boundary();
   const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
   const now=execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
-  for(const p of old)assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,norm(p,fs.readFileSync(p))))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);
-  assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)),[...Object.keys(gh.added),'src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js'].sort());
+  for(const p of old)assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,norm(p,readLive(p))))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);
+  assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)),[...Object.keys(gh.added),'src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js'].sort());
   assert.ok(old.every(p=>now.includes(p)));
-  for(const[p,h]of Object.entries(gh.added))assert.equal(sha(fs.readFileSync(p)),h);
+  for(const[p,h]of Object.entries(gh.added))assert.equal(sha(readLive(p)),h);
   assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null);
   assert.equal(norm('src/scene/palace/special/XihuaNorthWatchHouse.js',fs.readFileSync('src/scene/palace/special/XihuaNorthWatchHouse.js')),null);
   assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/zones/ZoneBase.js']);
   const prior=record.files.find(r=>r.before),k19Zone=k18.files.find(r=>r.path===prior.path);
   assert.equal(prior.before,k19Zone.after,'4ed before bytes are the exact previously pinned K18 ZoneBase');
   assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.4ed.js',import.meta.url))),prior.before);
-  const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');
+  const s=readLive('src/scene/zones/ZoneBase.js').toString();
   assert.ok(s.includes("    buildFuyiThreeBay(this.kit,this.zoneJson);\n    yield {phase:'hook',index:145};\n    buildXihuaNorthWatchHouse(this.kit,this.zoneJson);\n    yield {phase:'merge',index:0};"));
   assert.equal((s.match(/index:145/g)||[]).length,1);
 });
 test('only complete hashed L3 before/after payloads normalize; swapped/truncated/unknown actual source drift stays detectable',async()=>{
   const{normalizeWatchSource:norm,record}=await boundary();
-  for(const row of record.files){const b=fs.readFileSync(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b));}
+  for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b));}
   for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/outer-west.json','src/another-special.js']){const b=Buffer.from('// unrelated actual source change');assert.equal(norm(p,b),b)}
   assert.equal(sha(fs.readFileSync(new URL('./baseline-4ed.json',import.meta.url))),'b2a520e1a2a304da443af0cf15e3cf1597e8cea4d3e4e610ca3f89f20e384565');
 });

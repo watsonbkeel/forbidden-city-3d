@@ -1,0 +1,85 @@
+// Heavy actual west-six comparison, excluded from the bounded manifest.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {createCanvas} from '@napi-rs/canvas';
+import {ZoneBase} from '../../src/scene/zones/ZoneBase.js';
+import {createActualLibrary} from '../r158-cumulative-1600/library.mjs';
+import {rawSnapshot, hash} from '../r164-three-entry-navigation/snapshot.mjs';
+import {hashColliderSequence} from '../r165-guhua-roof/collider-hash.mjs';
+import {captureCompanionDelta} from './production-delta.mjs';
+import {runOld, runNew} from './route-runner.mjs';
+import {YANGXIN_COMPANION_FIT} from '../../src/scene/palace/special/YangxinCompanionHalls.js';
+
+const oldBytes = fs.readFileSync(new URL('./frozen/ZoneBase.c598.js', import.meta.url));
+assert.equal(createHash('sha256').update(oldBytes).digest('hex'), '70e314ef08649bfc02ae213f8a92cd240411a3759f67ab34b08a8fcee99ec285');
+const origin = new URL('../../src/scene/zones/ZoneBase.js', import.meta.url);
+const source = oldBytes.toString().replace(/from\s*(['"])([^'"]+)\1/g, (_, q, p) =>
+  'from ' + JSON.stringify(p === 'three' ? import.meta.resolve(p) : p.startsWith('.') ? new URL(p, origin).href : p));
+const {ZoneBase: BeforeZone} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+
+function fields(k, root = k.root) {
+  const proof = {}, out = {raw: rawSnapshot(root)};
+  global.gc?.();
+  out.colliders = hashColliderSequence(k.colliders, {proof});
+  out.colliderProof = proof;
+  for (const key of ['walkables', 'rooms', 'mapItems', 'regions']) {
+    global.gc?.();
+    out[key] = hash(k[key]);
+  }
+  if (k.plaques) out.plaques = hash(k.plaques.map(p => Object.fromEntries(Object.entries(p).map(([key, value]) =>
+    [key, value?.isObject3D ? {objectUUID: value.uuid, objectName: value.name} : value]))));
+  const architecture = root.userData?.architecture ?? [];
+  if (!root.userData?.architecture) root.traverse(m => { if (m.userData.structure) architecture.push(m.userData.structure); });
+  out.architecture = hash(architecture);
+  return out;
+}
+
+function run(Builder, t, after) {
+  const oldDoc = globalThis.document;
+  globalThis.document = {createElement: tag => { assert.equal(tag, 'canvas'); return createCanvas(1, 1); }};
+  const a = createActualLibrary();
+  const zone = JSON.parse(fs.readFileSync(new URL('../../data/zones/west-six.json', import.meta.url)));
+  const b = new Builder(a.library, zone);
+  let delta, pre;
+  const finish = b.kit.finish;
+  b.kit.finish = function () {
+    if (after) delta = captureCompanionDelta(this);
+    pre = fields(delta?.projectKit(this) ?? this);
+    return finish.call(this);
+  };
+  try {
+    const data = b.build(), view = delta?.projectData(data) ?? data;
+    const post = fields({...view, root: view.group});
+    const routes = runOld(t, {...data, root: data.group});
+    const newRoutes = after ? runNew(t, data, YANGXIN_COMPANION_FIT) : undefined;
+    b.releaseConstructionReferences();
+    return {pre, post, routes, newRoutes, delta: delta?.proof, complete: {
+      colliders: data.colliders.length, walkables: data.walkables.length,
+      architecture: data.group.userData.architecture.length,
+    }};
+  } finally {
+    b.dispose(); a.dispose(); globalThis.document = oldDoc; global.gc?.();
+  }
+}
+
+test('actual west-six c598 full fields and40 controller routes remain exact after precise two-ID pair projection', t => {
+  const before = run(BeforeZone, t, false), after = run(ZoneBase, t, true);
+  assert.deepEqual(after.pre, before.pre, 'all old premerge fields');
+  assert.deepEqual(after.post, before.post, 'all old final merged fields');
+  assert.deepEqual(after.routes, before.routes, 'complete original controller frames with full actual collision data');
+  assert.equal(after.newRoutes.routes.length, 12);
+  assert.equal(after.newRoutes.closedDoors.length, 2);
+  assert.equal(after.newRoutes.stoneSupports.length, 6);
+  assert.equal(after.complete.colliders - before.complete.colliders, 144);
+  assert.equal(after.complete.walkables - before.complete.walkables, 6);
+  assert.equal(after.complete.architecture - before.complete.architecture, 2);
+  const report = {scope: 'ACTUAL_WEST_SIX_BEFORE_AFTER_NOT_WORLD_GPU_BUILD_OR_PERFORMANCE',
+    sourceBase: 'c598e52cc185ebb46183f9a1473a562f049f456b', before, after, maxRSSKiB: process.resourceUsage().maxRSS};
+  if (process.env.YANGXIN_COMPANION_EVIDENCE_DIR) {
+    fs.mkdirSync(process.env.YANGXIN_COMPANION_EVIDENCE_DIR, {recursive: true});
+    fs.writeFileSync(process.env.YANGXIN_COMPANION_EVIDENCE_DIR + '/production-west-six.json', JSON.stringify(report, null, 2) + '\n');
+  }
+  console.log(JSON.stringify({delta: after.delta, complete: after.complete, newRouteRuns: after.newRoutes.routes.length, maxRSSKiB: report.maxRSSKiB}));
+});
