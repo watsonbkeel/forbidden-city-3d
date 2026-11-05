@@ -1,0 +1,2 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+export function loadDanyuanBaseline(){const bytes=fs.readFileSync(new URL('./baseline-93d.json',import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),'d1c1023b97706f688d8052e064687a652c43e82211cf2dca5fb03d860784523a','immutable pre-H30 public93d bounded baseline');return JSON.parse(bytes)}
