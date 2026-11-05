@@ -15,7 +15,7 @@ test('every public-ad0 runtime/data byte survives exact Guhua/K19/K18 compositio
   const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
   const now=execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
   for(const p of old)assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,norm(p,normalizeWatchSource(p,readLive(p))))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);
-  assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)),[...Object.keys(gh.added),'src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js'].sort());
+  assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)),[...Object.keys(gh.added),'src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js'].sort());
   assert.ok(old.every(p=>now.includes(p)));
   for(const[p,h]of Object.entries(gh.added))assert.equal(sha(readLive(p)),h);
   assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null);

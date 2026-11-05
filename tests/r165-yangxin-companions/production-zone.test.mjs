@@ -8,6 +8,8 @@ import {ZoneBase} from '../../src/scene/zones/ZoneBase.js';
 import {createActualLibrary} from '../r158-cumulative-1600/library.mjs';
 import {rawSnapshot, hash} from '../r164-three-entry-navigation/snapshot.mjs';
 import {hashColliderSequence} from '../r165-guhua-roof/collider-hash.mjs';
+import {captureYanxiDelta} from '../r165-yanxi-rear-ear/production-delta.mjs';
+import {runYanxiRoutes} from '../r165-yanxi-rear-ear/route-runner.mjs';
 import {captureCompanionDelta} from './production-delta.mjs';
 import {runOld, runNew} from './route-runner.mjs';
 import {YANGXIN_COMPANION_FIT} from '../../src/scene/palace/special/YangxinCompanionHalls.js';
@@ -42,22 +44,25 @@ function run(Builder, t, after) {
   const a = createActualLibrary();
   const zone = JSON.parse(fs.readFileSync(new URL('../../data/zones/west-six.json', import.meta.url)));
   const b = new Builder(a.library, zone);
-  let delta, pre;
+  let delta, yanxi, pre;
   const finish = b.kit.finish;
   b.kit.finish = function () {
-    if (after) delta = captureCompanionDelta(this);
-    pre = fields(delta?.projectKit(this) ?? this);
+    if (after) yanxi = captureYanxiDelta(this);
+    const retained = yanxi?.projectKit(this) ?? this;
+    if (after) delta = captureCompanionDelta(retained);
+    pre = fields(delta?.projectKit(retained) ?? retained);
     return finish.call(this);
   };
   try {
-    const data = b.build(), view = delta?.projectData(data) ?? data;
+    const data = b.build(), retained = yanxi?.projectData(data) ?? data, view = delta?.projectData(retained) ?? retained;
     const post = fields({...view, root: view.group});
     const routes = runOld(t, {...data, root: data.group});
     const newRoutes = after ? runNew(t, data, YANGXIN_COMPANION_FIT) : undefined;
+    const yanxiRoutes = after ? runYanxiRoutes(t, data) : undefined;
     b.releaseConstructionReferences();
-    return {pre, post, routes, newRoutes, delta: delta?.proof, complete: {
-      colliders: data.colliders.length, walkables: data.walkables.length,
-      architecture: data.group.userData.architecture.length,
+    return {pre, post, routes, newRoutes, yanxiRoutes, yanxi: yanxi?.proof, delta: delta?.proof, totalComplete: {colliders:data.colliders.length,walkables:data.walkables.length,architecture:data.group.userData.architecture.length}, complete: {
+      colliders: retained.colliders.length, walkables: retained.walkables.length,
+      architecture: retained.group.userData.architecture.length,
     }};
   } finally {
     b.dispose(); a.dispose(); globalThis.document = oldDoc; global.gc?.();
@@ -73,6 +78,12 @@ test('actual west-six c598 full fields and40 controller routes remain exact afte
   assert.equal(after.newRoutes.closedDoors.length, 2);
   assert.equal(after.newRoutes.stoneSupports.length, 6);
   assert.equal(after.complete.colliders - before.complete.colliders, 144);
+  assert.equal(after.yanxiRoutes.routes.length, 6);
+  assert.equal(after.yanxiRoutes.closedDoors.length, 1);
+  assert.equal(after.yanxiRoutes.stoneSupports.length, 4);
+  assert.equal(after.totalComplete.colliders - after.complete.colliders, 84);
+  assert.equal(after.totalComplete.walkables - after.complete.walkables, 4);
+  assert.equal(after.totalComplete.architecture - after.complete.architecture, 1);
   assert.equal(after.complete.walkables - before.complete.walkables, 6);
   assert.equal(after.complete.architecture - before.complete.architecture, 2);
   const report = {scope: 'ACTUAL_WEST_SIX_BEFORE_AFTER_NOT_WORLD_GPU_BUILD_OR_PERFORMANCE',
@@ -81,5 +92,5 @@ test('actual west-six c598 full fields and40 controller routes remain exact afte
     fs.mkdirSync(process.env.YANGXIN_COMPANION_EVIDENCE_DIR, {recursive: true});
     fs.writeFileSync(process.env.YANGXIN_COMPANION_EVIDENCE_DIR + '/production-west-six.json', JSON.stringify(report, null, 2) + '\n');
   }
-  console.log(JSON.stringify({delta: after.delta, complete: after.complete, newRouteRuns: after.newRoutes.routes.length, maxRSSKiB: report.maxRSSKiB}));
+  console.log(JSON.stringify({delta: after.delta, complete: after.complete, yanxi: after.yanxi, totalComplete: after.totalComplete, yanxiRouteRuns: after.yanxiRoutes.routes.length, newRouteRuns: after.newRoutes.routes.length, maxRSSKiB: report.maxRSSKiB}));
 });

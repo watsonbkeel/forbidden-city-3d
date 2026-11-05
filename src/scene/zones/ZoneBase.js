@@ -1,3 +1,4 @@
+import {buildYanxiRearEarHall} from '../palace/special/YanxiRearEarHall.js';
 import {buildYangxinCompanionHalls} from '../palace/special/YangxinCompanionHalls.js';
 import {buildXihuaNorthWatchHouse} from '../palace/special/XihuaNorthWatchHouse.js';
 import {buildFuyiThreeBay} from '../palace/special/FuyiThreeBay.js';
@@ -633,6 +634,8 @@ export class ZoneBase {
     buildXihuaNorthWatchHouse(this.kit,this.zoneJson);
     yield {phase:'hook',index:146};
     buildYangxinCompanionHalls(this.kit,this.zoneJson);
+    yield {phase:'hook',index:147};
+    buildYanxiRearEarHall(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};
