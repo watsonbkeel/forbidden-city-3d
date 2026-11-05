@@ -1,0 +1,72 @@
+{
+  "base": "ad0f3086e32d8f101bb29c1a7a7b04fc441861ab",
+  "indices": [
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "records": [
+    {
+      "kind": "gate",
+      "name": "寿安门",
+      "x": 277,
+      "z": 362,
+      "gateProfile": "shouan-entry",
+      "gateKind": "three-wall-portals",
+      "rot": "south",
+      "open": true
+    },
+    {
+      "kind": "courtWalls",
+      "x0": 256.02,
+      "x1": 297.78,
+      "z0": 362,
+      "z1": 450,
+      "gates": [
+        {
+          "side": "s",
+          "at": 277,
+          "gate": "寿安门"
+        }
+      ],
+      "source": "estimated"
+    },
+    {
+      "kind": "hall",
+      "name": "寿安宫",
+      "x": 276.9,
+      "z": 385.6,
+      "w": 27.3,
+      "d": 18.1,
+      "pad": 1,
+      "ph": 0.75,
+      "colH": 7.36,
+      "roof": "xieshan",
+      "enter": true
+    },
+    {
+      "kind": "hall",
+      "x": 276.9,
+      "z": 430.56,
+      "w": 27.3,
+      "d": 9.64,
+      "pad": 0.6,
+      "ph": 0.45,
+      "colH": 6.08,
+      "roof": "xieshan",
+      "map": "hall",
+      "source": "estimated"
+    },
+    {
+      "kind": "region",
+      "name": "寿安宫",
+      "x0": 256.02,
+      "x1": 297.78,
+      "z0": 362,
+      "z1": 450,
+      "source": "estimated"
+    }
+  ]
+}
