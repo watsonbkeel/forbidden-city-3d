@@ -1,3 +1,5 @@
+import{captureTishunDelta}from'../r165-tishun-south-beam/production-delta.mjs';
+import{runTishunRoutes}from'../r165-tishun-south-beam/route-runner.mjs';
 // Heavy actual west-six comparison, excluded from the bounded manifest.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -44,28 +46,33 @@ function run(Builder, t, after) {
   const a = createActualLibrary();
   const zone = JSON.parse(fs.readFileSync(new URL('../../data/zones/west-six.json', import.meta.url)));
   const b = new Builder(a.library, zone);
-  let delta, yanxi, pre;
+  let delta, yanxi, beam, pre;
   const finish = b.kit.finish;
   b.kit.finish = function () {
-    if (after) yanxi = captureYanxiDelta(this);
-    const retained = yanxi?.projectKit(this) ?? this;
+    if (after) beam = captureTishunDelta(this);
+    const priorBeam = beam?.projectKit(this) ?? this;
+    if (after) yanxi = captureYanxiDelta(priorBeam);
+    const retained = yanxi?.projectKit(priorBeam) ?? priorBeam;
     if (after) delta = captureCompanionDelta(retained);
     pre = fields(delta?.projectKit(retained) ?? retained);
     return finish.call(this);
   };
   try {
-    const data = b.build(), retained = yanxi?.projectData(data) ?? data, view = delta?.projectData(retained) ?? retained;
+    const data = b.build(), priorBeam = beam?.projectData(data) ?? data, retained = yanxi?.projectData(priorBeam) ?? priorBeam, view = delta?.projectData(retained) ?? retained;
     const post = fields({...view, root: view.group});
     const routes = runOld(t, {...data, root: data.group});
     const newRoutes = after ? runNew(t, data, YANGXIN_COMPANION_FIT) : undefined;
     const yanxiRoutes = after ? runYanxiRoutes(t, data) : undefined;
+    const beamRoutes = after ? runTishunRoutes(t, {...data,root:data.group}) : undefined;
+    const actualRaw = rawSnapshot(data.group), projectedRaw = rawSnapshot(priorBeam.group);
+    if(after){assert.equal(actualRaw.meshes,projectedRaw.meshes);assert.equal(actualRaw.triangles-projectedRaw.triangles,32);assert.equal(data.group.userData.architecture.length-priorBeam.group.userData.architecture.length,1)}
     b.releaseConstructionReferences();
-    return {pre, post, routes, newRoutes, yanxiRoutes, yanxi: yanxi?.proof, delta: delta?.proof, totalComplete: {colliders:data.colliders.length,walkables:data.walkables.length,architecture:data.group.userData.architecture.length}, complete: {
+    return {pre, post, routes, newRoutes, yanxiRoutes, beamRoutes, beam:beam?.proof, actualRaw, projectedRaw, actualComplete:{colliders:data.colliders.length,walkables:data.walkables.length,architecture:data.group.userData.architecture.length}, yanxi: yanxi?.proof, delta: delta?.proof, totalComplete: {colliders:priorBeam.colliders.length,walkables:priorBeam.walkables.length,architecture:priorBeam.group.userData.architecture.length}, complete: {
       colliders: retained.colliders.length, walkables: retained.walkables.length,
       architecture: retained.group.userData.architecture.length,
     }};
   } finally {
-    b.dispose(); a.dispose(); globalThis.document = oldDoc; global.gc?.();
+    beam?.dispose(); b.dispose(); a.dispose(); globalThis.document = oldDoc; global.gc?.();
   }
 }
 
@@ -74,6 +81,9 @@ test('actual west-six c598 full fields and40 controller routes remain exact afte
   assert.deepEqual(after.pre, before.pre, 'all old premerge fields');
   assert.deepEqual(after.post, before.post, 'all old final merged fields');
   assert.deepEqual(after.routes, before.routes, 'complete original controller frames with full actual collision data');
+  assert.equal(after.beamRoutes.length,12);
+  assert.equal(after.beam.triangleDelta,32);
+  assert.equal(after.actualComplete.architecture-after.totalComplete.architecture,1);
   assert.equal(after.newRoutes.routes.length, 12);
   assert.equal(after.newRoutes.closedDoors.length, 2);
   assert.equal(after.newRoutes.stoneSupports.length, 6);
