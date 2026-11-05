@@ -69,7 +69,7 @@ jobs:
           const write=(name,value)=>fs.writeFileSync(path.join(evidence,name),JSON.stringify(value,null,2)+'\n');
           const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024}).trim();
           const sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
-          const source="8ae5a1506c1239574d4235e016b158b543ddfc41";
+          const source="925a0127acd04f584a76d4a9ce6464507284aa28";
           const publicBase="ad0f3086e32d8f101bb29c1a7a7b04fc441861ab";
           const fingerprint="169cb8001e69dd59d71b1f122f7d50f3a19bed97a4076e485e8aa56b42198be9";
           const base='/forbidden-city-3d/';
@@ -92,19 +92,27 @@ jobs:
             assert.equal(git('status','--porcelain','--untracked-files=all'),'');
             for(const ref of requiredRefs)assert.equal(git('cat-file','-t',ref),'commit','Missing required historical Git object: '+ref);
             git('merge-base','--is-ancestor',publicBase,'HEAD');
-            const expectedHashes={"docs/current-state/r165-cumulative-367/BOUNDED-TEST-FILES.json": "f8696ce0a6902eff4599c37e1a090e04335f23ad3ea10a6686592a39fecd7197", "docs/current-state/r165-cumulative-367/HEAVY-TEST-FILES.json": "00b9986bfee4d910e3a0d9673ed01df6ba16b321904708a234f0a1f3ee0c3f58", "docs/current-state/r165-cumulative-367/SOURCE-TESTS-FREEZE.json": "26cf4895ec2a6c70b417ae74727bf2a506f239a399f28a0ddd0d73c3d36d24d5", "docs/current-state/r165-cumulative-367/TEST-PLAN.md": "407ec015abc01e73e87b1772e448e394d306300d753944d7e661f0d7086afe8c", ".github/workflows/deploy-pages.yml": "427112a5de19adfe6dd159585cb17039cf2fb5f463b5b7a4866f5ce17b846db2", "package-lock.json": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c"};
+            const expectedHashes={"docs/current-state/r165-cumulative-367/BOUNDED-TEST-FILES.json": "f8696ce0a6902eff4599c37e1a090e04335f23ad3ea10a6686592a39fecd7197", "docs/current-state/r165-cumulative-367/HEAVY-TEST-FILES.json": "00b9986bfee4d910e3a0d9673ed01df6ba16b321904708a234f0a1f3ee0c3f58", "docs/current-state/r165-cumulative-367/SOURCE-TESTS-FREEZE.json": "1336099d8558d16929992de2c800d7d943a62415c07c97ab5cdbe43cb2b1302d", "docs/current-state/r165-cumulative-367/TEST-PLAN.md": "8da87a26585993740f026b0f18e8825f590796713bac10bcbeb64a35e696f38d", ".github/workflows/deploy-pages.yml": "427112a5de19adfe6dd159585cb17039cf2fb5f463b5b7a4866f5ce17b846db2", "package-lock.json": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c"};
             for(const [p,h]of Object.entries(expectedHashes))assert.equal(sha(p),h,p);
             const freeze=JSON.parse(fs.readFileSync(docs+'SOURCE-TESTS-FREEZE.json','utf8'));
             assert.equal(freeze.commit,source);assert.equal(freeze.base,publicBase);
             assert.equal(freeze.sourceFingerprint,fingerprint);
             assert.deepEqual(freeze.requiredGitBaselines,requiredRefs);
-            assert.equal(freeze.changed.length,131);
+            assert.equal(freeze.changed.length,139);
             assert.equal(new Set(freeze.changed.map(row=>row.path)).size,freeze.changed.length);
             for(const row of freeze.changed) {
               assert.equal(fs.lstatSync(row.path).isFile(),true,row.path+' regular file');
               assert.equal(fs.statSync(row.path).size,row.bytes,row.path+' bytes');
               assert.equal(sha(row.path),row.sha256,row.path+' SHA256');
             }
+            const fontRows=freeze.changed.filter(row=>row.path.startsWith('tests/fonts/changyin/')||row.path==='tests/lib/changyin-test-font.mjs');
+            const fontRow=fontRows.find(row=>row.path==='tests/fonts/changyin/ForbiddenCityTestCJK-Regular.otf');
+            const licenseRow=fontRows.find(row=>row.path==='tests/fonts/changyin/OFL.txt');
+            assert.equal(fontRows.length,5);assert.equal(fontRow.bytes,7192);
+            assert.equal(fontRow.sha256,'fbad0a8d2bd81170a66ef7a1094548fcd250a2034b60581fa193d6d717af1c24');
+            assert.equal(licenseRow.bytes,4260);assert.equal(licenseRow.sha256,'c106844fe4031b157f50d2e10c7d9e07f738cdf02295d3d3d98572d361623f92');
+            assert.equal(fs.readFileSync(fontRow.path).subarray(0,4).toString('ascii'),'OTTO');
+            write('test-font-input.json',fontRows);console.log('R165_TEST_FONT_INPUT_JSON '+JSON.stringify(fontRows));
             const additions=[workflow,...['BOUNDED-TEST-FILES.json','HEAVY-TEST-FILES.json',
               'SOURCE-TESTS-FREEZE.json','TEST-PLAN.md'].map(name=>docs+name)].sort();
             const allowed=[...freeze.changed.map(row=>row.path),...additions].sort();

@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "base": "ad0f3086e32d8f101bb29c1a7a7b04fc441861ab",
-  "commit": "8ae5a1506c1239574d4235e016b158b543ddfc41",
-  "tree": "3e20c2a31d41bd0d2aa8979f89ff5c2e2d716385",
+  "commit": "925a0127acd04f584a76d4a9ce6464507284aa28",
+  "tree": "3e7646659ee6f3f71c14488fd8df3f065af083ac",
   "localFreezeLabelOnly": true,
   "scope": [
     "Guhua rolled roof",
@@ -175,11 +175,60 @@
       "sha256": "112a226e29c580c8fc0316c61571b920283f540b0cce6127e2bfdc7d91386a37"
     },
     {
+      "path": "tests/fonts/changyin/ForbiddenCityTestCJK-Regular.otf",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 7192,
+      "sha256": "fbad0a8d2bd81170a66ef7a1094548fcd250a2034b60581fa193d6d717af1c24"
+    },
+    {
+      "path": "tests/fonts/changyin/OFL.txt",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4260,
+      "sha256": "c106844fe4031b157f50d2e10c7d9e07f738cdf02295d3d3d98572d361623f92"
+    },
+    {
+      "path": "tests/fonts/changyin/README.md",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 4885,
+      "sha256": "fae1d54e96e38214b9c04cdb3e591130f4881f61e389faf7a8a3e677c0bfcf8e"
+    },
+    {
+      "path": "tests/fonts/changyin/rebuild.py",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 2993,
+      "sha256": "35619398ed2920ee5668fac8ac621c8bcf436002a838f84a7e08181cc18f87d6"
+    },
+    {
+      "path": "tests/lib/changyin-test-font.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1060,
+      "sha256": "ba96275660cbdf95ac77265eee1f34758d67e8610c45a855fdd6b2a83a1906de"
+    },
+    {
       "path": "tests/r139/details.test.mjs",
       "status": "M",
       "mode": "100644",
       "bytes": 9476,
       "sha256": "4e3098d7b10c8aca0c5c2a8bfb9c6ff200dafb34356f0072f62bcd27a1c43276"
+    },
+    {
+      "path": "tests/r164-changyin-lower-plaque/component.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 7228,
+      "sha256": "d09839a6450266fa0dfae2d527742676941f302be815f192e8cff47f5f571e3e"
+    },
+    {
+      "path": "tests/r164-changyin-middle-plaque/component.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 5718,
+      "sha256": "a16aa0d254856fd3f5fe3fc780ac553ccc5eb998c8ea35ac6f118da246aeef22"
     },
     {
       "path": "tests/r164-zhenshun-single-gate/harness.mjs",
@@ -495,6 +544,13 @@
       "mode": "100644",
       "bytes": 788,
       "sha256": "9213f5c9f64d57879818f7b72bca367464b35b42179edeccab5444eb06422719"
+    },
+    {
+      "path": "tests/r165-synchronous-build-steps/order.test.mjs",
+      "status": "M",
+      "mode": "100644",
+      "bytes": 7407,
+      "sha256": "86e36323cd954500fe920d1f16a94dae6d355f222d7fe99a4a09d9ff42631721"
     },
     {
       "path": "tests/r165-xihua-north-house/baseline-4ed.json",
@@ -974,6 +1030,15 @@
   "conditionalGitBaselines": [
     "a7a215cb32b4580c899228961ed979fe57db8da1"
   ],
+  "excludedDedicatedCiPaths": [
+    ".github/workflows/r165-cumulative-validation.yml",
+    "docs/current-state/r165-cumulative-367/BOUNDED-TEST-FILES.json",
+    "docs/current-state/r165-cumulative-367/HEAVY-TEST-FILES.json",
+    "docs/current-state/r165-cumulative-367/SOURCE-TESTS-FREEZE.json",
+    "docs/current-state/r165-cumulative-367/TEST-PLAN.md"
+  ],
+  "previousRealCiCommit": "ac1bf4d129020823f16991c2a583f3e3d902c846",
+  "retryReason": "Three bounded failures repaired with eight test-only files; full retry suite pending",
   "publicAliasMapping": {
     "c598e52cc185ebb46183f9a1473a562f049f456b": "cc9963dccfb3633ac6837361eb83e9a314a794a2"
   },
