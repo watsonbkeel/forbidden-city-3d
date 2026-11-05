@@ -1,0 +1,89 @@
+{
+  "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+  "distinctFormalTests": 1187,
+  "pass": 1187,
+  "duplicatesAdded": 0,
+  "logs": [
+    {
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+      "startedAt": "2026-11-05T00:38:30.004Z",
+      "endedAt": "2026-11-05T00:45:32.761Z",
+      "exitCode": 0,
+      "signal": null,
+      "log": "final-neighbor-reviewed-aggregate.log",
+      "logBytes": 160106,
+      "logSHA256": "06148379b1c33ea51df31db2a24c5b97d0020e754963619237e189bdf80d2dad",
+      "tests": 1185,
+      "pass": 1185,
+      "fail": 0,
+      "duration_ms": 422679.999629
+    },
+    {
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+      "startedAt": "2026-11-05T00:50:55.547Z",
+      "endedAt": "2026-11-05T00:52:59.238Z",
+      "exitCode": 0,
+      "signal": null,
+      "log": "final-actual-bounded-heap.log",
+      "logBytes": 2184,
+      "logSHA256": "eeee100e778c7bef6d007aceba809f3a181fb963c802a08d1341f159a83ae2c1",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "duration_ms": 123585.52641,
+      "commandFlags": [
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1"
+      ]
+    },
+    {
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+      "startedAt": "2026-11-05T00:53:12.738Z",
+      "endedAt": "2026-11-05T00:53:20.745Z",
+      "exitCode": 0,
+      "signal": null,
+      "log": "final-recovery-west-six.log",
+      "logBytes": 679,
+      "logSHA256": "9b632b5e96aa8fb6fcb6e24efac9f6f9cf612a33e09bbc0d54ed25128cd6ad4b",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "duration_ms": 7899.060391,
+      "commandFlags": [
+        "--expose-gc",
+        "--max-old-space-size=1024",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1"
+      ]
+    },
+    {
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+      "startedAt": "2026-11-05T00:53:20.812Z",
+      "endedAt": "2026-11-05T00:53:20.881Z",
+      "exitCode": 0,
+      "signal": null,
+      "log": "final-recovery-schema-no-geo.log",
+      "logBytes": 1783,
+      "logSHA256": "87321b23e015db769b3db3e3e4dcc9c1dedab3d087bd44780ad43af26cce8d73"
+    },
+    {
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+      "startedAt": "2026-11-05T00:53:20.948Z",
+      "endedAt": "2026-11-05T00:53:21.022Z",
+      "exitCode": 1,
+      "signal": null,
+      "log": "final-recovery-anchors.log",
+      "logBytes": 10054,
+      "logSHA256": "dfe6cab416a10c2645b3633d82cbfc56176b3247bc13b0a093aed9a2d0e3baf7"
+    }
+  ]
+}

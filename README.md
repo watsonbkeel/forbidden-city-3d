@@ -1,10 +1,23 @@
+# 3D 故宫 · 旭辉庭有限主体与连续南廊候选
+
+从公开14d81f71累计版补宁寿花园旭辉庭：封闭三开间一进深壳体、黄瓦绿边卷棚歇山、东南外廊、十级实体爬山阶及接禊赏亭北平台的低落台。照片只覆盖局部南廊；主体依官方文字和平面简化，全部尺寸、支承和岩形为游戏拟合，不称整座照片复原或测绘。
+
+- 保留全部旧建筑/数据/接触/通路，运行时仅新增专用组件及hook142，不改公共物理。没有新房间、地图点、传送点、家具或洞室。
+- 新路验证包含72单向和36同控制器完整往返、96邻接、12带名屋面真实冲击/指定向外退出；实际旧古华轩座凳阻挡保留为负控，真实前院/中央开口通路另证，不移除旧障碍。
+- 最终测试冻结a8de58573已独审通过，338文件累计与两个真实区域共1187/1187通过；完整压缩干净构建、源码身份与137文件全资产本地HTTP已通过，未声明远端上传或发布完成。正式结果见下方记录。CPU图不是浏览器/GPU或手机验收，整座建筑新增验收0。
+- 本地候选未声明发布完成，main与Pages未改；保留公开14d81f71与阶段提交可回滚。储秀宫现场问题、完整World、真实设备/Node20/Mac温度及神武门历史锚点偏差不由本轮消除。
+
+[旭辉庭结果](docs/current-state/r165-xuhui-gallery/RESULT.md) · [验证记录](docs/current-state/r165-xuhui-gallery/VERIFICATION.json) · [来源](docs/current-state/r165-xuhui-gallery/SOURCE-MANIFEST.md) · [拟合/接口](docs/current-state/r165-xuhui-gallery/FIT-AND-JUNCTION.md) · [已知限制](docs/current-state/r165-xuhui-gallery/KNOWN-LIMITS.md) · [独立审查](docs/current-state/r165-xuhui-gallery/INDEPENDENT-REVIEW.md)
+
+## 以下为公开14d81累计阶段及更早历史记录
+
 # 3D 故宫 · 累计候选：撷芳亭、崇敬分配优化与严格契约维护
 
 保留耸秀亭累计花园，新增已核来源的有限撷芳亭岩台、红柱绿瓦黄边上翘方亭与实体侧阶；叠加崇敬殿私有三角转换循环的临时分配减少，几何/物理/元数据严格等价。坐标、尺度、岩形、通路与屋面曲率为明确游戏拟合，不称整座复原。
 
 - 旧三条失败先原样保留，再按独立固定几何/接触、精确天花成员及完整 28 女性覆盖维护测试；不改运行时或数据来迎合测试，不是储秀宫崩溃修复。
 - 最终 323 文件聚合 1134/1134，真实宁寿与西六区串行各 1/1，不同正式用例 1136/1136；重复定点和独审不累加，不以用例数宣称建筑完成率。干净构建身份见下方验证记录。
-- 保留各公开/本地阶段可回滚；这里不改 main、不上传、不部署。完整 World、真实 GPU/浏览器/手机、Node20、Mac 温度与储秀宫现场根因未验，神武门历史锚点差异保留。
+- 保留各公开/本地阶段可回滚；该历史累计阶段后来已完成开发分支上传及完整回读，未改 main、未部署 Pages。完整 World、真实 GPU/浏览器/手机、Node20、Mac 温度与储秀宫现场根因未验，神武门历史锚点差异保留。
 
 [累计结果](docs/current-state/r165-cumulative-20261105/RESULT.md) · [验证记录](docs/current-state/r165-cumulative-20261105/VERIFICATION.json) · [检查列表](docs/current-state/r165-cumulative-20261105/BOUNDED-TEST-FILES.json) · [已知限制](docs/current-state/r165-cumulative-20261105/KNOWN-LIMITS.md) · [撷芳亭来源与拟合](docs/current-state/r165-xiefang-hill-pavilion/SOURCE-MANIFEST.md) · [严格契约说明](tests/r164-ningshou-side-steps/CONTRACT-MAINTENANCE.md)
 

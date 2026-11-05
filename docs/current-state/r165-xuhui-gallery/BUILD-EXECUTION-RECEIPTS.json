@@ -1,0 +1,254 @@
+{
+  "status": "COMPLETE_BUILD_PASS_AFTER_EVIDENCE_BASED_RESOURCE_ONLY_RECOVERY",
+  "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+  "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+  "node": "v24.22.1",
+  "vite": "5.4.21",
+  "runs": [
+    {
+      "label": "final-recovery-build",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:53:21.093Z",
+      "endedAt": "2026-11-05T00:53:29.510Z",
+      "exitCode": 137,
+      "signal": null,
+      "maxObservedTreeRssKiB": null,
+      "maxByProcessName": null,
+      "logBytes": 512,
+      "logSHA256": "76c574582e7d672aa45538ebce53df69dcf3bb91ecb5707653c617b90864e2ff",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false
+    },
+    {
+      "label": "final-build-bounded-heap",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:54:03.911Z",
+      "endedAt": "2026-11-05T00:54:12.923Z",
+      "exitCode": 137,
+      "signal": null,
+      "maxObservedTreeRssKiB": null,
+      "maxByProcessName": null,
+      "logBytes": 521,
+      "logSHA256": "dd9b52f1b56b660e3907dc220807ccd8cfc67a846c149242fbdbe0f13b7ed2cc",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false
+    },
+    {
+      "label": "build-resource-diagnostic",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:55:09.590Z",
+      "endedAt": "2026-11-05T00:55:19.489Z",
+      "exitCode": 137,
+      "signal": null,
+      "maxObservedTreeRssKiB": 1362064,
+      "maxByProcessName": {
+        "node": 8,
+        "npm run build -": 70204,
+        "sh": 784,
+        "MainThread": 1024208,
+        "esbuild": 277292
+      },
+      "logBytes": 525,
+      "logSHA256": "888c5f035ea9b42e4414d9db832cbadd3d012c418e73f41a2208e5ad35a39074",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false
+    },
+    {
+      "label": "final-build-heap768",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:55:36.016Z",
+      "endedAt": "2026-11-05T00:55:45.129Z",
+      "exitCode": 137,
+      "signal": null,
+      "maxObservedTreeRssKiB": 1337916,
+      "maxByProcessName": {
+        "node": 8,
+        "npm run build -": 69864,
+        "sh": 780,
+        "MainThread": 993840,
+        "esbuild": 286428
+      },
+      "logBytes": 520,
+      "logSHA256": "7de9ebf2b67865a90e29db24a814f9372c44e99c12cf62169f5812e39bcce131",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false
+    },
+    {
+      "label": "final-build-heap768-go2",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:56:50.729Z",
+      "endedAt": "2026-11-05T00:57:00.354Z",
+      "exitCode": 137,
+      "signal": null,
+      "maxObservedTreeRssKiB": 1333316,
+      "maxByProcessName": {
+        "npm": 840,
+        "npm run build -": 70120,
+        "sh": 780,
+        "MainThread": 1008924,
+        "esbuild": 266728
+      },
+      "logBytes": 524,
+      "logSHA256": "c1ce0ee74f44d33da9d85d1252ea1cdbf41761507e4f1232ce0c56da92ab4cb8",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false
+    },
+    {
+      "label": "final-build-direct768-go2",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:57:53.867Z",
+      "endedAt": "2026-11-05T00:58:03.042Z",
+      "exitCode": null,
+      "signal": "SIGKILL",
+      "maxObservedTreeRssKiB": 1285432,
+      "maxByProcessName": {
+        "node": 628,
+        "MainThread": 1018488,
+        "esbuild": 274936
+      },
+      "logBytes": 85,
+      "logSHA256": "a3026bdac1e5405d91786c69d41b54271ded3c6b0939d23382e79b0e8d8e2960",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false,
+      "selfMemory": {
+        "heapLimitBytes": 1006632960,
+        "maxHeapUsedBytes": 706995440,
+        "maxHeapTotalBytes": 830369792,
+        "maxRSSBytes": 1042096128,
+        "maxExternalBytes": 24467326,
+        "samples": 12,
+        "last": {
+          "rss": 1034231808,
+          "heapTotal": 830369792,
+          "heapUsed": 706995440,
+          "external": 19928495,
+          "arrayBuffers": 9508926
+        }
+      }
+    },
+    {
+      "label": "final-build-direct512-go2",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:58:21.780Z",
+      "endedAt": "2026-11-05T00:58:28.388Z",
+      "exitCode": null,
+      "signal": "SIGABRT",
+      "maxObservedTreeRssKiB": 792832,
+      "maxByProcessName": {
+        "node": 704,
+        "MainThread": 777532,
+        "esbuild": 15368
+      },
+      "logBytes": 1521,
+      "logSHA256": "e1d8c5e2fa056e35efe0e6eaef3827eea6fb6c66e866605031ee743b16eeac3b",
+      "result": "EXPLICIT_V8_HEAP_OOM_SIGABRT",
+      "outputComplete": false,
+      "selfMemory": {
+        "heapLimitBytes": 738197504,
+        "maxHeapUsedBytes": 371730560,
+        "maxHeapTotalBytes": 449654784,
+        "maxRSSBytes": 636203008,
+        "maxExternalBytes": 34473280,
+        "samples": 6,
+        "last": {
+          "rss": 636203008,
+          "heapTotal": 449654784,
+          "heapUsed": 371730560,
+          "external": 34473280,
+          "arrayBuffers": 3419336
+        }
+      }
+    },
+    {
+      "label": "final-build-direct768-young16-go2",
+      "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+      "startedAt": "2026-11-05T00:59:00.653Z",
+      "endedAt": "2026-11-05T00:59:10.035Z",
+      "exitCode": null,
+      "signal": "SIGKILL",
+      "maxObservedTreeRssKiB": 1239772,
+      "maxByProcessName": {
+        "node": 336,
+        "MainThread": 959720,
+        "esbuild": 291764
+      },
+      "logBytes": 85,
+      "logSHA256": "a3026bdac1e5405d91786c69d41b54271ded3c6b0939d23382e79b0e8d8e2960",
+      "result": "KILLED_NO_CONFIRMED_KERNEL_CAUSE",
+      "outputComplete": false,
+      "selfMemory": {
+        "heapLimitBytes": 855638016,
+        "maxHeapUsedBytes": 675686488,
+        "maxHeapTotalBytes": 741146624,
+        "maxRSSBytes": 981889024,
+        "maxExternalBytes": 20908207,
+        "samples": 11,
+        "last": {
+          "rss": 970092544,
+          "heapTotal": 741146624,
+          "heapUsed": 675686488,
+          "external": 19843950,
+          "arrayBuffers": 9424381
+        }
+      }
+    }
+  ],
+  "formalTestResultUnaffected": {
+    "distinctTests": 1187,
+    "pass": 1187
+  },
+  "peakCaveat": "250MS_SAMPLES_NOT_EXACT_INSTANTANEOUS_PEAKS",
+  "defaultAndLaterSIGKILLCauseConfirmedOOM": false,
+  "kernelOOMEvidence": "UNAVAILABLE_SYS_ABSENT_DMESG_READ_DENIED_NO_RETRY",
+  "noOutputAdmittedAsComplete": false,
+  "runsArePreservedHistoricalFailures": true,
+  "success": {
+    "status": "PASS_COMPLETE_COMPRESSED_CLEAN_BUILD_AND_SOURCE_IDENTITY",
+    "sourceCommit": "a8de58573d5c1178ec9fe41484e58410628ab0fe",
+    "sourceDirty": false,
+    "sourceFingerprint": "92f65a5350b67ef27d102a1747a01afdd479b71e8e71db06ecad1bbfd768831c",
+    "buildId": "R164-aba2a766422d",
+    "base": "/forbidden-city-3d/",
+    "node": "v24.22.1",
+    "vite": "5.4.21",
+    "command": "GOMAXPROCS=2 GOMEMLIMIT=192MiB VITE_BASE=/forbidden-city-3d/ node --max-old-space-size=768 --max-semi-space-size=16 --import <memory-only observer> node_modules/vite/bin/vite.js build --outDir <new empty sibling output>",
+    "constraints": {
+      "nodeMaxOldSpaceMiB": 768,
+      "nodeMaxSemiSpaceMiB": 16,
+      "GOMAXPROCS": 2,
+      "GOMEMLIMIT": "192MiB",
+      "npmParentRemoved": true,
+      "memoryObserverOnly": true
+    },
+    "startedAt": "2026-11-05T01:04:44.057Z",
+    "endedAt": "2026-11-05T01:04:55.279Z",
+    "exitCode": 0,
+    "signal": null,
+    "viteDurationSeconds": 10.79,
+    "wrapperElapsed_ms": 11222,
+    "observed250msTreePeakRssKiB": 1208720,
+    "observedProcessPeaksKiB": {
+      "node": 1252,
+      "MainThread": 1005316,
+      "esbuild": 222288
+    },
+    "logBytes": 952,
+    "logSHA256": "327cf3b310b7ac1a3417a04f9415bd31bd23ad5dfdcbae3d87904ede934e5b4e",
+    "moduleCount": 802,
+    "jsGzipBytesApprox": 1738550,
+    "inheritedLargeChunkWarningRetained": true,
+    "configMinificationOrProductChange": false,
+    "kernelCauseOfEarlierSIGKILLProven": false,
+    "wholeDevicePerformanceClaim": false,
+    "actualEntryJSBytes": 6425408,
+    "actualEntryJSSHA256": "3961a315614607eb1e6039c0c279f72400d68b4d39bfe08362bdbeb8576d8a79",
+    "viteReportedJSKilobytes": 6148.12
+  },
+  "onlyAdmittedOutput": "SUCCESSFUL_CLEAN_OUTPUT_NINTH_ATTEMPT",
+  "audit": {
+    "scope": "READ_ONLY_EXECUTION_AUDIT_NO_SOURCE_OR_CONFIG_CHANGE",
+    "finding": "ESBUILD_SERVICE_MODE_GO_SUPPORTS_GOMEMLIMIT_NODE_HEAP_CPU_STABLE_WHILE_WAITING_ON_GO",
+    "singleNewVariable": "GOMEMLIMIT=192MiB",
+    "auditEvidenceSHA256": "a0b39a479cb7c15feec54819d9952e9c57ade8c462a8010bbb30f484d032f1b0"
+  }
+}

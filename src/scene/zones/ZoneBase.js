@@ -1,3 +1,4 @@
+import {buildXuhuiGallery} from '../palace/special/XuhuiGallery.js';
 import {buildXiefangHillPavilion} from '../palace/special/XiefangHillPavilion.js';
 import {buildSongxiuHillPavilion} from '../palace/special/SongxiuHillPavilion.js';
 import {buildLutaiRockTerrace} from '../palace/special/LutaiRockTerrace.js';
@@ -618,6 +619,8 @@ export class ZoneBase {
     buildSongxiuHillPavilion(this.kit,this.zoneJson);
     yield {phase:'hook',index:141};
     buildXiefangHillPavilion(this.kit,this.zoneJson);
+    yield {phase:'hook',index:142};
+    buildXuhuiGallery(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};
