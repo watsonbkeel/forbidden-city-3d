@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "base": "ad0f3086e32d8f101bb29c1a7a7b04fc441861ab",
-  "commit": "82ba6c1f9cb423002efe188adbcd8b231d0567d7",
-  "tree": "1136b4ace40edc959e6213c7aa758b75c034b89b",
+  "commit": "64a82ecf16b6001fbeb12369e61f75a4e0c0ffed",
+  "tree": "67999ce6ae5e7d103c8b030f083e065b4ca70a07",
   "localFreezeLabelOnly": true,
   "scope": [
     "all validated372 components",
@@ -468,6 +468,13 @@
       "sha256": "ba96275660cbdf95ac77265eee1f34758d67e8610c45a855fdd6b2a83a1906de"
     },
     {
+      "path": "tests/lib/rewrite-frozen-imports.mjs",
+      "status": "A",
+      "mode": "100644",
+      "bytes": 1123,
+      "sha256": "8ec4dbc64745138f39760690cf7c3af14dff4f446058d01a19638f88f2a6980a"
+    },
+    {
       "path": "tests/r139/details.test.mjs",
       "status": "M",
       "mode": "100644",
@@ -695,8 +702,8 @@
       "path": "tests/r165-dailou-waiting-house/fixture.mjs",
       "status": "A",
       "mode": "100644",
-      "bytes": 1749,
-      "sha256": "2194c50e80cbbf88c27a83c41685589d2e7a3fe155101c62790df0e9b6929002"
+      "bytes": 1759,
+      "sha256": "cc1173dac7f743a953d5fb740341111c18989d6227c6235548b020ce667c252a"
     },
     {
       "path": "tests/r165-dailou-waiting-house/frozen/ZoneBase.fef5.js",
@@ -758,8 +765,8 @@
       "path": "tests/r165-dailou-waiting-house/native-source-semantics-synthetic.test.mjs",
       "status": "A",
       "mode": "100644",
-      "bytes": 3283,
-      "sha256": "2b8754ffb50e834ec4b946f33bcff736b67144c1b2bcbdb4061938bbddd6a804"
+      "bytes": 8502,
+      "sha256": "11bd0fb5fc25f179340c4c88065ae0f86014a3aea3b524940fd2b8ed293781b2"
     },
     {
       "path": "tests/r165-dailou-waiting-house/native-trace-synthetic.test.mjs",
@@ -2254,7 +2261,7 @@
     "docs/current-state/r165-cumulative-373/TEST-PLAN.md"
   ],
   "previousValidatedPublicCommit": "fef5c0e1904c361e7492d744f06d82a8c137e1ea",
-  "publicCandidateParent": "fef5c0e1904c361e7492d744f06d82a8c137e1ea",
+  "publicCandidateParent": "93da25baf73034a63f3af086fdf31de126ea8067",
   "publicAliasMapping": {
     "c598e52cc185ebb46183f9a1473a562f049f456b": "cc9963dccfb3633ac6837361eb83e9a314a794a2",
     "a60c139caf8cabace93fd77c47d6c9c554e1fe6b": "7de2c8e7dcec7733a586d6a5af928413706af3fa",
@@ -2262,12 +2269,26 @@
     "4d1c09c8a3b84ab0800e44e71a24b21cc0f9834b": "9a6915ce5da1f526a82ea30271f3ab8eb2b8ff65"
   },
   "provenance": {
-    "sourceFreezeFileSha256": "a6e74075e1bd0a9ba96b71f8afd74f9882ede79fbf755948d5459571eadb4f99",
+    "originalProductFreeze": "82ba6c1f9cb423002efe188adbcd8b231d0567d7",
+    "testFixFreezeFileSha256": "882f95eafb320c3b124845332f97637374b325c95fa552d8c39d0a83bd6d28f7",
     "ciHandoffFileSha256": "4546fa5c672856fc5814de94d31a5d6febc4c541e5eeba6283247d55c3b79f91",
     "nativeEvidenceRequirementSha256": "f696328ad264a1f907620421a19998d68c5595ad1d4dfb83e9b725c8cd98b8dd",
     "newRowsReadFromExactGitTree": true,
-    "productReviewReportedPassedByCoordinator": true,
-    "independentCiReviewPending": true
+    "independentTestFixReviewPending": true,
+    "independentCiReviewPending": true,
+    "failedPublicHeadPreserved": "93da25baf73034a63f3af086fdf31de126ea8067"
   },
-  "expectedBuildId": "R164-87ca780b93fa"
+  "expectedBuildId": "R164-87ca780b93fa",
+  "testOnlyRepair": {
+    "files": [
+      "tests/lib/rewrite-frozen-imports.mjs",
+      "tests/r165-dailou-waiting-house/fixture.mjs",
+      "tests/r165-dailou-waiting-house/native-source-semantics-synthetic.test.mjs"
+    ],
+    "newTestRoots": 0,
+    "addedPureRegressionCases": 4,
+    "actualCaseTotalsRequireFreshCI": true,
+    "runtimeInputsUnchanged": true,
+    "reason": "Replace whole-source from regex with ImportDeclaration source-span parser adaptation; preserve every non-specifier byte."
+  }
 }

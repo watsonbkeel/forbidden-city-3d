@@ -70,7 +70,7 @@ jobs:
           const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024}).trim();
           const gitNames=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:64*1024*1024}).split('\0').slice(0,-1);
           const sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
-          const source="82ba6c1f9cb423002efe188adbcd8b231d0567d7";
+          const source="64a82ecf16b6001fbeb12369e61f75a4e0c0ffed";
           const publicBase="ad0f3086e32d8f101bb29c1a7a7b04fc441861ab";
           const fingerprint="ddc29c6a5908da227ab499228e150e2709601f6b8c3d51932eb7f2a0f8422854";
           const base='/forbidden-city-3d/';
@@ -93,13 +93,13 @@ jobs:
             assert.equal(git('status','--porcelain','--untracked-files=all'),'');
             for(const ref of requiredRefs)assert.equal(git('cat-file','-t',ref),'commit','Missing required historical Git object: '+ref);
             git('merge-base','--is-ancestor',publicBase,'HEAD');
-            const expectedHashes={"docs/current-state/r165-cumulative-373/BOUNDED-TEST-FILES.json": "a9f3b1dac16986c690b4790500740f07b8aea1055282941b42293d74eb7457ab", "docs/current-state/r165-cumulative-373/HEAVY-TEST-FILES.json": "47e07ac312fd0ef49b7119f9601be6ea5bf60dd67fd2718588b3072f04e0d403", "docs/current-state/r165-cumulative-373/SOURCE-TESTS-FREEZE.json": "8b4f0347ec7dd6b5760663b20da7c25abd8fea0d93905d955e9608a24f3013e3", "docs/current-state/r165-cumulative-373/TEST-PLAN.md": "837c974a008d652afef14cdb10d4e3e1ed62a9c7a3755664d997d5bdcacb73eb", ".github/workflows/deploy-pages.yml": "427112a5de19adfe6dd159585cb17039cf2fb5f463b5b7a4866f5ce17b846db2", "package-lock.json": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c"};
+            const expectedHashes={"docs/current-state/r165-cumulative-373/BOUNDED-TEST-FILES.json": "a9f3b1dac16986c690b4790500740f07b8aea1055282941b42293d74eb7457ab", "docs/current-state/r165-cumulative-373/HEAVY-TEST-FILES.json": "47e07ac312fd0ef49b7119f9601be6ea5bf60dd67fd2718588b3072f04e0d403", "docs/current-state/r165-cumulative-373/SOURCE-TESTS-FREEZE.json": "dbbb834de457b012eede3abdfe89fa703b1a5c3056f2a709dbc31bd776b8edcd", "docs/current-state/r165-cumulative-373/TEST-PLAN.md": "c9a6d470e18bf973f7c9df1f2406b9e864fd47e0974995809c64572275ac1ff5", ".github/workflows/deploy-pages.yml": "427112a5de19adfe6dd159585cb17039cf2fb5f463b5b7a4866f5ce17b846db2", "package-lock.json": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c"};
             for(const [p,h]of Object.entries(expectedHashes))assert.equal(sha(p),h,p);
             const freeze=JSON.parse(fs.readFileSync(docs+'SOURCE-TESTS-FREEZE.json','utf8'));
             assert.equal(freeze.commit,source);assert.equal(freeze.base,publicBase);
             assert.equal(freeze.sourceFingerprint,fingerprint);
             assert.deepEqual(freeze.requiredGitBaselines,requiredRefs);
-            assert.equal(freeze.changed.length,312);
+            assert.equal(freeze.changed.length,313);
             assert.equal(new Set(freeze.changed.map(row=>row.path)).size,freeze.changed.length);
             for(const row of freeze.changed) {
               assert.equal(fs.lstatSync(row.path).isFile(),true,row.path+' regular file');
