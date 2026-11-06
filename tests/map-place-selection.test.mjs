@@ -1,3 +1,4 @@
+import {assertCompleteSourceLinks} from './bilingual/name-source-assertions.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { setupMap, mapPointer, touchAt } from './lib/map-fixture.mjs';
@@ -77,8 +78,10 @@ test('map has 164 keyboard information buttons, separate unchanged quick travel,
   const panel = s.map.container.querySelector('#place-info');
   assert.equal(panel.getAttribute('role'), 'region'); assert.equal(panel.getAttribute('aria-modal'), null);
   assert.match(panel.textContent, /模型漫游不代表现场开放许可/);
-  for (const a of panel.querySelectorAll('a')) {
-    assert.match(a.getAttribute('href'), /^https:\/\/(?:www|img)\.dpm\.org\.cn\//);
+  const links = panel.querySelectorAll('a');
+  const namingLinks = assertCompleteSourceLinks(links, s.map.selectedPlaceId, s.map.placeCatalog.sourcesFor(s.map.placeCatalog.get(s.map.selectedPlaceId)));
+  for (const a of links) {
+    if (!namingLinks.has(a)) assert.match(a.getAttribute('href'), /^https:\/\/(?:www|img)\.dpm\.org\.cn\//);
     assert.equal(a.getAttribute('rel'), 'noopener noreferrer'); assert.equal(a.getAttribute('target'), '_blank');
   }
   assert.deepEqual(s.map.container.querySelector('#teleport-points').querySelectorAll('button').map(b => b.dataset.teleport), ['午门','太和殿','乾清宫','御花园','景仁宫','永寿宫','宁寿宫','神武门']);
