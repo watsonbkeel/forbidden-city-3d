@@ -1,0 +1,498 @@
+[
+  {
+    "path": "tests/r165-chenghuang-entry/source.test.mjs",
+    "beforeSha256": "02c83aaa1f0e9748e35471e7cccfa3a84195ef42abf5cb74ed9420a978f8dc35",
+    "afterSha256": "ccf68799371f8850882428a6e582b758fee95a8b0cfe899703b511ddefdc6531",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 914,
+        "end": 927,
+        "before": "readTishun(p)",
+        "after": "stripBilingualDelta(p,readTishun(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 740,
+        "end": 874,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-chongjing-allocation/source.test.mjs",
+    "beforeSha256": "05efe98a198ec29a9fad44f2a37231f482c30205b9860aed09fccead00a5f2e9",
+    "afterSha256": "0f21489c01d9c66643ad2da1db26bf3e7d463b8463381c086140ce9d320c1a36",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 695,
+        "end": 713,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 640,
+        "end": 665,
+        "before": "fs.readFileSync(p,'utf8')",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p,'utf8'))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-dailou-waiting-house/source.test.mjs",
+    "beforeSha256": "da502a76e8b2afd97b30a687908e0733c4ac7ea12e34c10e4fbbb4b5de01088c",
+    "afterSha256": "d0c67cebedf4b338e7bd755f44b553b882cd8b57efdd658f6bf232d5d65ce159",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1068,
+        "end": 1086,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 904,
+        "end": 1028,
+        "before": "[...new Set(git('ls-files','-co','--exclude-standard','src','data','main.js','release.json').toString().trim().split('\\n'))]",
+        "after": "historicalBilingualPaths([...new Set(git('ls-files','-co','--exclude-standard','src','data','main.js','release.json').toString().trim().split('\\n'))])",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-danyuan-eleven-bay/source.test.mjs",
+    "beforeSha256": "2c7fb34c7356c4716962af919ea6682be9d5705d25d110758eaccde494ca4929",
+    "afterSha256": "5b878c6f4577ae935b8eb94dec950007409b0bc37c1e5ca15c40d85c480215cf",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 912,
+        "end": 923,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 738,
+        "end": 872,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-fuyi-three-bay/source.test.mjs",
+    "beforeSha256": "e261f62d64e511e066cdbb2b92c97a8cde983d7a45074817325c9438b12fb641",
+    "afterSha256": "e22a0a7677741f03790c070e6f7cfa87a34726567a7100637951e899358942c1",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1463,
+        "end": 1474,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 1214,
+        "end": 1348,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-guhua-roof/source.test.mjs",
+    "beforeSha256": "b66fbcd6b9e7fa470aba137ba03d68bcd607a52d47f130964d9f5d54c93166bd",
+    "afterSha256": "6cc5fb6942779f2b21ae1bffbf46f070c0d2bbb35df92d5575903c3853cfc319",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1083,
+        "end": 1217,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      },
+      {
+        "start": 971,
+        "end": 982,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-juting-main-pavilion/source.test.mjs",
+    "beforeSha256": "cb7a228b79b0dc318931355f02ba1e0b9bab9f734f8ec662e7464c48c09776ac",
+    "afterSha256": "de452a8ebec31c08eb584e54fd4193cfb41a90c7ee346f1c24207432b53b7721",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 971,
+        "end": 989,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-lutai-rock-terrace/source.test.mjs",
+    "beforeSha256": "b904381ffc9b24c3fbfbe25d2d583fe6c2ac41b9a9183934c59d7680aef6eb8b",
+    "afterSha256": "178a2d7f25ee5843fcfcce5c1802ec37ddd56d9506def9d05d45cf95c0c6f8ad",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 969,
+        "end": 987,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-roof-joint-bounds/source.test.mjs",
+    "beforeSha256": "844c92fa70bc70615a82dbac599e006ebafa595dd57f98df9da56c889646d635",
+    "afterSha256": "e330a6ce509c48d7181128a10e43928dec6c16496384dc538764023e45e38ee0",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 711,
+        "end": 729,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 683,
+        "end": 708,
+        "before": "fs.readFileSync(p,'utf8')",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p,'utf8'))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-sanyou-main-shell/source.test.mjs",
+    "beforeSha256": "404bef90915efa4f6c84cbc5414089229bfb7e361ac4cd1b85420afa8fb68ba6",
+    "afterSha256": "bc0bdec1552b3af602cdee2e873e28e9991840a236af2e3fdaa93fe8745b63b9",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1033,
+        "end": 1051,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-songxiu-hill-pavilion/source.test.mjs",
+    "beforeSha256": "1c0ffd9ba8d3f4fdd3e14476bd35b5fa7af16a95107766b7156853b829700f41",
+    "afterSha256": "14c893268911aecbc4af631d64dda5e03a9863ea43a164d0093c207faf2e20a0",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 973,
+        "end": 991,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-synchronous-build-steps/source.test.mjs",
+    "beforeSha256": "40a1bbf75c8545c23d8ab83717cf385b1ca41f7bfa5aa1f462665273c39a81bb",
+    "afterSha256": "8b3d1635fa54227c0cfc2fd64734f6630cb6479b627382b9114d686c531c4192",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1021,
+        "end": 1039,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-tishun-south-beam/source.test.mjs",
+    "beforeSha256": "2bc1998cef96b15396d8d0bb7654dffc932672341850cf81121e8d447c56c90a",
+    "afterSha256": "1140d573b1d7edbefad3f2e48d8c33c0ce4cd97c4deff558fb9dc2a1aeee3866",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 905,
+        "end": 923,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 731,
+        "end": 865,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-xiefang-hill-pavilion/source.test.mjs",
+    "beforeSha256": "c1400b2c117d52b71e5f1ad1893ecd17b376ad39cf694cfc2e7c7b31ea9f5033",
+    "afterSha256": "c0be6c94d8f4cc0fcbd539c38975548928ddd2f52ff82e4e328ca2d82f221abb",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 973,
+        "end": 991,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-xihua-north-house/source.test.mjs",
+    "beforeSha256": "6ad1bef8df6563d0e9a4715a64caff13bbfd5c382e44d93166769c24a00b635c",
+    "afterSha256": "9ef6da190b2b33fab1a855f601ec589cf66f642480fb724b435afe8c315a2c5f",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1474,
+        "end": 1485,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 1226,
+        "end": 1360,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-xuanshou-south-front/source.test.mjs",
+    "beforeSha256": "8a523fefb56594f5610c17f436455cef181ad367876c6408248d4abc3a12a047",
+    "afterSha256": "7e91ae63af2a85430de6c31865b1f86cb449082ba36a5a7414376bf0bdd2caab",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1825,
+        "end": 1959,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      },
+      {
+        "start": 1574,
+        "end": 1588,
+        "before": "readLive(path)",
+        "after": "stripBilingualDelta(path,readLive(path))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-xuhui-gallery/source.test.mjs",
+    "beforeSha256": "7dc4a0cbe387e4a7ade08fcd36f079cb52251230849654d6deedb41f6edbb3b9",
+    "afterSha256": "e1e87f5ff187e8b65c10f43754037151e33934dc32358d76cbb426feac2e4472",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 2091,
+        "end": 2225,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      },
+      {
+        "start": 1182,
+        "end": 1193,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-yangxin-companions/source.test.mjs",
+    "beforeSha256": "d5e1330ec6472bcecc8fdffe1a34a0172f9cd45b68f86b5d917d89f8ba0d5f47",
+    "afterSha256": "5cc6c2a15d979c70578dfb06aa37e96d18ab3f19d74be02803692537dcb673ec",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 908,
+        "end": 919,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 734,
+        "end": 868,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-yanxi-rear-ear/source.test.mjs",
+    "beforeSha256": "51da598942a30ff2b717e117b40916a9f3c6b3bee97811502a11ec6b0053c881",
+    "afterSha256": "d20d8b559e8df6238ad31c643da3f11009af9378ba85dbaa7ece5411444c85d4",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 903,
+        "end": 914,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 729,
+        "end": 863,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-yizhai-main-shell/source.test.mjs",
+    "beforeSha256": "8cbb0131f627bdb250d209bd83552385bfdb337a2f982c1e93455aea7fbdefd4",
+    "afterSha256": "9670421bdda46cc4ed6af5a96aeeda53489df4232cbb3fbbabc3b953a6cc4872",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 971,
+        "end": 989,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-yunguang-main-shell/source.test.mjs",
+    "beforeSha256": "8d1d6b839d9e10e9cb776d3a9bb890b1b61cefca2250fdb11d9adcf42add6964",
+    "afterSha256": "205132967b571b7ba68948c34c4d1853f816f9f12c91aa48e4754db591b7c7c3",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 975,
+        "end": 993,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-zhongzheng-main/source.test.mjs",
+    "beforeSha256": "8ce8b920d348d5d7f9bd6692bc8d9065fe30933cb483cb5346d4d3af3a5449a2",
+    "afterSha256": "69c103e536f09c94bfe862b484e53d19bb3a1e7b58664b6c58d3438f8598d97b",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 910,
+        "end": 921,
+        "before": "readLive(p)",
+        "after": "stripBilingualDelta(p,readLive(p))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 736,
+        "end": 870,
+        "before": "execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n')",
+        "after": "historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))",
+        "kind": "source-comparison-enumeration"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-zhuxiang-main-shell/source.test.mjs",
+    "beforeSha256": "08461e7401b4e2f3a1e0f482573f32976a12dbbc54f0ad439634a49572785293",
+    "afterSha256": "73d10f68a3d44e628b49e98ad1cc93658d1dbacaaf296c53635a101ca24e964d",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 977,
+        "end": 995,
+        "before": "fs.readFileSync(p)",
+        "after": "stripBilingualDelta(p,fs.readFileSync(p))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  },
+  {
+    "path": "tests/r165-zone-load-metrics/source.test.mjs",
+    "beforeSha256": "27dc1cea8fdffb9ce9946fab7d12dcbaa718ae9dec8290815eb5943aa4b06c16",
+    "afterSha256": "3d7cae8013df0bee18a3a35a48432055d254584af434be02185909534fdabf6b",
+    "prefix": "import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "start": 1351,
+        "end": 1372,
+        "before": "fs.readFileSync(path)",
+        "after": "stripBilingualDelta(path,fs.readFileSync(path))",
+        "kind": "source-negative-control-setup"
+      },
+      {
+        "start": 798,
+        "end": 819,
+        "before": "fs.readFileSync(path)",
+        "after": "stripBilingualDelta(path,fs.readFileSync(path))",
+        "kind": "source-comparison-read"
+      },
+      {
+        "start": 767,
+        "end": 795,
+        "before": "fs.readFileSync(path,'utf8')",
+        "after": "stripBilingualDelta(path,fs.readFileSync(path,'utf8'))",
+        "kind": "source-comparison-read"
+      }
+    ],
+    "originalAssertionsRecoveredExactly": true
+  }
+]

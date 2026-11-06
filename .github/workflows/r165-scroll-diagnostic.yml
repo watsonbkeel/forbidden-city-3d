@@ -1,0 +1,125 @@
+name: R165 scroll diagnostic only
+'on':
+  push:
+    branches:
+    - dev/r165-bilingual-scroll-diagnostic-20261106
+permissions:
+  contents: read
+concurrency:
+  group: r165-scroll-diagnostic-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r165-bilingual-scroll-diagnostic-20261106'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      GIT_OPTIONAL_LOCKS: '0'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Check out the exact event commit and baseline history
+      id: checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Select the exact registerHooks-capable Node toolchain
+      id: node
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+    - name: Initialize exact non-overlapping evidence roots
+      id: roots
+      run: 'set -euo pipefail
+
+        : "${RUNNER_TEMP:?}" "${GITHUB_RUN_ID:?}" "${GITHUB_RUN_ATTEMPT:?}" "${GITHUB_ENV:?}"
+
+        node --input-type=module - <<''NODE''
+
+        import fs from ''node:fs'';import path from ''node:path'';import assert from ''node:assert/strict'';
+
+        const temp=process.env.RUNNER_TEMP;assert.ok(path.isAbsolute(temp));assert.equal(path.normalize(temp),temp);assert.equal(fs.realpathSync(temp),temp);assert.equal(fs.lstatSync(temp).isDirectory(),true);assert.match(process.env.GITHUB_RUN_ID,/^\d+$/);assert.match(process.env.GITHUB_RUN_ATTEMPT,/^[1-9]\d*$/);
+
+        const evidence=path.join(temp,`r165-scroll-diagnostic-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`),ui=path.join(temp,`bui-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`);assert.ok(!fs.existsSync(ui));fs.mkdirSync(evidence,{mode:0o700});fs.appendFileSync(process.env.GITHUB_ENV,`EVIDENCE_DIR=${evidence}\nUI_WORK_ROOT=${ui}\n`);
+
+        NODE
+
+        '
+    - name: Verify exact public product and additions only
+      id: source
+      run: 'set -euo pipefail
+
+        node scripts/ci/scroll-diagnostic/source.mjs'
+    - name: Install exact existing locked toolchain
+      id: dependencies
+      timeout-minutes: 6
+      run: 'set -euo pipefail
+
+        npm install --global npm@11.9.0 --no-audit --no-fund
+
+        test "$(node --version)" = v24.22.1
+
+        test "$(npm --version)" = 11.9.0
+
+        npm ci --no-audit --no-fund'
+    - name: Run unchanged safety tools and diagnostic contracts
+      id: contracts
+      timeout-minutes: 9
+      run: 'set -euo pipefail
+
+        node scripts/ci/scroll-diagnostic/tools.mjs'
+    - name: Bind same-run native toolchain and input receipts
+      id: preflight
+      timeout-minutes: 2
+      run: 'set -euo pipefail
+
+        : "${UI_WORK_ROOT:?}"
+
+        node scripts/ci/bilingual-ui/preflight.mjs --inputs docs/current-state/r165-scroll-diagnostic/INPUTS.json --work-root "$UI_WORK_ROOT"'
+    - name: One bounded instrumented scroll diagnosis only
+      id: diagnostic
+      timeout-minutes: 16
+      run: 'set -euo pipefail
+
+        python3 scripts/ci/scroll-diagnostic/run-diagnostic.py --inputs docs/current-state/r165-scroll-diagnostic/INPUTS.json --work-root "$UI_WORK_ROOT"'
+    - name: Collect only fixed diagnostic receipts and endpoints
+      id: collection
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${UI_WORK_ROOT:?}" "${EVIDENCE_DIR:?}"
+
+        node scripts/ci/scroll-diagnostic/evidence.mjs --collect "$UI_WORK_ROOT"'
+    - name: Record bounded artifact manifest and outcomes
+      id: finalize
+      if: always()
+      timeout-minutes: 1
+      env:
+        DIAGNOSTIC_OUTCOME: ${{ steps.diagnostic.outcome }}
+        COLLECTION_OUTCOME: ${{ steps.collection.outcome }}
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}"
+
+        node scripts/ci/scroll-diagnostic/finalize.mjs'
+    - name: Upload diagnostic evidence only
+      if: always() && env.EVIDENCE_DIR != ''
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r165-scroll-diagnostic-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+        path: ${{ env.EVIDENCE_DIR }}
+        if-no-files-found: error
+        retention-days: 14
+        compression-level: 1
