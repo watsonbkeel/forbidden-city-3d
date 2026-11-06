@@ -51,8 +51,8 @@ function stage(g,old,width){
  * openings, all physical/navigation records and R63 interior limits stay intact. */
 export function buildTishunSouthBeam(kit,zone){
  if(zone?.id!=='west-six')return false;
- const frame=base(kit,zone),prior=done.get(kit);
- if(prior){const m=prior.mesh,matrix=new T.Matrix4().makeTranslation(0,.45+5.44-(5.44*.12)/2,-8.7/2);need(m.parent===frame&&frame.children[14]===m&&m.name===''&&m.children.length===0&&identity(m)&&m.position.equals(new T.Vector3(0,.45+5.44-(5.44*.12)/2,-8.7/2))&&m.matrix.equals(matrix)&&m.matrixWorld.equals(new T.Matrix4().multiplyMatrices(frame.matrixWorld,matrix))&&m.castShadow===true&&m.receiveShadow===true&&m.material===prior.material&&m.material===kit.lib.material('caihua_beam')&&m.geometry===prior.geometry&&m.userData===prior.userData&&appliedUserData(m.userData,prior.feature)&&renderState(prior.geometry)&&signature(prior.geometry)===prior.signature,'idempotent applied target drift');const buffers=new Set(Object.values(m.geometry.attributes).map(a=>a.array.buffer));for(const other of meshes(kit.root))if(other!==m){need(other.geometry!==m.geometry,'idempotent applied geometry ownership drift');for(const a of[...Object.values(other.geometry.attributes),other.geometry.index].filter(Boolean))need(!buffers.has(a.array.buffer),'idempotent applied buffer ownership drift')}return prior}
+ const frame=base(kit,zone),committed=done.get(kit);
+ if(committed){const prior=committed.get(frame.children[14]);need(prior,'idempotent applied target drift');const m=prior.mesh,matrix=new T.Matrix4().makeTranslation(0,.45+5.44-(5.44*.12)/2,-8.7/2);need(m.parent===frame&&frame.children[14]===m&&m.name===''&&m.children.length===0&&identity(m)&&m.position.equals(new T.Vector3(0,.45+5.44-(5.44*.12)/2,-8.7/2))&&m.matrix.equals(matrix)&&m.matrixWorld.equals(new T.Matrix4().multiplyMatrices(frame.matrixWorld,matrix))&&m.castShadow===true&&m.receiveShadow===true&&m.material===prior.material&&m.material===kit.lib.material('caihua_beam')&&m.geometry===prior.geometry&&m.userData===prior.userData&&appliedUserData(m.userData,prior.feature)&&renderState(prior.geometry)&&signature(prior.geometry)===prior.signature,'idempotent applied target drift');const buffers=new Set(Object.values(m.geometry.attributes).map(a=>a.array.buffer));for(const other of meshes(kit.root))if(other!==m){need(other.geometry!==m.geometry,'idempotent applied geometry ownership drift');for(const a of[...Object.values(other.geometry.attributes),other.geometry.index].filter(Boolean))need(!buffers.has(a.array.buffer),'idempotent applied buffer ownership drift')}return prior}
  const mesh=target(kit,frame),old=mesh.geometry,userData=mesh.userData,g=new T.BufferGeometry();
  const feature=Object.freeze({id:ID,sourceObjectId:'FC-784C20C066',scope:'FITTED_SOUTH_EAVE_BEAM_ONLY',modelCarrierCorrespondence:'ORIGINAL_GENERATOR_SOURCE_CHAIN_CONFIRMED_NOT_PHYSICAL_SURVEY',source:'https://img.dpm.org.cn/Uploads/File/2020/11/13/u5fae1f8852a4b.pdf',sourcePages:'450–451; beam categories, not measured section',modelMappingCommits:'a4d8939334a38133b04444eb4e9a1e399bb568f2 / eb3d458283a56aef69225df60bdfc419f06fd71e',dimensions:'MODEL_FIT_NOT_SURVEY',wholeObjectAccepted:false,surveyed:false,currentAdmissionVerified:false,roofUnchanged:true,interiorLimitsUnchanged:true});
  let record;
@@ -60,5 +60,7 @@ export function buildTishunSouthBeam(kit,zone){
  // Commit is complete before disposal. An external dispose listener throwing
  // cannot make a disposed old resource rollback-safe; retain the committed
  // record so a caller cannot repeat disposal. No shared material is disposed.
- done.set(kit,record);old.dispose();return record;
+ // A live kit remembers the commit, but only the original mesh keeps its record
+ // alive. After construction release, the record must not root the old frame.
+ done.set(kit,new WeakMap([[mesh,record]]));old.dispose();return record;
 }
