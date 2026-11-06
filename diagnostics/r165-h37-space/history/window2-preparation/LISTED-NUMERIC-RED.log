@@ -1,0 +1,41 @@
+.FFFF....
+======================================================================
+FAIL: test_every_listed_numeric_identity_requires_positive_integer (__main__.WindowTwo.test_every_listed_numeric_identity_requires_positive_integer) (index=0, key='workflow_id', value=19.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 29, in test_every_listed_numeric_identity_requires_positive_integer
+    with self.subTest(index=index,key=key,value=value),self.assertRaises(ValueError):self.valid(l=listing)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_every_listed_numeric_identity_requires_positive_integer (__main__.WindowTwo.test_every_listed_numeric_identity_requires_positive_integer) (index=0, key='run_number', value=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 29, in test_every_listed_numeric_identity_requires_positive_integer
+    with self.subTest(index=index,key=key,value=value),self.assertRaises(ValueError):self.valid(l=listing)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_every_listed_numeric_identity_requires_positive_integer (__main__.WindowTwo.test_every_listed_numeric_identity_requires_positive_integer) (index=0, key='run_attempt', value=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 29, in test_every_listed_numeric_identity_requires_positive_integer
+    with self.subTest(index=index,key=key,value=value),self.assertRaises(ValueError):self.valid(l=listing)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_every_listed_numeric_identity_requires_positive_integer (__main__.WindowTwo.test_every_listed_numeric_identity_requires_positive_integer) (index=0, key='run_attempt', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 29, in test_every_listed_numeric_identity_requires_positive_integer
+    with self.subTest(index=index,key=key,value=value),self.assertRaises(ValueError):self.valid(l=listing)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
+
+FAILED (failures=4)

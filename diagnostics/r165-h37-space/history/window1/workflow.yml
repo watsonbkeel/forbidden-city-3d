@@ -1,0 +1,108 @@
+name: R165 H37 one-time read-only spatial diagnostic
+"on":
+  push:
+    branches:
+      - dev/r165-h37-space-diagnostic-20261106
+permissions:
+  contents: read
+concurrency:
+  group: r165-h37-space-diagnostic-20261106
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    if: >-
+      github.repository == 'watsonbkeel/forbidden-city-3d' &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/dev/r165-h37-space-diagnostic-20261106' &&
+      github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: "true"
+      GIT_OPTIONAL_LOCKS: "0"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      npm_config_audit: "false"
+      npm_config_fund: "false"
+      EVIDENCE_DIR: ${{ runner.temp }}/r165-h37-evidence
+      FREEZE_SHA256: 1dbb1a3476ec45686b034691fde14b2be83b804cddf6c80ca2591ce37c06cb80
+    steps:
+      - name: Start the fixed setup and admission window
+        run: |
+          python3 - <<'PY' >> "$GITHUB_ENV"
+          import time
+          print('JOB_START_EPOCH='+str(time.time()))
+          print('JOB_START_MONOTONIC='+str(time.monotonic()))
+          PY
+      - name: Check out the exact event commit without stored credentials
+        id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Select the frozen Node version
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24.22.1"
+          check-latest: false
+      - name: Install the locked dependencies and record toolchain
+        id: setup
+        timeout-minutes: 10
+        run: |
+          set -euo pipefail
+          mkdir -p "$EVIDENCE_DIR"
+          echo "DIAGNOSTIC_TREE=$(git rev-parse HEAD^{tree})" >> "$GITHUB_ENV"
+          npm install --global npm@11.9.0 --no-audit --no-fund > "$EVIDENCE_DIR/npm-toolchain-pin.log" 2>&1
+          npm ci --no-audit --no-fund > "$EVIDENCE_DIR/npm-ci.log" 2>&1
+          node --input-type=module - <<'JS' > "$EVIDENCE_DIR/TOOLCHAIN.json"
+          import assert from 'node:assert/strict';import{execFileSync}from'node:child_process';import fs from'node:fs';
+          const npm=execFileSync('npm',['--version'],{encoding:'utf8'}).trim();
+          const python=execFileSync('python3',['--version'],{encoding:'utf8'}).trim();assert.match(python,/^Python 3\.12\.\d+$/);
+          assert.equal(process.version,'v24.22.1');assert.equal(npm,'11.9.0');assert.equal(process.platform,'linux');assert.equal(process.arch,'x64');
+          assert.ok(process.report.getReport().header.glibcVersionRuntime);
+          console.log(JSON.stringify({node:process.version,npm,versions:process.versions,python,glibc:process.report.getReport().header.glibcVersionRuntime,packages:Object.fromEntries(['three','@napi-rs/canvas','rollup'].map(p=>[p,JSON.parse(fs.readFileSync('node_modules/'+p+'/package.json')).version]))},null,2));
+          JS
+      - name: Verify source, full input closure and all pure guards without a fixture
+        id: preflight
+        run: |
+          set -euo pipefail
+          env -u NODE_PATH -u NODE_OPTIONS node diagnostics/r165-h37-space/audit-package.mjs > "$EVIDENCE_DIR/STATIC-AUDIT.log" 2>&1
+          env -u NODE_PATH -u NODE_OPTIONS node --test --test-concurrency=1 diagnostics/r165-h37-space/*synthetic*.mjs > "$EVIDENCE_DIR/PURE-JS.log" 2>&1
+          for f in diagnostics/r165-h37-space/*synthetic.py; do python3 "$f"; done > "$EVIDENCE_DIR/PURE-PYTHON.log" 2>&1
+          env -u NODE_PATH -u NODE_OPTIONS python3 diagnostics/r165-h37-space/preflight.py > "$EVIDENCE_DIR/PREFLIGHT.log" 2>&1
+      - name: Await exact numeric run receipt and unreleased one-time preimage
+        id: admission
+        run: python3 diagnostics/r165-h37-space/approval_gate.py > "$EVIDENCE_DIR/ADMISSION.log" 2>&1
+      - name: Execute the one admitted P1 then P2C diagnostic
+        id: probe
+        run: |
+          set +e
+          env -u NODE_PATH -u NODE_OPTIONS python3 diagnostics/r165-h37-space/run_space.py --execute-once > "$EVIDENCE_DIR/WRAPPER.log" 2>&1
+          result=$?
+          printf '{"exitCode":%s}\n' "$result" > "$EVIDENCE_DIR/WRAPPER-SHELL-EXIT.json"
+          cat "$EVIDENCE_DIR/WRAPPER.log"
+          exit "$result"
+      - name: Seal success or partial failure evidence
+        if: always()
+        env:
+          CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+          SETUP_OUTCOME: ${{ steps.setup.outcome }}
+          PREFLIGHT_OUTCOME: ${{ steps.preflight.outcome }}
+          ADMISSION_OUTCOME: ${{ steps.admission.outcome }}
+          PROBE_OUTCOME: ${{ steps.probe.outcome }}
+        run: python3 diagnostics/r165-h37-space/seal_evidence.py
+      - name: Preserve the immutable diagnostic artifact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: h37-space-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/r165-h37-evidence/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 6

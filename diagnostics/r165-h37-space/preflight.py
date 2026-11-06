@@ -74,10 +74,14 @@ def verify_frozen(root,manifest):
 def verify_admission(admission,env,config,now):
     try:
         run=admission['run'];raw=(json.dumps(run,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n').encode()
-        for key in ['schema','run_id','workflow_id','run_number','run_attempt']:
+        for key in ['schema','window_number','run_id','workflow_id','run_number','run_attempt']:
             if type(run[key])is not int or run[key]<=0:raise ValueError('Admission numeric identity rejected')
+        if config['prior_run']and type(run['prior_run_id'])is not int:raise ValueError('Prior window numeric identity rejected')
+        if config['prior_run']:
+            proof=admission['priorWindow'];old=proof['run'];jobs=proof['jobs'];expected=config['prior_run']
+            if any(type(old[k])is not int for k in ['id','workflow_id','run_number','run_attempt'])or old['id']!=expected['id']or old['head_sha']!=expected['head_sha']or old['workflow_id']!=config['workflow_id']or old['run_number']!=1 or old['run_attempt']!=1 or old['status']!='completed'or old['conclusion']!='failure'or type(jobs['total_count'])is not int or jobs['total_count']!=0 or jobs['jobs']!=[]:raise ValueError('Prior zero-job failure proof rejected')
         if not math.isfinite(now)or type(admission['acceptedAtEpoch'])not in [int,float]or not math.isfinite(admission['acceptedAtEpoch']):raise ValueError('Admission clock invalid')
-        checks=[admission['accepted']is True,env['GITHUB_EVENT_NAME']=='push',run['schema']==1,run['purpose']=='H37_FIRST_RUN_DIAGNOSTIC_ONLY',run['repository']==config['repository']==env['GITHUB_REPOSITORY'],run['branch']==config['branch'],env['GITHUB_REF']=='refs/heads/'+config['branch'],run['workflow_path']==config['workflow'],type(run['workflow_id'])is int,run['run_id']==int(env['GITHUB_RUN_ID']),run['run_number']==int(env['GITHUB_RUN_NUMBER'])==1,run['run_attempt']==int(env['GITHUB_RUN_ATTEMPT'])==1,run['diagnostic_commit']==env['GITHUB_SHA'],run['diagnostic_tree']==env['DIAGNOSTIC_TREE'],run['source_base']==config['base'],run['source_tree']==config['base_tree'],run['freeze_sha256']==env['FREEZE_SHA256'],run['release_blob_sha']==admission['releaseBlobSHA']==config['release_blob_sha'],admission['receiptBlobSHA']==git_blob_sha(raw),admission['receiptSHA256']==sha(raw),run['node_tree_mib']==768,run['non_node_mib']==256,run['aggregate_seconds']==180,utc_epoch(run['created_at'])<=admission['acceptedAtEpoch']<=now<utc_epoch(run['expires_at']),utc_epoch(run['expires_at'])==utc_epoch(run['created_at'])+1800]
+        checks=[admission['accepted']is True,env['GITHUB_EVENT_NAME']=='push',run['schema']==1,run['purpose']=='H37_EXPLICIT_WINDOW_DIAGNOSTIC_ONLY',run['repository']==config['repository']==env['GITHUB_REPOSITORY'],run['branch']==config['branch'],env['GITHUB_REF']=='refs/heads/'+config['branch'],run['workflow_path']==config['workflow'],type(run['workflow_id'])is int,run['run_id']==int(env['GITHUB_RUN_ID']),run['run_number']==int(env['GITHUB_RUN_NUMBER'])==config['run_number'],run['window_number']==config['window_number'],run['prior_run_id']==(config['prior_run']['id']if config['prior_run']else None),run['workflow_id']==config['workflow_id'],run['run_attempt']==int(env['GITHUB_RUN_ATTEMPT'])==1,run['diagnostic_commit']==env['GITHUB_SHA'],run['diagnostic_tree']==env['DIAGNOSTIC_TREE'],run['source_base']==config['base'],run['source_tree']==config['base_tree'],run['freeze_sha256']==env['FREEZE_SHA256'],run['release_blob_sha']==admission['releaseBlobSHA']==config['release_blob_sha'],admission['receiptBlobSHA']==git_blob_sha(raw),admission['receiptSHA256']==sha(raw),run['node_tree_mib']==768,run['non_node_mib']==256,run['aggregate_seconds']==180,utc_epoch(run['created_at'])<=admission['acceptedAtEpoch']<=now<utc_epoch(run['expires_at']),utc_epoch(run['expires_at'])==utc_epoch(run['created_at'])+1800]
         if not all(checks):raise ValueError('Admission mismatch')
     except (KeyError,TypeError,OverflowError)as e:raise ValueError('Admission missing/invalid')from e
     return True
@@ -122,7 +126,7 @@ def prepare(*,local=False):
         if before['head']!=os.environ['GITHUB_SHA']or before['tree']!=os.environ['DIAGNOSTIC_TREE']:raise ValueError('Event Git identity mismatch')
         if sha((P/'FREEZE.json').read_bytes())!=os.environ['FREEZE_SHA256']:raise ValueError('Workflow freeze binding mismatch')
         parent=git('rev-list','--parents','-n','1','HEAD').decode().split()
-        if parent!=[before['head'],config['base']]:raise ValueError('Diagnostic commit not sole direct child of public373')
+        if parent!=[before['head'],config['diagnostic_parent']]:raise ValueError('Diagnostic commit not sole direct child of the authorized prior diagnostic commit')
         parts=git('diff','--no-renames','--name-status','-z',config['base'],'HEAD').split(b'\0')[:-1]
         rows=[]
         for i in range(0,len(parts),2):

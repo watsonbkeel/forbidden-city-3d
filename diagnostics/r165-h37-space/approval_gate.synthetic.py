@@ -1,7 +1,7 @@
 import unittest,json,hashlib,base64,copy,io,urllib.error,time
 from unittest.mock import patch
 from approval_gate import canonical_receipt,validate_run,verify_blob,await_admission,git_blob_sha,PublicGitHub
-C={'repository':'o/r','branch':'dev/one','workflow':'.github/workflows/one.yml','base':'b'*40,'base_tree':'c'*40,'release_blob_sha':'d'*40,'node_mib':768,'non_node_mib':256,'aggregate_seconds':180}
+C={'repository':'o/r','branch':'dev/one','workflow':'.github/workflows/one.yml','base':'b'*40,'base_tree':'c'*40,'release_blob_sha':'d'*40,'node_mib':768,'non_node_mib':256,'aggregate_seconds':180,'window_number':1,'run_number':1,'workflow_id':19,'prior_run':None}
 R={'id':17,'workflow_id':19,'head_sha':'a'*40,'head_branch':'dev/one','run_number':1,'run_attempt':1,'event':'push','path':C['workflow'],'status':'in_progress','conclusion':None,'created_at':'2026-11-05T21:00:00Z','repository':{'full_name':'o/r'},'head_repository':{'full_name':'o/r'}}
 E={'GITHUB_REPOSITORY':'o/r','GITHUB_REF':'refs/heads/dev/one','GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'17','GITHUB_RUN_NUMBER':'1','GITHUB_RUN_ATTEMPT':'1','GITHUB_EVENT_NAME':'push','DIAGNOSTIC_TREE':'e'*40,'FREEZE_SHA256':'f'*64}
 W={'id':19,'path':C['workflow']};L={'total_count':1,'workflow_runs':[R]}

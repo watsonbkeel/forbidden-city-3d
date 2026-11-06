@@ -1,8 +1,10 @@
 {
   "schema": 1,
-  "scope": "Frozen remote-only H37 diagnostic, no local production fixture",
+  "scope": "Frozen explicitly authorized remote-only H37 window 2, no local production fixture",
   "base": "2544bab117846a7fd16175a0279e97190d28f549",
   "baseTree": "c46f52079a60965f548d7b38086741f1d48a4b13",
+  "windowNumber": 2,
+  "diagnosticParent": "0c7c9ae9e597ee4b0b03f4efc18d866f0947366b",
   "files": [
     {
       "path": "ASSERTION-LEDGER.json",
@@ -21,8 +23,8 @@
     },
     {
       "path": "CONFIG.json",
-      "bytes": 727,
-      "sha256": "a44ccf33ee73d01ce2d9639ce1b1de693c8bdaba16800cf7fed3b0f219573a67"
+      "bytes": 1010,
+      "sha256": "414d9745479e160ea0eceeb445527ceab02a6db67cbc9c3e2d7030d29c3979bc"
     },
     {
       "path": "DESIGN.md",
@@ -51,8 +53,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8486,
-      "sha256": "fd3c2fef55b02ff8dbf4fbbd22ab876e3cdc420a9934f0b31321f5894b121233"
+      "bytes": 10020,
+      "sha256": "3297dca0b032f1a092ffeae43bf5adf3b32c7835e60939de4035402e19a82dea"
     },
     {
       "path": "SOURCES-AND-INPUTS.json",
@@ -61,13 +63,13 @@
     },
     {
       "path": "approval_gate.py",
-      "bytes": 9842,
-      "sha256": "4bc0ba0edd1662dfd25dd81f80bde2aa4da6c634c3e77eb835c6cc1424ff82f0"
+      "bytes": 12150,
+      "sha256": "d7adc1d5cfa56506fab517b03323e50b6eacbc64c83600ba0221ed3b449434c9"
     },
     {
       "path": "approval_gate.synthetic.py",
-      "bytes": 10090,
-      "sha256": "c059fbfc98a4c95c6d2fcb66c25b3f65b6418308d943f49494835ef7e023d2ba"
+      "bytes": 10157,
+      "sha256": "22df383e1b76eb6e2f36c4ca6ad65298a201716977e9ca582db2e611378d4899"
     },
     {
       "path": "audit-package.mjs",
@@ -645,6 +647,81 @@
       "sha256": "7350cfc121a53c99d8a74c9257caab83c174ecec9ea530b3def9da4c76ffc521"
     },
     {
+      "path": "history/window1/FINAL-RUN-FAILURE.json",
+      "bytes": 1085,
+      "sha256": "3d3df06ec75229a918e533923ef7f9fcaf57b2c33b04199c406ef9ea7a9affb3"
+    },
+    {
+      "path": "history/window1/PACKAGE-FREEZE.json",
+      "bytes": 25259,
+      "sha256": "1dbb1a3476ec45686b034691fde14b2be83b804cddf6c80ca2591ce37c06cb80"
+    },
+    {
+      "path": "history/window1/workflow.yml",
+      "bytes": 5306,
+      "sha256": "b7bf3d027ee8b746b1bab7e3c396dda63999e073ecd68961e018a795cdfc679e"
+    },
+    {
+      "path": "history/window2-preparation/LISTED-NUMERIC-GREEN.log",
+      "bytes": 104,
+      "sha256": "65378dcad145da2497120819bebfc3c46534dce9714ce064b3d809a56654aca2"
+    },
+    {
+      "path": "history/window2-preparation/LISTED-NUMERIC-RED.log",
+      "bytes": 3281,
+      "sha256": "f14825576895622f0d4fc15b598ac27671bed60890540f1639eaca2ed4577643"
+    },
+    {
+      "path": "history/window2-preparation/ORIGINAL-WORKFLOW-SEMANTIC-RED.log",
+      "bytes": 2092,
+      "sha256": "26406c1b55d8287de310441a544a6e8dacb102168c55c2ebe54310c66daf05b1"
+    },
+    {
+      "path": "history/window2-preparation/PLAN.md",
+      "bytes": 2657,
+      "sha256": "71207d2d00e4ac4d0c6b703a63daac732581355240a89c36d22038dff741282f"
+    },
+    {
+      "path": "history/window2-preparation/PURE-JS-FINAL.log",
+      "bytes": 3393,
+      "sha256": "ddd0191509033d39428957ff07b7c01fc7fff583e5b0f5287ce599cd194966b5"
+    },
+    {
+      "path": "history/window2-preparation/PURE-PYTHON-FINAL.log",
+      "bytes": 1550,
+      "sha256": "0469e8ed0664a3cc0c0aa25888c11d9f901ef14883f0f0e758b6250ae5172797"
+    },
+    {
+      "path": "history/window2-preparation/STATIC-AUDIT-FINAL.log",
+      "bytes": 128,
+      "sha256": "4877869502e39ea774330c75dbdb451e7e7f50c25e39a9e84577deacef0de120"
+    },
+    {
+      "path": "history/window2-preparation/WINDOW2-RED.log",
+      "bytes": 12593,
+      "sha256": "8f81dffd2047a5aa638024f99efd2df3d37d948ce35a2b9228fa33e7a74c344a"
+    },
+    {
+      "path": "history/window2-preparation/WORKFLOW-SEMANTICS-GREEN.log",
+      "bytes": 104,
+      "sha256": "065c7d15facfd20f14fb9182747be315f3349fa1d5e1a0e966047509f4bfa9b1"
+    },
+    {
+      "path": "history/window2-preparation/WORKFLOW-VALIDATED.json",
+      "bytes": 367,
+      "sha256": "54e17bd162dc17df164eb50e89ba551cfdc4645be18b3da2f8fcc1758d1141e3"
+    },
+    {
+      "path": "history/window2-preparation/workflow_semantics.py",
+      "bytes": 4221,
+      "sha256": "9139e4da3dc128b469301eff423c428b918ed0ffc6d61fc22ea0049a4dcb02f1"
+    },
+    {
+      "path": "history/window2-preparation/workflow_semantics_test.py",
+      "bytes": 1531,
+      "sha256": "2c78a1e3ad56390113d46aa5efe865a8d29b319afea7ab499845a270ee80308d"
+    },
+    {
       "path": "monitor-epoch.synthetic.py",
       "bytes": 1348,
       "sha256": "12231d737f79175776d05555542de100eed2de05db5a0f5fd13e2504babc5980"
@@ -676,13 +753,13 @@
     },
     {
       "path": "preflight.py",
-      "bytes": 12473,
-      "sha256": "c59c81527d4df59ff5ef0388d805bdcd251555a082e551ce4be29191722fc5ef"
+      "bytes": 13456,
+      "sha256": "850d304889658bd30e8189f71535406c69cbc58bde753fdfc8b1d7de9bbe71dc"
     },
     {
       "path": "preflight.synthetic.py",
-      "bytes": 3802,
-      "sha256": "11a5d016e5516d35106ea2605a6117b451a65bd3a726df7c29f0f1b54e34c07a"
+      "bytes": 3869,
+      "sha256": "3fc1f88feeb4410df0e4dbcaf38e0ce71b19164ae4b4523692a23407542f81d9"
     },
     {
       "path": "probe_monitor.py",
@@ -758,6 +835,11 @@
       "path": "west-route-adapter.mjs",
       "bytes": 2002,
       "sha256": "4c6b45505e2a50c3de9ce400a358b5033816b4b2411719dc4b4970c4608c329e"
+    },
+    {
+      "path": "window2.synthetic.py",
+      "bytes": 4176,
+      "sha256": "9a8086d49cac65d004c74b88379c01a38f31d4f320a96455b6e5a66eab3cd447"
     },
     {
       "path": "yuhua-route-adapter.mjs",

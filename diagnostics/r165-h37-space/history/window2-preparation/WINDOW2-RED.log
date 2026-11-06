@@ -1,0 +1,137 @@
+EEEEEEEEEEE
+======================================================================
+ERROR: test_exact_second_window_preserves_first_failure (__main__.WindowTwo.test_exact_second_window_preserves_first_failure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 11, in test_exact_second_window_preserves_first_failure
+    self.assertTrue(self.valid());q=json.loads(canonical_receipt(R,E,C));self.assertEqual(q['window_number'],2);self.assertEqual(q['run_number'],2);self.assertEqual(q['prior_run_id'],16)
+                    ^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='head_sha')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='run_number')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='run_attempt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='workflow_id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='conclusion')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='status')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required) (key='event')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 18, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.subTest(key=key),self.assertRaises(ValueError):self.valid(l={'total_count':2,'workflow_runs':[R,{**PREV,key:value}]})
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_prior_identity_failure_and_no_jobs_are_required (__main__.WindowTwo.test_prior_identity_failure_and_no_jobs_are_required)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 20, in test_prior_identity_failure_and_no_jobs_are_required
+    with self.assertRaises(ValueError):self.valid(j=jobs)
+                                       ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+======================================================================
+ERROR: test_wrong_ordinal_workflow_or_extra_run_rejected (__main__.WindowTwo.test_wrong_ordinal_workflow_or_extra_run_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 14, in test_wrong_ordinal_workflow_or_extra_run_rejected
+    with self.assertRaises(ValueError):self.valid(r={**R,key:value})
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/native/diagnostics/r165-h37-space/window2.synthetic.py", line 9, in valid
+    def valid(self,r=R,c=C,l=L,j=J):return validate_run(r,E,c,W,l,1793912401,prior_jobs=j)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_run() got an unexpected keyword argument 'prior_jobs'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=11)

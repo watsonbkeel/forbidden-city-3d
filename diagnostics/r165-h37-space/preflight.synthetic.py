@@ -17,7 +17,7 @@ class Preflight(unittest.TestCase):
   for a in [{},{'accepted':True},{'accepted':False,'run':{}}]:
    with self.assertRaises(ValueError):verify_admission(a,{}, {},0)
  def test_exact_admission_and_strict_numeric_fields(self):
-  c={'repository':'o/r','branch':'dev/one','workflow':'.github/workflows/one.yml','base':'b'*40,'base_tree':'c'*40,'release_blob_sha':'d'*40,'node_mib':768,'non_node_mib':256,'aggregate_seconds':180};e={'GITHUB_REPOSITORY':'o/r','GITHUB_REF':'refs/heads/dev/one','GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'17','GITHUB_RUN_NUMBER':'1','GITHUB_RUN_ATTEMPT':'1','GITHUB_EVENT_NAME':'push','DIAGNOSTIC_TREE':'e'*40,'FREEZE_SHA256':'f'*64};run={'id':17,'workflow_id':19,'created_at':'2026-11-05T21:00:00Z'}
+  c={'repository':'o/r','branch':'dev/one','workflow':'.github/workflows/one.yml','base':'b'*40,'base_tree':'c'*40,'release_blob_sha':'d'*40,'node_mib':768,'non_node_mib':256,'aggregate_seconds':180,'window_number':1,'run_number':1,'workflow_id':19,'prior_run':None};e={'GITHUB_REPOSITORY':'o/r','GITHUB_REF':'refs/heads/dev/one','GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'17','GITHUB_RUN_NUMBER':'1','GITHUB_RUN_ATTEMPT':'1','GITHUB_EVENT_NAME':'push','DIAGNOSTIC_TREE':'e'*40,'FREEZE_SHA256':'f'*64};run={'id':17,'workflow_id':19,'created_at':'2026-11-05T21:00:00Z'}
   raw=canonical_receipt(run,e,c);a={'accepted':True,'run':json.loads(raw),'acceptedAtEpoch':1793912401,'releaseBlobSHA':c['release_blob_sha'],'receiptBlobSHA':git_blob_sha(raw),'receiptSHA256':hashlib.sha256(raw).hexdigest()};self.assertTrue(verify_admission(a,e,c,1793912402))
   for key in ['schema','run_id','workflow_id','run_number','run_attempt']:
    for v in [True,float(a['run'][key]),str(a['run'][key]),0,-1]:

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 64, in <module>
+    if __name__=='__main__':print(json.dumps(check(sys.argv[1]),indent=2))
+                                             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 55, in check
+    workflow=yaml.safe_load(Path(path).read_text());validate_expressions(workflow)
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 27, in validate_expressions
+    for key,item in value.items():validate_expressions(item,path+(key,))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 27, in validate_expressions
+    for key,item in value.items():validate_expressions(item,path+(key,))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 27, in validate_expressions
+    for key,item in value.items():validate_expressions(item,path+(key,))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 1 more time]
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 33, in validate_expressions
+    for match in matches:expression(match[1],path)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-window2-0527/workflow_semantics.py", line 24, in expression
+    if token not in allowed|functions|{'true','false','null'}:raise ValueError('Unavailable expression name '+token+' at '+'.'.join(map(str,path)))
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Unavailable expression name runner at jobs.diagnose.env.EVIDENCE_DIR
