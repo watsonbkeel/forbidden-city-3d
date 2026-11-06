@@ -1,8 +1,12 @@
+import {englishNameInfo} from '../i18n/OfficialPlaceNames.js';
+import {translateText} from '../i18n/Messages.js';
+import {localeStore} from '../i18n/LocaleStore.js';
+import {localizedPlace,localizedPlaceName,localizedSource} from '../i18n/PlaceLocale.js';
 import {modelFidelityFor,bridgeFacilityInfoFor} from './ModelFidelity.js';
 import {placeDisplayName} from './PublicPlaceNames.js';
 const element = (tag, text, className) => {
   const node = document.createElement(tag);
-  if (text !== undefined) node.textContent = text;
+  if (text !== undefined) node.textContent = translateText(text);
   if (className) node.className = className;
   return node;
 };
@@ -19,10 +23,16 @@ export class PlaceInfoPanel {
     this.element.setAttribute('role', 'region');
     this.element.setAttribute('aria-labelledby', 'place-title');
     this.element.hidden = this.element.inert = true;
+    this.unsubscribeLocale = localeStore.subscribe(() => this.refreshLocale());
   }
 
-  render({ place, name, facility, sources = [], canTravel, onTravel }) {
-    const displayName = placeDisplayName(name);
+  render(input) {
+    this.lastInput = input;
+    let { place, name, facility, sources = [], canTravel, onTravel } = input;
+    place = localizedPlace(place);
+    sources = sources.map(source => localizedSource(source));
+    this.element.setAttribute('lang', localeStore.locale);
+    const displayName = place?.displayName ?? localizedPlaceName(name, place?.id) ?? placeDisplayName(name);
     const facilityInfo=!place&&typeof name==='string'?bridgeFacilityInfoFor(facility?.id,name):null;
     const displaySources=place?sources:facilityInfo?.sources??[];
     // Remove nodes (rather than repurpose old buttons) so queued events cannot
@@ -30,17 +40,18 @@ export class PlaceInfoPanel {
     while (this.element.children.length) this.element.children[0].remove();
     const title = element('h2', displayName); title.id = 'place-title'; title.tabIndex = -1;
     this.element.appendChild(title);
+    if (localeStore.locale === 'en' && place) this.element.appendChild(element('p', 'English descriptions: project translation of the cited Chinese sources. The sources have not all been newly reviewed.', 'place-note'));
     if (place) this.element.appendChild(element('p', place.functionTag, 'place-tag'));
     if (evidenceLabels[place?.evidenceStatus]) this.element.appendChild(element('p', evidenceLabels[place.evidenceStatus], 'place-note'));
     if (place?.canonicalName && place.canonicalName !== name) this.element.appendChild(element('p', `资料所用名称：${place.canonicalName}`, 'place-note'));
     if (place?.evidenceNote) this.element.appendChild(element('p', factText(place.evidenceNote), 'place-note'));
     this.element.appendChild(element('p', place?.summary.text ?? facilityInfo?.intro ?? '此地点的详细介绍尚未收录。', 'place-summary'));
-    const fidelity=modelFidelityFor(name,place?.id)??modelFidelityFor(place?.canonicalName);
+    const fidelity=modelFidelityFor(name,place?.id)??modelFidelityFor(input.place?.canonicalName);
     if(facilityInfo||fidelity){this.element.appendChild(element('h3','本版模型说明'));this.element.appendChild(element('p',facilityInfo?.detail??fidelity.detail,'place-note'));}
     if (canTravel && !facilityInfo) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');
       button.id = 'place-travel'; button.type = 'button';
-      button.setAttribute('aria-label', `前往${displayName}${place?.modelExperience.navigationMode === 'exterior-view' ? '外观观览点' : ''}`);
+      button.setAttribute('aria-label', translateText(`前往${displayName}${place?.modelExperience.navigationMode === 'exterior-view' ? '外观观览点' : ''}`));
       let pointerArmed = null;
       button.addEventListener('pointerdown', e => {
         pointerArmed = { id: e.pointerId, x: e.clientX ?? 0, y: e.clientY ?? 0, released: false };
@@ -96,18 +107,72 @@ export class PlaceInfoPanel {
     }
     if (displaySources.length) {
       this.element.appendChild(element('h3', '资料来源'));
-      this.element.appendChild(element('p', `历史资料核对：${place?.reviewedAt??facilityInfo.reviewedAt}。来源链接在新标签页打开。`, 'place-note'));
+      this.element.appendChild(element('p', place?.catalogKind === 'supplemental' ? '来源核对方式逐条标注；继承引用不代表本轮重新访问。来源链接在新标签页打开。' : `历史资料核对：${place?.reviewedAt??facilityInfo?.reviewedAt}。来源链接在新标签页打开。`, 'place-note'));
       const list = element('ul');
       for (const source of displaySources) {
         const li = element('li'), a = element('a', `${source.publisher} · ${source.id === 'announcements' ? '查看最新公告' : source.title}${source.publishedAt ? `（${source.publishedAt}）` : ''}`);
+        a.id = `place-source-${source.id}`;
         a.setAttribute('href', source.url); a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer');
-        li.appendChild(a); list.appendChild(li);
+        li.appendChild(a);
+        if (place?.catalogKind === 'supplemental') li.appendChild(element('p', source.reviewType === 'reused-official-source-attribution' ? '继承官方来源记录；本轮未重新访问。' : `本轮核对官方页面或索引摘要：${source.reviewedAt}；不代表完整原文复核。`, 'place-note'));
+        list.appendChild(li);
       }
       this.element.appendChild(list);
     }
+    if (place) this.renderNameProvenance(place);
     this.element.scrollTop = 0;
     return title;
   }
 
-  dispose() { this.element.remove(); }
+  renderNameProvenance(place) {
+    const info = englishNameInfo(place.id), en = localeStore.locale === 'en';
+    const section = element('section'); section.id = 'place-name-provenance';
+    section.setAttribute('data-name-status', info.status);
+    section.appendChild(element('h3', en ? 'English name sources' : '英文名称出处'));
+    const official = info.status === 'official-display';
+    section.appendChild(element('p', official
+      ? (en ? `Verified official English name: ${info.officialDisplayName}` : `已核官方英文展示名：${info.officialDisplayName}`)
+      : (en ? `Project English name: ${info.projectName}` : `项目英文展示名：${info.projectName}`), 'place-note'));
+    section.appendChild(element('p', en
+      ? 'Name evidence is separate from the descriptions. English descriptions remain project translations; naming does not expand model scope or visitor access.'
+      : '名称证据与介绍正文分开；英文介绍仍为项目译文，名称不扩大模型范围或现场开放许可。', 'place-note'));
+    if (official) section.appendChild(element('p', en ? `Project name also searchable: ${info.projectName}` : `原项目译名仍可检索：${info.projectName}`, 'place-note'));
+    if (info.status === 'project-unverified') section.appendChild(element('p', en
+      ? 'No official English name was verified for this card in this review. This does not mean no official name exists.'
+      : '本轮未核实此卡的官方英文名；这不表示不存在官方英文名。', 'place-note'));
+    else if (!official) section.appendChild(element('p', en
+      ? 'The official wording below is offered for related searches with its stated limits, not as an equivalent name for this entire card.'
+      : '下列官方用语仅按注明范围支持相关检索，不作为本卡整体的同一对象别名。', 'place-note'));
+    for (const evidence of info.evidence) {
+      const item = element('div');
+      item.appendChild(element('p', evidence.quote));
+      item.appendChild(element('p', evidence.scope[en ? 'en' : 'zh'], 'place-note'));
+      const link = element('a', en ? `The Palace Museum · English naming source · checked ${evidence.checkedAt}` : `故宫博物院 · 英文名称来源 · 核对于 ${evidence.checkedAt}`);
+      link.id = `place-name-source-${place.id}-${evidence.id}`;
+      link.setAttribute('href', evidence.url); link.setAttribute('target', '_blank'); link.setAttribute('rel', 'noopener noreferrer');
+      item.appendChild(link); section.appendChild(item);
+    }
+    this.element.appendChild(section);
+  }
+
+  refreshLocale() {
+    if (!this.lastInput) return;
+    const scroll = this.element.scrollTop;
+    const active = this.element.contains(document.activeElement) ? document.activeElement : null;
+    const focused = active?.id;
+    const oldRect = active?.tagName === 'A' ? active.getBoundingClientRect?.() : null;
+    const panelRect = this.element.getBoundingClientRect?.();
+    const keepVisibleSource = oldRect && panelRect && oldRect.top >= panelRect.top && oldRect.bottom <= panelRect.bottom;
+    this.render(this.lastInput);
+    this.element.scrollTop = scroll;
+    if (focused) {
+      const replacement = this.element.querySelector(`#${focused}`);
+      replacement?.focus({preventScroll:true});
+      // Preserve the visible source anchor, rather than an obsolete pixel offset
+      // when translated paragraphs above it grow or shrink. Native scroll limits apply.
+      if (keepVisibleSource && replacement?.getBoundingClientRect) this.element.scrollTop += replacement.getBoundingClientRect().top - oldRect.top;
+    }
+  }
+
+  dispose() { this.unsubscribeLocale(); this.lastInput = null; this.element.remove(); }
 }
