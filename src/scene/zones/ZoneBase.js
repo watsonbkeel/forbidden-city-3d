@@ -1,3 +1,4 @@
+import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';
 import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';
 import {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';
 import {buildChenghuangGlazedEntry} from '../palace/special/ChenghuangGlazedEntry.js';
@@ -651,6 +652,8 @@ export class ZoneBase {
     buildTishunSouthBeam(this.kit,this.zoneJson);
     yield {phase:'hook',index:152};
     buildDailouWaitingHouse(this.kit,this.zoneJson);
+    yield {phase:'hook',index:153};
+    buildXiangxuGlazedGate(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     this.group = this.kit.finish();
     yield {phase:'lod',index:0};

@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import * as THREE from 'three';
 import { SettingsMenu } from '../../src/ui/SettingsMenu.js';
+import { LanguageControl } from '../../src/ui/LanguageControl.js';
+import { TourLocalization } from '../../src/ui/TourLocalization.js';
 import { SettingsTourSession } from '../../src/ui/SettingsTourSession.js';
 import { ShadowSetup } from '../../src/render/ShadowSetup.js';
 import { setBuildingDetailQuality } from '../../src/render/BuildingDetailQuality.js';
@@ -26,8 +28,8 @@ function environment(t, store, {mobile = false} = {}) {
   Object.assign(dom.window, {innerWidth:1000, innerHeight:700, devicePixelRatio:2});
   Object.assign(globalThis, {document:dom.document,window:dom.window});
   Object.defineProperty(globalThis,'localStorage',{configurable:true,value:store});
-  const menus=[];
-  t.after(() => {for(const menu of menus)menu.dispose();for(const [key,desc] of Object.entries(old)){if(desc)Object.defineProperty(globalThis,key,desc);else delete globalThis[key];}});
+  const menus=[],apps=[];
+  t.after(() => {for(const menu of menus)menu.dispose();for(const app of apps){app.localization.dispose();app.languageControl.dispose();}for(const [key,desc] of Object.entries(old)){if(desc)Object.defineProperty(globalThis,key,desc);else delete globalThis[key];}});
   class Renderer {
     constructor() {this.domElement=dom.document.createElement('canvas');this.shadowMap={};}
     setSize(w,h) {this.width=w;this.height=h;}
@@ -38,12 +40,12 @@ function environment(t, store, {mobile = false} = {}) {
   class Minimap {constructor(){this.visible=false;this.container=dom.document.createElement('div');}}
   const context = {document:dom.document,window:dom.window,navigator:{userAgent:mobile?'iPhone':'Macintosh',maxTouchPoints:mobile?5:0},
     performance:{now:()=>100},THREE:{...THREE,WebGLRenderer:Renderer},ShadowSetup,PERFORMANCE,LAYOUT,INITIAL_VIEW_POSITION,
-    ...performancePreference,...preference,setBuildingDetailQuality,SettingsMenu,SettingsTourSession,
+    ...performancePreference,...preference,setBuildingDetailQuality,SettingsMenu,SettingsTourSession,LanguageControl,TourLocalization,
     HelpPanel:class {},Teleport,Minimap,MapTourSession:class {},FLIGHT_BOUNDS:{},console,
     setTimeout:fn=>fn(),clearTimeout(){},requestAnimationFrame:fn=>fn()};
   const body=source.slice(source.indexOf('class ForbiddenCityApp'),source.indexOf('// 本地开发暴露')).replaceAll('import.meta.env','({DEV:false,BASE_URL:"/forbidden-city-3d/"})');
   const App=vm.runInNewContext(`${body};ForbiddenCityApp`,context);
-  const create=()=>new App();
+  const create=()=>{const app=new App();apps.push(app);return app;};
   function ui(app) {
     app.controls={controls:{isLocked:false},freeMove:true,motion:{},stop(){},setFreeMove(v){this.freeMove=v;},unlock(){}};
     app.zoneManager={getMapItems:()=>[],invalidateBuildingDetailPrebuilt(){}};
