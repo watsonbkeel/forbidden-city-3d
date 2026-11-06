@@ -1,3 +1,4 @@
+import { LanguageControl } from './LanguageControl.js';
 import { ReleaseIdentityPanel } from './ReleaseIdentityPanel.js';
 
 /** Settings and dated research limits. Version checks run only on explicit click. */
@@ -157,6 +158,7 @@ export class SettingsMenu {
     this.overlay.appendChild(this.panel);
     this.container.appendChild(this.overlay);
     this.releaseIdentity = new ReleaseIdentityPanel({ container:this.panel.querySelector('#settings-content'), getCharacterStatus });
+    this.languageControl = new LanguageControl({ container: this.panel.querySelector('#settings-content'), id: 'settings-language' });
     this.bindEvents();
     this.updateSoundButton();
     this.updateQualityButton();
@@ -440,6 +442,7 @@ export class SettingsMenu {
   toggle() { if (this.visible) this.hide(); else this.show(); }
 
   dispose() {
+    this.languageControl?.dispose();
     this.releaseIdentity?.dispose();
     this.releaseIdentity = null;
     this.visible = false;
