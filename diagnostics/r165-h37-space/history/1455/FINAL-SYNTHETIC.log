@@ -1,0 +1,21 @@
+✔ unique resource disposal, source library only after builders, module cache untouched (1.256323ms)
+✔ builder failure does not prevent remaining resources and library attempts (1.944803ms)
+✔ resource error is not mislabeled released and remaining resources still attempted (0.310089ms)
+✔ unexpected shared disposal during builders is retained as failure without double disposal (0.217232ms)
+✔ without library ownership the shared cache remains live (0.189001ms)
+✔ actual closed cube triangle hit, outside empty, contained solid is not missed (3.555942ms)
+✔ FrontSide BackSide DoubleSide and null keep their original first-hit meaning (1.330793ms)
+✔ null array entry remains opaque and maps back to original owner (1.753379ms)
+✔ instanced transformed faces preserve source owner and instance identity (1.049576ms)
+✔ nearest actual triangle distance handles face and corner separation (1.178406ms)
+✔ visibility requires the actual owner and actual requested surface point (3.504826ms)
+✔ a null-material foreground is retained and defeats claimed target visibility (1.388758ms)
+✔ same geometry/name/material on a different object cannot satisfy first-hit identity (0.528773ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 307.266771

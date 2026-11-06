@@ -1,0 +1,27 @@
+{
+  "success": false,
+  "scope": "P1 then fresh P2+C staged evidence; not complete original single-process equivalence",
+  "error": "RuntimeError('Phase P1 failed success')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/run-space.py\", line 82, in <module>\n    batch.update(run_batch(('P1','P2C'),started_at=BATCH_STARTED,now=time.monotonic,verify_inputs=verify_inputs,launch=launch))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/phase_orchestrator.py\", line 27, in run_batch\n    if q.get(key)is not True:raise RuntimeError('Phase '+phase+' failed '+key)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Phase P1 failed success\n",
+  "phaseProofs": [
+    {
+      "phase": "P1",
+      "success": false,
+      "cleanup": false,
+      "restoration": false,
+      "ledgerComplete": false,
+      "receiptPresent": true,
+      "processComplete": true,
+      "readerClosed": true,
+      "unknownRSS": false,
+      "residualProcesses": false,
+      "inputsUnchanged": true,
+      "exitCode": 1,
+      "monitorFailure": "node-tree-RSS-over350MiB"
+    }
+  ],
+  "sourceAndInputsAndIndicesUnchanged": true,
+  "aggregateSecondsIncludingFinalLocks": 25.063375044032,
+  "aggregateBudgetSeconds": 180,
+  "nodeTreeBudgetMiB": 350
+}

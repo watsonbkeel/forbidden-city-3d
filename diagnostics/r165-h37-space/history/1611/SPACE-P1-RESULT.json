@@ -1,0 +1,6480 @@
+{
+  "base": "fef5c0e1904c361e7492d744f06d82a8c137e1ea",
+  "scope": "Two-process staged space diagnostic; P2 routes and C share one live candidate/CM. Not equivalent to the original complete single-process probe.",
+  "stages": [
+    {
+      "name": "setup",
+      "utc": "2026-11-05T16:32:39.953Z",
+      "memory": {
+        "rss": 121360384,
+        "heapTotal": 54763520,
+        "heapUsed": 32060272,
+        "external": 7901646,
+        "arrayBuffers": 1028549
+      }
+    },
+    {
+      "name": "A-real-envelope",
+      "utc": "2026-11-05T16:32:41.009Z",
+      "memory": {
+        "rss": 220475392,
+        "heapTotal": 127471616,
+        "heapUsed": 106016712,
+        "external": 10603572,
+        "arrayBuffers": 3698963
+      }
+    },
+    {
+      "name": "A-passed",
+      "utc": "2026-11-05T16:32:41.047Z",
+      "memory": {
+        "rss": 223096832,
+        "heapTotal": 127746048,
+        "heapUsed": 101625376,
+        "external": 10603572,
+        "arrayBuffers": 3698963
+      }
+    },
+    {
+      "name": "B-old-68-before",
+      "utc": "2026-11-05T16:32:41.048Z",
+      "memory": {
+        "rss": 223096832,
+        "heapTotal": 127746048,
+        "heapUsed": 101734584,
+        "external": 10603572,
+        "arrayBuffers": 3698963
+      }
+    },
+    {
+      "name": "B-old-68-complete",
+      "utc": "2026-11-05T16:32:49.863Z",
+      "memory": {
+        "rss": 299978752,
+        "heapTotal": 145338368,
+        "heapUsed": 96916112,
+        "external": 10512290,
+        "arrayBuffers": 3607955
+      }
+    },
+    {
+      "name": "B-new-68-before",
+      "utc": "2026-11-05T16:32:49.922Z",
+      "memory": {
+        "rss": 300503040,
+        "heapTotal": 145879040,
+        "heapUsed": 100923272,
+        "external": 10537490,
+        "arrayBuffers": 3633155
+      }
+    }
+  ],
+  "negativeControls": [
+    {
+      "name": "actual-Cining-north-wall-above-CM3",
+      "triangle": {
+        "meshUUID": "90d9c293-33e6-4994-bf72-a7786b1a38da",
+        "name": "",
+        "instanceId": null,
+        "triangle": 0,
+        "points": [
+          [
+            258,
+            6.5,
+            295.5
+          ],
+          [
+            258,
+            1,
+            295.5
+          ],
+          [
+            258,
+            6.5,
+            294.5
+          ]
+        ]
+      },
+      "testBox": {
+        "min": [
+          257.975,
+          4.641666666666666,
+          295.14166666666665
+        ],
+        "max": [
+          258.025,
+          4.691666666666666,
+          295.1916666666666
+        ]
+      }
+    },
+    {
+      "name": "actual-Cining-north-wall-cap",
+      "triangle": {
+        "meshUUID": "0db4225d-fe2e-48d7-8271-fe4befa5e86b",
+        "name": "wall_cap_wall_red_material",
+        "instanceId": null,
+        "triangle": 0,
+        "points": [
+          [
+            187,
+            6.5,
+            294.4399999976158
+          ],
+          [
+            258,
+            6.700000002980232,
+            294.4399999976158
+          ],
+          [
+            258,
+            6.5,
+            294.4399999976158
+          ]
+        ]
+      },
+      "testBox": {
+        "min": [
+          234.3083333333333,
+          6.541666667660077,
+          294.41499999761584
+        ],
+        "max": [
+          234.35833333333332,
+          6.5916666676600775,
+          294.4649999976158
+        ]
+      }
+    },
+    {
+      "name": "actual-Yuhua-first-step",
+      "triangle": {
+        "meshUUID": "772974c8-ec95-440e-b575-197de393bf82",
+        "name": "yuhua-ge/gameplay-low-step-fit",
+        "instanceId": null,
+        "triangle": 0,
+        "points": [
+          [
+            217.89999997615814,
+            0.10000000074505806,
+            319.30000000298025
+          ],
+          [
+            217.89999997615814,
+            -7.450580569168253e-10,
+            319.30000000298025
+          ],
+          [
+            217.89999997615814,
+            0.10000000074505806,
+            318.8999999970198
+          ]
+        ]
+      },
+      "testBox": {
+        "min": [
+          217.87499997615814,
+          0.04166666691501935,
+          319.1416666676601
+        ],
+        "max": [
+          217.92499997615815,
+          0.09166666691501935,
+          319.19166666766006
+        ]
+      }
+    }
+  ],
+  "phase": "P1",
+  "ledger": [
+    "A.walkable-types",
+    "A.upper-visible",
+    "A.not-contained",
+    "A.old-colliders",
+    "A.ground-band",
+    "A.positive-walkables",
+    "A.ground-162",
+    "A.negative-Cining-wall",
+    "A.negative-Cining-cap",
+    "A.negative-Yuhua-stair",
+    "A.distance-Yuhua",
+    "A.distance-YuhuaEast",
+    "A.distance-YuhuaWest",
+    "A.distance-CiningNorth",
+    "old.before.0",
+    "old.before.1",
+    "old.before.2",
+    "old.before.3",
+    "old.before.4",
+    "old.before.5",
+    "old.before.6",
+    "old.before.7",
+    "old.before.8",
+    "old.before.9",
+    "old.before.10",
+    "old.before.11",
+    "old.before.12",
+    "old.before.13",
+    "old.before.14",
+    "old.before.15",
+    "old.before.16",
+    "old.before.17",
+    "old.before.18",
+    "old.before.19",
+    "old.before.20",
+    "old.before.21",
+    "old.before.22",
+    "old.before.23",
+    "old.before.24",
+    "old.before.25",
+    "old.before.26",
+    "old.before.27",
+    "old.before.28",
+    "old.before.29",
+    "old.before.30",
+    "old.before.31",
+    "old.before.32",
+    "old.before.33",
+    "old.before.34",
+    "old.before.35",
+    "old.before.36",
+    "old.before.37",
+    "old.before.38",
+    "old.before.39",
+    "old.before.40",
+    "old.before.41",
+    "old.before.42",
+    "old.before.43",
+    "old.before.44",
+    "old.before.45",
+    "old.before.46",
+    "old.before.47",
+    "old.before.48",
+    "old.before.49",
+    "old.before.50",
+    "old.before.51",
+    "old.before.52",
+    "old.before.53",
+    "old.before.54",
+    "old.before.55",
+    "old.before.56",
+    "old.before.57",
+    "old.before.58",
+    "old.before.59",
+    "old.before.60",
+    "old.before.61",
+    "old.before.62",
+    "old.before.63",
+    "old.before.64",
+    "old.before.65",
+    "old.before.66",
+    "old.before.67",
+    "proxy.high-wall-pier-0",
+    "proxy.high-wall-pier-1",
+    "proxy.high-wall-pier-2",
+    "proxy.high-wall-pier-3",
+    "proxy.high-wall-over-east",
+    "proxy.high-wall-over-middle",
+    "proxy.high-wall-over-west",
+    "proxy.wall-cap-conservative-closed-volume",
+    "proxy.east-left-jamb",
+    "proxy.east-right-jamb",
+    "proxy.east-header",
+    "proxy.east-canopy-conservative-volume",
+    "proxy.middle-left-jamb",
+    "proxy.middle-right-jamb",
+    "proxy.middle-header",
+    "proxy.middle-canopy-conservative-volume",
+    "proxy.west-left-jamb",
+    "proxy.west-right-jamb",
+    "proxy.west-header",
+    "proxy.west-canopy-conservative-volume",
+    "proxy.short-wall-0",
+    "proxy.own-short-wall-roof-0",
+    "proxy.short-wall-1",
+    "proxy.own-short-wall-roof-1",
+    "proxy.east-closed-leaf--1",
+    "proxy.east-closed-leaf-1",
+    "proxy.west-closed-leaf--1",
+    "proxy.west-closed-leaf-1",
+    "proxy.middle-open-east-leaf-90deg",
+    "proxy.middle-open-west-leaf-90deg"
+  ],
+  "subset": {
+    "calls": [
+      [
+        "outer-west",
+        "buildCourtWalls",
+        23
+      ],
+      [
+        "outer-west",
+        "buildHall",
+        26
+      ],
+      [
+        "outer-west",
+        "buildHall",
+        27
+      ],
+      [
+        "outer-west",
+        "buildHall",
+        28
+      ],
+      [
+        "west-six",
+        "buildGate",
+        28
+      ],
+      [
+        "west-six",
+        "buildCourtWalls",
+        29
+      ],
+      [
+        "west-six",
+        "buildHall",
+        33
+      ],
+      [
+        "outer-west",
+        "buildYuhuaGe",
+        "named-hook-function-only"
+      ],
+      [
+        "outer-west",
+        "buildYuhuaEastLou",
+        "named-hook-function-only"
+      ],
+      [
+        "outer-west",
+        "buildYuhuaWestLou",
+        "named-hook-function-only"
+      ]
+    ],
+    "gateWidths": [
+      {
+        "zone": "outer-west",
+        "item": 22,
+        "name": "慈宁门",
+        "width": 25.3,
+        "source": "ciningGateGeometry public pure validation; same width returned by buildCiningGate",
+        "gateBodyGenerated": false
+      },
+      {
+        "zone": "west-six",
+        "item": 28,
+        "name": "太极门",
+        "width": 6.4,
+        "source": "actual ZoneBase.buildGate return",
+        "gateBodyGenerated": true
+      }
+    ],
+    "r63FrameUserData": {
+      "structure": {
+        "storeys": 1,
+        "eaveCount": 1,
+        "inventoryStatus": "UNKNOWN",
+        "accepted": false,
+        "knownEmpty": false,
+        "furnishingPolicy": {
+          "mode": "unknown-inventory",
+          "target": "west-six/items/33",
+          "scope": "r63-west-13-unnamed-annex-furnish-room-only"
+        },
+        "furnitureStatus": "UNKNOWN_INVENTORY_WITHHELD_NOT_KNOWN_EMPTY",
+        "presetUseStatus": "UNVERIFIED",
+        "roomBoundsStatus": "NOT_VALIDATED",
+        "candidatePresetUse": "room",
+        "legacyNavigationKindPreserved": true,
+        "removedCoverCount": 1,
+        "id": "west-six/items/33",
+        "interiorStatus": "GENERIC_FURNISH_ROOM_WITHHELD_CURRENT_INVENTORY_UNKNOWN",
+        "inventoryBinding": "west-six/items/33",
+        "inventoryIdentityStatus": "ORIGINAL_UNNAMED_DECLARATION_NOT_CONFIRMED_HISTORICAL_ROOM",
+        "currentInventoryVerified": false,
+        "limitations": [
+          "Only exact legacy furnishRoom placeholders and their own collisions/cover are withheld; no current or historic empty-room claim.",
+          "Legacy navigation kind, doors, floor and spawns remain; preset use is UNVERIFIED and room boundaries NOT_VALIDATED."
+        ]
+      },
+      "westUnknownAnnexInventory": {
+        "mode": "unknown-inventory",
+        "target": "west-six/items/33",
+        "scope": "r63-west-13-unnamed-annex-furnish-room-only",
+        "removedMeshes": 6,
+        "removedColliders": 6,
+        "removedCover": 1
+      }
+    },
+    "meshes": 967,
+    "triangles": 40134,
+    "instances": 0,
+    "colliders": 853,
+    "walkables": 18,
+    "CMInstances": 1,
+    "noFullZoneBuildOrFinish": true
+  },
+  "collectionReceipts": [
+    {
+      "label": "before.yuhua",
+      "completed": true,
+      "collectionCalls": 1
+    },
+    {
+      "label": "before.east",
+      "completed": true,
+      "collectionCalls": 1
+    },
+    {
+      "label": "before.west",
+      "completed": true,
+      "collectionCalls": 1
+    }
+  ],
+  "A": {
+    "envelope": {
+      "min": [
+        201,
+        0,
+        308.4
+      ],
+      "max": [
+        231,
+        8,
+        313
+      ]
+    },
+    "visibleHits": [],
+    "containedInOldSolid": [],
+    "groundBandHits": [],
+    "oldColliderHits": [],
+    "positiveOldBoxWalkables": 0,
+    "ground": {
+      "source": "Original CollisionManager.getGroundHeight ground=0 fallback plane; no physical terrain mesh instantiated",
+      "continuousPlaneAtY": 0,
+      "positiveBoxWalkablesInsideFootprint": 0,
+      "supportContactOwners": [],
+      "samples": [
+        {
+          "x": 201,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 201,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 205.05,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 206.4,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 207.75,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 208.6,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 212.8,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 213.74,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 213.8,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 216,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 218.2,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 218.26,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 219.2,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 223.4,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 224.25,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 225.6,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 226.95,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 230.5,
+          "z": 315,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 306,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 308.4,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 309.2,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 309.8,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 310.2,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 310.6,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 312.4,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 313,
+          "y": 0
+        },
+        {
+          "x": 231,
+          "z": 315,
+          "y": 0
+        }
+      ]
+    },
+    "actualEnvelopeSeparations": {
+      "Yuhua": {
+        "distance": 5.8999999970197905,
+        "source": {
+          "meshUUID": "772974c8-ec95-440e-b575-197de393bf82",
+          "name": "yuhua-ge/gameplay-low-step-fit",
+          "instanceId": null,
+          "triangle": 0,
+          "points": [
+            [
+              217.89999997615814,
+              0.10000000074505806,
+              319.30000000298025
+            ],
+            [
+              217.89999997615814,
+              -7.450580569168253e-10,
+              319.30000000298025
+            ],
+            [
+              217.89999997615814,
+              0.10000000074505806,
+              318.8999999970198
+            ]
+          ]
+        },
+        "scope": "Exact nearest triangle to conservative candidate envelope, not final product-to-product distance"
+      },
+      "YuhuaEast": {
+        "distance": 6.841052554776953,
+        "source": {
+          "meshUUID": "3799333d-568b-4cf9-8e86-6ca3dd35a8b5",
+          "name": "yuhua-east-lou/real-low-stone-platform-fit",
+          "instanceId": null,
+          "triangle": 2,
+          "points": [
+            [
+              194.40000004768373,
+              0.4499999940395355,
+              314.80000019073486
+            ],
+            [
+              194.40000004768373,
+              5.960464483090178e-9,
+              314.80000019073486
+            ],
+            [
+              187.4999999523163,
+              0.4499999940395355,
+              314.80000019073486
+            ]
+          ]
+        },
+        "scope": "Exact nearest triangle to conservative candidate envelope, not final product-to-product distance"
+      },
+      "YuhuaWest": {
+        "distance": 6.119027684956582,
+        "source": {
+          "meshUUID": "ff10c459-ca6e-4789-b1b0-2ac811bbc0c9",
+          "name": "yuhua-west-lou/real-low-stone-platform-fit",
+          "instanceId": null,
+          "triangle": 0,
+          "points": [
+            [
+              243.89999995231628,
+              0.4499999940395355,
+              314.94999980926514
+            ],
+            [
+              243.89999995231628,
+              5.960464483090178e-9,
+              314.94999980926514
+            ],
+            [
+              236.8000000476837,
+              0.4499999940395355,
+              314.94999980926514
+            ]
+          ]
+        },
+        "scope": "Exact nearest triangle to conservative candidate envelope, not final product-to-product distance"
+      },
+      "CiningNorth": {
+        "distance": 12.54999997615812,
+        "source": {
+          "meshUUID": "475639ea-8ac3-4208-ac79-8b5405c755df",
+          "name": "wall_cap_roof_tile_material",
+          "instanceId": null,
+          "triangle": 19,
+          "points": [
+            [
+              258,
+              6.894374996423721,
+              295.63749998807907
+            ],
+            [
+              187,
+              6.819999992847443,
+              295.85000002384186
+            ],
+            [
+              258,
+              6.819999992847443,
+              295.85000002384186
+            ]
+          ]
+        },
+        "scope": "Exact nearest triangle to conservative candidate envelope, not final product-to-product distance"
+      }
+    },
+    "complete": true
+  },
+  "beforeRoutes": {
+    "result": {
+      "yuhua": {
+        "routes": [
+          {
+            "name": "new-Yuhua-game-fit-stairs-covered-porch-both-directions-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.7001400792996,
+              406.42023789870575,
+              0
+            ],
+            "frames": 2647,
+            "peak": 0.13466667560735385,
+            "maxFeet": 0.600000011920929,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 58.933333333334765,
+                "x": 215.9999999999991,
+                "z": 320.166666666666,
+                "feet": 0.5346666785875861,
+                "ground": 0.40000000298023225,
+                "speed": 5.000000000000204,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 1767,
+                "error": 0.13466667560735385
+              },
+              {
+                "time": 29.46666666666631,
+                "x": 216.00914020071244,
+                "z": 320.5000609732698,
+                "feet": 0.3996025448961256,
+                "ground": 0.5,
+                "speed": 5.000000000000361,
+                "sprintInput": false,
+                "waypoint": 4,
+                "i": 883,
+                "error": 0.10039745510387438
+              },
+              {
+                "time": 29.399999999999647,
+                "x": 216.009694157647,
+                "z": 320.1667281002392,
+                "feet": 0.30415909321333356,
+                "ground": 0.40000000298023225,
+                "speed": 5.000000000000361,
+                "sprintInput": false,
+                "waypoint": 4,
+                "i": 881,
+                "error": 0.09584090976689869
+              },
+              {
+                "time": 58.9666666666681,
+                "x": 215.9999999999991,
+                "z": 319.9999999999993,
+                "feet": 0.4911111230320242,
+                "ground": 0.40000000298023225,
+                "speed": 5.000000000000204,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 1768,
+                "error": 0.09111112005179195
+              },
+              {
+                "time": 59.200000000001445,
+                "x": 215.9999999999991,
+                "z": 318.8333333333325,
+                "feet": 0.19111111707155973,
+                "ground": 0.10000000074505806,
+                "speed": 5.000000000000204,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 1775,
+                "error": 0.09111111632650166
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-game-fit-stairs-covered-porch-both-directions-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.70030126306526,
+              406.61085661309727,
+              0
+            ],
+            "frames": 1181,
+            "peak": 0.37133334525427897,
+            "maxFeet": 0.600000011920929,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 26.866666666666404,
+                "x": 215.91617375023878,
+                "z": 318.55065563604967,
+                "feet": 0.37133334525427897,
+                "ground": 0,
+                "speed": 11.991708559778186,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 805,
+                "error": 0.37133334525427897
+              },
+              {
+                "time": 26.833333333333073,
+                "x": 215.91350404233532,
+                "z": 318.95037033927406,
+                "feet": 0.43666667858760755,
+                "ground": 0.10000000074505806,
+                "speed": 11.988428363004177,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 804,
+                "error": 0.3366666778425495
+              },
+              {
+                "time": 26.89999999999974,
+                "x": 215.91884398140252,
+                "z": 318.1508625891163,
+                "feet": 0.29511112303206233,
+                "ground": 0,
+                "speed": 11.99405892347046,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 806,
+                "error": 0.29511112303206233
+              },
+              {
+                "time": 26.79999999999974,
+                "x": 215.91083506470034,
+                "z": 319.3499757050447,
+                "feet": 0.491111123032048,
+                "ground": 0.20000000149011612,
+                "speed": 11.983850479632052,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 803,
+                "error": 0.29111112154193186
+              },
+              {
+                "time": 26.76666666666641,
+                "x": 215.90816710623722,
+                "z": 319.74942847810644,
+                "feet": 0.5346666785876004,
+                "ground": 0.3000000059604645,
+                "speed": 11.977461528712164,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 802,
+                "error": 0.23466667262713592
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-game-fit-stairs-covered-porch-both-directions-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.70015284017106,
+              406.4585205134154,
+              0
+            ],
+            "frames": 5294,
+            "peak": 0.16149622398148628,
+            "maxFeet": 0.600000011920929,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 59.2499999999971,
+                "x": 216.00000000000182,
+                "z": 318.583333333335,
+                "feet": 0.16149622398148628,
+                "ground": 0,
+                "speed": 4.9999999999995905,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 3554,
+                "error": 0.16149622398148628
+              },
+              {
+                "time": 59.183333333330445,
+                "x": 216.00000000000182,
+                "z": 318.9166666666683,
+                "feet": 0.25405177953701485,
+                "ground": 0.10000000074505806,
+                "speed": 4.9999999999995905,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 3550,
+                "error": 0.1540517787919568
+              },
+              {
+                "time": 58.93333333333048,
+                "x": 216.00000000000182,
+                "z": 320.166666666668,
+                "feet": 0.5428333452542791,
+                "ground": 0.40000000298023225,
+                "speed": 4.9999999999995905,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 3535,
+                "error": 0.14283334227404682
+              },
+              {
+                "time": 59.19999999999711,
+                "x": 216.00000000000182,
+                "z": 318.83333333333496,
+                "feet": 0.23499622398146486,
+                "ground": 0.10000000074505806,
+                "speed": 4.9999999999995905,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 3551,
+                "error": 0.1349962232364068
+              },
+              {
+                "time": 59.26666666666377,
+                "x": 216.00000000000182,
+                "z": 318.5000000000017,
+                "feet": 0.13155177953705055,
+                "ground": 0,
+                "speed": 4.9999999999995905,
+                "sprintInput": false,
+                "waypoint": 17,
+                "i": 3555,
+                "error": 0.13155177953705055
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-game-fit-stairs-covered-porch-both-directions-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.7001372418748,
+              406.5198331991193,
+              0
+            ],
+            "frames": 2358,
+            "peak": 0.4203333452542359,
+            "maxFeet": 0.600000011920929,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 26.783333333333854,
+                "x": 215.97782973429565,
+                "z": 318.5900532467182,
+                "feet": 0.4203333452542359,
+                "ground": 0,
+                "speed": 11.991820431512133,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 1606,
+                "error": 0.4203333452542359
+              },
+              {
+                "time": 26.80000000000052,
+                "x": 215.97818171754687,
+                "z": 318.3901689542151,
+                "feet": 0.38766667858756443,
+                "ground": 0,
+                "speed": 11.993076144759742,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 1607,
+                "error": 0.38766667858756443
+              },
+              {
+                "time": 26.750000000000515,
+                "x": 215.9771258850383,
+                "z": 318.9897552505541,
+                "feet": 0.4775000119209109,
+                "ground": 0.10000000074505806,
+                "speed": 11.988584492589094,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 1604,
+                "error": 0.37750001117585286
+              },
+              {
+                "time": 26.81666666666719,
+                "x": 215.97853373199413,
+                "z": 318.1902669461009,
+                "feet": 0.35227778969867035,
+                "ground": 0,
+                "speed": 11.994139083072534,
+                "sprintInput": true,
+                "waypoint": 18,
+                "i": 1608,
+                "error": 0.35227778969867035
+              },
+              {
+                "time": 26.766666666667184,
+                "x": 215.97747778789818,
+                "z": 318.7899166106996,
+                "feet": 0.4502777896986847,
+                "ground": 0.10000000074505806,
+                "speed": 11.990336981595435,
+                "sprintInput": true,
+                "waypoint": 17,
+                "i": 1605,
+                "error": 0.35027778895362666
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-east-lane-south-view-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.70000040345843,
+              406.42024347734645,
+              0
+            ],
+            "frames": 1591,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.03333333333333333,
+                "x": 183.7,
+                "z": 405.952755218429,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.4173434471302926,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.7,
+                "z": 405.8716580716011,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.4329144048374474,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.1,
+                "x": 183.7,
+                "z": 405.76630464512965,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.1606027941427337,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.13333333333333333,
+                "x": 183.7,
+                "z": 405.6435708348156,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.6820143094217874,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.16666666666666669,
+                "x": 183.7,
+                "z": 405.5083834352885,
+                "feet": 0,
+                "ground": 0,
+                "speed": 4.05562198581208,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-east-lane-south-view-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.70009948457474,
+              406.6106681793686,
+              0
+            ],
+            "frames": 681,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.03333333333333333,
+                "x": 183.7,
+                "z": 405.8866125242295,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.4016242731144075,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.7,
+                "z": 405.69197937184254,
+                "feet": 0,
+                "ground": 0,
+                "speed": 5.838994571609533,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.1,
+                "x": 183.7,
+                "z": 405.43913114831116,
+                "feet": 0,
+                "ground": 0,
+                "speed": 7.585446705941196,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.13333333333333333,
+                "x": 183.7,
+                "z": 405.1445700035574,
+                "feet": 0,
+                "ground": 0,
+                "speed": 8.83683434261229,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.16666666666666669,
+                "x": 183.7,
+                "z": 404.82012024469236,
+                "feet": 0,
+                "ground": 0,
+                "speed": 9.733492765951722,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-east-lane-south-view-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.70000011660014,
+              406.45852609439083,
+              0
+            ],
+            "frames": 3182,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.016666666666666666,
+                "x": 183.7,
+                "z": 405.98720681040754,
+                "feet": 0,
+                "ground": 0,
+                "speed": 0.7675913755474539,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.03333333333333333,
+                "x": 183.7,
+                "z": 405.963584419622,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.417343447131998,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.05,
+                "x": 183.7,
+                "z": 405.9307953079314,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.9673467014354178,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.7,
+                "z": 405.89024673451746,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.432914404837447,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.08333333333333334,
+                "x": 183.7,
+                "z": 405.8431299185597,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.8270089574641584,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-east-lane-south-view-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.7000000684225,
+              406.51981112463244,
+              0
+            ],
+            "frames": 1364,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.016666666666666666,
+                "x": 183.7,
+                "z": 405.96929634497815,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.842219301311161,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.03333333333333333,
+                "x": 183.7,
+                "z": 405.9126026070929,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.401624273116113,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.05,
+                "x": 183.7,
+                "z": 405.8339087390354,
+                "feet": 0,
+                "ground": 0,
+                "speed": 4.721632083449095,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.7,
+                "z": 405.73659216284193,
+                "feet": 0,
+                "ground": 0,
+                "speed": 5.838994571607826,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.08333333333333334,
+                "x": 183.7,
+                "z": 405.62351180454334,
+                "feet": 0,
+                "ground": 0,
+                "speed": 6.7848214979153445,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-west-loop-south-view-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.24642318907132,
+              406,
+              0
+            ],
+            "frames": 2359,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.03333333333333333,
+                "x": 183.74724478157103,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.4173434471311452,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.82834192839894,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.4329144048374474,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.1,
+                "x": 183.93369535487037,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.1606027941427337,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.13333333333333333,
+                "x": 184.05642916518443,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.6820143094217874,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.16666666666666669,
+                "x": 184.1916165647115,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 4.05562198581208,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-west-loop-south-view-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.1720531928906,
+              405.99890524250054,
+              0
+            ],
+            "frames": 1012,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.03333333333333333,
+                "x": 183.81338747577047,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.4016242731144075,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 184.00802062815742,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 5.83899457160868,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.1,
+                "x": 184.26086885168885,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 7.585446705942902,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.13333333333333333,
+                "x": 184.55542999644257,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 8.836834342611438,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.16666666666666669,
+                "x": 184.8798797553075,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 9.733492765948311,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-west-loop-south-view-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              183.20814057219087,
+              406,
+              0
+            ],
+            "frames": 4717,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.016666666666666666,
+                "x": 183.71279318959245,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 0.7675913755474539,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.03333333333333333,
+                "x": 183.73641558037795,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.4173434471302926,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.05,
+                "x": 183.76920469206857,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.967346701437123,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.80975326548253,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.432914404837447,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.08333333333333334,
+                "x": 183.85687008144026,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 2.8270089574641584,
+                "sprintInput": false,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          },
+          {
+            "name": "new-Yuhua-west-loop-south-view-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              183.17040163753913,
+              405.99973945196996,
+              0
+            ],
+            "frames": 2022,
+            "peak": 0,
+            "maxFeet": 0,
+            "nativeContacts": 0,
+            "nativeContactFrames": [],
+            "peakFrames": [
+              {
+                "time": 0.016666666666666666,
+                "x": 183.73070365502187,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 1.8422193013128663,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 0,
+                "error": 0
+              },
+              {
+                "time": 0.03333333333333333,
+                "x": 183.7873973929071,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 3.4016242731144075,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 1,
+                "error": 0
+              },
+              {
+                "time": 0.05,
+                "x": 183.8660912609646,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 4.721632083449095,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 2,
+                "error": 0
+              },
+              {
+                "time": 0.06666666666666667,
+                "x": 183.9634078371581,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 5.838994571609532,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 3,
+                "error": 0
+              },
+              {
+                "time": 0.08333333333333334,
+                "x": 184.07648819545668,
+                "z": 406,
+                "feet": 0,
+                "ground": 0,
+                "speed": 6.7848214979153445,
+                "sprintInput": true,
+                "waypoint": 1,
+                "i": 4,
+                "error": 0
+              }
+            ]
+          }
+        ],
+        "negative": [
+          {
+            "name": "game-fit-stairs-do-not-admit-through-closed-Yuhua-main-core",
+            "arrived": false,
+            "end": [
+              216,
+              326.2453789211715,
+              0.600000011920929
+            ]
+          },
+          {
+            "name": "closed-lower-main-door-supported-negative",
+            "arrived": false,
+            "end": [
+              216,
+              326.3336953548704,
+              0.600000011920929
+            ]
+          },
+          {
+            "name": "lower-projection-column-supported-negative",
+            "arrived": false,
+            "end": [
+              217.8,
+              321.8336953548704,
+              0.600000011920929
+            ]
+          },
+          {
+            "name": "lower-side-wall-supported-negative",
+            "arrived": false,
+            "end": [
+              223.61630464512962,
+              333,
+              0.600000011920929
+            ]
+          }
+        ]
+      },
+      "east": {
+        "scope": "Actual native controller30/60 walk/sprint; actual low ledge/stair only, closed interiors and upper floor not admitted",
+        "routes": [
+          {
+            "name": "west-central-real-stairs-front-ledge-north-south-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.47024329861358,
+              322.49984786416564,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "west-central-real-stairs-front-ledge-north-south-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.45922350777596,
+              322.50430904886827,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "west-central-real-stairs-front-ledge-north-south-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.50852604470464,
+              322.4999137532794,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "west-central-real-stairs-front-ledge-north-south-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.53523540900142,
+              322.4986544814334,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              193.81027487301043,
+              322.50018343502194,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              193.81011621208293,
+              322.499967591023,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              193.81005692213833,
+              322.500104437367,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              193.81011266325646,
+              322.5000937842153,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains183_7-and306",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.9995169965878,
+              305.57977646061994,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains183_7-and306",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99922196246507,
+              305.42235919550467,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains183_7-and306",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.99947298087594,
+              305.54149336914367,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains183_7-and306",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99952534600015,
+              305.4801434809945,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.99872683449203,
+              305.57985274283334,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99554767472662,
+              305.51514535012075,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.9986108059757,
+              305.54156450247785,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99836330662995,
+              305.47467534628464,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.99831948390548,
+              335.42013003781005,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99917631809134,
+              335.50565343836433,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              197.99816632734937,
+              335.4584184255371,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              197.99679261163786,
+              335.5253840075174,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          }
+        ],
+        "negative": [
+          {
+            "name": "real-closed-central-ground-door",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              193.81630464512963,
+              322.5,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-central-ground-door",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              193.84045320532402,
+              322.5,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-north-window",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              193.81630464512963,
+              327.15,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-north-window",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              193.78307014065024,
+              327.15,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-south-window",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              193.81630464512963,
+              317.85,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-south-window",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              193.78307014065024,
+              317.85,
+              0.4499999940395355
+            ]
+          }
+        ]
+      },
+      "west": {
+        "scope": "Actual native controller30/60 walk/sprint; actual low ledge/stair only, closed interiors and upper floor not admitted",
+        "routes": [
+          {
+            "name": "east-central-real-stairs-front-ledge-north-south-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              234.06309011097255,
+              322.49982232460127,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "east-central-real-stairs-front-ledge-north-south-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.99323124159022,
+              322.523571699118,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "east-central-real-stairs-front-ledge-north-south-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              234.02480746285534,
+              322.4998200963685,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "east-central-real-stairs-front-ledge-north-south-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.98884617572787,
+              322.51137909698423,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              237.38983363046685,
+              322.5000727512114,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              237.38993474397157,
+              322.5004227348282,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              237.38997186337068,
+              322.50004302965317,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "standing-front-ledge-south-north-stairs-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              237.38998389972954,
+              322.50009179049874,
+              0.4499999940395355
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains248-and306",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              232.99999999655594,
+              305.5797565223848,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains248-and306",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.00177169655703,
+              305.4497788319115,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains248-and306",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              232.99999999948798,
+              305.54147390556045,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "both-side-ground-circuit-retains248-and306",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.00059668560723,
+              305.47204818891964,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0,
+            "maxGround": 0,
+            "maxSingleFrameFeetChange": 0,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              233.00042447780072,
+              305.5797665701724,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.004088179556,
+              305.52278590945104,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              233.00046314788412,
+              305.5414834203515,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "south-road-to-real-stair-return",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.00161813248238,
+              305.4740193113966,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 30,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              233.0004830255551,
+              337.4202325015332,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.07133332439264073,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 30,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.00539224356757,
+              337.48378133970954,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.0871111111111119,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 60,
+            "sprint": false,
+            "arrived": true,
+            "end": [
+              233.00052702941122,
+              337.4585156664453,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.03811111111111248,
+            "nativeContacts": 0
+          },
+          {
+            "name": "north-return-to-stair-ledges",
+            "fps": 60,
+            "sprint": true,
+            "arrived": true,
+            "end": [
+              233.0027458749103,
+              337.52602572419005,
+              0
+            ],
+            "minFeet": 0,
+            "maxFeet": 0.4499999940395355,
+            "maxGround": 0.4499999940395355,
+            "maxSingleFrameFeetChange": 0.046277777777776925,
+            "nativeContacts": 0
+          }
+        ],
+        "negative": [
+          {
+            "name": "real-closed-central-ground-door",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              237.38369535487038,
+              322.5,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-central-ground-door",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              237.359546794676,
+              322.5,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-north-window",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              237.38369535487038,
+              327.15,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-north-window",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              237.41692985934978,
+              327.15,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-south-window",
+            "fps": 30,
+            "arrived": false,
+            "end": [
+              237.38369535487038,
+              317.85,
+              0.4499999940395355
+            ]
+          },
+          {
+            "name": "real-closed-south-window",
+            "fps": 60,
+            "arrived": false,
+            "end": [
+              237.41692985934978,
+              317.85,
+              0.4499999940395355
+            ]
+          }
+        ]
+      }
+    },
+    "capture": [
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.7001400792996,
+          406.42023789870575,
+          0
+        ],
+        "frameCount": 2647,
+        "frameSHA256": "ae0c6285f33a8efe7dc3a53d6517a4c97c176c96596915bc7c366a892658eab5"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.70030126306526,
+          406.61085661309727,
+          0
+        ],
+        "frameCount": 1181,
+        "frameSHA256": "44080eb7adb2b58e6043d9cc359e781f0a1894e22e4450fd53f31223ac587ecf"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.70015284017106,
+          406.4585205134154,
+          0
+        ],
+        "frameCount": 5294,
+        "frameSHA256": "c2b02798901911b531745a8ddcfd240cd6aa907981eae39e2de0f8be378001f8"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            208,
+            326
+          ],
+          [
+            208,
+            340
+          ],
+          [
+            224,
+            340
+          ],
+          [
+            224,
+            326
+          ],
+          [
+            216,
+            326
+          ],
+          [
+            216,
+            323
+          ],
+          [
+            216,
+            318.5
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.7001372418748,
+          406.5198331991193,
+          0
+        ],
+        "frameCount": 2358,
+        "frameSHA256": "2ebcc55356d0b1ccbcbfe92c3d0beada595c376d92ddef2867f73b7b65c19dbe"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.70000040345843,
+          406.42024347734645,
+          0
+        ],
+        "frameCount": 1591,
+        "frameSHA256": "dc365714e77f7cb3700341e0faec0c026f4ba32787b410d77e6c6e56748b942a"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.70009948457474,
+          406.6106681793686,
+          0
+        ],
+        "frameCount": 681,
+        "frameSHA256": "0312a4adbb12fef0bd6083ef3dbcbb348623dc2d25456f45ed7f77be75566864"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.70000011660014,
+          406.45852609439083,
+          0
+        ],
+        "frameCount": 3182,
+        "frameSHA256": "cc72b243e41861fd6238947eb4412499a96750945e16dc49a096c61bc611d2a2"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.7000000684225,
+          406.51981112463244,
+          0
+        ],
+        "frameCount": 1364,
+        "frameSHA256": "dcb9cf74ce7c87d45e04ae8b55036d56707f56ce16e107c02e873057eced91dc"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.24642318907132,
+          406,
+          0
+        ],
+        "frameCount": 2359,
+        "frameSHA256": "f33dae04c2d26afd2700d953aa5fb801017dc51ab401bee53b28039dcb717df2"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.1720531928906,
+          405.99890524250054,
+          0
+        ],
+        "frameCount": 1012,
+        "frameSHA256": "95aa2c71c60bfc7b969e13178bd41d4dd36fb18d1b07d64d48d175d1d1806655"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.20814057219087,
+          406,
+          0
+        ],
+        "frameCount": 4717,
+        "frameSHA256": "79b382fb23a786b81b0a66be288182af6b30dbef9033a7563b3a5ba063f5b840"
+      },
+      {
+        "points": [
+          [
+            183.7,
+            406
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            216,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            406
+          ],
+          [
+            183.7,
+            406
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          183.17040163753913,
+          405.99973945196996,
+          0
+        ],
+        "frameCount": 2022,
+        "frameSHA256": "556ad4bd7b56a5948450beb041e85307bbe7161bcf0560ea9fbb85505bbbafdb"
+      },
+      {
+        "points": [
+          [
+            216,
+            315
+          ],
+          [
+            216,
+            329
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          216,
+          326.2453789211715,
+          0.600000011920929
+        ],
+        "frameCount": 150,
+        "frameSHA256": "1b6eb6c79fb1d0562a882cd0f00b6846f1f300a24c591df4422dbf0d39126f6d"
+      },
+      {
+        "points": [
+          [
+            216,
+            326.1
+          ],
+          [
+            216,
+            329
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0.6,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          216,
+          326.3336953548704,
+          0.600000011920929
+        ],
+        "frameCount": 60,
+        "frameSHA256": "b6f79d72e74ade812a23cbaa6b3b792d9851dd16ea4f6f3f6efac446aedd9bcd"
+      },
+      {
+        "points": [
+          [
+            217.8,
+            321.6
+          ],
+          [
+            217.8,
+            322.35
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0.6,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          217.8,
+          321.8336953548704,
+          0.600000011920929
+        ],
+        "frameCount": 60,
+        "frameSHA256": "a224b9f5d3ac2c1f733af6bb3ca056827ed810f1ac8771f18a9b050c3d3e3374"
+      },
+      {
+        "points": [
+          [
+            223.85,
+            333
+          ],
+          [
+            222.2,
+            333
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0.6,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          223.61630464512962,
+          333,
+          0.600000011920929
+        ],
+        "frameCount": 60,
+        "frameSHA256": "89baa5b370a3201b24196616932e05196d4ce8ba0a2316184e98140b9eab150c"
+      },
+      {
+        "points": [
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.47024329861358,
+          322.49984786416564,
+          0
+        ],
+        "frameCount": 195,
+        "frameSHA256": "fb43036d73ff6906cb861f5728cce6a3fc5a2b54453e9442383d2c2447bed7d7"
+      },
+      {
+        "points": [
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.45922350777596,
+          322.50430904886827,
+          0
+        ],
+        "frameCount": 103,
+        "frameSHA256": "479f94190ab0f64e5a8ded4a10076d6aaac2891da1b6d804192f79e9acc68f21"
+      },
+      {
+        "points": [
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.50852604470464,
+          322.4999137532794,
+          0
+        ],
+        "frameCount": 341,
+        "frameSHA256": "ead708131fda18be552dd9d23afd25f48f45fa2bdbed28e7d89a9d32e0ae3933"
+      },
+      {
+        "points": [
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.53523540900142,
+          322.4986544814334,
+          0
+        ],
+        "frameCount": 201,
+        "frameSHA256": "336d4687e21338a518bdec7dbd818dfa876af884ba0d27978954a2200513d9bb"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          193.81027487301043,
+          322.50018343502194,
+          0.4499999940395355
+        ],
+        "frameCount": 173,
+        "frameSHA256": "bc6b119023562de814c106b389ed1bc0af20ea7d01b4f3fc6ebf2af430201adf"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          193.81011621208293,
+          322.499967591023,
+          0.4499999940395355
+        ],
+        "frameCount": 96,
+        "frameSHA256": "7770c322d643a5655f71a6ffeb467f25334f8fc66d7c876b6e2455dc1e5575d9"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          193.81005692213833,
+          322.500104437367,
+          0.4499999940395355
+        ],
+        "frameCount": 344,
+        "frameSHA256": "b9d1099070a4e55f14445cc3b12a63ee8fe89e663f2b8938307f1177c8386402"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            317
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          193.81011266325646,
+          322.5000937842153,
+          0.4499999940395355
+        ],
+        "frameCount": 192,
+        "frameSHA256": "fdec0d804adcb951af7959f9d1fb240e0296739fc1a2d27bf896149293507ba5"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            335
+          ],
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.9995169965878,
+          305.57977646061994,
+          0
+        ],
+        "frameCount": 523,
+        "frameSHA256": "c88d44a05a268c4522faee800413eb379383ffb907efd055fbe2b977bf5dadb7"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            335
+          ],
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99922196246507,
+          305.42235919550467,
+          0
+        ],
+        "frameCount": 238,
+        "frameSHA256": "8b07cb4191cea515340f34cba86c5c7085c0c45347c0cb8d15c072478e412b89"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            335
+          ],
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99947298087594,
+          305.54149336914367,
+          0
+        ],
+        "frameCount": 1045,
+        "frameSHA256": "6fdb593a16c4b078bd197fff9e4863fa5932ac7d826487e9a24aed6f65a02d58"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            183.7,
+            306
+          ],
+          [
+            183.7,
+            335
+          ],
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99952534600015,
+          305.4801434809945,
+          0
+        ],
+        "frameCount": 474,
+        "frameSHA256": "6cbe3a059173bf6f2cdb6e7a7aa51b7a5728c042d8ebcefae35db70f1b6bfe3e"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            325
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99872683449203,
+          305.57985274283334,
+          0
+        ],
+        "frameCount": 279,
+        "frameSHA256": "18df743e33ed1e7693d940e79efc75dfae2a1a69e502321f1047c5618c0064dd"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            325
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99554767472662,
+          305.51514535012075,
+          0
+        ],
+        "frameCount": 148,
+        "frameSHA256": "507680b1cb9d82b30b1c583039adf9d078387b481625a6eff751a55220c3ab5d"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            325
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.9986108059757,
+          305.54156450247785,
+          0
+        ],
+        "frameCount": 558,
+        "frameSHA256": "2e72145f49d53cbe43d7ef0e4a609bf29d2f0b14e8ea86dfbacabc7a3584e4a1"
+      },
+      {
+        "points": [
+          [
+            198,
+            306
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            325
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99836330662995,
+          305.47467534628464,
+          0
+        ],
+        "frameCount": 292,
+        "frameSHA256": "2a045ee7173ebea0f26bb711c40d56789f2743f306aef7da38e44566775dd90f"
+      },
+      {
+        "points": [
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            335
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99831948390548,
+          335.42013003781005,
+          0
+        ],
+        "frameCount": 270,
+        "frameSHA256": "faad1195edd116151efbd04c7680b34bbc79787f284c45777ad08761adfbf114"
+      },
+      {
+        "points": [
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            335
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99917631809134,
+          335.50565343836433,
+          0
+        ],
+        "frameCount": 138,
+        "frameSHA256": "df99b6e1a244a2474802b9d3487ccca3cef473a2e3665202cfdf94d2d3372e41"
+      },
+      {
+        "points": [
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            335
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99816632734937,
+          335.4584184255371,
+          0
+        ],
+        "frameCount": 539,
+        "frameSHA256": "d58fdab8f3e83d8a39b9f08485cf30b222cf0605692cf2d0b204e1977532eb4f"
+      },
+      {
+        "points": [
+          [
+            198,
+            335
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            194.05,
+            328
+          ],
+          [
+            194.05,
+            322.5
+          ],
+          [
+            197,
+            322.5
+          ],
+          [
+            198,
+            322.5
+          ],
+          [
+            198,
+            335
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          197.99679261163786,
+          335.5253840075174,
+          0
+        ],
+        "frameCount": 279,
+        "frameSHA256": "ff400e49ab7e46461fd41182cc7ef694328d1619829dabb1be675ad3a742128b"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            192.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.81630464512963,
+          322.5,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "810ba5bf29a759fc895a9e19c72dc6869a0b1e01f52bcd73eb948db7e2f29616"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            322.5
+          ],
+          [
+            192.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.84045320532402,
+          322.5,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "880e8a7b3c27987eb20bbefcfd1c7dfe311af65da3eb07ecbafffe2c00d7aa95"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            327.15
+          ],
+          [
+            192.5,
+            327.15
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.81630464512963,
+          327.15,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "9a0d6f155e590e70c4cadb8c03c8a35635a13944213ea5dcad0b88baec1a5afe"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            327.15
+          ],
+          [
+            192.5,
+            327.15
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.78307014065024,
+          327.15,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "f2dc99bdbdead282641b7431c089a63d5ed70c34e05835576eb8a0fd35250bfc"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            317.85
+          ],
+          [
+            192.5,
+            317.85
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.81630464512963,
+          317.85,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "c4caad73198598463b9bec51cc30f9768ea07479f5c3ea6db7c7cc8132a91dcd"
+      },
+      {
+        "points": [
+          [
+            194.05,
+            317.85
+          ],
+          [
+            192.5,
+            317.85
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          193.78307014065024,
+          317.85,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "1912391db0737324b68a5548a8987f1dbb815a004bffafc92a538ef4c8dab289"
+      },
+      {
+        "points": [
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          234.06309011097255,
+          322.49982232460127,
+          0
+        ],
+        "frameCount": 185,
+        "frameSHA256": "10ebfb46c6fa91cd70a9ced3c386e3632e4a3acb18986dfd0ad686b276c123ca"
+      },
+      {
+        "points": [
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.99323124159022,
+          322.523571699118,
+          0
+        ],
+        "frameCount": 95,
+        "frameSHA256": "dd8a94fc090b809a51a2538ef8cfefe5705aa653047061cbe8c92cfddb5f5b31"
+      },
+      {
+        "points": [
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          234.02480746285534,
+          322.4998200963685,
+          0
+        ],
+        "frameCount": 347,
+        "frameSHA256": "df2560e5f63def6a4b2135309863fb6c9f15657daed9e9ef065ea1f587474823"
+      },
+      {
+        "points": [
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.98884617572787,
+          322.51137909698423,
+          0
+        ],
+        "frameCount": 198,
+        "frameSHA256": "7da02a081536d8e1024922b63da591a9df094b2bd9360e08265c67d61bc5b338"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          237.38983363046685,
+          322.5000727512114,
+          0.4499999940395355
+        ],
+        "frameCount": 169,
+        "frameSHA256": "bd7606db148f729afcbf219343a31a7a1b0da7c70ac765cdd991d2060d3bcfee"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          237.38993474397157,
+          322.5004227348282,
+          0.4499999940395355
+        ],
+        "frameCount": 97,
+        "frameSHA256": "b0e3c9c8b99a1ff5e27ad05f4d8fefc10fc22d0e019293bde2e904491f39f7ad"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          237.38997186337068,
+          322.50004302965317,
+          0.4499999940395355
+        ],
+        "frameCount": 336,
+        "frameSHA256": "0015369a541b4742bf8cd3a4c90c4c3a5bf46c3628029a95436228db55f5e8e2"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            317
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          237.38998389972954,
+          322.50009179049874,
+          0.4499999940395355
+        ],
+        "frameCount": 190,
+        "frameSHA256": "fced8859ee7d895c9a97b306f0179704f7388212a4b55dcfc17d6e1c140c909d"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            337
+          ],
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          232.99999999655594,
+          305.5797565223848,
+          0
+        ],
+        "frameCount": 555,
+        "frameSHA256": "c4aa01846496efc6ffa56cb86faf5ae9bcc9aee2a961f09caba36ae7d8a3ec09"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            337
+          ],
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00177169655703,
+          305.4497788319115,
+          0
+        ],
+        "frameCount": 252,
+        "frameSHA256": "7375771ce4ec2aab511cebc9cd28d4fc9cb3c7c1d63064cea34051d17af44751"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            337
+          ],
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          232.99999999948798,
+          305.54147390556045,
+          0
+        ],
+        "frameCount": 1110,
+        "frameSHA256": "8a82113a5188221683c36953c860bd5bd5a58fb17c86a58d7aa95b685e6ac485"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            248,
+            306
+          ],
+          [
+            248,
+            337
+          ],
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00059668560723,
+          305.47204818891964,
+          0
+        ],
+        "frameCount": 501,
+        "frameSHA256": "0f166443c95b39ce0baef7c185f9d93e25543ec30d93169d61cfb831259d8b38"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            325
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00042447780072,
+          305.5797665701724,
+          0
+        ],
+        "frameCount": 281,
+        "frameSHA256": "17ec9f9233510823d767590c3f2b183e8e8d50abac803b22383affa64389d29d"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            325
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.004088179556,
+          305.52278590945104,
+          0
+        ],
+        "frameCount": 153,
+        "frameSHA256": "e4dd682dd571b9573d2f5195f65024c78fec7f8e5dac500ba7d3353653ee2320"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            325
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00046314788412,
+          305.5414834203515,
+          0
+        ],
+        "frameCount": 562,
+        "frameSHA256": "4d1493e850c436231b7a44cf4a3929918274f7847a1c733b2fd4eaa549c5eb3e"
+      },
+      {
+        "points": [
+          [
+            233,
+            306
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            325
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            306
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00161813248238,
+          305.4740193113966,
+          0
+        ],
+        "frameCount": 294,
+        "frameSHA256": "b4df5aa26d0c7207582926b68e43fc604d6d341cfbf9fae63c596a360c088dab"
+      },
+      {
+        "points": [
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            337
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.0004830255551,
+          337.4202325015332,
+          0
+        ],
+        "frameCount": 293,
+        "frameSHA256": "57da84985ea09510c4627fae425c4fb9976b7f25d62da9da2721c8ca0b937136"
+      },
+      {
+        "points": [
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            337
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00539224356757,
+          337.48378133970954,
+          0
+        ],
+        "frameCount": 166,
+        "frameSHA256": "e2be063c91fce12d505d52d5f8aa0ab6fdb926d072d48ae7254f868b7371c3f6"
+      },
+      {
+        "points": [
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            337
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": false,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.00052702941122,
+          337.4585156664453,
+          0
+        ],
+        "frameCount": 586,
+        "frameSHA256": "c1d9fbdc2d2dc3aabbbd921c0046b3b16326c901d4f987a26d32aa5706c5ce1f"
+      },
+      {
+        "points": [
+          [
+            233,
+            337
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            237.15,
+            328
+          ],
+          [
+            237.15,
+            322.5
+          ],
+          [
+            234.5,
+            322.5
+          ],
+          [
+            233,
+            322.5
+          ],
+          [
+            233,
+            337
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0,
+          "recordFrames": true
+        },
+        "arrived": true,
+        "end": [
+          233.0027458749103,
+          337.52602572419005,
+          0
+        ],
+        "frameCount": 301,
+        "frameSHA256": "641f01f740e69edf32a0af5b74aa7660aa27ae8d06f965dff36c2d6a0e670609"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            238.8,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.38369535487038,
+          322.5,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "a7f25ffbd8bc5223f41caf6981d026c79f4129ef101fdafa0be6e3425e8d84f1"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            322.5
+          ],
+          [
+            238.8,
+            322.5
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.359546794676,
+          322.5,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "a70b2b1184d3107bd55e8f9c03251c8cb54adc23db29d32dcd03c8ec3f947c7e"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            327.15
+          ],
+          [
+            238.8,
+            327.15
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.38369535487038,
+          327.15,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "8b1df8769c699f7353fec9b8b3b455b4f10d15d5a9cf135bdc0a85cacd04d901"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            327.15
+          ],
+          [
+            238.8,
+            327.15
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.41692985934978,
+          327.15,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "43849db82f624a208bfc204fc1166e3b7ed5aa7e9c5a4fff3066cd5545796b2f"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            317.85
+          ],
+          [
+            238.8,
+            317.85
+          ]
+        ],
+        "options": {
+          "fps": 30,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.38369535487038,
+          317.85,
+          0.4499999940395355
+        ],
+        "frameCount": 60,
+        "frameSHA256": "7c61184639d671003edcd3d27dfe1e199b64c5f668c1d21a929164f354d8c512"
+      },
+      {
+        "points": [
+          [
+            237.15,
+            317.85
+          ],
+          [
+            238.8,
+            317.85
+          ]
+        ],
+        "options": {
+          "fps": 60,
+          "sprint": true,
+          "startFeet": 0.45,
+          "recordFrames": true
+        },
+        "arrived": false,
+        "end": [
+          237.41692985934978,
+          317.85,
+          0.4499999940395355
+        ],
+        "frameCount": 120,
+        "frameSHA256": "86990c2cbda247ce188b31ea6ce0d1f665aabf38901d1b2b44d4b07d8102cee2"
+      }
+    ]
+  },
+  "B": {
+    "proxy": {
+      "meshes": 30,
+      "triangles": 360,
+      "allClosedBoxGeometry": true,
+      "finalProductGeometry": false,
+      "allEntitiesInEnvelope": true,
+      "newWalkables": 0
+    },
+    "ownOwners": [
+      {
+        "name": "H37-proxy/high-wall-pier-0",
+        "min": [
+          201.5,
+          0,
+          309.80000000000007
+        ],
+        "max": [
+          205.05,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-pier-1",
+        "min": [
+          207.75,
+          0,
+          309.80000000000007
+        ],
+        "max": [
+          213.8,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-pier-2",
+        "min": [
+          218.2,
+          0,
+          309.80000000000007
+        ],
+        "max": [
+          224.25,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-pier-3",
+        "min": [
+          226.95,
+          0,
+          309.80000000000007
+        ],
+        "max": [
+          230.5,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-over-east",
+        "min": [
+          205.05,
+          3.3500000000000005,
+          309.80000000000007
+        ],
+        "max": [
+          207.75,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-over-middle",
+        "min": [
+          213.8,
+          4,
+          309.80000000000007
+        ],
+        "max": [
+          218.2,
+          7.300000000000001,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/high-wall-over-west",
+        "min": [
+          224.25,
+          3.3500000000000005,
+          309.80000000000007
+        ],
+        "max": [
+          226.95,
+          7.3,
+          310.6
+        ]
+      },
+      {
+        "name": "H37-proxy/wall-cap-conservative-closed-volume",
+        "min": [
+          201.15,
+          7.299999999999999,
+          309.5
+        ],
+        "max": [
+          230.85,
+          7.9,
+          310.9
+        ]
+      },
+      {
+        "name": "H37-proxy/east-left-jamb",
+        "min": [
+          204.2,
+          0,
+          309.2
+        ],
+        "max": [
+          205.05,
+          3.35,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/east-right-jamb",
+        "min": [
+          207.75,
+          0,
+          309.2
+        ],
+        "max": [
+          208.60000000000002,
+          3.35,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/east-header",
+        "min": [
+          204.2,
+          3.3500000000000005,
+          309.2
+        ],
+        "max": [
+          208.59999999999997,
+          4.95,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/east-canopy-conservative-volume",
+        "min": [
+          203.79999999999995,
+          4.950000000000001,
+          308.6
+        ],
+        "max": [
+          209,
+          5.65,
+          309.80000000000007
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-left-jamb",
+        "min": [
+          212.8,
+          0,
+          309.2
+        ],
+        "max": [
+          213.8,
+          4,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-right-jamb",
+        "min": [
+          218.2,
+          0,
+          309.2
+        ],
+        "max": [
+          219.2,
+          4,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-header",
+        "min": [
+          212.8,
+          4,
+          309.2
+        ],
+        "max": [
+          219.2,
+          5.050000000000001,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-canopy-conservative-volume",
+        "min": [
+          212.4,
+          5.050000000000001,
+          308.4
+        ],
+        "max": [
+          219.6,
+          6.25,
+          309.80000000000007
+        ]
+      },
+      {
+        "name": "H37-proxy/west-left-jamb",
+        "min": [
+          223.39999999999998,
+          0,
+          309.2
+        ],
+        "max": [
+          224.25,
+          3.35,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/west-right-jamb",
+        "min": [
+          226.95,
+          0,
+          309.2
+        ],
+        "max": [
+          227.8,
+          3.35,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/west-header",
+        "min": [
+          223.40000000000003,
+          3.3500000000000005,
+          309.2
+        ],
+        "max": [
+          227.8,
+          4.95,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/west-canopy-conservative-volume",
+        "min": [
+          223,
+          4.950000000000001,
+          308.6
+        ],
+        "max": [
+          228.20000000000005,
+          5.65,
+          309.80000000000007
+        ]
+      },
+      {
+        "name": "H37-proxy/short-wall-0",
+        "min": [
+          208.59999999999997,
+          0,
+          309.3
+        ],
+        "max": [
+          212.8,
+          4.5,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/own-short-wall-roof-0",
+        "min": [
+          208.59999999999997,
+          4.5,
+          308.8
+        ],
+        "max": [
+          212.8,
+          4.85,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/short-wall-1",
+        "min": [
+          219.2,
+          0,
+          309.3
+        ],
+        "max": [
+          223.40000000000003,
+          4.5,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/own-short-wall-roof-1",
+        "min": [
+          219.2,
+          4.5,
+          308.8
+        ],
+        "max": [
+          223.40000000000003,
+          4.85,
+          309.8
+        ]
+      },
+      {
+        "name": "H37-proxy/east-closed-leaf--1",
+        "min": [
+          205.05,
+          0.04999999999999982,
+          310.14
+        ],
+        "max": [
+          206.40000000000003,
+          3.35,
+          310.26
+        ]
+      },
+      {
+        "name": "H37-proxy/east-closed-leaf-1",
+        "min": [
+          206.39999999999998,
+          0.04999999999999982,
+          310.14
+        ],
+        "max": [
+          207.75,
+          3.35,
+          310.26
+        ]
+      },
+      {
+        "name": "H37-proxy/west-closed-leaf--1",
+        "min": [
+          224.25,
+          0.04999999999999982,
+          310.14
+        ],
+        "max": [
+          225.60000000000002,
+          3.35,
+          310.26
+        ]
+      },
+      {
+        "name": "H37-proxy/west-closed-leaf-1",
+        "min": [
+          225.59999999999997,
+          0.04999999999999982,
+          310.14
+        ],
+        "max": [
+          226.95,
+          3.35,
+          310.26
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-open-east-leaf-90deg",
+        "min": [
+          213.74,
+          0.04999999999999982,
+          310.19999999999993
+        ],
+        "max": [
+          213.86,
+          3.95,
+          312.4
+        ]
+      },
+      {
+        "name": "H37-proxy/middle-open-west-leaf-90deg",
+        "min": [
+          218.14,
+          0.04999999999999982,
+          310.19999999999993
+        ],
+        "max": [
+          218.26,
+          3.95,
+          312.4
+        ]
+      }
+    ]
+  }
+}

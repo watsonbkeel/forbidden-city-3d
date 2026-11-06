@@ -1,0 +1,26 @@
+PROBE_WORKER_PID=117
+STAGE setup
+STAGE A-real-envelope
+STAGE A-passed
+STAGE B-old-68-before
+STAGE B-old-68-complete
+STAGE B-new-68-before
+
+Interrupted while running:
+
+⚠ /workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/space-probe.test.mjs (../r165-h37-space-probe-1611/space-probe.test.mjs:1:1)
+✖ /workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/space-probe.test.mjs (20862.972484ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20870.69847
+
+✖ failing tests:
+
+test at ../r165-h37-space-probe-1611/space-probe.test.mjs:1:1
+✖ /workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/space-probe.test.mjs (20862.972484ms)
+  'Promise resolution is still pending but the event loop has already resolved'

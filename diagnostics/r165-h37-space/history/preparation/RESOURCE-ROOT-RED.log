@@ -1,0 +1,49 @@
+EE..E.......
+======================================================================
+ERROR: test_root_ambiguity_missing_one_permission_and_subtree_rejected (__main__.Cgroups.test_root_ambiguity_missing_one_permission_and_subtree_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 49, in test_root_ambiguity_missing_one_permission_and_subtree_rejected
+    with self.assertRaises(ValueError):parse_memory('MemTotal: 8 kB\nMemAvailable: 4 kB\n','0::/\n','29 23 0:26 / /sys/fs/cgroup rw - cgroup2 cgroup rw\n',read)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.py", line 57, in parse_memory
+    raw=str(read_text(str(current/max_name))).strip();used=str(read_text(str(current/use_name))).strip()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 47, in read
+    if k not in values:raise FileNotFoundError(p)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: /sys/fs/cgroup/memory.max
+
+======================================================================
+ERROR: test_true_v2_root_only_uses_physical_memory (__main__.Cgroups.test_true_v2_root_only_uses_physical_memory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 41, in test_true_v2_root_only_uses_physical_memory
+    q=parse_memory('MemTotal: 8388608 kB\nMemAvailable: 6291456 kB\n','0::/\n','29 23 0:26 / /sys/fs/cgroup rw - cgroup2 cgroup rw\n',read)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.py", line 57, in parse_memory
+    raw=str(read_text(str(current/max_name))).strip();used=str(read_text(str(current/use_name))).strip()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 40, in read
+    raise FileNotFoundError(p)
+FileNotFoundError: /sys/fs/cgroup/memory.max
+
+======================================================================
+ERROR: test_v2_all_ancestors (__main__.Cgroups.test_v2_all_ancestors)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 29, in test_v2_all_ancestors
+    q=parse_memory('MemTotal: 8388608 kB\nMemAvailable: 6291456 kB\n','0::/foo/bar\n','29 23 0:26 / /sys/fs/cgroup rw - cgroup2 cgroup rw\n',read)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.py", line 57, in parse_memory
+    raw=str(read_text(str(current/max_name))).strip();used=str(read_text(str(current/use_name))).strip()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 27, in read
+    if p not in files:raise FileNotFoundError(p)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: /sys/fs/cgroup/memory.max
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.003s
+
+FAILED (errors=3)

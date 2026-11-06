@@ -1,0 +1,127 @@
+..........FFFFFF...E....F.
+======================================================================
+ERROR: test_bad_and_expired_deadlines_close (__main__.HTTPBoundary.test_bad_and_expired_deadlines_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1386, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1432, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1381, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1141, in _send_output
+    self.send(msg)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1085, in send
+    self.connect()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1520, in connect
+    super().connect()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1061, in connect
+    self._tunnel()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 1019, in _tunnel
+    (version, code, message) = response._read_status()
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/http/client.py", line 304, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 119, in test_bad_and_expired_deadlines_close
+    with self.assertRaises((ValueError,RuntimeError)):self.client(deadline).get('actions/runs/17')
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.py", line 36, in get
+    with urllib.request.urlopen(request,timeout=min(self.config['request_timeout_seconds'],max(.1,self.deadline-time.time())))as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error timed out>
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict) (key='id', value=17.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 35, in test_numeric_json_identity_is_strict
+    with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate_run({**R,key:value},E,C,W,L,1793912401)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict) (key='run_number', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 35, in test_numeric_json_identity_is_strict
+    with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate_run({**R,key:value},E,C,W,L,1793912401)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict) (key='run_number', value=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 35, in test_numeric_json_identity_is_strict
+    with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate_run({**R,key:value},E,C,W,L,1793912401)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict) (key='run_attempt', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 35, in test_numeric_json_identity_is_strict
+    with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate_run({**R,key:value},E,C,W,L,1793912401)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict) (key='run_attempt', value=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 35, in test_numeric_json_identity_is_strict
+    with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate_run({**R,key:value},E,C,W,L,1793912401)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_numeric_json_identity_is_strict (__main__.Gate.test_numeric_json_identity_is_strict)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 37, in test_numeric_json_identity_is_strict
+    with self.assertRaises(ValueError):validate_run(R,E,C,W,{**L,'total_count':value},1793912401)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_return_after_deadline_is_rejected (__main__.HTTPBoundary.test_return_after_deadline_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/approval_gate.synthetic.py", line 126, in test_return_after_deadline_is_rejected
+    with patch('approval_gate.urllib.request.urlopen',side_effect=open_late),self.assertRaises(RuntimeError):c.get('actions/runs/17')
+                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 21 tests in 8.149s
+
+FAILED (failures=7, errors=1)

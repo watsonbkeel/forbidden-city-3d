@@ -1,0 +1,292 @@
+{
+  "createdUTC": "2026-11-05T16:03:56.669665+00:00",
+  "terminal": "monitor-triggered bounded SIGTERM; exit1/cancelled1, not an assertion failure or kernel-OOM claim",
+  "acceptedScope": "A complete; 30 proxy entities actual reserve and old-geometry nonintersection; original before/after68 route outputs and frame hashes compared equal, and original-state snapshot comparison completed before last saved stage",
+  "unacceptedScope": "New 16 positive routes, 4 closed-side negatives, 2 central counterfactual routes and C seven targets have no completed durable proof; full old-state restoration/dispose witness unavailable after forced process termination",
+  "AComplete": true,
+  "proxy": {
+    "meshes": 30,
+    "triangles": 360,
+    "allClosedBoxGeometry": true,
+    "finalProductGeometry": false,
+    "allEntitiesInEnvelope": true,
+    "newWalkables": 0
+  },
+  "oldBeforeVariants": 68,
+  "oldAfterVariants": 68,
+  "sameOldOutputs": true,
+  "lastStage": "B-new-68-complete",
+  "firstThresholdCrossing": {
+    "seconds": 12.622,
+    "alive": [
+      {
+        "kind": "present",
+        "pid": 58,
+        "starttime": 38336943,
+        "state": "S",
+        "ppid": 6,
+        "pgid": 58,
+        "rssKiB": 39396,
+        "hwmKiB": 39396
+      },
+      {
+        "kind": "present",
+        "pid": 66,
+        "starttime": 38336956,
+        "state": "R",
+        "ppid": 58,
+        "pgid": 58,
+        "rssKiB": 322868,
+        "hwmKiB": 322868
+      }
+    ],
+    "unknown": [],
+    "zombies": [],
+    "exited": [],
+    "reused": [],
+    "sumRSSKiB": 362264,
+    "readerDone": false,
+    "readerError": null,
+    "nodeExitCode": null,
+    "complete": false,
+    "failureReason": "node-tree-RSS-over350MiB",
+    "signalRequest": "TERM",
+    "giveUp": false,
+    "knownIdentities": [
+      {
+        "pid": 58,
+        "starttime": 38336943
+      },
+      {
+        "pid": 66,
+        "starttime": 38336956
+      }
+    ],
+    "hadUnknown": false,
+    "lastStage": "B-new-68-complete"
+  },
+  "exit": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=256",
+      "--max-semi-space-size=16",
+      "--test",
+      "--test-concurrency=1",
+      "/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/space-probe.test.mjs"
+    ],
+    "cwd": "/workspace/scratch/02a8023d1a85/r165-f49-tishun-beam-1331",
+    "environment": {
+      "GIT_OPTIONAL_LOCKS": "0",
+      "NODE_OPTIONS": null
+    },
+    "exitCode": 1,
+    "signal": null,
+    "terminationReason": "node-tree-RSS-over350MiB",
+    "durationSeconds": 12.673,
+    "runnerPid": 58,
+    "workerPid": 66,
+    "lastStage": "B-new-68-complete",
+    "readerError": null,
+    "sampleCount": 250,
+    "sampledNodeTreeMaxRSSKiB": 362264,
+    "resourceRUSAGE_CHILDRENmaxRSSKiB": 54568,
+    "allKnownProcessFinal": {
+      "seconds": 12.673,
+      "alive": [],
+      "unknown": [],
+      "zombies": [],
+      "exited": [
+        {
+          "pid": 58,
+          "starttime": 38336943
+        },
+        {
+          "pid": 66,
+          "starttime": 38336956
+        }
+      ],
+      "reused": [],
+      "sumRSSKiB": 0,
+      "readerDone": true,
+      "readerError": null,
+      "nodeExitCode": 1,
+      "complete": true,
+      "failureReason": "node-tree-RSS-over350MiB",
+      "signalRequest": null,
+      "giveUp": false,
+      "knownIdentities": [
+        {
+          "pid": 58,
+          "starttime": 38336943
+        },
+        {
+          "pid": 66,
+          "starttime": 38336956
+        }
+      ],
+      "hadUnknown": false
+    },
+    "signalActions": [
+      {
+        "group": 58,
+        "signal": 15,
+        "result": "sent after identity check"
+      }
+    ],
+    "uncertainOutcome": false,
+    "readerClosed": true,
+    "runnerReapedByPythonPoll": true,
+    "descendantReaping": "not performed by wrapper; gone/reused snapshots only",
+    "scope": "Approved once-only H37 actual old subset A, closed-box space proxy B, supported-eye rays C. Not production geometry, full region, CPU image, WebGL, or build acceptance.",
+    "sourceAndInputsAndIndicesUnchanged": true,
+    "wrapperExitCode": 1
+  },
+  "stages": [
+    {
+      "name": "setup",
+      "utc": "2026-11-05T16:00:50.181Z",
+      "memory": {
+        "rss": 121585664,
+        "heapTotal": 54239232,
+        "heapUsed": 32044728,
+        "external": 7836110,
+        "arrayBuffers": 963013
+      }
+    },
+    {
+      "name": "A-real-envelope",
+      "utc": "2026-11-05T16:00:51.236Z",
+      "memory": {
+        "rss": 218140672,
+        "heapTotal": 123682816,
+        "heapUsed": 97302208,
+        "external": 10549620,
+        "arrayBuffers": 3645011
+      }
+    },
+    {
+      "name": "A-passed",
+      "utc": "2026-11-05T16:00:51.279Z",
+      "memory": {
+        "rss": 221941760,
+        "heapTotal": 124219392,
+        "heapUsed": 94072128,
+        "external": 10549620,
+        "arrayBuffers": 3645011
+      }
+    },
+    {
+      "name": "B-old-68-before",
+      "utc": "2026-11-05T16:00:51.279Z",
+      "memory": {
+        "rss": 221941760,
+        "heapTotal": 124219392,
+        "heapUsed": 94211984,
+        "external": 10549620,
+        "arrayBuffers": 3645011
+      }
+    },
+    {
+      "name": "B-old-68-complete",
+      "utc": "2026-11-05T16:00:55.954Z",
+      "memory": {
+        "rss": 311619584,
+        "heapTotal": 168681472,
+        "heapUsed": 132562488,
+        "external": 10512290,
+        "arrayBuffers": 3607955
+      }
+    },
+    {
+      "name": "B-new-68-before",
+      "utc": "2026-11-05T16:00:55.996Z",
+      "memory": {
+        "rss": 312143872,
+        "heapTotal": 169213952,
+        "heapUsed": 136503096,
+        "external": 10537490,
+        "arrayBuffers": 3633155
+      }
+    },
+    {
+      "name": "B-new-68-complete",
+      "utc": "2026-11-05T16:01:00.549Z",
+      "memory": {
+        "rss": 313581568,
+        "heapTotal": 176402432,
+        "heapUsed": 133361016,
+        "external": 10537490,
+        "arrayBuffers": 3633155
+      }
+    }
+  ],
+  "originalReceipts": [
+    {
+      "path": "r165-h37-space-probe-1554/SCRIPT-FREEZE.json",
+      "bytes": 10748,
+      "sha256": "a0fd1e111ca739252f3196ddeb7af0be166e8fa82867ada41ba80dfda1bd7d1e"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/MANIFEST.json",
+      "bytes": 4861,
+      "sha256": "f8c551475c96173bfc463056d762d50e13ddf1fb7553d442c7f005af65b5b6a7"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/RUN-AUTHORIZATION.json",
+      "bytes": 779,
+      "sha256": "f08c63ae755b946867a999d40a194a8f860fbe0e60fd86d6b005598f503a90d1"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/RUN-STARTED.json",
+      "bytes": 1088,
+      "sha256": "5e9d3c0fd7587ad55372a0140dec9faa0ed3daa9f3d8870be4c7a87fc4d3ac1c"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/WRAPPER.log",
+      "bytes": 1935,
+      "sha256": "8d5834504b2c630b18dd3da6579389e067746d3d4ab3f9f531c80d15a13d7309"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SPACE.log",
+      "bytes": 807,
+      "sha256": "69d931a1c9b867ec8c67d9def19fc661cad4ab2580b465a46b8358c96023aaf5"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SPACE-RESULT.json",
+      "bytes": 248003,
+      "sha256": "f867a4502f102173b9424f8bb711407a904f3c0c33deeb0d9127e71e0787c2bc"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SPACE-EXIT.json",
+      "bytes": 1935,
+      "sha256": "8d5834504b2c630b18dd3da6579389e067746d3d4ab3f9f531c80d15a13d7309"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SPACE-RSS.json",
+      "bytes": 238262,
+      "sha256": "bf907a782b036568094137563aaa224816de4b2ce2958cd70ddf7ef7a0700984"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SOURCE-BEFORE.json",
+      "bytes": 626,
+      "sha256": "614eff1160ebffbe96515e3640ae7f933911c6f521ad2c7e580d20d02e76a5e6"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/SOURCE-AFTER.json",
+      "bytes": 626,
+      "sha256": "614eff1160ebffbe96515e3640ae7f933911c6f521ad2c7e580d20d02e76a5e6"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/INPUTS-BEFORE.json",
+      "bytes": 1874639,
+      "sha256": "f94b9cbf3b05a0bc42ba23397f8d9299adb990716e20e5582e63094a11a3849f"
+    },
+    {
+      "path": "r165-h37-space-probe-1554/INPUTS-AFTER.json",
+      "bytes": 1874639,
+      "sha256": "f94b9cbf3b05a0bc42ba23397f8d9299adb990716e20e5582e63094a11a3849f"
+    }
+  ],
+  "noRetryPerformed": true
+}

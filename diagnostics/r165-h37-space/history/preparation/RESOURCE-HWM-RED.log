@@ -1,0 +1,23 @@
+......F...F.
+======================================================================
+FAIL: test_each_start_failure (__main__.Resources.test_each_start_failure) (key='wrapperHighWaterBytes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 14, in test_each_start_failure
+    with self.subTest(key=key):self.assertFalse(evaluate({**S,key:value},start=True)['ok'])
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_unknown_fails_not_zero (__main__.Resources.test_unknown_fails_not_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 19, in test_unknown_fails_not_zero
+    for key in S:self.assertFalse(evaluate({**S,key:None},start=True)['ok'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+FAILED (failures=2)

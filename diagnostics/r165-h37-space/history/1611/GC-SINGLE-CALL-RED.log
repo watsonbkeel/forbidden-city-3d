@@ -1,0 +1,35 @@
+✔ ledger requires every fixed identity once and in declared order, never only a count (2.585203ms)
+✔ actual collector wiring only permits fixed completed-consumer points and preserves held witnesses/captures (0.637272ms)
+✔ collection cannot lose roots, mutate values or silently skip a declared checkpoint (0.474511ms)
+✖ each fixed point has exactly one collection, with its entire effect followed by the final witness comparison (0.321436ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.254647
+
+✖ failing tests:
+
+test at r165-h37-space-probe-1611/phase-guards-synthetic.test.mjs:6:1
+✖ each fixed point has exactly one collection, with its entire effect followed by the final witness comparison (0.321436ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/phase-guards-synthetic.test.mjs:6:268)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

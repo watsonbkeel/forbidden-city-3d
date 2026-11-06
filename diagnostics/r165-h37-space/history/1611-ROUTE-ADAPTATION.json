@@ -1,0 +1,35 @@
+{
+  "base": "fef5c0e1904c361e7492d744f06d82a8c137e1ea",
+  "scope": "Static source extraction only; no routes run",
+  "oldPositivePerState": 52,
+  "oldNegativePerState": 16,
+  "bothStates": 136,
+  "rows": [
+    {
+      "path": "tests/r163-yuhua-normal.test.mjs",
+      "sourceSHA256": "f82ae1d51d3d754ccaec0409e8d76bee907160bc2efb219cf60281aa2a9a6b4b",
+      "adapter": "yuhua-route-adapter.mjs",
+      "adapterSHA256": "8ff4d6db1da90580acbea91852f476e1382c0d807ab7c1fd15346f0a0a241b20",
+      "positiveElements": 3,
+      "negativeElements": 4,
+      "positiveLoopAndNegativeBody": "Verbatim unchanged source substring",
+      "omittedRemoteNegative": [
+        "retained-original-Jiyun185-approach-still-blocked-by-Jingyi"
+      ]
+    },
+    {
+      "path": "tests/r163-yuhua-east/route-runner.mjs",
+      "sourceSHA256": "6a00ee6cf44ca88251d65a448d5090af2146437b8468b8da52992ed23a8e8662",
+      "adapter": "east-route-adapter.mjs",
+      "adapterSHA256": "6fd4f29e53de0e70a1d0f0dd05bee9d5ac7c932bcc5c2047b647f5299ab26a55",
+      "changes": "Only three import specifiers; function/assertion body byte-for-byte unchanged"
+    },
+    {
+      "path": "tests/r163-yuhua-west/route-runner.mjs",
+      "sourceSHA256": "6a00ee6cf44ca88251d65a448d5090af2146437b8468b8da52992ed23a8e8662",
+      "adapter": "west-route-adapter.mjs",
+      "adapterSHA256": "131d74458978982cdce5319e64f9ddd6b84aa6ba78ac5244ba592d410b9f3865",
+      "changes": "Only three import specifiers; function/assertion body byte-for-byte unchanged"
+    }
+  ]
+}

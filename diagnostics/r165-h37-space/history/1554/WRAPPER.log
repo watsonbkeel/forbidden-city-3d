@@ -1,0 +1,77 @@
+{
+  "command": [
+    "node",
+    "--expose-gc",
+    "--max-old-space-size=256",
+    "--max-semi-space-size=16",
+    "--test",
+    "--test-concurrency=1",
+    "/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/space-probe.test.mjs"
+  ],
+  "cwd": "/workspace/scratch/02a8023d1a85/r165-f49-tishun-beam-1331",
+  "environment": {
+    "GIT_OPTIONAL_LOCKS": "0",
+    "NODE_OPTIONS": null
+  },
+  "exitCode": 1,
+  "signal": null,
+  "terminationReason": "node-tree-RSS-over350MiB",
+  "durationSeconds": 12.673,
+  "runnerPid": 58,
+  "workerPid": 66,
+  "lastStage": "B-new-68-complete",
+  "readerError": null,
+  "sampleCount": 250,
+  "sampledNodeTreeMaxRSSKiB": 362264,
+  "resourceRUSAGE_CHILDRENmaxRSSKiB": 54568,
+  "allKnownProcessFinal": {
+    "seconds": 12.673,
+    "alive": [],
+    "unknown": [],
+    "zombies": [],
+    "exited": [
+      {
+        "pid": 58,
+        "starttime": 38336943
+      },
+      {
+        "pid": 66,
+        "starttime": 38336956
+      }
+    ],
+    "reused": [],
+    "sumRSSKiB": 0,
+    "readerDone": true,
+    "readerError": null,
+    "nodeExitCode": 1,
+    "complete": true,
+    "failureReason": "node-tree-RSS-over350MiB",
+    "signalRequest": null,
+    "giveUp": false,
+    "knownIdentities": [
+      {
+        "pid": 58,
+        "starttime": 38336943
+      },
+      {
+        "pid": 66,
+        "starttime": 38336956
+      }
+    ],
+    "hadUnknown": false
+  },
+  "signalActions": [
+    {
+      "group": 58,
+      "signal": 15,
+      "result": "sent after identity check"
+    }
+  ],
+  "uncertainOutcome": false,
+  "readerClosed": true,
+  "runnerReapedByPythonPoll": true,
+  "descendantReaping": "not performed by wrapper; gone/reused snapshots only",
+  "scope": "Approved once-only H37 actual old subset A, closed-box space proxy B, supported-eye rays C. Not production geometry, full region, CPU image, WebGL, or build acceptance.",
+  "sourceAndInputsAndIndicesUnchanged": true,
+  "wrapperExitCode": 1
+}

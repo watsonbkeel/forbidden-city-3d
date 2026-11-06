@@ -1,0 +1,112 @@
+✖ first actual proxy bottom is exactly grounded at zero, not negative Float32 half-height drift (9.366169ms)
+✖ all 30 actual complete entity AABBs are strictly inside unchanged reserve and all 12 wall footings exactly contact y0 (3.268705ms)
+✖ every requested box center and dimensions remain unchanged with exact unit vertices and actual transformed face extents (3.119424ms)
+✔ all real boxes remain closed 12-triangle volumes with each undirected geometric edge twice (3.894373ms)
+✖ strict containment still rejects each of six real out-of-reserve perturbations and contact rejects a positive gap (9.375289ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 161.078682
+
+✖ failing tests:
+
+test at r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:16:1
+✖ first actual proxy bottom is exactly grounded at zero, not negative Float32 half-height drift (9.366169ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + -9.536743172944284e-8
+  - 0
+  
+      at file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:16:211
+      at using (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:5:56)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:16:106)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: -9.536743172944284e-8,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:17:1
+✖ all 30 actual complete entity AABBs are strictly inside unchanged reserve and all 12 wall footings exactly contact y0 (3.268705ms)
+  AssertionError [ERR_ASSERTION]: H37-proxy/high-wall-pier-0 strictly in reserve
+      at file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:17:235
+      at using (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:5:56)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:17:130)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:18:1
+✖ every requested box center and dimensions remain unchanged with exact unit vertices and actual transformed face extents (3.119424ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   1,
+  +   1,
+  +   1
+  -   3.5500000000000114,
+  -   7.3,
+  -   0.8000000000000114
+    ]
+  
+      at file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:18:415
+      at using (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:5:56)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:18:132)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 1, 1, 1 ],
+    expected: [ 3.5500000000000114, 7.3, 0.8000000000000114 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:20:1
+✖ strict containment still rejects each of six real out-of-reserve perturbations and contact rejects a positive gap (9.375289ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:20:743
+      at using (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:5:56)
+      at TestContext.<anonymous> (file:///workspace/scratch/02a8023d1a85/r165-h37-space-probe-1554/proxy-numeric-synthetic.test.mjs:20:126)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

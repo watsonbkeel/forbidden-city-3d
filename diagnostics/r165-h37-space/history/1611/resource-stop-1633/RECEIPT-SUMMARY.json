@@ -1,0 +1,278 @@
+{
+  "createdUTC": "2026-11-05T16:34:41.555774+00:00",
+  "terminal": "P1 monitor node-tree-RSS-over350MiB; P2C blocked by actual orchestrator, no automatic retry",
+  "savedCompletedEvidence": {
+    "A": true,
+    "originalBeforeVariants": 68,
+    "strictActualProxyEntities": {
+      "meshes": 30,
+      "triangles": 360,
+      "allClosedBoxGeometry": true,
+      "finalProductGeometry": false,
+      "allEntitiesInEnvelope": true,
+      "newWalkables": 0
+    },
+    "gcCheckpoints": [
+      {
+        "label": "before.yuhua",
+        "completed": true,
+        "collectionCalls": 1
+      },
+      {
+        "label": "before.east",
+        "completed": true,
+        "collectionCalls": 1
+      },
+      {
+        "label": "before.west",
+        "completed": true,
+        "collectionCalls": 1
+      }
+    ],
+    "ledgerIdentities": 112
+  },
+  "notEstablished": [
+    "P1 original after68 and equal-frame assertion",
+    "P1 terminal restoration and disposal witnesses",
+    "P2C actual execution",
+    "new-route/C acceptance",
+    "complete original single-process equivalence"
+  ],
+  "progressLimit": "Last saved stage B-new-68-before. After-group live progress is not durably known; do not infer an exact route or GC point from it.",
+  "firstThresholdSample": {
+    "seconds": 23.197,
+    "alive": [
+      {
+        "kind": "present",
+        "pid": 109,
+        "starttime": 38527930,
+        "state": "S",
+        "ppid": 6,
+        "pgid": 109,
+        "rssKiB": 39488,
+        "hwmKiB": 39488
+      },
+      {
+        "kind": "present",
+        "pid": 117,
+        "starttime": 38527943,
+        "state": "R",
+        "ppid": 109,
+        "pgid": 109,
+        "rssKiB": 319796,
+        "hwmKiB": 319796
+      }
+    ],
+    "unknown": [],
+    "zombies": [],
+    "exited": [],
+    "reused": [],
+    "sumRSSKiB": 359284,
+    "readerDone": false,
+    "readerError": null,
+    "nodeExitCode": null,
+    "complete": false,
+    "failureReason": "node-tree-RSS-over350MiB",
+    "signalRequest": "TERM",
+    "giveUp": false,
+    "knownIdentities": [
+      {
+        "pid": 109,
+        "starttime": 38527930
+      },
+      {
+        "pid": 117,
+        "starttime": 38527943
+      }
+    ],
+    "hadUnknown": false,
+    "lastStage": "B-new-68-before"
+  },
+  "exit": {
+    "command": [
+      "node",
+      "--expose-gc",
+      "--max-old-space-size=256",
+      "--max-semi-space-size=16",
+      "--test",
+      "--test-concurrency=1",
+      "/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/space-probe.test.mjs"
+    ],
+    "cwd": "/workspace/scratch/02a8023d1a85/r165-f49-tishun-beam-1331",
+    "environment": {
+      "GIT_OPTIONAL_LOCKS": "0",
+      "NODE_OPTIONS": null
+    },
+    "exitCode": 1,
+    "signal": null,
+    "terminationReason": "node-tree-RSS-over350MiB",
+    "durationSeconds": 23.249,
+    "runnerPid": 109,
+    "workerPid": 117,
+    "lastStage": "B-new-68-before",
+    "readerError": null,
+    "sampleCount": 413,
+    "sampledNodeTreeMaxRSSKiB": 359284,
+    "resourceRUSAGE_CHILDRENmaxRSSKiB": 57148,
+    "allKnownProcessFinal": {
+      "seconds": 23.249,
+      "alive": [],
+      "unknown": [],
+      "zombies": [],
+      "exited": [
+        {
+          "pid": 109,
+          "starttime": 38527930
+        },
+        {
+          "pid": 117,
+          "starttime": 38527943
+        }
+      ],
+      "reused": [],
+      "sumRSSKiB": 0,
+      "readerDone": true,
+      "readerError": null,
+      "nodeExitCode": 1,
+      "complete": true,
+      "failureReason": "node-tree-RSS-over350MiB",
+      "signalRequest": null,
+      "giveUp": false,
+      "knownIdentities": [
+        {
+          "pid": 109,
+          "starttime": 38527930
+        },
+        {
+          "pid": 117,
+          "starttime": 38527943
+        }
+      ],
+      "hadUnknown": false
+    },
+    "signalActions": [
+      {
+        "group": 109,
+        "signal": 15,
+        "result": "sent after identity check"
+      }
+    ],
+    "uncertainOutcome": false,
+    "readerClosed": true,
+    "runnerReapedByPythonPoll": true,
+    "descendantReaping": "not performed by wrapper; gone/reused snapshots only",
+    "scope": "shared bounded monitor; actual fixture scope belongs to caller"
+  },
+  "batch": {
+    "success": false,
+    "scope": "P1 then fresh P2+C staged evidence; not complete original single-process equivalence",
+    "error": "RuntimeError('Phase P1 failed success')",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/run-space.py\", line 82, in <module>\n    batch.update(run_batch(('P1','P2C'),started_at=BATCH_STARTED,now=time.monotonic,verify_inputs=verify_inputs,launch=launch))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/02a8023d1a85/r165-h37-space-probe-1611/phase_orchestrator.py\", line 27, in run_batch\n    if q.get(key)is not True:raise RuntimeError('Phase '+phase+' failed '+key)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Phase P1 failed success\n",
+    "phaseProofs": [
+      {
+        "phase": "P1",
+        "success": false,
+        "cleanup": false,
+        "restoration": false,
+        "ledgerComplete": false,
+        "receiptPresent": true,
+        "processComplete": true,
+        "readerClosed": true,
+        "unknownRSS": false,
+        "residualProcesses": false,
+        "inputsUnchanged": true,
+        "exitCode": 1,
+        "monitorFailure": "node-tree-RSS-over350MiB"
+      }
+    ],
+    "sourceAndInputsAndIndicesUnchanged": true,
+    "aggregateSecondsIncludingFinalLocks": 25.063375044032,
+    "aggregateBudgetSeconds": 180,
+    "nodeTreeBudgetMiB": 350
+  },
+  "receiptHashes": [
+    {
+      "path": "r165-h37-space-probe-1611/SCRIPT-FREEZE.json",
+      "bytes": 11330,
+      "sha256": "8cb872036f33b74d4210468000650a46b8440dd629ee46a93aa217032c8152fc"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/MANIFEST.json",
+      "bytes": 7556,
+      "sha256": "91dc259610a26fbf936d5686db0d4056b513d37fe68be92d608f330f327bd0db"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/RUN-AUTHORIZATION.json",
+      "bytes": 1029,
+      "sha256": "6cdb9112cfcbcfa46885a7214936e63d518c1471e6d5b3e34a03e4849eea6ef3"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/RUN-STARTED.json",
+      "bytes": 1461,
+      "sha256": "0808bc87174028ff8f7ad9ffbac8a8382109e1ba9b2404265feb1b7ed7c146ec"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/WRAPPER.log",
+      "bytes": 1489,
+      "sha256": "f8c93cbf5ba3d5d9e8a91ea19d50e276d134f33673c9e515ff75ece16b3449ab"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/BATCH-RESULT.json",
+      "bytes": 1489,
+      "sha256": "f8c93cbf5ba3d5d9e8a91ea19d50e276d134f33673c9e515ff75ece16b3449ab"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SPACE-P1.log",
+      "bytes": 785,
+      "sha256": "a6c317b1c2af96302a477006eecc8d60ef96537ee28c08ecd356abb8be9fe6af"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SPACE-P1-RESULT.json",
+      "bytes": 142833,
+      "sha256": "2d0cdb03112c22b57d9930d8ff1be4f7ad30a577c7f29d1e2b422d2436e60698"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SPACE-P1-EXIT.json",
+      "bytes": 1764,
+      "sha256": "a0aa6ec7d91927cb4e450d734dfd091b10ca93b145b5c53661289d00ed83d5ff"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SPACE-P1-RSS.json",
+      "bytes": 397619,
+      "sha256": "e1371245a71958d791ed4d8eec7ab92e875ad0d03fb88c40d0c07f50b19c6634"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/PHASE-P1-PROOF.json",
+      "bytes": 333,
+      "sha256": "f6807c5fa7adcd1e15f02a99c492d1ffcb73744ecd0aaed25f4af78bbddf3032"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/LOCK-before.json",
+      "bytes": 810,
+      "sha256": "d1d200b119df7eff09efde8e76b136a6ca1961ed0063e31194fd131c7a32d995"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SOURCE-BEFORE.json",
+      "bytes": 626,
+      "sha256": "614eff1160ebffbe96515e3640ae7f933911c6f521ad2c7e580d20d02e76a5e6"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/SOURCE-AFTER.json",
+      "bytes": 626,
+      "sha256": "614eff1160ebffbe96515e3640ae7f933911c6f521ad2c7e580d20d02e76a5e6"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/INPUTS-BEFORE.json",
+      "bytes": 1876204,
+      "sha256": "1e509a03877bb683727a4daee007df5464094bfc9d551e8b82232445ff7ea5f8"
+    },
+    {
+      "path": "r165-h37-space-probe-1611/INPUTS-AFTER.json",
+      "bytes": 1876204,
+      "sha256": "1e509a03877bb683727a4daee007df5464094bfc9d551e8b82232445ff7ea5f8"
+    }
+  ],
+  "P2CFilesPresent": [],
+  "noRetryPerformed": true,
+  "noProductOrCountChange": true
+}

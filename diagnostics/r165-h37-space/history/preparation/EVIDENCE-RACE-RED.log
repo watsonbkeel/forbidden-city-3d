@@ -1,0 +1,29 @@
+.....EE........
+======================================================================
+ERROR: test_arbitrary_disappearing_file_is_not_ignored (__main__.EvidenceRace.test_arbitrary_disappearing_file_is_not_ignored)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 80, in test_arbitrary_disappearing_file_is_not_ignored
+    with patch.object(Path,'lstat',lstat),self.assertRaises(FileNotFoundError):evidence_size(p)
+                                                                               ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.py", line 85, in evidence_size
+    elif not p.is_dir():raise ValueError('Evidence special file forbidden')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Evidence special file forbidden
+
+======================================================================
+ERROR: test_known_atomic_index_rename_rescans_once (__main__.EvidenceRace.test_known_atomic_index_rename_rescans_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.synthetic.py", line 73, in test_known_atomic_index_rename_rescans_once
+    with patch.object(Path,'lstat',lstat):self.assertEqual(evidence_size(p),3)
+                                                           ^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/02a8023d1a85/r165-h37-remote-ci-2135/native/diagnostics/r165-h37-space/resource_contract.py", line 85, in evidence_size
+    elif not p.is_dir():raise ValueError('Evidence special file forbidden')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Evidence special file forbidden
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.004s
+
+FAILED (errors=2)
