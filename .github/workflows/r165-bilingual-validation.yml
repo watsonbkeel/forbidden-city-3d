@@ -1,0 +1,97 @@
+name: R165 cumulative373 bilingual read-only validation
+'on':
+  push:
+    branches:
+    - dev/r165-cumulative-373-bilingual-ui-memory-20261106
+permissions:
+  contents: read
+concurrency:
+  group: r165-bilingual-validation-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r165-cumulative-373-bilingual-ui-memory-20261106'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      GIT_OPTIONAL_LOCKS: '0'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Check out the exact event commit and baseline history
+      id: checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Select the exact registerHooks-capable Node toolchain
+      id: node
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+    - name: Initialize exact non-overlapping evidence roots
+      id: roots
+      run: 'set -euo pipefail
+
+        : "${RUNNER_TEMP:?}" "${GITHUB_RUN_ID:?}" "${GITHUB_RUN_ATTEMPT:?}" "${GITHUB_ENV:?}"
+
+        node --input-type=module - <<''NODE''
+
+        import fs from ''node:fs'';import path from ''node:path'';import assert from ''node:assert/strict'';
+
+        const temp=process.env.RUNNER_TEMP;assert.ok(path.isAbsolute(temp));assert.equal(path.normalize(temp),temp);assert.equal(fs.realpathSync(temp),temp);assert.equal(fs.lstatSync(temp).isDirectory(),true);assert.match(process.env.GITHUB_RUN_ID,/^\d+$/);assert.match(process.env.GITHUB_RUN_ATTEMPT,/^[1-9]\d*$/);
+
+        const evidence=path.join(temp,`r165-bilingual-evidence-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`),ui=path.join(temp,`bui-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`);assert.ok(!fs.existsSync(ui));fs.mkdirSync(evidence,{mode:0o700});fs.appendFileSync(process.env.GITHUB_ENV,`EVIDENCE_DIR=${evidence}\nUI_WORK_ROOT=${ui}\n`);
+
+        NODE
+
+        '
+    - name: Validate frozen source, run every test serially, and build
+      id: validation
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}" "${UI_WORK_ROOT:?}"
+
+        node scripts/ci/bilingual-validation.mjs
+
+        '
+      env:
+        CANDIDATE_INPUTS_SHA256: f20ca75676ba81267b80779cd8999911d1c98eef780c783708f6537822bfac09
+    - name: Stage only fixed regular UI evidence
+      id: ui_collection
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}" "${UI_WORK_ROOT:?}" "${GITHUB_SHA:?}"
+
+        node scripts/ci/bilingual-ui/collect-evidence.mjs --from "$UI_WORK_ROOT/receipts" --to "$EVIDENCE_DIR/bilingual-ui" --expected-head "$GITHUB_SHA"
+
+        '
+    - name: Preserve receipts, available dist, step outcomes, and checksums
+      id: collect
+      if: always()
+      env:
+        CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+        NODE_OUTCOME: ${{ steps.node.outcome }}
+        VALIDATION_OUTCOME: ${{ steps.validation.outcome }}
+      run: "node --input-type=module - <<'NODE'\nimport fs from 'node:fs';\nimport path from 'node:path';\nimport {createHash} from 'node:crypto';\nconst root=process.env.EVIDENCE_DIR;\nfs.mkdirSync(root,{recursive:true});\nfs.writeFileSync(path.join(root,'step-outcomes.json'),JSON.stringify({\n  checkout:process.env.CHECKOUT_OUTCOME,node:process.env.NODE_OUTCOME,\n  validation:process.env.VALIDATION_OUTCOME,runId:process.env.GITHUB_RUN_ID,\n  runAttempt:process.env.GITHUB_RUN_ATTEMPT,head:process.env.GITHUB_SHA,\n  note:'A missing or partial dist is not a passing build. Platform action logs remain in the GitHub Actions run.'\n},null,2)+'\\n');\nif(fs.existsSync('dist'))fs.cpSync('dist',path.join(root,'dist'),{recursive:true});\nconst rows=[],manifest=[];\nfunction visit(relative='') {\n  for(const entry of fs.readdirSync(path.join(root,relative),{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name))) {\n    const p=path.posix.join(relative,entry.name);\n    if(entry.isDirectory())visit(p);\n    else if(entry.isFile()&&p!=='CHECKSUMS.sha256') {\n      const bytes=fs.readFileSync(path.join(root,p)),sha256=createHash('sha256').update(bytes).digest('hex');\n      rows.push(sha256+'  '+p);manifest.push({path:p,bytes:bytes.length,sha256});\n    }\n    else if(!entry.isFile())throw Error('Unexpected non-regular artifact entry: '+p);\n  }\n}\nvisit();\nfs.writeFileSync(path.join(root,'CHECKSUMS.sha256'),rows.join('\\n')+'\\n');\nconst summary={head:process.env.GITHUB_SHA,manifestedFiles:manifest.length,manifestedTotalBytes:manifest.reduce((n,r)=>n+r.bytes,0),\n  excludes:['CHECKSUMS.sha256','artifact-manifest.json'],\n  distFiles:manifest.filter(r=>r.path.startsWith('dist/')).length,distBytes:manifest.filter(r=>r.path.startsWith('dist/')).reduce((n,r)=>n+r.bytes,0),manifest};\nconst manifestBytes=JSON.stringify(summary,null,2)+'\\n';\nfs.writeFileSync(path.join(root,'artifact-manifest.json'),manifestBytes);\nfs.appendFileSync(path.join(root,'CHECKSUMS.sha256'),createHash('sha256').update(manifestBytes).digest('hex')+'  artifact-manifest.json\\n');\nconsole.log('R165_ARTIFACT_MANIFEST_JSON '+JSON.stringify(summary));\nconsole.log('Recorded '+rows.length+' artifact file checksums.');\nNODE\n"
+    - name: Upload validation evidence only
+      if: always() && env.EVIDENCE_DIR != ''
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r165-bilingual-validation-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+        path: ${{ env.EVIDENCE_DIR }}
+        if-no-files-found: error
+        retention-days: 14
+        compression-level: 1

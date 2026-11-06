@@ -1,3 +1,5 @@
+import { TourLocalization } from './src/ui/TourLocalization.js';
+import { LanguageControl } from './src/ui/LanguageControl.js';
 import { TourFailureNotice } from './src/ui/TourFailureNotice.js';
 import { readQualityPreference, writeQualityPreference } from './src/render/QualityPreference.js';
 import { TourFrameScheduler } from './src/render/TourFrameScheduler.js';
@@ -42,6 +44,8 @@ import { CharacterSystem } from './src/scene/characters/CharacterSystem.js';
 
 class ForbiddenCityApp {
   constructor() {
+    this.languageControl = new LanguageControl();
+    this.localization = new TourLocalization();
     this.scene = null;
     this.camera = null;
     this.renderer = null;
@@ -788,6 +792,8 @@ class ForbiddenCityApp {
     this.collisionManager?.clear();
     this.renderer?.dispose();
     this.renderer?.domElement.remove();
+    this.localization?.dispose();
+    this.languageControl?.dispose();
     this.helpPanel?.dispose();
     document.getElementById('location-panel')?.remove();
     this.settingsMenu?.dispose();

@@ -1,3 +1,4 @@
+import {stripBilingualDelta,historicalBilingualPaths} from '../bilingual/source-boundary.mjs';
 import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -13,8 +14,8 @@ async function boundary(){assert.ok(fs.existsSync(new URL('./source-boundary.mjs
 test('every public-ad0 runtime/data byte survives exact Guhua/K19/K18/L3 composition; only private L3 import/hook145/call is new to 4ed',async()=>{
   const {normalizeWatchSource:norm,record}=await boundary();
   const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
-  const now=execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n');
-  for(const p of old)assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,norm(p,readLive(p))))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);
+  const now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\n'));
+  for(const p of old)assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,norm(p,stripBilingualDelta(p,readLive(p)))))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);
   assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),[...Object.keys(gh.added),'src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());
   assert.ok(old.every(p=>now.includes(p)));
   for(const[p,h]of Object.entries(gh.added))assert.equal(sha(readLive(p)),h);
