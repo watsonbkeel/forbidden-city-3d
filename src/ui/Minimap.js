@@ -1,3 +1,8 @@
+import {LanguageControl} from './LanguageControl.js';
+import {translateText} from '../i18n/Messages.js';
+import {localeStore} from '../i18n/LocaleStore.js';
+import {localizedPlaceName,bilingualSearchTerms} from '../i18n/PlaceLocale.js';
+import {normalizeSearch} from '../i18n/PlaceTranslations.js';
 import { outerMoatProfile } from '../scene/palace/special/OuterMoat.js';
 import { innerJinshuiProfile } from '../scene/palace/special/InnerJinshui.js';
 import { bridgeFacilityInfoFor } from './ModelFidelity.js';
@@ -6,7 +11,7 @@ import * as THREE from 'three';
 import { PALACE_LAYOUT } from '../scene/Layout.js';
 import { LAYOUT, TELEPORT } from '../config/constants.js';
 import { hasShortcutModifier, isTextEntryTarget } from '../controls/InputTargets.js';
-import { PlaceCatalog } from './PlaceCatalog.js';
+import { TourPlaceCatalog } from './TourPlaceCatalog.js';
 import { PlaceInfoPanel } from './PlaceInfoPanel.js';
 import { placeDisplayName } from './PublicPlaceNames.js';
 
@@ -42,7 +47,7 @@ export class Minimap {
     this.detailVisible = false;
     this.disposed = false;
     // Invalid content degrades to the same safe unknown-place selection.
-    try { this.placeCatalog = new PlaceCatalog(); }
+    try { this.placeCatalog = new TourPlaceCatalog(); }
     catch (error) { console.warn(error.message); this.placeCatalog = null; }
     this.onToggle = onToggle;
     this.labels = [];
@@ -72,6 +77,7 @@ export class Minimap {
     this.scaleZ = this.mapHeight / spanZ;
     
     this.init();
+    this.unsubscribeLocale = localeStore.subscribe(() => this.refreshLocale());
   }
   
   init() {
@@ -132,6 +138,7 @@ export class Minimap {
       this.setCompact(!this.compact);
     });
     presentation.append(status, this.sizeToggle);
+    this.languageControl = new LanguageControl({container:presentation,id:'map-language'});
     this.container.appendChild(presentation);
     
     // Canvas 地图
@@ -217,8 +224,8 @@ export class Minimap {
     });
     this.container.appendChild(quick);
     this.initPlaceInformation();
-    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.bridgeFacilityList, this.resumePlace];
-    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.bridgeFacilityList, this.resumePlace];
+    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
+    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
     
     document.body.appendChild(this.container);
     
@@ -276,7 +283,7 @@ export class Minimap {
     search.id = 'place-search'; search.type = 'search'; search.value = '';
     search.placeholder = '搜索地点名称';
     search.setAttribute('aria-label', '搜索地点名称');
-    search.setAttribute('aria-controls', 'place-directory bridge-facility-directory');
+    search.setAttribute('aria-controls', 'place-directory supplemental-place-directory bridge-facility-directory');
     const resultCount = document.createElement('p'); resultCount.id = 'place-search-count';
     resultCount.setAttribute('role', 'status'); resultCount.setAttribute('aria-live', 'polite');
     const directory = document.createElement('div'); directory.id = 'place-directory';
@@ -285,14 +292,27 @@ export class Minimap {
     for (const place of this.placeCatalog?.places ?? []) {
       const button = document.createElement('button');
       button.type = 'button';
-      button.textContent = place.name;
+      button.setAttribute('data-place-id', place.id);
+      button.textContent = localizedPlaceName(place.name, place.id) ?? place.name;
       button.setAttribute('aria-label', `了解${place.name}`);
       button.addEventListener('click', () => this.showPlace(place.id));
       directory.appendChild(button);
-      const names = [place.name, place.canonicalName, ...(place.aliases ?? []).map(alias => alias.name)];
-      entries.push({button, names: names.filter(Boolean).map(name => name.normalize('NFKC').toLocaleLowerCase('zh-CN'))});
+      entries.push({button, place, names: bilingualSearchTerms(place)});
     }
-    // Separate facility section preserves the159 historical card contract.
+    this.supplementalPlaceList = document.createElement('section');
+    this.supplementalPlaceList.id = 'supplemental-place-list';
+    const extraHeading = document.createElement('h2'); extraHeading.textContent = '更多建筑与场所';
+    const extraDirectory = document.createElement('div'); extraDirectory.id = 'supplemental-place-directory';
+    this.supplementalPlaceList.append(extraHeading, extraDirectory);
+    for (const place of this.placeCatalog?.supplementalPlaces ?? []) {
+      const button = document.createElement('button'); button.type = 'button';
+      button.setAttribute('data-place-id', place.id);
+      button.textContent = localizedPlaceName(place.name, place.id) ?? place.name;
+      button.setAttribute('aria-label', `了解${place.name}`);
+      button.addEventListener('click', () => this.showPlace(place.id));
+      extraDirectory.appendChild(button); entries.push({button,place,names:bilingualSearchTerms(place)});
+    }
+    // Bridge facilities remain a separate, map-only section.
     this.bridgeFacilityList = document.createElement('section');
     this.bridgeFacilityList.id = 'bridge-facilities';
     const bridgeHeading = document.createElement('h2'); bridgeHeading.textContent = '桥梁设施（4组）';
@@ -304,18 +324,20 @@ export class Minimap {
       button.style.cssText = 'min-height:44px;min-width:44px';
       button.addEventListener('click', () => this.selectMapLabel({name:facility.name,facilityId:facility.id}));
       bridgeDirectory.appendChild(button);
-      entries.push({button,names:[facility.name.normalize('NFKC').toLocaleLowerCase('zh-CN')]});
+      const pinyin = {'FC-D156902D78':['nei jin shui qiao','neijinshuiqiao'],'FC-B9097C61D8':['wu ying men','wuyingmen'],'FC-74F8C30390':['ban bi qiao','banbiqiao'],'FC-17AFD38428':['san zuo men','sanzuomen']}[facility.id] ?? [];
+      entries.push({button,facility,names:[facility.name,translateText(facility.name,'en'),...pinyin].map(normalizeSearch)});
     }
     const filter = () => {
-      const query = search.value.trim().normalize('NFKC').toLocaleLowerCase('zh-CN');
+      const query = normalizeSearch(search.value);
       let count = 0;
       for (const {button, names} of entries) {
         const match = names.some(name => name.includes(query)); button.hidden = button.inert = !match;
         if (match) count++;
       }
-      resultCount.textContent = count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。';
+      resultCount.textContent = translateText(count ? `显示 ${count} / ${entries.length} 个地点` : '未找到匹配地点，请换个名称。');
     };
     search.addEventListener('input', filter); filter();
+    this.directoryEntries = entries; this.filterPlaces = filter;
     this.resumePlace = document.createElement('button');
     this.resumePlace.id = 'place-resume';
     this.resumePlace.type = 'button';
@@ -337,7 +359,25 @@ export class Minimap {
     this.placeAnnouncement.id = 'place-announcement';
     this.placeAnnouncement.setAttribute('aria-live', 'polite');
     this.placeAnnouncement.setAttribute('aria-atomic', 'true');
-    this.container.append(this.placeList, this.bridgeFacilityList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
+    this.container.append(this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace, this.placeHeader, this.placePanel.element, this.placeAnnouncement);
+  }
+
+  refreshLocale() {
+    if (this.disposed) return;
+    for (const entry of this.directoryEntries ?? []) if (entry.place) {
+      const name = localizedPlaceName(entry.place.name, entry.place.id) ?? entry.place.name;
+      entry.button.textContent = name;
+      entry.button.setAttribute('aria-label', localeStore.locale === 'en' ? `About ${name}` : `了解${name}`);
+    }
+    for (const entry of this.directoryEntries ?? []) if (entry.facility) {
+      entry.button.textContent = translateText(entry.facility.name);
+      entry.button.setAttribute('aria-label', translateText(`了解${entry.facility.name}并定位地图，不移动人物`));
+    }
+    this.filterPlaces?.();
+    if (this.selection) this.resumePlace.textContent = localeStore.locale === 'en'
+      ? `Continue reading ${localizedPlaceName(this.selection.name, this.selection.placeId) ?? 'this place'}`
+      : `继续阅读${placeDisplayName(this.selection.name)}`;
+    this.renderBase(); this.drawMap();
   }
 
   showPlace(id) {
@@ -374,13 +414,15 @@ export class Minimap {
     this.selectedPlaceId = selected?.id ?? null;
     this.detailVisible = true;
     const target = selected?.modelExperience.teleportTargetName ?? label.name;
-    const canTravel = !facility && this.canTravelToPlace(target);
+    const canTravelSelection = () => !facility && selected?.modelExperience.navigationMode !== 'information-only' &&
+      (selected?.catalogKind !== 'supplemental' || this.items.some(item => this.placeCatalog.forMapItem(item, this.items)?.id === selected.id)) && this.canTravelToPlace(target);
+    const canTravel = canTravelSelection();
     const title = this.placePanel.render({ place: selected, name: label.name, facility,
       sources: selected ? this.placeCatalog.sourcesFor(selected) : [], canTravel,
       onTravel: button => {
         if (this.disposed || !this.visible || this.compact || !this.detailVisible ||
             generation !== this.selectionGeneration || !button.isConnected || !this.placePanel.element.contains(button) ||
-            !this.canTravelToPlace(target)) return;
+            !canTravelSelection()) return;
         if (this.onTeleport?.(target)) this.toggle();
       },
     });
@@ -786,7 +828,17 @@ export class Minimap {
   }
 
   drawLabel(text, x, y, bold, size = 10, targetName = text, mode, placeId = null, unitScale = 1, facilityId = null) {
-    text = placeDisplayName(text);
+    text = translateText(localizedPlaceName(text, placeId) ?? placeDisplayName(text));
+    // Keep full English names readable without truncating identity or qualifiers.
+    if (localeStore.locale === 'en') text = text.split('\n').flatMap(line => {
+      const lines = [''];
+      for (const word of line.split(' ')) {
+        const last = lines.length - 1;
+        if (lines[last] && lines[last].length + 1 + word.length > 24) lines.push(word);
+        else lines[last] += (lines[last] ? ' ' : '') + word;
+      }
+      return lines;
+    }).join('\n');
     if (this.labelQueue) {
       this.labelQueue.push({ text, x, y, bold, size, targetName, mode, placeId, ...(facilityId?{facilityId}:{}) });
       return;
@@ -970,7 +1022,7 @@ export class Minimap {
     ctx.font = 'bold 11px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('北', this.previewSize / 2, 3);
+    ctx.fillText(translateText('北'), this.previewSize / 2, 3);
     ctx.restore();
   }
 
@@ -1090,10 +1142,10 @@ export class Minimap {
     ctx.font = 'bold 12px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('北', w / 2, 10);
-    ctx.fillText('南', w / 2, h - 10);
-    ctx.fillText('东', w - 10, h / 2);
-    ctx.fillText('西', 10, h / 2);
+    ctx.fillText(translateText('北'), w / 2, 10);
+    ctx.fillText(translateText('南'), w / 2, h - 10);
+    ctx.fillText(translateText('东'), w - 10, h / 2);
+    ctx.fillText(translateText('西'), 10, h / 2);
   }
   
   drawHelicopter(ctx,p) {
@@ -1126,9 +1178,11 @@ export class Minimap {
   }
   
   dispose() {
+    this.unsubscribeLocale?.();
     this.disposed = true;
     this.clearPlaceSelection();
     this.placePanel.dispose();
+    this.languageControl.dispose();
     this.cancelMapGesture();
     this.secondaryTaps.clear();
     this.suppressedClicks.clear();
