@@ -1,0 +1,144 @@
+name: R166 bounded UI hit-test diagnostic only
+'on':
+  push:
+    branches:
+    - dev/r166-bilingual-hit-test-diagnostic-20261107
+permissions:
+  contents: read
+concurrency:
+  group: r166-hit-diagnostic-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name
+      == 'push' && github.ref == 'refs/heads/dev/r166-bilingual-hit-test-diagnostic-20261107'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      GIT_OPTIONAL_LOCKS: '0'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Check out the exact diagnostic event
+      id: checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Select the pinned Node toolchain
+      id: node
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+    - name: Initialize disjoint bounded evidence roots
+      id: roots
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${RUNNER_TEMP:?}" "${GITHUB_RUN_ID:?}" "${GITHUB_RUN_ATTEMPT:?}" "${GITHUB_ENV:?}"
+
+        node --input-type=module - <<''NODE''
+
+        import fs from ''node:fs'';import path from ''node:path'';import assert from
+        ''node:assert/strict'';
+
+        const temp=process.env.RUNNER_TEMP;assert.ok(path.isAbsolute(temp));assert.equal(path.normalize(temp),temp);assert.equal(fs.realpathSync(temp),temp);assert.ok(fs.lstatSync(temp).isDirectory());assert.match(process.env.GITHUB_RUN_ID,/^\d+$/);assert.match(process.env.GITHUB_RUN_ATTEMPT,/^[1-9]\d*$/);
+
+        const evidence=path.join(temp,`r166-hit-evidence-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`),ui=path.join(temp,`bui-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`),font=path.join(temp,`bf-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`);assert.ok(!fs.existsSync(ui)&&!fs.existsSync(font));fs.mkdirSync(evidence,{mode:0o700});fs.appendFileSync(process.env.GITHUB_ENV,`EVIDENCE_DIR=${evidence}\nUI_WORK_ROOT=${ui}\nFONT_WORK_ROOT=${font}\n`);
+
+        NODE
+
+        '
+    - name: Verify unchanged public parent and all diagnostic inputs
+      id: source
+      timeout-minutes: 2
+      run: 'set -euo pipefail
+
+        node scripts/ci/bilingual-hit-test/entry.mjs --source-only
+
+        '
+      env:
+        DIAGNOSTIC_INPUTS_SHA256: 387711e76d45b830278047c52edc6a094e1c43717c4bc68ce8c95bae0785e45f
+    - name: Prepare the same official CJK font environment
+      id: fonts
+      timeout-minutes: 5
+      run: 'set -euo pipefail
+
+        python3 scripts/ci/bilingual-hit-test/fonts.py prepare
+
+        '
+    - name: Run the explicit UI-only diagnostic
+      id: diagnostic
+      timeout-minutes: 30
+      if: always() && steps.source.outcome == 'success'
+      run: 'set -euo pipefail
+
+        node scripts/ci/bilingual-hit-test/entry.mjs
+
+        '
+      env:
+        DIAGNOSTIC_INPUTS_SHA256: 387711e76d45b830278047c52edc6a094e1c43717c4bc68ce8c95bae0785e45f
+        FONT_PREPARATION_OUTCOME: ${{ steps.fonts.outcome }}
+    - name: Preserve bounded font receipts
+      id: font_collection
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}" "${FONT_WORK_ROOT:?}"
+
+        python3 scripts/ci/bilingual-hit-test/fonts.py collect
+
+        '
+    - name: Collect only fixed available UI evidence
+      id: ui_collection
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}" "${UI_WORK_ROOT:?}" "${GITHUB_SHA:?}"
+
+        node scripts/ci/bilingual-hit-test/collect-diagnostic.mjs --from "$UI_WORK_ROOT/receipts"
+        --to "$EVIDENCE_DIR/bilingual-ui" --expected-head "$GITHUB_SHA"
+
+        '
+    - name: Stage only regular allowlisted artifact files
+      id: pack
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${EVIDENCE_DIR:?}"
+
+        node scripts/ci/bilingual-hit-test/pack-evidence.mjs
+
+        '
+      env:
+        CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+        NODE_OUTCOME: ${{ steps.node.outcome }}
+        ROOTS_OUTCOME: ${{ steps.roots.outcome }}
+        SOURCE_OUTCOME: ${{ steps.source.outcome }}
+        FONTS_OUTCOME: ${{ steps.fonts.outcome }}
+        DIAGNOSTIC_OUTCOME: ${{ steps.diagnostic.outcome }}
+        FONT_COLLECTION_OUTCOME: ${{ steps.font_collection.outcome }}
+        UI_COLLECTION_OUTCOME: ${{ steps.ui_collection.outcome }}
+    - name: Upload diagnostic evidence, never deploy
+      if: always() && env.EVIDENCE_DIR != ''
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r166-hit-diagnostic-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt
+          }}
+        path: ${{ env.EVIDENCE_DIR }}/artifact
+        if-no-files-found: error
+        retention-days: 14
+        compression-level: 1

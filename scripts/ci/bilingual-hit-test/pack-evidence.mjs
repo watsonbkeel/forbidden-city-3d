@@ -1,0 +1,19 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
+import {assertAncestors,copyRegularFile,readIdentity,sha256,isMain,writeJSON} from './common.mjs';
+import {ALLOWLIST as UI_FILES} from './collect-diagnostic.mjs';
+const MAIN=['RESULT.json','source-gate.json','diagnostic-evidence.json','step-outcomes.json',...['npm-pin','npm-verify','dependencies','toolchain','contracts','monitor','browser','evidence'].map(x=>x+'.log')];
+export const PACK_ALLOWLIST=Object.freeze([...MAIN,...['prepare.json','prepare.log','collection.json'].map(x=>'font-environment/'+x),...[...UI_FILES,'collection.json'].map(x=>'bilingual-ui/'+x)]);
+const DIRS=['','font-environment','bilingual-ui','bilingual-ui/ui-components','bilingual-ui/ui-components/evidence'];
+export function packEvidence({root,env=process.env,budgetBytes=128*1024*1024}){
+ assert.ok(typeof root==='string'&&path.isAbsolute(root)&&path.normalize(root)===root);assertAncestors(root);assert.equal(fs.realpathSync(root),root);assert.ok(fs.lstatSync(root).isDirectory());assert.ok(Number.isSafeInteger(budgetBytes)&&budgetBytes<=128*1024*1024&&budgetBytes>65536);
+ const identity=readIdentity(env),dest=path.join(root,'artifact');fs.mkdirSync(dest,{mode:0o700});const result={schema:1,identity,diagnosticOnly:true,releaseAcceptance:false,passed:false,copied:[],missing:[],rejected:[],rejectedOmitted:0,artifactBytes:0,budgetBytes};
+ const reject=(p,e)=>{if(result.rejected.length<32)result.rejected.push({path:String(p).slice(0,256),reason:String(e).slice(0,512)});else result.rejectedOmitted++;};
+ for(const dir of DIRS){const full=path.join(root,dir);try{assertAncestors(full);assert.ok(fs.lstatSync(full).isDirectory());for(const n of fs.readdirSync(full)){const rel=dir?dir+'/'+n:n;if(rel==='artifact'&&!dir)continue;if(!PACK_ALLOWLIST.includes(rel)&&!DIRS.includes(rel))reject(rel,'Unknown evidence entry');}}catch(e){if(e.code!=='ENOENT')reject(dir,e.message);}}
+ for(const rel of PACK_ALLOWLIST){try{const source=path.join(root,rel),target=path.join(dest,rel);fs.mkdirSync(path.dirname(target),{recursive:true,mode:0o700});const remaining=budgetBytes-65536-result.artifactBytes,limit=rel==='bilingual-ui/ui-components/full.log'?remaining:Math.min(32*1024*1024,remaining);const copied=copyRegularFile(source,target,limit);result.copied.push({path:rel,...copied});result.artifactBytes+=copied.bytes;}catch(e){if(e.code==='ENOENT')result.missing.push(rel);else reject(rel,e.message);}}
+ result.passed=result.rejected.length===0&&result.rejectedOmitted===0&&result.copied.some(x=>x.path==='RESULT.json');
+ result.note='Packaging preserves available evidence. Missing later UI files and a failed browser are not a passing diagnosis or release.';
+ const bytes=Buffer.from(JSON.stringify(result,null,2)+'\n');assert.ok(bytes.length<32768);fs.writeFileSync(path.join(dest,'artifact-manifest.json'),bytes,{flag:'wx',mode:0o600});const sums=[...result.copied.map(r=>r.sha256+'  '+r.path),sha256(bytes)+'  artifact-manifest.json'].join('\n')+'\n';assert.ok(bytes.length+Buffer.byteLength(sums)<=65536);fs.writeFileSync(path.join(dest,'CHECKSUMS.sha256'),sums,{flag:'wx',mode:0o600});return result;
+}
+if(isMain(import.meta.url)){
+ try{const root=process.env.EVIDENCE_DIR;assert.ok(root&&path.isAbsolute(root));assert.equal(root,path.join(process.env.RUNNER_TEMP,`r166-hit-evidence-${process.env.GITHUB_RUN_ID}-${process.env.GITHUB_RUN_ATTEMPT}`));const identity=readIdentity();writeJSON(path.join(root,'step-outcomes.json'),{schema:1,identity,diagnosticOnly:true,releaseAcceptance:false,outcomes:Object.fromEntries(['CHECKOUT','NODE','ROOTS','SOURCE','FONTS','DIAGNOSTIC','FONT_COLLECTION','UI_COLLECTION'].map(k=>[k,process.env[k+'_OUTCOME']??'unavailable']))});if(!packEvidence({root}).passed)process.exitCode=1;}catch(error){console.error(error);process.exitCode=1;}
+}

@@ -1,0 +1,19 @@
+# Bounded UI hit-test diagnostic
+
+This branch is diagnostic only. It does not execute or replace the 35-command product/build acceptance workflow, deploy, or establish release readiness. Its sole public parent is 3dfe70e3869ede71a04f3a85e3106758ca22569c, tree 428ccdb71db3ee868d68fd1589608f5258eb762e. Every inherited file and all 994 runtime inputs remain unchanged, including release R166.
+
+The original UI sequence, assertions and two serial viewport contexts are retained. The existing three centre hit tests run exactly once in their original order. Only then are bounded node identities, two-container geometry and actual locale/selection/viewport recorded. Nominal viewport slots do not replace unexpected observed values. Additional reads can perturb timing, so this is an instrumented reproduction.
+
+At most two complete observations of 16 KiB each are stored, with a 64 KiB nested-field bound. The same atomic RESULT writer publishes each observation before the unchanged assertion. Missing or unexpected identity makes the diagnostic incomplete. An observation write failure does not claim the assertion executed and cannot trigger a screenshot.
+
+Only the original false-hit exception permits one nominal English-slot endpoint screenshot, after its failed decision is durably recorded. Screenshot errors remain secondary to the original failure. No scrolling, focus change, retry, style change or added animation frame is used to conceal the failure. Only the place-info and minimap containers are described; the record is not an exhaustive ancestor/stacking audit. A bounded eight-node search can identify an ancestor of an anonymous hit but does not prove absence beyond that limit.
+
+The original 14 screenshots remain. The only additional allowed filenames are 1280-hit-test-failure-endpoint.png and 390-hit-test-failure-endpoint.png; first-failure exit permits at most one additional image. Partial images and missing matching observations are not accepted evidence.
+
+The workflow uses contents: read and an exact branch push trigger. Its eight serial commands are npm pin, npm identity, locked dependencies, toolchain preflight, diagnostic contracts, unchanged monitor contracts, browser, and evidence inspection. Font preparation is an explicit separate five-minute step. A font/setup failure blocks the browser. Evidence inspection after a failed browser never turns the nonzero browser or workflow green.
+
+Limits remain: browser outer command 600 seconds, inner monitor 240 seconds, aggregate UI RSS 2 GiB, host memory at least 8 GiB, effective admission at least 6 GiB, runtime headroom 2 GiB, receipts plus browser scratch 128 MiB. These are polling limits, not hard kernel caps. The official font package/source qualifications, sandbox, same-run toolchain identity and owned-PID cleanup are unchanged. A nonzero exit omits the monitor's final memory-success sample; diagnostic evidence does not claim a complete passing memory run.
+
+Only fixed regular evidence files are staged for upload. Temporary browser profiles, deb archives, dependencies, caches and dist are excluded. Available failed receipts remain failed. Actual pixels and the identity-bound raw hit records must be inspected together before planning a product repair.
+
+A failed-command memory record remains explicitly incomplete. Every saved sample is replayed against the original topology, effective-headroom, first-sample, read-time, ordering and OOM rules; no final sample is invented. Final owned process rows, the remaining-live subset, root PID/starttime and drain/log fields must agree. A null final proc observation means not observed, and any permitted zombie or reused identity is reported separately. Completed earlier viewport layouts retain every original source, state, font and geometry check, with exact bindings to their saved source and hit observations.
