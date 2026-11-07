@@ -1,4 +1,5 @@
+import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';
 import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import crypto from'node:crypto';import{stripSouthThirteenDelta,callLine,importLine}from'./source-boundary.mjs';
-const old=fs.readFileSync(new URL('./frozen/ZoneBase.b24.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');
+const old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.b24.js',import.meta.url),'utf8'),cur=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');
 test('only one new import and dispatch extend exact frozen b24 production ZoneBase',()=>{assert.equal(crypto.createHash('sha256').update(old).digest('hex'),'347a1f9821c80aafaf136b58bdc740772133a19697ff8c60c869dd5acd1dd7ff');assert.equal(stripSouthThirteenDelta(cur),old)});
 test('boundary rejects missing/double import or call and exposes unrelated source mutation',()=>{for(const p of[callLine,importLine]){assert.throws(()=>stripSouthThirteenDelta(cur.replace(p,'')));assert.throws(()=>stripSouthThirteenDelta(cur+p))}assert.notEqual(stripSouthThirteenDelta(cur+'// unrelated\n'),old)});

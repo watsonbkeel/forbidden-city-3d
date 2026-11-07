@@ -1,0 +1,888 @@
+[
+  {
+    "path": "tests/r164-baotai-low-gate/source.test.mjs",
+    "beforeSha256": "f12c9335688045a75e78d2f5b8cbcbef6103973e3221f05f637ac5f44dfef514",
+    "afterSha256": "cdd66ef43272e12a94d7cf388877338eb7aa50fc26cbe8356fdd7368da8106e3",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen actual e999 Zone and all data/public movement remain exact; own dispatch is precisely two lines',()=>{const before=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),source=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.e999.js',import.meta.url),'utf8'),before);assert.equal(stripBaotaiDelta(source),before);for(const line of zoneLines){assert.throws(()=>stripBaotaiDelta(source.replace(line,'')));assert.throws(()=>stripBaotaiDelta(source+line))}assert.notEqual(stripBaotaiDelta(source+'// drift'),before);for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/scene/palace/special/SuichuSouthSteps.js','src/scene/palace/special/RemainingNingshouHalls.js'])assert.equal(path.includes('RemainingNingshouHalls')?stripCuishangRemaining(fs.readFileSync(path,'utf8')):fs.readFileSync(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n",
+        "after": "test('frozen actual e999 Zone and all data/public movement remain exact; own dispatch is precisely two lines',()=>{const before=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),source=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.e999.js',import.meta.url),'utf8'),before);assert.equal(stripBaotaiDelta(source),before);for(const line of zoneLines){assert.throws(()=>stripBaotaiDelta(source.replace(line,'')));assert.throws(()=>stripBaotaiDelta(source+line))}assert.notEqual(stripBaotaiDelta(source+'// drift'),before);for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/scene/palace/special/SuichuSouthSteps.js','src/scene/palace/special/RemainingNingshouHalls.js'])assert.equal(path.includes('RemainingNingshouHalls')?stripCuishangRemaining(readXiangxuHistoricalSource(path,'utf8')):readXiangxuHistoricalSource(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-changyin-lower-plaque/identity-ledger.test.mjs",
+    "beforeSha256": "0605f5ba55c8d1371de4ded5e1469e38e9ae4a60ef00fa5ca9750b6b994d59aa",
+    "afterSha256": "1b2ca7ae7464e4e2d1975bc4e06d945cbddf7dbbed95c74dd0b8ed89a9ec34ce",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const read=p=>JSON.parse(fs.readFileSync(new URL('../../'+p,import.meta.url)));\n",
+        "after": "const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../'+p,import.meta.url)));\n"
+      },
+      {
+        "before": "test('only the declared import and single mount extend the exact frozen d565 ZoneBase',()=>{const now=stripLianxiDelta(fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n','').replace(\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",'').replace('    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n',''),before=fs.readFileSync(new URL('../fixtures/r164-changyin-d565/ZoneBase.source.js',import.meta.url),'utf8');const line=\"import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';\\n\",hook='    buildChangyinLowerNameboard(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before)});\n",
+        "after": "test('only the declared import and single mount extend the exact frozen d565 ZoneBase',()=>{const now=stripLianxiDelta(readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n','').replace(\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",'').replace('    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n',''),before=readXiangxuHistoricalSource(new URL('../fixtures/r164-changyin-d565/ZoneBase.source.js',import.meta.url),'utf8');const line=\"import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';\\n\",hook='    buildChangyinLowerNameboard(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-changyin-middle-plaque/identity-ledger.test.mjs",
+    "beforeSha256": "a39d0289f996fad46ccdcd288f7d67f3c2ea284ec81b3a86762ccaf2cd541812",
+    "afterSha256": "182a416cbac170ec67cad899a9b9a76dd45a2334d2f76233723aabc5b6bf1aee",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const read=p=>JSON.parse(fs.readFileSync(new URL('../../'+p,import.meta.url)));\n",
+        "after": "const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../'+p,import.meta.url)));\n"
+      },
+      {
+        "before": "test('only the declared import and single mount extend the exact frozen ae739 ZoneBase',()=>{const current=stripLianxiDelta(fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n','').replace(\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",'').replace('    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n',''),now=current.replace(\"import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';\\n\",'').replace('    buildChangyinLowerNameboard(this.kit,this.zoneJson);\\n',''),before=fs.readFileSync(new URL('../fixtures/r164-changyin-ae73/ZoneBase.source.js',import.meta.url),'utf8');const line=\"import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';\\n\",hook='    buildChangyinMiddleNameboard(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before)});\n",
+        "after": "test('only the declared import and single mount extend the exact frozen ae739 ZoneBase',()=>{const current=stripLianxiDelta(readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n','').replace(\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",'').replace('    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n',''),now=current.replace(\"import {buildChangyinLowerNameboard} from '../palace/special/ChangyinLowerNameboard.js';\\n\",'').replace('    buildChangyinLowerNameboard(this.kit,this.zoneJson);\\n',''),before=readXiangxuHistoricalSource(new URL('../fixtures/r164-changyin-ae73/ZoneBase.source.js',import.meta.url),'utf8');const line=\"import {buildChangyinMiddleNameboard} from '../palace/special/ChangyinMiddleNameboard.js';\\n\",hook='    buildChangyinMiddleNameboard(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-cuishang-entry-support/source.test.mjs",
+    "beforeSha256": "fb250261d75b57a607c3ddac9b7d910574d056e22ef295af77de1fa211b0eacd",
+    "afterSha256": "50b3ee462770113654a2b1fbd0b78197eb40e27b693d28a0a812f4f7e287498a",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('three frozen sources are exactf638 Git bytes and runtime delta does not change data, visuals or public motion',()=>{for(const [path,frozen,strip]of[['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.f638.js',stripCuishangRemaining],['src/scene/palace/special/CuishangSouthFront.js','CuishangSouthFront.f638.js',stripCuishangFront],['src/scene/zones/ZoneBase.js','ZoneBase.f638.js',stripQingshouNorthDelta]]){const old=execFileSync('git',['show',base+':'+path],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/'+frozen,import.meta.url),'utf8'),old);assert.equal(strip(fs.readFileSync(path,'utf8')),old)}for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/controls/XiqingRoofSurface.js'])assert.equal(fs.readFileSync(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n",
+        "after": "test('three frozen sources are exactf638 Git bytes and runtime delta does not change data, visuals or public motion',()=>{for(const [path,frozen,strip]of[['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.f638.js',stripCuishangRemaining],['src/scene/palace/special/CuishangSouthFront.js','CuishangSouthFront.f638.js',stripCuishangFront],['src/scene/zones/ZoneBase.js','ZoneBase.f638.js',stripQingshouNorthDelta]]){const old=execFileSync('git',['show',base+':'+path],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/'+frozen,import.meta.url),'utf8'),old);assert.equal(strip(readXiangxuHistoricalSource(path,'utf8')),old)}for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/controls/XiqingRoofSurface.js'])assert.equal(readXiangxuHistoricalSource(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('source normalization rejects removed/duplicate hooks and keeps unrelated drift detection',()=>{for(const [path,strip,lines]of[['RemainingNingshouHalls',stripCuishangRemaining,[remainingImport,remainingCall]],['CuishangSouthFront',stripCuishangFront,frontLines]]){const s=fs.readFileSync('src/scene/palace/special/'+path+'.js','utf8');for(const line of lines){assert.throws(()=>strip(s.replace(line,'')));assert.throws(()=>strip(s+line))}assert.notEqual(strip(s+'// drift'),strip(s))}});\n",
+        "after": "test('source normalization rejects removed/duplicate hooks and keeps unrelated drift detection',()=>{for(const [path,strip,lines]of[['RemainingNingshouHalls',stripCuishangRemaining,[remainingImport,remainingCall]],['CuishangSouthFront',stripCuishangFront,frontLines]]){const s=readXiangxuHistoricalSource('src/scene/palace/special/'+path+'.js','utf8');for(const line of lines){assert.throws(()=>strip(s.replace(line,'')));assert.throws(()=>strip(s+line))}assert.notEqual(strip(s+'// drift'),strip(s))}});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-daohe-single-gate/source-boundary.test.mjs",
+    "beforeSha256": "c18371426041783a523c13a07b46fd6d92ef210baaf421e5c4223188b2e31df8",
+    "afterSha256": "0af561c8fee2d7b57ddbf37a5ca8d984fa116bd0fd29fab60e163331dd3eb2d7",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const freeze=fs.readFileSync(new URL('./frozen/ZoneBase.72f.js',import.meta.url),'utf8'),source=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const freeze=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.72f.js',import.meta.url),'utf8'),source=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(fs.readFileSync(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-zhenshun-single-gate'),now=read('r164-daohe-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==23),before.objects.filter(x=>x.ordinal!==23));assert.equal(now.objects[22].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,2)});\n",
+        "after": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-zhenshun-single-gate'),now=read('r164-daohe-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==23),before.objects.filter(x=>x.ordinal!==23));assert.equal(now.objects[22].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,2)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-fanhua-stair-contact/source.test.mjs",
+    "beforeSha256": "83c4aa40ebf5b62067e42d166650a3d62e72db2b46bc0233b43ca350c7fc7fca",
+    "afterSha256": "7e4c7b1de89f603150059b0b86136c3d32f0037d9c4c7545c9983036af6ef3aa",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('three frozen sources are exact2e80 Git bytes and runtime delta does not change data, visuals or public motion',()=>{for(const [path,frozen,strip]of[['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.2e80.js',stripFanhuaRemaining],['src/scene/palace/special/FanhuaSouthFront.js','FanhuaSouthFront.2e80.js',stripFanhuaFront],['src/scene/zones/ZoneBase.js','ZoneBase.2e80.js',stripQingshouNorthDelta]]){const old=execFileSync('git',['show',base+':'+path],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/'+frozen,import.meta.url),'utf8'),old);assert.equal(strip(fs.readFileSync(path,'utf8')),old)}for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/controls/XiqingRoofSurface.js'])assert.equal(fs.readFileSync(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n",
+        "after": "test('three frozen sources are exact2e80 Git bytes and runtime delta does not change data, visuals or public motion',()=>{for(const [path,frozen,strip]of[['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.2e80.js',stripFanhuaRemaining],['src/scene/palace/special/FanhuaSouthFront.js','FanhuaSouthFront.2e80.js',stripFanhuaFront],['src/scene/zones/ZoneBase.js','ZoneBase.2e80.js',stripQingshouNorthDelta]]){const old=execFileSync('git',['show',base+':'+path],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/'+frozen,import.meta.url),'utf8'),old);assert.equal(strip(readXiangxuHistoricalSource(path,'utf8')),old)}for(const path of['data/zones/ningshou.json','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/controls/XiqingRoofSurface.js'])assert.equal(readXiangxuHistoricalSource(path,'utf8'),execFileSync('git',['show',base+':'+path],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('source normalization rejects removed/duplicate hooks and keeps unrelated drift detection',()=>{for(const [path,strip,lines]of[['RemainingNingshouHalls',stripFanhuaRemaining,[remainingImport,remainingCall]],['FanhuaSouthFront',stripFanhuaFront,frontLines]]){const s=fs.readFileSync('src/scene/palace/special/'+path+'.js','utf8');for(const line of lines){assert.throws(()=>strip(s.replace(line,'')));assert.throws(()=>strip(s+line))}assert.notEqual(strip(s+'// drift'),strip(s))}});\n",
+        "after": "test('source normalization rejects removed/duplicate hooks and keeps unrelated drift detection',()=>{for(const [path,strip,lines]of[['RemainingNingshouHalls',stripFanhuaRemaining,[remainingImport,remainingCall]],['FanhuaSouthFront',stripFanhuaFront,frontLines]]){const s=readXiangxuHistoricalSource('src/scene/palace/special/'+path+'.js','utf8');for(const line of lines){assert.throws(()=>strip(s.replace(line,'')));assert.throws(()=>strip(s+line))}assert.notEqual(strip(s+'// drift'),strip(s))}});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-fori-fanhua-stair/source-boundary.test.mjs",
+    "beforeSha256": "cd6810ff0b723cb362d2bbd7b1e0b82eedd1f901340c3e62a10f8d3b0065b9ce",
+    "afterSha256": "3ce113e5b11691613aa8a38d1ef38a71039784f4a1f2e0270e879151412b0780",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('one import and one standalone call are the entire ZoneBase delta from exact aba source',()=>{const source=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'),before=fs.readFileSync(new URL('./frozen/ZoneBase.aba.js',import.meta.url),'utf8');assert.equal(hash(before),'064393902a0ecb391700239c0003080134eed7cfdb01088a78799efb2f42534d');assert.equal(stripForiFanhuaDelta(source),before);for(const line of zoneLines){assert.throws(()=>stripForiFanhuaDelta(source.replace(line,'')));assert.throws(()=>stripForiFanhuaDelta(source+line))}assert.notEqual(hash(stripForiFanhuaDelta(source)+'unrelated edit'),hash(before))});\n",
+        "after": "test('one import and one standalone call are the entire ZoneBase delta from exact aba source',()=>{const source=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'),before=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.aba.js',import.meta.url),'utf8');assert.equal(hash(before),'064393902a0ecb391700239c0003080134eed7cfdb01088a78799efb2f42534d');assert.equal(stripForiFanhuaDelta(source),before);for(const line of zoneLines){assert.throws(()=>stripForiFanhuaDelta(source.replace(line,'')));assert.throws(()=>stripForiFanhuaDelta(source+line))}assert.notEqual(hash(stripForiFanhuaDelta(source)+'unrelated edit'),hash(before))});\n"
+      },
+      {
+        "before": "test('I29 retains all29 IDs and27 other records; both connected halls remain partial with zero whole acceptances',()=>{const read=n=>JSON.parse(fs.readFileSync(new URL('../../docs/current-state/'+n+'/I29-CODE-APPENDIX.json',import.meta.url))),old=read('r164-lushun-single-gate'),now=read('r164-fori-fanhua-stair');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(o=>o.id),old.objects.map(o=>o.id));assert.deepEqual(now.objects.filter(o=>![13,14].includes(o.ordinal)),old.objects.filter(o=>![13,14].includes(o.ordinal)));for(const i of[12,13])assert.equal(now.objects[i].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.deepEqual(now.classificationCounts,old.classificationCounts);assert.ok(now.objects.every(o=>o.wholeObjectAccepted===false));assert.equal(now.wholeObjectAcceptancesAdded,0)});\n",
+        "after": "test('I29 retains all29 IDs and27 other records; both connected halls remain partial with zero whole acceptances',()=>{const read=n=>JSON.parse(readXiangxuHistoricalSource(new URL('../../docs/current-state/'+n+'/I29-CODE-APPENDIX.json',import.meta.url))),old=read('r164-lushun-single-gate'),now=read('r164-fori-fanhua-stair');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(o=>o.id),old.objects.map(o=>o.id));assert.deepEqual(now.objects.filter(o=>![13,14].includes(o.ordinal)),old.objects.filter(o=>![13,14].includes(o.ordinal)));for(const i of[12,13])assert.equal(now.objects[i].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.deepEqual(now.classificationCounts,old.classificationCounts);assert.ok(now.objects.every(o=>o.wholeObjectAccepted===false));assert.equal(now.wholeObjectAcceptancesAdded,0)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-jingfu-wenfeng/identity-ledger.test.mjs",
+    "beforeSha256": "1ce13572e4b711af2c48e9d0e5ff3acf8e986e229d545975babab2f9e801ba3b",
+    "afterSha256": "6217c892cfcb5f7b76ee5adf5152277120b7e9c891b34bfbe78eee7a992d2800",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const read=p=>JSON.parse(fs.readFileSync(new URL('../../'+p,import.meta.url)));\n",
+        "after": "const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../'+p,import.meta.url)));\n"
+      },
+      {
+        "before": "test('only one import and one call extend the exact versioned 823 ZoneBase',()=>{const before=fs.readFileSync(new URL('../fixtures/r164-wenfeng-823/ZoneBase.source.js',import.meta.url),'utf8'),now=stripLianxiDelta(fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),'34466e969fe6e0323aa25d3579e22b71897e883eeb79920feec522b91d145ec4');const line=\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",hook='    buildJingfuWenfeng(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before);assert.notEqual(now.replace(line,'').replace(hook,'').replace('buildGate(item)','buildGate(wrong)'),before)});\n",
+        "after": "test('only one import and one call extend the exact versioned 823 ZoneBase',()=>{const before=readXiangxuHistoricalSource(new URL('../fixtures/r164-wenfeng-823/ZoneBase.source.js',import.meta.url),'utf8'),now=stripLianxiDelta(readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),'34466e969fe6e0323aa25d3579e22b71897e883eeb79920feec522b91d145ec4');const line=\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",hook='    buildJingfuWenfeng(this.kit,this.zoneJson);\\n';assert.equal(now.split(line).length,2);assert.equal(now.split(hook).length,2);assert.equal(now.replace(line,'').replace(hook,''),before);assert.notEqual(now.replace(line,'').replace(hook,'').replace('buildGate(item)','buildGate(wrong)'),before)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-lianxi-three-gates/identity-ledger.test.mjs",
+    "beforeSha256": "8b2f3376a74c1a12f7286928673ef18a29a9708cc0e2abaaee4a66fd84ef5d1e",
+    "afterSha256": "0d8cd96663b1ebbaa4c614028428e581fb0b6af124f32649cd923d22a961cd18",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const read=p=>JSON.parse(fs.readFileSync(new URL('../../'+p,import.meta.url)));\n",
+        "after": "const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../'+p,import.meta.url)));\n"
+      },
+      {
+        "before": "test('exact 521 runtime differs only by one import, own gate dispatch and east-wall adapter; original data unchanged',()=>{const before=fs.readFileSync(new URL('../fixtures/r164-lianxi-521/ZoneBase.source.js',import.meta.url),'utf8'),now=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'),rec=JSON.parse(fs.readFileSync(new URL('./source.json',import.meta.url)));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),rec.sha256);assert.equal(stripLianxiDelta(now),before);assert.notEqual(stripLianxiDelta(now.replace('buildGate(item)','buildGate(wrong)')),before);assert.throws(()=>stripLianxiDelta(now.replace('buildLianxiGate(this.kit','wrong(this.kit')));assert.deepEqual(fs.readFileSync(new URL('../../data/zones/ningshou.json',import.meta.url)),fs.readFileSync(new URL('../fixtures/r164-lianxi-521/ningshou.json',import.meta.url)))});\n",
+        "after": "test('exact 521 runtime differs only by one import, own gate dispatch and east-wall adapter; original data unchanged',()=>{const before=readXiangxuHistoricalSource(new URL('../fixtures/r164-lianxi-521/ZoneBase.source.js',import.meta.url),'utf8'),now=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8'),rec=JSON.parse(readXiangxuHistoricalSource(new URL('./source.json',import.meta.url)));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),rec.sha256);assert.equal(stripLianxiDelta(now),before);assert.notEqual(stripLianxiDelta(now.replace('buildGate(item)','buildGate(wrong)')),before);assert.throws(()=>stripLianxiDelta(now.replace('buildLianxiGate(this.kit','wrong(this.kit')));assert.deepEqual(readXiangxuHistoricalSource(new URL('../../data/zones/ningshou.json',import.meta.url)),readXiangxuHistoricalSource(new URL('../fixtures/r164-lianxi-521/ningshou.json',import.meta.url)))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-lushun-single-gate/source-boundary.test.mjs",
+    "beforeSha256": "79d2fa1f3825532ed6366ab3d7fd48da1fcfe0e2773a3ab9ed243822f4f80125",
+    "afterSha256": "5f23d4436f2b65660811957a4beec104eff0dcaadef009661a38647f54093b57",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const freeze=fs.readFileSync(new URL('./frozen/ZoneBase.bec.js',import.meta.url),'utf8'),source=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const freeze=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.bec.js',import.meta.url),'utf8'),source=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(fs.readFileSync(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-daohe-single-gate'),now=read('r164-lushun-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==22),before.objects.filter(x=>x.ordinal!==22));assert.equal(now.objects[21].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,1)});\n",
+        "after": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-daohe-single-gate'),now=read('r164-lushun-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==22),before.objects.filter(x=>x.ordinal!==22));assert.equal(now.objects[21].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-north-thirteen-houses/identity.test.mjs",
+    "beforeSha256": "692240732023562ef7b2d62f0f68c2bb7c27baf41c2e0ac4f53a751e15f087fa",
+    "afterSha256": "22f842c2cbdabe775a0449b4108a0c0a05bb7fc63f3f24d28fdabfc343550dc3",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const old=fs.readFileSync(new URL('./frozen/ZoneBase.0c5.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.0c5.js',import.meta.url),'utf8'),cur=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n",
+        "after": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=readXiangxuHistoricalSource(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-qingshou-north-halls/source.test.mjs",
+    "beforeSha256": "d963350c9a85d487aa3183f44608736b76827cc4f7731bbee3c146c4b80bbe92",
+    "afterSha256": "5f48eb058607a26a2df74552a525a2f70087077c857965deb07b96725e49b9ce",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen actual b421 source and all existing data/physics/profiles remain exact; only import plus single hook change existing runtime',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.b421.js',import.meta.url),'utf8'),old);assert.equal(stripQingshouNorthDelta(s),old);for(const p of['data/zones/ningshou.json','src/scene/palace/special/RemainingNingshouHalls.js','src/scene/palace/special/FanhuaStairContact.js','src/scene/palace/special/QingshouRaisedWalk.js','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','release.json'])assert.equal(fs.readFileSync(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n",
+        "after": "test('frozen actual b421 source and all existing data/physics/profiles remain exact; only import plus single hook change existing runtime',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.b421.js',import.meta.url),'utf8'),old);assert.equal(stripQingshouNorthDelta(s),old);for(const p of['data/zones/ningshou.json','src/scene/palace/special/RemainingNingshouHalls.js','src/scene/palace/special/FanhuaStairContact.js','src/scene/palace/special/QingshouRaisedWalk.js','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','release.json'])assert.equal(readXiangxuHistoricalSource(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('precise historical source normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripQingshouNorthDelta(s.replace(line,'')));assert.throws(()=>stripQingshouNorthDelta(s+line))}assert.notEqual(stripQingshouNorthDelta(s+'// drift'),stripQingshouNorthDelta(s))});\n",
+        "after": "test('precise historical source normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripQingshouNorthDelta(s.replace(line,'')));assert.throws(()=>stripQingshouNorthDelta(s+line))}assert.notEqual(stripQingshouNorthDelta(s+'// drift'),stripQingshouNorthDelta(s))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-qingshou-raised-walk/source.test.mjs",
+    "beforeSha256": "f800286af8db3ffddf179d779afad0a603d4a0db9ba6b6e545f5962ed8eecb13",
+    "afterSha256": "326c01a0f9e6acf7c7d57244348806c304eaaefb59d83ed6d6221548d9e3f0af",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('both exact frozen sources equal ee19 git objects; only one import and one call at each existing module',()=>{for(const[path,frozen,strip,lines]of[['src/scene/zones/ZoneBase.js','ZoneBase.ee19.js',stripQingshouZoneDelta,zoneLines],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.ee19.js',stripQingshouRemainingDelta,remainingLines]]){const now=fs.readFileSync(path,'utf8'),old=fs.readFileSync(new URL('./frozen/'+frozen,import.meta.url),'utf8');assert.equal(old,execFileSync('git',['show','ee19cd0d013735cf44075cc1b8c6f1d5c178f399:'+path],{encoding:'utf8'}));assert.equal(strip(now),old);for(const line of lines){assert.throws(()=>strip(now.replace(line,'')));assert.throws(()=>strip(now+line))}assert.notEqual(strip(now+'// unrelated drift'),old)}});\n",
+        "after": "test('both exact frozen sources equal ee19 git objects; only one import and one call at each existing module',()=>{for(const[path,frozen,strip,lines]of[['src/scene/zones/ZoneBase.js','ZoneBase.ee19.js',stripQingshouZoneDelta,zoneLines],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.ee19.js',stripQingshouRemainingDelta,remainingLines]]){const now=readXiangxuHistoricalSource(path,'utf8'),old=readXiangxuHistoricalSource(new URL('./frozen/'+frozen,import.meta.url),'utf8');assert.equal(old,execFileSync('git',['show','ee19cd0d013735cf44075cc1b8c6f1d5c178f399:'+path],{encoding:'utf8'}));assert.equal(strip(now),old);for(const line of lines){assert.throws(()=>strip(now.replace(line,'')));assert.throws(()=>strip(now+line))}assert.notEqual(strip(now+'// unrelated drift'),old)}});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-south-thirteen-houses/identity.test.mjs",
+    "beforeSha256": "8022626c91ef39e29ab6fb19748e7e4877e7234999dba3c40b6cd0a9b371858f",
+    "afterSha256": "e17e0c6c53b95d43247700b59ecf9f6d5e25ad2c02d6e608be9194748dd86f67",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const old=fs.readFileSync(new URL('./frozen/ZoneBase.b24.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.b24.js',import.meta.url),'utf8'),cur=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-suichu-platform-contact/source.test.mjs",
+    "beforeSha256": "4ee6d59cc6fda01609737e8d6789aa21460991a8df70c3a660cb79de959f7995",
+    "afterSha256": "9c2cea65a8258bc7389fc3981e536d74b47dcbbea347eb434ee55208d2d0c6eb",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen Steps/Remaining/Zone equal real1f6 blobs and only runtime addition is one bounded contact call',()=>{for(const[p,f]of[['src/scene/zones/ZoneBase.js','ZoneBase.1f6.js'],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.1f6.js'],['src/scene/palace/special/SuichuSouthSteps.js','SuichuSouthSteps.1f6.js']]){const before=execFileSync('git',['show',base+':'+p],{encoding:'utf8'}),now=fs.readFileSync(p,'utf8');assert.equal(fs.readFileSync(new URL('./frozen/'+f,import.meta.url),'utf8'),before);assert.equal(p.includes('SuichuSouthSteps')?stripDelta(now):p.includes('ZoneBase')?stripBaotaiDelta(now):stripCuishangRemaining(now),before)}for(const p of['src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/scene/palace/special/SuichuFrontBasins.js'])assert.equal(fs.readFileSync(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n",
+        "after": "test('frozen Steps/Remaining/Zone equal real1f6 blobs and only runtime addition is one bounded contact call',()=>{for(const[p,f]of[['src/scene/zones/ZoneBase.js','ZoneBase.1f6.js'],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.1f6.js'],['src/scene/palace/special/SuichuSouthSteps.js','SuichuSouthSteps.1f6.js']]){const before=execFileSync('git',['show',base+':'+p],{encoding:'utf8'}),now=readXiangxuHistoricalSource(p,'utf8');assert.equal(readXiangxuHistoricalSource(new URL('./frozen/'+f,import.meta.url),'utf8'),before);assert.equal(p.includes('SuichuSouthSteps')?stripDelta(now):p.includes('ZoneBase')?stripBaotaiDelta(now):stripCuishangRemaining(now),before)}for(const p of['src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','src/scene/palace/special/SuichuFrontBasins.js'])assert.equal(readXiangxuHistoricalSource(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('source normalization rejects missing/duplicate contact and retains detection of unrelated runtime drift',()=>{const s=fs.readFileSync('src/scene/palace/special/SuichuSouthSteps.js','utf8');assert.throws(()=>stripDelta(s.replace(delta,'')));assert.throws(()=>stripDelta(s+delta));assert.notEqual(stripDelta(s+'// drift'),stripDelta(s))});\n",
+        "after": "test('source normalization rejects missing/duplicate contact and retains detection of unrelated runtime drift',()=>{const s=readXiangxuHistoricalSource('src/scene/palace/special/SuichuSouthSteps.js','utf8');assert.throws(()=>stripDelta(s.replace(delta,'')));assert.throws(()=>stripDelta(s+delta));assert.notEqual(stripDelta(s+'// drift'),stripDelta(s))});\n"
+      },
+      {
+        "before": "test('older three-entry baseline now freezes the same actual pre-contact Steps rather than importing drifting runtime',()=>{assert.equal(execFileSync('git',['show','d84a1639476ee52f5a0fdb6a46c27f6b1886bd37:src/scene/palace/special/SuichuSouthSteps.js'],{encoding:'utf8'}),fs.readFileSync(new URL('./frozen/SuichuSouthSteps.1f6.js',import.meta.url),'utf8'));const b=fs.readFileSync('tests/r164-three-entry-navigation/before.mjs','utf8');assert.match(b,/SuichuSouthSteps\\.js'\\)\\?suichuBeforeURL/)});\n",
+        "after": "test('older three-entry baseline now freezes the same actual pre-contact Steps rather than importing drifting runtime',()=>{assert.equal(execFileSync('git',['show','d84a1639476ee52f5a0fdb6a46c27f6b1886bd37:src/scene/palace/special/SuichuSouthSteps.js'],{encoding:'utf8'}),readXiangxuHistoricalSource(new URL('./frozen/SuichuSouthSteps.1f6.js',import.meta.url),'utf8'));const b=readXiangxuHistoricalSource('tests/r164-three-entry-navigation/before.mjs','utf8');assert.match(b,/SuichuSouthSteps\\.js'\\)\\?suichuBeforeURL/)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-thirteen-entry/identity.test.mjs",
+    "beforeSha256": "d3d2a58413f8f65eab599d8ad522878e09484e9f12415442971efc95cc433c66",
+    "afterSha256": "caec07af55a0d3989a062d6e7f45f9bdb682f58c469890b9a17418c80e8cc5e5",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const old=fs.readFileSync(new URL('./frozen/ZoneBase.98f.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.98f.js',import.meta.url),'utf8'),cur=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n",
+        "after": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=readXiangxuHistoricalSource(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n"
+      },
+      {
+        "before": "test('the entire uploaded North component remains exact 98f bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/NorthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8')});\n",
+        "after": "test('the entire uploaded North component remains exact 98f bytes',()=>{const s=readXiangxuHistoricalSource(new URL('../../src/scene/palace/special/NorthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8')});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-three-entry-navigation/source-ledger.test.mjs",
+    "beforeSha256": "1099bddb68636c70bd6226bf66d0f222274f84459335a04869d9e41677ed41f4",
+    "afterSha256": "e39fec76997ae4c7f4b2031133f09820c274ce0bf758ad0ce48918f178817682",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen full ZoneBase and Remaining source equal exact d84 Git objects; public physics/Teleport unchanged',()=>{for(const[p,f]of[['src/scene/zones/ZoneBase.js','ZoneBase.d84.js'],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.d84.js']]){const old=execFileSync('git',['show',base+':'+p],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/'+f,import.meta.url),'utf8'),old);const now=fs.readFileSync(p,'utf8');assert.equal(p.includes('Remaining')?stripThreeApproachDelta(now):stripBaotaiDelta(now),old)}for(const p of['src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js'])assert.equal(fs.readFileSync(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n",
+        "after": "test('frozen full ZoneBase and Remaining source equal exact d84 Git objects; public physics/Teleport unchanged',()=>{for(const[p,f]of[['src/scene/zones/ZoneBase.js','ZoneBase.d84.js'],['src/scene/palace/special/RemainingNingshouHalls.js','RemainingNingshouHalls.d84.js']]){const old=execFileSync('git',['show',base+':'+p],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/'+f,import.meta.url),'utf8'),old);const now=readXiangxuHistoricalSource(p,'utf8');assert.equal(p.includes('Remaining')?stripThreeApproachDelta(now):stripBaotaiDelta(now),old)}for(const p of['src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js'])assert.equal(readXiangxuHistoricalSource(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('I29 updates only two existing rows, retains29 IDs/24 partial classifications and zero whole acceptance; Juanqin not invented as new I29 row',()=>{const read=n=>JSON.parse(fs.readFileSync('docs/current-state/'+n+'/I29-CODE-APPENDIX.json')),before=read('r164-fori-fanhua-stair'),now=read('r164-three-entry-navigation');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(o=>o.id),before.objects.map(o=>o.id));assert.deepEqual(now.classificationCounts,before.classificationCounts);assert.deepEqual(now.objects.filter(o=>![8,13].includes(o.ordinal)),before.objects.filter(o=>![8,13].includes(o.ordinal)));assert.ok(now.objects.every(o=>o.wholeObjectAccepted===false));assert.equal(now.wholeObjectAcceptancesAdded,0);assert.match(now.corrections.at(-1),/梵华、遂初、萃赏/)});\n",
+        "after": "test('I29 updates only two existing rows, retains29 IDs/24 partial classifications and zero whole acceptance; Juanqin not invented as new I29 row',()=>{const read=n=>JSON.parse(readXiangxuHistoricalSource('docs/current-state/'+n+'/I29-CODE-APPENDIX.json')),before=read('r164-fori-fanhua-stair'),now=read('r164-three-entry-navigation');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(o=>o.id),before.objects.map(o=>o.id));assert.deepEqual(now.classificationCounts,before.classificationCounts);assert.deepEqual(now.objects.filter(o=>![8,13].includes(o.ordinal)),before.objects.filter(o=>![8,13].includes(o.ordinal)));assert.ok(now.objects.every(o=>o.wholeObjectAccepted===false));assert.equal(now.wholeObjectAcceptancesAdded,0);assert.match(now.corrections.at(-1),/梵华、遂初、萃赏/)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-yangxing-ceiling/identity-ledger.test.mjs",
+    "beforeSha256": "5a183bfa5d2d70fcae77c1636a1871a7f6507ce0932691247a30581543c919d4",
+    "afterSha256": "ea8835420e5e0259c85b374db42383436f571f008f9ba1974f18cebcb6c4c00b",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const read=p=>JSON.parse(fs.readFileSync(new URL('../../'+p,import.meta.url)));\n",
+        "after": "const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../'+p,import.meta.url)));\n"
+      },
+      {
+        "before": "test('only one import and one gate hook extend exact versioned 675 ZoneBase',()=>{const current=stripLianxiDelta(fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n',''),before=fs.readFileSync(new URL('../fixtures/r164-yangxing-675/ZoneBase.source.js',import.meta.url),'utf8'),record=JSON.parse(fs.readFileSync(new URL('./source.json',import.meta.url)));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),record.sha256);const line=\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",hook='    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n';assert.equal(current.split(line).length,2);assert.equal(current.split(hook).length,2);assert.equal(current.replace(line,'').replace(hook,''),before);assert.notEqual(current.replace(line,'').replace(hook,'').replace('buildGate(item)','buildGate(wrong)'),before)});\n",
+        "after": "test('only one import and one gate hook extend exact versioned 675 ZoneBase',()=>{const current=stripLianxiDelta(readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8')).replace(\"import {buildJingfuWenfeng} from '../palace/special/JingfuWenfeng.js';\\n\",'').replace('    buildJingfuWenfeng(this.kit,this.zoneJson);\\n',''),before=readXiangxuHistoricalSource(new URL('../fixtures/r164-yangxing-675/ZoneBase.source.js',import.meta.url),'utf8'),record=JSON.parse(readXiangxuHistoricalSource(new URL('./source.json',import.meta.url)));assert.equal(crypto.createHash('sha256').update(before).digest('hex'),record.sha256);const line=\"import {buildYangxingFrontCeiling} from '../palace/special/YangxingFrontCeiling.js';\\n\",hook='    buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});\\n';assert.equal(current.split(line).length,2);assert.equal(current.split(hook).length,2);assert.equal(current.replace(line,'').replace(hook,''),before);assert.notEqual(current.replace(line,'').replace(hook,'').replace('buildGate(item)','buildGate(wrong)'),before)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-yihe-jingqi-connector/identity.test.mjs",
+    "beforeSha256": "b607696e3b6f7c9f7bf1c57846500d34446dc3085086426b50e4b656af8b341d",
+    "afterSha256": "4bf4f9869329cb879c22a05b8279c05382c7e01a16e4a484081f906e05fc66c6",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const old=fs.readFileSync(new URL('./frozen/ZoneBase.9e686.js',import.meta.url),'utf8'),cur=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.9e686.js',import.meta.url),'utf8'),cur=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n",
+        "after": "test('the entire shipped South component remains exact 0c5 bytes',()=>{const s=readXiangxuHistoricalSource(new URL('../../src/scene/palace/special/SouthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'bf658e5893465205bf5531e96505aa4d5d2f54937f884083fc734d3d3f8d0cea')});\n"
+      },
+      {
+        "before": "test('the entire uploaded North component remains exact 98f bytes',()=>{const s=fs.readFileSync(new URL('../../src/scene/palace/special/NorthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8')});\n",
+        "after": "test('the entire uploaded North component remains exact 98f bytes',()=>{const s=readXiangxuHistoricalSource(new URL('../../src/scene/palace/special/NorthThirteenHouses.js',import.meta.url));assert.equal(crypto.createHash('sha256').update(s).digest('hex'),'4c458cbecfd5e9974b355f77c2e96064eeeca6a882a983583b2f8bf0217630e8')});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r164-zhenshun-single-gate/source-boundary.test.mjs",
+    "beforeSha256": "37d4581d67ca93d248c4dc7390392b4483b9fdd031b82fb41a55d714e1e3762d",
+    "afterSha256": "1b1ff3d092af3c21c95ae64751d7775d1ed71a196b1f57b7bcbdf0cfd3246a26",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "const freeze=fs.readFileSync(new URL('./frozen/ZoneBase.2a1.js',import.meta.url),'utf8'),source=fs.readFileSync(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n",
+        "after": "const freeze=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.2a1.js',import.meta.url),'utf8'),source=readXiangxuHistoricalSource(new URL('../../src/scene/zones/ZoneBase.js',import.meta.url),'utf8');\n"
+      },
+      {
+        "before": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(fs.readFileSync(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-qingshou-raised-walk'),now=read('r164-zhenshun-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==26),before.objects.filter(x=>x.ordinal!==26));assert.equal(now.objects[25].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,3)});\n",
+        "after": "test('I29 keeps all original IDs and 28 other entries; own entry remains partial and no whole acceptance',()=>{const read=p=>JSON.parse(readXiangxuHistoricalSource(new URL('../../docs/current-state/'+p+'/I29-CODE-APPENDIX.json',import.meta.url)));const before=read('r164-qingshou-raised-walk'),now=read('r164-zhenshun-single-gate');assert.equal(now.objects.length,29);assert.deepEqual(now.objects.map(x=>x.id),before.objects.map(x=>x.id));assert.deepEqual(now.objects.filter(x=>x.ordinal!==26),before.objects.filter(x=>x.ordinal!==26));assert.equal(now.objects[25].classification,'EXPLICIT_PARTIAL_IMPLEMENTATION');assert.ok(now.objects.every(x=>x.wholeObjectAccepted===false));const counts={};for(const x of now.objects)counts[x.classification]=(counts[x.classification]||0)+1;assert.deepEqual(now.classificationCounts,counts);assert.equal(counts.GENERIC_FITTED_RUNTIME,3)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-chenghuang-entry/source.test.mjs",
+    "beforeSha256": "ccf68799371f8850882428a6e582b758fee95a8b0cfe899703b511ddefdc6531",
+    "afterSha256": "dd4774b3b38f433b1db3a85e18d28b2935aca2587145fad2e9bf2192bf318308",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import{readCompatibleSource as readTishun}from'../r165-tishun-south-beam/source-boundary.mjs';\n",
+        "after": "import {normalizeTishunSource as e46BoundaryNormalizeTishunSource} from '../r165-tishun-south-beam/source-boundary.mjs';\nconst readTishun=path=>e46BoundaryNormalizeTishunSource(path,readXiangxuHistoricalSource(path));\n"
+      },
+      {
+        "before": "test('only exact private L11 import/hook150/call differs from public9a; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readTishun(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/zones/ZoneBase.js']);const s=readTishun('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildChenghuangGlazedEntry} from '../palace/special/ChenghuangGlazedEntry.js';\\n\",\"    yield {phase:'hook',index:150};\\n\",\"    buildChenghuangGlazedEntry(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,fs.readFileSync(new URL('./frozen/ZoneBase.9a.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildDanyuanElevenBayHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,fs.readFileSync(record.files[1].path)),null)});\n",
+        "after": "test('only exact private L11 import/hook150/call differs from public9a; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readTishun(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/zones/ZoneBase.js']);const s=readTishun('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildChenghuangGlazedEntry} from '../palace/special/ChenghuangGlazedEntry.js';\\n\",\"    yield {phase:'hook',index:150};\\n\",\"    buildChenghuangGlazedEntry(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.9a.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildDanyuanElevenBayHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readXiangxuHistoricalSource(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=fs.readFileSync(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-9a.json',import.meta.url))),'a18e98cff208ff0738268cb387a87d5aef711d1b0c94ed08b7767688105e42a0');assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.9a.js',import.meta.url))),'d7fb4c0e86d5f4d9d3f1ac66e838af9043c9f82a9cbbf7315bca43e2fd8b8ed9')});\n",
+        "after": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readXiangxuHistoricalSource(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-9a.json',import.meta.url))),'a18e98cff208ff0738268cb387a87d5aef711d1b0c94ed08b7767688105e42a0');assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.9a.js',import.meta.url))),'d7fb4c0e86d5f4d9d3f1ac66e838af9043c9f82a9cbbf7315bca43e2fd8b8ed9')});\n"
+      },
+      {
+        "before": "test('legacy conditional Xuhui entry recognizes only exact L11 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8'),old=fs.readFileSync(new URL('./frozen/ZoneBase.9a.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n",
+        "after": "test('legacy conditional Xuhui entry recognizes only exact L11 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8'),old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.9a.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-chongjing-allocation/source.test.mjs",
+    "beforeSha256": "0f21489c01d9c66643ad2da1db26bf3e7d463b8463381c086140ce9d320c1a36",
+    "afterSha256": "8e5e1eb24065995ec814a708968699efe6a18a51d9afb865ac8fedba73f80a30",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('exact public d4c4 frozen source and all other tracked runtime/data remain byte identical',()=>{for(const p of execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))assert.equal((p==='src/scene/zones/ZoneBase.js'?Buffer.from(stripXiefangDelta(stripBilingualDelta(p,fs.readFileSync(p,'utf8')))):normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p)))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(fs.readFileSync(new URL('./frozen/ChongjingHall.97af.js',import.meta.url)).compare(execFileSync('git',['show',record.base+':'+record.path])),0)});\n",
+        "after": "test('exact public d4c4 frozen source and all other tracked runtime/data remain byte identical',()=>{for(const p of execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))assert.equal((p==='src/scene/zones/ZoneBase.js'?Buffer.from(stripXiefangDelta(stripBilingualDelta(p,readXiangxuHistoricalSource(p,'utf8')))):normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p)))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ChongjingHall.97af.js',import.meta.url)).compare(execFileSync('git',['show',record.base+':'+record.path])),0)});\n"
+      },
+      {
+        "before": "test('source normalization refuses old/missing/arbitrary modifications and does not hide other files',()=>{const old=fs.readFileSync(new URL('./frozen/ChongjingHall.97af.js',import.meta.url)),now=fs.readFileSync(record.path);for(const wrong of [old,now.subarray(1),Buffer.concat([now,Buffer.from('// drift')])])assert.throws(()=>normalizeChongjingSource(record.path,wrong));assert.equal(normalizeChongjingSource(record.path,now).compare(old),0);const unrelated=Buffer.from('arbitrary unrelated source');assert.equal(normalizeChongjingSource('src/untouched.js',unrelated),unrelated)});\n",
+        "after": "test('source normalization refuses old/missing/arbitrary modifications and does not hide other files',()=>{const old=readXiangxuHistoricalSource(new URL('./frozen/ChongjingHall.97af.js',import.meta.url)),now=readXiangxuHistoricalSource(record.path);for(const wrong of [old,now.subarray(1),Buffer.concat([now,Buffer.from('// drift')])])assert.throws(()=>normalizeChongjingSource(record.path,wrong));assert.equal(normalizeChongjingSource(record.path,now).compare(old),0);const unrelated=Buffer.from('arbitrary unrelated source');assert.equal(normalizeChongjingSource('src/untouched.js',unrelated),unrelated)});\n"
+      },
+      {
+        "before": "test('only the exact three Xiefang ZoneBase additions normalize; missing/repeated/unrelated changes remain detectable',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8'),old=execFileSync('git',['show',record.base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(stripXiefangDelta(s),old);for(const line of zoneLines){assert.throws(()=>stripXiefangDelta(s.replace(line,'')));assert.throws(()=>stripXiefangDelta(s+line))}assert.notEqual(stripXiefangDelta(s+'// unrelated drift'),old)});\n",
+        "after": "test('only the exact three Xiefang ZoneBase additions normalize; missing/repeated/unrelated changes remain detectable',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8'),old=execFileSync('git',['show',record.base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(stripXiefangDelta(s),old);for(const line of zoneLines){assert.throws(()=>stripXiefangDelta(s.replace(line,'')));assert.throws(()=>stripXiefangDelta(s+line))}assert.notEqual(stripXiefangDelta(s+'// unrelated drift'),old)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-dailou-waiting-house/source.test.mjs",
+    "beforeSha256": "d0c67cebedf4b338e7bd755f44b553b882cd8b57efdd658f6bf232d5d65ce159",
+    "afterSha256": "e9aa899b2fa92b026061ec63a8d89e919ee04f98038a544c5d29c177ed19c621",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('public372 complete runtime/data blobs differ only by the exact named hook152/private D14 helper, with reachable public baseline',()=>{assert.equal(record.base,base);git('cat-file','-e',base+'^{commit}');assert.equal(git('rev-parse',base+'^{tree}').toString().trim(),'01e6dcbf9f0877cf24bdf632faa098fbe60f4f0a');const old=git('ls-tree','-r','--name-only',base,'src','data','main.js','release.json').toString().trim().split('\\n'),now=historicalBilingualPaths([...new Set(git('ls-files','-co','--exclude-standard','src','data','main.js','release.json').toString().trim().split('\\n'))]);for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(git('show',base+':'+p)),0,p);assert.deepEqual(now.filter(p=>!old.includes(p)),['src/scene/palace/special/DailouWaitingHouse.js']);assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/DailouWaitingHouse.js','src/scene/zones/ZoneBase.js']);let current=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');const lines=[\"import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';\\n\",\"    yield {phase:'hook',index:152};\\n\",\"    buildDailouWaitingHouse(this.kit,this.zoneJson);\\n\"];assert.ok(current.includes(\"    buildTishunSouthBeam(this.kit,this.zoneJson);\\n\"+lines[1]+lines[2]+\"    yield {phase:'merge',index:0};\\n\"));for(const l of lines){assert.equal(current.split(l).length,2);current=current.replace(l,'')}assert.equal(current,git('show',base+':src/scene/zones/ZoneBase.js').toString());assert.equal(norm(record.files[1].path,fs.readFileSync(record.files[1].path)),null)});\n",
+        "after": "test('public372 complete runtime/data blobs differ only by the exact named hook152/private D14 helper, with reachable public baseline',()=>{assert.equal(record.base,base);git('cat-file','-e',base+'^{commit}');assert.equal(git('rev-parse',base+'^{tree}').toString().trim(),'01e6dcbf9f0877cf24bdf632faa098fbe60f4f0a');const old=git('ls-tree','-r','--name-only',base,'src','data','main.js','release.json').toString().trim().split('\\n'),now=historicalBilingualPaths([...new Set(git('ls-files','-co','--exclude-standard','src','data','main.js','release.json').toString().trim().split('\\n'))]);for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(git('show',base+':'+p)),0,p);assert.deepEqual(now.filter(p=>!old.includes(p)),['src/scene/palace/special/DailouWaitingHouse.js']);assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/DailouWaitingHouse.js','src/scene/zones/ZoneBase.js']);let current=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');const lines=[\"import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';\\n\",\"    yield {phase:'hook',index:152};\\n\",\"    buildDailouWaitingHouse(this.kit,this.zoneJson);\\n\"];assert.ok(current.includes(\"    buildTishunSouthBeam(this.kit,this.zoneJson);\\n\"+lines[1]+lines[2]+\"    yield {phase:'merge',index:0};\\n\"));for(const l of lines){assert.equal(current.split(l).length,2);current=current.replace(l,'')}assert.equal(current,git('show',base+':src/scene/zones/ZoneBase.js').toString());assert.equal(norm(record.files[1].path,readXiangxuHistoricalSource(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('source normalization rejects truncation/append/swapped payloads and preserves unrelated actual drift and immutable baseline evidence',()=>{for(const r of record.files){const b=fs.readFileSync(r.path);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// unrelated actual drift')])])assert.throws(()=>norm(r.path,wrong));for(const q of record.files.filter(q=>q!==r))assert.throws(()=>norm(q.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/axis-courts.json','data/architecture/building-fidelity.json']){const b=Buffer.concat([fs.readFileSync(p),Buffer.from(' ')]);assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-fef5.json',import.meta.url))),'634e8a2ec7baf5ad4d8e0fb3734159d1e14320e1cc6469cc35b88dd3388c3ba7');});\n",
+        "after": "test('source normalization rejects truncation/append/swapped payloads and preserves unrelated actual drift and immutable baseline evidence',()=>{for(const r of record.files){const b=readXiangxuHistoricalSource(r.path);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// unrelated actual drift')])])assert.throws(()=>norm(r.path,wrong));for(const q of record.files.filter(q=>q!==r))assert.throws(()=>norm(q.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/axis-courts.json','data/architecture/building-fidelity.json']){const b=Buffer.concat([readXiangxuHistoricalSource(p),Buffer.from(' ')]);assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-fef5.json',import.meta.url))),'634e8a2ec7baf5ad4d8e0fb3734159d1e14320e1cc6469cc35b88dd3388c3ba7');});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-danyuan-eleven-bay/source.test.mjs",
+    "beforeSha256": "5b878c6f4577ae935b8eb94dec950007409b0bc37c1e5ca15c40d85c480215cf",
+    "afterSha256": "581164fe7b047dd9f9f0856b4fb11b9503a578df22dad7375793fd4ee347a7cb",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-chenghuang-entry/source-boundary.mjs';\n",
+        "after": "import {normalizeChenghuangSource as e46BoundaryNormalizeChenghuangSource} from '../r165-chenghuang-entry/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeChenghuangSource(path,readXiangxuHistoricalSource(path));\n"
+      },
+      {
+        "before": "test('only exact private H30 import/hook149/call differs from public93d; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildDanyuanElevenBayHall} from '../palace/special/DanyuanElevenBayHall.js';\\n\",\"    yield {phase:'hook',index:149};\\n\",\"    buildDanyuanElevenBayHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,fs.readFileSync(new URL('./frozen/ZoneBase.93d.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildZhongzhengMainHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readLive(record.files[1].path)),null)});\n",
+        "after": "test('only exact private H30 import/hook149/call differs from public93d; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildDanyuanElevenBayHall} from '../palace/special/DanyuanElevenBayHall.js';\\n\",\"    yield {phase:'hook',index:149};\\n\",\"    buildDanyuanElevenBayHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.93d.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildZhongzhengMainHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readLive(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-93d.json',import.meta.url))),'d1c1023b97706f688d8052e064687a652c43e82211cf2dca5fb03d860784523a');assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.93d.js',import.meta.url))),'723ef2d31338a4209ea5e73f1a78868327fc59965de2661e91c96ff21f50886b')});\n",
+        "after": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-93d.json',import.meta.url))),'d1c1023b97706f688d8052e064687a652c43e82211cf2dca5fb03d860784523a');assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.93d.js',import.meta.url))),'723ef2d31338a4209ea5e73f1a78868327fc59965de2661e91c96ff21f50886b')});\n"
+      },
+      {
+        "before": "test('legacy conditional Xuhui entry recognizes only exact H30 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8'),old=fs.readFileSync(new URL('./frozen/ZoneBase.93d.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n",
+        "after": "test('legacy conditional Xuhui entry recognizes only exact H30 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8'),old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.93d.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-fuyi-three-bay/source.test.mjs",
+    "beforeSha256": "e22a0a7677741f03790c070e6f7cfa87a34726567a7100637951e899358942c1",
+    "afterSha256": "5ee11768e9d45cdfd3503d7caaef3ffde3fbfdb09b5198411a31fbf4e6079db6",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';\n",
+        "after": "import {normalizeCompanionSource as e46BoundaryNormalizeCompanionSource} from '../r165-yangxin-companions/source-boundary.mjs';\nimport {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeCompanionSource(path,e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path)));\n"
+      },
+      {
+        "before": "  assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null);\n",
+        "after": "  assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',readXiangxuHistoricalSource('src/scene/palace/special/XuanshouSouthFront.js')),null);\n"
+      },
+      {
+        "before": "  assert.equal(norm('src/scene/palace/special/FuyiThreeBay.js',fs.readFileSync('src/scene/palace/special/FuyiThreeBay.js')),null);\n",
+        "after": "  assert.equal(norm('src/scene/palace/special/FuyiThreeBay.js',readXiangxuHistoricalSource('src/scene/palace/special/FuyiThreeBay.js')),null);\n"
+      },
+      {
+        "before": "  assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.ae5.js',import.meta.url))),prior.before);\n",
+        "after": "  assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.ae5.js',import.meta.url))),prior.before);\n"
+      },
+      {
+        "before": "  assert.equal(sha(fs.readFileSync(new URL('./baseline-ae5.json',import.meta.url))),'1fc443f49f68e1b92d1f415cca5db04b13123eab3e247e8f8792d82536ae53ce');\n",
+        "after": "  assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-ae5.json',import.meta.url))),'1fc443f49f68e1b92d1f415cca5db04b13123eab3e247e8f8792d82536ae53ce');\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-guhua-roof/source.test.mjs",
+    "beforeSha256": "6cc5fb6942779f2b21ae1bffbf46f070c0d2bbb35df92d5575903c3853cfc319",
+    "afterSha256": "00db334b225355fd1b2183c5cf4d0db4d4b74a7568cdc02fe66bf013cb95c8ac",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';\n",
+        "after": "import {normalizeCompanionSource as e46BoundaryNormalizeCompanionSource} from '../r165-yangxin-companions/source-boundary.mjs';\nimport {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeCompanionSource(path,e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path)));\n"
+      },
+      {
+        "before": "test('every public ad0 runtime/data byte stays exact except the independently byte-pinned Guhua, K19 and exact K18/L3 deltas',()=>{for(const p of files())assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,normalizeWatchSource(p,stripBilingualDelta(p,readLive(p)))))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);const now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(p=>!files().includes(p)).sort(),[...Object.keys(record.added),'src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(files().every(p=>now.includes(p)));assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',fs.readFileSync('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(record.added))assert.equal(sha(readLive(p)),h);assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null);for(const[p,row]of Object.entries(record.modified))assert.equal(sha(execFileSync('git',['show',record.base+':'+p])),row.before)});\n",
+        "after": "test('every public ad0 runtime/data byte stays exact except the independently byte-pinned Guhua, K19 and exact K18/L3 deltas',()=>{for(const p of files())assert.equal(normalizeXuanshouSource(p,normalizeGuhuaSource(p,normalizeFuyiSource(p,normalizeWatchSource(p,stripBilingualDelta(p,readLive(p)))))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);const now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(p=>!files().includes(p)).sort(),[...Object.keys(record.added),'src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(files().every(p=>now.includes(p)));assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',readXiangxuHistoricalSource('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(record.added))assert.equal(sha(readLive(p)),h);assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',readXiangxuHistoricalSource('src/scene/palace/special/XuanshouSouthFront.js')),null);for(const[p,row]of Object.entries(record.modified))assert.equal(sha(execFileSync('git',['show',record.base+':'+p])),row.before)});\n"
+      },
+      {
+        "before": "test('exact normalization rejects old/missing/truncated/drifted Guhua bytes and does not hide unrelated mesh/physics source drift',()=>{for(const[p,row]of Object.entries(record.modified)){const now=readLive(p),old=fs.readFileSync(new URL('./frozen/'+row.frozen,import.meta.url));for(const wrong of[old,now.subarray(1),Buffer.concat([now,Buffer.from('//drift')])])assert.throws(()=>normalizeGuhuaSource(p,wrong));assert.equal(normalizeGuhuaSource(p,now).compare(old),0)}const drift=Buffer.from('// unrelated contact/source drift');for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/ningshou.json'])assert.equal(normalizeGuhuaSource(p,drift),drift)});\n",
+        "after": "test('exact normalization rejects old/missing/truncated/drifted Guhua bytes and does not hide unrelated mesh/physics source drift',()=>{for(const[p,row]of Object.entries(record.modified)){const now=readLive(p),old=readXiangxuHistoricalSource(new URL('./frozen/'+row.frozen,import.meta.url));for(const wrong of[old,now.subarray(1),Buffer.concat([now,Buffer.from('//drift')])])assert.throws(()=>normalizeGuhuaSource(p,wrong));assert.equal(normalizeGuhuaSource(p,now).compare(old),0)}const drift=Buffer.from('// unrelated contact/source drift');for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/ningshou.json'])assert.equal(normalizeGuhuaSource(p,drift),drift)});\n"
+      },
+      {
+        "before": "test('only exact current Guhua roof registry leaves change; every other building and metadata value is preserved',()=>{const p='data/architecture/building-fidelity.json',old=JSON.parse(fs.readFileSync(new URL('./frozen/building-fidelity.ad0.json',import.meta.url))),now=JSON.parse(readLive(p));const walk=(a,b,path='')=>{if(JSON.stringify(a)===JSON.stringify(b))return[];if(typeof a!=='object'||a===null||typeof b!=='object'||b===null)return[path];assert.deepEqual(Object.keys(a),Object.keys(b));return Object.keys(a).flatMap(k=>walk(a[k],b[k],path+'/'+k))};const paths=walk(old,now);assert.equal(paths.length,4);const oldRows=Object.values(old).find(Array.isArray)??old;const find=(o)=>{if(o&&typeof o==='object'){if(o.name==='古华轩')return o;for(const v of Object.values(o)){const r=find(v);if(r)return r}}};const a=find(old),b=find(now);a.exterior.unresolved[0]=b.exterior.unresolved[0];a.claims[2]=b.claims[2];a.publicNote=b.publicNote;assert.deepEqual(now,old);assert.equal(b.claims[2].implemented,true);assert.equal(b.validation.visual,'not-verified');assert.equal(b.exterior.accepted,false)});\n",
+        "after": "test('only exact current Guhua roof registry leaves change; every other building and metadata value is preserved',()=>{const p='data/architecture/building-fidelity.json',old=JSON.parse(readXiangxuHistoricalSource(new URL('./frozen/building-fidelity.ad0.json',import.meta.url))),now=JSON.parse(readLive(p));const walk=(a,b,path='')=>{if(JSON.stringify(a)===JSON.stringify(b))return[];if(typeof a!=='object'||a===null||typeof b!=='object'||b===null)return[path];assert.deepEqual(Object.keys(a),Object.keys(b));return Object.keys(a).flatMap(k=>walk(a[k],b[k],path+'/'+k))};const paths=walk(old,now);assert.equal(paths.length,4);const oldRows=Object.values(old).find(Array.isArray)??old;const find=(o)=>{if(o&&typeof o==='object'){if(o.name==='古华轩')return o;for(const v of Object.values(o)){const r=find(v);if(r)return r}}};const a=find(old),b=find(now);a.exterior.unresolved[0]=b.exterior.unresolved[0];a.claims[2]=b.claims[2];a.publicNote=b.publicNote;assert.deepEqual(now,old);assert.equal(b.claims[2].implemented,true);assert.equal(b.validation.visual,'not-verified');assert.equal(b.exterior.accepted,false)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-juting-main-pavilion/source.test.mjs",
+    "beforeSha256": "de452a8ebec31c08eb584e54fd4193cfb41a90c7ee346f1c24207432b53b7721",
+    "afterSha256": "2bb25ce190dd0783278e9816366a58281bd8af640ec2e651fe4f917d66e5204b",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every 8230 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.8230.js',import.meta.url),'utf8'),old);assert.equal(stripJutingDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every 8230 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.8230.js',import.meta.url),'utf8'),old);assert.equal(stripJutingDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook137 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripJutingDelta(s.replace(line,'')));assert.throws(()=>stripJutingDelta(s+line))}assert.notEqual(stripJutingDelta(s+'// drift'),stripJutingDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:137/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook137 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripJutingDelta(s.replace(line,'')));assert.throws(()=>stripJutingDelta(s+line))}assert.notEqual(stripJutingDelta(s+'// drift'),stripJutingDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:137/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-lutai-rock-terrace/source.test.mjs",
+    "beforeSha256": "178a2d7f25ee5843fcfcce5c1802ec37ddd56d9506def9d05d45cf95c0c6f8ad",
+    "afterSha256": "d4c12f0b37d509163e0661f5e927efd9ef941559b13fb713aa920079c9363189",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every da2c runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.da2c.js',import.meta.url),'utf8'),old);assert.equal(stripLutaiDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every da2c runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.da2c.js',import.meta.url),'utf8'),old);assert.equal(stripLutaiDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook139 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripLutaiDelta(s.replace(line,'')));assert.throws(()=>stripLutaiDelta(s+line))}assert.notEqual(stripLutaiDelta(s+'// drift'),stripLutaiDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:139/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook139 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripLutaiDelta(s.replace(line,'')));assert.throws(()=>stripLutaiDelta(s+line))}assert.notEqual(stripLutaiDelta(s+'// drift'),stripLutaiDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:139/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-roof-joint-bounds/source.test.mjs",
+    "beforeSha256": "e330a6ce509c48d7181128a10e43928dec6c16496384dc538764023e45e38ee0",
+    "afterSha256": "40845bf69970d73dfa6924a4ef2a78b8cd7304d5e1579e5904f4ca1f9387761f",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('only exact cache helper changes runtime/data and the three source consumers plus all safety/zone code remain exact adc',()=>{for(const p of execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))assert.equal(normalizeRoofJointSource(p,p==='src/scene/zones/ZoneBase.js'?Buffer.from(stripZhuxiangDelta(stripBilingualDelta(p,fs.readFileSync(p,'utf8')))):stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(fs.readFileSync(new URL('./frozen/CanopyRoofSurfaceJoint.adc.js',import.meta.url)).compare(execFileSync('git',['show',record.base+':'+record.path])),0)});\n",
+        "after": "test('only exact cache helper changes runtime/data and the three source consumers plus all safety/zone code remain exact adc',()=>{for(const p of execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'))assert.equal(normalizeRoofJointSource(p,p==='src/scene/zones/ZoneBase.js'?Buffer.from(stripZhuxiangDelta(stripBilingualDelta(p,readXiangxuHistoricalSource(p,'utf8')))):stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',record.base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(readXiangxuHistoricalSource(new URL('./frozen/CanopyRoofSurfaceJoint.adc.js',import.meta.url)).compare(execFileSync('git',['show',record.base+':'+record.path])),0)});\n"
+      },
+      {
+        "before": "test('source normalization rejects missing optimization and arbitrary bytes instead of ignoring helper semantics',()=>{const old=fs.readFileSync(new URL('./frozen/CanopyRoofSurfaceJoint.adc.js',import.meta.url)),now=fs.readFileSync(record.path);for(const wrong of [old,now.subarray(1),Buffer.concat([now,Buffer.from('// drift')])])assert.throws(()=>normalizeRoofJointSource(record.path,wrong));assert.equal(normalizeRoofJointSource(record.path,now).compare(old),0)});\n",
+        "after": "test('source normalization rejects missing optimization and arbitrary bytes instead of ignoring helper semantics',()=>{const old=readXiangxuHistoricalSource(new URL('./frozen/CanopyRoofSurfaceJoint.adc.js',import.meta.url)),now=readXiangxuHistoricalSource(record.path);for(const wrong of [old,now.subarray(1),Buffer.concat([now,Buffer.from('// drift')])])assert.throws(()=>normalizeRoofJointSource(record.path,wrong));assert.equal(normalizeRoofJointSource(record.path,now).compare(old),0)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-sanyou-main-shell/source.test.mjs",
+    "beforeSha256": "bc0bdec1552b3af602cdee2e873e28e9991840a236af2e3fdaa93fe8745b63b9",
+    "afterSha256": "0ff8ecd8f205e7c2eef05e52cb0948f56bdc19d8f064958d5afde4d7c9a9e6c8",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen 0c068 scene is exact and stability diagnostic/emperor plus all previous source/data remain unmodified after exact later metrics delta normalization',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.0c068.js',import.meta.url),'utf8'),old);assert.equal(stripSanyouDelta(s),old);const paths=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js');for(const p of paths)assert.equal(normalizeMetricsSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(execFileSync('git',['diff','23f224f4c286c432c12f0a61eb90055da30254fb',base,'--','src/scene/palace','src/scene/zones/ZoneBase.js','src/utils','src/controls','data/zones/ningshou.json'],{encoding:'utf8'}),'')});\n",
+        "after": "test('frozen 0c068 scene is exact and stability diagnostic/emperor plus all previous source/data remain unmodified after exact later metrics delta normalization',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.0c068.js',import.meta.url),'utf8'),old);assert.equal(stripSanyouDelta(s),old);const paths=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js');for(const p of paths)assert.equal(normalizeMetricsSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.equal(execFileSync('git',['diff','23f224f4c286c432c12f0a61eb90055da30254fb',base,'--','src/scene/palace','src/scene/zones/ZoneBase.js','src/utils','src/controls','data/zones/ningshou.json'],{encoding:'utf8'}),'')});\n"
+      },
+      {
+        "before": "test('precise normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripSanyouDelta(s.replace(line,'')));assert.throws(()=>stripSanyouDelta(s+line))}assert.notEqual(stripSanyouDelta(s+'// drift'),stripSanyouDelta(s))});\n",
+        "after": "test('precise normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripSanyouDelta(s.replace(line,'')));assert.throws(()=>stripSanyouDelta(s+line))}assert.notEqual(stripSanyouDelta(s+'// drift'),stripSanyouDelta(s))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-songxiu-hill-pavilion/source.test.mjs",
+    "beforeSha256": "14c893268911aecbc4af631d64dda5e03a9863ea43a164d0093c207faf2e20a0",
+    "afterSha256": "7a99a89dd5348ba4d7016fdcaea714e23922ec78df5c25a6101d7e6cab4d2f52",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every dcd3 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.dcd3.js',import.meta.url),'utf8'),old);assert.equal(stripSongxiuDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every dcd3 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.dcd3.js',import.meta.url),'utf8'),old);assert.equal(stripSongxiuDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook140 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripSongxiuDelta(s.replace(line,'')));assert.throws(()=>stripSongxiuDelta(s+line))}assert.notEqual(stripSongxiuDelta(s+'// drift'),stripSongxiuDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:140/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook140 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripSongxiuDelta(s.replace(line,'')));assert.throws(()=>stripSongxiuDelta(s+line))}assert.notEqual(stripSongxiuDelta(s+'// drift'),stripSongxiuDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:140/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-synchronous-build-steps/source.test.mjs",
+    "beforeSha256": "8b3d1635fa54227c0cfc2fd64734f6630cb6479b627382b9114d686c531c4192",
+    "afterSha256": "ec9e93bb493d35ec0c1514c1c0f162c46a9628c67503b460ebf65effad78328f",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('all runtime/data exact 5030 except synchronous wrapper and uniquely declared boundaries; all original statements/order remain byte-identical',()=>{const before=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.5030.js',import.meta.url),'utf8'),before);assert.equal(stripBuildStepDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),before);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeRoofJointSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('all runtime/data exact 5030 except synchronous wrapper and uniquely declared boundaries; all original statements/order remain byte-identical',()=>{const before=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.5030.js',import.meta.url),'utf8'),before);assert.equal(stripBuildStepDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),before);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeRoofJointSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('normalization rejects missing/repeated step and wrapper and preserves unrelated drift',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const l of lines){assert.throws(()=>stripBuildStepDelta(s.replace(l,'')));assert.throws(()=>stripBuildStepDelta(s+l))}assert.notEqual(stripBuildStepDelta(s+'// drift'),stripBuildStepDelta(s));assert.throws(()=>stripBuildStepDelta(s.replace('this.#buildSteps()','this.buildSteps()')))});\n",
+        "after": "test('normalization rejects missing/repeated step and wrapper and preserves unrelated drift',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const l of lines){assert.throws(()=>stripBuildStepDelta(s.replace(l,'')));assert.throws(()=>stripBuildStepDelta(s+l))}assert.notEqual(stripBuildStepDelta(s+'// drift'),stripBuildStepDelta(s));assert.throws(()=>stripBuildStepDelta(s.replace('this.#buildSteps()','this.buildSteps()')))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": "STEP-MAP.json"
+  },
+  {
+    "path": "tests/r165-tishun-south-beam/source.test.mjs",
+    "beforeSha256": "1140d573b1d7edbefad3f2e48d8c33c0ce4cd97c4deff558fb9dc2a1aeee3866",
+    "afterSha256": "9e006443222c99eff33142fc2665976dfc9b3d5c5a824519f7b9ac4da07a6585",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('public8386 all runtime/data inputs stay byte exact after only named hook151/private beam normalization',()=>{assert.equal(record.base,base);const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/DailouWaitingHouse.js','src/scene/palace/special/TishunSouthBeam.js']);assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/TishunSouthBeam.js','src/scene/zones/ZoneBase.js']);const current=normalizeDailouSource('src/scene/zones/ZoneBase.js',fs.readFileSync('src/scene/zones/ZoneBase.js')).toString(),lines=[\"import {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';\\n\",\"    yield {phase:'hook',index:151};\\n\",\"    buildTishunSouthBeam(this.kit,this.zoneJson);\\n\"];let oldSource=current;for(const line of lines){assert.equal(oldSource.split(line).length,2);oldSource=oldSource.replace(line,'')}assert.equal(oldSource,fs.readFileSync(new URL('./frozen/ZoneBase.8386.js',import.meta.url),'utf8'));assert.ok(current.includes('    buildChenghuangGlazedEntry(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]+\"    yield {phase:'merge',index:0};\\n\"));assert.equal(norm(record.files[1].path,fs.readFileSync(record.files[1].path)),null)});\n",
+        "after": "test('public8386 all runtime/data inputs stay byte exact after only named hook151/private beam normalization',()=>{assert.equal(record.base,base);const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/DailouWaitingHouse.js','src/scene/palace/special/TishunSouthBeam.js']);assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/TishunSouthBeam.js','src/scene/zones/ZoneBase.js']);const current=normalizeDailouSource('src/scene/zones/ZoneBase.js',readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js')).toString(),lines=[\"import {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';\\n\",\"    yield {phase:'hook',index:151};\\n\",\"    buildTishunSouthBeam(this.kit,this.zoneJson);\\n\"];let oldSource=current;for(const line of lines){assert.equal(oldSource.split(line).length,2);oldSource=oldSource.replace(line,'')}assert.equal(oldSource,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.8386.js',import.meta.url),'utf8'));assert.ok(current.includes('    buildChenghuangGlazedEntry(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]+\"    yield {phase:'merge',index:0};\\n\"));assert.equal(norm(record.files[1].path,readXiangxuHistoricalSource(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('exact source profile rejects swapped/truncated/appended bytes, retains unrelated actual drift and immutable historical target fixtures',()=>{for(const row of record.files){const b=fs.readFileSync(row.path);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// actual unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q!==row))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','data/architecture/building-fidelity.json']){const original=fs.readFileSync(p),changed=Buffer.concat([original,Buffer.from(' ')]);assert.equal(norm(p,changed),changed);assert.notEqual(sha(changed),sha(original))}for(const[path,expected]of[['baseline-8386.json','ae1268bacb89a9208ae842101aa00e31c21810a323c97366978b78357361ca10'],['candidate.json','70eacffcba4d95ec322433e2a202e62be0628b6e6e466ffea288dd97be661b0f'],['frozen/stepped-prototype-1324.mjs','7193eb68fababa29b06cd35a3e79daee042f98239e7eb8e23354f679a2b1626f'],['frozen/ZoneBase.8386.js','d26d13101a9836401adf96f3366a432bb437810445b086aaa6b75f682947759f']])assert.equal(sha(fs.readFileSync(new URL(path,import.meta.url))),expected)});\n",
+        "after": "test('exact source profile rejects swapped/truncated/appended bytes, retains unrelated actual drift and immutable historical target fixtures',()=>{for(const row of record.files){const b=readXiangxuHistoricalSource(row.path);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// actual unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q!==row))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','data/architecture/building-fidelity.json']){const original=readXiangxuHistoricalSource(p),changed=Buffer.concat([original,Buffer.from(' ')]);assert.equal(norm(p,changed),changed);assert.notEqual(sha(changed),sha(original))}for(const[path,expected]of[['baseline-8386.json','ae1268bacb89a9208ae842101aa00e31c21810a323c97366978b78357361ca10'],['candidate.json','70eacffcba4d95ec322433e2a202e62be0628b6e6e466ffea288dd97be661b0f'],['frozen/stepped-prototype-1324.mjs','7193eb68fababa29b06cd35a3e79daee042f98239e7eb8e23354f679a2b1626f'],['frozen/ZoneBase.8386.js','d26d13101a9836401adf96f3366a432bb437810445b086aaa6b75f682947759f']])assert.equal(sha(readXiangxuHistoricalSource(new URL(path,import.meta.url))),expected)});\n"
+      },
+      {
+        "before": "test('inherited strict complete-profile chain accepts only exact hook151 and preserves historical source bytes',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8'),old=fs.readFileSync(new URL('./frozen/ZoneBase.8386.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// unrelated actual drift'])assert.notEqual(stripXuhuiDelta(wrong),expected)});\n",
+        "after": "test('inherited strict complete-profile chain accepts only exact hook151 and preserves historical source bytes',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8'),old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.8386.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// unrelated actual drift'])assert.notEqual(stripXuhuiDelta(wrong),expected)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-xiefang-hill-pavilion/source.test.mjs",
+    "beforeSha256": "c0be6c94d8f4cc0fcbd539c38975548928ddd2f52ff82e4e328ca2d82f221abb",
+    "afterSha256": "6550f5b03a62037b929827e4bfad1d1ac892f71d25be601a969efe97b28dfa5c",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every d4c4 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.d4c4.js',import.meta.url),'utf8'),old);assert.equal(stripXiefangDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every d4c4 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.d4c4.js',import.meta.url),'utf8'),old);assert.equal(stripXiefangDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook141 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripXiefangDelta(s.replace(line,'')));assert.throws(()=>stripXiefangDelta(s+line))}assert.notEqual(stripXiefangDelta(s+'// drift'),stripXiefangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:141/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook141 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripXiefangDelta(s.replace(line,'')));assert.throws(()=>stripXiefangDelta(s+line))}assert.notEqual(stripXiefangDelta(s+'// drift'),stripXiefangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:141/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-xihua-north-house/source.test.mjs",
+    "beforeSha256": "9ef6da190b2b33fab1a855f601ec589cf66f642480fb724b435afe8c315a2c5f",
+    "afterSha256": "706fb977a62a42225bd1d9b0868f4381a0ce2bcac7f33179331556c449779346",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';\n",
+        "after": "import {normalizeCompanionSource as e46BoundaryNormalizeCompanionSource} from '../r165-yangxin-companions/source-boundary.mjs';\nimport {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeCompanionSource(path,e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path)));\n"
+      },
+      {
+        "before": "  assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null);\n",
+        "after": "  assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',readXiangxuHistoricalSource('src/scene/palace/special/XuanshouSouthFront.js')),null);\n"
+      },
+      {
+        "before": "  assert.equal(norm('src/scene/palace/special/XihuaNorthWatchHouse.js',fs.readFileSync('src/scene/palace/special/XihuaNorthWatchHouse.js')),null);\n",
+        "after": "  assert.equal(norm('src/scene/palace/special/XihuaNorthWatchHouse.js',readXiangxuHistoricalSource('src/scene/palace/special/XihuaNorthWatchHouse.js')),null);\n"
+      },
+      {
+        "before": "  assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.4ed.js',import.meta.url))),prior.before);\n",
+        "after": "  assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.4ed.js',import.meta.url))),prior.before);\n"
+      },
+      {
+        "before": "  assert.equal(sha(fs.readFileSync(new URL('./baseline-4ed.json',import.meta.url))),'b2a520e1a2a304da443af0cf15e3cf1597e8cea4d3e4e610ca3f89f20e384565');\n",
+        "after": "  assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-4ed.json',import.meta.url))),'b2a520e1a2a304da443af0cf15e3cf1597e8cea4d3e4e610ca3f89f20e384565');\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-xuanshou-south-front/source.test.mjs",
+    "beforeSha256": "7e91ae63af2a85430de6c31865b1f86cb449082ba36a5a7414376bf0bdd2caab",
+    "afterSha256": "0ce362b966c9fef9af3f7dde350d0a9ba6039964db40f4f9df2c8d94f530467b",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';\n",
+        "after": "import {normalizeCompanionSource as e46BoundaryNormalizeCompanionSource} from '../r165-yangxin-companions/source-boundary.mjs';\nimport {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeCompanionSource(path,e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path)));\n"
+      },
+      {
+        "before": "test('one exact K19 import/hook143/call follows Xuhui; every other byte is public ad0 or the independently pinned Guhua delta',async()=>{const p='src/scene/zones/ZoneBase.js',s=normalizeFuyiSource(p,normalizeWatchSource(p,readLive(p))).toString();assert.ok(s.includes(\"import {buildXuanshouSouthFront} from '../palace/special/XuanshouSouthFront.js';\\n\"),'K19 hook absent');const{normalizeXuanshouSource}=await import('./source-boundary.mjs');const old=execFileSync('git',['show',base+':'+p]);assert.equal(normalizeXuanshouSource(p,Buffer.from(s)).compare(old),0);assert.ok(s.includes(\"    buildXuhuiGallery(this.kit,this.zoneJson);\\n    yield {phase:'hook',index:143};\\n    buildXuanshouSouthFront(this.kit,this.zoneJson);\\n    yield {phase:'merge',index:0};\"));for(const path of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(q=>q!==p))assert.equal(normalizeGuhuaSource(path,normalizeFuyiSource(path,normalizeWatchSource(path,stripBilingualDelta(path,readLive(path))))).compare(execFileSync('git',['show',base+':'+path],{maxBuffer:50*1024*1024})),0,path);const before=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(q=>!before.includes(q)).sort(),[...Object.keys(guhuaRecord.added),'src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',fs.readFileSync('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(guhuaRecord.added))assert.equal(sha(readLive(p)),h);});\n",
+        "after": "test('one exact K19 import/hook143/call follows Xuhui; every other byte is public ad0 or the independently pinned Guhua delta',async()=>{const p='src/scene/zones/ZoneBase.js',s=normalizeFuyiSource(p,normalizeWatchSource(p,readLive(p))).toString();assert.ok(s.includes(\"import {buildXuanshouSouthFront} from '../palace/special/XuanshouSouthFront.js';\\n\"),'K19 hook absent');const{normalizeXuanshouSource}=await import('./source-boundary.mjs');const old=execFileSync('git',['show',base+':'+p]);assert.equal(normalizeXuanshouSource(p,Buffer.from(s)).compare(old),0);assert.ok(s.includes(\"    buildXuhuiGallery(this.kit,this.zoneJson);\\n    yield {phase:'hook',index:143};\\n    buildXuanshouSouthFront(this.kit,this.zoneJson);\\n    yield {phase:'merge',index:0};\"));for(const path of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(q=>q!==p))assert.equal(normalizeGuhuaSource(path,normalizeFuyiSource(path,normalizeWatchSource(path,stripBilingualDelta(path,readLive(path))))).compare(execFileSync('git',['show',base+':'+path],{maxBuffer:50*1024*1024})),0,path);const before=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(q=>!before.includes(q)).sort(),[...Object.keys(guhuaRecord.added),'src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',readXiangxuHistoricalSource('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(guhuaRecord.added))assert.equal(sha(readLive(p)),h);});\n"
+      },
+      {
+        "before": "test('actual public-ad0 full-region baseline is byte-pinned and refuses refreshed old hashes or truncated capture',async()=>{const{validateProductionBaselineBytes:validate}=await import('./production-harness.mjs');assert.equal(typeof validate,'function','immutable actual-region baseline validator absent');const bytes=fs.readFileSync(new URL('./production-baseline.ad0.json',import.meta.url)),value=validate(bytes);assert.equal(value.publicBase,base);assert.equal(value.old.raw.meshes,24088);const changed=JSON.parse(bytes);changed.old.colliders='0'.repeat(64);for(const bad of[bytes.subarray(1),Buffer.concat([bytes,Buffer.from('\\n')]),Buffer.from(JSON.stringify(changed))])assert.throws(()=>validate(bad),'original actual-region baseline may not be refreshed');});\n",
+        "after": "test('actual public-ad0 full-region baseline is byte-pinned and refuses refreshed old hashes or truncated capture',async()=>{const{validateProductionBaselineBytes:validate}=await import('./production-harness.mjs');assert.equal(typeof validate,'function','immutable actual-region baseline validator absent');const bytes=readXiangxuHistoricalSource(new URL('./production-baseline.ad0.json',import.meta.url)),value=validate(bytes);assert.equal(value.publicBase,base);assert.equal(value.old.raw.meshes,24088);const changed=JSON.parse(bytes);changed.old.colliders='0'.repeat(64);for(const bad of[bytes.subarray(1),Buffer.concat([bytes,Buffer.from('\\n')]),Buffer.from(JSON.stringify(changed))])assert.throws(()=>validate(bad),'original actual-region baseline may not be refreshed');});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-xuhui-gallery/source.test.mjs",
+    "beforeSha256": "e1e87f5ff187e8b65c10f43754037151e33934dc32358d76cbb426feac2e4472",
+    "afterSha256": "264793e49f9103a0df8fdedf8e3a6d313d6da6942642de718c8b6c0c7e32d401",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yangxin-companions/source-boundary.mjs';\n",
+        "after": "import {normalizeCompanionSource as e46BoundaryNormalizeCompanionSource} from '../r165-yangxin-companions/source-boundary.mjs';\nimport {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeCompanionSource(path,e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path)));\n"
+      },
+      {
+        "before": "test('only the exact Xuhui, Guhua, K19, K18 and L3 private runtime modules are added relative to public14 cumulative baseline',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/GuhuaRolledRoof.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/XuhuiGallery.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.equal(normalizeWatchSource('src/scene/palace/special/XihuaNorthWatchHouse.js',fs.readFileSync('src/scene/palace/special/XihuaNorthWatchHouse.js')),null);assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',fs.readFileSync('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(guhuaRecord.added))assert.equal(guhuaSHA(readLive(p)),h);assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',fs.readFileSync('src/scene/palace/special/XuanshouSouthFront.js')),null)});\n",
+        "after": "test('only the exact Xuhui, Guhua, K19, K18 and L3 private runtime modules are added relative to public14 cumulative baseline',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/FuyiThreeBay.js','src/scene/palace/special/GuhuaRolledRoof.js','src/scene/palace/special/XihuaNorthWatchHouse.js','src/scene/palace/special/XuanshouSouthFront.js','src/scene/palace/special/XuhuiGallery.js','src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.equal(normalizeWatchSource('src/scene/palace/special/XihuaNorthWatchHouse.js',readXiangxuHistoricalSource('src/scene/palace/special/XihuaNorthWatchHouse.js')),null);assert.equal(normalizeFuyiSource('src/scene/palace/special/FuyiThreeBay.js',readXiangxuHistoricalSource('src/scene/palace/special/FuyiThreeBay.js')),null);for(const[p,h]of Object.entries(guhuaRecord.added))assert.equal(guhuaSHA(readLive(p)),h);assert.equal(normalizeXuanshouSource('src/scene/palace/special/XuanshouSouthFront.js',readXiangxuHistoricalSource('src/scene/palace/special/XuanshouSouthFront.js')),null)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-yangxin-companions/source.test.mjs",
+    "beforeSha256": "5cc6c2a15d979c70578dfb06aa37e96d18ab3f19d74be02803692537dcb673ec",
+    "afterSha256": "5def32c4ac2c89b02d5e2d1c805ad9981d3667ba8f9540c69609eff12b53a6b3",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-yanxi-rear-ear/source-boundary.mjs';\n",
+        "after": "import {normalizeYanxiSource as e46BoundaryNormalizeYanxiSource} from '../r165-yanxi-rear-ear/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeYanxiSource(path,readXiangxuHistoricalSource(path));\n"
+      },
+      {
+        "before": "test('only exact private pair import/hook146/call differs from c598; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/YangxinCompanionHalls.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildYangxinCompanionHalls} from '../palace/special/YangxinCompanionHalls.js';\\n\",\"    yield {phase:'hook',index:146};\\n\",\"    buildYangxinCompanionHalls(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,fs.readFileSync(new URL('./frozen/ZoneBase.c598.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildXihuaNorthWatchHouse(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readLive(record.files[1].path)),null)});\n",
+        "after": "test('only exact private pair import/hook146/call differs from c598; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/YangxinCompanionHalls.js','src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/YangxinCompanionHalls.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildYangxinCompanionHalls} from '../palace/special/YangxinCompanionHalls.js';\\n\",\"    yield {phase:'hook',index:146};\\n\",\"    buildYangxinCompanionHalls(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.c598.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildXihuaNorthWatchHouse(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readLive(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-c598.json',import.meta.url))),'c463992e978b30678e3bb8ae33e76b902b2fee83efbb041f03a985407fef2cac');assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.c598.js',import.meta.url))),'70e314ef08649bfc02ae213f8a92cd240411a3759f67ab34b08a8fcee99ec285')});\n",
+        "after": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-c598.json',import.meta.url))),'c463992e978b30678e3bb8ae33e76b902b2fee83efbb041f03a985407fef2cac');assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.c598.js',import.meta.url))),'70e314ef08649bfc02ae213f8a92cd240411a3759f67ab34b08a8fcee99ec285')});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-yanxi-rear-ear/source.test.mjs",
+    "beforeSha256": "d20d8b559e8df6238ad31c643da3f11009af9378ba85dbaa7ece5411444c85d4",
+    "afterSha256": "44fb93ec5dd9189cc48951414fb1b5a157edd7fafb702f5b6a6b5b7f0c17512e",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-zhongzheng-main/source-boundary.mjs';\n",
+        "after": "import {normalizeZhongzhengSource as e46BoundaryNormalizeZhongzhengSource} from '../r165-zhongzheng-main/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeZhongzhengSource(path,readXiangxuHistoricalSource(path));\n"
+      },
+      {
+        "before": "test('only exact private F50 import/hook147/call differs from a60; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/YanxiRearEarHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildYanxiRearEarHall} from '../palace/special/YanxiRearEarHall.js';\\n\",\"    yield {phase:'hook',index:147};\\n\",\"    buildYanxiRearEarHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,fs.readFileSync(new URL('./frozen/ZoneBase.a60.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildYangxinCompanionHalls(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,fs.readFileSync(record.files[1].path)),null)});\n",
+        "after": "test('only exact private F50 import/hook147/call differs from a60; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/YanxiRearEarHall.js','src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/YanxiRearEarHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildYanxiRearEarHall} from '../palace/special/YanxiRearEarHall.js';\\n\",\"    yield {phase:'hook',index:147};\\n\",\"    buildYanxiRearEarHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.a60.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildYangxinCompanionHalls(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readXiangxuHistoricalSource(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-a60.json',import.meta.url))),'f600e6222cf47b3731ec1e1ba09c69958ccffc2f63d8c367dd8140a417315d34');assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.a60.js',import.meta.url))),'112a226e29c580c8fc0316c61571b920283f540b0cce6127e2bfdc7d91386a37')});\n",
+        "after": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readLive(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-a60.json',import.meta.url))),'f600e6222cf47b3731ec1e1ba09c69958ccffc2f63d8c367dd8140a417315d34');assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.a60.js',import.meta.url))),'112a226e29c580c8fc0316c61571b920283f540b0cce6127e2bfdc7d91386a37')});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-yizhai-main-shell/source.test.mjs",
+    "beforeSha256": "9670421bdda46cc4ed6af5a96aeeda53489df4232cbb3fbbabc3b953a6cc4872",
+    "afterSha256": "64b3ee5ef10fb458f038d7fe127d15dc904b5022cb467cd866122f0124bef152",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('exact c080 frozen scene and every existing runtime/data byte are preserved except unique Yizhai import and call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.c080.js',import.meta.url),'utf8'),old);assert.equal(stripYizhaiDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeRoofJointSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('exact c080 frozen scene and every existing runtime/data byte are preserved except unique Yizhai import and call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.c080.js',import.meta.url),'utf8'),old);assert.equal(stripYizhaiDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeRoofJointSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing or repeated dispatch rejected and unrelated drift remains visible',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYizhaiDelta(s.replace(line,'')));assert.throws(()=>stripYizhaiDelta(s+line))}assert.notEqual(stripYizhaiDelta(s+'// drift'),stripYizhaiDelta(s))});\n",
+        "after": "test('missing or repeated dispatch rejected and unrelated drift remains visible',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYizhaiDelta(s.replace(line,'')));assert.throws(()=>stripYizhaiDelta(s+line))}assert.notEqual(stripYizhaiDelta(s+'// drift'),stripYizhaiDelta(s))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-yucui-main-shell/source.test.mjs",
+    "beforeSha256": "b8e739fd1fa3d40f36b734c0b7dcfc91f95edd949d60d3f73a6423bb7c50c788",
+    "afterSha256": "9d726fed2ef8792a6651c5cfaaa95523ea44b7f77431f8048bdb6926f20bf4d8",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('frozen actual eeee source and all existing data/physics/profiles remain exact; only import plus single hook change existing runtime',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.eeee.js',import.meta.url),'utf8'),old);assert.equal(stripYucuiDelta(s),old);for(const p of['data/zones/ningshou.json','src/scene/palace/special/RemainingNingshouHalls.js','src/scene/palace/special/FanhuaStairContact.js','src/scene/palace/special/QingshouRaisedWalk.js','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','release.json','src/scene/palace/special/QingshouNorthHalls.js'])assert.equal(fs.readFileSync(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n",
+        "after": "test('frozen actual eeee source and all existing data/physics/profiles remain exact; only import plus single hook change existing runtime',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'}),s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.eeee.js',import.meta.url),'utf8'),old);assert.equal(stripYucuiDelta(s),old);for(const p of['data/zones/ningshou.json','src/scene/palace/special/RemainingNingshouHalls.js','src/scene/palace/special/FanhuaStairContact.js','src/scene/palace/special/QingshouRaisedWalk.js','src/ui/Teleport.js','src/utils/Collision.js','src/controls/FirstPerson.js','src/controls/FurnitureMotion.js','release.json','src/scene/palace/special/QingshouNorthHalls.js'])assert.equal(readXiangxuHistoricalSource(p,'utf8'),execFileSync('git',['show',base+':'+p],{encoding:'utf8'}))});\n"
+      },
+      {
+        "before": "test('precise historical source normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYucuiDelta(s.replace(line,'')));assert.throws(()=>stripYucuiDelta(s+line))}assert.notEqual(stripYucuiDelta(s+'// drift'),stripYucuiDelta(s))});\n",
+        "after": "test('precise historical source normalization refuses missing/duplicate hook and leaves unrelated drift detectable',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYucuiDelta(s.replace(line,'')));assert.throws(()=>stripYucuiDelta(s+line))}assert.notEqual(stripYucuiDelta(s+'// drift'),stripYucuiDelta(s))});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-yunguang-main-shell/source.test.mjs",
+    "beforeSha256": "205132967b571b7ba68948c34c4d1853f816f9f12c91aa48e4754db591b7c7c3",
+    "afterSha256": "6d39517b1ea985bee17f50c4f28f87ea4c106d04f2f21751b3306ecf50e2b67f",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every d8d5 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.d8d5.js',import.meta.url),'utf8'),old);assert.equal(stripYunguangDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every d8d5 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.d8d5.js',import.meta.url),'utf8'),old);assert.equal(stripYunguangDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook138 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYunguangDelta(s.replace(line,'')));assert.throws(()=>stripYunguangDelta(s+line))}assert.notEqual(stripYunguangDelta(s+'// drift'),stripYunguangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:138/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook138 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripYunguangDelta(s.replace(line,'')));assert.throws(()=>stripYunguangDelta(s+line))}assert.notEqual(stripYunguangDelta(s+'// drift'),stripYunguangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:138/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-zhongzheng-main/source.test.mjs",
+    "beforeSha256": "69c103e536f09c94bfe862b484e53d19bb3a1e7b58664b6c58d3438f8598d97b",
+    "afterSha256": "87943b46d9fa019d998a90a24da2ae334b6494cfd230bd403393f4cd118b5c95",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "import {readCompatibleSource as readLive} from '../r165-danyuan-eleven-bay/source-boundary.mjs';\n",
+        "after": "import {normalizeDanyuanSource as e46BoundaryNormalizeDanyuanSource} from '../r165-danyuan-eleven-bay/source-boundary.mjs';\nconst readLive=path=>e46BoundaryNormalizeDanyuanSource(path,readXiangxuHistoricalSource(path));\n"
+      },
+      {
+        "before": "test('only exact private H29 import/hook148/call differs from e4; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/ZhongzhengMainHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildZhongzhengMainHall} from '../palace/special/ZhongzhengMainHall.js';\\n\",\"    yield {phase:'hook',index:148};\\n\",\"    buildZhongzhengMainHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,fs.readFileSync(new URL('./frozen/ZoneBase.e4.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildYanxiRearEarHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,fs.readFileSync(record.files[1].path)),null)});\n",
+        "after": "test('only exact private H29 import/hook148/call differs from e4; all other runtime/data and every inherited module stay byte exact',()=>{const old=execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'),now=historicalBilingualPaths(execFileSync('git',['ls-files','-co','--exclude-standard','src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n'));for(const p of old)assert.equal(norm(p,stripBilingualDelta(p,readLive(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p);assert.deepEqual([...new Set(now)].filter(p=>!old.includes(p)).sort(),['src/scene/palace/special/ZhongzhengMainHall.js','src/scene/palace/special/DanyuanElevenBayHall.js','src/scene/palace/special/ChenghuangGlazedEntry.js','src/scene/palace/special/TishunSouthBeam.js','src/scene/palace/special/DailouWaitingHouse.js'].sort());assert.ok(old.every(p=>now.includes(p)));assert.deepEqual(record.files.map(r=>r.path).sort(),['src/scene/palace/special/ZhongzhengMainHall.js','src/scene/zones/ZoneBase.js']);const s=readLive('src/scene/zones/ZoneBase.js').toString(),lines=[\"import {buildZhongzhengMainHall} from '../palace/special/ZhongzhengMainHall.js';\\n\",\"    yield {phase:'hook',index:148};\\n\",\"    buildZhongzhengMainHall(this.kit,this.zoneJson);\\n\"];let prior=s;for(const l of lines){assert.equal(prior.split(l).length,2);prior=prior.replace(l,'')}assert.equal(prior,readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.e4.js',import.meta.url),'utf8'));assert.ok(s.includes('    buildYanxiRearEarHall(this.kit,this.zoneJson);\\n'+lines[1]+lines[2]));assert.equal(norm(record.files[1].path,readXiangxuHistoricalSource(record.files[1].path)),null)});\n"
+      },
+      {
+        "before": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=fs.readFileSync(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(fs.readFileSync(new URL('./baseline-e4.json',import.meta.url))),'a7d0138b55eb2e1278c7ac2bcecd0a0efb046a576a85a56f6cb0ea5eacc6c84f');assert.equal(sha(fs.readFileSync(new URL('./frozen/ZoneBase.e4.js',import.meta.url))),'033ec9bf6362f9d7c4035fac859ff1632b2ef2f018713ed8c88305c96dda5410')});\n",
+        "after": "test('declared before/after source boundary rejects swapped/truncated/arbitrary bytes and preserves all unrelated drift',()=>{for(const row of record.files){const b=readXiangxuHistoricalSource(row.path);norm(row.path,b);for(const wrong of[b.subarray(1),Buffer.concat([b,Buffer.from('// real unrelated drift')])])assert.throws(()=>norm(row.path,wrong));for(const other of record.files.filter(q=>q.path!==row.path))assert.throws(()=>norm(other.path,b))}for(const p of['src/scene/palace/kit.js','src/scene/RoofBuilder.js','src/utils/Collision.js','data/zones/west-six.json','src/other-special.js']){const b=Buffer.from('// real unrelated mutation');assert.equal(norm(p,b),b)}assert.equal(sha(readXiangxuHistoricalSource(new URL('./baseline-e4.json',import.meta.url))),'a7d0138b55eb2e1278c7ac2bcecd0a0efb046a576a85a56f6cb0ea5eacc6c84f');assert.equal(sha(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.e4.js',import.meta.url))),'033ec9bf6362f9d7c4035fac859ff1632b2ef2f018713ed8c88305c96dda5410')});\n"
+      },
+      {
+        "before": "test('legacy conditional Xuhui entry recognizes only exact H29 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8'),old=fs.readFileSync(new URL('./frozen/ZoneBase.e4.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n",
+        "after": "test('legacy conditional Xuhui entry recognizes only exact H29 profile before all previous strict source profiles',async()=>{const{stripXuhuiDelta}=await import('../r165-xuhui-gallery/source-boundary.mjs'),live=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8'),old=readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.e4.js',import.meta.url),'utf8'),expected=stripXuhuiDelta(old);assert.equal(stripXuhuiDelta(live),expected);for(const wrong of[live.slice(1),live+'// actual unrelated source drift'])assert.notEqual(stripXuhuiDelta(wrong),expected,'unrecognized payload cannot enter a complete profile');assert.equal(norm('src/scene/zones/ZoneBase.js',Buffer.from(live)).toString(),old)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-zhuxiang-main-shell/source.test.mjs",
+    "beforeSha256": "73d10f68a3d44e628b49e98ad1cc93658d1dbacaaf296c53635a101ca24e964d",
+    "afterSha256": "0a11a75e1c42443cc216a107f302e34d6350a0f0f31f410ee466e9e79de7a2a2",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('every ae712 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(fs.readFileSync(new URL('./frozen/ZoneBase.ae712.js',import.meta.url),'utf8'),old);assert.equal(stripZhuxiangDelta(fs.readFileSync('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,fs.readFileSync(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n",
+        "after": "test('every ae712 runtime/data byte and all previous hooks remain exact except one declared import/boundary/call',()=>{const old=execFileSync('git',['show',base+':src/scene/zones/ZoneBase.js'],{encoding:'utf8'});assert.equal(readXiangxuHistoricalSource(new URL('./frozen/ZoneBase.ae712.js',import.meta.url),'utf8'),old);assert.equal(stripZhuxiangDelta(readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8')),old);for(const p of execFileSync('git',['ls-tree','-r','--name-only',base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n').filter(p=>p!=='src/scene/zones/ZoneBase.js'))assert.equal(normalizeChongjingSource(p,stripBilingualDelta(p,readXiangxuHistoricalSource(p))).compare(execFileSync('git',['show',base+':'+p],{maxBuffer:50*1024*1024})),0,p)});\n"
+      },
+      {
+        "before": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook136 is immediately before the new component',()=>{const s=fs.readFileSync('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripZhuxiangDelta(s.replace(line,'')));assert.throws(()=>stripZhuxiangDelta(s+line))}assert.notEqual(stripZhuxiangDelta(s+'// drift'),stripZhuxiangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:136/g)||[]).length,1)});\n",
+        "after": "test('missing/repeated new delta rejects; unrelated change is still detectable; hook136 is immediately before the new component',()=>{const s=readXiangxuHistoricalSource('src/scene/zones/ZoneBase.js','utf8');for(const line of zoneLines){assert.throws(()=>stripZhuxiangDelta(s.replace(line,'')));assert.throws(()=>stripZhuxiangDelta(s+line))}assert.notEqual(stripZhuxiangDelta(s+'// drift'),stripZhuxiangDelta(s));assert.ok(s.includes(zoneLines[1]+zoneLines[2]));assert.equal((s.match(/index:136/g)||[]).length,1)});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  },
+  {
+    "path": "tests/r165-zone-load-metrics/source.test.mjs",
+    "beforeSha256": "3d7cae8013df0bee18a3a35a48432055d254584af434be02185909534fdabf6b",
+    "afterSha256": "a2e09ee4e698730d110fca48e6edd65581aee2fa776fabcddca2abf506d22605",
+    "prefix": "import {readXiangxuHistoricalSource} from '../r166-xiangxu-gate/source-boundary.mjs';\n",
+    "edits": [
+      {
+        "before": "test('all previous runtime data remain exact b5 except five fully hash-pinned observed source deltas',()=>{const paths=execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n');for(const path of paths){const original=execFileSync('git',['show',record.base+':'+path],{maxBuffer:50*1024*1024});assert.equal(normalizeMetricsSource(path,path==='src/scene/zones/ZoneBase.js'?Buffer.from(stripYizhaiDelta(stripBilingualDelta(path,fs.readFileSync(path,'utf8')))):stripBilingualDelta(path,fs.readFileSync(path))).compare(original),0,path)}for(const [file,path]of[['ZoneManager.js','src/scene/zones/ZoneManager.js'],['ZoneBase.js','src/scene/zones/ZoneBase.js'],['kit.js','src/scene/palace/kit.js']])assert.equal(fs.readFileSync(new URL('./frozen/'+file,import.meta.url)).compare(execFileSync('git',['show',record.base+':'+path])),0,file)});\n",
+        "after": "test('all previous runtime data remain exact b5 except five fully hash-pinned observed source deltas',()=>{const paths=execFileSync('git',['ls-tree','-r','--name-only',record.base,'src','data','main.js','release.json'],{encoding:'utf8'}).trim().split('\\n');for(const path of paths){const original=execFileSync('git',['show',record.base+':'+path],{maxBuffer:50*1024*1024});assert.equal(normalizeMetricsSource(path,path==='src/scene/zones/ZoneBase.js'?Buffer.from(stripYizhaiDelta(stripBilingualDelta(path,readXiangxuHistoricalSource(path,'utf8')))):stripBilingualDelta(path,readXiangxuHistoricalSource(path))).compare(original),0,path)}for(const [file,path]of[['ZoneManager.js','src/scene/zones/ZoneManager.js'],['ZoneBase.js','src/scene/zones/ZoneBase.js'],['kit.js','src/scene/palace/kit.js']])assert.equal(readXiangxuHistoricalSource(new URL('./frozen/'+file,import.meta.url)).compare(execFileSync('git',['show',record.base+':'+path])),0,file)});\n"
+      },
+      {
+        "before": "test('source normalization rejects missing instrument, duplicate instrument and unrelated drift instead of ignoring a whole source file',()=>{for(const path of Object.keys(record.modified)){const bytes=stripBilingualDelta(path,fs.readFileSync(path));assert.throws(()=>normalizeMetricsSource(path,Buffer.concat([bytes,Buffer.from('// unexpected')])));assert.throws(()=>normalizeMetricsSource(path,bytes.subarray(1)));assert.throws(()=>normalizeMetricsSource(path,Buffer.concat([bytes,bytes])));assert.ok(normalizeMetricsSource(path,bytes).length>0)}});\n",
+        "after": "test('source normalization rejects missing instrument, duplicate instrument and unrelated drift instead of ignoring a whole source file',()=>{for(const path of Object.keys(record.modified)){const bytes=stripBilingualDelta(path,readXiangxuHistoricalSource(path));assert.throws(()=>normalizeMetricsSource(path,Buffer.concat([bytes,Buffer.from('// unexpected')])));assert.throws(()=>normalizeMetricsSource(path,bytes.subarray(1)));assert.throws(()=>normalizeMetricsSource(path,Buffer.concat([bytes,bytes])));assert.ok(normalizeMetricsSource(path,bytes).length>0)}});\n"
+      }
+    ],
+    "kind": "historical-source-read-only",
+    "preservedCandidateRead": null
+  }
+]

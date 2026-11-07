@@ -612,6 +612,8 @@ body.map-open #minimap {
   max-height: min(240px, 36dvh); overflow-y: auto; overscroll-behavior: contain;
   touch-action: pan-y;
 }
+/* Keep the directory scroll offset when translated labels reflow. */
+#minimap #place-directory { overflow-anchor: none; }
 #minimap #place-directory button[hidden],
 #minimap #bridge-facility-directory button[hidden] { display: none !important; }
 
@@ -731,3 +733,29 @@ body:has(#minimap.minimap-touch[data-compact="true"]) #location-panel {
 .project-discovery a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .no-script-project { position: fixed; inset: 0; z-index: 10001; overflow: auto; padding: 2rem; background: #171b23; color: #fff; }
 .no-script-project a { color: #f1d58d; }
+
+/* Bilingual presentation controls. These never own world or map input. */
+.language-control { display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; color: #fff2ce; font: 13px/1.4 system-ui, sans-serif; }
+.language-control select { min-height: 44px; min-width: 112px; max-width: 100%; padding: 7px 10px; color: #fff2ce; background: #241f18; border: 1px solid #bfa36c; border-radius: 7px; font: inherit; }
+.language-control select:focus-visible { outline: 3px solid #fff2ce; outline-offset: 2px; }
+#tour-language-control { position: fixed; left: 50%; bottom: calc(64px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 9200; width: max-content; max-width: calc(100vw - 24px); padding: 2px 8px; border-radius: 8px; background: #161512ed; }
+#settings-language-control { justify-content: space-between; margin: 14px 0; padding: 8px 0; border-top: 1px solid #655235; }
+body.settings-open #tour-language-control, body.map-open #tour-language-control { visibility: hidden; }
+@media (max-width: 600px) and (orientation: portrait) { #tour-language-control { bottom: calc(300px + env(safe-area-inset-bottom, 0px)); } }
+
+/* Supplemental descriptions share search and card state, never add travel targets. */
+#minimap #supplemental-place-list { display:flex;flex-wrap:wrap;gap:6px; }
+#minimap #supplemental-place-list h2 { flex-basis:100%;color:#ffe4a1;font-size:16px;margin:14px 0 8px; }
+#minimap #supplemental-place-directory { display:flex;flex-wrap:wrap;gap:6px;width:100%;max-height:min(240px,36dvh);overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y; }
+#minimap #supplemental-place-directory button { min-width:44px;min-height:44px;padding:8px 12px;border:1px solid #9f804a;border-radius:6px;background:#382d20;color:#ffe4a1;font-size:14px;line-height:1.45;overflow-wrap:anywhere;cursor:pointer;touch-action:manipulation; }
+#minimap #supplemental-place-directory button[hidden] { display:none!important; }
+
+#minimap-presentation { flex-wrap:wrap; }
+#map-language-control { flex-basis:100%;width:100%; }
+#minimap[data-compact="true"] #map-language-control { grid-area:4 / 1 / auto / -1; }
+@media (max-width: 768px) and (orientation: portrait) {
+  html[lang="en"] body::before {
+    content: "For a better experience, rotate your device";
+    white-space: normal; width: max-content; max-width: calc(100vw - 24px); text-align: center;
+  }
+}
