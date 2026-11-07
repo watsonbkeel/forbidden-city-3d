@@ -2,6 +2,10 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 // Independent literals from the reviewed Taihe content; never a runtime translator oracle.
+export const REQUIRED_TAIHE_SPECIFIC = {
+  "zh-CN": "六根贴金柱及四对陈设类别有官方文字依据；本版将横匾移挂现有前排梁，保留匾联尺寸、柱网与天花。具体挂位为照片层次拟合，非测绘；近看须抬头，整体透视比例仍有差异。",
+  "en": "Official text supports the six gilded columns and four pairs of furnishing types. This version moves the horizontal plaque to an existing front beam while retaining plaque and couplet dimensions, the column grid, and the ceiling. Its precise hanging position is a photo-based depth fit, not surveyed. Look upward at close range; overall perspective proportions still differ."
+};
 export const EXPECTED_TAIHE = {
   "links": [
     {
@@ -90,7 +94,7 @@ export const EXPECTED_TAIHE = {
       "本版模型说明"
     ],
     "notes": [
-      "六根贴金柱及四对陈设类别有官方文字依据；本版将横匾移挂现有前排梁，保留匾联尺寸、柱网与天花。具体挂位为照片层次拟合，非测绘；近看须抬头，整体透视比例仍有差异。",
+      "外观：已有专用模型，细部待核。内饰：已有专用模型，细部待核。尺寸含模型合理拟合，不代表完整实测复原。 本轮外观：复核保留既有模型；内饰：复核保留既有模型。保留既有太和专用十一间重檐庑殿外观、柱网与三台台基关系；本次不把乾清宫资料当太和尺寸依据。；保留已有六金柱、地平座屏、三层藻井、悬球组和四对陈设的局部模型；匾联较近梁位仍是照片深度拟合，不借保留状态宣称准确挂高或文物雕刻。。匾联真实挂高、完整柱列配准及器物当前位置未实测；既有近梁拟合仍存在近处视野裁切及比例限制。本轮复核保留不等于完整复原，尚无本轮真实浏览器及手机视觉验收。 六根贴金柱及四对陈设类别有官方文字依据；本版将横匾移挂现有前排梁，保留匾联尺寸、柱网与天花。具体挂位为照片层次拟合，非测绘；近看须抬头，整体透视比例仍有差异。",
       "前往模型中的现有安全观览点；能否入内以模型当前路线为准。",
       "模型漫游不代表现场开放许可；实际参观范围和入内安排请查阅故宫博物院当日公告。"
     ]
@@ -102,7 +106,7 @@ export const EXPECTED_TAIHE = {
       "About this version's model"
     ],
     "notes": [
-      "Official text supports the six gilded columns and four pairs of furnishing types. This version moves the horizontal plaque to an existing front beam while retaining plaque and couplet dimensions, the column grid, and the ceiling. Its precise hanging position is a photo-based depth fit, not surveyed. Look upward at close range; overall perspective proportions still differ.",
+      "Exterior: Dedicated model; details awaiting verification. Interior: Dedicated model; details awaiting verification. Dimensions include reasonable model fitting and do not constitute a complete measured reconstruction.  This round: exterior reviewed and retained; interior reviewed and retained. Taihe Hall's existing dedicated eleven-bay double-eaved hipped-roof exterior, column grid, and relationship to the three-tier terrace are retained. Qianqing Palace sources are not used as evidence for Taihe Hall's dimensions. Existing partial models of six gilded columns, the raised throne platform and screen, three-tier coffered ceiling, suspended-sphere group, and four pairs of furnishings are retained. The plaques and couplets' position near the beam remains a photo-depth fit; retention does not establish exact hanging heights or artifact carvings. Actual hanging heights, alignment of the complete column rows, and current object positions have not been measured. The existing near-beam fit still has close-view clipping and proportion limits. Review and retention in this round do not constitute a complete reconstruction. This round has not yet passed visual review in a real browser or on mobile devices. Official text supports the six gilded columns and four pairs of furnishing types. This version moves the horizontal plaque to an existing front beam while retaining plaque and couplet dimensions, the column grid, and the ceiling. Its precise hanging position is a photo-based depth fit, not surveyed. Look upward at close range; overall perspective proportions still differ.",
       "Go to an existing safe viewing point in the model. Interior access depends on the routes currently provided in the model.",
       "Exploration in the model does not imply permission to enter on site. Check the Palace Museum's notices for the day of your visit for actual visitor areas and interior access.",
       "English descriptions: project translation of the cited Chinese sources. The sources have not all been newly reviewed."
@@ -369,4 +373,24 @@ export function assertE46(e,width,height){
  e46Object(e.backReopen,'back/reopen');const closed=e.backReopen.closed;e46Object(closed,'back closed');e46Baseline(closed);e46Retain(e.before,closed);assert.equal(closed.lang,'en');assert.equal(closed.query,'xiangxumen');assert.equal(closed.selected,EXPECTED_E46.id);assert.deepEqual(closed.selection,{name:'祥旭门',placeId:EXPECTED_E46.id});assert.equal(closed.travelCount,0);assert.equal(closed.detailVisible,false);assert.equal(closed.panelHidden,true);assert.equal(closed.panelInert,true);assert.deepEqual(closed.missing,[]);
  e46Search(e.backReopen.button,'xiangxumen');e46State(e.backReopen.reopened,e.before,'en',width,height,false);
  e46Baseline(e.restored);e46Retain(e.before,e.restored,[...e46Retained,'lang','query']);assert.equal(e.restored.detailVisible,false);assert.equal(e.restored.panelHidden,true);assert.equal(e.restored.panelInert,true);assert.equal(e.restored.travelCount,0);return e;
+}
+
+
+// Diagnostic observations carry exact DOM strings, never normalized expectations.
+export function assertSourceLimitObservations(rows,complete=false,layouts){
+ const object=(v,fields)=>{assert.ok(v&&typeof v==='object'&&!Array.isArray(v));assert.ok([Object.prototype,null].includes(Object.getPrototypeOf(v)));assert.deepEqual(Object.keys(v).sort(),[...fields].sort());};
+ const text=(v,nullable=false)=>{if(nullable&&v===null)return;assert.equal(typeof v,'string');const b=Buffer.from(v,'utf8');assert.equal(b.toString('utf8'),v,'Invalid source text encoding');assert.ok(b.length<=16384,'Source string exceeds 16 KiB');};
+ const texts=v=>{assert.ok(Array.isArray(v)&&v.length<=32);for(const s of v)text(s);};
+ const links=v=>{assert.ok(Array.isArray(v)&&v.length<=32);for(const link of v){object(link,['id','href','target','rel','text']);text(link.id);text(link.text);for(const k of ['href','target','rel'])text(link[k],true);}};
+ const selected=v=>{text(v,true);assert.ok(v===null||Buffer.byteLength(v,'utf8')<=256);};
+ assert.equal(typeof complete,'boolean');assert.ok(Array.isArray(rows)&&rows.length<=4);const slots=[[1280,900,'zh-CN'],[1280,900,'en'],[390,844,'zh-CN'],[390,844,'en']];
+ for(const [i,row]of rows.entries()){
+  object(row,['ordinal','width','height','locale','selected','view']);assert.equal(row.ordinal,i+1);assert.deepEqual([row.width,row.height,row.locale],slots[i]);selected(row.selected);
+  const v=row.view;object(v,['selected','title','directoryTitle','headings','notes','links','nameProvenance']);selected(v.selected);assert.equal(row.selected,v.selected);text(v.title);text(v.directoryTitle);texts(v.headings);texts(v.notes);links(v.links);
+  if(v.nameProvenance!==null){const n=v.nameProvenance;object(n,['count','id','status','headings','notes','quotes','links']);assert.ok(Number.isInteger(n.count)&&n.count>=0&&n.count<=32);text(n.id);text(n.status,true);texts(n.headings);texts(n.notes);texts(n.quotes);links(n.links);}
+  assert.ok(Buffer.byteLength(JSON.stringify(row,null,2)+'\n','utf8')<=65536,'Source observation exceeds 64 KiB');
+ }
+ assert.ok(Buffer.byteLength(JSON.stringify({sourceLimitObservations:rows},null,2)+'\n','utf8')<=262144,'Source observation field exceeds 256 KiB');
+ if(complete){assert.equal(rows.length,4);assert.ok(Array.isArray(layouts)&&layouts.length===2);for(const [i,row]of rows.entries()){const layout=layouts[Math.floor(i/2)];assert.equal(layout.width,row.width);assert.equal(layout.height,row.height);assert.ok(Array.isArray(layout.sourceLimits)&&layout.sourceLimits.length===2);assert.deepEqual(assertSourceLimits(row.view,row.locale),layout.sourceLimits[i%2],'Source view differs from retained layout assertion');}}
+ return rows;
 }

@@ -4,14 +4,14 @@ import {createServer} from 'vite';
 import {fileURLToPath} from 'node:url';
 import {recheckToolchain} from './preflight.mjs';
 import {sha256,writeResultJSON} from './common.mjs';
-import {EXPECTED_E46,assertE46,assertE46Content,assertSourceLimits,assertBrowserArguments,repositoryRoot,assertMemoryPhases,assertMemoryAdmission,assertUISteps} from './ui-oracles.mjs';
+import {EXPECTED_E46,assertE46,assertE46Content,assertSourceLimits,assertSourceLimitObservations,assertBrowserArguments,repositoryRoot,assertMemoryPhases,assertMemoryAdmission,assertUISteps} from './ui-oracles.mjs';
 import {chromium} from 'playwright';
 import {captureFontEndpoints} from './font-evidence.mjs';
 const base=repositoryRoot(import.meta.url),output=process.env.BILINGUAL_UI_EVIDENCE_DIR;
 const workRoot=process.env.BILINGUAL_UI_WORK_ROOT,scratch=process.env.BILINGUAL_UI_SCRATCH_DIR,inputsPath=process.env.BILINGUAL_UI_INPUTS;
 if(!workRoot||!path.isAbsolute(workRoot)||output!==path.join(workRoot,'receipts','ui-components','evidence')||scratch!==path.join(workRoot,'scratch'))throw Error('Exact same-run evidence and scratch paths required');
 const resultPath=path.join(output,'RESULT.json');
-let browser,vite;const result={scope:'real browser UI components, no World construction or GPU/mobile hardware acceptance',layouts:[],errors:[],pass:false,memoryPhases:[],uiSteps:[]};
+let browser,vite;const result={scope:'real browser UI components, no World construction or GPU/mobile hardware acceptance',layouts:[],errors:[],pass:false,memoryPhases:[],uiSteps:[],sourceLimitObservations:[]};
 fs.writeFileSync(resultPath,JSON.stringify({...result,status:'starting'},null,2)+'\n',{flag:'wx'});
 const check=(value,message)=>{if(!value)throw Error(message);};
 const phaseStart=process.hrtime.bigint();
@@ -42,7 +42,13 @@ async function settleLocale(page,value){await page.waitForFunction(value=>docume
 async function locale(page,value){await page.evaluate(value=>window.fixture.localeStore.setLocale(value),value);await settleLocale(page,value);}
 async function snapshot(page){return page.evaluate(()=>{const f=window.fixture,b=window.uiBefore,rect=document.activeElement.getBoundingClientRect(),panelRect=f.map.placePanel.element.getBoundingClientRect();return{focusVisible:rect.top>=panelRect.top-1&&rect.bottom<=panelRect.bottom+1,focusTop:rect.top,panelMax:Math.max(0,f.map.placePanel.element.scrollHeight-f.map.placePanel.element.clientHeight),selected:f.map.selectedPlaceId,selection:f.map.selection,query:document.querySelector('#place-search').value,view:{...f.map.view},panelScroll:f.map.placePanel.element.scrollTop,quality:f.settings.currentQuality,sound:f.settings.soundEnabled,teleports:[...f.teleports],sameReferences:b.map===f.map&&b.panel===f.map.placePanel&&b.catalog===f.map.placeCatalog&&b.settings===f.settings&&b.time===f.time&&b.environment===f.environment,focusId:document.activeElement.id,focusHref:document.activeElement.getAttribute('href'),focusConnected:document.activeElement.isConnected,lang:document.documentElement.lang,title:document.querySelector('#place-title').textContent,overflow:document.documentElement.scrollWidth-innerWidth,missing:[...f.missingTranslations]};});}
 const same=(before,after,keys)=>{for(const key of keys)check(JSON.stringify(before[key])===JSON.stringify(after[key]),`State changed on locale toggle: ${key}`);};
-async function captureSourceLimits(page,lang){
+function recordSourceLimitObservation(view,lang,width,height){
+ const sourceLimitObservations=[...result.sourceLimitObservations,{ordinal:result.sourceLimitObservations.length+1,width,height,locale:lang,selected:view.selected,view}];
+ assertSourceLimitObservations(sourceLimitObservations,false);
+ writeResultJSON(resultPath,{...result,status:'running',sourceLimitObservations});
+ result.sourceLimitObservations=sourceLimitObservations;
+}
+async function captureSourceLimits(page,lang,width,height){
  const view=await page.evaluate(()=>{
   const section=document.querySelector('#place-name-provenance');
   const links=nodes=>[...nodes].map(n=>({id:n.id,href:n.getAttribute('href'),target:n.getAttribute('target'),rel:n.getAttribute('rel'),text:n.textContent}));
@@ -51,6 +57,7 @@ async function captureSourceLimits(page,lang){
    links:links([...document.querySelectorAll('#place-info a')].filter(n=>!n.closest('#place-name-provenance'))),
    nameProvenance:section?{count:document.querySelectorAll('#place-name-provenance').length,id:section.id,status:section.getAttribute('data-name-status'),headings:[...section.querySelectorAll('h3')].map(n=>n.textContent),notes:[...section.querySelectorAll('.place-note')].map(n=>n.textContent),quotes:[...section.querySelectorAll(':scope > div > p:first-child')].map(n=>n.textContent),links:links(section.querySelectorAll('a'))}:null};
  });
+ recordSourceLimitObservation(view,lang,width,height);
  return assertSourceLimits(view,lang);
 }
 // BEGIN E46 supplemental UI evidence (independent of retained Taihe snapshots).
@@ -195,7 +202,7 @@ try{
   check(dimensions.height>dimensions.client&&dimensions.scroll>0,'Card scroll precondition failed');const before=await snapshot(page),cardStates=[],sourceLimits=[];
   recordUIStep(`${width}-card-ready`);
   const kept=['selected','selection','query','view','panelScroll','quality','sound','teleports','focusId','focusHref'];
-  for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page);same(before,state,kept);check(state.sameReferences&&state.focusConnected,'UI reference or focus replaced');check(state.overflow<=1,'Page overflows viewport');cardStates.push(state);sourceLimits.push(await captureSourceLimits(page,lang));if(lang==='zh-CN')await page.screenshot({path:path.join(output,`${width}-chinese-card.png`),fullPage:true});}
+  for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page);same(before,state,kept);check(state.sameReferences&&state.focusConnected,'UI reference or focus replaced');check(state.overflow<=1,'Page overflows viewport');cardStates.push(state);sourceLimits.push(await captureSourceLimits(page,lang,width,height));if(lang==='zh-CN')await page.screenshot({path:path.join(output,`${width}-chinese-card.png`),fullPage:true});}
   await page.evaluate(()=>window.uiBefore.oldButton.click());same(before,await snapshot(page),['teleports']);
   await page.locator('#place-info a').first().focus();const sourceBefore=await snapshot(page),sourceStates=[];check(sourceBefore.focusHref,'No source link focused');
   for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page);same(sourceBefore,state,kept.filter(key=>key!=='panelScroll'));check(state.focusConnected&&state.focusVisible,'Source focus detached or scrolled out of view');check(state.panelScroll>=0&&state.panelScroll<=state.panelMax,'Invalid source scroll position');sourceStates.push(state);}

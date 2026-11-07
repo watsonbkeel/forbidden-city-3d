@@ -2,7 +2,7 @@ name: R166 cumulative374 E46 bilingual read-only validation
 'on':
   push:
     branches:
-    - dev/r166-cumulative-374-e46-origin-20261106
+    - dev/r166-cumulative-374-e46-ui-20261107
 permissions:
   contents: read
 concurrency:
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   validate:
-    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r166-cumulative-374-e46-origin-20261106'
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r166-cumulative-374-e46-ui-20261107'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     permissions:
@@ -76,7 +76,7 @@ jobs:
 
         '
       env:
-        CANDIDATE_INPUTS_SHA256: 0c4c393b90e2e1b130cdf8f9a49a85c1c53189ecc65ab9571a611a135c4bb71c
+        CANDIDATE_INPUTS_SHA256: f5e0ff6a46d1686cbba57731d6530d82e4f6649da6295fbb2a8a9d63fca117c6
         FONT_PREPARATION_OUTCOME: ${{ steps.fonts.outcome }}
       if: always() && steps.checkout.outcome == 'success' && steps.node.outcome == 'success' && steps.roots.outcome == 'success'
     - name: Preserve only fixed font preparation receipts
