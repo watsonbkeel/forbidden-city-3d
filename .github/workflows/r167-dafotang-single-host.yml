@@ -1,0 +1,188 @@
+name: R167 bounded single-hall actual host evidence only
+'on':
+  push:
+    branches:
+    - dev/r167-dafotang-single-host-20261107
+permissions:
+  contents: read
+concurrency:
+  group: r167-single-host-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  single_host:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r167-dafotang-single-host-20261107'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      GIT_OPTIONAL_LOCKS: '0'
+      GIT_NO_LAZY_FETCH: '1'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      H6_INPUTS_SHA256: '3a3696fe1e7b5e4c757ae4e3f640086e5203881c509245389373454ee7836e96'
+    steps:
+    - name: Check out exact event and public parent
+      id: checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      timeout-minutes: 2
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 0
+        persist-credentials: false
+    - name: Select pinned Node
+      id: node
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      timeout-minutes: 2
+      with:
+        node-version: 24.22.1
+        check-latest: false
+    - name: Exclusively create same-event roots
+      id: roots
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${RUNNER_TEMP:?}" "${GITHUB_RUN_ID:?}" "${GITHUB_RUN_ATTEMPT:?}" "${GITHUB_ENV:?}"
+
+        HOST_WORK_ROOT="$RUNNER_TEMP/dh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+
+        export HOST_WORK_ROOT
+
+        set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage init --root "$HOST_WORK_ROOT" --inputs docs/current-state/r167-dafotang-host/INPUTS.json
+
+        printf "HOST_WORK_ROOT=%s\n" "$HOST_WORK_ROOT" >> "$GITHUB_ENV"
+
+        '
+    - name: source
+      id: source
+      timeout-minutes: 2
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage source --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: npm-pin
+      id: npm_pin
+      timeout-minutes: 5
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage npm-pin --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: npm-verify
+      id: npm_verify
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage npm-verify --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: dependencies
+      id: dependencies
+      timeout-minutes: 5
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage dependencies --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: contracts
+      id: contracts
+      timeout-minutes: 2
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage contracts --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: preflight
+      id: preflight
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage preflight --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: host
+      id: host
+      timeout-minutes: 4
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage host --root "$HOST_WORK_ROOT" --inputs docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: verify
+      id: verify
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/entry.mjs --stage verify --root "$HOST_WORK_ROOT" --inputs
+        docs/current-state/r167-dafotang-host/INPUTS.json
+
+        '
+    - name: Seal fixed ordinary receipts without following unknown paths
+      id: collect
+      if: always()
+      timeout-minutes: 1
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/collect-evidence.mjs --mode seal --root "$HOST_WORK_ROOT"
+
+        '
+    - name: Upload only sealed fixed files
+      id: upload
+      if: always() && steps.collect.outputs.paths != ''
+      timeout-minutes: 2
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r167-dafotang-single-host-${{ github.run_id }}-${{ github.run_attempt }}
+        path: ${{ steps.collect.outputs.paths }}
+        if-no-files-found: error
+        retention-days: 14
+        compression-level: 0
+    - name: Read-only post-upload inode and SHA comparison
+      id: post_upload
+      if: always()
+      timeout-minutes: 1
+      env:
+        H6_PREUPLOAD_TABLE: ${{ steps.collect.outputs.table }}
+        H6_UPLOAD_OUTCOME: ${{ steps.upload.outcome }}
+      run: 'set -euo pipefail
+
+        : "${HOST_WORK_ROOT:?}"
+
+        node --max-old-space-size=128 scripts/ci/dafotang-host/collect-evidence.mjs --mode post-upload --root "$HOST_WORK_ROOT"
+
+        '
