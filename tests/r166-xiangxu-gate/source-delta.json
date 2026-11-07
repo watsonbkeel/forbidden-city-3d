@@ -38,7 +38,13 @@
       "path": "data/architecture/building-fidelity.json",
       "mode": "100644",
       "before": "860c5251695a96a94c526126483529959471eb904988c3a23d9b0c6cab07b9e2",
-      "after": "860c5251695a96a94c526126483529959471eb904988c3a23d9b0c6cab07b9e2"
+      "after": "19ce1c29072fd14539b05a86828134b0718c92f0210bc517b34c4611e29307f3"
+    },
+    {
+      "path": "data/architecture/dafotang-main-buddha.json",
+      "mode": "100644",
+      "before": null,
+      "after": "f171b07126196d14d43cfe9edd6c61971bd1506ec4c142e0e2f43da5c210f4f7"
     },
     {
       "path": "data/architecture/donghua-madao-contacts.json",
@@ -428,7 +434,7 @@
       "path": "data/i18n/ui-en.json",
       "mode": "100644",
       "before": "63711a8a41ff3ecd719dec199a6c7b0b5cbd5011f6c2cdac217b3e5945d82e5c",
-      "after": "63711a8a41ff3ecd719dec199a6c7b0b5cbd5011f6c2cdac217b3e5945d82e5c"
+      "after": "8175150fa0f1567535a532f9d64610c2a8adac61f758890051d823c43fc4d458"
     },
     {
       "path": "data/interiors/cining.json",
@@ -3053,6 +3059,12 @@
       "after": "fc89b38618861a85d5bd4be8231a84adf26b47092f1524934f7184651a0eab59"
     },
     {
+      "path": "src/scene/palace/special/DafotangMainBuddha.js",
+      "mode": "100644",
+      "before": null,
+      "after": "22226d0dbae79c3b3fadbf415982f2b0ed3b31e27cb91cde333f6f54c417b873"
+    },
+    {
       "path": "src/scene/palace/special/DailouWaitingHouse.js",
       "mode": "100644",
       "before": "e6aa92f1decfc058876494e16081524326ffe0c1cd928464f291237be469aed4",
@@ -4220,7 +4232,7 @@
       "path": "src/scene/palace/special/RemainingOuterHalls.js",
       "mode": "100644",
       "before": "3f819ce60f913d4121f8147b16f11f3ad92d9c43198eb3268d9540e9d3f6f2d5",
-      "after": "3f819ce60f913d4121f8147b16f11f3ad92d9c43198eb3268d9540e9d3f6f2d5"
+      "after": "5676c67a87eb516c2f4073d66047a4177b1bfd8a44a0ffaf69d58c4353ae3eba"
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
@@ -5846,7 +5858,7 @@
       "path": "src/ui/PlaceInfoPanel.js",
       "mode": "100644",
       "before": "664d0904be5b90fb4e45f292e46e8167f31822cc8c17a17e165602a858ff5e1a",
-      "after": "664d0904be5b90fb4e45f292e46e8167f31822cc8c17a17e165602a858ff5e1a"
+      "after": "21b9c4fa49f7ccaba275a13373abc2db30ca8c7758df334a0ff7deaf61fe1f1a"
     },
     {
       "path": "src/ui/PublicPlaceNames.js",
@@ -6011,9 +6023,47 @@
         "before": "{\n  \"release\": \"R164\"\n}\n",
         "after": "{\n  \"release\": \"R166\"\n}\n"
       }
+    ],
+    "data/architecture/building-fidelity.json": [
+      {
+        "before": "      \"publicNote\": \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。旧通用案椅柜凳保留并标未核。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\"\n",
+        "after": "      \"publicNote\": \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。未核通用家具不生成，整体库存仍未知，不代表空殿。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\"\n"
+      }
+    ],
+    "data/i18n/ui-en.json": [
+      {
+        "before": "",
+        "after": "    \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。未核通用家具不生成，整体库存仍未知，不代表空殿。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\": \"This round: exterior partly updated; interior partly updated. Seven bays, a single-eaved hip-and-gable roof, and 28 full-height door leaves are modeled, with central passage. Two partitions are added based on the documented three-part division. The central 3 bays, 2 bays on each side, and the two connecting doors' positions, clear width of 1.8m, and clear height of 2.65m are reversible fits. Unverified generic furniture is not generated. The overall inventory remains unknown, not confirmed empty. An older official page records Buddhist statues, niches, and tables being moved to Baima Temple. This must be distinguished chronologically from the 2015 sculpture gallery and does not establish a current inventory. The complete contemporary interior layout, photograph dates, and measured component dimensions are unknown.\",\n"
+      }
+    ],
+    "src/scene/palace/special/RemainingOuterHalls.js": [
+      {
+        "before": "",
+        "after": "import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\n"
+      },
+      {
+        "before": "",
+        "after": "  if(p.key==='dafotang')buildDafotangMainBuddha(c);\n"
+      }
+    ],
+    "src/ui/PlaceInfoPanel.js": [
+      {
+        "before": "",
+        "after": "import historicalPrincipal from '../../data/architecture/dafotang-main-buddha.json' with {type:'json'};\n"
+      },
+      {
+        "before": "",
+        "after": "    if (place?.id === historicalPrincipal.placeId) this.renderHistoricalPrincipal();\n"
+      },
+      {
+        "before": "",
+        "after": "  renderHistoricalPrincipal() {\n    const locale = localeStore.locale, text = historicalPrincipal.text[locale];\n    const section = element('section'); section.id = 'place-historical-principal';\n    section.setAttribute('data-component-id', historicalPrincipal.componentId);\n    section.appendChild(element('h3', text.heading));\n    for (const key of ['identity', 'scale', 'limits', 'translation', 'review']) section.appendChild(element('p', text[key], 'place-note'));\n    const list = element('ul');\n    for (const source of historicalPrincipal.sources) {\n      const item = element('li'), link = element('a', source.title[locale]);\n      link.id = `place-reconstruction-source-${historicalPrincipal.placeId}-${source.id}`;\n      link.setAttribute('href', source.url); link.setAttribute('target', '_blank'); link.setAttribute('rel', 'noopener noreferrer');\n      item.appendChild(link); item.appendChild(element('p', source.scope[locale], 'place-note')); list.appendChild(item);\n    }\n    section.appendChild(list); this.element.appendChild(section);\n  }\n\n"
+      }
     ]
   },
   "additionalPaths": [
+    "data/architecture/dafotang-main-buddha.json",
+    "src/scene/palace/special/DafotangMainBuddha.js",
     "src/scene/palace/special/XiangxuGlazedGate.js"
   ]
 }
