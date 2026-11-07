@@ -2,15 +2,15 @@
   "schema": 1,
   "publicBase": "e1287435158ee5aa98e0a1a370cae97021a5c385",
   "publicBaseTree": "5361deb617fa973bda3f723d5aad5f74b00decd9",
-  "sourceLabelOnly": "42e816ddc6e2726b492a9e460e654c429688a8a3",
-  "sourceTreeLabelOnly": "8a69d5acc475dac036dfdeb9bcf94f222d51ee37",
+  "sourceLabelOnly": "68e8939f157c7c59f89dbf12c38c5f8bf80e6522",
+  "sourceTreeLabelOnly": "e507f022ac245b33892a7b1beec74904bd395879",
   "files": [
     {
       "path": "data/i18n/ui-en.json",
       "mode": "100644",
-      "bytes": 150968,
-      "sha256": "63711a8a41ff3ecd719dec199a6c7b0b5cbd5011f6c2cdac217b3e5945d82e5c",
-      "gitBlob": "e74d371e43c17dd7a0af74c8c77e9d3862626976",
+      "bytes": 151160,
+      "sha256": "c027d99ec52130a046c136bfc613f0d0ef6517c9c25d1a2b8ffb78612c269601",
+      "gitBlob": "d30f474459d705a3262f29e86a5eec363849d83d",
       "status": "A"
     },
     {
@@ -254,6 +254,14 @@
       "status": "M"
     },
     {
+      "path": "tests/bilingual/bridge-announcements.test.mjs",
+      "mode": "100644",
+      "bytes": 6216,
+      "sha256": "b2d52f7e336f3933159fbdf8e3384f5ece4d997daaa7d3bfa7d12d9038cba705",
+      "gitBlob": "9f73b4f2eb5b0ec470ef5ce9e06d4d741933d1cd",
+      "status": "A"
+    },
+    {
       "path": "tests/bilingual/browser/fixture.html",
       "mode": "100644",
       "bytes": 366,
@@ -283,6 +291,14 @@
       "bytes": 1606,
       "sha256": "fe37569a071200c28603e355d60fbcbcfb6c27fbb2ce15d46ea63f711778e5ca",
       "gitBlob": "cd1fc48a4f55a9b63d2c6ae2de7f12c51b11ff56",
+      "status": "A"
+    },
+    {
+      "path": "tests/bilingual/exterior-view-labels.test.mjs",
+      "mode": "100644",
+      "bytes": 3781,
+      "sha256": "4f6ce5c1ae3fdf5187b4f848c6eaa07a9825b34bdef19074070ef34975d652f8",
+      "gitBlob": "08cec9e527f49ff0e7cb15ba7dc0b8eeb5c88b1a",
       "status": "A"
     },
     {
@@ -368,9 +384,9 @@
     {
       "path": "tests/bilingual/place-actions-source.test.mjs",
       "mode": "100644",
-      "bytes": 1940,
-      "sha256": "72ec2aeb96846f2ef1dc5d232cc041ff4c76e1c15f112afc9886aad919b52b46",
-      "gitBlob": "9cfc409b5723a348ba978e582f58fb10a96396e5",
+      "bytes": 1971,
+      "sha256": "38484fa5ad17955a22866e7535da394aa03586dd53c81cbdc36b4266f38f4c77",
+      "gitBlob": "68e3d21a37013aa44b1d41ff20d37528fb8a55ce",
       "status": "A"
     },
     {
@@ -1008,17 +1024,17 @@
     {
       "path": "tests/r166-xiangxu-gate/source-delta.json",
       "mode": "100644",
-      "bytes": 343167,
-      "sha256": "d59aaca703a2a9493d22a7935011e1d32a27695ca28793e44c3a564e1b16e8c1",
-      "gitBlob": "5fcb0d072200c78c110bb2f48954bd4ab4227880",
+      "bytes": 650478,
+      "sha256": "cb509b53f816c479ab5ce5e285c40e447d644f501fe44f9e38bc23a8d5b4d918",
+      "gitBlob": "5427a0778d7fa45e0a89ad314adf3a20f983a15e",
       "status": "A"
     },
     {
       "path": "tests/r166-xiangxu-gate/source-inputs.test.mjs",
       "mode": "100644",
-      "bytes": 3472,
-      "sha256": "ae43d6dbb351b2c36b3ca723b7e8e9e3332d6fa5661a48a4452529fddb2aff13",
-      "gitBlob": "a14e5d041ddaf05f37a7902d51c4e658fec497f7",
+      "bytes": 3546,
+      "sha256": "9c0a279e54ff827f0929e4f9ecc48615c10d5cdb591128acc2e632d9e6984d40",
+      "gitBlob": "b0410ebfe791499aae48a7924aed94abc5e7b7a1",
       "status": "A"
     },
     {
@@ -1095,8 +1111,8 @@
     "releaseBehaviorCases": 2,
     "releaseSourceCases": 4
   },
-  "publicationParent": "3dfe70e3869ede71a04f3a85e3106758ca22569c",
-  "publicationTree": "428ccdb71db3ee868d68fd1589608f5258eb762e",
+  "publicationParent": "656a9706d7530d58b6a4bec6a83a6ec6825bce87",
+  "publicationTree": "c063bf9dabfaaada2f1afec0cbf29f14f7cc249f",
   "inheritedRelease": {
     "path": "release.json",
     "mode": "100644",
@@ -1125,5 +1141,25 @@
       "tests/bilingual/place-actions.test.mjs"
     ],
     "addedBoundedCases": 16
+  },
+  "selectionAnnouncements": {
+    "publicComparisonCommit": "656a9706d7530d58b6a4bec6a83a6ec6825bce87",
+    "comparisonFingerprint": "1390a781c623fae89e9f6161457373524712bfccfb5b4ad7b908e7dcd835e23f",
+    "changedPaths": [
+      "data/i18n/ui-en.json",
+      "tests/bilingual/bridge-announcements.test.mjs",
+      "tests/bilingual/exterior-view-labels.test.mjs",
+      "tests/bilingual/place-actions-source.test.mjs",
+      "tests/r166-xiangxu-gate/source-delta.json",
+      "tests/r166-xiangxu-gate/source-inputs.test.mjs"
+    ],
+    "runtimeChangedPaths": [
+      "data/i18n/ui-en.json"
+    ],
+    "addedBoundedModules": [
+      "tests/bilingual/bridge-announcements.test.mjs",
+      "tests/bilingual/exterior-view-labels.test.mjs"
+    ],
+    "addedBoundedCases": 17
   }
 }
