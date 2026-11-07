@@ -23,6 +23,13 @@ export class PlaceInfoPanel {
     this.element.setAttribute('role', 'region');
     this.element.setAttribute('aria-labelledby', 'place-title');
     this.element.hidden = this.element.inert = true;
+    this.element.addEventListener('focusin', event => {
+      this.contentViewport();
+      const target = event.target;
+      if (target?.tagName === 'A') queueMicrotask(() => {
+        if (document.activeElement === target && this.element.contains(target)) this.keepSourceVisible(target);
+      });
+    });
     this.unsubscribeLocale = localeStore.subscribe(() => this.refreshLocale());
   }
 
@@ -79,7 +86,9 @@ export class PlaceInfoPanel {
         pointerArmed = null;
         if (admitted) onTravel(button);
       });
-      this.element.appendChild(button);
+      const actions = element('div'); actions.id = 'place-actions';
+      actions.appendChild(button);
+      this.element.prepend(actions);
     }
     const section = (heading, facts) => {
       if (!facts.length) return;
@@ -121,6 +130,7 @@ export class PlaceInfoPanel {
     }
     if (place) this.renderNameProvenance(place);
     this.element.scrollTop = 0;
+    this.contentViewport();
     return title;
   }
 
@@ -155,14 +165,38 @@ export class PlaceInfoPanel {
     this.element.appendChild(section);
   }
 
+  contentViewport() {
+    const rect = this.element.getBoundingClientRect?.();
+    if (!rect) return null;
+    const style = globalThis.getComputedStyle?.(this.element);
+    // clientTop/clientHeight round to integer CSS pixels. Keep the measured
+    // padding-box clip, including fractional borders, in the same coordinates
+    // as the source link and sticky action rectangles.
+    const top = rect.top + (parseFloat(style?.borderTopWidth) || 0);
+    const bottom = rect.bottom - (parseFloat(style?.borderBottomWidth) || 0);
+    const actionBottom = this.element.querySelector('#place-actions')?.getBoundingClientRect?.().bottom ?? top;
+    const contentTop = Math.max(top, Math.min(bottom, actionBottom));
+    this.element.style.scrollPaddingTop = `${contentTop - top}px`;
+    return {top: contentTop, bottom};
+  }
+
+  keepSourceVisible(source, preferredTop) {
+    const bounds = this.contentViewport(), rect = source.getBoundingClientRect?.();
+    if (!bounds || !rect) return;
+    const top = Math.max(bounds.top, Math.min(preferredTop ?? rect.top, bounds.bottom - (rect.bottom - rect.top)));
+    // The browser applies its native scroll range. No alternate scroll node or
+    // scrollIntoView side effect can move the map or the page.
+    this.element.scrollTop += rect.top - top;
+  }
+
   refreshLocale() {
     if (!this.lastInput) return;
     const scroll = this.element.scrollTop;
     const active = this.element.contains(document.activeElement) ? document.activeElement : null;
     const focused = active?.id;
     const oldRect = active?.tagName === 'A' ? active.getBoundingClientRect?.() : null;
-    const panelRect = this.element.getBoundingClientRect?.();
-    const keepVisibleSource = oldRect && panelRect && oldRect.top >= panelRect.top && oldRect.bottom <= panelRect.bottom;
+    const visible = this.contentViewport();
+    const keepVisibleSource = oldRect && visible && oldRect.top >= visible.top && oldRect.bottom <= visible.bottom;
     this.render(this.lastInput);
     this.element.scrollTop = scroll;
     if (focused) {
@@ -170,7 +204,7 @@ export class PlaceInfoPanel {
       replacement?.focus({preventScroll:true});
       // Preserve the visible source anchor, rather than an obsolete pixel offset
       // when translated paragraphs above it grow or shrink. Native scroll limits apply.
-      if (keepVisibleSource && replacement?.getBoundingClientRect) this.element.scrollTop += replacement.getBoundingClientRect().top - oldRect.top;
+      if (replacement?.tagName === 'A') this.keepSourceVisible(replacement, keepVisibleSource ? oldRect.top : undefined);
     }
   }
 

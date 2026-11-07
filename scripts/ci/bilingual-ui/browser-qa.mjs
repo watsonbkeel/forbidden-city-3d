@@ -7,11 +7,12 @@ import {sha256,writeResultJSON} from './common.mjs';
 import {EXPECTED_E46,assertE46,assertE46Content,assertSourceLimits,assertSourceLimitObservations,assertBrowserArguments,repositoryRoot,assertMemoryPhases,assertMemoryAdmission,assertUISteps} from './ui-oracles.mjs';
 import {chromium} from 'playwright';
 import {captureFontEndpoints} from './font-evidence.mjs';
+import {assertStickyObservations,assertStickySource} from './sticky-source-observations.mjs';
 const base=repositoryRoot(import.meta.url),output=process.env.BILINGUAL_UI_EVIDENCE_DIR;
 const workRoot=process.env.BILINGUAL_UI_WORK_ROOT,scratch=process.env.BILINGUAL_UI_SCRATCH_DIR,inputsPath=process.env.BILINGUAL_UI_INPUTS;
 if(!workRoot||!path.isAbsolute(workRoot)||output!==path.join(workRoot,'receipts','ui-components','evidence')||scratch!==path.join(workRoot,'scratch'))throw Error('Exact same-run evidence and scratch paths required');
 const resultPath=path.join(output,'RESULT.json');
-let browser,vite;const result={scope:'real browser UI components, no World construction or GPU/mobile hardware acceptance',layouts:[],errors:[],pass:false,memoryPhases:[],uiSteps:[],sourceLimitObservations:[]};
+let browser,vite;const result={scope:'real browser UI components, no World construction or GPU/mobile hardware acceptance',layouts:[],errors:[],pass:false,memoryPhases:[],uiSteps:[],sourceLimitObservations:[],stickySourceObservations:[]};
 fs.writeFileSync(resultPath,JSON.stringify({...result,status:'starting'},null,2)+'\n',{flag:'wx'});
 const check=(value,message)=>{if(!value)throw Error(message);};
 const phaseStart=process.hrtime.bigint();
@@ -40,7 +41,27 @@ function browserProcesses(){
 }
 async function settleLocale(page,value){await page.waitForFunction(value=>document.documentElement.lang===value&&window.fixture.localeStore.locale===value,value);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));}
 async function locale(page,value){await page.evaluate(value=>window.fixture.localeStore.setLocale(value),value);await settleLocale(page,value);}
-async function snapshot(page){return page.evaluate(()=>{const f=window.fixture,b=window.uiBefore,rect=document.activeElement.getBoundingClientRect(),panelRect=f.map.placePanel.element.getBoundingClientRect();return{focusVisible:rect.top>=panelRect.top-1&&rect.bottom<=panelRect.bottom+1,focusTop:rect.top,panelMax:Math.max(0,f.map.placePanel.element.scrollHeight-f.map.placePanel.element.clientHeight),selected:f.map.selectedPlaceId,selection:f.map.selection,query:document.querySelector('#place-search').value,view:{...f.map.view},panelScroll:f.map.placePanel.element.scrollTop,quality:f.settings.currentQuality,sound:f.settings.soundEnabled,teleports:[...f.teleports],sameReferences:b.map===f.map&&b.panel===f.map.placePanel&&b.catalog===f.map.placeCatalog&&b.settings===f.settings&&b.time===f.time&&b.environment===f.environment,focusId:document.activeElement.id,focusHref:document.activeElement.getAttribute('href'),focusConnected:document.activeElement.isConnected,lang:document.documentElement.lang,title:document.querySelector('#place-title').textContent,overflow:document.documentElement.scrollWidth-innerWidth,missing:[...f.missingTranslations]};});}
+async function snapshot(page,observeSticky=false){return page.evaluate(observeSticky=>{const f=window.fixture,b=window.uiBefore,rect=document.activeElement.getBoundingClientRect(),panelRect=f.map.placePanel.element.getBoundingClientRect();const state={focusVisible:rect.top>=panelRect.top-1&&rect.bottom<=panelRect.bottom+1,focusTop:rect.top,panelMax:Math.max(0,f.map.placePanel.element.scrollHeight-f.map.placePanel.element.clientHeight),selected:f.map.selectedPlaceId,selection:f.map.selection,query:document.querySelector('#place-search').value,view:{...f.map.view},panelScroll:f.map.placePanel.element.scrollTop,quality:f.settings.currentQuality,sound:f.settings.soundEnabled,teleports:[...f.teleports],sameReferences:b.map===f.map&&b.panel===f.map.placePanel&&b.catalog===f.map.placeCatalog&&b.settings===f.settings&&b.time===f.time&&b.environment===f.environment,focusId:document.activeElement.id,focusHref:document.activeElement.getAttribute('href'),focusConnected:document.activeElement.isConnected,lang:document.documentElement.lang,title:document.querySelector('#place-title').textContent,overflow:document.documentElement.scrollWidth-innerWidth,missing:[...f.missingTranslations]}
+if(!observeSticky)return state;
+const collectionErrors=[];
+const error=code=>{if(!collectionErrors.includes(code))collectionErrors.push(code);};
+const safe=(code,read)=>{try{return read();}catch{error(code);return null;}};
+const number=value=>{if(typeof value==='number'&&Number.isFinite(value))return value;error('nonfinite');return null;};
+const string=value=>{if(value===null)return null;if(typeof value==='string'&&value.length<=2048&&!/\p{Surrogate}/u.test(value))return value;error('string-limit');return null;};
+const rectOf=node=>{const r=node.getBoundingClientRect();return Object.fromEntries(['x','y','width','height','top','right','bottom','left'].map(k=>[k,number(r[k])]));};
+const fixed=selector=>document.querySelector(selector);
+const source=safe('source-read',()=>fixed('#place-source-taihe')),panel=safe('panel-read',()=>fixed('#place-info')),actions=safe('actions-read',()=>fixed('#place-actions')),minimap=safe('minimap-read',()=>fixed('#minimap'));
+const container=node=>{if(!node)throw Error();const s=getComputedStyle(node);return{id:string(node.id),tag:string(node.tagName),connected:node.isConnected,hidden:node.hidden,rect:rectOf(node),borders:{top:string(s.borderTopWidth),right:string(s.borderRightWidth),bottom:string(s.borderBottomWidth),left:string(s.borderLeftWidth)},overflowX:string(s.overflowX),overflowY:string(s.overflowY),clientWidth:number(node.clientWidth),clientHeight:number(node.clientHeight),scrollTop:number(node.scrollTop),scrollHeight:number(node.scrollHeight),direction:string(s.direction),transform:string(s.transform)};};
+const active=safe('active-read',()=>{const a=document.activeElement;if(!a)throw Error();return{id:string(a.id),tag:string(a.tagName),href:string(a.getAttribute('href')),connected:a.isConnected};});
+const sourceValue=safe('source-read',()=>{if(!source)throw Error();const list=source.getClientRects(),clientRectCount=list.length;let clientRects=null;if(clientRectCount>16)error('rect-limit');else clientRects=Array.from(list,r=>Object.fromEntries(['x','y','width','height','top','right','bottom','left'].map(k=>[k,number(r[k])])));return{id:string(source.id),tag:string(source.tagName),href:string(source.getAttribute('href')),connected:source.isConnected,hidden:source.hidden,active:source===document.activeElement,inPanel:panel?panel.contains(source):null,rect:rectOf(source),clientRectCount:number(clientRectCount),clientRects};});
+const panelValue=safe('panel-read',()=>({...container(panel),inMinimap:minimap?minimap.contains(panel):null,scrollPaddingTop:string(getComputedStyle(panel).scrollPaddingTop)}));
+const actionsValue=safe('actions-read',()=>{if(!actions)throw Error();const s=getComputedStyle(actions);return{id:string(actions.id),tag:string(actions.tagName),connected:actions.isConnected,hidden:actions.hidden,inPanel:panel?panel.contains(actions):null,rect:rectOf(actions),position:string(s.position),top:string(s.top)};});
+const minimapValue=safe('minimap-read',()=>container(minimap));
+const counts=safe('counts-read',()=>Object.fromEntries([['source','#place-source-taihe'],['panel','#place-info'],['actions','#place-actions'],['minimap','#minimap']].map(([key,selector])=>[key,number(document.querySelectorAll(selector).length)])));
+const viewport=safe('viewport-read',()=>({width:number(innerWidth),height:number(innerHeight),dpr:number(devicePixelRatio)}));
+const locale=safe('identity-read',()=>string(f.localeStore.locale)),documentLang=safe('identity-read',()=>string(document.documentElement.lang)),selected=safe('identity-read',()=>string(f.map.selectedPlaceId));
+return{...state,stickySource:{schema:1,active,source:sourceValue,panel:panelValue,actions:actionsValue,minimap:minimapValue,counts,viewport,locale,documentLang,selected,collectionErrors}};
+},observeSticky);}
 const same=(before,after,keys)=>{for(const key of keys)check(JSON.stringify(before[key])===JSON.stringify(after[key]),`State changed on locale toggle: ${key}`);};
 function recordSourceLimitObservation(view,lang,width,height){
  const sourceLimitObservations=[...result.sourceLimitObservations,{ordinal:result.sourceLimitObservations.length+1,width,height,locale:lang,selected:view.selected,view}];
@@ -48,6 +69,15 @@ function recordSourceLimitObservation(view,lang,width,height){
  writeResultJSON(resultPath,{...result,status:'running',sourceLimitObservations});
  result.sourceLimitObservations=sourceLimitObservations;
 }
+function recordStickySourceObservation(state,width,height,phase){
+ const row={schema:1,ordinal:result.stickySourceObservations.length+1,width,height,phase,state};
+ const stickySourceObservations=[...result.stickySourceObservations,row];
+ assertStickyObservations(stickySourceObservations,false);
+ writeResultJSON(resultPath,{...result,status:'running',stickySourceObservations});
+ result.stickySourceObservations=stickySourceObservations;
+ return row;
+}
+// END sticky source observation recorder
 async function captureSourceLimits(page,lang,width,height){
  const view=await page.evaluate(()=>{
   const section=document.querySelector('#place-name-provenance');
@@ -204,8 +234,8 @@ try{
   const kept=['selected','selection','query','view','panelScroll','quality','sound','teleports','focusId','focusHref'];
   for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page);same(before,state,kept);check(state.sameReferences&&state.focusConnected,'UI reference or focus replaced');check(state.overflow<=1,'Page overflows viewport');cardStates.push(state);sourceLimits.push(await captureSourceLimits(page,lang,width,height));if(lang==='zh-CN')await page.screenshot({path:path.join(output,`${width}-chinese-card.png`),fullPage:true});}
   await page.evaluate(()=>window.uiBefore.oldButton.click());same(before,await snapshot(page),['teleports']);
-  await page.locator('#place-info a').first().focus();const sourceBefore=await snapshot(page),sourceStates=[];check(sourceBefore.focusHref,'No source link focused');
-  for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page);same(sourceBefore,state,kept.filter(key=>key!=='panelScroll'));check(state.focusConnected&&state.focusVisible,'Source focus detached or scrolled out of view');check(state.panelScroll>=0&&state.panelScroll<=state.panelMax,'Invalid source scroll position');sourceStates.push(state);}
+  await page.locator('#place-info a').first().focus();const sourceBefore=await snapshot(page,true),sourceStates=[];const stickyBefore=recordStickySourceObservation(sourceBefore,width,height,'before');check(sourceBefore.focusHref,'No source link focused');assertStickySource(stickyBefore);
+  for(const lang of ['zh-CN','en']){await locale(page,lang);const state=await snapshot(page,true);const stickyState=recordStickySourceObservation(state,width,height,lang);same(sourceBefore,state,kept.filter(key=>key!=='panelScroll'));check(state.focusConnected&&state.focusVisible,'Source focus detached or scrolled out of view');check(state.panelScroll>=0&&state.panelScroll<=state.panelMax,'Invalid source scroll position');assertStickySource(stickyState);sourceStates.push(state);}
   await page.evaluate(()=>document.querySelector('#place-info').scrollTop=0);
   const hitTests=await page.evaluate(()=>['#map-language','#place-travel','#place-back'].map(selector=>{const e=document.querySelector(selector),r=e.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y);return{selector,rect:{x:r.x,y:r.y,width:r.width,height:r.height},hit:!!hit&&(hit===e||e.contains(hit))};}));check(hitTests.every(x=>x.hit),'Visible control is obscured');
   await page.screenshot({path:path.join(output,`${width}-english-card.png`),fullPage:true});
@@ -227,7 +257,7 @@ try{
   const fontEvidence=await captureFontEndpoints(page,width,height,output,settleLocale);
   result.layouts.push({width,height,mobileEmulation:mobile,orientation,directoryBefore,directoryStates,dimensions,before,cardStates,sourceLimits,sourceBefore,sourceStates,hitTests,settings,facilities,toolStates,failure,errors,e46,fontEvidence});result.errors.push(...errors);recordUIStep(`${width}-layout-complete`);await context.close();recordUIStep(`${width}-context-closed`);
  }
- check(result.errors.length===0,'Console/page errors occurred');check(result.layouts.every(x=>x.settings.missing.length===0),'Untranslated UI messages detected');result.pass=true;
+ check(result.errors.length===0,'Console/page errors occurred');check(result.layouts.every(x=>x.settings.missing.length===0),'Untranslated UI messages detected');assertStickyObservations(result.stickySourceObservations,true,result.layouts);result.pass=true;
 }catch(error){result.pass=false;result.failure=error.stack;process.exitCode=1;}
 finally{
  const cleanupFailure=(name,error)=>{result.pass=false;process.exitCode=1;result.errors.push(`${name}: ${error.message}`);};
