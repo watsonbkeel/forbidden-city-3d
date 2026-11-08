@@ -821,3 +821,6 @@ body[data-tour-hud="top"].map-open #tour-primary-tools { visibility: hidden; }
 }
 
 body[data-tour-hud="top"].map-open #tour-tools { visibility: hidden; }
+
+/* The map owns location context while open, including the temporarily undocked node. */
+body[data-tour-hud="top"].map-open #location-panel { visibility: hidden; }

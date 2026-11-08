@@ -6811,8 +6811,8 @@
       "path": "src/ui/Minimap.js",
       "mode": "100644",
       "before": "60fc9447f023d37a7e70ebba15a1abcdde5970622f1d8d7c95e1d68343e032cf",
-      "after": "60fc9447f023d37a7e70ebba15a1abcdde5970622f1d8d7c95e1d68343e032cf",
-      "bytes": 57876
+      "after": "e090d7b37a8fca481ffd82562837d4606080e1382cd59604a99dc1f4a3558675",
+      "bytes": 57933
     },
     {
       "path": "src/ui/ModelFidelity.js",
@@ -6993,8 +6993,8 @@
       "path": "style.css",
       "mode": "100644",
       "before": "23c8f9fa4d10811f6c3dd7476fd6a93345d8ef6145e778f5d1b7d440db9a6021",
-      "after": "b7cf3c1765f99af5ec79dc936544065526df8797a42bf9e3ca8517548ac0d905",
-      "bytes": 28839
+      "after": "2c5602bfa474658abab81d42b4c2e9de92bb0897267c36a46e808507ebfd545a",
+      "bytes": 29004
     },
     {
       "path": "vite.config.js",
@@ -7037,8 +7037,30 @@
     ],
     "style.css": [
       {
+        "before": "}\n\nbody[data-tour-hud=\"top\"].map-open #tour-tools { visibility: hidden; }\n",
+        "after": "}\n\nbody[data-tour-hud=\"top\"].map-open #tour-tools { visibility: hidden; }\n\n/* The map owns location context while open, including the temporarily undocked node. */\nbody[data-tour-hud=\"top\"].map-open #location-panel { visibility: hidden; }\n"
+      },
+      {
         "before": "    white-space: normal; width: max-content; max-width: calc(100vw - 24px); text-align: center;\n  }\n}\n",
         "after": "    white-space: normal; width: max-content; max-width: calc(100vw - 24px); text-align: center;\n  }\n}\n\n/* Top HUD: real persistent controls in flow, never placed over walking inputs. */\nbody[data-tour-hud=\"top\"] #tour-primary-tools {\n  position: fixed; z-index: 9100; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;\n  top: max(12px, env(safe-area-inset-top, 0px)); left: max(12px, env(safe-area-inset-left, 0px));\n  width: min(360px, calc(100vw - 380px)); max-height: calc(100dvh - 40px - env(safe-area-inset-top, 0px));\n  overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; pointer-events: none;\n}\nbody[data-tour-hud=\"top\"] #tour-primary-tools > * { flex-shrink: 0; box-sizing: border-box; pointer-events: auto; }\nbody[data-tour-hud=\"top\"] #tour-primary-tools #location-panel {\n  position: relative !important; top: auto !important; left: auto !important; width: 100%; max-width: 100% !important;\n  margin: 0; overflow-wrap: anywhere; pointer-events: none;\n}\nbody[data-tour-hud=\"top\"] #tour-primary-tools #structural-preview-button,\nbody[data-tour-hud=\"top\"] #tour-primary-tools #help-panel {\n  position: relative; top: auto !important; left: auto !important; bottom: auto; transform: none;\n  margin: 0; max-width: 100%; min-height: 44px;\n}\nbody[data-tour-hud=\"top\"] #tour-primary-tools #help-panel > button { min-height: 44px; }\nbody[data-tour-hud=\"top\"] #tour-tools {\n  top: max(12px, env(safe-area-inset-top, 0px)) !important; right: max(12px, env(safe-area-inset-right, 0px)) !important;\n  max-width: min(310px, calc(100vw - 28px)); max-height: calc(100dvh - 40px - env(safe-area-inset-top, 0px)) !important;\n  z-index: 9200 !important;\n}\nbody[data-tour-hud=\"top\"] #tour-tools[data-map-preview=\"true\"] {\n  top: calc(142px + env(safe-area-inset-top, 0px)) !important;\n  max-height: calc(100dvh - 336px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;\n}\nbody[data-tour-hud=\"top\"] #tour-language-control {\n  position: relative; top: auto; left: auto; bottom: auto; transform: none; align-self: flex-end;\n  box-sizing: border-box; width: 100%; flex-shrink: 0;\n}\nbody[data-tour-hud=\"top\"].map-open #tour-primary-tools { visibility: hidden; }\n@media (max-width: 768px) {\n  body[data-tour-hud=\"top\"] #tour-primary-tools { width: calc(100vw - 166px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); max-height: calc(100dvh - 190px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); gap: 6px; }\n  body[data-tour-hud=\"top\"] #tour-primary-tools #location-panel { padding: 8px 10px !important; font-size: 13px !important; }\n  body[data-tour-hud=\"top\"] #tour-primary-tools #structural-preview-button { width: 100%; padding: 5px 8px; }\n  body[data-tour-hud=\"top\"] #tour-tools { width: 130px; max-width: 130px; max-height: calc(100dvh - 206px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }\n  body[data-tour-hud=\"top\"] #tour-tools[data-map-preview=\"true\"] { top: calc(142px + env(safe-area-inset-top, 0px)) !important; max-height: calc(100dvh - 336px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }\n  body[data-tour-hud=\"top\"] #tour-language-control { padding: 2px 4px; }\n  body[data-tour-hud=\"top\"] #tour-language-control > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }\n  body[data-tour-hud=\"top\"] #tour-language { width: 100%; min-width: 0; }\n  body[data-tour-hud=\"top\"] #day-night-panel { box-sizing: border-box; width: 100%; min-width: 0; padding: 5px; overflow-wrap: anywhere; }\n  body[data-tour-hud=\"top\"] #day-night-panel input[type=\"range\"] { max-width: 100%; }\n}\n@media (orientation: landscape) and (max-height: 600px) {\n  body[data-tour-hud=\"top\"] #tour-primary-tools { width: min(320px, calc((100vw - 184px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) / 2)); max-height: calc(100dvh - 174px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }\n  body[data-tour-hud=\"top\"] #tour-tools[data-map-preview=\"true\"] { top: max(8px, env(safe-area-inset-top, 0px)) !important; right: calc(148px + env(safe-area-inset-right, 0px)) !important; width: min(300px, calc((100vw - 184px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) / 2)); max-width: none; max-height: calc(100dvh - 174px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }\n}\n\nbody[data-tour-hud=\"top\"].map-open #tour-tools { visibility: hidden; }\n"
+      }
+    ],
+    "src/ui/Minimap.js": [
+      {
+        "before": "\n    const presentation = document.createElement('div');\n    presentation.id = 'minimap-presentation';\n    const status = document.createElement('div');\n    status.id = 'minimap-status';\n    this.headingLabel = document.createElement('span');\n",
+        "after": "\n    const presentation = document.createElement('div');\n    presentation.id = 'minimap-presentation';\n    this.mapPresentation = presentation;\n    const status = document.createElement('div');\n    status.id = 'minimap-status';\n    this.headingLabel = document.createElement('span');\n"
+      },
+      {
+        "before": "    });\n    this.container.appendChild(quick);\n    this.initPlaceInformation();\n    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];\n    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];\n    \n    document.body.appendChild(this.container);\n",
+        "after": "    });\n    this.container.appendChild(quick);\n    this.initPlaceInformation();\n    this.mapSections = [title, this.canvas, moatNotice, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];\n    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];\n    \n    document.body.appendChild(this.container);\n"
+      },
+      {
+        "before": "    close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';\n    close.addEventListener('click', () => this.toggle());\n    this.closeButton = close;\n    this.container.appendChild(close);\n    this.bindSecondaryTaps(this.container);\n    if (this.preview) this.bindSecondaryTaps(this.preview);\n    this.bindViewInteraction();\n",
+        "after": "    close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';\n    close.addEventListener('click', () => this.toggle());\n    this.closeButton = close;\n    this.mapPresentation.prepend(close);\n    this.bindSecondaryTaps(this.container);\n    if (this.preview) this.bindSecondaryTaps(this.preview);\n    this.bindViewInteraction();\n"
+      },
+      {
+        "before": "    this.detailVisible = false;\n    this.placePanel.element.hidden = this.placePanel.element.inert = true;\n    this.placeHeader.hidden = this.placeHeader.inert = true;\n    this.container.appendChild(this.closeButton);\n    for (const node of this.mapSections) node.hidden = node.inert = false;\n    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;\n    this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';\n",
+        "after": "    this.detailVisible = false;\n    this.placePanel.element.hidden = this.placePanel.element.inert = true;\n    this.placeHeader.hidden = this.placeHeader.inert = true;\n    this.mapPresentation.prepend(this.closeButton);\n    for (const node of this.mapSections) node.hidden = node.inert = false;\n    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;\n    this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';\n"
       }
     ]
   }

@@ -117,6 +117,7 @@ export class Minimap {
 
     const presentation = document.createElement('div');
     presentation.id = 'minimap-presentation';
+    this.mapPresentation = presentation;
     const status = document.createElement('div');
     status.id = 'minimap-status';
     this.headingLabel = document.createElement('span');
@@ -224,7 +225,7 @@ export class Minimap {
     });
     this.container.appendChild(quick);
     this.initPlaceInformation();
-    this.mapSections = [title, this.canvas, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
+    this.mapSections = [title, this.canvas, moatNotice, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
     this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
     
     document.body.appendChild(this.container);
@@ -264,7 +265,7 @@ export class Minimap {
     close.style.cssText = 'display:block;margin:8px auto;min-height:44px;color:#ffd764;background:#33291e;border:1px solid #ffd764;border-radius:6px';
     close.addEventListener('click', () => this.toggle());
     this.closeButton = close;
-    this.container.appendChild(close);
+    this.mapPresentation.prepend(close);
     this.bindSecondaryTaps(this.container);
     if (this.preview) this.bindSecondaryTaps(this.preview);
     this.bindViewInteraction();
@@ -443,7 +444,7 @@ export class Minimap {
     this.detailVisible = false;
     this.placePanel.element.hidden = this.placePanel.element.inert = true;
     this.placeHeader.hidden = this.placeHeader.inert = true;
-    this.container.appendChild(this.closeButton);
+    this.mapPresentation.prepend(this.closeButton);
     for (const node of this.mapSections) node.hidden = node.inert = false;
     this.resumePlace.hidden = this.resumePlace.inert = !this.selection;
     this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';
