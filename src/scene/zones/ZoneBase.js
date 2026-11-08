@@ -1,3 +1,4 @@
+import {createDafotangPhotoSession} from '../palace/special/DafotangPhotoPresentation.js';
 import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';
 import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';
 import {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';
@@ -206,7 +207,7 @@ import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoor
 import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';
 import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
-import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
+import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou,finalizeNingshouCoveredPlatforms} from '../palace/special/RemainingNingshouHalls.js';
 import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
 import {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';
@@ -655,7 +656,9 @@ export class ZoneBase {
     yield {phase:'hook',index:153};
     buildXiangxuGlazedGate(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
+    finalizeNingshouCoveredPlatforms(this.kit);
     this.group = this.kit.finish();
+    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2'))this.dafotangPhotoSession=createDafotangPhotoSession(this.group);
     yield {phase:'lod',index:0};
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -692,6 +695,8 @@ export class ZoneBase {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
+    this.dafotangPhotoSession?.dispose();
+    this.dafotangPhotoSession=null;
     // A failed build may own source resources before a merged group exists.
     this.kit.dispose(this.group ?? this.kit.root);
     this.group?.removeFromParent();

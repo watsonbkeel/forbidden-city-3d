@@ -1,3 +1,5 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
+import {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';
 import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';
 import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';
 import {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';
@@ -594,6 +596,11 @@ function base(kit,item,p,opts={}) {
   // Match the visible platform top to the existing walkable datum exactly.
   for(const n of f.children)if(n.isMesh&&materialKey(kit,n.material)==='stone_slab'&&Math.abs(n.position.y-(y-.03))<1e-8)n.position.y-=.01;
   if(p.key==='dafotang')removeDafotangCoveredPlatformTop(kit,f,y);
+  else{
+    const platform=f.children.find(n=>n.isMesh&&n.material===kit.lib.material(y>=.8?'sumeru_band':'wall_brick')&&Math.abs(n.position.y-y/2)<1e-8);
+    const paving=f.children.find(n=>n.isMesh&&n.material===kit.lib.material('stone_slab')&&Math.abs(n.position.y-(y-.04))<1e-8);
+    removeCoveredPlatformSurface(platform,paving,y);
+  }
   for (const node of [...f.children]) {
     if (node.name.startsWith('roof_') || (node.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(materialKey(kit,node.material)))) {
       node.traverse(n=>{if(n.geometry)discard.add(n.geometry);});node.removeFromParent();
@@ -961,7 +968,7 @@ function buildCeremonialHall(kit,item,p) {
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
-  if(p.key==='dafotang')buildDafotangMainBuddha(c);
+  if(p.key==='dafotang'){buildDafotangMainBuddha(c);registerDafotangPhotoSlots(c);}
   // Ceiling beams are structural fits. No generic throne, desks or chairs are
   // substituted for the modern sculpture-library uses or historical shrines.
   plainCeiling(c,g.y+g.h-.5);

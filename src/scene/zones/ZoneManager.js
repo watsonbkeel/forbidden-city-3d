@@ -348,7 +348,10 @@ export class ZoneManager {
     this.onUnload?.(zoneId, data.group);
     data.group.removeFromParent();
     this.collisionManager.removeByTag(zoneId);
-    if (retain && this.inactiveCache && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+    // Pending photos may grow the retained resource set after cost admission.
+    // Dispose/cancel only that pending session; completed or disabled photos
+    // still use the original cost accounting and normal cache budget below.
+    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
       builder.releaseConstructionReferences?.();
       entry.cost = zoneRetainedResourceCost(entry,this.library);
       this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));

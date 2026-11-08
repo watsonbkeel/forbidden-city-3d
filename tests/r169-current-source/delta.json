@@ -2083,6 +2083,13 @@
       "bytes": 1132
     },
     {
+      "path": "src/render/CoveredPlatformSurface.js",
+      "mode": "100644",
+      "before": null,
+      "after": "1e04da92ab5c69c7849955bf45792a1fea56ac20ed6daf74d8ead65c5009d397",
+      "bytes": 5747
+    },
+    {
       "path": "src/render/DepthSSAOPass.js",
       "mode": "100644",
       "before": "f671aa5154a889ffb08c3d19fc5494f836a5c874bab71a85db2d42b27da5e82c",
@@ -3581,6 +3588,20 @@
       "bytes": 18446
     },
     {
+      "path": "src/scene/palace/special/DafotangPhotoPresentation.js",
+      "mode": "100644",
+      "before": null,
+      "after": "d3a68bbff2fb792bb6363e4156fd98324f59af268cfe4afca557996ff0fc15f7",
+      "bytes": 10010
+    },
+    {
+      "path": "src/scene/palace/special/DafotangPhotoTriptych.js",
+      "mode": "100644",
+      "before": null,
+      "after": "d00d59a7f5163d1ea9ac15ccbf0321bff4ec77bd02ff4b45429a7312d9cd5b94",
+      "bytes": 7534
+    },
+    {
       "path": "src/scene/palace/special/DailouWaitingHouse.js",
       "mode": "100644",
       "before": "e6aa92f1decfc058876494e16081524326ffe0c1cd928464f291237be469aed4",
@@ -4935,15 +4956,15 @@
       "path": "src/scene/palace/special/RemainingNingshouHalls.js",
       "mode": "100644",
       "before": "838208211d9f0303c59ecdf0283e9fe7752533cffc43c352c457ce71a68f65bf",
-      "after": "838208211d9f0303c59ecdf0283e9fe7752533cffc43c352c457ce71a68f65bf",
-      "bytes": 112934
+      "after": "7b30322cfb9e55e425253a8221d6b0dbbd8d9606481262cb536a50f79d04976e",
+      "bytes": 113969
     },
     {
       "path": "src/scene/palace/special/RemainingOuterHalls.js",
       "mode": "100644",
       "before": "5676c67a87eb516c2f4073d66047a4177b1bfd8a44a0ffaf69d58c4353ae3eba",
-      "after": "9b5483e6489b73f98bafe6c0d3950e8caa9824ef645586c11991e42719e6db6c",
-      "bytes": 145924
+      "after": "db28baedd73f0107562a6c495af0e3d560c0c8502f2d2be1bb18f2c0b7f705a2",
+      "bytes": 146460
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
@@ -5075,8 +5096,8 @@
       "path": "src/scene/palace/special/SideGate.js",
       "mode": "100644",
       "before": "8e879da9c4999ffd84d51b16085c8fb15435bddb74463c0a4fedb06626d1bc9c",
-      "after": "8e879da9c4999ffd84d51b16085c8fb15435bddb74463c0a4fedb06626d1bc9c",
-      "bytes": 16484
+      "after": "e3178fe2c9b4dc86c7457eb63884c1403710a1c5c64d95dfc39c8a827c1676c8",
+      "bytes": 16679
     },
     {
       "path": "src/scene/palace/special/SideGateExteriorDetails.js",
@@ -6748,8 +6769,8 @@
       "path": "src/scene/zones/ZoneBase.js",
       "mode": "100644",
       "before": "d98d198533236b804f177a277cdc781b4fe2d9d7f03aeb2c825cc5e2473b4889",
-      "after": "d98d198533236b804f177a277cdc781b4fe2d9d7f03aeb2c825cc5e2473b4889",
-      "bytes": 67333
+      "after": "2da13e3efe06bf9593c72e0ba7850550da2e794d0bd4f6a495013a02b5296698",
+      "bytes": 67768
     },
     {
       "path": "src/scene/zones/ZoneBuildSteps.js",
@@ -6769,8 +6790,8 @@
       "path": "src/scene/zones/ZoneManager.js",
       "mode": "100644",
       "before": "6ef827373b0d27a0b4eabec0290a2888c11920ebcf946fc30bcb7ec0350966c9",
-      "after": "6ef827373b0d27a0b4eabec0290a2888c11920ebcf946fc30bcb7ec0350966c9",
-      "bytes": 20428
+      "after": "e88f06ab8714c35f0c8235ba0c9bfd2861e059c46fc50c1a88f10656fe30245f",
+      "bytes": 20716
     },
     {
       "path": "src/ui/BuildingFidelity.js",
@@ -7007,6 +7028,18 @@
   "inverseEdits": {
     "src/scene/palace/special/RemainingOuterHalls.js": [
       {
+        "before": "import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\nimport {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\n",
+        "after": "import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';\nimport {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\nimport {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\n"
+      },
+      {
+        "before": "  // Match the visible platform top to the existing walkable datum exactly.\n  for(const n of f.children)if(n.isMesh&&materialKey(kit,n.material)==='stone_slab'&&Math.abs(n.position.y-(y-.03))<1e-8)n.position.y-=.01;\n  if(p.key==='dafotang')removeDafotangCoveredPlatformTop(kit,f,y);\n  for (const node of [...f.children]) {\n    if (node.name.startsWith('roof_') || (node.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(materialKey(kit,node.material)))) {\n      node.traverse(n=>{if(n.geometry)discard.add(n.geometry);});node.removeFromParent();\n",
+        "after": "  // Match the visible platform top to the existing walkable datum exactly.\n  for(const n of f.children)if(n.isMesh&&materialKey(kit,n.material)==='stone_slab'&&Math.abs(n.position.y-(y-.03))<1e-8)n.position.y-=.01;\n  if(p.key==='dafotang')removeDafotangCoveredPlatformTop(kit,f,y);\n  else{\n    const platform=f.children.find(n=>n.isMesh&&n.material===kit.lib.material(y>=.8?'sumeru_band':'wall_brick')&&Math.abs(n.position.y-y/2)<1e-8);\n    const paving=f.children.find(n=>n.isMesh&&n.material===kit.lib.material('stone_slab')&&Math.abs(n.position.y-(y-.04))<1e-8);\n    removeCoveredPlatformSurface(platform,paving,y);\n  }\n  for (const node of [...f.children]) {\n    if (node.name.startsWith('roof_') || (node.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(materialKey(kit,node.material)))) {\n      node.traverse(n=>{if(n.geometry)discard.add(n.geometry);});node.removeFromParent();\n"
+      },
+      {
+        "before": "  if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);\n  if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);\n  if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}\n  if(p.key==='dafotang')buildDafotangMainBuddha(c);\n  // Ceiling beams are structural fits. No generic throne, desks or chairs are\n  // substituted for the modern sculpture-library uses or historical shrines.\n  plainCeiling(c,g.y+g.h-.5);\n",
+        "after": "  if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);\n  if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);\n  if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}\n  if(p.key==='dafotang'){buildDafotangMainBuddha(c);registerDafotangPhotoSlots(c);}\n  // Ceiling beams are structural fits. No generic throne, desks or chairs are\n  // substituted for the modern sculpture-library uses or historical shrines.\n  plainCeiling(c,g.y+g.h-.5);\n"
+      },
+      {
         "before": "import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\nimport {registerBPrincipalStairs} from '../BPrincipalStairContact.js';\n",
         "after": "import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\nimport {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\nimport {registerBPrincipalStairs} from '../BPrincipalStairContact.js';\n"
       },
@@ -7061,6 +7094,62 @@
       {
         "before": "    this.detailVisible = false;\n    this.placePanel.element.hidden = this.placePanel.element.inert = true;\n    this.placeHeader.hidden = this.placeHeader.inert = true;\n    this.container.appendChild(this.closeButton);\n    for (const node of this.mapSections) node.hidden = node.inert = false;\n    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;\n    this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';\n",
         "after": "    this.detailVisible = false;\n    this.placePanel.element.hidden = this.placePanel.element.inert = true;\n    this.placeHeader.hidden = this.placeHeader.inert = true;\n    this.mapPresentation.prepend(this.closeButton);\n    for (const node of this.mapSections) node.hidden = node.inert = false;\n    this.resumePlace.hidden = this.resumePlace.inert = !this.selection;\n    this.resumePlace.textContent = this.selection ? `继续阅读${placeDisplayName(this.selection.name)}` : '';\n"
+      }
+    ],
+    "src/scene/palace/special/RemainingNingshouHalls.js": [
+      {
+        "before": "import {fitFanhuaStairApproach} from './FanhuaStairContact.js';\nimport {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';\nimport {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';\n",
+        "after": "import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport {fitFanhuaStairApproach} from './FanhuaStairContact.js';\nimport {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';\nimport {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';\n"
+      },
+      {
+        "before": "}\nfunction slab(c,role,x0,x1,z0,z1,y,{thickness=.15,walk=false,solid=true,mat='wood'}={}) {\n if(x1-x0<=.02||z1-z0<=.02)return;\n c.box(role,mat,x1-x0,thickness,z1-z0,(x0+x1)/2,y-thickness/2,(z0+z1)/2,solid);\n if(walk)c.walk(x0,z0,x1,z1,y);\n}\nfunction platform(c,w=c.p.localW,d=c.p.localD) {\n const {p,box,walk}=c,pad=Math.min(c.item.pad??.5,.8),pw=w+pad*2,pd=d+pad*2;\n box('platform-base','brick',pw,p.ph,pd,0,p.ph/2,0,p.ph>.55);\n slab(c,'platform-paving',-pw/2,pw/2,-pd/2,pd/2,p.ph,{walk:true,mat:'stone',thickness:.07,solid:false});\n slab(c,'interior-floor',-w/2,w/2,-d/2,d/2,p.ph+.014,{mat:'floor',solid:false,thickness:.035});\n for(const portal of p.portals)if(p.ph>.55){if(['east','west'].includes(portal.side))exteriorSideSteps(c,(portal.side==='east'?-1:1)*pw/2,portal.z,p.ph,portal.width,portal.side);else if(p.key==='fuwang'&&portal.side==='front'&&c.kit.fuwangSouthFront!==false)buildFuwangSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='leshou'&&portal.side==='front'&&c.kit.leshouSouthFront!==false)buildLeshouSouthApproach(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='yangxing'&&portal.side==='front'&&c.kit.yangxingSouthEntrance!==false)buildYangxingSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else exteriorSteps(c,portal.approachX,(portal.side==='rear'?1:-1)*pd/2,p.ph,Math.max(2.25,portal.width),portal.side);}\n return{pw,pd};\n",
+        "after": "}\nfunction slab(c,role,x0,x1,z0,z1,y,{thickness=.15,walk=false,solid=true,mat='wood'}={}) {\n if(x1-x0<=.02||z1-z0<=.02)return;\n const mesh=c.box(role,mat,x1-x0,thickness,z1-z0,(x0+x1)/2,y-thickness/2,(z0+z1)/2,solid);\n if(walk)c.walk(x0,z0,x1,z1,y);\n return mesh;\n}\nfunction platform(c,w=c.p.localW,d=c.p.localD) {\n const {p,box,walk}=c,pad=Math.min(c.item.pad??.5,.8),pw=w+pad*2,pd=d+pad*2;\n const base=box('platform-base','brick',pw,p.ph,pd,0,p.ph/2,0,p.ph>.55);\n const paving=slab(c,'platform-paving',-pw/2,pw/2,-pd/2,pd/2,p.ph,{walk:true,mat:'stone',thickness:.07,solid:false});\n c.coveredPlatformSources={base,paving};\n slab(c,'interior-floor',-w/2,w/2,-d/2,d/2,p.ph+.014,{mat:'floor',solid:false,thickness:.035});\n for(const portal of p.portals)if(p.ph>.55){if(['east','west'].includes(portal.side))exteriorSideSteps(c,(portal.side==='east'?-1:1)*pw/2,portal.z,p.ph,portal.width,portal.side);else if(p.key==='fuwang'&&portal.side==='front'&&c.kit.fuwangSouthFront!==false)buildFuwangSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='leshou'&&portal.side==='front'&&c.kit.leshouSouthFront!==false)buildLeshouSouthApproach(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='yangxing'&&portal.side==='front'&&c.kit.yangxingSouthEntrance!==false)buildYangxingSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else exteriorSteps(c,portal.approachX,(portal.side==='rear'?1:-1)*pd/2,p.ph,Math.max(2.25,portal.width),portal.side);}\n return{pw,pd};\n"
+      },
+      {
+        "before": " for(const m of target.children.slice(before))c.tag(m,'legacy-model-name-sign',{text,source:'BASELINE_COURTKIT_HALL_NAME_DEFAULT',inventoryStatus:'LEGACY_MODEL_NAME_SIGN_UNVERIFIED_NOT_HISTORIC_PLAQUE'});\n return{text,registration:'retained-original-model-name-label',historicObjectVerified:false,localY:y,localZ:z,height:h,positionStatus:p.key==='jingqi'?'UPPER_FRONT_WALL_CLEARANCE_MODEL_FIT_NOT_SURVEYED':p.key==='changyin'?'OFFICIAL_UPPER_EAVE_LEVEL_WITH_FITTED_POSITION_AND_LEGACY_MODEL_STYLE':'FITTED_TO_REVISED_FACADE_OR_ENTRY'};\n}\nfunction finish(c,extra={}) {\n const {p,f,kit}=c,w=p.localW,d=p.localD;\n const legacyNameSign=retainLegacyNameSign(c);\n",
+        "after": " for(const m of target.children.slice(before))c.tag(m,'legacy-model-name-sign',{text,source:'BASELINE_COURTKIT_HALL_NAME_DEFAULT',inventoryStatus:'LEGACY_MODEL_NAME_SIGN_UNVERIFIED_NOT_HISTORIC_PLAQUE'});\n return{text,registration:'retained-original-model-name-label',historicObjectVerified:false,localY:y,localZ:z,height:h,positionStatus:p.key==='jingqi'?'UPPER_FRONT_WALL_CLEARANCE_MODEL_FIT_NOT_SURVEYED':p.key==='changyin'?'OFFICIAL_UPPER_EAVE_LEVEL_WITH_FITTED_POSITION_AND_LEGACY_MODEL_STYLE':'FITTED_TO_REVISED_FACADE_OR_ENTRY'};\n}\n// Keep original source boxes through all later zone hooks. Weak mesh keys do\n// not retain a disposed/removed frame via a long-lived kit. Only final root\n// owners are visited, immediately before material merging.\nconst pendingCoveredPlatforms=new WeakMap();\nexport function finalizeNingshouCoveredPlatforms(kit){\n const pending=[];\n kit?.root?.traverse?.(base=>{const data=pendingCoveredPlatforms.get(base);if(data)pending.push({base,...data});});\n for(const {base,paving,height} of pending){removeCoveredPlatformSurface(base,paving,height,{clipCoincidentSides:true});pendingCoveredPlatforms.delete(base);}\n return pending.length;\n}\nfunction finish(c,extra={}) {\n const {p,f,kit}=c,w=p.localW,d=p.localD;\n const legacyNameSign=retainLegacyNameSign(c);\n"
+      },
+      {
+        "before": " kit.mapRect(f,'hall',p.name,w+2*(c.item.pad??.5),d+2*(c.item.pad??.5),{profileId:p.id,fitStatus:FIT});\n f.userData.structure={...p,...extra,legacyNameSign,portals:p.portals,groundNavigation:p.navigation,actualComponentCount:0};f.traverse(m=>{if(m.isMesh)f.userData.structure.actualComponentCount++;});\n f.name=`${p.name}·官方形制局部拟合`;\n return{f,g:f.userData.structure,PW:w+2*(c.item.pad??.5),PD:d+2*(c.item.pad??.5),top:p.ph};\n}\n/** Existing hall-preset pieces retained as unverified assets, not evidence of\n",
+        "after": " kit.mapRect(f,'hall',p.name,w+2*(c.item.pad??.5),d+2*(c.item.pad??.5),{profileId:p.id,fitStatus:FIT});\n f.userData.structure={...p,...extra,legacyNameSign,portals:p.portals,groundNavigation:p.navigation,actualComponentCount:0};f.traverse(m=>{if(m.isMesh)f.userData.structure.actualComponentCount++;});\n f.name=`${p.name}·官方形制局部拟合`;\n // Qingshou/Xuhui and other later source hooks still require the original box.\n if(c.coveredPlatformSources)pendingCoveredPlatforms.set(c.coveredPlatformSources.base,{paving:c.coveredPlatformSources.paving,height:p.ph});\n return{f,g:f.userData.structure,PW:w+2*(c.item.pad??.5),PD:d+2*(c.item.pad??.5),top:p.ph};\n}\n/** Existing hall-preset pieces retained as unverified assets, not evidence of\n"
+      }
+    ],
+    "src/scene/palace/special/SideGate.js": [
+      {
+        "before": "import { fitJingyunPlaqueFrame } from './JingyunPlaqueFrame.js';\nimport {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';\nimport {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';\n",
+        "after": "import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport { fitJingyunPlaqueFrame } from './JingyunPlaqueFrame.js';\nimport {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';\nimport {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';\n"
+      },
+      {
+        "before": "    const o=box(role,mat,W,H,D,x,y,z);\n    kit.col(f,x-W/2,y-H/2,z-D/2,x+W/2,y+H/2,z+D/2);return o;\n  };\n  solid('gate-platform','wall_brick',g.platformWidth,ph,g.platformDepth,0,ph/2,0);\n  box('gate-platform-paving','stone_slab',g.platformWidth,.08,g.platformDepth,0,ph-.04,0);\n  kit.walkBox(f,-g.platformWidth/2,-g.platformDepth/2,g.platformWidth/2,g.platformDepth/2,ph);\n  kit.walkables.at(-1).rescue=false; // Reach the platform through its real ramps.\n\n",
+        "after": "    const o=box(role,mat,W,H,D,x,y,z);\n    kit.col(f,x-W/2,y-H/2,z-D/2,x+W/2,y+H/2,z+D/2);return o;\n  };\n  const platform=solid('gate-platform','wall_brick',g.platformWidth,ph,g.platformDepth,0,ph/2,0);\n  const paving=box('gate-platform-paving','stone_slab',g.platformWidth,.08,g.platformDepth,0,ph-.04,0);\n  kit.walkBox(f,-g.platformWidth/2,-g.platformDepth/2,g.platformWidth/2,g.platformDepth/2,ph);\n  kit.walkables.at(-1).rescue=false; // Reach the platform through its real ramps.\n\n"
+      },
+      {
+        "before": "    ramps:g.ramps.map(r=>({...r,topLeft:point(r.leftTop,ph,r.zTop),topRight:point(r.rightTop,ph,r.zTop),toeLeft:point(r.leftToe,0,r.zToe),toeRight:point(r.rightToe,0,r.zToe)})),\n  };\n  prunePavilionCoveredFaces(f,renderBoxes);\n  registerEastRailTriangles?.();\n  registerWestEndTriangles?.();\n  return w;\n",
+        "after": "    ramps:g.ramps.map(r=>({...r,topLeft:point(r.leftTop,ph,r.zTop),topRight:point(r.rightTop,ph,r.zTop),toeLeft:point(r.leftToe,0,r.zToe),toeRight:point(r.rightToe,0,r.zToe)})),\n  };\n  prunePavilionCoveredFaces(f,renderBoxes);\n  removeCoveredPlatformSurface(platform,paving,ph,{clipCoincidentSides:true});\n  registerEastRailTriangles?.();\n  registerWestEndTriangles?.();\n  return w;\n"
+      }
+    ],
+    "src/scene/zones/ZoneBase.js": [
+      {
+        "before": "import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';\nimport {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';\nimport {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';\n",
+        "after": "import {createDafotangPhotoSession} from '../palace/special/DafotangPhotoPresentation.js';\nimport {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';\nimport {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';\nimport {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';\n"
+      },
+      {
+        "before": "import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';\nimport {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';\nimport { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';\nimport {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';\nimport {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';\nimport {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';\nimport {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';\n",
+        "after": "import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';\nimport {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';\nimport { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';\nimport {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou,finalizeNingshouCoveredPlatforms} from '../palace/special/RemainingNingshouHalls.js';\nimport {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';\nimport {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';\nimport {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';\n"
+      },
+      {
+        "before": "    yield {phase:'hook',index:153};\n    buildXiangxuGlazedGate(this.kit,this.zoneJson);\n    yield {phase:'merge',index:0};\n    this.group = this.kit.finish();\n    yield {phase:'lod',index:0};\n    installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);\n    \n",
+        "after": "    yield {phase:'hook',index:153};\n    buildXiangxuGlazedGate(this.kit,this.zoneJson);\n    yield {phase:'merge',index:0};\n    finalizeNingshouCoveredPlatforms(this.kit);\n    this.group = this.kit.finish();\n    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2'))this.dafotangPhotoSession=createDafotangPhotoSession(this.group);\n    yield {phase:'lod',index:0};\n    installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);\n    \n"
+      },
+      {
+        "before": "  dispose() {\n    if (this.disposed) return;\n    this.disposed = true;\n    // A failed build may own source resources before a merged group exists.\n    this.kit.dispose(this.group ?? this.kit.root);\n    this.group?.removeFromParent();\n",
+        "after": "  dispose() {\n    if (this.disposed) return;\n    this.disposed = true;\n    this.dafotangPhotoSession?.dispose();\n    this.dafotangPhotoSession=null;\n    // A failed build may own source resources before a merged group exists.\n    this.kit.dispose(this.group ?? this.kit.root);\n    this.group?.removeFromParent();\n"
+      }
+    ],
+    "src/scene/zones/ZoneManager.js": [
+      {
+        "before": "    this.onUnload?.(zoneId, data.group);\n    data.group.removeFromParent();\n    this.collisionManager.removeByTag(zoneId);\n    if (retain && this.inactiveCache && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {\n      builder.releaseConstructionReferences?.();\n      entry.cost = zoneRetainedResourceCost(entry,this.library);\n      this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));\n",
+        "after": "    this.onUnload?.(zoneId, data.group);\n    data.group.removeFromParent();\n    this.collisionManager.removeByTag(zoneId);\n    // Pending photos may grow the retained resource set after cost admission.\n    // Dispose/cancel only that pending session; completed or disabled photos\n    // still use the original cost accounting and normal cache budget below.\n    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {\n      builder.releaseConstructionReferences?.();\n      entry.cost = zoneRetainedResourceCost(entry,this.library);\n      this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));\n"
       }
     ]
   }
