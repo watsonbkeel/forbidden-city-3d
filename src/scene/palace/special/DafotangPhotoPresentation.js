@@ -69,18 +69,28 @@ export async function loadDafotangPhotos({manifest=DAFOTANG_PHOTO_LAYOUT.slots,a
 export function registerDafotangPhotoSlots({p,g}){
  if(p?.id!==PLACE||p.key!=='dafotang'||g?.id!==PLACE||g.inventory?.status!=='UNKNOWN'||g.historicalPrincipal?.id!=='dafotang-shakyamuni-historical-fit')throw Error('Dafotang retained historical host required');
  if(g.photoPresentation)throw Error('Duplicate Dafotang photo registration');
- g.photoPresentation={...clone(DAFOTANG_PHOTO_LAYOUT),status:'BLOCKED',reason:'THREE_CORRECT_AUTHORIZED_PHOTOS_AND_PLACEMENTS_REQUIRED',existingVisual:'ONE_HISTORICAL_CENTRAL_MODEL_NOT_THREE_PHOTOS'};
+ g.photoPresentation={...clone(DAFOTANG_PHOTO_LAYOUT),status:'BLOCKED',reason:'THREE_CORRECT_AUTHORIZED_PHOTOS_AND_PLACEMENTS_REQUIRED',existingVisual:g.triadFit?.id==='dafotang-three-design-figures-v1'?'THREE_DISTINCT_DESIGN_MODELS_NOT_PHOTOS':'ONE_HISTORICAL_CENTRAL_MODEL_NOT_THREE_PHOTOS'};
  return g.photoPresentation;
 }
 
-const OLD_MATERIALS=['worn_gold','red_lacquer','dark_curls','fitted_support'].map(n=>'dafotang_principal_'+n);
+// Exact construction roles after material batching. Square dais courses are
+// permanent architecture, not part of the photographic figure and lotus.
+const FIGURE_AND_LOTUS_MATERIALS=[
+ 'dafotang_principal_worn_gold',
+ 'dafotang_principal_red_lacquer',
+ 'dafotang_principal_dark_curls',
+];
+const PERMANENT_DAIS_MATERIAL='dafotang_principal_fitted_support';
 /** Final merged-group lifecycle, never the discarded construction frame.
  * Existing collision/support records are untouched. Preserving that central
  * model collision is NOT acceptance of three photographic silhouettes/routes. */
 export function createDafotangPhotoSession(group,options={}){
  const records=group?.userData?.architecture?.filter(r=>r.id===PLACE)??[];
  if(!group?.isGroup||group.name!=='outer-west'||group.position.lengthSq()||!group.quaternion.equals(new T.Quaternion())||!group.scale.equals(new T.Vector3(1,1,1))||records.length!==1||records[0].historicalPrincipal?.id!=='dafotang-shakyamuni-historical-fit'||records[0].inventory?.status!=='UNKNOWN')throw Error('Exact finished Dafotang architecture required');
- const old=OLD_MATERIALS.map(name=>{const found=group.children.filter(m=>m.isMesh&&!Array.isArray(m.material)&&m.material.name===name);if(found.length!==1)throw Error('Exact unique merged principal material required');return found[0];});
+ const exactBucket=name=>{const found=group.children.filter(m=>m.isMesh&&!Array.isArray(m.material)&&m.material.name===name);if(found.length!==1)throw Error('Exact unique merged principal material required');return found[0];};
+ const old=FIGURE_AND_LOTUS_MATERIALS.map(exactBucket);
+ // Validate the retained support owner without changing its visibility or resources.
+ exactBucket(PERMANENT_DAIS_MATERIAL);
  const previous=old.map(m=>m.visible),controller=new AbortController();let disposed=false,output=null;
  const state=records[0].photoPresentation??(records[0].photoPresentation=clone(DAFOTANG_PHOTO_LAYOUT));
  // Empty/invalid registry has no asynchronous work: retain the existing cache

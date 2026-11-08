@@ -1,3 +1,5 @@
+import {buildDafotangTriad} from './DafotangTriad.js';
+import {buildDafotangHistoricLayout} from './DafotangHistoricLayout.js';
 import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';
 import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';
@@ -968,7 +970,7 @@ function buildCeremonialHall(kit,item,p) {
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
-  if(p.key==='dafotang'){buildDafotangMainBuddha(c);registerDafotangPhotoSlots(c);}
+  if(p.key==='dafotang'){buildDafotangMainBuddha(c);buildDafotangHistoricLayout(c);buildDafotangTriad(c);registerDafotangPhotoSlots(c);}
   // Ceiling beams are structural fits. No generic throne, desks or chairs are
   // substituted for the modern sculpture-library uses or historical shrines.
   plainCeiling(c,g.y+g.h-.5);

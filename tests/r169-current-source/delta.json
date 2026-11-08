@@ -49,8 +49,8 @@
       "path": "data/architecture/dafotang-main-buddha.json",
       "mode": "100644",
       "before": "f171b07126196d14d43cfe9edd6c61971bd1506ec4c142e0e2f43da5c210f4f7",
-      "after": "f171b07126196d14d43cfe9edd6c61971bd1506ec4c142e0e2f43da5c210f4f7",
-      "bytes": 4885
+      "after": "658719f318126e4bf9ecbe466ac69f0d0ea9a6823c7ac5d9d8a4c34b1b4846cc",
+      "bytes": 8599
     },
     {
       "path": "data/architecture/donghua-madao-contacts.json",
@@ -3587,6 +3587,13 @@
       "bytes": 6187
     },
     {
+      "path": "src/scene/palace/special/DafotangHistoricLayout.js",
+      "mode": "100644",
+      "before": null,
+      "after": "10e5c3faae7fcc8f31f365e2a274c719f249d207c9aa4dc3d682ae6e37d03125",
+      "bytes": 10488
+    },
+    {
       "path": "src/scene/palace/special/DafotangMainBuddha.js",
       "mode": "100644",
       "before": "22226d0dbae79c3b3fadbf415982f2b0ed3b31e27cb91cde333f6f54c417b873",
@@ -3597,8 +3604,8 @@
       "path": "src/scene/palace/special/DafotangPhotoPresentation.js",
       "mode": "100644",
       "before": null,
-      "after": "d3a68bbff2fb792bb6363e4156fd98324f59af268cfe4afca557996ff0fc15f7",
-      "bytes": 10010
+      "after": "2238d98f6d2f383d16d3691853ded2b7115d3500be755fcf04c9b0e177ed1905",
+      "bytes": 10521
     },
     {
       "path": "src/scene/palace/special/DafotangPhotoTriptych.js",
@@ -3606,6 +3613,20 @@
       "before": null,
       "after": "d00d59a7f5163d1ea9ac15ccbf0321bff4ec77bd02ff4b45429a7312d9cd5b94",
       "bytes": 7534
+    },
+    {
+      "path": "src/scene/palace/special/DafotangSideFigures.js",
+      "mode": "100644",
+      "before": null,
+      "after": "7ece71d45aaf9d93e6ba596bb36123f346b22aaa9b53db3abb9602179f212c58",
+      "bytes": 10338
+    },
+    {
+      "path": "src/scene/palace/special/DafotangTriad.js",
+      "mode": "100644",
+      "before": null,
+      "after": "7694f50670e627516b77979ca427194f6da2c649298ba73e4f1be585549b12e1",
+      "bytes": 5174
     },
     {
       "path": "src/scene/palace/special/DailouWaitingHouse.js",
@@ -4969,8 +4990,8 @@
       "path": "src/scene/palace/special/RemainingOuterHalls.js",
       "mode": "100644",
       "before": "5676c67a87eb516c2f4073d66047a4177b1bfd8a44a0ffaf69d58c4353ae3eba",
-      "after": "db28baedd73f0107562a6c495af0e3d560c0c8502f2d2be1bb18f2c0b7f705a2",
-      "bytes": 146460
+      "after": "40691c08fbc2ef0232b8d688e0ddc73321d4a916d82fcdc1f9fb0076cb1b1af0",
+      "bytes": 146641
     },
     {
       "path": "src/scene/palace/special/RemainingResidentialHalls.js",
@@ -7052,6 +7073,14 @@
   "inverseEdits": {
     "src/scene/palace/special/RemainingOuterHalls.js": [
       {
+        "before": "import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';\nimport {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\n",
+        "after": "import {buildDafotangTriad} from './DafotangTriad.js';\nimport {buildDafotangHistoricLayout} from './DafotangHistoricLayout.js';\nimport {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';\nimport {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\n"
+      },
+      {
+        "before": "  if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);\n  if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);\n  if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}\n  if(p.key==='dafotang'){buildDafotangMainBuddha(c);registerDafotangPhotoSlots(c);}\n  // Ceiling beams are structural fits. No generic throne, desks or chairs are\n  // substituted for the modern sculpture-library uses or historical shrines.\n  plainCeiling(c,g.y+g.h-.5);\n",
+        "after": "  if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);\n  if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);\n  if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}\n  if(p.key==='dafotang'){buildDafotangMainBuddha(c);buildDafotangHistoricLayout(c);buildDafotangTriad(c);registerDafotangPhotoSlots(c);}\n  // Ceiling beams are structural fits. No generic throne, desks or chairs are\n  // substituted for the modern sculpture-library uses or historical shrines.\n  plainCeiling(c,g.y+g.h-.5);\n"
+      },
+      {
         "before": "import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\nimport {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\n",
         "after": "import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\nimport {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';\nimport {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';\nimport {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\nimport {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';\n"
       },
@@ -7302,6 +7331,28 @@
       {
         "before": "        {\n          \"side\": \"s\",\n          \"at\": 277.2,\n          \"gate\": \"英华门\"\n        }\n      ],\n      \"source\": \"estimated\"\n",
         "after": "        {\n          \"side\": \"s\",\n          \"at\": 277.2,\n          \"gate\": \"英华殿山门\"\n        }\n      ],\n      \"source\": \"estimated\"\n"
+      }
+    ],
+    "data/architecture/dafotang-main-buddha.json": [
+      {
+        "before": "  },\n  \"modelFit\": {\n    \"supportHeight\": 0.8,\n    \"supportWidth\": 2.2,\n    \"supportDepth\": 1.8,\n    \"localCenter\": [\n      0,\n      0.9,\n",
+        "after": "  },\n  \"modelFit\": {\n    \"supportHeight\": 0.8,\n    \"supportWidth\": 1.4,\n    \"supportDepth\": 1.5,\n    \"localCenter\": [\n      0,\n      0.9,\n"
+      },
+      {
+        "before": "      \"id\": \"dafotang-investigation-2015\",\n      \"url\": \"https://img.dpm.org.cn/Uploads/File/2020/02/26/u5e56176b64d88.pdf\",\n      \"pages\": [\n        301,\n        303,\n        304,\n        308\n      ],\n      \"title\": {\n",
+        "after": "      \"id\": \"dafotang-investigation-2015\",\n      \"url\": \"https://img.dpm.org.cn/Uploads/File/2020/02/26/u5e56176b64d88.pdf\",\n      \"pages\": [\n        300,\n        301,\n        303,\n        304,\n        306,\n        307,\n        308\n      ],\n      \"title\": {\n"
+      },
+      {
+        "before": "        \"en\": \"Gugong Journal 2015 · Investigation of the Great Buddha Hall at Cining Palace\"\n      },\n      \"scope\": {\n        \"zh-CN\": \"印刷301页图9–11为原位立剖面；303、308页说明形制及连莲座高2.25米；304页图13为具名释迦牟尼正面照。\",\n        \"en\": \"Printed p. 301, figures 9–11: original-position elevation and sections; pp. 303 and 308: form and 2.25 m figure-and-lotus height; p. 304, figure 13: named frontal photograph of Shakyamuni.\"\n      },\n      \"evidenceType\": \"LOCALLY_READ_OFFICIAL_PUBLICATION_TEXT_AND_IMAGE\",\n      \"photographDate\": null\n",
+        "after": "        \"en\": \"Gugong Journal 2015 · Investigation of the Great Buddha Hall at Cining Palace\"\n      },\n      \"scope\": {\n        \"zh-CN\": \"印刷301页图9–11为原位立剖面；303、308页说明形制及连莲座高2.25米；304页图13为具名释迦牟尼正面照。 300页说明五间下层、三间上层；306–307页及图23说明西墙壁龛和九罗汉长台。\",\n        \"en\": \"Printed p. 301, figures 9–11: original-position elevation and sections; pp. 303 and 308: form and 2.25 m figure-and-lotus height; p. 304, figure 13: named frontal photograph of Shakyamuni. P. 300 describes the five-bay lower and three-bay upper levels; pp. 306–307 and figure 23 describe the west-wall cabinets and nine-arhat platform.\"\n      },\n      \"evidenceType\": \"LOCALLY_READ_OFFICIAL_PUBLICATION_TEXT_AND_IMAGE\",\n      \"photographDate\": null\n"
+      },
+      {
+        "before": "        \"en\": \"Palace Museum Journal, 2014 No. 4 · Study of the Great Buddha Hall at Cining Palace\"\n      },\n      \"scope\": {\n        \"zh-CN\": \"印刷078–079页图7–8为具名平面和立面，支持北侧中轴原位关系；不证明当前陈设、游戏坐标或拟合承台尺寸。\",\n        \"en\": \"Printed pp. 078–079, figures 7–8: named plan and elevation supporting the original north-central placement, not current displays, game coordinates or fitted support dimensions.\"\n      },\n      \"evidenceType\": \"LOCALLY_READ_OFFICIAL_PUBLICATION_TEXT_AND_IMAGE\",\n      \"photographDate\": null\n",
+        "after": "        \"en\": \"Palace Museum Journal, 2014 No. 4 · Study of the Great Buddha Hall at Cining Palace\"\n      },\n      \"scope\": {\n        \"zh-CN\": \"印刷078–079页图7–8为具名平面和立面，支持北侧中轴原位关系；不证明当前陈设、游戏坐标或拟合承台尺寸。 078页所述约6.5米为整龛面阔；图7支持西天王、东韦陀的方位。\",\n        \"en\": \"Printed pp. 078–079, figures 7–8: named plan and elevation supporting the original north-central placement, not current displays, game coordinates or fitted support dimensions. The approximately 6.5 m width on p. 078 is for the whole shrine; figure 7 establishes the west heavenly king and east Weituo.\"\n      },\n      \"evidenceType\": \"LOCALLY_READ_OFFICIAL_PUBLICATION_TEXT_AND_IMAGE\",\n      \"photographDate\": null\n"
+      },
+      {
+        "before": "  ],\n  \"text\": {\n    \"zh-CN\": {\n      \"heading\": \"历史主尊局部复原\",\n      \"identity\": \"本模型仅据故宫出版物复原原大佛堂北侧中轴的释迦牟尼坐像及莲座。原三世佛中另两尊未制作；1973年迁出后的照片不代表大佛堂当前陈设。\",\n      \"scale\": \"资料记坐像连莲座高2.25米，不含另行承台。模型承台高0.8米、位置、宽深及隐藏背面均为拟合，不是测绘尺寸。\",\n      \"limits\": \"面相、手指、细衣纹、莲瓣雕刻及漆金色为简化近似；本次单尊历史复原不表示整堂库存或完整内饰已核实。未核通用家具仍不生成，整体库存状态仍为未知，不代表空殿。\",\n      \"translation\": \"主尊英文名称及本段英文均为项目译文；建筑官名证据不等于文物英文名已核实。\",\n      \"review\": \"依据已阅读的官方出版物原文和图像；不是当前库存调查，也未重新核对全站历史来源。\"\n    },\n    \"en\": {\n      \"heading\": \"Partial reconstruction of the historical principal Buddha\",\n      \"identity\": \"This model reconstructs only the seated Shakyamuni and lotus base on the original hall's north-central axis, using Palace Museum publications. The other two Buddhas of the original triad are not modeled. Photographs taken after the 1973 removal do not show the hall's current display.\",\n      \"scale\": \"The published height of 2.25 m includes the seated figure and lotus base, not the separate support. The model's 0.8 m support, position, width, depth and hidden back are fitted, not surveyed dimensions.\",\n      \"limits\": \"The face, fingers, fine robe folds, carved petals and lacquer-and-gold colors are simplified approximations. This single historical figure does not establish a verified whole-hall inventory or complete interior. Unverified generic furniture remains withheld; the overall inventory remains unknown, not confirmed empty.\",\n      \"translation\": \"The figure's English name and this English text are project translations. Official naming evidence for the building does not verify an official English name for the artifact.\",\n      \"review\": \"Based on the text and images of locally read official publications, not a current-inventory survey or a new review of all historical website sources.\"\n    }\n  }\n}\n",
+        "after": "  ],\n  \"text\": {\n    \"zh-CN\": {\n      \"heading\": \"三佛金身设计拟合 · 空间框架一期\",\n      \"identity\": \"中尊释迦牟尼保留依故宫具名照片建立的局部几何，两侧分别独立制作西侧阿弥陀佛、东侧药师佛。三尊以用户提出的元代金身造像风格作游戏设计，不是三尊实物或照片的精确复刻，也不据此认定文物年代；从南向北看，左为阿弥陀佛、右为药师佛。1973年迁出后的照片不代表大佛堂当前陈设。\",\n      \"scale\": \"资料记坐像连莲座高2.25米，不含另行承台。模型承台高0.8米、位置、宽深及隐藏背面均为拟合，不是测绘尺寸。\",\n      \"limits\": \"两侧禅定/托钵手势、面相、背面和衣纹是明确的设计拟合，尚未证实为目标文物细节；暗金色及局部漆色不代表测得色值。三尊外形不表示整堂库存或完整内饰已核实，整体库存仍为未知，不代表空殿。\",\n      \"translation\": \"主尊英文名称及本段英文均为项目译文；建筑官名证据不等于文物英文名已核实。\",\n      \"review\": \"依据已阅读的官方出版物原文和图像；不是当前库存调查，也未重新核对全站历史来源。 一期按图补入下层五间、上层三间的简化仙楼框架、三处佛像方台、西天王、东韦陀台位、东西各九罗汉的长台和西墙六组壁龛轮廓。6.5米是整座佛龛宽度，不是三佛间距；分间、绝对位置、台座宽深及其余尺度均为游戏拟合。中央旧方台拟合为宽1.4米、深1.5米，佛身连莲座2.25米不变。未制作护法或罗汉个体，也未猜测东侧罗汉顺序；上层未开放游览。现有三尊为中尊图证局部加两侧独立设计拟合，不代表三尊照片造像已经完成；未来照片加载成功时只切换三尊佛身及莲座，永久方台保留。尚无正确且许可明确的三尊图片，生产照片登记为空。空框也不代表原藏品为空。\"\n    },\n    \"en\": {\n      \"heading\": \"Three gold Buddha design models · Phase 1 spatial framework\",\n      \"identity\": \"The central Shakyamuni retains its geometry guided by a named Palace Museum photograph. Amitabha to the west and Bhaisajyaguru to the east are separately authored models. All three use the user's Yuan-inspired gilded-figure design setting, not a claim about the artifacts' date or an exact photographic reconstruction. Looking north from the south, Amitabha is on the left and Bhaisajyaguru on the right. Photographs taken after the 1973 removal do not show the hall's current display.\",\n      \"scale\": \"The published height of 2.25 m includes the seated figure and lotus base, not the separate support. The model's 0.8 m support, position, width, depth and hidden back are fitted, not surveyed dimensions.\",\n      \"limits\": \"The side figures' meditation and bowl-bearing gestures, faces, backs and drapery are explicit design fits, not verified details of the target artifacts. Dark gold and local lacquer colors are not measured color values. These three forms do not establish a verified whole-hall inventory or complete interior; the inventory remains unknown, not confirmed empty.\",\n      \"translation\": \"The figure's English name and this English text are project translations. Official naming evidence for the building does not verify an official English name for the artifact.\",\n      \"review\": \"Based on the text and images of locally read official publications, not a current-inventory survey or a new review of all historical website sources. Phase 1 adds a simplified shrine frame with five lower bays and three upper bays, three Buddha dais positions, positions for the west heavenly king and east Weituo, long platforms for nine arhats on each side, and six west-wall cabinet outlines. The 6.5 m width refers to the whole shrine, not the spacing of the three Buddhas. Bay divisions, absolute positions, pedestal footprints and other dimensions are game fits. The central fitted dais is now 1.4 m wide and 1.5 m deep; the 2.25 m figure-and-lotus height is unchanged. Guardian and arhat figures are not modeled; eastern arhat ordering is not invented. The upper level is not open to visitors. The three visible models combine a source-guided central figure with two independent design fits, not three completed photographic statues. A future successful photo switch replaces the three figures and lotus bases while retaining the permanent square dais. No correct, rights-cleared triad images are registered for production. Unpictured frames do not imply historically empty cabinets.\"\n    }\n  },\n  \"spatialPhase1\": {\n    \"componentId\": \"dafotang-historic-spatial-fit-v1\",\n    \"complete\": false,\n    \"sourceShrineWidth\": 6.5,\n    \"lowerBays\": 5,\n    \"lowerColumns\": 6,\n    \"upperBays\": 3,\n    \"newFigures\": 0,\n    \"newPhotographs\": 0,\n    \"assetStatus\": \"BLOCKED_NO_CORRECT_AUTHORIZED_PHOTOS\",\n    \"fitStatus\": \"MODEL_FIT_NOT_SURVEY\",\n    \"arhatIndividualOrderEast\": null,\n    \"upperVisitorAccess\": false\n  },\n  \"designTriad\": {\n    \"componentId\": \"dafotang-three-design-figures-v1\",\n    \"status\": \"USER_DESIGN_FIT_NOT_PHOTO_RECONSTRUCTION\",\n    \"style\": \"YUAN_INSPIRED_GOLD_BODY\",\n    \"styleOrigin\": \"USER_DESIGN_BRIEF\",\n    \"artifactDateVerified\": false,\n    \"newIndependentSideFigures\": 2,\n    \"subjectsFromSouthViewerLeft\": [\n      \"amitabha\",\n      \"shakyamuni\",\n      \"bhaisajyaguru\"\n    ],\n    \"sideGesturesVerified\": false,\n    \"newPhotographs\": 0,\n    \"colorimetry\": \"NOT_VERIFIED\"\n  }\n}\n"
       }
     ]
   }
