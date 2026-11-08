@@ -1,0 +1,113 @@
+name: R177 read-only runner resource diagnostic
+'on':
+  push:
+    branches:
+      - dev/r177-build-resource-diagnostic
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r177-build-resource-diagnostic'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Read actual runner memory-controller evidence only
+        run: |
+          EVIDENCE_DIR="$RUNNER_TEMP/r177-resource-diagnostic"
+          mkdir -p "$EVIDENCE_DIR"
+          export EVIDENCE_DIR
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+          printf '%s\n' '${{ github.sha }}' > "$EVIDENCE_DIR/workflow-source-commit.txt"
+          python3 - <<'PY_DIAG'
+          #!/usr/bin/env python3
+          """Read-only runner evidence. Does not admit, launch, or retry a build."""
+          import json,os,re,time
+          from pathlib import Path
+          
+          FILES=('cgroup.type','cgroup.controllers','cgroup.subtree_control',
+                 'memory.current','memory.max','memory.high','memory.events','memory.events.local',
+                 'memory.stat','memory.swap.current','memory.swap.max',
+                 'memory.usage_in_bytes','memory.limit_in_bytes','memory.soft_limit_in_bytes',
+                 'memory.failcnt','memory.use_hierarchy','memory.memsw.limit_in_bytes')
+          
+          def read_entry(path):
+              try:
+                  with Path(path).open('rb') as source:data=source.read(512*1024+1)
+                  if len(data)>512*1024:return {'status':'ERROR','error':'READ_LIMIT_EXCEEDED'}
+                  return {'status':'READ','text':data.decode('utf-8').strip()}
+              except (OSError,UnicodeError) as exc:
+                  return {'status':'ERROR','errno':getattr(exc,'errno',None),'error':str(exc)}
+          
+          def resolve(cgroup,mountinfo):
+              mounts=[];out=[]
+              unescape=lambda s:re.sub(r'\\([0-7]{3})',lambda m:chr(int(m[1],8)),s)
+              for line in mountinfo.splitlines():
+                  before,sep,after=line.partition(' - ')
+                  if not sep:continue
+                  a=before.split();b=after.split()
+                  if len(a)<6 or len(b)<3:continue
+                  if b[0]=='cgroup2' or (b[0]=='cgroup' and 'memory' in b[2].split(',')):
+                      mounts.append({'kind':'v2' if b[0]=='cgroup2' else 'v1','mount_root':unescape(a[3]),'mount_point':unescape(a[4]),'mount_line':line})
+              for line in cgroup.splitlines():
+                  p=line.split(':',2)
+                  if len(p)!=3:continue
+                  kind='v2' if p[0]=='0' and not p[1] else 'v1' if 'memory' in p[1].split(',') else None
+                  if kind is None:continue
+                  candidates=[x for x in mounts if x['kind']==kind]
+                  row={'kind':kind,'membership_line':line,'membership_path':p[2],'candidates':candidates}
+                  if len(candidates)!=1:
+                      row.update(status='UNRESOLVED',reason='Expected exactly one matching visible mount');out.append(row);continue
+                  mount=candidates[0];row.update(mount);membership=Path(p[2]);root=Path(mount['mount_root']);point=Path(mount['mount_point'])
+                  if not membership.is_absolute() or '..' in membership.parts or not membership.is_relative_to(root):
+                      row.update(status='UNRESOLVED',reason='Membership does not resolve under the visible mount root');out.append(row);continue
+                  leaf=point/membership.relative_to(root);directories=[];current=leaf
+                  while True:
+                      directories.append(str(current))
+                      if current==point:break
+                      if len(directories)>=64:break
+                      current=current.parent
+                  if current!=point:row.update(status='UNRESOLVED',reason='Visible ancestry exceeded diagnostic limit')
+                  else:row.update(status='RESOLVED_PATHS_ONLY_NOT_ADMISSION',directories=directories)
+                  out.append(row)
+              return out or [{'status':'UNRESOLVED','reason':'No memory or unified membership recorded'}]
+          
+          def snapshot():
+              paths=('/proc/meminfo','/proc/self/cgroup','/proc/self/mountinfo','/proc/1/cgroup','/proc/1/comm')
+              raw={p:read_entry(p) for p in paths}
+              vm=read_entry('/proc/vmstat')
+              if vm['status']=='READ':vm['text']='\n'.join(x for x in vm['text'].splitlines() if x.startswith('oom_kill '))
+              raw['/proc/vmstat (oom_kill only)']=vm
+              for path in ('/proc/self/ns/cgroup','/proc/1/ns/cgroup'):
+                  try:raw[path]={'status':'READLINK','target':os.readlink(path)}
+                  except OSError as exc:raw[path]={'status':'ERROR','errno':exc.errno,'error':str(exc)}
+              cg=raw['/proc/self/cgroup'];mounts=raw['/proc/self/mountinfo']
+              controllers=resolve(cg['text'],mounts['text']) if cg['status']==mounts['status']=='READ' else [{'status':'UNRESOLVED','reason':'Required proc source unreadable'}]
+              for controller in controllers:
+                  controller['files']={directory:{name:read_entry(Path(directory)/name) for name in FILES} for directory in controller.get('directories',[])}
+              return {'utc_epoch':time.time(),'monotonic':time.monotonic(),'raw':raw,'controllers':controllers}
+          
+          def main():
+              kernel=os.uname()
+              report={'status':'DIAGNOSTIC_ONLY_NOT_RESOURCE_ADMISSION',
+                      'kernel':{'sysname':kernel.sysname,'release':kernel.release,'machine':kernel.machine},'snapshots':[]}
+              out=Path(os.environ['EVIDENCE_DIR']);out.mkdir(parents=True,exist_ok=True)
+              for i in range(3):
+                  report['snapshots'].append(snapshot())
+                  # Keep every failed read; even an incomplete diagnostic is useful evidence.
+                  (out/'runner-resource-diagnostic.json').write_text(json.dumps(report,indent=2)+'\n')
+                  if i<2:time.sleep(1)
+              print('Saved 3 read-only snapshots; no admission decision, npm, build, or tests were run.')
+          
+          if __name__=='__main__':main()
+          PY_DIAG
+      - name: Save read-only evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r177-runner-resource-diagnostic-${{ github.sha }}
+          path: ${{ env.EVIDENCE_DIR }}
+          if-no-files-found: error
+          retention-days: 14
