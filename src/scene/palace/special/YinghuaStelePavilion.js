@@ -5,7 +5,7 @@ import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSu
 
 const done=new WeakSet();
 const ID='yinghua-stele-pavilion';
-const GATE={kind:'gate',name:'英华门',x:277.2,z:454.9,gateProfile:'yinghua',gateKind:'single-arched'};
+const GATE={kind:'gate',name:'英华门',x:277.2,z:461.4,gateProfile:'yinghua',gateKind:'single-arched'};
 const HALL={kind:'hall',name:'英华殿',x:276.6,z:489.9,w:32.7,d:18.2,pad:1,ph:.9,colH:7.36,roof:'wudian',enter:true,structure:'ritual-hall',ritualProfile:'yinghua-five-bay-wudian-v1',bays:5};
 const same=(a,b)=>a&&Object.keys(a).length===Object.keys(b).length&&Object.entries(b).every(([k,v])=>a[k]===v);
 const identity=m=>m?.equals(new T.Matrix4());

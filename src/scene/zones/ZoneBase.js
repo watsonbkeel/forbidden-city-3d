@@ -1,3 +1,4 @@
+import {buildCuiyunRearHall} from '../palace/special/CuiyunRearHall.js';
 import {createDafotangPhotoSession} from '../palace/special/DafotangPhotoPresentation.js';
 import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';
 import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';
@@ -69,6 +70,8 @@ import {buildShufangStage} from '../palace/special/ShufangStage.js';
 import {buildJicuiPavilion} from '../palace/special/JicuiPavilion.js';
 import {buildJianfuJiyunLou} from '../palace/special/JianfuJiyunLou.js';
 import {buildJingshengZhai} from '../palace/special/JingshengZhai.js';
+import {buildYinghuaEastEarHall} from '../palace/special/YinghuaEastEarHall.js';
+import {buildYinghuaShanmen} from '../palace/special/YinghuaShanmen.js';
 import {buildYinghuaStelePavilion} from '../palace/special/YinghuaStelePavilion.js';
 import {applyGardenStreetGatePins} from '../palace/special/GardenStreetGatePins.js';
 import {buildQinanIncensePavilions} from '../palace/special/QinanIncensePavilions.js';
@@ -285,6 +288,8 @@ export class ZoneBase {
       }
     }
     
+    const shanmen=buildYinghuaShanmen(this.kit,this.zoneJson);
+    if(shanmen)this.gateWidths.set('英华殿山门',shanmen.width);
     // 第二遍：构建其他构件（wall/courtWalls 可引用 gate 宽度）
     let itemIndex = -1;
     for (const item of items) {
@@ -654,6 +659,8 @@ export class ZoneBase {
     yield {phase:'hook',index:152};
     buildDailouWaitingHouse(this.kit,this.zoneJson);
     yield {phase:'hook',index:153};
+    buildCuiyunRearHall(this.kit,this.zoneJson);
+    buildYinghuaEastEarHall(this.kit,this.zoneJson);
     buildXiangxuGlazedGate(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     finalizeNingshouCoveredPlatforms(this.kit);
@@ -945,7 +952,7 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
-    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华门')))return;
+    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华殿山门')))return;
     if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 

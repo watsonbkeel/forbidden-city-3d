@@ -4,17 +4,17 @@ import {applyBoxUV} from '../../../utils/GeometryUV.js';
 import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSupport.js';
 const ID='yinghua-west-ear-hall',done=new WeakSet(),wallsDone=new WeakSet();
 const HALL={kind:'hall',name:'英华殿',x:276.6,z:489.9,w:32.7,d:18.2,pad:1,ph:.9,colH:7.36,roof:'wudian',enter:true,structure:'ritual-hall',ritualProfile:'yinghua-five-bay-wudian-v1',bays:5};
-const GATE={kind:'gate',name:'英华门',x:277.2,z:454.9,gateProfile:'yinghua',gateKind:'single-arched'};
-const COURT={kind:'courtWalls',x0:252,x1:302,z0:454.9,z1:513.03,gates:[{side:'s',at:277.2,gate:'英华门'}],source:'estimated'};
+const GATE={kind:'gate',name:'英华门',x:277.2,z:461.4,gateProfile:'yinghua',gateKind:'single-arched'};
+const COURT={kind:'courtWalls',x0:252,x1:302,z0:454.9,z1:513.03,gates:[{side:'s',at:277.2,gate:'英华殿山门'}],source:'estimated'};
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 function host(kit){const r=kit?.root;if(!r||r.name!=='outer-west'||r.parent||r.position.lengthSq()||!r.quaternion.equals(new T.Quaternion())||!r.scale.equals(new T.Vector3(1,1,1))||!r.matrix.equals(new T.Matrix4())||!r.matrixWorld.equals(new T.Matrix4())||!Object.isExtensible(r.children)||['colliders','walkables','owned','rooms','mapItems','regions'].some(k=>!Array.isArray(kit[k])||!Object.isExtensible(kit[k])||!Object.getOwnPropertyDescriptor(kit[k],'length')?.writable))throw Error('Exact mutable untransformed outer-west host required');}
 function publish(kit,staged){kit.root.add(...[...staged.root.children]);kit.colliders.push(...staged.colliders);kit.walkables.push(...staged.walkables);kit.owned.push(...staged.owned);}
 /** The original estimated wall bisects and hides the western third bay. A
  * local closed dogleg puts the complete ear hall inside the courtyard. The
  * three original other sides and west wall outside z473..490.5 stay fixed. */
-export function buildYinghuaWestEarCourtWalls(kit,item,zoneId,gateWidth=6.4){
- if(zoneId!=='outer-west'||!item?.gates?.some(g=>g.gate==='英华门'))return false;
- host(kit);if(!same(item,COURT)||gateWidth!==6.4||wallsDone.has(kit))throw Error('Exact original Yinghua courtyard wall, once only, required');
+export function buildYinghuaWestEarCourtWalls(kit,item,zoneId,gateWidth=11.4){
+ if(zoneId!=='outer-west'||!item?.gates?.some(g=>g.gate==='英华殿山门'))return false;
+ host(kit);if(!same(item,COURT)||gateWidth!==11.4||wallsDone.has(kit))throw Error('Exact original Yinghua courtyard wall, once only, required');
  const s=new CourtKit(kit.lib,'outer-west');s.ridge=kit.ridge;s.gold=kit.gold;
  try{
   s.wall(252,454.9,302,454.9,{gaps:[{at:277.2,w:gateWidth}]});

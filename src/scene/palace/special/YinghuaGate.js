@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import {applyBoxUV}from'../../../utils/GeometryUV.js';
 import {cloneOverheadShape}from'../../../utils/OverheadShape.js';
-export const YINGHUA_GATE_FIT=Object.freeze({x:277.2,z:454.9,width:6.4,depth:2.8,bodyTop:5.9,floor:.1,radius:1.5,spring:2.9,arcSegments:24});
+export const YINGHUA_GATE_FIT=Object.freeze({x:277.2,z:461.4,width:6.4,depth:2.8,bodyTop:5.9,floor:.1,radius:1.5,spring:2.9,arcSegments:24});
 export function yinghuaGateProfile(item){
- if(item.name!=='英华门'||item.x!==277.2||item.z!==454.9||item.gateProfile!=='yinghua'||item.gateKind!=='single-arched'||(item.rot!==undefined&&item.rot!==0)||item.w!==undefined&&item.w!==3.6||item.h!==undefined&&item.h!==4.4||item.t!==undefined&&item.t!==1)throw Error('Yinghua arch requires exact existing named anchor and retained envelope');
+ if(item.name!=='英华门'||item.x!==277.2||item.z!==461.4||item.gateProfile!=='yinghua'||item.gateKind!=='single-arched'||(item.rot!==undefined&&item.rot!==0)||item.w!==undefined&&item.w!==3.6||item.h!==undefined&&item.h!==4.4||item.t!==undefined&&item.t!==1)throw Error('Yinghua arch requires exact existing named anchor and retained envelope');
  const p=YINGHUA_GATE_FIT,arc=Array.from({length:p.arcSegments+1},(_,i)=>{const a=Math.PI-i*Math.PI/p.arcSegments;return[i===0?-p.radius:i===p.arcSegments?p.radius:p.radius*Math.cos(a),p.spring+p.radius*Math.sin(a)]});
- return{...p,arc,entityId:'FC-0EACBA1911',source:'https://img.dpm.org.cn/Uploads/Picture/dc/8412.jpg',sourcePage:'https://www.dpm.org.cn/explore/building/236568.html',photographyDate:null,dimensionStatus:'PHOTO_FIT_INSIDE_RETAINED_MAP_ENVELOPE_NOT_SURVEY',accepted:false,openingFitRange:{radius:[1.35,1.65],spring:[2.7,3.1]}};
+ return{...p,arc,entityId:'FC-0EACBA1911',source:'https://img.dpm.org.cn/Uploads/Picture/dc/8412.jpg',sourcePage:'https://www.dpm.org.cn/explore/building/236568.html',photographyDate:null,dimensionStatus:'PHOTO_FIT_NORTH_TRANSLATED_INNER_GATE_NOT_SURVEY',accepted:false,openingFitRange:{radius:[1.35,1.65],spring:[2.7,3.1]}};
 }
 function prism(points,z0,z1){const g=new THREE.ExtrudeGeometry(new THREE.Shape(points.map(([x,y])=>new THREE.Vector2(x,y))),{depth:z1-z0,bevelEnabled:false,curveSegments:1,steps:1});g.translate(0,0,z0);g.clearGroups();return g;}
 export function buildYinghuaGate(kit,item){
@@ -29,5 +29,5 @@ export function buildYinghuaGate(kit,item){
   leaf.userData.pose=open?'PLAYABLE_OPEN_NOT_VERIFIED_CURRENT_POSE':'CLOSED';f.updateMatrixWorld(true);kit.colliders.push(new THREE.Box3().setFromObject(leaf));
  }
  kit.mapRect(f,'gate','英华门',6.4,2.8);
- f.userData.structure={...p,id:'outer-west/yinghua-gate',portalCount:1,gateProfile:'yinghua',gateKind:'single-arched',streamLayer:'B',openState:open?'PLAYABLE_OPEN_NOT_VERIFIED_CURRENT_POSE':'CLOSED',plaque:'UNKNOWN_NO_GENERIC_NAMEBOARD_INVENTED',roof:'RETAINED_YELLOW_ROOF_MODEL_FIT',limitations:['Undated archival gallery image proves one arched aperture, not current paint or vegetation.','Old 6.4 x 2.8 m map envelope retained; opening dimensions are reversible photo fit.','No present-day visitor access or hidden interior inventory asserted.']};return p.width;
+ f.userData.structure={...p,id:'outer-west/yinghua-gate',portalCount:1,gateProfile:'yinghua',gateKind:'single-arched',streamLayer:'B',openState:open?'PLAYABLE_OPEN_NOT_VERIFIED_CURRENT_POSE':'CLOSED',plaque:'UNKNOWN_NO_GENERIC_NAMEBOARD_INVENTED',roof:'RETAINED_YELLOW_ROOF_MODEL_FIT',limitations:['Undated archival gallery image proves one arched aperture, not current paint or vegetation.','Original 6.4 x 2.8 m shape retained, translated north to z461.4 to distinguish the outer shanmen; coordinates and compressed spacing are reversible game fit.','No present-day visitor access or hidden interior inventory asserted.']};return p.width;
 }
