@@ -1,4 +1,5 @@
 import { localeStore } from '../i18n/LocaleStore.js';
+import { TourHudLayout } from './TourHudLayout.js';
 
 /** Native select preserves keyboard/touch behavior; selecting never reloads. */
 export class LanguageControl {
@@ -26,8 +27,10 @@ export class LanguageControl {
     this.events = ['click', 'pointerdown', 'touchstart', 'keydown', 'keyup'];
     for (const type of this.events) this.element.addEventListener(type, this.stop);
     this.unsubscribe = store.subscribe(value => { this.select.value = value; setDocumentLanguage(value); });
+    if(id==='tour-language'&&document.head)this.hudLayout=new TourHudLayout(this.element,{document});
   }
   dispose() {
+    this.hudLayout?.dispose();
     this.unsubscribe(); this.select.removeEventListener('change', this.onChange);
     for (const type of this.events) this.element.removeEventListener(type, this.stop);
     this.element.remove();

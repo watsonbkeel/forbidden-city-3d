@@ -1,3 +1,4 @@
+import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';
 import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';
 import {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';
 import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
@@ -592,6 +593,7 @@ function base(kit,item,p,opts={}) {
   const f=built.f,discard=new Set();
   // Match the visible platform top to the existing walkable datum exactly.
   for(const n of f.children)if(n.isMesh&&materialKey(kit,n.material)==='stone_slab'&&Math.abs(n.position.y-(y-.03))<1e-8)n.position.y-=.01;
+  if(p.key==='dafotang')removeDafotangCoveredPlatformTop(kit,f,y);
   for (const node of [...f.children]) {
     if (node.name.startsWith('roof_') || (node.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(materialKey(kit,node.material)))) {
       node.traverse(n=>{if(n.geometry)discard.add(n.geometry);});node.removeFromParent();
