@@ -1,0 +1,21 @@
+import {restoreDafotangSource,priorOuterManifest,priorRuntimeFingerprint} from '../r167-dafotang-principal/source-boundary.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import{createHash}from'node:crypto';import{readXiangxuHistoricalSource,stripXiangxuDelta}from'../r166-xiangxu-gate/source-boundary.mjs';import{createRuntimeReader}from'./source-boundary-io.mjs';import{createBuildInfo}from'../../scripts/build-identity.mjs';
+const sha=b=>createHash('sha256').update(b).digest('hex'),root=process.cwd(),priorUI=[['src/ui/PlaceInfoPanel.js','664d0904be5b90fb4e45f292e46e8167f31822cc8c17a17e165602a858ff5e1a'],['style.css','2887e88124f890443576958ff6dbd8e98ee838cf072e616c83c128609d86a76a']];
+for(const[p,oldHash]of priorUI)test(`only exact approved ${p} action delta gets a historical view without changing physical bytes`,()=>{const file=path.join(root,p),actual=fs.readFileSync(file),old=readXiangxuHistoricalSource(file);assert.notEqual(sha(actual),oldHash);assert.equal(sha(old),oldHash);assert.deepEqual(fs.readFileSync(file),actual);for(const bad of[Buffer.concat([actual,Buffer.from('\n')]),Buffer.from(actual.toString().replace(/place-actions/g,'unapproved-action'))])assert.throws(()=>stripXiangxuDelta(p,bad));});
+test('the old public3dfe build fingerprint survives only in the exact approved UI comparison projection',()=>{
+ const reader=createRuntimeReader(root),digest=createHash('sha256'),ui=new Set([...priorUI.map(([p])=>p),'data/i18n/ui-en.json']),prior=priorOuterManifest();
+ // First remove only the exact principal addition. The resulting public6462
+ // bytes still contain its sticky actions and two announcement templates.
+ for(const p of reader.listCurrent()){
+  const actual=reader.readCurrent(p).bytes,restored=restoreDafotangSource(p,actual);if(restored===null)continue;
+  let bytes=restored;
+  if(ui.has(p)){
+   const row=prior.files.find(r=>r.path===p);assert.equal(sha(bytes),row.after,p+' exact public6462 UI bytes');
+   let text=bytes.toString();for(const edit of prior.inverseEdits[p]){assert.equal(text.split(edit.after).length,2);text=text.replace(edit.after,edit.before);}bytes=Buffer.from(text);assert.equal(sha(bytes),row.before,p+' original UI comparison bytes');
+  }
+  digest.update(`${p.length}:${p}:${bytes.length}:`);digest.update(bytes);
+ }
+ assert.equal(digest.digest('hex'),'10cacb498fc2fcea9c98490a6cec5759f7ddd8ab1523d53e2130512ce3e3f5c1');
+ assert.deepEqual(priorRuntimeFingerprint(),{files:994,fingerprint:'92e19fd924f9c66b9782f70be7a20d6045e9e2e66020cab05b60f939834c5987',release:'R166',buildId:'R166-ca2853a67a0f'});
+ const info=createBuildInfo({root,base:'/forbidden-city-3d/'});assert.equal(info.release,'R166');assert.equal(info.sourceFingerprint,'4c4e4efc0c18fd9067b15db3ffa6259a16f11aeb6c006a0247cab3ceddb0ec42');assert.equal(info.buildId,'R166-3fd64e624bf2');
+});

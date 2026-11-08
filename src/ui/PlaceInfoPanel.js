@@ -1,3 +1,4 @@
+import historicalPrincipal from '../../data/architecture/dafotang-main-buddha.json' with {type:'json'};
 import {englishNameInfo} from '../i18n/OfficialPlaceNames.js';
 import {translateText} from '../i18n/Messages.js';
 import {localeStore} from '../i18n/LocaleStore.js';
@@ -23,6 +24,13 @@ export class PlaceInfoPanel {
     this.element.setAttribute('role', 'region');
     this.element.setAttribute('aria-labelledby', 'place-title');
     this.element.hidden = this.element.inert = true;
+    this.element.addEventListener('focusin', event => {
+      this.contentViewport();
+      const target = event.target;
+      if (target?.tagName === 'A') queueMicrotask(() => {
+        if (document.activeElement === target && this.element.contains(target)) this.keepSourceVisible(target);
+      });
+    });
     this.unsubscribeLocale = localeStore.subscribe(() => this.refreshLocale());
   }
 
@@ -48,6 +56,7 @@ export class PlaceInfoPanel {
     this.element.appendChild(element('p', place?.summary.text ?? facilityInfo?.intro ?? '此地点的详细介绍尚未收录。', 'place-summary'));
     const fidelity=modelFidelityFor(name,place?.id)??modelFidelityFor(input.place?.canonicalName);
     if(facilityInfo||fidelity){this.element.appendChild(element('h3','本版模型说明'));this.element.appendChild(element('p',facilityInfo?.detail??fidelity.detail,'place-note'));}
+    if (place?.id === historicalPrincipal.placeId) this.renderHistoricalPrincipal();
     if (canTravel && !facilityInfo) {
       const button = element('button', place?.modelExperience.actionLabel ?? '前往此处');
       button.id = 'place-travel'; button.type = 'button';
@@ -79,7 +88,9 @@ export class PlaceInfoPanel {
         pointerArmed = null;
         if (admitted) onTravel(button);
       });
-      this.element.appendChild(button);
+      const actions = element('div'); actions.id = 'place-actions';
+      actions.appendChild(button);
+      this.element.prepend(actions);
     }
     const section = (heading, facts) => {
       if (!facts.length) return;
@@ -121,7 +132,24 @@ export class PlaceInfoPanel {
     }
     if (place) this.renderNameProvenance(place);
     this.element.scrollTop = 0;
+    this.contentViewport();
     return title;
+  }
+
+  renderHistoricalPrincipal() {
+    const locale = localeStore.locale, text = historicalPrincipal.text[locale];
+    const section = element('section'); section.id = 'place-historical-principal';
+    section.setAttribute('data-component-id', historicalPrincipal.componentId);
+    section.appendChild(element('h3', text.heading));
+    for (const key of ['identity', 'scale', 'limits', 'translation', 'review']) section.appendChild(element('p', text[key], 'place-note'));
+    const list = element('ul');
+    for (const source of historicalPrincipal.sources) {
+      const item = element('li'), link = element('a', source.title[locale]);
+      link.id = `place-reconstruction-source-${historicalPrincipal.placeId}-${source.id}`;
+      link.setAttribute('href', source.url); link.setAttribute('target', '_blank'); link.setAttribute('rel', 'noopener noreferrer');
+      item.appendChild(link); item.appendChild(element('p', source.scope[locale], 'place-note')); list.appendChild(item);
+    }
+    section.appendChild(list); this.element.appendChild(section);
   }
 
   renderNameProvenance(place) {
@@ -155,14 +183,38 @@ export class PlaceInfoPanel {
     this.element.appendChild(section);
   }
 
+  contentViewport() {
+    const rect = this.element.getBoundingClientRect?.();
+    if (!rect) return null;
+    const style = globalThis.getComputedStyle?.(this.element);
+    // clientTop/clientHeight round to integer CSS pixels. Keep the measured
+    // padding-box clip, including fractional borders, in the same coordinates
+    // as the source link and sticky action rectangles.
+    const top = rect.top + (parseFloat(style?.borderTopWidth) || 0);
+    const bottom = rect.bottom - (parseFloat(style?.borderBottomWidth) || 0);
+    const actionBottom = this.element.querySelector('#place-actions')?.getBoundingClientRect?.().bottom ?? top;
+    const contentTop = Math.max(top, Math.min(bottom, actionBottom));
+    this.element.style.scrollPaddingTop = `${contentTop - top}px`;
+    return {top: contentTop, bottom};
+  }
+
+  keepSourceVisible(source, preferredTop) {
+    const bounds = this.contentViewport(), rect = source.getBoundingClientRect?.();
+    if (!bounds || !rect) return;
+    const top = Math.max(bounds.top, Math.min(preferredTop ?? rect.top, bounds.bottom - (rect.bottom - rect.top)));
+    // The browser applies its native scroll range. No alternate scroll node or
+    // scrollIntoView side effect can move the map or the page.
+    this.element.scrollTop += rect.top - top;
+  }
+
   refreshLocale() {
     if (!this.lastInput) return;
     const scroll = this.element.scrollTop;
     const active = this.element.contains(document.activeElement) ? document.activeElement : null;
     const focused = active?.id;
     const oldRect = active?.tagName === 'A' ? active.getBoundingClientRect?.() : null;
-    const panelRect = this.element.getBoundingClientRect?.();
-    const keepVisibleSource = oldRect && panelRect && oldRect.top >= panelRect.top && oldRect.bottom <= panelRect.bottom;
+    const visible = this.contentViewport();
+    const keepVisibleSource = oldRect && visible && oldRect.top >= visible.top && oldRect.bottom <= visible.bottom;
     this.render(this.lastInput);
     this.element.scrollTop = scroll;
     if (focused) {
@@ -170,7 +222,7 @@ export class PlaceInfoPanel {
       replacement?.focus({preventScroll:true});
       // Preserve the visible source anchor, rather than an obsolete pixel offset
       // when translated paragraphs above it grow or shrink. Native scroll limits apply.
-      if (keepVisibleSource && replacement?.getBoundingClientRect) this.element.scrollTop += replacement.getBoundingClientRect().top - oldRect.top;
+      if (replacement?.tagName === 'A') this.keepSourceVisible(replacement, keepVisibleSource ? oldRect.top : undefined);
     }
   }
 

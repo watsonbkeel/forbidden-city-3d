@@ -666,6 +666,17 @@ body.map-open #minimap {
   line-height: 1.65;
   padding: 0 8px 12px 0;
 }
+/* Keep the unique travel action visible while the complete card text scrolls. */
+#minimap #place-actions {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4px 0 8px;
+  background: #171b18;
+}
+#minimap #place-actions button { margin: 0; }
 #minimap #place-info h2 { margin: 2px 0 0; font-size: 24px; color: #ffe4a1; }
 #minimap #place-info h3 { margin: 20px 0 8px; font-size: 17px; color: #ffe4a1; }
 #minimap #place-info p { margin: 8px 0; }

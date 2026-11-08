@@ -12,7 +12,7 @@ class FontContracts(unittest.TestCase):
  def m(self):
   self.assertIsNotNone(self.mod,'Approved bounded font helper is missing');return self.mod
  def test_exact_identity(self):
-  m=self.m();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r166-cumulative-374-e46-origin-20261106'}
+  m=self.m();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r167-cumulative-374-announcements-20261107'}
   self.assertEqual(m.identity(e)['eventSha'],'a'*40)
   for k in e:
    bad=dict(e);bad[k]='';self.assertRaises(ValueError,m.identity,bad)
@@ -52,7 +52,7 @@ class FontContracts(unittest.TestCase):
  def test_root_exact_nonoverlap_and_fresh_creation(self):
   m=self.m()
   with tempfile.TemporaryDirectory() as d:
-   r=pathlib.Path(d);e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r166-cumulative-374-e46-origin-20261106','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
+   r=pathlib.Path(d);e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r167-cumulative-374-announcements-20261107','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
    m.validate_roots(e)
    for key,value in [('FONT_WORK_ROOT',str(r/'wrong')),('UI_WORK_ROOT',str(r/'bf-12-1/sub')),('EVIDENCE_DIR',str(r/'bf-12-1'))]:self.assertRaises(ValueError,m.validate_roots,{**e,key:value})
  def test_no_environment_font_override(self):
@@ -70,7 +70,7 @@ class FontIntegrationContracts(unittest.TestCase):
  def test_failed_prepare_has_same_run_receipt_and_no_success(self):
   m=self.m();self.assertTrue(all(callable(getattr(m,n,None)) for n in ['prepare','check','collect']),'Preparation/check/collection interfaces missing')
   with tempfile.TemporaryDirectory() as d:
-   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r166-cumulative-374-e46-origin-20261106','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
+   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r167-cumulative-374-announcements-20261107','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
    def fail(*args,**kwargs):raise RuntimeError('synthetic initial command failure')
    result=m.prepare(e,fail);self.assertEqual(result['status'],'failed');self.assertEqual(result['identity'],m.identity(e));self.assertTrue((r/'bf-12-1/receipts/prepare.json').exists());self.assertRaises(ValueError,m.check,e,fail)
    q=m.collect(e);self.assertFalse(q['passed']);self.assertEqual(q['copied'],['prepare.json','prepare.log']);self.assertEqual(sorted(p.name for p in (r/'evidence/font-environment').iterdir()),['collection.json','prepare.json','prepare.log'])
@@ -78,7 +78,7 @@ class FontIntegrationContracts(unittest.TestCase):
  def test_collector_never_copies_scratch_or_foreign_identity(self):
   m=self.m();self.assertTrue(all(callable(getattr(m,n,None)) for n in ['prepare','check','collect']),'Preparation/check/collection interfaces missing')
   with tempfile.TemporaryDirectory() as d:
-   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r166-cumulative-374-e46-origin-20261106','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
+   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r167-cumulative-374-announcements-20261107','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
    def fail(*a,**k):raise RuntimeError('stop')
    m.prepare(e,fail);(r/'bf-12-1/scratch/secret.deb').write_bytes(b'never copy');owner=r/'bf-12-1/OWNER.json';x=json.loads(owner.read_text());x['identity']['runAttempt']='2';owner.write_text(json.dumps(x));q=m.collect(e);self.assertFalse(q['passed']);self.assertEqual(q['copied'],[]);self.assertFalse((r/'evidence/font-environment/secret.deb').exists())
  def test_receipt_empty_or_missing_provenance_never_passes(self):
@@ -111,7 +111,7 @@ class FontBoundedCommandContracts(unittest.TestCase):
  def test_timeout_marks_started_installation_uncertain_and_keeps_input(self):
   m=self.m()
   with tempfile.TemporaryDirectory() as d:
-   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r166-cumulative-374-e46-origin-20261106','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
+   r=pathlib.Path(d);(r/'repo').mkdir();(r/'evidence').mkdir();e={'GITHUB_SHA':'a'*40,'GITHUB_RUN_ID':'12','GITHUB_RUN_ATTEMPT':'1','GITHUB_REPOSITORY':'watsonbkeel/forbidden-city-3d','GITHUB_REF':'refs/heads/dev/r167-cumulative-374-announcements-20261107','RUNNER_TEMP':d,'FONT_WORK_ROOT':str(r/'bf-12-1'),'UI_WORK_ROOT':str(r/'bui-12-1'),'EVIDENCE_DIR':str(r/'evidence'),'GITHUB_WORKSPACE':str(r/'repo')}
    v=m.SPEC['version']
    def run(args,**kwargs):
     if args[0]=='python3':return 'Ran 31 tests in 0.1s\n\nOK'

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "6462e58485f18aad1506e92318f8258db788e918",
+  "baseTree": "7da351f843d13fd409bb690ca5369feaff494a24",
+  "baseStatus": "PUBLIC_CANDIDATE_390_UI_FAILED_NOT_ACCEPTED_RELEASE",
+  "scope": [
+    "index.html",
+    "main.js",
+    "style.css",
+    "src",
+    "data",
+    "public",
+    "package.json",
+    "package-lock.json",
+    "vite.config.js",
+    "release.json",
+    "scripts/build-identity.mjs"
+  ],
+  "files": [
+    {
+      "path": "data/architecture/building-fidelity.json",
+      "mode": "100644",
+      "before": "860c5251695a96a94c526126483529959471eb904988c3a23d9b0c6cab07b9e2",
+      "after": "19ce1c29072fd14539b05a86828134b0718c92f0210bc517b34c4611e29307f3"
+    },
+    {
+      "path": "data/architecture/dafotang-main-buddha.json",
+      "mode": "100644",
+      "before": null,
+      "after": "f171b07126196d14d43cfe9edd6c61971bd1506ec4c142e0e2f43da5c210f4f7"
+    },
+    {
+      "path": "data/i18n/ui-en.json",
+      "mode": "100644",
+      "before": "c027d99ec52130a046c136bfc613f0d0ef6517c9c25d1a2b8ffb78612c269601",
+      "after": "c6b459af86b930a0918e8f12f2a8ba5a9bce35bb6cdce4fba9269a5c6744d271"
+    },
+    {
+      "path": "src/scene/palace/special/DafotangMainBuddha.js",
+      "mode": "100644",
+      "before": null,
+      "after": "22226d0dbae79c3b3fadbf415982f2b0ed3b31e27cb91cde333f6f54c417b873"
+    },
+    {
+      "path": "src/scene/palace/special/RemainingOuterHalls.js",
+      "mode": "100644",
+      "before": "3f819ce60f913d4121f8147b16f11f3ad92d9c43198eb3268d9540e9d3f6f2d5",
+      "after": "5676c67a87eb516c2f4073d66047a4177b1bfd8a44a0ffaf69d58c4353ae3eba"
+    },
+    {
+      "path": "src/ui/PlaceInfoPanel.js",
+      "mode": "100644",
+      "before": "db0d05b7ded85d1a7b56b92e59d7a39c449e39e750e1b6777f3fe68b0714a70b",
+      "after": "886b3ff23646eb465bdf43c5e32b036096c660f168ee0773936f353848818676"
+    }
+  ],
+  "inverseEdits": {
+    "data/architecture/building-fidelity.json": [
+      {
+        "before": "      \"publicNote\": \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。旧通用案椅柜凳保留并标未核。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\"\n",
+        "after": "      \"publicNote\": \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。未核通用家具不生成，整体库存仍未知，不代表空殿。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\"\n"
+      }
+    ],
+    "data/i18n/ui-en.json": [
+      {
+        "before": "",
+        "after": "    \"本轮外观：局部实际更新；内饰：局部实际更新。七间单檐歇山和28扇全高门，中央可通。；依三分事实增两道隔断；中3间/左右各2间及两通门位置、净宽1.8m净高2.65m均为可逆拟合。未核通用家具不生成，整体库存仍未知，不代表空殿。。官方旧页记佛像龛案移存白马寺，与2015雕塑馆须分期，不构成当前库存。当代完整室内布置、照片拍摄日期与实测构件尺寸未知。\": \"This round: exterior partly updated; interior partly updated. Seven bays, a single-eaved hip-and-gable roof, and 28 full-height door leaves are modeled, with central passage. Two partitions are added based on the documented three-part division. The central 3 bays, 2 bays on each side, and the two connecting doors' positions, clear width of 1.8m, and clear height of 2.65m are reversible fits. Unverified generic furniture is not generated. The overall inventory remains unknown, not confirmed empty. An older official page records Buddhist statues, niches, and tables being moved to Baima Temple. This must be distinguished chronologically from the 2015 sculpture gallery and does not establish a current inventory. The complete contemporary interior layout, photograph dates, and measured component dimensions are unknown.\",\n"
+      }
+    ],
+    "src/scene/palace/special/RemainingOuterHalls.js": [
+      {
+        "before": "",
+        "after": "import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';\n"
+      },
+      {
+        "before": "",
+        "after": "  if(p.key==='dafotang')buildDafotangMainBuddha(c);\n"
+      }
+    ],
+    "src/ui/PlaceInfoPanel.js": [
+      {
+        "before": "",
+        "after": "import historicalPrincipal from '../../data/architecture/dafotang-main-buddha.json' with {type:'json'};\n"
+      },
+      {
+        "before": "",
+        "after": "    if (place?.id === historicalPrincipal.placeId) this.renderHistoricalPrincipal();\n"
+      },
+      {
+        "before": "",
+        "after": "  renderHistoricalPrincipal() {\n    const locale = localeStore.locale, text = historicalPrincipal.text[locale];\n    const section = element('section'); section.id = 'place-historical-principal';\n    section.setAttribute('data-component-id', historicalPrincipal.componentId);\n    section.appendChild(element('h3', text.heading));\n    for (const key of ['identity', 'scale', 'limits', 'translation', 'review']) section.appendChild(element('p', text[key], 'place-note'));\n    const list = element('ul');\n    for (const source of historicalPrincipal.sources) {\n      const item = element('li'), link = element('a', source.title[locale]);\n      link.id = `place-reconstruction-source-${historicalPrincipal.placeId}-${source.id}`;\n      link.setAttribute('href', source.url); link.setAttribute('target', '_blank'); link.setAttribute('rel', 'noopener noreferrer');\n      item.appendChild(link); item.appendChild(element('p', source.scope[locale], 'place-note')); list.appendChild(item);\n    }\n    section.appendChild(list); this.element.appendChild(section);\n  }\n\n"
+      }
+    ]
+  },
+  "baselineRuntimeCount": 994,
+  "baselineSourceFingerprint": "10cacb498fc2fcea9c98490a6cec5759f7ddd8ab1523d53e2130512ce3e3f5c1",
+  "baselineOuterManifestSha256": "cb509b53f816c479ab5ce5e285c40e447d644f501fe44f9e38bc23a8d5b4d918"
+}
