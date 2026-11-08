@@ -93,8 +93,8 @@ def resource_sample(proc=Path('/proc/self')):
                 # Native cgroup-v2 roots have no resource-control files. A child
                 # without the controller inherits its verified parent's bound.
                 # Missing enabled non-root controls remain an error.
-                if read(directory/'cgroup.type')!='domain':
-                    raise ResourceError('unsupported cgroup-v2 domain type')
+                # The true cgroup-v2 root has no cgroup.type or resource-control
+                # interface files. Only non-root nodes require a domain type.
                 if directory==root:
                     if any((directory/key).exists() for key in ('memory.current','memory.high','memory.events')):
                         raise ResourceError('unreadable or partial root controls')
@@ -104,6 +104,8 @@ def resource_sample(proc=Path('/proc/self')):
                     quota.append([kind,str(directory),'root-exempt'])
                     oom.append(['host',vm['oom_kill']]);row['interpretation']='root-exempt; physical bound'
                     raw.append(row);continue
+                if read(directory/'cgroup.type')!='domain':
+                    raise ResourceError('unsupported cgroup-v2 domain type')
                 enabled=read(directory.parent/'cgroup.subtree_control').split()
                 if 'memory' not in enabled:
                     quota.append([kind,str(directory),'inherited',enabled])

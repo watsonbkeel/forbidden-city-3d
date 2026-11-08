@@ -67,6 +67,57 @@ if SCRIPT.is_file():
                 with self.assertRaisesRegex(m.ResourceError,'unreadable'):
                     m.resource_sample(proc)
 
+        def hosted_runner_fixture(self,tmp):
+            # Exact three-level shape from run 42498696476 snapshot 0. Only the
+            # mount location is relocated into the test's temporary directory.
+            p=Path(tmp);proc=p/'proc';root=p/'cgroup';parent=root/'system.slice';leaf=parent/'hosted-compute-agent.service'
+            proc.mkdir();leaf.mkdir(parents=True)
+            (proc/'meminfo').write_text('MemTotal: 16371428 kB\nMemAvailable: 15450440 kB\nSwapTotal: 3145724 kB\nSwapFree: 3145724 kB\n')
+            (proc/'vmstat').write_text('oom_kill 0\n')
+            (proc/'cgroup').write_text('0::/system.slice/hosted-compute-agent.service\n')
+            (proc/'mountinfo').write_text(f'34 28 0:29 / {root} rw,nosuid,nodev,noexec,relatime shared:8 - cgroup2 cgroup2 rw,nsdelegate,memory_recursiveprot\n')
+            (root/'cgroup.controllers').write_text('cpuset cpu io memory hugetlb pids rdma misc')
+            (root/'cgroup.subtree_control').write_text('cpuset cpu io memory pids')
+            for directory,usage in ((parent,1150902272),(leaf,287129600)):
+                (directory/'cgroup.type').write_text('domain')
+                (directory/'cgroup.subtree_control').write_text('cpuset cpu io memory pids' if directory==parent else '')
+                (directory/'memory.current').write_text(str(usage))
+                (directory/'memory.max').write_text('max');(directory/'memory.high').write_text('max')
+                (directory/'memory.events').write_text('low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n')
+            return proc,root,parent,leaf
+
+        def test_actual_runner_root_without_type_uses_all_verified_ancestors(self):
+            with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+                proc,root,parent,leaf=self.hosted_runner_fixture(tmp)
+                self.assertFalse((root/'cgroup.type').exists())
+                s=m.resource_sample(proc)
+                self.assertEqual(s['capacity'],16371428*1024)
+                self.assertEqual(s['available'],15450440*1024)
+                self.assertEqual(s['quota'],[['v2',str(leaf),'max','max'],['v2',str(parent),'max','max'],['v2',str(root),'root-exempt']])
+                self.assertEqual(s['oom'],[[str(leaf),0,0],[str(parent),0,0],['host',0]])
+                self.assertGreaterEqual(s['available'],m.RSS_CAP+m.reserve(s)+m.MARGIN)
+
+        def test_actual_shape_hidden_root_is_still_rejected(self):
+            with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+                proc,root,parent,leaf=self.hosted_runner_fixture(tmp)
+                f=proc/'mountinfo';f.write_text(f.read_text().replace('0:29 / ','0:29 /hidden '))
+                with self.assertRaisesRegex(m.ResourceError,'hidden'):m.resource_sample(proc)
+
+        def test_actual_shape_missing_nonroot_quota_is_still_rejected(self):
+            with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+                proc,root,parent,leaf=self.hosted_runner_fixture(tmp)
+                (parent/'memory.max').unlink()
+                with self.assertRaisesRegex(m.ResourceError,'unreadable'):m.resource_sample(proc)
+
+        def test_actual_shape_unreadable_nonroot_quota_is_still_rejected(self):
+            with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+                proc,root,parent,leaf=self.hosted_runner_fixture(tmp);original=m.read
+                def denied(path):
+                    if Path(path)==parent/'memory.current':raise m.ResourceError('unreadable synthetic ancestor memory.current')
+                    return original(path)
+                with patch.object(m,'read',denied),self.assertRaisesRegex(m.ResourceError,'unreadable'):
+                    m.resource_sample(proc)
+
         def test_unreadable_and_hidden_controller_fail_closed(self):
             with tempfile.TemporaryDirectory(dir=HERE) as tmp:
                 p=Path(tmp)

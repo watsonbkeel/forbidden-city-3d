@@ -165,8 +165,8 @@ jobs:
       - name: Verify the build-only guard and synthetic negative controls
         run: |
           sha256sum --check <<'GUARD_SHA256'
-          63cb620f263471cb29595c87dcd5122b4f2208b5499c523d6c757786be60c67c  .github/scripts/r177_build_bound.py
-          739bf06868befded6a407885b1b5a1f732b7efe0fa2b939a3f446388640083f9  .github/scripts/test_build_bound.py
+          e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3  .github/scripts/r177_build_bound.py
+          f0bb1016dd539055d99626a4003bfff46123189831a999a255dee42675907be2  .github/scripts/test_build_bound.py
           GUARD_SHA256
           PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
 
