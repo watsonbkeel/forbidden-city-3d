@@ -62,15 +62,16 @@ test('only the exact bridge and exterior-view templates get a historical diction
  const fs=await import('node:fs'),{createHash}=await import('node:crypto');
  const {readXiangxuHistoricalSource,stripXiangxuDelta}=await import('../r166-xiangxu-gate/source-boundary.mjs');
  const {createRuntimeReader}=await import('./source-boundary-io.mjs');
+ const {restoreDafotangSource}=await import('../r167-dafotang-principal/source-boundary.mjs');
  const path='data/i18n/ui-en.json',actual=fs.readFileSync(path),prior=readXiangxuHistoricalSource(path),sha=b=>createHash('sha256').update(b).digest('hex');
  assert.equal(sha(prior),'63711a8a41ff3ecd719dec199a6c7b0b5cbd5011f6c2cdac217b3e5945d82e5c');
  const expected=JSON.parse(prior);expected.messages['已选择${0}，仅定位地图，人物未移动']='Selected ${0}; map centered only, character not moved';
  expected.messages['前往${0}外观观览点']='Go to the exterior viewing point for ${0}';
- assert.deepEqual(JSON.parse(actual),expected);
+ assert.deepEqual(JSON.parse(restoreDafotangSource(path,actual)),expected);
  assert.notDeepEqual(actual,prior);
  for(const bad of [Buffer.concat([actual,Buffer.from('\n')]),Buffer.from(actual.toString().replace('Selected ${0}; map centered only, character not moved','Selected ${0}; character moved')),Buffer.from(actual.toString().replace('Go to the exterior viewing point for ${0}','Go inside ${0}'))])assert.throws(()=>stripXiangxuDelta(path,bad));
  const reader=createRuntimeReader(process.cwd()),digest=createHash('sha256');
- for(const p of reader.listCurrent()){const bytes=p===path?prior:reader.readCurrent(p).bytes;digest.update(`${p.length}:${p}:${bytes.length}:`);digest.update(bytes);}
+ for(const p of reader.listCurrent()){const raw=reader.readCurrent(p).bytes,restored=restoreDafotangSource(p,raw);if(restored===null)continue;const bytes=p===path?prior:restored;digest.update(`${p.length}:${p}:${bytes.length}:`);digest.update(bytes);}
  assert.equal(digest.digest('hex'),'1390a781c623fae89e9f6161457373524712bfccfb5b4ad7b908e7dcd835e23f','only the two approved dictionary additions recover the public656a runtime projection');
  assert.deepEqual(fs.readFileSync(path),actual,'source comparison never rewrites physical runtime');
 });
