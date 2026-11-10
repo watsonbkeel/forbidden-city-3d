@@ -1,0 +1,13 @@
+// Exact historical source projection only. Behavioral imports stay on actual runtime.
+import assert from 'node:assert/strict';import fs from 'node:fs';import{execFileSync}from'node:child_process';import{createHash}from'node:crypto';
+import{physicalInputs as readPhysical,verifyInputs as verifyPhysical,sha}from'../r174-yinghua-east-ear/prior-source.mjs';
+import delta from './delta.json' with {type:'json'};import e49 from '../r172-weiyu-study/delta.json' with {type:'json'};
+import{restorePriorTest as restoreH42Test}from'../r174-yinghua-east-ear/prior-source.mjs';
+export {sha};export {actualPhysicalInputs}from'../r174-yinghua-east-ear/prior-source.mjs';
+export const manifest=JSON.parse(execFileSync('git',['show',delta.publicAnchor+':tests/r169-current-source/delta.json'],{maxBuffer:2**22,encoding:'utf8'}));
+const rows=new Map(manifest.files.map(r=>[r.path,{...r}]));
+for(const r of e49.rows){if(r.before===null){assert.ok(!rows.has(r.path));rows.set(r.path,{path:r.path,mode:r.mode,after:r.after});}else{assert.equal(rows.get(r.path)?.after,r.before);assert.equal(rows.get(r.path)?.mode,r.mode);rows.get(r.path).after=r.after;}}
+export function verifyInputs(input){assert.deepEqual([...input.keys()].sort(),[...rows.keys()].sort());for(const r of rows.values()){const x=input.get(r.path);assert.equal(x.mode,r.mode,r.path);assert.equal(sha(x.bytes),r.after,r.path);}const h=createHash('sha256');for(const scope of manifest.scope)for(const p of [...input.keys()].filter(p=>p===scope||p.startsWith(scope+'/')).sort()){const b=input.get(p).bytes;h.update(`${p.length}:${p}:${b.length}:`);h.update(b);}assert.equal(h.digest('hex'),delta.baseFingerprint);return{physical:1002,prior:996,modified:12,added:6};}
+export function projectH39(input){verifyPhysical(input);const result=new Map(input);for(const r of delta.rows){const x=input.get(r.path);assert.equal(x.mode,r.mode);assert.equal(sha(x.bytes),r.after);if(r.before===null){result.delete(r.path);continue;}let s=x.bytes.toString();for(const e of r.edits){assert.equal(s.split(e.after).length,2);s=s.replace(e.after,e.before);}assert.equal(sha(s),r.before);result.set(r.path,{mode:x.mode,bytes:Buffer.from(s)});}verifyInputs(result);return result;}
+export const physicalInputs=root=>projectH39(readPhysical(root));
+export function restorePriorTest(path,bytes=fs.readFileSync(path)){bytes=restoreH42Test(path,bytes);const r=delta.testEdits.find(r=>r.path===path);if(!r)return bytes;assert.equal(sha(bytes),r.after);let s=bytes.toString();for(const e of r.edits){assert.equal(s.split(e.after).length,2);s=s.replace(e.after,e.before);}assert.equal(sha(s),r.before);return Buffer.from(s);}

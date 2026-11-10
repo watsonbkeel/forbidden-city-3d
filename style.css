@@ -770,3 +770,57 @@ body.settings-open #tour-language-control, body.map-open #tour-language-control 
     white-space: normal; width: max-content; max-width: calc(100vw - 24px); text-align: center;
   }
 }
+
+/* Top HUD: real persistent controls in flow, never placed over walking inputs. */
+body[data-tour-hud="top"] #tour-primary-tools {
+  position: fixed; z-index: 9100; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  top: max(12px, env(safe-area-inset-top, 0px)); left: max(12px, env(safe-area-inset-left, 0px));
+  width: min(360px, calc(100vw - 380px)); max-height: calc(100dvh - 40px - env(safe-area-inset-top, 0px));
+  overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; pointer-events: none;
+}
+body[data-tour-hud="top"] #tour-primary-tools > * { flex-shrink: 0; box-sizing: border-box; pointer-events: auto; }
+body[data-tour-hud="top"] #tour-primary-tools #location-panel {
+  position: relative !important; top: auto !important; left: auto !important; width: 100%; max-width: 100% !important;
+  margin: 0; overflow-wrap: anywhere; pointer-events: none;
+}
+body[data-tour-hud="top"] #tour-primary-tools #structural-preview-button,
+body[data-tour-hud="top"] #tour-primary-tools #help-panel {
+  position: relative; top: auto !important; left: auto !important; bottom: auto; transform: none;
+  margin: 0; max-width: 100%; min-height: 44px;
+}
+body[data-tour-hud="top"] #tour-primary-tools #help-panel > button { min-height: 44px; }
+body[data-tour-hud="top"] #tour-tools {
+  top: max(12px, env(safe-area-inset-top, 0px)) !important; right: max(12px, env(safe-area-inset-right, 0px)) !important;
+  max-width: min(310px, calc(100vw - 28px)); max-height: calc(100dvh - 40px - env(safe-area-inset-top, 0px)) !important;
+  z-index: 9200 !important;
+}
+body[data-tour-hud="top"] #tour-tools[data-map-preview="true"] {
+  top: calc(142px + env(safe-area-inset-top, 0px)) !important;
+  max-height: calc(100dvh - 336px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+}
+body[data-tour-hud="top"] #tour-language-control {
+  position: relative; top: auto; left: auto; bottom: auto; transform: none; align-self: flex-end;
+  box-sizing: border-box; width: 100%; flex-shrink: 0;
+}
+body[data-tour-hud="top"].map-open #tour-primary-tools { visibility: hidden; }
+@media (max-width: 768px) {
+  body[data-tour-hud="top"] #tour-primary-tools { width: calc(100vw - 166px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); max-height: calc(100dvh - 190px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); gap: 6px; }
+  body[data-tour-hud="top"] #tour-primary-tools #location-panel { padding: 8px 10px !important; font-size: 13px !important; }
+  body[data-tour-hud="top"] #tour-primary-tools #structural-preview-button { width: 100%; padding: 5px 8px; }
+  body[data-tour-hud="top"] #tour-tools { width: 130px; max-width: 130px; max-height: calc(100dvh - 206px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }
+  body[data-tour-hud="top"] #tour-tools[data-map-preview="true"] { top: calc(142px + env(safe-area-inset-top, 0px)) !important; max-height: calc(100dvh - 336px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }
+  body[data-tour-hud="top"] #tour-language-control { padding: 2px 4px; }
+  body[data-tour-hud="top"] #tour-language-control > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  body[data-tour-hud="top"] #tour-language { width: 100%; min-width: 0; }
+  body[data-tour-hud="top"] #day-night-panel { box-sizing: border-box; width: 100%; min-width: 0; padding: 5px; overflow-wrap: anywhere; }
+  body[data-tour-hud="top"] #day-night-panel input[type="range"] { max-width: 100%; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  body[data-tour-hud="top"] #tour-primary-tools { width: min(320px, calc((100vw - 184px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) / 2)); max-height: calc(100dvh - 174px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
+  body[data-tour-hud="top"] #tour-tools[data-map-preview="true"] { top: max(8px, env(safe-area-inset-top, 0px)) !important; right: calc(148px + env(safe-area-inset-right, 0px)) !important; width: min(300px, calc((100vw - 184px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) / 2)); max-width: none; max-height: calc(100dvh - 174px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important; }
+}
+
+body[data-tour-hud="top"].map-open #tour-tools { visibility: hidden; }
+
+/* The map owns location context while open, including the temporarily undocked node. */
+body[data-tour-hud="top"].map-open #location-panel { visibility: hidden; }

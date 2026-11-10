@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { applyBoxUV } from '../../../utils/GeometryUV.js';
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 
 const SOURCE='https://www.dpm.org.cn/classify_detail/180962.html';
 /** The old 46.6 × 32 envelope is a compound, not one deep Chinese hall.
@@ -46,8 +47,11 @@ export function buildBaoyunStorehouse(kit,item){
   // Column spacing is a photo fit, not a sourced bay count.
   for(const s of[-1,1])for(let l=0;l<2;l++){
     const y=g.bodyBase+l*g.storeyH,x=s*14.5;
-    if(l===0){box('baoyun-closed-gallery-plinth',grey,2.5,g.bodyBase,21.5,x,g.bodyBase/2,-2.75);kit.col(f,x-1.25,0,-13.5,x+1.25,g.bodyBase,8);}
-    box('baoyun-open-gallery-floor',pale,2.5,.18,21.5,x,y-.09,-2.75);box('baoyun-open-gallery-entablature',pale,2.5,.32,21.5,x,y+4.15,-2.75);
+    let galleryBase;
+    if(l===0){galleryBase=box('baoyun-closed-gallery-plinth',grey,2.5,g.bodyBase,21.5,x,g.bodyBase/2,-2.75);kit.col(f,x-1.25,0,-13.5,x+1.25,g.bodyBase,8);}
+    const galleryFloor=box('baoyun-open-gallery-floor',pale,2.5,.18,21.5,x,y-.09,-2.75);
+    if(galleryBase)removeCoveredPlatformSurface(galleryBase,galleryFloor,g.bodyBase,{clipCoincidentSides:true});
+    box('baoyun-open-gallery-entablature',pale,2.5,.32,21.5,x,y+4.15,-2.75);
     for(let k=0;k<7;k++){const z=-13.3+k*3.55;box('baoyun-gallery-white-column',pale,.28,4.0,.28,x-s*1.04,y+2,z);box('baoyun-gallery-column-capital',pale,.48,.2,.48,x-s*1.04,y+3.95,z);kit.col(f,x-s*1.04-.14,y,z-.14,x-s*1.04+.14,y+4,z+.14);}
     if(l===1){box('baoyun-gallery-white-rail',pale,.16,.16,21.3,x-s*1.04,y+1,-2.75);for(let k=0;k<37;k++)box('baoyun-gallery-baluster',pale,.07,.85,.07,x-s*1.04,y+.48,-13.1+k*.58);}
   }

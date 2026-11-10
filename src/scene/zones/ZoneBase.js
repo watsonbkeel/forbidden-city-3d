@@ -1,4 +1,10 @@
+import {validateTaijiSouthGateSource,applyTaijiSouthGateGlaze} from '../palace/special/TaijiSouthGateGlaze.js';
+import {buildHuiyaoLou} from '../palace/special/HuiyaoLou.js';
+import {registerXiananSource} from '../palace/special/XiananContactSources.js';
+import {buildCuiyunRearHall} from '../palace/special/CuiyunRearHall.js';
+import {createDafotangPhotoSession} from '../palace/special/DafotangPhotoPresentation.js';
 import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';
+import {buildQianxingGlazedGate} from '../palace/special/QianxingGlazedGate.js';
 import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';
 import {buildTishunSouthBeam} from '../palace/special/TishunSouthBeam.js';
 import {buildChenghuangGlazedEntry} from '../palace/special/ChenghuangGlazedEntry.js';
@@ -68,6 +74,8 @@ import {buildShufangStage} from '../palace/special/ShufangStage.js';
 import {buildJicuiPavilion} from '../palace/special/JicuiPavilion.js';
 import {buildJianfuJiyunLou} from '../palace/special/JianfuJiyunLou.js';
 import {buildJingshengZhai} from '../palace/special/JingshengZhai.js';
+import {buildYinghuaEastEarHall} from '../palace/special/YinghuaEastEarHall.js';
+import {buildYinghuaShanmen} from '../palace/special/YinghuaShanmen.js';
 import {buildYinghuaStelePavilion} from '../palace/special/YinghuaStelePavilion.js';
 import {applyGardenStreetGatePins} from '../palace/special/GardenStreetGatePins.js';
 import {buildQinanIncensePavilions} from '../palace/special/QinanIncensePavilions.js';
@@ -206,7 +214,7 @@ import {applyDonghuaCentralDoorFront} from '../palace/special/DonghuaCentralDoor
 import {applyDonghuaExteriorEnvelope} from '../palace/special/DonghuaExteriorEnvelope.js';
 import {validateNansansuoInventoryPolicy} from '../palace/NansansuoInventoryPolicy.js';
 import { applyZuoyiDoorFront } from '../palace/special/ZuoyiDoorFront.js';
-import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou} from '../palace/special/RemainingNingshouHalls.js';
+import {resolveRemainingProfile as resolveNingshou,buildRemainingHall as buildNingshou,augmentRemainingHall as augmentNingshou,finalizeNingshouCoveredPlatforms} from '../palace/special/RemainingNingshouHalls.js';
 import {resolveRemainingProfile as resolveOuter,buildRemainingHall as buildOuter,augmentRemainingHall as augmentOuter} from '../palace/special/RemainingOuterHalls.js';
 import {resolveRemainingProfile as resolveResidential,buildRemainingHall as buildResidential,augmentRemainingHall as augmentResidential} from '../palace/special/RemainingResidentialHalls.js';
 import {buildRitualHall,ritualHallGeometry} from '../palace/special/RitualHalls.js';
@@ -245,6 +253,16 @@ import {applySourceGuidedNameboardMount} from '../palace/special/SourceGuidedNam
  * ZoneBase 按 kind 分发到 CourtKit 对应方法，最终返回合并的 group、碰撞体、
  * 可行走面、房间、地图标注、命名区域、silhouette（远处替身低模）。
  */
+// Only this constructor and its real buildGate path can mint a birth record.
+// Public geometry/item equality and inherited fake receivers are not provenance.
+const zoneBirths=new WeakMap(),xiananBirths=new WeakMap();
+let xiananBirthSerial=0;
+export function getXiananConstructionBirth(kit){return xiananBirths.get(kit)??null;}
+export function isBuiltXiananSource(kit,frame,item,zoneJson,walkable){
+  const birth=xiananBirths.get(kit),builder=birth?.builder.deref(),owner=builder&&zoneBirths.get(builder);
+  return !!owner&&owner.kit===kit&&owner.zone===zoneJson&&birth.frame.deref()===frame&&birth.item.deref()===item&&birth.walkable.deref()===walkable;
+}
+
 export class ZoneBase {
   /**
    * @param {object} library - 材质与贴图库
@@ -254,6 +272,7 @@ export class ZoneBase {
     this.library = library;
     this.zoneJson = zoneJson;
     this.kit = new CourtKit(library, zoneJson.id);
+    zoneBirths.set(this,{kit:this.kit,zone:zoneJson,gate:this.kit.gate});
     this.group = null;
     /** gate name → 返回的开口宽度（用于 wall gaps 引用） */
     this.gateWidths = new Map();
@@ -284,6 +303,8 @@ export class ZoneBase {
       }
     }
     
+    const shanmen=buildYinghuaShanmen(this.kit,this.zoneJson);
+    if(shanmen)this.gateWidths.set('英华殿山门',shanmen.width);
     // 第二遍：构建其他构件（wall/courtWalls 可引用 gate 宽度）
     let itemIndex = -1;
     for (const item of items) {
@@ -653,9 +674,15 @@ export class ZoneBase {
     yield {phase:'hook',index:152};
     buildDailouWaitingHouse(this.kit,this.zoneJson);
     yield {phase:'hook',index:153};
+    buildHuiyaoLou(this.kit,this.zoneJson);
+    buildCuiyunRearHall(this.kit,this.zoneJson);
+    buildYinghuaEastEarHall(this.kit,this.zoneJson);
     buildXiangxuGlazedGate(this.kit,this.zoneJson);
+    buildQianxingGlazedGate(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
+    finalizeNingshouCoveredPlatforms(this.kit);
     this.group = this.kit.finish();
+    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2'))this.dafotangPhotoSession=createDafotangPhotoSession(this.group);
     yield {phase:'lod',index:0};
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -692,6 +719,8 @@ export class ZoneBase {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
+    this.dafotangPhotoSession?.dispose();
+    this.dafotangPhotoSession=null;
     // A failed build may own source resources before a merged group exists.
     this.kit.dispose(this.group ?? this.kit.root);
     this.group?.removeFromParent();
@@ -847,6 +876,9 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    validateTaijiSouthGateSource(this.zoneJson,item);
+    const xianan=this.zoneJson?.id==='outer-west'&&this.zoneJson.items?.[30]===item;
+    if(xianan){const owner=zoneBirths.get(this);if(!owner||owner.kit!==this.kit||owner.zone!==this.zoneJson||owner.gate!==this.kit.gate||this.kit.gate!==CourtKit.prototype.gate||xiananBirths.has(this.kit))throw Error('Actual constructor-born Xianan builder required');}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===6){const b=buildBaotaiGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:6,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===4){const b=buildLushunGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:4,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
     if(this.zoneJson.id==='ningshou'&&this.zoneJson.items.indexOf(item)===5){const b=buildDaoheGate(this.kit,item,{zoneId:this.zoneJson.id,itemIndex:5,zoneJson:this.zoneJson});this.gateGeometries.set(item.name,b.geometry);return b.width;}
@@ -891,6 +923,7 @@ export class ZoneBase {
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
+    applyTaijiSouthGateGlaze(this.kit,this.kit.root.children.at(-1),this.zoneJson,item);
     buildNingshouSideApproach(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     fitNingshouFrontHall(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     buildYangxingFrontCeiling(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
@@ -901,6 +934,8 @@ export class ZoneBase {
     applyZuoyiDoorFront(this.kit, this.kit.root.children.at(-1), {zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     if (item.gateProfile === 'zhaode' || item.gateProfile === 'zhendu' || item.gateProfile === 'huangji') this.gateGeometries.set(item.name, this.kit.root.children.at(-1).userData.gateGeometry);
     if(this.zoneJson.id==='east-six'&&this.zoneJson.items.indexOf(item)===7)applyChengqianGateArrival(this.kit,this.kit.root.children.at(-1),item,this.zoneJson,7);
+    if(xianan)xiananBirths.set(this.kit,Object.freeze({generation:++xiananBirthSerial,builder:new WeakRef(this),kit:new WeakRef(this.kit),frame:new WeakRef(this.kit.root.children.at(-1)),item:new WeakRef(item),zone:new WeakRef(this.zoneJson),walkable:new WeakRef(this.kit.walkables[ownGateWalkableStart])}));
+    registerXiananSource(this.kit,this.kit.root.children.at(-1),item,this.zoneJson,this.kit.walkables[ownGateWalkableStart]);
     return width; // 返回开口宽度
   }
 
@@ -940,7 +975,7 @@ export class ZoneBase {
   }
 
   buildCourtWalls(item) {
-    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华门')))return;
+    if(buildYinghuaWestEarCourtWalls(this.kit,item,this.zoneJson.id,this.gateWidths.get('英华殿山门')))return;
     if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 

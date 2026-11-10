@@ -1,0 +1,139 @@
+name: R171 cumulative platforms and photo foundation validation
+
+# Candidate validation only. No Pages publication or repository writes.
+'on':
+  push:
+    branches:
+      - dev/r171-cumulative-platforms-photo
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r171-cumulative-platforms-photo-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r171-cumulative-platforms-photo'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+    steps:
+      - name: Initialize evidence directory
+        run: |
+          EVIDENCE_DIR="$RUNNER_TEMP/r171-validation"
+          mkdir -p "$EVIDENCE_DIR"
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+
+      - name: Check out exact event commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Fetch only the three exact public source baselines
+        run: |
+          for BASE in \
+            ba42917f21f7fe561a3245ba813a91b173b88074 \
+            2964d59f0e89dedf425ad4bf1cefc9eea153ab0d \
+            d9172faf9595b34cd15477a2912cb397a7013186
+          do
+            git fetch --no-tags --depth=1 --filter=blob:none origin "$BASE"
+            git cat-file -e "$BASE^{commit}"
+          done
+
+      - name: Use pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+
+      - name: Verify lock and record toolchain
+        run: |
+          mkdir -p "$EVIDENCE_DIR"
+          echo 'e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c  package-lock.json' | sha256sum --check -
+          {
+            git rev-parse HEAD
+            node --version
+            npm --version
+            sha256sum package.json package-lock.json
+          } | tee "$EVIDENCE_DIR/toolchain.txt"
+
+      - name: Install exact locked dependencies
+        run: |
+          npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          for (const name of ['playwright', 'playwright-core']) {
+            const p = JSON.parse(fs.readFileSync(`node_modules/${name}/package.json`, 'utf8'));
+            assert.equal(p.version, '1.64.0');
+            console.log(`${name} ${p.version}`);
+          }
+          NODE
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+
+      - name: Run bounded cumulative unit tests serially
+        run: |
+          node --test --test-concurrency=1 tests/r169-current-source/source.test.mjs tests/r169-dafotang-floor/*.test.mjs tests/r169-tour-hud/*.test.mjs tests/bilingual/language-control.test.mjs tests/r170-covered-platforms/*.test.mjs tests/r169-dafotang-photo-triptych/*.test.mjs tests/r107-inactive-cache.test.mjs 2>&1 | tee "$EVIDENCE_DIR/unit-tests.log"
+
+      - name: Build normal production app for the Pages base and verify identity
+        run: |
+          VITE_BASE=/forbidden-city-3d/ npm run build 2>&1 | tee "$EVIDENCE_DIR/build.log"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {verifyBuildSource} from './scripts/build-identity.mjs';
+          const build = verifyBuildSource({root:process.cwd(), expectedBase:'/forbidden-city-3d/'});
+          assert.equal(build.sourceCommit, process.env.GITHUB_SHA);
+          assert.equal(build.sourceDirty, false);
+          assert.equal(build.base, '/forbidden-city-3d/');
+          fs.writeFileSync(path.join(process.env.EVIDENCE_DIR, 'build-identity.json'), JSON.stringify(build, null, 2) + '\n');
+          console.log(JSON.stringify(build));
+          NODE
+
+      - name: Install locked Playwright Chromium
+        run: |
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+
+      - name: Install and record official Ubuntu CJK fonts
+        run: |
+          sudo apt-get update
+          FONT_VERSION=$(LC_ALL=C apt-cache policy fonts-noto-cjk | awk '/Candidate:/ {print $2}')
+          test -n "$FONT_VERSION" && test "$FONT_VERSION" != '(none)'
+          sudo apt-get install --no-install-recommends -y "fonts-noto-cjk=$FONT_VERSION" fontconfig
+          {
+            dpkg-query -W -f='${Package}\t${Version}\n' fonts-noto-cjk fontconfig
+            fc-match 'Noto Sans CJK SC'
+            find /usr/share/fonts/opentype/noto -type f -name '*CJK*' -exec sha256sum {} +
+          } | tee "$EVIDENCE_DIR/fonts.txt"
+
+      # The UI harness must use chromiumSandbox:true. It does not load World,
+      # so its --disable-gpu argument is not evidence of a floor GPU pass.
+      - name: Run portable UI harness
+        run: |
+          for file in tests/r169-tour-hud/browser/*.mjs; do node --check "$file"; done
+          node tests/r169-tour-hud/browser/build-fixture.mjs 2>&1 | tee "$EVIDENCE_DIR/ui-fixture-build.log"
+          EXPECTED_COMMIT="$GITHUB_SHA" node tests/r169-tour-hud/browser/check-layout.mjs 2>&1 | tee "$EVIDENCE_DIR/ui-layout.log"
+
+      - name: Save bounded validation evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r171-validation-${{ github.sha }}
+          path: |
+            ${{ env.EVIDENCE_DIR }}
+            tests/r169-tour-hud/browser/evidence/
+          if-no-files-found: error
+          retention-days: 14

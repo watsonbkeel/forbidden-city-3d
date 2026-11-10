@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import * as T from 'three';
 import {zuoyiNineRowFrontMaterial} from './ZuoyiDoorFront.js';
 // Own Zuoyi cover and own 1932 plans establish topology, not modern dimensions.
@@ -7,8 +8,8 @@ export function buildZuoyiOwnGate(kit,item,zoneId,index){
  const f=kit.frame(item.x,item.z,Math.PI/2),ph=1.6,run=11.2,top=6;
  f.name=item.name;const g={profile:'zuoyi-own-five-bay',objectId:'FC-BC06FBAC15',bayWidths:[2.1,2.7,3,2.7,2.1],portalCenters:[-2.85,0,2.85],platformY:ph,approachRun:run,width:12.6,depth:6.4,wallGap:13.2,dimensionStatus:'COMPACT_OWN_PHOTO_ENGINEERING_FIT_NOT_SURVEY',wholeObjectAccepted:false};
  f.userData.gateGeometry=g;f.userData.structure={...g,id:'axis-courts/items/2',sourceGroup:'2013779953911173120',sourceView:'1977',historicalPlanYear:1932,sideConnectionsChanged:false};
- const tag=(o,r)=>{o.name=r;o.userData.role=r;return o;},box=(r,m,w,h,d,x,y,z)=>tag(kit.box(f,m,w,h,d,x,y,z),r),solid=(r,m,w,h,d,x,y,z)=>{box(r,m,w,h,d,x,y,z);kit.col(f,x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2);};
- solid('zuoyi-platform','wall_brick',13.2,ph,8,0,ph/2,0);box('zuoyi-paving','stone_slab',13.2,.06,8,0,ph-.03,0);kit.walkBox(f,-6.6,-4,6.6,4,ph);kit.walkables.at(-1).rescue=false;
+ const tag=(o,r)=>{o.name=r;o.userData.role=r;return o;},box=(r,m,w,h,d,x,y,z)=>tag(kit.box(f,m,w,h,d,x,y,z),r),solid=(r,m,w,h,d,x,y,z)=>{const mesh=box(r,m,w,h,d,x,y,z);kit.col(f,x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2);return mesh;};
+ const platform=solid('zuoyi-platform','wall_brick',13.2,ph,8,0,ph/2,0);const paving=box('zuoyi-paving','stone_slab',13.2,.06,8,0,ph-.03,0);kit.walkBox(f,-6.6,-4,6.6,4,ph);kit.walkables.at(-1).rescue=false;removeCoveredPlatformSurface(platform,paving,ph,{clipCoincidentSides:true});
  for(const s of[-1,1]){
   tag(kit.mesh(f,wedge(5,s*4,s*(4+run),ph),kit.lib.material('stone_slab'),0,0,0),'zuoyi-approach');kit.walkRamp(f,-5,5,s*4,s*(4+run),ph,0);
   for(let i=0;i<56;i++){const y=ph*(1-(i+1)/56);if(y>0)kit.col(f,-5,0,s*(4+i*.2),5,y,s*(4+(i+1)*.2));}

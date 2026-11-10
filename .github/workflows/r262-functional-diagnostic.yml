@@ -1,0 +1,294 @@
+name: R262 DIAGNOSTIC one-shot 6GiB (no deploy)
+
+'on':
+  push:
+    branches:
+      - dev/r262-functional-diagnostic
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r262-functional-diagnostic-one-shot
+  cancel-in-progress: false
+
+jobs:
+  functional_diagnostic:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r262-functional-diagnostic' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize evidence outside checkout
+        env:
+          DIAGNOSTIC_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          test "$DIAGNOSTIC_RUNNER_ENVIRONMENT" = 'github-hosted'
+          printf 'DIAGNOSTIC_RUNNER_ENVIRONMENT=%s\n' "$DIAGNOSTIC_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+          EVIDENCE_DIR="$RUNNER_TEMP/r262-DIAGNOSTIC-functional"
+          mkdir -p "$EVIDENCE_DIR"
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+
+      - name: Check out exact event and its parent
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Admit only first creation of this exact DIAGNOSTIC candidate
+        run: |
+          test "$GITHUB_RUN_NUMBER" = '1'
+          test "$GITHUB_RUN_ATTEMPT" = '1'
+          test "$DIAGNOSTIC_RUNNER_ENVIRONMENT" = 'github-hosted'
+          sha256sum --check <<'PINS'
+          685a25b970e0e3834325053d3227fdd12d552e03362d65d7687fdc5374d05489  .github/scripts/r262_functional_diagnostic.py
+          8bf67b4511800e297ebb0b92a9edb916a5fdfaeb611d37519eb04262be34696a  .github/scripts/test_r262_functional_diagnostic.py
+          PINS
+          python3 - <<'PYTHON'
+          import importlib.util, json, os
+          from pathlib import Path
+          spec=importlib.util.spec_from_file_location('diagnostic', '.github/scripts/r262_functional_diagnostic.py')
+          diagnostic=importlib.util.module_from_spec(spec); spec.loader.exec_module(diagnostic)
+          diagnostic.validate_event(os.environ,json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text()))
+          identity=diagnostic.verify_source(os.environ)
+          identity.update(kind='DIAGNOSTIC',releaseAccepted=False,prior4GiBResult='FAIL_UNCHANGED')
+          Path(os.environ['EVIDENCE_DIR'],'checkout-identity.txt').write_text(json.dumps(identity,indent=2)+'\n')
+          print(json.dumps(identity))
+          PYTHON
+          test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
+          test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
+          test ! -e dist
+
+      - name: Test one-shot gates and fail-closed resource admission without workload
+        run: |
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT python3 .github/scripts/test_r262_functional_diagnostic.py -v) 2>&1 | tee "$EVIDENCE_DIR/diagnostic-control-tests.log"
+
+      - name: Use unchanged pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+
+      - name: Verify unchanged build inputs and toolchain
+        run: |
+          test "$(node --version)" = 'v24.22.1'
+          test "$(npm --version)" = '11.19.1'
+          sha256sum --check <<'PINS'
+          9a107f6414392f7728159875bb75c4341fd0c7fc06ca1fba40b968930a49c9e4  package.json
+          e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c  package-lock.json
+          634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7  vite.config.js
+          e869587d399418fb72e368bf26a4a19dce8d60c872ba50e2d47d5c9b3cec6efd  scripts/build-identity.mjs
+          e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3  .github/scripts/r177_build_bound.py
+          f0bb1016dd539055d99626a4003bfff46123189831a999a255dee42675907be2  .github/scripts/test_build_bound.py
+          PINS
+          {
+            node --version
+            npm --version
+            sha256sum package.json package-lock.json vite.config.js scripts/build-identity.mjs .github/scripts/r177_build_bound.py .github/scripts/test_build_bound.py
+          } | tee "$EVIDENCE_DIR/toolchain.txt"
+
+      - name: Install exact locked dependencies
+        run: npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+      - name: Check selective startup release with bounded small CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_ZONE_MANAGER_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-startup-release.test.mjs 2>&1 | tee "$EVIDENCE_DIR/startup-release-tests.log"
+
+      - name: Check capture failure controls with bounded host fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_CAPTURE_FACTORY -u R262_LEGACY_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-capture-evidence.test.mjs 2>&1 | tee "$EVIDENCE_DIR/capture-evidence-tests.log"
+
+      - name: Check emitted GLSL float literals and original gate contract
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_GLSL_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-glsl-float.test.mjs 2>&1 | tee "$EVIDENCE_DIR/glsl-float-tests.log"
+
+      - name: Check native input cleanup and public update controls
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_INPUT_HELPER -u R262_LEGACY_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-entry-input.test.mjs 2>&1 | tee "$EVIDENCE_DIR/entry-input-tests.log"
+
+      - name: Test scene-focus handoff and native UI ownership
+        run: |
+          set -o pipefail
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_FIRST_PERSON_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-scene-focus.test.mjs 2>&1 | tee "$EVIDENCE_DIR/scene-focus-tests.log"
+
+      - name: Test R262 terminal-state recheck without spawning workload
+        run: |
+          set -o pipefail
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_DISABLE_EXIT_RECHECK python3 .github/scripts/test_r262_exit_recheck.py -v) 2>&1 | tee "$EVIDENCE_DIR/exit-recheck-tests.log"
+
+      - name: Check cold release and bounded observation with small CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_ZONE_MANAGER_SOURCE -u R262_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-cold-release.test.mjs 2>&1 | tee "$EVIDENCE_DIR/cold-release-tests.log"
+
+      - name: Check completed merge buckets with bounded CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_MERGE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-merge-bucket.test.mjs 2>&1 | tee "$EVIDENCE_DIR/merge-bucket-tests.log"
+
+      - name: Run unchanged build guard negative controls
+        run: python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
+
+      - name: Build ordinary production app under unchanged guard
+        run: python3 .github/scripts/r177_build_bound.py
+
+      - name: Verify normal build identity independently of artifact review
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {verifyBuildSource} from './scripts/build-identity.mjs';
+          const evidence = process.env.EVIDENCE_DIR;
+          const build = verifyBuildSource({root:process.cwd(), expectedBase:'/forbidden-city-3d/'});
+          const terminal = JSON.parse(fs.readFileSync(path.join(evidence,'build-terminal.json'),'utf8'));
+          assert.equal(terminal.status,'PASS');
+          assert.equal(terminal.exit_code,0);
+          assert.equal(terminal.child_exit_code,0);
+          assert.equal(terminal.cleanup_complete,true);
+          assert.equal(terminal.identity.head,process.env.GITHUB_SHA);
+          assert.equal(build.sourceCommit,process.env.GITHUB_SHA);
+          assert.equal(build.sourceDirty,false);
+          assert.equal(build.release,'R262');
+          assert.equal(build.sourceFingerprint,'e2f8bc27adb852afddec9965eeb97ce42fba074d640b040823405d5bee73ea71');
+          assert.equal(build.buildId,'R262-324e92f04353');
+          assert.match(build.buildId,/^R262-[a-f0-9]{12}$/);
+          assert.equal(build.base,'/forbidden-city-3d/');
+          assert.equal(execFileSync('git',['status','--porcelain=v1','--untracked-files=all'],{encoding:'utf8'}).trim(),'');
+          fs.writeFileSync(path.join(evidence,'build-identity.json'),JSON.stringify(build,null,2)+'\n');
+          console.log(JSON.stringify({normalProductionBuild:'PASS',build,browserValidationFollows:true,releaseAccepted:false}));
+          NODE
+
+      - name: Review bounded dist separately and verify every public source asset
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          const evidence=process.env.EVIDENCE_DIR;
+          const build=JSON.parse(fs.readFileSync(path.join(evidence,'build-identity.json'),'utf8'));
+          const rows=[];
+          let totalBytes=0,publicFiles=0,publicBytes=0;
+          const result={scope:'Artifact inventory only; actual production browser smoke is recorded separately',status:'FAIL',build};
+          const hashFile=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          try {
+            function visit(relative='') {
+              const full=path.join('dist',relative);
+              const st=fs.lstatSync(full);
+              assert.equal(st.isSymbolicLink(),false,relative);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(full).sort()) visit(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),relative);
+                assert.ok(st.size<=128*1024**2,'single artifact file exceeds 128 MiB');
+                totalBytes+=st.size;
+                assert.ok(totalBytes<=256*1024**2,'dist exceeds 256 MiB review bound');
+                rows.push({path:relative,bytes:st.size,sha256:hashFile(full)});
+                assert.ok(rows.length<=2000,'dist exceeds 2000-file review bound');
+              }
+            }
+            visit();
+            assert.ok(rows.length>2);
+            const byPath=new Map(rows.map(r=>[r.path,r]));
+            function verifyPublic(relative='') {
+              const source=path.join('public',relative);
+              const st=fs.lstatSync(source);
+              assert.equal(st.isSymbolicLink(),false,source);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(source).sort()) verifyPublic(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),source);
+                const output=byPath.get(relative);
+                assert.ok(output,'missing public asset '+relative);
+                assert.equal(output.bytes,st.size,relative);
+                assert.equal(output.sha256,hashFile(source),relative);
+                publicFiles++;
+                publicBytes+=st.size;
+              }
+            }
+            verifyPublic();
+            assert.equal(publicFiles,135,'the exact baseline public inventory is required');
+            for(const required of ['index.html','build-info.json','textures/dafotang/wanshou-wujiang-modern-tc-r259.png','textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt']) assert.ok(byPath.has(required),required);
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.png').sha256,'8b814c7439788f2eb0f4bedbe08f7e674de18120d0bb4f1d38e1175943f8e70e');
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt').sha256,'0eb3f5c26fc702117dc11b64f2e5d5bc1dbef27ec0476dbe7eb4f091c287bac9');
+            Object.assign(result,{status:'PASS',files:rows.length,totalBytes,publicFiles,publicBytes,releaseAccepted:false});
+            fs.writeFileSync(path.join(evidence,'dist-manifest.json'),JSON.stringify({...result,manifest:rows},null,2)+'\n');
+          } catch(error) {
+            result.reason=String(error.message);
+            throw error;
+          } finally {
+            fs.writeFileSync(path.join(evidence,'artifact-review.json'),JSON.stringify(result,null,2)+'\n');
+            console.log(JSON.stringify(result));
+          }
+          NODE
+
+      - name: Install official locked Chromium and CJK fonts
+        run: |
+          test "$(node -p "require('./node_modules/playwright/package.json').version")" = '1.64.0'
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y 'fonts-noto-cjk=1:20220127+repack1-1' 'fontconfig=2.13.1-4.2ubuntu5'
+          fc-match 'Noto Sans CJK SC' | tee "$EVIDENCE_DIR/fonts.txt"
+
+      - name: Run DIAGNOSTIC full production route under independent 6GiB supervision
+        run: |
+          node --check tests/production-smoke.mjs
+          python3 .github/scripts/r262_functional_diagnostic.py
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+
+      - name: Preserve DIAGNOSTIC output only, without release acceptance or deployment
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r262-DIAGNOSTIC-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Preserve DIAGNOSTIC evidence including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r262-DIAGNOSTIC-evidence-${{ github.sha }}
+          path: |
+            ${{ env.EVIDENCE_DIR }}/diagnostic-summary.json
+            ${{ env.EVIDENCE_DIR }}/diagnostic-attempt.json
+            ${{ env.EVIDENCE_DIR }}/diagnostic-control-tests.log
+            ${{ env.EVIDENCE_DIR }}/production-smoke.json
+            ${{ env.EVIDENCE_DIR }}/*.png
+            ${{ env.EVIDENCE_DIR }}/runtime-guard/
+            ${{ env.EVIDENCE_DIR }}/browser-install.log
+            ${{ env.EVIDENCE_DIR }}/playwright-browsers.json
+            ${{ env.EVIDENCE_DIR }}/fonts.txt
+            ${{ env.EVIDENCE_DIR }}/checkout-identity.txt
+            ${{ env.EVIDENCE_DIR }}/toolchain.txt
+            ${{ env.EVIDENCE_DIR }}/npm-ci.log
+            ${{ env.EVIDENCE_DIR }}/build-guard-tests.log
+            ${{ env.EVIDENCE_DIR }}/startup-release-tests.log
+            ${{ env.EVIDENCE_DIR }}/capture-evidence-tests.log
+            ${{ env.EVIDENCE_DIR }}/glsl-float-tests.log
+            ${{ env.EVIDENCE_DIR }}/entry-input-tests.log
+            ${{ env.EVIDENCE_DIR }}/scene-focus-tests.log
+            ${{ env.EVIDENCE_DIR }}/exit-recheck-tests.log
+            ${{ env.EVIDENCE_DIR }}/cold-release-tests.log
+            ${{ env.EVIDENCE_DIR }}/merge-bucket-tests.log
+            ${{ env.EVIDENCE_DIR }}/build-preflight.json
+            ${{ env.EVIDENCE_DIR }}/build-started.json
+            ${{ env.EVIDENCE_DIR }}/build-live.json
+            ${{ env.EVIDENCE_DIR }}/build-terminal.json
+            ${{ env.EVIDENCE_DIR }}/build.log
+            ${{ env.EVIDENCE_DIR }}/build-identity.json
+            ${{ env.EVIDENCE_DIR }}/artifact-review.json
+            ${{ env.EVIDENCE_DIR }}/dist-manifest.json
+          if-no-files-found: error
+          retention-days: 7

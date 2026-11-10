@@ -1,3 +1,12 @@
+import {buildDafotangMainPlaque} from './DafotangMainPlaque.js';
+import {buildDafotangEastCabinets} from './DafotangEastCabinets.js';
+import {buildDafotangWoodPagodas} from './DafotangWoodPagodas.js';
+import {buildDafotangWeituo} from './DafotangWeituo.js';
+import {buildDafotangTriad} from './DafotangTriad.js';
+import {buildDafotangHistoricLayout} from './DafotangHistoricLayout.js';
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
+import {registerDafotangPhotoSlots} from './DafotangPhotoPresentation.js';
+import {removeDafotangCoveredPlatformTop} from './DafotangFloorSurface.js';
 import {buildDafotangMainBuddha} from './DafotangMainBuddha.js';
 import {authorizeWenyuanStairHost,revokeWenyuanStairHost} from './WenyuanStairHost.js';
 import {registerBPrincipalStairs} from '../BPrincipalStairContact.js';
@@ -19,7 +28,7 @@ import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from
 import * as THREE from 'three';
 import { buildWuyingMoonTerrace } from './WuyingMoonTerrace.js';
 import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
-import { FACE } from '../kit.js';
+import { FACE } from '../FaceDirections.js';
 import { PLAYER } from '../../../config/constants.js';
 import { buildBaoyunNameInscription } from './SourcedNameInscriptions.js';
 
@@ -592,6 +601,12 @@ function base(kit,item,p,opts={}) {
   const f=built.f,discard=new Set();
   // Match the visible platform top to the existing walkable datum exactly.
   for(const n of f.children)if(n.isMesh&&materialKey(kit,n.material)==='stone_slab'&&Math.abs(n.position.y-(y-.03))<1e-8)n.position.y-=.01;
+  if(p.key==='dafotang')removeDafotangCoveredPlatformTop(kit,f,y);
+  else{
+    const platform=f.children.find(n=>n.isMesh&&n.material===kit.lib.material(y>=.8?'sumeru_band':'wall_brick')&&Math.abs(n.position.y-y/2)<1e-8);
+    const paving=f.children.find(n=>n.isMesh&&n.material===kit.lib.material('stone_slab')&&Math.abs(n.position.y-(y-.04))<1e-8);
+    removeCoveredPlatformSurface(platform,paving,y);
+  }
   for (const node of [...f.children]) {
     if (node.name.startsWith('roof_') || (node.isMesh && ['wood_column','wall_red','lattice_doors','caihua_beam'].includes(materialKey(kit,node.material)))) {
       node.traverse(n=>{if(n.geometry)discard.add(n.geometry);});node.removeFromParent();
@@ -959,13 +974,14 @@ function buildCeremonialHall(kit,item,p) {
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
-  if(p.key==='dafotang')buildDafotangMainBuddha(c);
+  if(p.key==='dafotang'){buildDafotangMainBuddha(c);buildDafotangHistoricLayout(c);buildDafotangTriad(c);buildDafotangWeituo(c);buildDafotangWoodPagodas(c);registerDafotangPhotoSlots(c);buildDafotangEastCabinets(c);}
   // Ceiling beams are structural fits. No generic throne, desks or chairs are
   // substituted for the modern sculpture-library uses or historical shrines.
   plainCeiling(c,g.y+g.h-.5);
   for(let k=1;k<g.bays;k++)box(p.key+'-transverse-ceiling-frame','timber',.20,.26,g.rear-g.front,-A+k*bay,g.y+g.h-.7,(g.front+g.rear)/2,false);
   for(const z of[g.front+(g.rear-g.front)/3,g.front+(g.rear-g.front)*2/3])box(p.key+'-longitudinal-ceiling-frame','timber',g.w,.24,.18,0,g.y+g.h-.72,z,false);
   addHallBearingRing(c);
+  if(p.key==='dafotang')buildDafotangMainPlaque(c);
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:g.eaveCount,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,-g.d/2-.32,1.2,1.9);
   const doorZ=g.centralFront??g.front;

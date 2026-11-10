@@ -1,0 +1,4 @@
+import{FirstPersonControls}from'../../src/controls/FirstPerson.js';import{replayKunning}from'../lib/kunning-walk.mjs';import{withBoundedQaMocks}from'../lib/bounded-qa-clock.mjs';
+/** Read-only telemetry around the production update. Includes the original
+ * driver's two-second zero-input settling phase; no position/feet overrides. */
+export function replayCuiyun(t,W,points,options){return withBoundedQaMocks(t,k=>{const frames=[],update=FirstPersonControls.prototype.update;k.mock.method(FirstPersonControls.prototype,'update',function(...args){const result=update.apply(this,args);frames.push({x:this.camera.position.x-this.bobOffset.x,z:this.camera.position.z-this.bobOffset.z,feet:this.feetY,ground:this.groundY,airborne:this.airborne===true,moving:this.moveForward||this.moveBackward,speed:this.motion.speed});return result;});const q=replayKunning(k,W,points,options);return{...q,allFrames:frames};});}

@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import { fitJingyunPlaqueFrame } from './JingyunPlaqueFrame.js';
 import {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';
 import {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';
@@ -31,8 +32,8 @@ export function buildSideGate(kit,opts) {
     const o=box(role,mat,W,H,D,x,y,z);
     kit.col(f,x-W/2,y-H/2,z-D/2,x+W/2,y+H/2,z+D/2);return o;
   };
-  solid('gate-platform','wall_brick',g.platformWidth,ph,g.platformDepth,0,ph/2,0);
-  box('gate-platform-paving','stone_slab',g.platformWidth,.08,g.platformDepth,0,ph-.04,0);
+  const platform=solid('gate-platform','wall_brick',g.platformWidth,ph,g.platformDepth,0,ph/2,0);
+  const paving=box('gate-platform-paving','stone_slab',g.platformWidth,.08,g.platformDepth,0,ph-.04,0);
   kit.walkBox(f,-g.platformWidth/2,-g.platformDepth/2,g.platformWidth/2,g.platformDepth/2,ph);
   kit.walkables.at(-1).rescue=false; // Reach the platform through its real ramps.
 
@@ -184,6 +185,7 @@ export function buildSideGate(kit,opts) {
     ramps:g.ramps.map(r=>({...r,topLeft:point(r.leftTop,ph,r.zTop),topRight:point(r.rightTop,ph,r.zTop),toeLeft:point(r.leftToe,0,r.zToe),toeRight:point(r.rightToe,0,r.zToe)})),
   };
   prunePavilionCoveredFaces(f,renderBoxes);
+  removeCoveredPlatformSurface(platform,paving,ph,{clipCoincidentSides:true});
   registerEastRailTriangles?.();
   registerWestEndTriangles?.();
   return w;

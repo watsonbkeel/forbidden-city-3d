@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import {fitFanhuaStairApproach} from './FanhuaStairContact.js';
 import {fitCuishangPlatformApproach} from './CuishangPlatformContact.js';
 import {fitThreeHallSouthApproaches} from './ThreeHallSouthApproaches.js';
@@ -159,13 +160,15 @@ function segmentedTimberCollider(c,mesh,{span=.16,headAllowance=.05}={}) {
 }
 function slab(c,role,x0,x1,z0,z1,y,{thickness=.15,walk=false,solid=true,mat='wood'}={}) {
  if(x1-x0<=.02||z1-z0<=.02)return;
- c.box(role,mat,x1-x0,thickness,z1-z0,(x0+x1)/2,y-thickness/2,(z0+z1)/2,solid);
+ const mesh=c.box(role,mat,x1-x0,thickness,z1-z0,(x0+x1)/2,y-thickness/2,(z0+z1)/2,solid);
  if(walk)c.walk(x0,z0,x1,z1,y);
+ return mesh;
 }
 function platform(c,w=c.p.localW,d=c.p.localD) {
  const {p,box,walk}=c,pad=Math.min(c.item.pad??.5,.8),pw=w+pad*2,pd=d+pad*2;
- box('platform-base','brick',pw,p.ph,pd,0,p.ph/2,0,p.ph>.55);
- slab(c,'platform-paving',-pw/2,pw/2,-pd/2,pd/2,p.ph,{walk:true,mat:'stone',thickness:.07,solid:false});
+ const base=box('platform-base','brick',pw,p.ph,pd,0,p.ph/2,0,p.ph>.55);
+ const paving=slab(c,'platform-paving',-pw/2,pw/2,-pd/2,pd/2,p.ph,{walk:true,mat:'stone',thickness:.07,solid:false});
+ c.coveredPlatformSources={base,paving};
  slab(c,'interior-floor',-w/2,w/2,-d/2,d/2,p.ph+.014,{mat:'floor',solid:false,thickness:.035});
  for(const portal of p.portals)if(p.ph>.55){if(['east','west'].includes(portal.side))exteriorSideSteps(c,(portal.side==='east'?-1:1)*pw/2,portal.z,p.ph,portal.width,portal.side);else if(p.key==='fuwang'&&portal.side==='front'&&c.kit.fuwangSouthFront!==false)buildFuwangSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='leshou'&&portal.side==='front'&&c.kit.leshouSouthFront!==false)buildLeshouSouthApproach(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else if(p.key==='yangxing'&&portal.side==='front'&&c.kit.yangxingSouthEntrance!==false)buildYangxingSouthSteps(c,{x:portal.approachX,z:-pd/2,y:p.ph,width:Math.max(2.25,portal.width)});else exteriorSteps(c,portal.approachX,(portal.side==='rear'?1:-1)*pd/2,p.ph,Math.max(2.25,portal.width),portal.side);}
  return{pw,pd};
@@ -336,6 +339,16 @@ function retainLegacyNameSign(c) {
  for(const m of target.children.slice(before))c.tag(m,'legacy-model-name-sign',{text,source:'BASELINE_COURTKIT_HALL_NAME_DEFAULT',inventoryStatus:'LEGACY_MODEL_NAME_SIGN_UNVERIFIED_NOT_HISTORIC_PLAQUE'});
  return{text,registration:'retained-original-model-name-label',historicObjectVerified:false,localY:y,localZ:z,height:h,positionStatus:p.key==='jingqi'?'UPPER_FRONT_WALL_CLEARANCE_MODEL_FIT_NOT_SURVEYED':p.key==='changyin'?'OFFICIAL_UPPER_EAVE_LEVEL_WITH_FITTED_POSITION_AND_LEGACY_MODEL_STYLE':'FITTED_TO_REVISED_FACADE_OR_ENTRY'};
 }
+// Keep original source boxes through all later zone hooks. Weak mesh keys do
+// not retain a disposed/removed frame via a long-lived kit. Only final root
+// owners are visited, immediately before material merging.
+const pendingCoveredPlatforms=new WeakMap();
+export function finalizeNingshouCoveredPlatforms(kit){
+ const pending=[];
+ kit?.root?.traverse?.(base=>{const data=pendingCoveredPlatforms.get(base);if(data)pending.push({base,...data});});
+ for(const {base,paving,height} of pending){removeCoveredPlatformSurface(base,paving,height,{clipCoincidentSides:true});pendingCoveredPlatforms.delete(base);}
+ return pending.length;
+}
 function finish(c,extra={}) {
  const {p,f,kit}=c,w=p.localW,d=p.localD;
  const legacyNameSign=retainLegacyNameSign(c);
@@ -346,6 +359,8 @@ function finish(c,extra={}) {
  kit.mapRect(f,'hall',p.name,w+2*(c.item.pad??.5),d+2*(c.item.pad??.5),{profileId:p.id,fitStatus:FIT});
  f.userData.structure={...p,...extra,legacyNameSign,portals:p.portals,groundNavigation:p.navigation,actualComponentCount:0};f.traverse(m=>{if(m.isMesh)f.userData.structure.actualComponentCount++;});
  f.name=`${p.name}·官方形制局部拟合`;
+ // Qingshou/Xuhui and other later source hooks still require the original box.
+ if(c.coveredPlatformSources)pendingCoveredPlatforms.set(c.coveredPlatformSources.base,{paving:c.coveredPlatformSources.paving,height:p.ph});
  return{f,g:f.userData.structure,PW:w+2*(c.item.pad??.5),PD:d+2*(c.item.pad??.5),top:p.ph};
 }
 /** Existing hall-preset pieces retained as unverified assets, not evidence of

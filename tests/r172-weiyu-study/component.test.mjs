@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {fixture}from'../r160-jide/fixture.mjs';import {buildJideRearHall}from'../../src/scene/palace/special/JideRearHall.js';
+test('E49 has its own named eastern annex room, not the unrelated garden Weiyu hall',()=>{const f=fixture();try{buildJideRearHall(f.kit,'east-six');const rooms=f.kit.rooms.filter(r=>r.sourceObjectId==='FC-59F7BB24CB');assert.equal(rooms.length,1,'missing independent Weiyu study room host');assert.equal(rooms[0].name,'味余书室');}finally{f.dispose();}});

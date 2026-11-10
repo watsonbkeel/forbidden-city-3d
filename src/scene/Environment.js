@@ -1,3 +1,4 @@
+import {snapshotMesh,verifyMesh,snapshotAncestors,verifyAncestors} from '../controls/XiananContactIntegrity.js';
 import {linxiPoolGroundPath} from './palace/special/LinxiBridgePool.js';
 import {registerViewFollowingVisual,revokeViewFollowingVisual} from './sky/EnvironmentVisualOwnership.js';
 import {fubiPoolGroundPath} from './garden/FubiArchPool.js';
@@ -14,6 +15,16 @@ import { createSkylineRing } from './sky/Skyline.js';
 import { getBeijingDayCycle } from './sky/BeijingDayCycle.js';
 import {householdLightingPolicy} from './sky/HouseholdLightingPolicy.js';
 import { nightTourLighting } from './sky/NightTourLighting.js';
+
+// Only setupGround can create this birth record. A public mesh tag is never
+// authority; mutation/removal/disposal permanently revokes this generation.
+const createdGrounds=new WeakMap();
+export function getCreatedEnvironmentGround(scene){
+  const p=createdGrounds.get(scene);
+  if(!p||p.revoked)return null;
+  if(!verifyMesh(p.mesh)||!verifyAncestors(p.ancestors)){p.revoked=true;return null;}
+  return p.mesh.node.node.deref()??null;
+}
 
 /**
  * 环境设置：天空、地面、雾效、光照
@@ -131,6 +142,11 @@ export class Environment {
     ground.userData.environmentGroundSource = true;
     ground.receiveShadow = true;
     this.addObject(ground);
+    const previousGround=createdGrounds.get(this.scene);if(previousGround)previousGround.revoked=true;
+    const birth={mesh:snapshotMesh(ground),ancestors:snapshotAncestors(this.scene),revoked:false,owner:new WeakRef(this)};
+    createdGrounds.set(this.scene,birth);
+    ground.addEventListener('removed',()=>{birth.revoked=true;});
+    groundGeometry.addEventListener('dispose',()=>{birth.revoked=true;});
     if (moat) this.addObject(buildOuterMoat(this.library, moat));
     
     // 中轴御道（stone_slab，沿 z 轴从场景南界（午门外）到神武门）
@@ -339,6 +355,8 @@ export class Environment {
   }
 
   dispose() {
+    const groundBirth=createdGrounds.get(this.scene);
+    if(groundBirth?.owner.deref()===this)groundBirth.revoked=true;
     const geometries = new Set(), materials = new Set(), shadows = new Set();
     for (const object of this.objects) {
       revokeViewFollowingVisual(object);

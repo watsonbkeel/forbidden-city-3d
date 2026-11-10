@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import * as T from 'three';
 import {buildStuddedDoor} from '../../HallKit.js';
 // Fresh 2026-11-01 implementation, NOT the lost/rejected C candidate.
@@ -12,8 +13,8 @@ export function buildYouyiFreshGate(kit,item,zoneId,index){
  const tag=(o,role)=>{o.name=role;o.userData.role=role;return o;};
  const box=(role,mat,w,h,d,x,y,z)=>tag(kit.box(f,mat,w,h,d,x,y,z),role);
  const solid=(role,mat,w,h,d,x,y,z)=>{const m=box(role,mat,w,h,d,x,y,z);kit.col(f,x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2);return m;};
- solid('youyi-platform','wall_brick',13.2,ph,8,0,ph/2,0);
- box('youyi-paving','stone_slab',13.2,.06,8,0,ph-.03,0);kit.walkBox(f,-6.6,-4,6.6,4,ph);kit.walkables.at(-1).rescue=false;
+ const platform=solid('youyi-platform','wall_brick',13.2,ph,8,0,ph/2,0);
+ const paving=box('youyi-paving','stone_slab',13.2,.06,8,0,ph-.03,0);kit.walkBox(f,-6.6,-4,6.6,4,ph);kit.walkables.at(-1).rescue=false;removeCoveredPlatformSurface(platform,paving,ph,{clipCoincidentSides:true});
  for(const s of[-1,1]){
   tag(kit.mesh(f,wedge(5.4,s*4,s*(4+run),ph),kit.lib.material('stone_slab'),0,0,0),'youyi-approach');kit.walkRamp(f,-5.4,5.4,s*4,s*(4+run),ph,0);
   // Conservative inscribed solid slices match the visible wedge, no hidden floor.

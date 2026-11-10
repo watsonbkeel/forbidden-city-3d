@@ -1,3 +1,4 @@
+import {installYangxinSuianRoom} from './YangxinSuianRoom.js';
 import {installYangxinFoldedDoors} from './YangxinFoldedDoors.js';
 import {installYangxinMainPartitions} from './YangxinMainPartitions.js';
 import {installYangxinEastNorthSurface} from './YangxinEastNorthSurface.js';
@@ -166,7 +167,7 @@ export class InteriorLoader {
 
   _install(h, root, t0) {
     const cfg = h.cfg;
-    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); installYangxinMainPartitions(root); installYangxinFoldedDoors(root); }
+    if (h.id === 'yangxin') { validateYangxinEast(root); installYangxinEastNorthSurface(root); installYangxinMainPartitions(root); installYangxinFoldedDoors(root); if (root.userData.yangxinEastNorthSurface?.applied && root.userData.yangxinMainPartitions?.applied && root.userData.yangxinFoldedDoors?.applied) installYangxinSuianRoom(root); }
     // Validate the optional layer before a collider, light, fade or scene object is registered.
     if (h.id === 'kunning') validateKunningFurniture(root, cfg);
     if (h.id === 'qianqing') validateQianqingAuxiliary(root,cfg,this.scene);
@@ -203,7 +204,7 @@ export class InteriorLoader {
       if (name.startsWith('COL_') || name.startsWith('WALK_')) {
         const box = new THREE.Box3().setFromObject(o);
         o.visible = false;
-        if (h.id === 'yangxin' && (name === 'COL_R88_YX_PALE_CEILING' || name === 'COL_R164_YX_PART_-1_head')) {
+        if (h.id === 'yangxin' && (name === 'COL_R88_YX_PALE_CEILING' || name === 'COL_R164_YX_PART_-1_head' || name === 'COL_R179_SU_south-lintel')) {
           // The east ceiling/header use native head sweep; the west header stays an
           // ordinary solid for the existing Yangxin furniture full-body sweep.
           box.overhead = {type:'piecewise-linear-x', sourceId:name === 'COL_R88_YX_PALE_CEILING' ? 'r88-yangxin-east-ceiling' : name, points:[[box.min.x,box.min.y],[box.max.x,box.min.y]], minZ:box.min.z,maxZ:box.max.z,topY:box.max.y};

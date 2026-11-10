@@ -1,0 +1,2 @@
+import{fixture,T,zone}from'../r163-yinghua-stele/fixture.mjs';import{buildYinghuaWestEarCourtWalls}from'../../src/scene/palace/special/YinghuaWestEarHall.js';import{buildRitualHall}from'../../src/scene/palace/special/RitualHalls.js';export{T,zone};
+export function hostFixture(){const f=fixture();try{buildYinghuaWestEarCourtWalls(f.kit,zone.items[42],'outer-west',11.4);const main=buildRitualHall(f.kit,zone.items[43]);return{...f,main};}catch(e){f.dispose();throw e;}}

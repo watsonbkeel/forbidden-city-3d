@@ -2,7 +2,7 @@ import {sanitizeZoneLoadSnapshot} from '../scene/zones/ZoneLoadMetrics.js';
 import {BUILD_INFO} from './ReleaseIdentityPanel.js';
 
 const stages = new Set(['viewport','controls','flight','location','environment','lighting','palace','enclosure','garden','interiors','zones','characters','audio','map','shadows','render','performance','graphics','idle']);
-const zones = new Set(['outer-east','outer-west','axis-courts','west-six','east-six','garden','ningshou']);
+const zones = new Set(['outer-east','outer-west','axis-courts','west-six','east-six','garden','ningshou','yuqing-south-entry']);
 const types = new Set(['Error','TypeError','RangeError','ReferenceError','SyntaxError','URIError','EvalError','AggregateError']);
 const read = (fn, fallback) => { try { return fn(); } catch { return fallback; } };
 const text = value => typeof value === 'string' ? value.slice(0, 2048) : '';

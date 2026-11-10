@@ -1,6 +1,8 @@
 # 测试与门禁（P1-T）
 
-坐标系：真实米制，原点太和殿中心，**+Z 向北，x 负 = 东**。所有机位 / 路线坐标都从 `src/config/constants.js` 的 `LAYOUT`、`data/anchors.json`、`data/zones/*.json` 推导，下表数值是当前 main 推导结果，仅供查阅——**改场景时不要改测试里的数字，改数据源**。
+> 本文保留 P1-T 及后续历史测试协议与基线，并非当前累计候选已通过的回执。版本身份与证据入口见 [发布导航](releases/README.md)。本地开发约定 Node.js 24；Pages 工作流用 Node.js 20，必须分别验证。
+
+坐标系：真实米制，原点太和殿中心，**+Z 向北，x 负 = 东**。所有机位 / 路线坐标都从 `src/config/constants.js` 的 `LAYOUT`、`data/anchors.json`、`data/zones/*.json` 推导，下表数值是编写该历史协议时的 main 推导结果，仅供查阅——**改场景时不要改测试里的数字，改数据源**。
 
 ## 1. 环境约定
 

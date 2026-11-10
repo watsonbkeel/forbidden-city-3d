@@ -1,0 +1,209 @@
+name: R261 normal production build only
+
+'on':
+  push:
+    branches:
+      - dev/r261-validation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r261-production-build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build_only:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r261-validation' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize evidence outside checkout
+        run: |
+          EVIDENCE_DIR="$RUNNER_TEMP/r261-production-build"
+          mkdir -p "$EVIDENCE_DIR"
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+
+      - name: Check out exact event and its parent
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Require exact frozen WIP plus this workflow only
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test "$(git show -s --format=%P HEAD)" = '64842aaf4c7a08de8bc274882bb4200e16b37429'
+          test "$(git rev-parse HEAD^1^{tree})" = 'c64247f52ef08a2d06e798713700a74ca907d134'
+          test "$(git diff --name-status HEAD^1 HEAD)" = "$(printf 'A\t.github/workflows/r261-validation.yml')"
+          test ! -e dist
+          {
+            printf 'event_commit=%s\n' "$GITHUB_SHA"
+            printf 'checkout_commit=%s\n' "$(git rev-parse HEAD)"
+            printf 'checkout_tree=%s\n' "$(git rev-parse HEAD^{tree})"
+            printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
+            printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
+            printf 'checkout_clean=true\n'
+            printf 'only_added_path=.github/workflows/r261-validation.yml\n'
+          } | tee "$EVIDENCE_DIR/checkout-identity.txt"
+
+      - name: Use unchanged pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+
+      - name: Verify unchanged build inputs and toolchain
+        run: |
+          test "$(node --version)" = 'v24.22.1'
+          test "$(npm --version)" = '11.19.1'
+          sha256sum --check <<'PINS'
+          9a107f6414392f7728159875bb75c4341fd0c7fc06ca1fba40b968930a49c9e4  package.json
+          e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c  package-lock.json
+          634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7  vite.config.js
+          e869587d399418fb72e368bf26a4a19dce8d60c872ba50e2d47d5c9b3cec6efd  scripts/build-identity.mjs
+          e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3  .github/scripts/r177_build_bound.py
+          f0bb1016dd539055d99626a4003bfff46123189831a999a255dee42675907be2  .github/scripts/test_build_bound.py
+          PINS
+          {
+            node --version
+            npm --version
+            sha256sum package.json package-lock.json vite.config.js scripts/build-identity.mjs .github/scripts/r177_build_bound.py .github/scripts/test_build_bound.py
+          } | tee "$EVIDENCE_DIR/toolchain.txt"
+
+      - name: Install exact locked dependencies
+        run: npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+      - name: Run unchanged build guard negative controls
+        run: python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
+
+      - name: Build ordinary production app under unchanged guard
+        run: python3 .github/scripts/r177_build_bound.py
+
+      - name: Verify normal build identity independently of artifact review
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {verifyBuildSource} from './scripts/build-identity.mjs';
+          const evidence = process.env.EVIDENCE_DIR;
+          const build = verifyBuildSource({root:process.cwd(), expectedBase:'/forbidden-city-3d/'});
+          const terminal = JSON.parse(fs.readFileSync(path.join(evidence,'build-terminal.json'),'utf8'));
+          assert.equal(terminal.status,'PASS');
+          assert.equal(terminal.exit_code,0);
+          assert.equal(terminal.child_exit_code,0);
+          assert.equal(terminal.cleanup_complete,true);
+          assert.equal(terminal.identity.head,process.env.GITHUB_SHA);
+          assert.equal(build.sourceCommit,process.env.GITHUB_SHA);
+          assert.equal(build.sourceDirty,false);
+          assert.equal(build.base,'/forbidden-city-3d/');
+          assert.equal(execFileSync('git',['status','--porcelain=v1','--untracked-files=all'],{encoding:'utf8'}).trim(),'');
+          fs.writeFileSync(path.join(evidence,'build-identity.json'),JSON.stringify(build,null,2)+'\n');
+          console.log(JSON.stringify({normalProductionBuild:'PASS',build,buildOnly:true,releaseAccepted:false}));
+          NODE
+
+      - name: Review bounded dist separately and verify every public source asset
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          const evidence=process.env.EVIDENCE_DIR;
+          const build=JSON.parse(fs.readFileSync(path.join(evidence,'build-identity.json'),'utf8'));
+          const rows=[];
+          let totalBytes=0,publicFiles=0,publicBytes=0;
+          const result={scope:'Artifact review only; not browser loading, full-host, World, GPU or release acceptance',status:'FAIL',build};
+          const hashFile=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          try {
+            function visit(relative='') {
+              const full=path.join('dist',relative);
+              const st=fs.lstatSync(full);
+              assert.equal(st.isSymbolicLink(),false,relative);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(full).sort()) visit(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),relative);
+                assert.ok(st.size<=128*1024**2,'single artifact file exceeds 128 MiB');
+                totalBytes+=st.size;
+                assert.ok(totalBytes<=256*1024**2,'dist exceeds 256 MiB review bound');
+                rows.push({path:relative,bytes:st.size,sha256:hashFile(full)});
+                assert.ok(rows.length<=2000,'dist exceeds 2000-file review bound');
+              }
+            }
+            visit();
+            assert.ok(rows.length>2);
+            const byPath=new Map(rows.map(r=>[r.path,r]));
+            function verifyPublic(relative='') {
+              const source=path.join('public',relative);
+              const st=fs.lstatSync(source);
+              assert.equal(st.isSymbolicLink(),false,source);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(source).sort()) verifyPublic(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),source);
+                const output=byPath.get(relative);
+                assert.ok(output,'missing public asset '+relative);
+                assert.equal(output.bytes,st.size,relative);
+                assert.equal(output.sha256,hashFile(source),relative);
+                publicFiles++;
+                publicBytes+=st.size;
+              }
+            }
+            verifyPublic();
+            for(const required of ['index.html','build-info.json','textures/dafotang/wanshou-wujiang-modern-tc-r259.png','textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt']) assert.ok(byPath.has(required),required);
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.png').sha256,'8b814c7439788f2eb0f4bedbe08f7e674de18120d0bb4f1d38e1175943f8e70e');
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt').sha256,'0eb3f5c26fc702117dc11b64f2e5d5bc1dbef27ec0476dbe7eb4f091c287bac9');
+            Object.assign(result,{status:'PASS',files:rows.length,totalBytes,publicFiles,publicBytes,releaseAccepted:false});
+            fs.writeFileSync(path.join(evidence,'dist-manifest.json'),JSON.stringify({...result,manifest:rows},null,2)+'\n');
+          } catch(error) {
+            result.reason=String(error.message);
+            throw error;
+          } finally {
+            fs.writeFileSync(path.join(evidence,'artifact-review.json'),JSON.stringify(result,null,2)+'\n');
+            console.log(JSON.stringify(result));
+          }
+          NODE
+
+      - name: Preserve reviewed production output without deployment
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r261-production-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Preserve fixed validation evidence including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r261-production-evidence-${{ github.sha }}
+          path: |
+            ${{ env.EVIDENCE_DIR }}/checkout-identity.txt
+            ${{ env.EVIDENCE_DIR }}/toolchain.txt
+            ${{ env.EVIDENCE_DIR }}/npm-ci.log
+            ${{ env.EVIDENCE_DIR }}/build-guard-tests.log
+            ${{ env.EVIDENCE_DIR }}/build-preflight.json
+            ${{ env.EVIDENCE_DIR }}/build-started.json
+            ${{ env.EVIDENCE_DIR }}/build-live.json
+            ${{ env.EVIDENCE_DIR }}/build-terminal.json
+            ${{ env.EVIDENCE_DIR }}/build.log
+            ${{ env.EVIDENCE_DIR }}/build-identity.json
+            ${{ env.EVIDENCE_DIR }}/artifact-review.json
+            ${{ env.EVIDENCE_DIR }}/dist-manifest.json
+          if-no-files-found: error
+          retention-days: 7

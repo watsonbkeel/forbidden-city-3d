@@ -65,6 +65,7 @@ export function mergeByMaterial(root, { castShadow = true, receiveShadow = true,
     normalizeAttributes(geometries, preservesShouanColor(material));
     const merged = mergeGeometries(geometries, false);
     geometries.forEach(g => g.dispose());
+    geometries.length = 0;
     if (!merged) continue;
     merged.computeBoundingBox();
     merged.computeBoundingSphere();

@@ -1,0 +1,9 @@
+import * as T from 'three';
+export function meshRows(root){root.updateMatrixWorld(true);const rows=[];root.traverseVisible(m=>{if(!m.isMesh)return;const p=m.geometry.attributes.position,ix=m.geometry.index,matrices=m.isInstancedMesh?Array.from({length:m.count},(_,i)=>{const q=new T.Matrix4();m.getMatrixAt(i,q);return m.matrixWorld.clone().multiply(q)}):[m.matrixWorld];for(let instance=0;instance<matrices.length;instance++){const matrix=matrices[instance],triangles=[],bounds=new T.Box3();for(let i=0;i<(ix?.count??p.count);i+=3){const v=[0,1,2].map(j=>new T.Vector3().fromBufferAttribute(p,ix?ix.getX(i+j):i+j).applyMatrix4(matrix)),t=new T.Triangle(...v);if(t.getArea()<1e-12)continue;const box=new T.Box3().setFromPoints(v);triangles.push({t,box});bounds.union(box)}rows.push({mesh:m,instance,bounds,triangles})}});return rows}
+export function surfaceHit(box,row){if(!box.intersectsBox(row.bounds))return false;return row.triangles.some(r=>box.intersectsBox(r.box)&&box.intersectsTriangle(r.t))}
+// A center ray complements surface crossings: a new box fully inside an old
+// closed shell has no triangle in the box. Input is the actual opaque mesh,
+// tested along three non-axis directions; deduplicate shared-edge hits.
+export function containedCenter(box,row){if(!row.bounds.containsPoint(box.getCenter(new T.Vector3())))return false;const center=box.getCenter(new T.Vector3());return [[1,.271,.113],[.173,1,.379],[.293,.151,1]].every(v=>{const ray=new T.Ray(center,new T.Vector3(...v).normalize()),ds=[];for(const {t}of row.triangles){const q=ray.intersectTriangle(t.a,t.b,t.c,false,new T.Vector3());if(q){const d=q.distanceTo(center);if(d>1e-7&&!ds.some(a=>Math.abs(a-d)<1e-6))ds.push(d)}}return ds.length%2===1})}
+export function solidConflict(box,row){return surfaceHit(box,row)||containedCenter(box,row)}
+export function bodyBox(f){return new T.Box3(new T.Vector3(f.x-.4999,f.feet+.3501,f.z-.4999),new T.Vector3(f.x+.4999,f.feet+1.65,f.z+.4999))}

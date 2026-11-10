@@ -1,0 +1,13 @@
+# Baoyun first-storey gallery surface repair
+
+This render-only repair covers exactly two original base/paving pairs in BaoyunStorehouse. It preserves the cumulative E45 and four-gate platform repairs and does not contain H17.
+
+The baseline was captured from the actual registered single Baoyun buildHall path with its existing facade/main-porch, lion and exterior-step hooks, then the real CourtKit.finish material merge. The Baoyun builder was byte-identical to public16e9. Both tops and the four cap-height side faces still contained duplicate base/paving skin after merge. Short rays beginning in the open courtyard/approach show first-surface double hits on the two tops, two inward longitudinal sides and two south ends. The other four side probes are geometric coincidence evidence, not claims of unobstructed external visibility.
+
+The unchanged CoveredPlatformSurface helper removes only the two underlying base tops and clips the exact0.18m upper-side strips. Entire paving, lower sides, underside, original vertex attribute prefixes, interpolated new-edge UV/normal, all other model state and the complete physical descriptor sequence remain. No new gallery support or visitor access is introduced.
+
+Tests use current production component construction and finish. They compare full original non-target state, target attribute prefixes and physical descriptors, test10 geometric witnesses and6 exposed first-hit witnesses, inject duplicate/missing/UV/physical errors, and check normal finish/disposal across two builds. Routes compare original-public and candidate components using the original native controller, rivers and complete input/output frames including two-second settling. Four paths (existing porch stairs, cross-courtyard and two inward courtyard approaches),10/60/144Hz, walk/sprint and both directions produce48 comparisons and15,630 updates. These are not whole-region or all-triangle body-clearance claims.
+
+The exact single runtime inverse restores the complete prior cumulative source view, then preserves the R182/E45/F47 and older chains to public inputs. Unknown/changed/missing paths, modes, old bytes and duplicate inverse fragments fail closed. Source tests do not need any unpublished commit object.
+
+No full zone, World, normal build, browser, GPU or remote CI has been run for this repair. The old r48 inscription first-surface test fails identically on the unchanged parent and candidate and remains unmodified; it is separately recorded rather than counted as a pass. A dedicated cumulative CI must update the original E45 workflow's branch/input pins/test entries before any later release.

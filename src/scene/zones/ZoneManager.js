@@ -1,3 +1,5 @@
+import {getXiananConstructionBirth} from './ZoneBase.js';
+import {getXiananManagedBirth,hasXiananRegistration} from '../palace/special/XiananContactSources.js';
 import {ZoneLoadMetrics,beginZoneLoad,measureZonePhase,finishZoneLoad,beginZoneQueue,finishZoneQueue,kitMergeMs} from './ZoneLoadMetrics.js';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../controls/SishenEnvironmentWitness.js';
 import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../controls/WestWellEnvironmentWitness.js';
@@ -29,8 +31,64 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
  * 
  * URL 参数 ?zones=all：全部区常驻不卸载（验证零变化和调试）
  */
+// Private synchronous provenance for the one source-bound Xianan component.
+// Public loaded/prebuilt/cache maps are bookkeeping, never authorization.
+const xiananManagers=new WeakMap(),xiananGroupWindows=new WeakMap(),xiananCMWindows=new WeakMap();
+const xiananConfig=c=>c?.id==='outer-west'&&c.items?.[30]?.name==='咸安门';
+const xiananAdmissionError=()=>Object.assign(new Error('Untrusted Xianan managed admission'),{code:'XIANAN_UNTRUSTED_ADMISSION'});
+function xiananManagerState(manager,config){
+  if(!xiananConfig(config))return null;
+  const state=xiananManagers.get(manager);if(!state)throw xiananAdmissionError();
+  if(!state.cm){state.cm=new WeakRef(manager.collisionManager);state.scene=new WeakRef(manager.scene);state.library=new WeakRef(manager.library);}
+  if(state.cm.deref()!==manager.collisionManager||state.scene.deref()!==manager.scene||state.library.deref()!==manager.library)throw xiananAdmissionError();
+  return state;
+}
+function xiananEntry(builder,data,config,birth,status){return {builder:new WeakRef(builder),data:new WeakRef(data),group:new WeakRef(data.group),config:new WeakRef(config),birth,status};}
+function sameXiananEntry(row,builder,data,config,birth){return row&&row.builder.deref()===builder&&row.data.deref()===data&&row.group.deref()===data.group&&row.config.deref()===config&&row.birth===birth;}
+function rememberXiananPrebuilt(manager,config,builder,data){
+  const state=xiananManagerState(manager,config);if(!state)return;
+  const birth=getXiananManagedBirth(builder,data);if(birth)state.entries.set(data,xiananEntry(builder,data,config,birth,'prebuilt'));
+}
+function openXiananWindow(manager,state,row,phase,mode){
+  const cm=manager.collisionManager,group=row.group.deref();
+  if(state.window||xiananCMWindows.has(cm)||xiananGroupWindows.has(group))throw xiananAdmissionError();
+  const token=Object.freeze({manager:new WeakRef(manager),cm:new WeakRef(cm),scene:new WeakRef(manager.scene),builder:row.builder,data:row.data,group:row.group,birth:row.birth,phase,mode});
+  state.window=token;xiananCMWindows.set(cm,token);xiananGroupWindows.set(group,token);return {state,row,token};
+}
+function closeXiananWindow(control){
+  if(!control)return;const {state,token}=control,cm=token.cm.deref(),group=token.group.deref();
+  if(state.window===token)state.window=null;
+  if(cm&&xiananCMWindows.get(cm)===token)xiananCMWindows.delete(cm);
+  if(group&&xiananGroupWindows.get(group)===token)xiananGroupWindows.delete(group);
+}
+// Read-only and valid only during the real manager's internal sync window.
+export function getXiananLifecycleTransition(group,birth,phase){
+  const token=xiananGroupWindows.get(group),manager=token?.manager.deref(),cm=token?.cm.deref();
+  return token&&token.birth===birth&&token.phase===phase&&token.group.deref()===group&&manager&&cm&&xiananManagers.get(manager)?.window===token&&xiananCMWindows.get(cm)===token&&manager.collisionManager===cm&&manager.scene===token.scene.deref()?token:null;
+}
+function beginXiananLoad(manager,config,builder,data,cached){
+  const state=xiananManagerState(manager,config);if(!state)return null;
+  const birth=getXiananManagedBirth(builder,data);if(!birth)return null;
+  let row=state.entries.get(data),mode='cold';
+  if(cached){
+    if(!sameXiananEntry(row,builder,data,config,birth)||!['prebuilt','retained'].includes(row.status))throw xiananAdmissionError();
+    mode=row.status;
+  }else{row=xiananEntry(builder,data,config,birth,'loading');state.entries.set(data,row);}
+  return openXiananWindow(manager,state,row,'load',mode);
+}
+function finishXiananLoad(manager,control){if(control){if(!hasXiananRegistration(manager.collisionManager,control.row.birth))throw xiananAdmissionError();control.row.status='active';}}
+function forgetXiananEntry(manager,data){if(data)xiananManagers.get(manager)?.entries.delete(data);}
+function beginXiananUnload(manager,config,builder,data){
+  const state=xiananManagerState(manager,config);if(!state)return null;
+  const birth=getXiananConstructionBirth(builder.kit);if(!birth)return null;
+  const row=state.entries.get(data);if(!sameXiananEntry(row,builder,data,config,birth)||row.status!=='active')throw xiananAdmissionError();
+  return openXiananWindow(manager,state,row,'unload','active');
+}
+function retainXiananEntry(manager,data,retained){const row=xiananManagers.get(manager)?.entries.get(data);if(row){if(retained)row.status='retained';else forgetXiananEntry(manager,data);}}
+
 export class ZoneManager {
   constructor({reuseInactive=false}={}) {
+    xiananManagers.set(this,{entries:new WeakMap(),window:null,cm:null,scene:null,library:null});
     this.loadMetrics = new ZoneLoadMetrics();
     this.inactiveCache = reuseInactive ? new InactiveZoneCache() : null;
     /** 已注册的 zone 配置：{ id, name, bounds, neighbors, items, BuilderClass } */
@@ -102,6 +160,7 @@ export class ZoneManager {
       let builder, data, outcome='error';
       try {
       measureZonePhase(trace,'build',()=>{ builder = new config.BuilderClass(this.library, config); data = builder.build(); });
+      rememberXiananPrebuilt(this,config,builder,data);
       this.allRegions.push(...data.regions);
       this.allMapItems.push(...data.mapItems);
       this.allRooms.push(...data.rooms);
@@ -114,6 +173,7 @@ export class ZoneManager {
         silhouette.visible = true;
         scene.add(silhouette);
       }
+      builder.releaseConstructionReferences?.();
       outcome='ok';
       } finally { finishZoneLoad(this.loadMetrics,trace,outcome,kitMergeMs(builder)); }
     }
@@ -277,6 +337,7 @@ export class ZoneManager {
   loadZone(zoneId) {
     const config = this.zones.get(zoneId);
     if (!config || this.loaded.has(zoneId)) return;
+    xiananManagerState(this,config);
 
     const start = performance.now();
     const detailQuality = this.detailQualityFor(zoneId);
@@ -295,10 +356,15 @@ export class ZoneManager {
     this.prebuilt.delete(zoneId);
     try {
       if (!builder || !data) measureZonePhase(trace,'build',()=>{ builder ??= new config.BuilderClass(this.library, config); data ??= builder.build(); });
+      if (!cached) builder.releaseConstructionReferences?.();
       const elapsed = performance.now() - start;
-      measureZonePhase(trace,'scene',()=>{ data.group.visible = true; this.scene.add(data.group); if (silhouette) silhouette.visible = false; });
-      measureZonePhase(trace,'colliders',()=>this.collisionManager.addColliders(data.colliders, zoneId));
-      measureZonePhase(trace,'walkables',()=>this.collisionManager.addWalkables(data.walkables, zoneId));
+      const xiananLoad=beginXiananLoad(this,config,builder,data,!!cached);
+      try {
+        measureZonePhase(trace,'scene',()=>{ data.group.visible = true; this.scene.add(data.group); if (silhouette) silhouette.visible = false; });
+        measureZonePhase(trace,'colliders',()=>this.collisionManager.addColliders(data.colliders, zoneId));
+        measureZonePhase(trace,'walkables',()=>this.collisionManager.addWalkables(data.walkables, zoneId));
+        finishXiananLoad(this,xiananLoad);
+      } finally { closeXiananWindow(xiananLoad); }
       const entry = cached ?? { builder, data, config, detailQuality };
       entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
       this.loaded.set(zoneId, entry);
@@ -313,6 +379,7 @@ export class ZoneManager {
       console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），构建/复用准备 ${elapsed.toFixed(1)}ms（完整加载见F3）`);
       outcome='ok';
     } catch (error) {
+      forgetXiananEntry(this,data);
       const cleanupErrors = [];
       measureZonePhase(trace,'rollback',()=>{
       const clean = fn => { try { fn(); } catch (e) { cleanupErrors.push(e); } };
@@ -346,13 +413,21 @@ export class ZoneManager {
     const { builder, data } = entry;
     for (const listener of this.lifecycleListeners) listener('unload',zoneId,data);
     this.onUnload?.(zoneId, data.group);
-    data.group.removeFromParent();
-    this.collisionManager.removeByTag(zoneId);
-    if (retain && this.inactiveCache && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+    const xiananUnload=beginXiananUnload(this,entry.config,builder,data);
+    try {
+      data.group.removeFromParent();
+      this.collisionManager.removeByTag(zoneId);
+      if(xiananUnload)xiananUnload.row.status='detached';
+    } finally { closeXiananWindow(xiananUnload); }
+    // Pending photos may grow the retained resource set after cost admission.
+    // Dispose/cancel only that pending session; completed or disabled photos
+    // still use the original cost accounting and normal cache budget below.
+    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
       builder.releaseConstructionReferences?.();
       entry.cost = zoneRetainedResourceCost(entry,this.library);
-      this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
-    } else builder.dispose();
+      const retained=this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
+      retainXiananEntry(this,data,retained);
+    } else { builder.dispose(); forgetXiananEntry(this,data); }
     const silhouette = this.silhouettes.get(zoneId);
     if (silhouette) silhouette.visible = true;
     this.loaded.delete(zoneId);

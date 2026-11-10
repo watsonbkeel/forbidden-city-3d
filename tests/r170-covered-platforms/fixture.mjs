@@ -1,0 +1,26 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import * as T from 'three';import {createCanvas} from '@napi-rs/canvas';
+import {CourtKit} from '../../src/scene/palace/kit.js';import {realTextureLibrary} from '../lib/r48-real-texture-library.mjs';
+import {buildRemainingHall as outerBuild,resolveRemainingProfile as outerProfile} from '../../src/scene/palace/special/RemainingOuterHalls.js';
+import {buildRemainingHall as ningBuild,resolveRemainingProfile as ningProfile,finalizeNingshouCoveredPlatforms} from '../../src/scene/palace/special/RemainingNingshouHalls.js';
+import {buildSideGate} from '../../src/scene/palace/special/SideGate.js';
+export {T};
+const load=n=>JSON.parse(fs.readFileSync(new URL('../../data/zones/'+n+'.json',import.meta.url))).items;
+const outerNames=['南薰殿','含清斋','延寿堂','宝相楼','吉云楼','慈荫楼','慈宁宫','延春阁','寿安宫'];
+const ningNames=['宁寿宫','养性殿','乐寿堂','景祺阁','禊赏亭','遂初堂','延趣楼','萃赏楼','符望阁','倦勤斋','畅音阁','阅是楼','寻沿书屋','庆寿堂','景福宫','佛日楼','梵华楼'];
+export const cases=[...outerNames.map(name=>({family:'outer',name,item:load('outer-west').find(i=>i.name===name)})),...ningNames.map(name=>({family:'ning',name,item:load('ningshou').find(i=>i.name===name)})),...load('axis-courts').filter(i=>['xiehe','xihe','jingyun','longzong'].includes(i.gateProfile)).map(item=>({family:'side',name:item.name,item}))];
+if(cases.length!==30||cases.some(c=>!c.item))throw Error('Exact thirty independent named source items required');
+export function fixture(c){const old=globalThis.document;globalThis.document={createElement:()=>createCanvas(1,1),createElementNS:()=>({addEventListener(){},removeEventListener(){}})};const lib=realTextureLibrary(),kit=new CourtKit(lib,c.family==='outer'?'outer-west':c.family==='ning'?'ningshou':'axis-courts');let merged;
+ try{let built;if(c.family==='outer')built=outerBuild(kit,c.item,outerProfile('outer-west',c.item));else if(c.family==='ning')ningBuild(kit,c.item,ningProfile('ningshou',c.item));else buildSideGate(kit,c.item);finalizeNingshouCoveredPlatforms(kit);kit.root.updateMatrixWorld(true);
+ const meshes=[];kit.root.traverse(m=>{if(m.isMesh)meshes.push(m)});
+ const byRole=(role)=>meshes.filter(m=>m.userData.role===role&&!m.material?.polygonOffset);
+ let bases,covers;if(c.family==='outer'){bases=meshes.filter(m=>m.parent===built.f&&[lib.material('sumeru_band'),lib.material('wall_brick')].includes(m.material)&&Math.abs(m.position.y-(c.item.ph??.9)/2)<1e-7);covers=meshes.filter(m=>m.parent===built.f&&m.material===lib.material('stone_slab')&&Math.abs(m.position.y-((c.item.ph??.9)-.04))<1e-7);}else{bases=byRole(c.family==='ning'?'platform-base':'gate-platform');covers=byRole(c.family==='ning'?'platform-paving':'gate-platform-paving');}
+ if(bases.length!==1||covers.length!==1)throw Error(c.name+' requires one source base and covering slab');
+ const base=bases[0],cover=covers[0];return{kit,lib,base,cover,meshes,finish(){merged=kit.finish();merged.updateMatrixWorld(true);return merged;},dispose(){kit.dispose(merged??kit.root);lib.dispose();globalThis.document=old;}};
+ }catch(e){kit.dispose(kit.root);lib.dispose();globalThis.document=old;throw e;}}
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+export const digest=v=>hash(JSON.stringify(v).replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,'UUID'));
+export function physical(kit){return{counts:[kit.colliders.length,kit.walkables.length,kit.rooms.length,kit.regions.length,kit.mapItems.length],hash:digest({colliders:kit.colliders.map(c=>({min:c.min?.toArray(),max:c.max?.toArray(),triangle:c.triangleSupport?{id:c.triangleSupport.id,offset:c.triangleSupport.offset.toArray(),triangles:c.triangleSupport.template.triangles.map(t=>[t.triangle.a.toArray(),t.triangle.b.toArray(),t.triangle.c.toArray()])}:null,keys:Object.keys(c).filter(k=>!['min','max','triangleSupport'].includes(k)).map(k=>[k,c[k]])})),walkables:kit.walkables,rooms:kit.rooms,regions:kit.regions,mapItems:kit.mapItems})};}
+export function retained(f,baseSizes){return digest(f.meshes.map(m=>({name:m.name,position:m.position.toArray(),quaternion:m.quaternion.toArray(),scale:m.scale.toArray(),visible:m.visible,castShadow:m.castShadow,receiveShadow:m.receiveShadow,material:materialState(m.material),attributes:Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,v])=>[k,{size:v.itemSize,normalized:v.normalized,hash:hash(Buffer.from(v.array.buffer,v.array.byteOffset,m===f.base&&baseSizes?baseSizes[k]:v.array.byteLength))}])),index:m===f.base?'ONLY_DECLARED_BASE_INDEX_EXCLUDED':m.geometry.index?Array.from(m.geometry.index.array):null})));}
+export function upward(m,height){const a=m.geometry.attributes.position,idx=m.geometry.index,rows=[];for(let i=0;i<(idx?.count??a.count);i+=3){const p=[0,1,2].map(j=>new T.Vector3().fromBufferAttribute(a,idx?idx.getX(i+j):i+j).applyMatrix4(m.matrixWorld));if(new T.Triangle(...p).getNormal(new T.Vector3()).y>.999999&&p.every(v=>Math.abs(v.y-height)<1e-5))rows.push(p);}return rows;}
+
+function materialState(m){if(m===null)return null;if(Array.isArray(m))return m.map(materialState);return{name:m.name,color:m.color?.getHex(),roughness:m.roughness,metalness:m.metalness,side:m.side,depthWrite:m.depthWrite,depthTest:m.depthTest,transparent:m.transparent,opacity:m.opacity,polygonOffset:m.polygonOffset};}

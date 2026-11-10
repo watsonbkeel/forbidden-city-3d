@@ -12,6 +12,12 @@ const element = (tag, text, className) => {
   return node;
 };
 const factText = fact => `${fact.period ? `${fact.period} · ` : ''}${fact.text}`;
+const supplementalSourceNote = source => {
+  if (source.reviewType === 'reused-official-source-attribution') return '继承官方来源记录；本轮未重新访问。';
+  if (typeof source.reviewedAt === 'string' && source.reviewedAt.trim()) return `本轮核对官方页面或索引摘要：${source.reviewedAt}；不代表完整原文复核。`;
+  if (typeof source.localPageReviewDate === 'string' && source.localPageReviewDate.trim()) return `本地核对官方来源页面或图像：${source.localPageReviewDate}；不代表完整原文复核。`;
+  return '来源核对日期未记录；不代表完整原文复核。';
+};
 const resident = person => ['resident', 'temporary-resident'].includes(person.relation);
 const evidenceLabels = { 'identity-inferred': '名称为文献推定', 'identity-unresolved': '名称对应待核', 'partial-history': '独立沿革资料有限', 'partial-identity': '模型单体对应待核', 'historical-site': '历史地点 · 实体已拆除' };
 const disclaimer = '模型漫游不代表现场开放许可；实际参观范围和入内安排请查阅故宫博物院当日公告。';
@@ -125,7 +131,7 @@ export class PlaceInfoPanel {
         a.id = `place-source-${source.id}`;
         a.setAttribute('href', source.url); a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer');
         li.appendChild(a);
-        if (place?.catalogKind === 'supplemental') li.appendChild(element('p', source.reviewType === 'reused-official-source-attribution' ? '继承官方来源记录；本轮未重新访问。' : `本轮核对官方页面或索引摘要：${source.reviewedAt}；不代表完整原文复核。`, 'place-note'));
+        if (place?.catalogKind === 'supplemental') li.appendChild(element('p', supplementalSourceNote(source), 'place-note'));
         list.appendChild(li);
       }
       this.element.appendChild(list);
