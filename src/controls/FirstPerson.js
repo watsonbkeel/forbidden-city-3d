@@ -152,6 +152,11 @@ export class FirstPersonControls {
         if (e.target?.closest?.('button, a, input, select, textarea, summary, [role="button"]')) return;
         this.releaseInputFocus();
         if (this.mapOpen) return;
+        // An explicit locked scene click returns keyboard ownership from restored UI focus.
+        if (this.controls.isLocked && (e.target === this.domElement || e.target?.tagName === 'CANVAS') &&
+            document.activeElement?.closest?.('button, a[href], summary, [role="button"]')) {
+          document.activeElement.blur?.();
+        }
         if (!this.controls.isLocked) {
           try { this.lock(); } catch { /* Keep the click-to-start overlay available. */ }
         }

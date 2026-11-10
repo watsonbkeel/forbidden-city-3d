@@ -40,13 +40,13 @@ jobs:
           fetch-depth: 2
           persist-credentials: false
 
-      - name: Require exact R262 parent and reviewed native input candidate
+      - name: Require exact R262 parent and reviewed scene-focus and terminal-state candidate
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = '7bbef145745b569d1a011a29bec7f91206b08bf5'
-          test "$(git rev-parse HEAD^1^{tree})" = 'db1628d9d40245db83fcc0a67ab108dcf28ffc7e'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nA\ttests/lib/r262-entry-input.mjs\nM\ttests/production-smoke.mjs\nA\ttests/r262-entry-input.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '82671537ad6fc4e9a150c36216f3778bbbfdcada'
+          test "$(git rev-parse HEAD^1^{tree})" = '61cc8c8b72606283597cd6947cb489a5507900ee'
+          EXPECTED_DIFF="$(printf 'A\t.github/scripts/r262_exit_recheck.py\nM\t.github/scripts/r262_runtime_bound.py\nA\t.github/scripts/test_r262_exit_recheck.py\nM\t.github/workflows/r262-validation.yml\nM\tsrc/controls/FirstPerson.js\nA\ttests/r262-scene-focus.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -58,7 +58,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=native key and public HUD update handshake only; product unchanged\n'
+            printf 'candidate_scope=locked BODY/CANVAS scene focus; R262 same-identity terminal-state recheck\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
 
@@ -105,6 +105,16 @@ jobs:
       - name: Check native input cleanup and public update controls
         run: |
           timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_INPUT_HELPER -u R262_LEGACY_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-entry-input.test.mjs 2>&1 | tee "$EVIDENCE_DIR/entry-input-tests.log"
+
+      - name: Test scene-focus handoff and native UI ownership
+        run: |
+          set -o pipefail
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_FIRST_PERSON_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-scene-focus.test.mjs 2>&1 | tee "$EVIDENCE_DIR/scene-focus-tests.log"
+
+      - name: Test R262 terminal-state recheck without spawning workload
+        run: |
+          set -o pipefail
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_DISABLE_EXIT_RECHECK python3 .github/scripts/test_r262_exit_recheck.py -v) 2>&1 | tee "$EVIDENCE_DIR/exit-recheck-tests.log"
 
       - name: Run unchanged build guard negative controls
         run: python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
@@ -244,6 +254,8 @@ jobs:
             ${{ env.EVIDENCE_DIR }}/capture-evidence-tests.log
             ${{ env.EVIDENCE_DIR }}/glsl-float-tests.log
             ${{ env.EVIDENCE_DIR }}/entry-input-tests.log
+            ${{ env.EVIDENCE_DIR }}/scene-focus-tests.log
+            ${{ env.EVIDENCE_DIR }}/exit-recheck-tests.log
             ${{ env.EVIDENCE_DIR }}/build-preflight.json
             ${{ env.EVIDENCE_DIR }}/build-started.json
             ${{ env.EVIDENCE_DIR }}/build-live.json
@@ -278,9 +290,9 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = '7bbef145745b569d1a011a29bec7f91206b08bf5'
-          test "$(git rev-parse HEAD^1^{tree})" = 'db1628d9d40245db83fcc0a67ab108dcf28ffc7e'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nA\ttests/lib/r262-entry-input.mjs\nM\ttests/production-smoke.mjs\nA\ttests/r262-entry-input.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '82671537ad6fc4e9a150c36216f3778bbbfdcada'
+          test "$(git rev-parse HEAD^1^{tree})" = '61cc8c8b72606283597cd6947cb489a5507900ee'
+          EXPECTED_DIFF="$(printf 'A\t.github/scripts/r262_exit_recheck.py\nM\t.github/scripts/r262_runtime_bound.py\nA\t.github/scripts/test_r262_exit_recheck.py\nM\t.github/workflows/r262-validation.yml\nM\tsrc/controls/FirstPerson.js\nA\ttests/r262-scene-focus.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -292,7 +304,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=native key and public HUD update handshake only; product unchanged\n'
+            printf 'candidate_scope=locked BODY/CANVAS scene focus; R262 same-identity terminal-state recheck\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
