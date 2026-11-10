@@ -10,6 +10,7 @@ import {chromium} from 'playwright';
 import {createCanvas, loadImage} from '@napi-rs/canvas';
 import {verifyBuildSource} from '../scripts/build-identity.mjs';
 import {createCaptureEvidence} from './lib/r262-capture-evidence.mjs';
+import {runEntryKey} from './lib/r262-entry-input.mjs';
 
 const base='/forbidden-city-3d/', dist=path.resolve('dist'), out=process.env.EVIDENCE_DIR;
 const place='place-outer-west-6cae88b6a2';
@@ -23,7 +24,7 @@ const result={kind:'actual production desktop Chromium UI and WebGL smoke',statu
   visualReview:{status:'REQUIRED',criteria:['Actual hall and interior geometry are visible, not just UI or sky.','The historical main plaque is visibly mounted above the interior, rather than only a downloaded PNG.','Entry frames show movement across the central doorway without black or frozen frames.']},
   untested:['Qianxing Gate precise 0.8m passage crossing','Four-character complete state matrix','Physical phone and hardware GPU performance'],
   boundary:'A sampled desktop software-rendered production smoke, not all-zone completion, hardware GPU, mobile performance, or historical visual fidelity acceptance.',
-  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[],lifecycle:[]};
+  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[],lifecycle:[],inputSegments:[]};
 let server,browser,context,page,origin,stage='preflight',cleanupStarted=false;
 const plaqueResponses=[];
 function checkpoint(){
@@ -94,13 +95,19 @@ async function resume(){
   await page.waitForFunction(()=>!!document.pointerLockElement,null,{timeout:15000});
   await page.locator('#welcome-overlay').waitFor({state:'hidden'});
 }
+async function entryInput(name,code,timeoutMs=30000){
+  const index=result.inputSegments.length;appendBounded(result.inputSegments,{name,code,status:'PENDING'});checkpoint();
+  return runEntryKey(page,{name,code,timeoutMs,save:row=>{result.inputSegments[index]=row;checkpoint();}});
+}
 async function enterHall(prefix){
-  // Short real key pulses avoid >2s auto-sprint; the real region HUD, not elapsed time, ends the approach.
+  // Native held input crosses a public completed-update batch, not a host-time
+  // tap. Normal auto-sprint may activate after 2s; never claim a short walk.
+  const entryDeadline=Date.now()+120000;
   for(let i=1;i<=24;i++){
-    await page.keyboard.down('w');await page.waitForTimeout(250);await page.keyboard.up('w');
-    await page.waitForTimeout(200);
+    const remaining=entryDeadline-Date.now();check(remaining>0,'bounded entry input deadline remains');
+    const input=await entryInput(prefix+'-input-'+i,'KeyW',Math.min(30000,remaining));
     const location=await page.locator('#location-panel').innerText();
-    result.stages.push({stage:'entry pulse',prefix,pulse:i,location});
+    result.stages.push({stage:'entry pulse',prefix,pulse:i,location,publicUpdateObserved:true,autoSprintPossible:input.autoSprintPossible});checkpoint();
     if(i%4===0||/慈宁宫后殿|大佛堂/.test(location))await snapshot(prefix+'-step-'+i);
     if(/慈宁宫后殿|大佛堂/.test(location))break;
   }
@@ -203,7 +210,7 @@ try {
   mark('walk through actual central door');
   await enterHall('04-dafotang');
   mark('one native jump and cold outer-west return');
-  await page.keyboard.press('Space');await page.waitForTimeout(180);await snapshot('06-jump-input');
+  await entryInput('06-native-jump','Space');await page.waitForTimeout(180);await snapshot('06-jump-input');
   await page.waitForTimeout(1400);await snapshot('06-jump-settled');
   result.jump={input:'native Space',requestedImages:['06-jump-input.png','06-jump-settled.png'],
     actualImages:result.screenshots.filter(r=>['06-jump-input','06-jump-settled'].includes(r.name)).map(r=>r.file),
