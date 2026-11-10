@@ -44,11 +44,11 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = 'c7e83fbe6f5b58d7fd6b051ff528ee7166c69cfd'
-          test "$(git rev-parse HEAD^1^{tree})" = '5a7436b3c0b7713e9ba197327c475642a2b5c906'
-          EXPECTED_DIFF="$(printf 'A\t.github/scripts/r262_node20_build_bound.py\nA\t.github/scripts/r262_runtime_bound.py\nA\t.github/workflows/r262-validation.yml\nM\trelease.json\nA\ttests/production-smoke.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '4bc394b4587bb5a2c5382a82a16b702c9f3fac2f'
+          test "$(git rev-parse HEAD^1^{tree})" = '21cfc4a4bcd5fda7e625f8c7985ae9d99aa960be'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\ttests/production-smoke.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
-          test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R167"\n}')"
+          test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test ! -e dist
           {
@@ -58,7 +58,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=R262 release identity plus CI smoke only\n'
+            printf 'candidate_scope=CDP automation prerequisite plus exact CI source gate only\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
 
@@ -258,11 +258,11 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = 'c7e83fbe6f5b58d7fd6b051ff528ee7166c69cfd'
-          test "$(git rev-parse HEAD^1^{tree})" = '5a7436b3c0b7713e9ba197327c475642a2b5c906'
-          EXPECTED_DIFF="$(printf 'A\t.github/scripts/r262_node20_build_bound.py\nA\t.github/scripts/r262_runtime_bound.py\nA\t.github/workflows/r262-validation.yml\nM\trelease.json\nA\ttests/production-smoke.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '4bc394b4587bb5a2c5382a82a16b702c9f3fac2f'
+          test "$(git rev-parse HEAD^1^{tree})" = '21cfc4a4bcd5fda7e625f8c7985ae9d99aa960be'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\ttests/production-smoke.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
-          test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R167"\n}')"
+          test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test ! -e dist
           {
@@ -272,7 +272,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=R262 release identity plus CI smoke only\n'
+            printf 'candidate_scope=CDP automation prerequisite plus exact CI source gate only\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0

@@ -123,7 +123,7 @@ try {
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
   origin='http://127.0.0.1:'+server.address().port;result.url=origin+base;
   mark('launch official managed Chromium');
-  result.launch={headless:true,chromiumSandbox:true,args:['--use-angle=swiftshader'],ignoreDefaultArgs:['--enable-unsafe-swiftshader'],rendererPolicy:'Explicit ANGLE software renderer. Remove Playwright 1.64 unsafe SwiftShader default. No sandbox/GPU/security disabling flags.'};
+  result.launch={headless:true,chromiumSandbox:true,args:['--use-angle=swiftshader','--enable-automation'],ignoreDefaultArgs:['--enable-unsafe-swiftshader'],rendererPolicy:'Explicit ANGLE software renderer. Remove Playwright 1.64 unsafe SwiftShader default. No sandbox/GPU/security disabling flags.'};
   browser=await chromium.launch({headless:true,chromiumSandbox:true,args:result.launch.args,ignoreDefaultArgs:result.launch.ignoreDefaultArgs,timeout:60000});result.browser=browser.version();
   const browserCDP=await browser.newBrowserCDPSession();
   result.browserCommandLine=await browserCDP.send('Browser.getBrowserCommandLine');
