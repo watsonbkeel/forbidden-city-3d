@@ -356,6 +356,7 @@ export class ZoneManager {
     this.prebuilt.delete(zoneId);
     try {
       if (!builder || !data) measureZonePhase(trace,'build',()=>{ builder ??= new config.BuilderClass(this.library, config); data ??= builder.build(); });
+      if (!cached) builder.releaseConstructionReferences?.();
       const elapsed = performance.now() - start;
       const xiananLoad=beginXiananLoad(this,config,builder,data,!!cached);
       try {

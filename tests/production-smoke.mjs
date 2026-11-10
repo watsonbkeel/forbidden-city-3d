@@ -24,7 +24,7 @@ const result={kind:'actual production desktop Chromium UI and WebGL smoke',statu
   visualReview:{status:'REQUIRED',criteria:['Actual hall and interior geometry are visible, not just UI or sky.','The historical main plaque is visibly mounted above the interior, rather than only a downloaded PNG.','Entry frames show movement across the central doorway without black or frozen frames.']},
   untested:['Qianxing Gate precise 0.8m passage crossing','Four-character complete state matrix','Physical phone and hardware GPU performance'],
   boundary:'A sampled desktop software-rendered production smoke, not all-zone completion, hardware GPU, mobile performance, or historical visual fidelity acceptance.',
-  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[],lifecycle:[],inputSegments:[]};
+  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[],lifecycle:[],inputSegments:[],zoneLifecycle:[]};
 let server,browser,context,page,origin,stage='preflight',cleanupStarted=false;
 const plaqueResponses=[];
 function checkpoint(){
@@ -158,6 +158,7 @@ try {
     validate:async(bytes)=>{const im=await loadImage(bytes);check(im.width===1280&&im.height===800,'blank control PNG matches viewport',{width:im.width,height:im.height},'capture-control');return {sha256:hash(bytes),width:im.width,height:im.height,boundary:'Capture-tool control only. Not an application, scene, WebGL or plaque image.'};}});
   page.on('pageerror',e=>appendBounded(result.pageErrors,{stage,message:e.message,stack:e.stack}));
   page.on('console',m=>{if(['error','warning'].includes(m.type()))appendBounded(result.console,{stage,type:m.type(),text:m.text()});});
+  page.on('console',m=>{const text=m.text();if(m.type()==='log'&&/^\[ZoneManager\] (加载区域|卸载区域) /.test(text)&&result.zoneLifecycle.length<256){result.zoneLifecycle.push({stage,at:new Date().toISOString(),text:text.slice(0,512)});checkpoint();}});
   page.on('requestfailed',r=>appendBounded(result.requestFailures,{stage,url:r.url(),error:r.failure()}));
   page.on('response',r=>{appendBounded(result.responses,{stage,url:r.url(),status:r.status(),type:r.request().resourceType()});if(r.url()===origin+base+plaque)plaqueResponses.push({response:r,stage,at:new Date().toISOString()});});
   mark('production boot');
@@ -228,10 +229,13 @@ try {
   await snapshot('09-qianxing-information-only');await page.locator('#place-back').click();
   await page.locator('#place-search').fill('大佛堂');await button.click();
   const countBeforeReturn=plaqueResponses.length;
+  mark('cold return travel requested');
   const [returned]=await Promise.all([page.waitForResponse(r=>r.url()===origin+base+plaque,{timeout:180000}),page.locator('#place-travel').click({timeout:180000})]);
+  mark('cold return response and click completed');
   check(plaqueResponses.length>countBeforeReturn&&hash(await returned.body())===plaqueHash,'cold outer-west return loads actual plaque bytes again');
   await page.locator('#minimap').waitFor({state:'hidden',timeout:180000});await resume();
   await page.waitForFunction(()=>/^Loaded .*outer-west/m.test(document.querySelector('#perf-hud')?.textContent??''),null,{timeout:60000});
+  mark('cold return loaded HUD confirmed');
   result.returnNativeDecode=await page.evaluate(async url=>{const img=new Image();img.src=url;await img.decode();return{width:img.naturalWidth,height:img.naturalHeight};},origin+base+plaque);
   check(result.returnNativeDecode.width===768&&result.returnNativeDecode.height===286,'returned plaque also decodes natively');
   await page.waitForTimeout(1200);await snapshot('10-dafotang-cold-return');await healthy();
