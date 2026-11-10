@@ -40,13 +40,13 @@ jobs:
           fetch-depth: 2
           persist-credentials: false
 
-      - name: Require exact R262 parent and reviewed cold-release and observation candidate
+      - name: Require exact R262 parent and reviewed completed merge-bucket candidate
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = '796c551fdf137b12a51eade3e7e082644304aefa'
-          test "$(git rev-parse HEAD^1^{tree})" = '37fac21a4ffce724ce2de16abac6c20bd83e70ea'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/zones/ZoneManager.js\nM\ttests/production-smoke.mjs\nA\ttests/r262-cold-release.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '77bbb6fc09d6483a507ea6c9c8a566990bc3f162'
+          test "$(git rev-parse HEAD^1^{tree})" = '713d6b947ae7fb27add1bef116cb4e6cf25478fe'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/utils/MergeUtils.js\nA\ttests/r262-merge-bucket.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -58,7 +58,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=fresh cold completion release; bounded existing zone logs and cold-return markers\n'
+            printf 'candidate_scope=completed merge-bucket private references only; production smoke unchanged\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
 
@@ -119,6 +119,10 @@ jobs:
       - name: Check cold release and bounded observation with small CPU fixtures
         run: |
           timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_ZONE_MANAGER_SOURCE -u R262_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-cold-release.test.mjs 2>&1 | tee "$EVIDENCE_DIR/cold-release-tests.log"
+
+      - name: Check completed merge buckets with bounded CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_MERGE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-merge-bucket.test.mjs 2>&1 | tee "$EVIDENCE_DIR/merge-bucket-tests.log"
 
       - name: Run unchanged build guard negative controls
         run: python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
@@ -261,6 +265,7 @@ jobs:
             ${{ env.EVIDENCE_DIR }}/scene-focus-tests.log
             ${{ env.EVIDENCE_DIR }}/exit-recheck-tests.log
             ${{ env.EVIDENCE_DIR }}/cold-release-tests.log
+            ${{ env.EVIDENCE_DIR }}/merge-bucket-tests.log
             ${{ env.EVIDENCE_DIR }}/build-preflight.json
             ${{ env.EVIDENCE_DIR }}/build-started.json
             ${{ env.EVIDENCE_DIR }}/build-live.json
@@ -295,9 +300,9 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = '796c551fdf137b12a51eade3e7e082644304aefa'
-          test "$(git rev-parse HEAD^1^{tree})" = '37fac21a4ffce724ce2de16abac6c20bd83e70ea'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/zones/ZoneManager.js\nM\ttests/production-smoke.mjs\nA\ttests/r262-cold-release.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '77bbb6fc09d6483a507ea6c9c8a566990bc3f162'
+          test "$(git rev-parse HEAD^1^{tree})" = '713d6b947ae7fb27add1bef116cb4e6cf25478fe'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/utils/MergeUtils.js\nA\ttests/r262-merge-bucket.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -309,7 +314,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=fresh cold completion release; bounded existing zone logs and cold-return markers\n'
+            printf 'candidate_scope=completed merge-bucket private references only; production smoke unchanged\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
