@@ -9,6 +9,7 @@ import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import {createCanvas, loadImage} from '@napi-rs/canvas';
 import {verifyBuildSource} from '../scripts/build-identity.mjs';
+import {createCaptureEvidence} from './lib/r262-capture-evidence.mjs';
 
 const base='/forbidden-city-3d/', dist=path.resolve('dist'), out=process.env.EVIDENCE_DIR;
 const place='place-outer-west-6cae88b6a2';
@@ -18,15 +19,21 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 assert.ok(out && path.isAbsolute(out),'absolute evidence directory required');
 fs.mkdirSync(out,{recursive:true});
 const result={kind:'actual production desktop Chromium UI and WebGL smoke',status:'FAIL',started:new Date().toISOString(),
-  releaseAccepted:false,hardwareGpuTested:false,physicalPhoneTested:false,
+  releaseAccepted:false,hardwareGpuTested:false,physicalPhoneTested:false,coreStatus:'IN_PROGRESS',captureStatus:'INCOMPLETE',
   visualReview:{status:'REQUIRED',criteria:['Actual hall and interior geometry are visible, not just UI or sky.','The historical main plaque is visibly mounted above the interior, rather than only a downloaded PNG.','Entry frames show movement across the central doorway without black or frozen frames.']},
   untested:['Qianxing Gate precise 0.8m passage crossing','Four-character complete state matrix','Physical phone and hardware GPU performance'],
   boundary:'A sampled desktop software-rendered production smoke, not all-zone completion, hardware GPU, mobile performance, or historical visual fidelity acceptance.',
-  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[]};
-let server,browser,context,page,origin,stage='preflight';
+  assertions:[],screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],stages:[],lifecycle:[]};
+let server,browser,context,page,origin,stage='preflight',cleanupStarted=false;
 const plaqueResponses=[];
-function check(ok,message,data){result.assertions.push({stage,pass:!!ok,message,...(data===undefined?{}:{data})});if(!ok)throw Error(message);}
-function mark(value){stage=value;result.stages.push({stage,at:new Date().toISOString()});console.log('STAGE '+value);}
+function checkpoint(){
+  const file=path.join(out,'production-smoke.json'),temporary=file+'.tmp';
+  fs.writeFileSync(temporary,JSON.stringify(result,null,2)+'\n');fs.renameSync(temporary,file);
+}
+const captures=createCaptureEvidence({result,checkpoint,getStage:()=>stage});
+function check(ok,message,data,lane='core'){result.assertions.push({stage,lane,pass:!!ok,message,...(data===undefined?{}:{data})});checkpoint();if(!ok)throw Error(message);}
+function mark(value){stage=value;result.stages.push({stage,at:new Date().toISOString()});checkpoint();console.log('STAGE '+value);}
+function lifecycle(event){appendBounded(result.lifecycle,{event,stage,at:new Date().toISOString(),expected:cleanupStarted});if(!cleanupStarted){result.unexpectedLifecycle=true;result.status='FAIL';}checkpoint();}
 function appendBounded(list,value){if(list.length>=2000)throw Error('Evidence event count exceeded fixed 2000 bound');list.push(value);}
 async function snapshot(name){
   const status=await page.evaluate(()=>{
@@ -34,36 +41,40 @@ async function snapshot(name){
     const gl=canvas?.getContext('webgl2')||canvas?.getContext('webgl');
     const ext=gl?.getExtension('WEBGL_debug_renderer_info');
     return {href:location.href,lang:document.documentElement.lang,location:document.querySelector('#location-panel')?.innerText,
+      visibility:document.visibilityState,fontsStatus:document.fonts?.status,
+      viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio,scrollX,scrollY},
+      canvasCss:canvas?{width:canvas.getBoundingClientRect().width,height:canvas.getBoundingClientRect().height}:null,
       mapOpen:document.body.classList.contains('map-open'),pointerLocked:!!document.pointerLockElement,
       failure:document.querySelector('#tour-failure-dialog')?.innerText??null,
       diagnostic:document.querySelector('#tour-failure-diagnostic')?.value??null,
       loading:document.querySelector('#progress-text')?.textContent,
       devHook:typeof window.__forbiddenCityApp,perf:document.querySelector('#perf-hud')?.textContent,
       gl:gl?{lost:gl.isContextLost(),width:gl.drawingBufferWidth,height:gl.drawingBufferHeight,
-        version:gl.getParameter(gl.VERSION),renderer:gl.getParameter(gl.RENDERER),
+        contextAttributes:gl.getContextAttributes(),version:gl.getParameter(gl.VERSION),renderer:gl.getParameter(gl.RENDERER),
         unmaskedRenderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):null}:null};
   });
-  const filename=name+'.png';
-  const perfVisible=await page.locator('#perf-hud').isVisible();
-  if(perfVisible)await page.keyboard.press('F3');
-  const perfHiddenForCapture=!await page.locator('#perf-hud').isVisible();
-  const bytes=await page.screenshot({path:path.join(out,filename),timeout:60000});
-  if(perfVisible&&perfHiddenForCapture)await page.keyboard.press('F3');
-  const im=await loadImage(bytes),c=createCanvas(160,100),ctx=c.getContext('2d');
-  // Center-region image diversity is only a nonblank check, never semantic model acceptance.
-  ctx.drawImage(im,im.width*.2,im.height*.25,im.width*.6,im.height*.6,0,0,160,100);
-  const pixels=ctx.getImageData(0,0,160,100).data,colors=new Set();let min=255,max=0;
-  for(let i=0;i<pixels.length;i+=4){const v=(pixels[i]+pixels[i+1]+pixels[i+2])/3;min=Math.min(min,v);max=Math.max(max,v);colors.add((pixels[i]>>4)*256+(pixels[i+1]>>4)*16+(pixels[i+2]>>4));}
-  const row={name,file:filename,bytes:bytes.length,sha256:hash(bytes),perfHiddenForCapture,centerPixels:{quantizedColors:colors.size,luminanceRange:max-min},...status};
-  result.screenshots.push(row);
+  const observation=captures.observe(name,status);
   check(status.devHook==='undefined','production has no development app hook');
   const calls=Number(status.perf?.match(/Calls (\d+)/)?.[1]),tris=Number(status.perf?.match(/Tris ([\d,]+)/)?.[1]?.replaceAll(',',''));
   check(calls>10&&tris>1000,'public F3 HUD reports actual scene draws and triangles',{calls,tris,perf:status.perf});
   check(!status.failure,'no terminal tour failure',status.diagnostic);
   check(status.gl&&!status.gl.lost&&status.gl.width>0&&status.gl.height>0,'real scene canvas has live WebGL context',status.gl);
-  check(colors.size>12&&max-min>24,'rendered center is not a uniform blank screen',row.centerPixels);
-  return row;
+  const filename=name+'.png';
+  await captures.capture({page,name,kind:'app',required:true,file:filename,outputPath:path.join(out,filename),timeout:60000,
+    validate:async(bytes)=>{
+      const im=await loadImage(bytes),c=createCanvas(160,100),ctx=c.getContext('2d');
+      check(im.width===1280&&im.height===800,'actual PNG has unchanged full viewport dimensions',{width:im.width,height:im.height},'capture');
+      // Center-region diversity remains only a nonblank check, never semantic acceptance.
+      ctx.drawImage(im,im.width*.2,im.height*.25,im.width*.6,im.height*.6,0,0,160,100);
+      const pixels=ctx.getImageData(0,0,160,100).data,colors=new Set();let min=255,max=0;
+      for(let i=0;i<pixels.length;i+=4){const v=(pixels[i]+pixels[i+1]+pixels[i+2])/3;min=Math.min(min,v);max=Math.max(max,v);colors.add((pixels[i]>>4)*256+(pixels[i+1]>>4)*16+(pixels[i+2]>>4));}
+      const centerPixels={quantizedColors:colors.size,luminanceRange:max-min};
+      check(colors.size>12&&max-min>24,'rendered center is not a uniform blank screen',centerPixels,'capture');
+      return {...observation,sha256:hash(bytes),width:im.width,height:im.height,centerPixels};
+    }});
+  return observation;
 }
+
 async function healthy(){
   check(result.pageErrors.length===0,'no uncaught page errors',result.pageErrors);
   const fatal=result.console.filter(m=>m.type==='error'||/context lost|GL_INVALID|GL_OUT_OF_MEMORY|shader error|VALIDATE_STATUS.*false/i.test(m.text));
@@ -123,13 +134,21 @@ try {
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
   origin='http://127.0.0.1:'+server.address().port;result.url=origin+base;
   mark('launch official managed Chromium');
-  result.launch={headless:true,chromiumSandbox:true,args:['--use-angle=swiftshader','--enable-automation'],ignoreDefaultArgs:['--enable-unsafe-swiftshader'],rendererPolicy:'Explicit ANGLE software renderer. Remove Playwright 1.64 unsafe SwiftShader default. No sandbox/GPU/security disabling flags.'};
-  browser=await chromium.launch({headless:true,chromiumSandbox:true,args:result.launch.args,ignoreDefaultArgs:result.launch.ignoreDefaultArgs,timeout:60000});result.browser=browser.version();
+  result.launch={channel:'chromium',headless:true,chromiumSandbox:true,args:['--use-angle=swiftshader','--enable-automation'],ignoreDefaultArgs:['--enable-unsafe-swiftshader'],rendererPolicy:'Explicit ANGLE software renderer. Remove Playwright 1.64 unsafe SwiftShader default. No sandbox/GPU/security disabling flags.'};
+  browser=await chromium.launch({channel:result.launch.channel,headless:true,chromiumSandbox:true,args:result.launch.args,ignoreDefaultArgs:result.launch.ignoreDefaultArgs,timeout:60000});result.browser=browser.version();
+  browser.on('disconnected',()=>lifecycle('browser-disconnected'));
   const browserCDP=await browser.newBrowserCDPSession();
   result.browserCommandLine=await browserCDP.send('Browser.getBrowserCommandLine');
+  result.browserExecutable=result.browserCommandLine.arguments[0];
+  check(result.browser==='156.0.8078.4'&&result.browserExecutable===chromium.executablePath()&&/\/chromium-1248\//.test(result.browserExecutable),'actual browser is installed pinned full Chromium 1248, not headless-shell',{version:result.browser,executable:result.browserExecutable});
   check(!result.browserCommandLine.arguments.some(a=>/^--(no-sandbox|disable-setuid-sandbox|disable-web-security|disable-gpu|enable-unsafe-swiftshader)(=|$)/.test(a)),'no browser security or GPU disabling flags');
   context=await browser.newContext({viewport:{width:1280,height:800},deviceScaleFactor:1});
   page=await context.newPage();page.setDefaultTimeout(30000);
+  page.on('crash',()=>lifecycle('page-crash'));page.on('close',()=>lifecycle('page-close'));
+  mark('independent blank page capture control');
+  check(page.url()==='about:blank','capture control has no production page content');
+  await captures.capture({page,name:'control-blank-page',kind:'control',file:'control-blank-page.png',outputPath:path.join(out,'control-blank-page.png'),timeout:10000,
+    validate:async(bytes)=>{const im=await loadImage(bytes);check(im.width===1280&&im.height===800,'blank control PNG matches viewport',{width:im.width,height:im.height},'capture-control');return {sha256:hash(bytes),width:im.width,height:im.height,boundary:'Capture-tool control only. Not an application, scene, WebGL or plaque image.'};}});
   page.on('pageerror',e=>appendBounded(result.pageErrors,{stage,message:e.message,stack:e.stack}));
   page.on('console',m=>{if(['error','warning'].includes(m.type()))appendBounded(result.console,{stage,type:m.type(),text:m.text()});});
   page.on('requestfailed',r=>appendBounded(result.requestFailures,{stage,url:r.url(),error:r.failure()}));
@@ -186,7 +205,9 @@ try {
   mark('one native jump and cold outer-west return');
   await page.keyboard.press('Space');await page.waitForTimeout(180);await snapshot('06-jump-input');
   await page.waitForTimeout(1400);await snapshot('06-jump-settled');
-  result.jump={input:'native Space',evidence:['06-jump-input.png','06-jump-settled.png'],boundary:'Input and visual smoke only; no internal trajectory instrumentation.'};
+  result.jump={input:'native Space',requestedImages:['06-jump-input.png','06-jump-settled.png'],
+    actualImages:result.screenshots.filter(r=>['06-jump-input','06-jump-settled'].includes(r.name)).map(r=>r.file),
+    boundary:'Input only if requested images are missing. Even with images, no internal trajectory instrumentation or proven full collision trajectory.'};checkpoint();
   await openMap();await page.locator('#place-search').fill('奉先殿');
   await page.locator('button[data-place-id]').filter({hasText:/^奉先殿$/}).click();
   await page.locator('#place-travel').click({timeout:180000});await page.locator('#minimap').waitFor({state:'hidden',timeout:180000});await resume();
@@ -223,13 +244,17 @@ try {
   await page.locator('#minimap-close').click();await resume();
   await snapshot('07-recovered-tour');await healthy();
   check(execFileSync('git',['status','--porcelain=v1','--untracked-files=all'],{encoding:'utf8'}).trim()==='','source checkout remains unchanged after browser');
-  result.status='AUTOMATED_SMOKE_PASS_VISUAL_REVIEW_REQUIRED';
-}catch(error){result.failure={stage,message:error.message,stack:error.stack};process.exitCode=1;
-  try{if(page&&!page.isClosed())await page.screenshot({path:path.join(out,'failure.png'),timeout:15000});}catch(e){result.failureScreenshotError=e.message;}
+  check(!result.unexpectedLifecycle,'no unexpected page crash, close or browser disconnection',result.lifecycle);
+  result.coreStatus='PASS';captures.complete();checkpoint();
+}catch(error){result.coreStatus='FAIL';result.failure={stage,message:error.message,stack:error.stack};process.exitCode=1;checkpoint();
+  // No immediate capture retry: a timed-out backend command may still be unresolved.
 }finally{
-  try{await context?.close();await browser?.close();}catch(e){result.cleanupError=e.message;result.status='FAIL';process.exitCode=1;}
+  cleanupStarted=true;checkpoint();
+  try{await context?.close();await browser?.close();}catch(e){result.cleanupError=e.message;result.coreStatus='FAIL';result.status='FAIL';process.exitCode=1;}
   if(server){server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
-  result.completed=new Date().toISOString();
-  fs.writeFileSync(path.join(out,'production-smoke.json'),JSON.stringify(result,null,2)+'\n');
-  console.log(JSON.stringify({status:result.status,stage,build:result.build,failure:result.failure,screenshots:result.screenshots.length,visualReview:result.visualReview.status,hardwareGpuTested:false,physicalPhoneTested:false}));
+  const complete=captures.complete();
+  result.status=result.coreStatus==='PASS'&&complete&&!result.unexpectedLifecycle&&!result.cleanupError?'AUTOMATED_SMOKE_PASS_VISUAL_REVIEW_REQUIRED':'FAIL';
+  if(result.status==='FAIL')process.exitCode=1;
+  result.completed=new Date().toISOString();checkpoint();
+  console.log(JSON.stringify({status:result.status,coreStatus:result.coreStatus,captureStatus:result.captureStatus,stage,build:result.build,failure:result.failure,screenshots:result.screenshots.length,visualReview:result.visualReview.status,hardwareGpuTested:false,physicalPhoneTested:false}));
 }
