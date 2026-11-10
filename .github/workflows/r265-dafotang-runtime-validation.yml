@@ -1,0 +1,306 @@
+name: R265 Dafotang runtime validation (no deploy)
+'on':
+  push:
+    branches:
+      - dev/r265-dafotang-runtime-receipt-fix
+permissions:
+  contents: read
+concurrency:
+  group: r265-dafotang-runtime-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r265-dafotang-runtime-receipt-fix' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 55
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: '/dev/null'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize external evidence
+        run: |
+          EVIDENCE_DIR="$RUNNER_TEMP/r265-dafotang-runtime"
+          mkdir -p "$EVIDENCE_DIR"
+          GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+          (set -C; : > "$GLOBAL_NPM_CONFIG")
+          chmod 444 "$GLOBAL_NPM_CONFIG"
+          printf 'EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\n' "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" >> "$GITHUB_ENV"
+      - name: Check out event and exact ancestors
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 3
+          persist-credentials: false
+      - name: Verify event, P, path scope, source pins and clean checkout
+        run: |
+          set +e
+          python3 -c "import sys; sys.path.insert(0,'.github/scripts'); import r265_dafotang_runtime_bound as r; print('admitted event',r.validate_checkout())" 2>&1 | tee "$EVIDENCE_DIR/checkout-identity.txt"
+          status=("${PIPESTATUS[@]}")
+          set -e
+          printf 'admission_exit=%s tee_exit=%s\n' "${status[0]}" "${status[1]}" | tee -a "$EVIDENCE_DIR/checkout-identity.txt"
+          if (( status[0] != 0 || status[1] != 0 )); then exit 1; fi
+          test ! -e dist
+      - name: Use unchanged pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+      - name: Verify toolchain and install locked dependencies
+        run: |
+          test "$(node --version)" = 'v24.22.1'
+          test "$(npm --version)" = '11.19.1'
+          npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+      - name: Check selective startup release with bounded small CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_ZONE_MANAGER_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-startup-release.test.mjs 2>&1 | tee "$EVIDENCE_DIR/startup-release-tests.log"
+
+      - name: Check capture failure controls with bounded host fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_CAPTURE_FACTORY -u R262_LEGACY_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-capture-evidence.test.mjs 2>&1 | tee "$EVIDENCE_DIR/capture-evidence-tests.log"
+
+      - name: Check emitted GLSL float literals and original gate contract
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_GLSL_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-glsl-float.test.mjs 2>&1 | tee "$EVIDENCE_DIR/glsl-float-tests.log"
+
+      - name: Check south-gate bottom bands through the default bounded gate entry
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_GLSL_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r242-taiji-south-gate-glaze.test.mjs 2>&1 | tee "$EVIDENCE_DIR/south-gate-bottom-bands-tests.log"
+
+      - name: Check native input cleanup and public update controls
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_INPUT_HELPER -u R262_LEGACY_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-entry-input.test.mjs 2>&1 | tee "$EVIDENCE_DIR/entry-input-tests.log"
+
+      - name: Test scene-focus handoff and native UI ownership
+        run: |
+          set -o pipefail
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_FIRST_PERSON_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-scene-focus.test.mjs 2>&1 | tee "$EVIDENCE_DIR/scene-focus-tests.log"
+
+      - name: Test R262 terminal-state recheck without spawning workload
+        run: |
+          set -o pipefail
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_DISABLE_EXIT_RECHECK python3 .github/scripts/test_r262_exit_recheck.py -v) 2>&1 | tee "$EVIDENCE_DIR/exit-recheck-tests.log"
+
+      - name: Check cold release and bounded observation with small CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_ZONE_MANAGER_SOURCE -u R262_SMOKE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-cold-release.test.mjs 2>&1 | tee "$EVIDENCE_DIR/cold-release-tests.log"
+
+      - name: Check completed merge buckets with bounded CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_MERGE_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-merge-bucket.test.mjs 2>&1 | tee "$EVIDENCE_DIR/merge-bucket-tests.log"
+
+      - name: Check permanent material-listener cleanup with bounded CPU fixtures
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_XIANAN_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-material-listener.test.mjs 2>&1 | tee "$EVIDENCE_DIR/material-listener-tests.log"
+
+      - name: Run unchanged build guard negative controls
+        run: python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
+
+      - name: Verify retained test counts and no skips
+        run: |
+          python3 - "$EVIDENCE_DIR" <<'PYCODE'
+          import pathlib,sys
+          root=pathlib.Path(sys.argv[1]); counts={'startup-release':5,'capture-evidence':6,'glsl-float':2,'south-gate-bottom-bands':1,'entry-input':10,'scene-focus':9,'cold-release':17,'merge-bucket':11,'material-listener':19}
+          if sum(counts.values())!=80: raise SystemExit('unexpected regression count')
+          for name,n in counts.items():
+              lines=(root/(name+'-tests.log')).read_text().splitlines()
+              for expected in (f'ℹ tests {n}',f'ℹ pass {n}','ℹ fail 0','ℹ skipped 0'):
+                  if expected not in lines: raise SystemExit(name+': missing '+expected)
+          for name,n in (('exit-recheck',10),('build-guard',26)):
+              text=(root/(name+'-tests.log')).read_text()
+              if f'Ran {n} tests in ' not in text or '\nOK\n' not in text or 'skipped=' in text: raise SystemExit(name+' incomplete')
+          PYCODE
+      - name: Run portable P and V tests separately
+        run: |
+          set -euo pipefail
+          P_DIR="$RUNNER_TEMP/r265-frozen-p"
+          mkdir "$P_DIR"
+          P=bfdef5abfd851e551339f7d8b328a0ccf792e389
+          test "$(git rev-parse "$P^{tree}")" = af16ca384ff59d185953962b981fe6cbcef55b3a
+          git archive "$P" > "$RUNNER_TEMP/r265-frozen-p.tar"
+          { printf 'commit=%s\ntree=%s\n' "$P" "$(git rev-parse "$P^{tree}")"; sha256sum "$RUNNER_TEMP/r265-frozen-p.tar"; } > "$EVIDENCE_DIR/p-archive-identity.txt"
+          tar -xf "$RUNNER_TEMP/r265-frozen-p.tar" -C "$P_DIR"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$P_DIR/node_modules"
+          chmod -R a-w "$P_DIR"
+          bash "$P_DIR/tests/r265-dafotang-frieze/run-small.sh" "$EVIDENCE_DIR/portable-p" 2>&1 | tee "$EVIDENCE_DIR/portable-p.log"
+          timeout --signal=TERM --kill-after=5s 30s env -u NODE_OPTIONS -u NODE_PATH node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r265-dafotang-frieze/compatibility.test.mjs 2>&1 | tee "$EVIDENCE_DIR/portable-v-compatibility.log"
+          grep -Fx 'ℹ tests 52' "$EVIDENCE_DIR/portable-v-compatibility.log"
+          grep -Fx 'ℹ pass 52' "$EVIDENCE_DIR/portable-v-compatibility.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/portable-v-compatibility.log"
+          for side in east west; do
+            timeout --signal=TERM --kill-after=5s 30s env -u NODE_OPTIONS -u NODE_PATH node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 "tests/current-state/dafotang-${side}-cabinet"*.test.mjs 2>&1 | tee "$EVIDENCE_DIR/portable-v-${side}.log"
+            grep -Fx 'ℹ tests 6' "$EVIDENCE_DIR/portable-v-${side}.log"
+            grep -Fx 'ℹ pass 6' "$EVIDENCE_DIR/portable-v-${side}.log"
+            grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/portable-v-${side}.log"
+          done
+          python3 - "$EVIDENCE_DIR/portable-p" <<'PYCODE'
+          import pathlib,sys
+          root=pathlib.Path(sys.argv[1]); names={'COMPATIBILITY':50,'COMPONENT':6,'REVISION':7,'EAST':6,'WEST':6,'FIGURE-amitabha':1,'FIGURE-shakyamuni':1,'FIGURE-bhaisajyaguru':1}
+          for name,n in names.items():
+              s=(root/(name+'.log')).read_text()
+              for line in (f'ℹ tests {n}',f'ℹ pass {n}','ℹ fail 0','ℹ skipped 0'):
+                  if line not in s.splitlines(): raise SystemExit(f'{name}: missing {line}')
+          if sum(names.values())!=78: raise SystemExit('wrong portable P count')
+          for name in ('PREFLIGHT','FIGURE-REPLAY','COLUMN-SECTION'):
+              if (root/(name+'.exit')).read_text().strip()!='0': raise SystemExit(name+' failed')
+          PYCODE
+      - name: Run new miniature controls
+        run: |
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r265_dafotang_runtime_bound.py -v) 2>&1 | tee "$EVIDENCE_DIR/selector-controls.log"
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r265-dafotang-runtime/host-contract.test.mjs 2>&1 | tee "$EVIDENCE_DIR/host-controls.log"
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r265-dafotang-runtime/visual.test.mjs 2>&1 | tee "$EVIDENCE_DIR/visual-controls.log"
+      - name: Verify new control counts and no skips
+        run: |
+          python3 - "$EVIDENCE_DIR" <<'PYCODE'
+          import pathlib,sys
+          root=pathlib.Path(sys.argv[1]); py=(root/'selector-controls.log').read_text()
+          if 'Ran 16 tests in ' not in py or '\nOK\n' not in py or 'skipped=' in py: raise SystemExit('selector controls incomplete')
+          for name,n in (('host-controls',35),('visual-controls',12)):
+              lines=(root/(name+'.log')).read_text().splitlines()
+              for expected in (f'ℹ tests {n}',f'ℹ pass {n}','ℹ fail 0','ℹ skipped 0'):
+                  if expected not in lines: raise SystemExit(name+': missing '+expected)
+          PYCODE
+      - name: Guarded same-stage host and lifecycle
+        run: |
+          set +e
+          python3 .github/scripts/r265_dafotang_runtime_bound.py host 2>&1 | tee "$EVIDENCE_DIR/host-admission.log"
+          status=("${PIPESTATUS[@]}")
+          set -e
+          printf 'phase_exit=%s tee_exit=%s\n' "${status[0]}" "${status[1]}" | tee -a "$EVIDENCE_DIR/host-admission.log"
+          if (( status[0] != 0 || status[1] != 0 )); then exit 1; fi
+      - name: Recheck npm configuration before build
+        run: |
+          python3 -c "import os,sys; from pathlib import Path; sys.path.insert(0,'.github/scripts'); import r265_dafotang_runtime_bound as r; r.check_environment(os.environ); r.check_fixed_npm_file(Path(os.environ['NPM_CONFIG_GLOBALCONFIG'])); p=Path('.npmrc'); r.check_project_config(p.exists(),p.is_symlink()); print('fixed npm config boundary PASS')" 2>&1 | tee "$EVIDENCE_DIR/npm-prebuild.log"
+      - name: Build ordinary production app under unchanged guard
+        run: python3 .github/scripts/r177_build_bound.py
+
+      - name: Verify normal build identity independently of artifact review
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          import {verifyBuildSource} from './scripts/build-identity.mjs';
+          const evidence = process.env.EVIDENCE_DIR;
+          const build = verifyBuildSource({root:process.cwd(), expectedBase:'/forbidden-city-3d/'});
+          const terminal = JSON.parse(fs.readFileSync(path.join(evidence,'build-terminal.json'),'utf8'));
+          assert.equal(terminal.status,'PASS');
+          assert.equal(terminal.exit_code,0);
+          assert.equal(terminal.child_exit_code,0);
+          assert.equal(terminal.cleanup_complete,true);
+          assert.equal(terminal.identity.head,process.env.GITHUB_SHA);
+          assert.equal(build.sourceCommit,process.env.GITHUB_SHA);
+          assert.equal(build.sourceDirty,false);
+          assert.equal(build.release,'R262');
+          assert.equal(build.buildId,'R262-9951d7c975d5');
+          assert.equal(build.sourceFingerprint,'cab590a62d2c5ddb8eb83aff59cc0284158de3d12ca968897f9a22dcdf3f7d22');
+          assert.equal(build.base,'/forbidden-city-3d/');
+          assert.equal(execFileSync('git',['status','--porcelain=v1','--untracked-files=all'],{encoding:'utf8'}).trim(),'');
+          fs.writeFileSync(path.join(evidence,'build-identity.json'),JSON.stringify(build,null,2)+'\n');
+          console.log(JSON.stringify({normalProductionBuild:'PASS',build,targetedBrowserValidationFollows:true,releaseAccepted:false}));
+          NODE
+
+      - name: Review bounded dist separately and verify every public source asset
+        run: |
+          node --max-old-space-size=128 --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {createHash} from 'node:crypto';
+          const evidence=process.env.EVIDENCE_DIR;
+          const build=JSON.parse(fs.readFileSync(path.join(evidence,'build-identity.json'),'utf8'));
+          const rows=[];
+          let totalBytes=0,publicFiles=0,publicBytes=0;
+          const result={scope:'Artifact inventory only; actual targeted shrine browser evidence is recorded separately',status:'FAIL',build};
+          const hashFile=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          try {
+            function visit(relative='') {
+              const full=path.join('dist',relative);
+              const st=fs.lstatSync(full);
+              assert.equal(st.isSymbolicLink(),false,relative);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(full).sort()) visit(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),relative);
+                assert.ok(st.size<=128*1024**2,'single artifact file exceeds 128 MiB');
+                totalBytes+=st.size;
+                assert.ok(totalBytes<=256*1024**2,'dist exceeds 256 MiB review bound');
+                rows.push({path:relative,bytes:st.size,sha256:hashFile(full)});
+                assert.ok(rows.length<=2000,'dist exceeds 2000-file review bound');
+              }
+            }
+            visit();
+            assert.ok(rows.length>2);
+            const byPath=new Map(rows.map(r=>[r.path,r]));
+            function verifyPublic(relative='') {
+              const source=path.join('public',relative);
+              const st=fs.lstatSync(source);
+              assert.equal(st.isSymbolicLink(),false,source);
+              if(st.isDirectory()) {
+                for(const name of fs.readdirSync(source).sort()) verifyPublic(relative?relative+'/'+name:name);
+              } else {
+                assert.ok(st.isFile(),source);
+                const output=byPath.get(relative);
+                assert.ok(output,'missing public asset '+relative);
+                assert.equal(output.bytes,st.size,relative);
+                assert.equal(output.sha256,hashFile(source),relative);
+                publicFiles++;
+                publicBytes+=st.size;
+              }
+            }
+            verifyPublic();
+            for(const required of ['index.html','build-info.json','textures/dafotang/wanshou-wujiang-modern-tc-r259.png','textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt']) assert.ok(byPath.has(required),required);
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.png').sha256,'8b814c7439788f2eb0f4bedbe08f7e674de18120d0bb4f1d38e1175943f8e70e');
+            assert.equal(byPath.get('textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt').sha256,'0eb3f5c26fc702117dc11b64f2e5d5bc1dbef27ec0476dbe7eb4f091c287bac9');
+            Object.assign(result,{status:'PASS',files:rows.length,totalBytes,publicFiles,publicBytes,releaseAccepted:false});
+            fs.writeFileSync(path.join(evidence,'dist-manifest.json'),JSON.stringify({...result,manifest:rows},null,2)+'\n');
+          } catch(error) {
+            result.reason=String(error.message);
+            throw error;
+          } finally {
+            fs.writeFileSync(path.join(evidence,'artifact-review.json'),JSON.stringify(result,null,2)+'\n');
+            console.log(JSON.stringify(result));
+          }
+          NODE
+
+      - name: Install official locked Chromium and CJK fonts
+        run: |
+          test "$(node -p "require('./node_modules/playwright/package.json').version")" = '1.64.0'
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y 'fonts-noto-cjk=1:20220127+repack1-1' 'fontconfig=2.13.1-4.2ubuntu5'
+          fc-match 'Noto Sans CJK SC' | tee "$EVIDENCE_DIR/fonts.txt"
+
+      - name: Guarded first-entry shrine capture
+        run: |
+          set +e
+          python3 .github/scripts/r265_dafotang_runtime_bound.py visual 2>&1 | tee "$EVIDENCE_DIR/visual-admission.log"
+          status=("${PIPESTATUS[@]}")
+          set -e
+          printf 'phase_exit=%s tee_exit=%s\n' "${status[0]}" "${status[1]}" | tee -a "$EVIDENCE_DIR/visual-admission.log"
+          if (( status[0] != 0 || status[1] != 0 )); then exit 1; fi
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Preserve build after technical capture success
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r265-dafotang-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Preserve evidence including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r265-dafotang-evidence-${{ github.sha }}
+          path: ${{ env.EVIDENCE_DIR }}/
+          if-no-files-found: error
+          retention-days: 7
