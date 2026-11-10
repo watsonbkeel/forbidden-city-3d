@@ -39,7 +39,7 @@ function addShader(shader){
 vec3 p = vR242WorldPosition;
 vec3 n = normalize(vR242WorldNormal);
 bool r242Front = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.x >= 136.3 && p.x <= 142.7 && p.y >= 4.65 && p.y <= 5.4;
-bool r251Trim = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.y >= 1 && p.y < 4.65 && ((p.x >= 136.3 && p.x <= 136.46) || (p.x >= 137.54 && p.x <= 137.7) || (p.x >= 141.3 && p.x <= 141.46) || (p.x >= 142.54 && p.x <= 142.7));
+bool r251Trim = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.y >= 1.0 && p.y < 4.65 && ((p.x >= 136.3 && p.x <= 136.46) || (p.x >= 137.54 && p.x <= 137.7) || (p.x >= 141.3 && p.x <= 141.46) || (p.x >= 142.54 && p.x <= 142.7));
 if (r242Front) {
   if (p.y < 4.95) diffuseColor.rgb = vec3(${green});
   else if (p.y < 5.03) diffuseColor.rgb = vec3(${yellow});
