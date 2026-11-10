@@ -48,17 +48,24 @@ function trimContract(mat){
  const expectedPrefix=prefix.replace('#include <common>','#include <common>'+varying);
  assert.ok(text.startsWith(expectedPrefix)&&text.endsWith(suffix),'known standard shader envelope only');
  const block=text.slice(expectedPrefix.length,text.length-suffix.length);
- let expr=null;
+ let expr=null,bottomExpr=null;
  if(block===start+oldBody){ /* precisely recognized old block, not arbitrary fallback */ }
  else {
   assert.ok(block.startsWith(start),'retained front selector');
   const rest=block.slice(start.length),m=rest.match(/^bool r251Trim = ([^;\n]+);\n/);
   assert.ok(m,'one supported trim selector declaration');expr=m[1];
   assert.match(expr,/^[pnxyzabs0-9. ()<>=!&|+-]+$/,'bounded scalar selector syntax');
-  assert.equal(rest,m[0]+oldBody+` else if (r251Trim) {\n  diffuseColor.rgb = vec3(${yellow});\n}`,'old bands first and actual yellow assignment only');
+  const trimBody=oldBody+` else if (r251Trim) {\n  diffuseColor.rgb = vec3(${yellow});\n}`;
+  if(rest===m[0]+trimBody){ /* precisely recognized pre-bottom block for behavioral RED */ }
+  else {
+   const b=rest.slice(m[0].length).match(/^bool r263Bottom = ([^;\n]+);\n/);
+   assert.ok(b,'one supported bottom selector declaration');bottomExpr=b[1];
+   assert.match(bottomExpr,/^[pnxyzabs0-9. ()<>=!&|+-]+$/,'bounded scalar bottom selector syntax');
+   assert.equal(rest,m[0]+b[0]+trimBody+` else if (r263Bottom) {\n  diffuseColor.rgb = vec3(${yellow});\n}`,'old bands and trims first, then actual bottom yellow assignment only');
+  }
  }
- const front=Function('p','n','abs','return '+oldFront),trim=expr===null?null:Function('p','n','abs','return '+expr);
- const rgb=(x,y=2.8,z=303.1,nz=-1)=>{const p={x,y,z},n={z:nz};return front(p,n,Math.abs)?(y<4.95?'green':y<5.03?'yellow':'green'):trim&&trim(p,n,Math.abs)?'yellow':'source';};
+ const front=Function('p','n','abs','return '+oldFront),trim=expr===null?null:Function('p','n','abs','return '+expr),bottom=bottomExpr===null?null:Function('p','n','abs','return '+bottomExpr);
+ const rgb=(x,y=2.8,z=303.1,nz=-1)=>{const p={x,y,z},n={z:nz};return front(p,n,Math.abs)?(y<4.95?'green':y<5.03?'yellow':'green'):trim&&trim(p,n,Math.abs)?'yellow':bottom&&bottom(p,n,Math.abs)?'yellow':'source';};
  const named=[['left-outer',136.38],['left-inner',137.62],['right-inner',141.38],['right-outer',142.62]];
  const actual=named.map(([name,x])=>({name,result:rgb(x)})),expected=named.map(([name])=>({name,result:'yellow'}));
  assert.deepEqual(actual,expected,'four independently named missing yellow trims (not program version)');
@@ -75,6 +82,34 @@ function trimContract(mat){
  }
  for(const x of [137,139.5,142])assert.equal(rgb(x),'source');
  assert.deepEqual(mat.userData.taijiSouthGateGlaze.verticalTrim,{status:'photo-fit-not-surveyed',width:.16,y:[1,4.65],upperExclusive:true,x:[[136.3,136.46],[137.54,137.7],[141.3,141.46],[142.54,142.7]]});
+ // Missing either bottom band must fail through the actual emitted color block,
+ // before metadata/cache checks. Literal samples avoid deriving expected bounds.
+ assert.deepEqual([{name:'left-bottom',result:rgb(137,1.05)},{name:'right-bottom',result:rgb(142,1.05)}],[{name:'left-bottom',result:'yellow'},{name:'right-bottom',result:'yellow'}],'two independently named bottom interiors must be yellow, not source red');
+ assert.notEqual(bottomExpr,null,'bottom selector required after behavioral RED');
+ const bottomAt=(x,y=1.05,z=303.1,nz=-1)=>bottom({x,y,z},{z:nz},Math.abs);
+ for(const [lo,hi,mid]of [[136.3,137.7,137],[141.3,142.7,142]]){
+  for(const x of [lo,mid,hi])for(const y of [1,1.05,1.09999]){
+   assert.equal(bottomAt(x,y),true,`bottom selector includes ${x},${y}`);
+   assert.equal(rgb(x,y),'yellow',`bottom color at ${x},${y}`);
+  }
+  for(const x of [lo-.00001,hi+.00001]){
+   assert.equal(bottomAt(x),false,'bottom x epsilon outside');assert.equal(rgb(x,1.05),'source');
+  }
+  for(const y of [.99999,1.10,1.10001,2.8,4.65,5])assert.equal(bottomAt(mid,y),false,'bottom y outside');
+  for(const y of [.99999,1.10,1.10001,2.8])assert.equal(rgb(mid,y),'source','stone foot and red panel remain unchanged');
+  for(const x of [lo,hi])assert.equal(rgb(x,.99999),'source','no yellow below the pier');
+  for(const [z,nz]of [[303.1-.00011,-1],[303.1+.00011,-1],[305.9,-1],[305.9,1],[303.1,0],[303.1,1],[303.1,-.999],[303.1,-.99899]]){
+   assert.equal(bottomAt(mid,1.05,z,nz),false);assert.equal(rgb(mid,1.05,z,nz),'source','off-plane, back and side unchanged');
+  }
+  for(const z of [303.1-.00009,303.1+.00009])assert.equal(bottomAt(mid,1.05,z),true,'same existing front-plane tolerance');
+  assert.equal(bottomAt(mid,1.05,303.1,-.99901),true,'same existing south-normal threshold');
+ }
+ for(const x of [137.70001,139.5,141.29999])for(const y of [1,1.05,1.09999]){
+  assert.equal(bottomAt(x,y),false);assert.equal(rgb(x,y),'source','central opening never becomes a yellow threshold');
+ }
+ for(const x of [136.46,137.54,141.46,142.54])for(const dx of [-.00001,0,.00001])assert.equal(rgb(x+dx,1.05),'yellow','bottom meets each vertical trim without a gap');
+ for(const x of [137,139.5,142])for(const [y,want]of [[4.65,'green'],[4.94999,'green'],[4.95,'yellow'],[5,'yellow'],[5.03,'green'],[5.4,'green']])assert.equal(rgb(x,y),want,'original horizontal color assignments retained');
+ assert.deepEqual(mat.userData.taijiSouthGateGlaze.bottomTrim,{status:'photo-fit-not-surveyed',height:.10,y:[1,1.10],upperExclusive:true,x:[[136.3,137.7],[141.3,142.7]]});
 }
 
 test('actual south gate keeps all triangles and physics while private green registers survive finish',async()=>{
@@ -93,7 +128,7 @@ test('actual south gate keeps all triangles and physics while private green regi
   assert.notEqual(mat,shared);assert.equal(shared.onBeforeCompile,T.Material.prototype.onBeforeCompile);
   assert.deepEqual([1,3,4].map(i=>gate.children[i].material),[mat,mat,mat]);
   assert.equal(f.k.owned.filter(m=>m===mat).length,1);assert.equal(mat.map,shared.map);assert.equal(mat.normalMap,shared.normalMap);
-  assert.equal(mat.roughness,shared.roughness);trimContract(mat);assert.equal(mat.customProgramCacheKey(),'r242-taiji-south-green-registers-v2');
+  assert.equal(mat.roughness,shared.roughness);trimContract(mat);assert.equal(mat.customProgramCacheKey(),'r242-taiji-south-green-registers-v3');
   assert.equal(width,6.4);assert.equal(width,w0);
   for(const k of ['colliders','walkables','rooms','regions','mapItems'])assert.deepEqual(f.k[k],base.k[k],k);
   assert.deepEqual(resolveCourtWallContract(f.z.items[29],new Map([['太极门',width]])),resolveCourtWallContract(base.z.items[29],new Map([['太极门',w0]])));

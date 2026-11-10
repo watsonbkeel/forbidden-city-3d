@@ -3,7 +3,7 @@ name: R262 production browser smoke (no deploy)
 'on':
   push:
     branches:
-      - dev/r262-material-listener-cleanup
+      - dev/r263-south-gate-bands
 
 permissions:
   contents: read
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   production_smoke:
-    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r262-material-listener-cleanup' }}
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r263-south-gate-bands' }}
     runs-on: ubuntu-22.04
     timeout-minutes: 35
     defaults:
@@ -40,13 +40,13 @@ jobs:
           fetch-depth: 2
           persist-credentials: false
 
-      - name: Require exact R262 parent and reviewed permanent material-listener candidate
+      - name: Require exact parent and reviewed R263 south-gate bands candidate
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = 'ccc5e18b975dd5e6b4c714d9a9eb8294b4dc144c'
-          test "$(git rev-parse HEAD^1^{tree})" = '7d9789320aadeb49cb4956cdec026c6f48f2888c'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/palace/special/XiananContactSources.js\nA\ttests/r262-material-listener.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '0d7e0d9c94823c823498d526d90c1248f64cbe6f'
+          test "$(git rev-parse HEAD^1^{tree})" = 'c787e0dc8ab80831d8d7e75fa8c43ff8cc8c9554'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/palace/special/TaijiSouthGateGlaze.js\nM\ttests/r242-taiji-south-gate-glaze.test.mjs\nM\ttests/r262-glsl-float.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -58,7 +58,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=permanent Xianan material-listener cleanup only; production smoke unchanged\n'
+            printf 'candidate_scope=photo-fit south-gate bottom bands only; production smoke unchanged; R262 release retained\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
 
@@ -101,6 +101,10 @@ jobs:
       - name: Check emitted GLSL float literals and original gate contract
         run: |
           timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_GLSL_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r262-glsl-float.test.mjs 2>&1 | tee "$EVIDENCE_DIR/glsl-float-tests.log"
+
+      - name: Check south-gate bottom bands through the default bounded gate entry
+        run: |
+          timeout --signal=TERM --kill-after=5s 30s env -u R262_REPO_ROOT -u R262_GLSL_SOURCE node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r242-taiji-south-gate-glaze.test.mjs 2>&1 | tee "$EVIDENCE_DIR/south-gate-bottom-bands-tests.log"
 
       - name: Check native input cleanup and public update controls
         run: |
@@ -265,6 +269,7 @@ jobs:
             ${{ env.EVIDENCE_DIR }}/startup-release-tests.log
             ${{ env.EVIDENCE_DIR }}/capture-evidence-tests.log
             ${{ env.EVIDENCE_DIR }}/glsl-float-tests.log
+            ${{ env.EVIDENCE_DIR }}/south-gate-bottom-bands-tests.log
             ${{ env.EVIDENCE_DIR }}/entry-input-tests.log
             ${{ env.EVIDENCE_DIR }}/scene-focus-tests.log
             ${{ env.EVIDENCE_DIR }}/exit-recheck-tests.log
@@ -283,7 +288,7 @@ jobs:
           retention-days: 7
 
   node20_build_compat:
-    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r262-material-listener-cleanup' }}
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r263-south-gate-bands' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions: {contents: read}
@@ -305,9 +310,9 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test -z "$(git status --porcelain=v1 --untracked-files=all)"
-          test "$(git show -s --format=%P HEAD)" = 'ccc5e18b975dd5e6b4c714d9a9eb8294b4dc144c'
-          test "$(git rev-parse HEAD^1^{tree})" = '7d9789320aadeb49cb4956cdec026c6f48f2888c'
-          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/palace/special/XiananContactSources.js\nA\ttests/r262-material-listener.test.mjs')"
+          test "$(git show -s --format=%P HEAD)" = '0d7e0d9c94823c823498d526d90c1248f64cbe6f'
+          test "$(git rev-parse HEAD^1^{tree})" = 'c787e0dc8ab80831d8d7e75fa8c43ff8cc8c9554'
+          EXPECTED_DIFF="$(printf 'M\t.github/workflows/r262-validation.yml\nM\tsrc/scene/palace/special/TaijiSouthGateGlaze.js\nM\ttests/r242-taiji-south-gate-glaze.test.mjs\nM\ttests/r262-glsl-float.test.mjs')"
           test "$(git diff --name-status HEAD^1 HEAD)" = "$EXPECTED_DIFF"
           test "$(git show HEAD^1:release.json)" = "$(printf '{\n  "release": "R262"\n}')"
           test "$(cat release.json)" = "$(printf '{\n  "release": "R262"\n}')"
@@ -319,7 +324,7 @@ jobs:
             printf 'frozen_wip_commit=%s\n' "$(git rev-parse HEAD^1)"
             printf 'frozen_wip_tree=%s\n' "$(git rev-parse HEAD^1^{tree})"
             printf 'checkout_clean=true\n'
-            printf 'candidate_scope=permanent Xianan material-listener cleanup only; production smoke unchanged\n'
+            printf 'candidate_scope=photo-fit south-gate bottom bands only; production smoke unchanged; R262 release retained\n'
             git diff --name-status HEAD^1 HEAD
           } | tee "$EVIDENCE_DIR/checkout-identity.txt"
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
