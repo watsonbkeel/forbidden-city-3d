@@ -6,7 +6,7 @@
 记录游戏设置中的实际构建标识、浏览器/设备、宫殿与位置、操作步骤、预期与实际结果。人物或夜景问题附北京时间；碰撞问题附路线方向。截图不得包含私人资料或凭据。通过仓库 Issues 提交，先检查重复问题。
 
 ## 本地开发
-使用支持本项目模块语法的 Node.js24 与 npm。已有 package-lock.json，应运行 npm ci，不要随意改依赖锁。
+本地开发使用 Node.js 24 与 npm；现有 Pages 工作流使用 Node.js 20，需独立验证其兼容性。已有 package-lock.json，应运行 npm ci，不要随意改依赖锁。
 
 - npm ci
 - npm run dev（当前默认路径 /gugong/）
@@ -15,6 +15,8 @@
 - node --test tests/r79-discovery.test.mjs
 - node --test tests/settings-menu.test.mjs
 - npm run test:current-state
+
+共享工作区与发行验收使用全新的独立 outDir，避免默认 dist/ 混入旧产物；环境、浏览器选择及完整命令见 [测试与门禁](docs/TESTING.md)。当前文档与历史证据入口见 [发布导航](docs/releases/README.md)。
 
 完整旧检查不是全绿。R78记录1290项中1139通过、151失败；后续版本应附其真实比较，不得把此旧快照当作新版本全部通过。
 

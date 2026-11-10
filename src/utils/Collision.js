@@ -1,3 +1,5 @@
+import {beginXiananMove,xiananMoveStart,tryXiananGroundedStep,finishXiananMove,abortXiananMove} from '../controls/XiananContactMotion.js';
+import {preserveXiananOwner,revokeXiananOwners} from '../scene/palace/special/XiananContactSources.js';
 import {preserveWumenSouthDeckOwner,canUseWumenSouthDeckBoundary} from '../scene/palace/special/WumenSouthDeckBoundary.js';
 import {preserveBPrincipalStairOwner,resolveBPrincipalStairContact} from '../scene/palace/BPrincipalStairContact.js';
 import {preserveTaihemenStairContactOwner,resolveTaihemenStairContact} from '../scene/palace/TaihemenStairContact.js';
@@ -98,6 +100,7 @@ export class CollisionManager {
       const box = walkable.box.isBox3 ? walkable.box.clone() : new THREE.Box3().setFromObject(walkable.box);
       // rescue: false —— 不做"钻进台基托回台面"（城台顶面下方有门洞，从门洞穿过时不能被托上城台）
       if (!box.isEmpty()) this.walkables.push({ type: 'box', box, rescue: walkable.rescue !== false, tag, ...(walkable.sideGateGalleryDeck===undefined?{}:{sideGateGalleryDeck:validateSideGateGalleryDeck(walkable.sideGateGalleryDeck,box)}) });
+      if (!box.isEmpty()) preserveXiananOwner(this,this.walkables.at(-1),walkable);
       if (!box.isEmpty()) preserveWumenSouthDeckOwner(this.walkables.at(-1),walkable);
       if (!box.isEmpty()) preserveTaihemenStairContactOwner(this.walkables.at(-1),walkable);
       if (!box.isEmpty()) preserveBPrincipalStairOwner(this.walkables.at(-1),walkable);
@@ -134,6 +137,7 @@ export class CollisionManager {
    */
   removeByTag(tag) {
     if (!tag) return;
+    revokeXiananOwners(this,tag);
     const beforeC = this.colliders.length;
     const beforeW = this.walkables.length;
     this.colliders = this.colliders.filter(c => c.tag !== tag);
@@ -391,6 +395,7 @@ export class CollisionManager {
    * 结果的地面高度写入 this.lastGroundY。
    */
   getValidPosition(currentPosition, targetPosition, radius = DEFAULT_PLAYER_RADIUS, feetY = null, stepUp = PLAYER.STEP_UP ?? 0.6, airFeet = null, motion = null) {
+    const xiananCall=beginXiananMove(this,motion,currentPosition,targetPosition,radius,stepUp);
     beginWumenJointCall(this,motion,feetY);
     this.lastDuixiuStepFeet = null;
     this.lastFurnitureStepFeet = null;
@@ -400,7 +405,7 @@ export class CollisionManager {
     const steps = Math.max(1, Math.ceil(distance / Math.max(radius * 0.5, 0.05)));
     const dx = (targetPosition.x - currentPosition.x) / steps;
     const dz = (targetPosition.z - currentPosition.z) / steps;
-    const valid = currentPosition.clone();
+    const valid = xiananCall?xiananMoveStart(xiananCall):currentPosition.clone();
     const candidate = currentPosition.clone();
     const track = feetY !== null && feetY !== undefined;
     let ground = track ? feetY : 0;
@@ -408,6 +413,12 @@ export class CollisionManager {
     let furnitureFeet=motion?.feetY??(motion?.kind==='kinematic'?feetY:airFeet??feetY)??(currentPosition.y-PLAYER.HEIGHT);
     let wumenFeet=motion?.feetY??feetY??(currentPosition.y-PLAYER.HEIGHT);
     const tryMove = (x, z) => {
+      if(xiananCall){
+        const local=tryXiananGroundedStep(xiananCall,x,z);
+        if(!local?.accepted)return false;
+        valid.copy(local.position);ground=local.feetY;
+        return true;
+      }
       const joint=tryWumenJointCallStep(this,new THREE.Vector3(valid.x,wumenFeet,valid.z),new THREE.Vector3(x,wumenFeet,z),radius);
       if(joint){
         if(!joint.accepted)return false;
@@ -454,9 +465,10 @@ export class CollisionManager {
       tryMove(valid.x + dx, valid.z);
       tryMove(valid.x, valid.z + dz);
     }
-    } catch(error) {abortWumenJointCall(this);throw error;}
+    } catch(error) {abortXiananMove(xiananCall);abortWumenJointCall(this);throw error;}
     endWumenJointCall(this);
     this.lastGroundY = ground;
+    if(xiananCall)finishXiananMove(xiananCall,valid);
     return valid;
   }
 
@@ -512,6 +524,7 @@ export class CollisionManager {
   }
 
   clear() {
+    revokeXiananOwners(this);
     this.colliders.length = 0;
     this.walkables.length = 0;
     this._grid = null;

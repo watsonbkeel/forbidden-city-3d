@@ -29,7 +29,8 @@ export function localizedPlaceName(name,id,locale=localeStore.locale) {
   const key=id??byName.get(name),entry=PLACE_TRANSLATIONS.places[key];
   return englishNameInfo(key).officialDisplayName??entry?.name??supplementalById.get(key)?.nameEn??null;
 }
-export const localizedSource = (source,locale=localeStore.locale) => locale!=='en'?source:source.titleEn?{...source,title:source.titleEn,publisher:'The Palace Museum'}:PLACE_TRANSLATIONS.sources[source.id]?{...source,...PLACE_TRANSLATIONS.sources[source.id]}:source;
+const sourcePublisherEn = new Map([['故宫博物院','The Palace Museum'],['北京市文物局','Beijing Municipal Cultural Heritage Bureau']]);
+export const localizedSource = (source,locale=localeStore.locale) => locale!=='en'?source:source.titleEn?{...source,title:source.titleEn,publisher:sourcePublisherEn.get(source.publisher)??source.publisher}:PLACE_TRANSLATIONS.sources[source.id]?{...source,...PLACE_TRANSLATIONS.sources[source.id]}:source;
 const projectSearchTerms = place => place.catalogKind==='supplemental'?[place.name,place.supplementalText.displayName,place.supplementalText.nameEn,...place.supplementalText.pinyin,...place.supplementalText.pinyin.map(p=>p.replaceAll(' ',''))].map(normalizeSearch):placeSearchTerms(place,PLACE_TRANSLATIONS);
 
 export const bilingualSearchTerms = place => [...new Set([...projectSearchTerms(place),...englishNameInfo(place.id).searchTerms.map(normalizeSearch)])];

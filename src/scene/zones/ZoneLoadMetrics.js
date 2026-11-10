@@ -1,5 +1,5 @@
 // Local, bounded CPU observations. No scene/resource references or error text.
-const ZONES = new Set(['outer-east','outer-west','axis-courts','west-six','east-six','garden','ningshou']);
+const ZONES = new Set(['outer-east','outer-west','axis-courts','west-six','east-six','garden','ningshou','yuqing-south-entry']);
 const MODES = new Set(['startup','cold','prebuilt','cached']);
 const PHASES = Object.freeze({cache:'cacheMs',build:'buildMs',scene:'sceneMs',colliders:'colliderMs',walkables:'walkableMs',notify:'notifyMs',rollback:'rollbackMs',silhouette:'silhouetteMs'});
 const kitMerges = new WeakMap();

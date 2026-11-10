@@ -1,3 +1,4 @@
+import {finalizeXiananVisible,revokeXiananKit} from './special/XiananContactSources.js';
 import {measureKitMerge} from '../zones/ZoneLoadMetrics.js';
 import {buildShunzhenGate} from './special/ShunzhenGate.js';
 import {southCourtGeometry} from './special/SouthCourtProfiles.js';
@@ -316,7 +317,7 @@ export class CourtKit {
     this.box(f, 'stone_slab', w + 2 * pw + 0.2, 0.1, gd + 0.5, 0, 0.05, 0);
     this.doors(f, { jamb: w / 2, height: h - 0.1, zHinge: -gd / 2 + 0.3, leaf: w / 2 - 0.05 });
     this.roof(f, { type: roof, width: w + 2 * pw + 0.3, depth: gd + 0.5, baseY: H, brackets: false, height: 1.3 });
-    if (name) this.plaque(f, name, 0, h + (H - h) / 2, -gd / 2 - 0.13, 0.72, 1.2);
+    if (name && plaque !== false) this.plaque(f, name, 0, h + (H - h) / 2, -gd / 2 - 0.13, 0.72, 1.2);
     this.mapRect(f, 'gate', name, w + 2 * pw, gd);
     return w + 2 * pw;
   }
@@ -764,10 +765,12 @@ export class CourtKit {
     const merged = measureKitMerge(this,()=>mergeByMaterial(this.root, { name: this.root.name }));
     merged.userData.architecture = architecture;
     merged.traverse(o => { if (o.isMesh) o.receiveShadow = true; });
+    finalizeXiananVisible(this,merged);
     return merged;
   }
 
   dispose(group) {
+    revokeXiananKit(this);
     group?.traverse(o => o.geometry?.dispose());
     this.owned.forEach(m => m.dispose());
     this.ownedTextures?.forEach(t => t.dispose());
@@ -777,5 +780,5 @@ export class CourtKit {
 }
 
 /** 朝向：正面（局部 -Z）朝向给定世界方向时的 rot */
-export const FACE = { south: 0, north: Math.PI, east: Math.PI / 2, west: -Math.PI / 2 }; // 本场景东 = -X
+export { FACE } from './FaceDirections.js';
 void _v;

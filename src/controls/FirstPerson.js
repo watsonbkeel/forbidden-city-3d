@@ -1,3 +1,4 @@
+import {getXiananJumpEligibility,consumeXiananMove,resolveXiananGroundedVertical,commitXiananNativeFrame,abortXiananNativeFrame} from './XiananContactMotion.js';
 import {attachWuyingCrownRecovery} from '../scene/palace/special/WuyingThreeBridgeRails.js';
 import * as THREE from 'three';
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
@@ -15,6 +16,43 @@ import { hasShortcutModifier, isTextEntryTarget } from './InputTargets.js';
 
 const _euler = new THREE.Euler(0, 0, 0, 'YXZ');
 const _right = new THREE.Vector3();
+
+// The constructor and actual update are the only issuers. These records never
+// travel in public motion fields and survive per-frame object replacement.
+const xiananSessions=new WeakMap(),xiananNativeFrames=new WeakMap();
+const point=p=>Object.freeze(p.toArray());
+function resetXiananNative(controller,reason){
+  const s=xiananSessions.get(controller);if(!s)return;
+  s.generation++;s.resetKind=reason;s.active=null;
+  if(reason==='dispose')s.disposed=true;
+}
+function beginXiananNative(controller,dt){
+  const s=xiananSessions.get(controller);
+  const motion={kind:'player',airborne:controller.airborne,feetY:controller.feetY};
+  if(!s)return motion;
+  const start=controller.camera.position.clone();
+  const f={session:s,controller,camera:s.camera,cm:s.cm,generation:s.generation,serial:++s.serial,dt,start:point(start),feet:controller.feetY,verticalVelocity:controller.verticalVelocity,airborne:controller.airborne,airOnly:false,move:null,committed:start.clone(),valid:Number.isFinite(dt)&&dt>=0&&dt<=.1&&Math.abs(start.y-PLAYER.HEIGHT-controller.feetY)<=1e-8};
+  xiananNativeFrames.set(motion,f);s.active=f;return motion;
+}
+function bindXiananNativeMove(motion,from,to){
+  const f=xiananNativeFrames.get(motion);if(!f)return;
+  if(f.move)f.valid=false;
+  f.move=Object.freeze({from:point(from),to:point(to),actualTarget:point(f.controller.camera.position)});
+}
+// Read-only lookup is not a registration API. Even invalid/expired authentic
+// tokens remain distinguishable from never-issued plain objects.
+export function getXiananNativeContext(cm,motion){
+  const f=xiananNativeFrames.get(motion);if(!f)return null;
+  const s=f.session,c=f.controller;
+  const active=f.valid&&!s.disposed&&s.active===f&&s.generation===f.generation&&cm===s.cm&&c.collisionManager===s.cm&&c.camera===s.camera;
+  return Object.freeze({status:active?'active':'invalid',session:s.key,controller:c,camera:s.camera,cm:s.cm,generation:f.generation,serial:f.serial,dt:f.dt,start:f.start,feet:f.feet,verticalVelocity:f.verticalVelocity,airborne:f.airborne,airOnly:f.airOnly,move:f.move,resetKind:s.resetKind});
+}
+
+// Read-only diagnostic freshness, never a motion/session registration API.
+export function getXiananNativeObservationStamp(controller){
+  const s=xiananSessions.get(controller);if(!s)return null;
+  return Object.freeze({frame:s.serial,generation:s.generation,active:s.active!==null,disposed:s.disposed,identityCurrent:controller.camera===s.camera&&controller.collisionManager===s.cm});
+}
 
 // 走路镜头起伏参数：步频（步/秒）在参考速度下取值，随实际速度按平方根缩放
 const HEAD_BOB = {
@@ -99,6 +137,7 @@ export class FirstPersonControls {
     
     this.setupEventListeners();
     try{this._wuyingRecovery = attachWuyingCrownRecovery(this);}catch(error){this.dispose();throw error;}
+    xiananSessions.set(this,{key:Object.freeze({}),camera,cm:collisionManager,generation:0,serial:0,active:null,resetKind:'constructor',disposed:false});
   }
   
   /**
@@ -304,6 +343,7 @@ export class FirstPersonControls {
   }
 
   stop() {
+    resetXiananNative(this,'stop');
     this._wuyingRecovery?.cancel();
     // 取消尚未消费的输入，不改已经起跳后的竖直速度或重力。
     this.jumpQueued = false;
@@ -407,20 +447,26 @@ export class FirstPersonControls {
     this.camera.position.sub(this.bobOffset);
     this.bobOffset.set(0, 0, 0);
     
+    const nativeMotion=beginXiananNative(this,delta);
+    const nativeFrame=xiananNativeFrames.get(nativeMotion);
+    try {
     this._wuyingRecovery.observe({forward:targetForward,right:targetRight});
     // Ordinary grounded jumping stays unchanged; isolated crown capability only.
     this._landed = false;
     if (this.jumpQueued) {
-      const recoveryLift=this._wuyingRecovery.tryJump();
+      const localJump=getXiananJumpEligibility(this.collisionManager,nativeMotion);
+      const recoveryLift=localJump===null?this._wuyingRecovery.tryJump():null;
       this.jumpQueued = false;
-      const onGround = !this.airborne && this.feetY >= (this.groundY ?? 0) - 0.08;
+      const onGround = localJump===null ? !this.airborne && this.feetY >= (this.groundY ?? 0) - 0.08 : localJump;
       if (onGround || recoveryLift !== null) {
         this.airborne = true;
         this.verticalVelocity = onGround ? (PLAYER.JUMP_VELOCITY ?? 6.7) : recoveryLift;
         if(onGround)this.groundY = this.feetY;
+        if(nativeFrame)nativeFrame.airOnly=true;
       }
     }
     const air = this.airborne;
+    nativeMotion.airborne=air;
     
     let speed = 0;
     // 空中：碰撞按真实脚面（可越过矮栏杆）；地面：按逻辑地面（上楼梯不滞后）
@@ -443,6 +489,7 @@ export class FirstPersonControls {
       // 碰撞检测（带沿墙滑动），用当前脚面高度对应的视点高度
       const newPosition = this.camera.position.clone();
       newPosition.y = eyeY;
+      bindXiananNativeMove(nativeMotion,currentPosition,newPosition);
       // 逐小步贴合地面（传入脚面），低帧率/快走一帧跨度大时也能正常上下台阶
       const validPosition = this._wuyingRecovery.withMovement(currentPosition,newPosition,()=>this.collisionManager.getValidPosition(
         currentPosition,
@@ -451,17 +498,20 @@ export class FirstPersonControls {
         air ? (this.groundY ?? 0) : baseFeet,
         PLAYER.STEP_UP ?? 0.6,
         (air || this.onSupport) ? this.feetY : null,
-        {kind:'player',airborne:air,feetY:this.feetY}
+        nativeMotion
       ));
       this._trackedGround = this.collisionManager.lastGroundY ?? null;
       
       this.camera.position.copy(validPosition);
-      if(!air && this.collisionManager.lastDuixiuStepFeet != null) {
+      if(nativeFrame)nativeFrame.committed.copy(this.camera.position);
+      const xiananResult=consumeXiananMove(this.collisionManager,nativeMotion,validPosition);
+      if(xiananResult)this.feetY=xiananResult.feetY;
+      if(!xiananResult && !air && this.collisionManager.lastDuixiuStepFeet != null) {
         this.feetY=this.collisionManager.lastDuixiuStepFeet;
         this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
       }
       
-      if(!air && this.collisionManager.lastFurnitureStepFeet != null) {
+      if(!xiananResult && !air && this.collisionManager.lastFurnitureStepFeet != null) {
         this.feetY=this.collisionManager.lastFurnitureStepFeet;
         this.groundY=this.feetY;this.verticalVelocity=0;this.onSupport=true;
       }
@@ -472,8 +522,10 @@ export class FirstPersonControls {
       }
     }
     
-    this.updateGround(delta);
+    this.updateGround(delta,nativeMotion);
     this.camera.position.y = this.feetY + PLAYER.HEIGHT;
+    if(nativeFrame)nativeFrame.committed.copy(this.camera.position);
+    commitXiananNativeFrame(this.collisionManager,nativeMotion);
     
     const sprint = this.isMobile
       ? mobileRunning && speed > PLAYER.MOVE_SPEED * 0.5
@@ -483,12 +535,25 @@ export class FirstPersonControls {
     this.motion.speed = speed;
     this.motion.sprint = sprint;
     this.motion.footstep = footstep;
+    } catch(error) {
+      if(nativeFrame){this.camera.position.copy(nativeFrame.committed);this.bobOffset.set(0,0,0);this.feetY=this.camera.position.y-PLAYER.HEIGHT;}
+      abortXiananNativeFrame(this.collisionManager,nativeMotion);throw error;
+    } finally {
+      if(nativeFrame?.session.active===nativeFrame)nativeFrame.session.active=null;
+    }
   }
   
   /**
    * 脚面高度跟随地面：上台阶/上坡平滑抬升；地面降低时按重力下落（走下台阶、从台基边缘下来）
    */
-  updateGround(delta) {
+  updateGround(delta,nativeMotion=null) {
+    const local=resolveXiananGroundedVertical(this.collisionManager,nativeMotion,delta);
+    if(local){
+      this.feetY=local.feetY;this.groundY=local.groundY;this.airborne=local.airborne;
+      this.verticalVelocity=local.verticalVelocity;this.onSupport=local.onSupport;
+      if(local.landed)this._landed=true;
+      return;
+    }
     const furniture=this.collisionManager.resolveFurnitureVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
     const terrain=furniture??this.collisionManager.resolveDuixiuVertical?.({x:this.camera.position.x,z:this.camera.position.z,feetY:this.feetY,groundY:this.groundY,airborne:this.airborne,verticalVelocity:this.verticalVelocity},delta,.5);
     if(terrain) {
@@ -681,6 +746,7 @@ export class FirstPersonControls {
    * 设置位置
    */
   setPosition(x, y, z) {
+    resetXiananNative(this,'position');
     this._wuyingRecovery?.reset();
     this.camera.position.set(x, y, z);
     this.bobOffset.set(0, 0, 0);
@@ -773,6 +839,7 @@ export class FirstPersonControls {
    * 销毁
    */
   dispose() {
+    resetXiananNative(this,'dispose');
     this._wuyingRecovery?.dispose();
     this.stop();
     window.removeEventListener('blur', this._onStop);

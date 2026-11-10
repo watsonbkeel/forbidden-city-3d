@@ -376,7 +376,7 @@ export class Minimap {
     }
     this.filterPlaces?.();
     if (this.selection) this.resumePlace.textContent = localeStore.locale === 'en'
-      ? `Continue reading ${localizedPlaceName(this.selection.name, this.selection.placeId) ?? 'this place'}`
+      ? `Continue reading ${localizedPlaceName(this.selection.name, this.selection.placeId) ?? (typeof this.selection.name === 'string' && bridgeFacilityInfoFor(this.selection.facilityId, this.selection.name) ? translateText(this.selection.name) : 'this place')}`
       : `继续阅读${placeDisplayName(this.selection.name)}`;
     this.renderBase(); this.drawMap();
   }

@@ -9,5 +9,6 @@ import ningshou from './ningshou.json';
 import outerEast from './outer-east.json';
 import outerWest from './outer-west.json';
 import garden from './garden.json';
+import yuqingSouthEntry from './yuqing-south-entry.json';
 
-export const ZONES = [axisCourts, eastSix, westSix, ningshou, outerEast, outerWest, garden];
+export const ZONES = [axisCourts, eastSix, westSix, ningshou, outerEast, outerWest, garden, yuqingSouthEntry];

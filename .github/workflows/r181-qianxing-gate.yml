@@ -1,0 +1,315 @@
+name: R186 E45 platforms and Baoyun validation
+
+# Existing user authorization applies; exact technical review and fresh admission remain required.
+# The fixed entry still requires actual source/input/resource admission.
+# Candidate-only E45 validation, independent of H17. No Pages/main writes.
+# The eight-zone resource envelope does not claim GPU/World coverage.
+'on':
+  push:
+    branches:
+      - dev/r186-e45-platforms-baoyun-validation
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r186-e45-platforms-baoyun-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.run_attempt == 1 && github.ref == 'refs/heads/dev/r186-e45-platforms-baoyun-validation' }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+    steps:
+      - name: Initialize evidence directory
+        run: |
+          EVIDENCE_DIR="$RUNNER_TEMP/r181-validation"
+          mkdir -p "$EVIDENCE_DIR"
+          printf 'EVIDENCE_DIR=%s\n' "$EVIDENCE_DIR" >> "$GITHUB_ENV"
+
+      - name: Check out exact event commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Verify and record exact clean event checkout
+        run: |
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          {
+            printf 'event_commit=%s\n' "$GITHUB_SHA"
+            printf 'checkout_commit=%s\n' "$(git rev-parse HEAD)"
+            printf 'checkout_tree=%s\n' "$(git rev-parse HEAD^{tree})"
+            printf 'checkout_clean=true\n'
+          } | tee "$EVIDENCE_DIR/checkout-identity.txt"
+
+      - name: Fetch only the seven exact public source baselines
+        run: |
+          for BASE in \
+            16e9e8224c1a4e3b0ed6b47793d5566ef05aeec2 \
+            ba42917f21f7fe561a3245ba813a91b173b88074 \
+            2964d59f0e89dedf425ad4bf1cefc9eea153ab0d \
+            d9172faf9595b34cd15477a2912cb397a7013186 \
+            53df463af8e762c74a24d291907aa8395a97e302 \
+            9ac3bb3107e657e5df08c290c307eaa415f38285 \
+            eb142e674f980f97727090c07afa97f3f05a7d37
+          do
+            git fetch --no-tags --depth=1 --filter=blob:none origin "$BASE"
+            git cat-file -e "$BASE^{commit}"
+          done
+
+      - name: Use pinned Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+
+      - name: Verify lock and record toolchain
+        run: |
+          mkdir -p "$EVIDENCE_DIR"
+          test "$(node --version)" = "v24.22.1"
+          test "$(npm --version)" = "11.19.1"
+          echo 'e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c  package-lock.json' | sha256sum --check -
+          {
+            git rev-parse HEAD
+            node --version
+            npm --version
+            sha256sum package.json package-lock.json
+          } | tee "$EVIDENCE_DIR/toolchain.txt"
+
+      - name: Install exact locked dependencies
+        run: |
+          npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          for (const name of ['playwright', 'playwright-core']) {
+            const p = JSON.parse(fs.readFileSync(`node_modules/${name}/package.json`, 'utf8'));
+            assert.equal(p.version, '1.64.0');
+            console.log(`${name} ${p.version}`);
+          }
+          NODE
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+
+      - name: Run bounded cumulative unit tests serially
+        run: |
+          export SUIAN_EVIDENCE_DIR="$EVIDENCE_DIR/suian-room"
+          mkdir -p "$SUIAN_EVIDENCE_DIR"
+          export EVIDENCE_OUT="$EVIDENCE_DIR/platform-route-evidence"
+          mkdir -p "$EVIDENCE_OUT"
+          TEST_FILES=(
+            tests/r169-current-source/source.test.mjs
+            tests/r169-dafotang-floor/contract.test.mjs
+            tests/r169-dafotang-floor/surface.test.mjs
+            tests/r169-tour-hud/layout.test.mjs
+            tests/r169-tour-hud/map-controls.test.mjs
+            tests/r169-tour-hud/presentation.test.mjs
+            tests/bilingual/language-control.test.mjs
+            tests/r170-covered-platforms/clip.test.mjs
+            tests/r170-covered-platforms/late-finalization.test.mjs
+            tests/r170-covered-platforms/platforms.test.mjs
+            tests/r170-covered-platforms/source.test.mjs
+            tests/r169-dafotang-photo-triptych/cache-lifecycle.test.mjs
+            tests/r169-dafotang-photo-triptych/component.test.mjs
+            tests/r169-dafotang-photo-triptych/host.test.mjs
+            tests/r169-dafotang-photo-triptych/loading.test.mjs
+            tests/r107-inactive-cache.test.mjs
+            tests/r172-weiyu-study/card.test.mjs
+            tests/r172-weiyu-study/component.test.mjs
+            tests/r172-weiyu-study/preservation.test.mjs
+            tests/r172-weiyu-study/routes.test.mjs
+            tests/r172-weiyu-study/source.test.mjs
+            tests/r160-jide/component.test.mjs
+            tests/r173-yinghua-shanmen/card.test.mjs
+            tests/r173-yinghua-shanmen/component.test.mjs
+            tests/r173-yinghua-shanmen/motion.test.mjs
+            tests/r173-yinghua-shanmen/routes.test.mjs
+            tests/r173-yinghua-shanmen/source.test.mjs
+            tests/r66-h-yinghua-gate.test.mjs
+            tests/r163-yinghua-stele/component.test.mjs
+            tests/r163-yinghua-west-ear.test.mjs
+            tests/r174-yinghua-east-ear/card.test.mjs
+            tests/r174-yinghua-east-ear/component.test.mjs
+            tests/r174-yinghua-east-ear/routes.test.mjs
+            tests/r174-yinghua-east-ear/source.test.mjs
+            tests/r175-cuiyun-hall/card.test.mjs
+            tests/r175-cuiyun-hall/component.test.mjs
+            tests/r175-cuiyun-hall/routes.test.mjs
+            tests/r175-cuiyun-hall/source.test.mjs
+            tests/r66-h-chonghua-knees.test.mjs
+            tests/r163-baozhong-2c38/component.test.mjs
+            tests/r163-yude-west.test.mjs
+            tests/r163-chongjing/contact-scope.test.mjs
+            tests/r163-h43-identities/identity.test.mjs
+            tests/r163-chongjing/local.test.mjs
+            tests/r163-yude-west/local.test.mjs
+            tests/r177-dafotang-layout/component.test.mjs
+            tests/r177-dafotang-layout/geometry.test.mjs
+            tests/r177-dafotang-layout/panel.test.mjs
+            tests/r177-dafotang-layout/photo-support.test.mjs
+            tests/r177-dafotang-layout/physics-view.test.mjs
+            tests/r177-dafotang-layout/routes.test.mjs
+            tests/r177-dafotang-layout/side-figures.test.mjs
+            tests/r177-dafotang-layout/source.test.mjs
+            tests/r177-dafotang-layout/triad.test.mjs
+            tests/r179-suian-room/approach.test.mjs
+            tests/r179-suian-room/atomic.test.mjs
+            tests/r179-suian-room/card.test.mjs
+            tests/r179-suian-room/component.test.mjs
+            tests/r179-suian-room/geometry.test.mjs
+            tests/r179-suian-room/legacy-routes.test.mjs
+            tests/r179-suian-room/lifecycle.test.mjs
+            tests/r179-suian-room/retained-approach.test.mjs
+            tests/r179-suian-room/routes.test.mjs
+            tests/r179-suian-room/source.test.mjs
+            tests/r164-yangxin-east-panels/component.test.mjs
+            tests/r164-yangxin-east-panels/lifecycle.test.mjs
+            tests/r164-yangxin-main-partitions/component.test.mjs
+            tests/r164-yangxin-main-partitions/lifecycle.test.mjs
+            tests/r164-yangxin-folded-doors/component.test.mjs
+            tests/r164-yangxin-folded-doors/lifecycle.test.mjs
+            tests/r88-yangxin/routes.test.mjs
+            tests/r88-yangxin/loader-rollback.test.mjs
+            tests/bilingual/location-messages.test.mjs
+            tests/r181-qianxing-gate/atomic.test.mjs
+            tests/r181-qianxing-gate/catalog-boundary.test.mjs
+            tests/r181-qianxing-gate/component.test.mjs
+            tests/r181-qianxing-gate/contract.test.mjs
+            tests/r181-qianxing-gate/display.test.mjs
+            tests/r181-qianxing-gate/geometry.test.mjs
+            tests/r181-qianxing-gate/integration.test.mjs
+            tests/r181-qianxing-gate/neighbors.test.mjs
+            tests/r181-qianxing-gate/ownership.test.mjs
+            tests/r181-qianxing-gate/routes.test.mjs
+            tests/r181-qianxing-gate/silhouette.test.mjs
+            tests/r181-qianxing-gate/source.test.mjs
+            tests/r181-qianxing-gate/wall-neighbors.test.mjs
+            tests/r182-gate-platforms/composition.test.mjs
+            tests/r182-gate-platforms/negative.test.mjs
+            tests/r182-gate-platforms/platforms.test.mjs
+            tests/r182-gate-platforms/routes.test.mjs
+            tests/r182-gate-platforms/source.test.mjs
+            tests/current-state/qianqing-gate.test.mjs
+            tests/current-state/qianqing-material-batching.test.mjs
+            tests/r157-zuoyi-own/component.test.mjs
+            tests/r157-youyi-fresh/component.test.mjs
+            tests/r157-youyi-rails/component.test.mjs
+            tests/photo-fidelity/batches/middle-right-whole.test.mjs
+            tests/r185-baoyun-surfaces/negative.test.mjs
+            tests/r185-baoyun-surfaces/ownership.test.mjs
+            tests/r185-baoyun-surfaces/platforms.test.mjs
+            tests/r185-baoyun-surfaces/routes.test.mjs
+            tests/r185-baoyun-surfaces/source.test.mjs
+            tests/major-pilots/baoyun-main-porch.test.mjs
+            tests/r159-baoyun-lions/component.test.mjs
+            tests/r159-baoyun-entry/component.test.mjs
+            tests/r159-baoyun-entry/contact.test.mjs
+          )
+          for TEST_FILE in "${TEST_FILES[@]}"; do test -f "$TEST_FILE"; done
+          sha256sum "${TEST_FILES[@]}" | tee "$EVIDENCE_DIR/test-entry-sha256.txt"
+          node --max-old-space-size=256 --max-semi-space-size=16 --test --test-concurrency=1 "${TEST_FILES[@]}" 2>&1 | tee "$EVIDENCE_DIR/unit-tests.log"
+
+      - name: Run the four fixed small E45 harness fixtures
+        run: |
+          DISABLE_SYSTEM_FONTS_LOAD=1 node --max-old-space-size=256 --max-semi-space-size=16 --test --test-concurrency=1 \
+            tests/r181-qianxing-gate/eight-zone/helpers.test.mjs \
+            tests/r181-qianxing-gate/eight-zone/gate-fixture.test.mjs \
+            tests/r181-qianxing-gate/eight-zone/native-evidence.test.mjs \
+            tests/r181-qianxing-gate/eight-zone/result.test.mjs
+
+      - name: Verify the build-only guard and synthetic negative controls
+        run: |
+          sha256sum --check <<'GUARD_SHA256'
+          e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3  .github/scripts/r177_build_bound.py
+          f0bb1016dd539055d99626a4003bfff46123189831a999a255dee42675907be2  .github/scripts/test_build_bound.py
+          GUARD_SHA256
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_build_bound.py 2>&1 | tee "$EVIDENCE_DIR/build-guard-tests.log"
+
+      # Same npm production build, now with a fixed build-only resource envelope.
+      # The helper admits from actual runner/ancestor headroom, never retries,
+      # and returns the child's real nonzero exit (or a resource failure).
+      - name: Build normal production app for the Pages base and verify identity
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/r177_build_bound.py
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import {verifyBuildSource} from './scripts/build-identity.mjs';
+          const build = verifyBuildSource({root:process.cwd(), expectedBase:'/forbidden-city-3d/'});
+          assert.equal(build.sourceCommit, process.env.GITHUB_SHA);
+          assert.equal(build.sourceDirty, false);
+          assert.equal(build.base, '/forbidden-city-3d/');
+          fs.writeFileSync(path.join(process.env.EVIDENCE_DIR, 'build-identity.json'), JSON.stringify(build, null, 2) + '\n');
+          console.log(JSON.stringify(build));
+          NODE
+
+      - name: Install locked Playwright Chromium
+        run: |
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+
+      - name: Install and verify the exact R171 official Ubuntu fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y 'fonts-noto-cjk=1:20220127+repack1-1' 'fontconfig=2.13.1-4.2ubuntu5'
+          test "$(dpkg-query -W -f='${Version}' fonts-noto-cjk)" = '1:20220127+repack1-1'
+          test "$(dpkg-query -W -f='${Version}' fontconfig)" = '2.13.1-4.2ubuntu5'
+          sha256sum --check <<'FONT_SHA256'
+          b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a  /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
+          faa5f3656a78b2e2d450d27fe8382c778bc2b6bb5ea29c986664a6a435056ceb  /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
+          a5d4b046c127da3d7c72f98b46c41489cd29bf52abfdf18aba920903e920d4ac  /usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc
+          a04178ec485dffdff7cc0c0c20e1fce9202d7e2160d805e8e44a4c8841c58481  /usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc
+          FONT_SHA256
+          {
+            dpkg-query -W -f='${Package}\t${Version}\n' fonts-noto-cjk fontconfig
+            fc-match 'Noto Sans CJK SC'
+            find /usr/share/fonts/opentype/noto -type f -name '*CJK*' -exec sha256sum {} +
+          } | tee "$EVIDENCE_DIR/fonts.txt"
+
+      # Fixed entry only; no manifest/argv command or limit overrides.
+      # Exact reviewed input pins, full result audit and native writer scope
+      # remain mandatory. No tee: all
+      # E45 phase stdout/stderr/log/result/tmp bytes belong to its one ledger.
+      - name: Verify E45 synthetic resource controls only
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_e45_bound.py
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_e45_result.py
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/test_e45_inputs.py
+
+      - name: One reviewed E45 actual eight-zone attempt
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python3 .github/scripts/r181_e45_bound.py
+
+      # The UI harness must use chromiumSandbox:true. It does not load World,
+      # so its --disable-gpu argument is not evidence of a floor GPU pass.
+      - name: Run portable UI harness
+        run: |
+          for file in tests/r169-tour-hud/browser/*.mjs; do node --check "$file"; done
+          node tests/r169-tour-hud/browser/build-fixture.mjs 2>&1 | tee "$EVIDENCE_DIR/ui-fixture-build.log"
+          EXPECTED_COMMIT="$GITHUB_SHA" node tests/r169-tour-hud/browser/check-layout.mjs 2>&1 | tee "$EVIDENCE_DIR/ui-layout.log"
+
+      - name: Save bounded validation evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: r181-validation-${{ github.sha }}
+          path: |
+            ${{ env.EVIDENCE_DIR }}
+            ${{ runner.temp }}/r181-eight-zone-evidence/
+            tests/r169-tour-hud/browser/evidence/
+            reports/r163-chongjing/local-controller.json
+            reports/r163-yude-west/local-controller.json
+          if-no-files-found: error
+          retention-days: 14

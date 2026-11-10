@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 import {PlaceCatalog} from '../../src/ui/PlaceCatalog.js';
 import {SupplementalPlaceCatalog} from '../../src/ui/SupplementalPlaceCatalog.js';
 import {actualPhysicalInputs,projectF47} from './prior-source.mjs';
-const physical=actualPhysicalInputs(process.cwd());
+import {physicalInputs as r179Inputs} from '../r181-qianxing-gate/prior-source.mjs';
+const physical=r179Inputs(process.cwd());
 // This verifies every actual runtime byte/mode and the exact four F47 inverse
 // deltas against public R177 before using any historical comparison view.
 const prior=projectF47(physical);

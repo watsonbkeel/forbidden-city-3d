@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import * as THREE from 'three';
 import {buildQianqingGateScreens} from './QianqingGateScreens.js';
 import { DIMENSIONS, LAYOUT } from '../../../config/constants.js';
@@ -48,12 +49,14 @@ export function buildQianqingGate(builder, data) {
       landingEndZ: landingNorth + data.position.z, endZ: connectorEnd + data.position.z,
       retainedPalaceHeight: DIMENSIONS.QIANQING.baseHeight, provisional: true },
   };
+  const coveredPlatforms = [];
   const worldPoint = (x, z) => ({ x: x + data.position.x, z: z + data.position.z });
 
   // Stone base. A single continuous platform is correct; its THREE separate
   // front stair openings and ramps must not be replaced by one merged opening.
-  builder.libBox(g, 'sumeru_band', halfW * 2, y, north - south, 0, y / 2, (north + south) / 2, 'band');
-  builder.libBox(g, 'stone_slab', halfW * 2, 0.1, north - south, 0, y - 0.05, (north + south) / 2);
+  const platformBase = builder.libBox(g, 'sumeru_band', halfW * 2, y, north - south, 0, y / 2, (north + south) / 2, 'band');
+  const platformPaving = builder.libBox(g, 'stone_slab', halfW * 2, 0.1, north - south, 0, y - 0.05, (north + south) / 2);
+  coveredPlatforms.push([platformBase, platformPaving]);
   builder.walkBox(-halfW, south, halfW, north, y);
   for (const s of [-1, 1]) {
     builder.col(s * halfW, 0, south, s * (halfW - 0.45), y, north);
@@ -177,8 +180,9 @@ export function buildQianqingGate(builder, data) {
   // join for the three rear passages; it avoids forcing side routes through
   // columns or door leaves before they can converge on the narrower causeway.
   const deck = (xHalf, z0, z1) => {
-    builder.libBox(g, 'sumeru_band', xHalf * 2, y, z1 - z0, 0, y / 2, (z0 + z1) / 2, 'band');
-    builder.libBox(g, 'stone_slab', xHalf * 2, 0.1, z1 - z0, 0, y - 0.05, (z0 + z1) / 2);
+    const base = builder.libBox(g, 'sumeru_band', xHalf * 2, y, z1 - z0, 0, y / 2, (z0 + z1) / 2, 'band');
+    const paving = builder.libBox(g, 'stone_slab', xHalf * 2, 0.1, z1 - z0, 0, y - 0.05, (z0 + z1) / 2);
+    coveredPlatforms.push([base, paving]);
     builder.walkBox(-xHalf, z0, xHalf, z1, y);
     for (const s of [-1, 1]) {
       builder.col(s * xHalf, 0, z0, s * (xHalf - 0.35), y, z1);
@@ -195,6 +199,8 @@ export function buildQianqingGate(builder, data) {
   const [glaze, gold, pink] = buildQianqingGateScreens(builder, g, {halfW, d, info, worldPoint});
   g.userData.qianqingPorchCoffers = buildQianqingGatePorchCoffers(builder,g,{width:w,depth:d});
   g.userData.qianqingGate = info;
+  // Rendering only, after this gate's source-bound hooks and before merging.
+  for (const [base, paving] of coveredPlatforms) removeCoveredPlatformSurface(base, paving, y, {clipCoincidentSides:true});
   const finished = builder.finish(g);
   // Run after ordinary material merging, which has already baked the folded
   // screens' transforms. Keep every triangle; encode only these six solid

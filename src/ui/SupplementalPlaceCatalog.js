@@ -1,3 +1,5 @@
+const QIANXING_SOURCE='https://wwj.beijing.gov.cn/bjww/resource/cms/article/bjww_362762/744041239/2026061517055186218.pdf';
+const qianxingSource=s=>s.publisher==='北京市文物局'&&(s.url===QIANXING_SOURCE||s.url===QIANXING_SOURCE+'#page=55');
 const fail=message=>{throw Error(`Supplemental place catalog: ${message}`);};
 const text=(value,english=false)=>{if(typeof value!=='string'||!value.trim()||/[<>]/.test(value)||(english&&/[\u3400-\u9fff]/u.test(value)))fail('invalid bilingual text');};
 const bilingual=value=>{if(!value||typeof value!=='object')fail('missing bilingual text');text(value.zh);text(value.en,true);};
@@ -19,9 +21,9 @@ export class SupplementalPlaceCatalog {
       const sources=new Map();
       for(const source of row.sources){
         text(source.id);text(source.title);text(source.titleEn,true);
-        if(source.publisher!=='故宫博物院'||sources.has(source.id))fail('invalid source identity');
+        if((source.publisher!=='故宫博物院'&&!qianxingSource(source))||sources.has(source.id))fail('invalid source identity');
         let url;try{url=new URL(source.url);}catch{fail('invalid source URL');}
-        if(url.protocol!=='https:'||!/^(?:[a-z0-9-]+\.)?dpm\.org\.cn$/.test(url.hostname)||url.username||url.password||url.port||url.search||(url.hash&&!(/^#page=[1-9][0-9]*$/.test(url.hash)&&/\.pdf$/i.test(url.pathname))))fail('unofficial source URL');
+        if(!qianxingSource(source)&&(url.protocol!=='https:'||!/^(?:[a-z0-9-]+\.)?dpm\.org\.cn$/.test(url.hostname)||url.username||url.password||url.port||url.search||(url.hash&&!(/^#page=[1-9][0-9]*$/.test(url.hash)&&/\.pdf$/i.test(url.pathname)))))fail('unofficial source URL');
         const signature=JSON.stringify([source.url,source.title,source.titleEn,source.publisher]);
         if(allSources.has(source.id)&&allSources.get(source.id)!==signature)fail('conflicting source identity');
         allSources.set(source.id,signature);sources.set(source.id,source);

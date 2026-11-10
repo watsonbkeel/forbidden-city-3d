@@ -1,3 +1,7 @@
+import {buildDafotangMainPlaque} from './DafotangMainPlaque.js';
+import {buildDafotangEastCabinets} from './DafotangEastCabinets.js';
+import {buildDafotangWoodPagodas} from './DafotangWoodPagodas.js';
+import {buildDafotangWeituo} from './DafotangWeituo.js';
 import {buildDafotangTriad} from './DafotangTriad.js';
 import {buildDafotangHistoricLayout} from './DafotangHistoricLayout.js';
 import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
@@ -24,7 +28,7 @@ import { withholdNanxunPlaceholderFurniture, applyNanxunCeilingBaseColors } from
 import * as THREE from 'three';
 import { buildWuyingMoonTerrace } from './WuyingMoonTerrace.js';
 import { buildJiyunNamePlaque } from './JiyunNamePlaque.js';
-import { FACE } from '../kit.js';
+import { FACE } from '../FaceDirections.js';
 import { PLAYER } from '../../../config/constants.js';
 import { buildBaoyunNameInscription } from './SourcedNameInscriptions.js';
 
@@ -970,13 +974,14 @@ function buildCeremonialHall(kit,item,p) {
   if(!shouan)wallZ(g.rear,-A,A,g.y,g.h-.5);
   if(cining)buildCiningModernDisplay(c);else retainLegacyFurniture(c);
   if(p.key==='dafotang'){g.warmRoomPartitions=[-1,1].map(side=>({x:side*bay*1.5,doorZ:g.front+2.2,doorW:1.8,doorH:2.65}));for(const part of g.warmRoomPartitions)c.partition(part.x,g.front,g.rear,g.y,g.h-.5,part.doorZ,part.doorW,'dafotang-fitted-warm-room-partition');g.partitionEvidence='THREE_SECTIONS_OFFICIAL__3_2_2_BAY_SPLIT_AND_DOOR_LOCATIONS_FITTED';}
-  if(p.key==='dafotang'){buildDafotangMainBuddha(c);buildDafotangHistoricLayout(c);buildDafotangTriad(c);registerDafotangPhotoSlots(c);}
+  if(p.key==='dafotang'){buildDafotangMainBuddha(c);buildDafotangHistoricLayout(c);buildDafotangTriad(c);buildDafotangWeituo(c);buildDafotangWoodPagodas(c);registerDafotangPhotoSlots(c);buildDafotangEastCabinets(c);}
   // Ceiling beams are structural fits. No generic throne, desks or chairs are
   // substituted for the modern sculpture-library uses or historical shrines.
   plainCeiling(c,g.y+g.h-.5);
   for(let k=1;k<g.bays;k++)box(p.key+'-transverse-ceiling-frame','timber',.20,.26,g.rear-g.front,-A+k*bay,g.y+g.h-.7,(g.front+g.rear)/2,false);
   for(const z of[g.front+(g.rear-g.front)/3,g.front+(g.rear-g.front)*2/3])box(p.key+'-longitudinal-ceiling-frame','timber',g.w,.24,.18,0,g.y+g.h-.72,z,false);
   addHallBearingRing(c);
+  if(p.key==='dafotang')buildDafotangMainPlaque(c);
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:g.eaveCount,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,-g.d/2-.32,1.2,1.9);
   const doorZ=g.centralFront??g.front;

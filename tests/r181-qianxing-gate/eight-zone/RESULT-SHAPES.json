@@ -1,0 +1,20 @@
+{
+ "schema":"e45-result-shapes/v1",
+ "top":["schema","status","completed","cleanup_complete","candidate_commit","candidate_tree","input_manifest_sha256","stages","assertionGroups","errors","cleanupErrors","physics","routes","pointStates","runtime","environment","configuration","startup","staticScope","ownerBranch","resources","nativeText"],
+ "runtime":["files","manifest_sha256"],
+ "environment":["assets","quality","anisotropy","fonts","nativeCanvas","declaredJavaScriptWrites","nativeWriteAudit"],
+ "asset":["path","bytes","sha256"],
+ "configuration":["order","hashes","cache","rivers","moats"],
+ "startup":["realBuilders","registered","allRegions","allMapItems","allRooms","loaded","prebuilt","cache","cacheBytes"],
+ "point":["label","x","z","expected","updates","current","loaded","prebuilt","cache","cacheBytes","physics","mode","ensured","requests"],
+ "physics":["label","colliders","walkables","templates","records","bytes","sha256"],
+ "physicsValue":["colliders","walkables","templates","records","bytes","sha256"],
+ "digest":["records","bytes","sha256"],
+ "route":["routes","frames","records","bytes","sha256"],
+ "ownerBranch":["unloaded","retained","firstBuildId","cost","returnedBuildId"],
+ "cost":["cacheable","geometryBytes","geometryAttributeBytes","textureBytes","accountedBytes","geometries","textures"],
+ "resource":["finalLoaded","finalPrebuilt","finalCache","finalColliders","finalWalkables","builds","tracked","events","records","bytes","sha256"],
+ "build":["id","zone","completed","disposals","colliders","walkables","regions","rooms","mapItems"],
+ "nativeText":["scope","actualSelectedFace","registeredFaces","requestedTexts","observedCodepoints","requests","textures","rowReadbackLimitBytes"],
+ "staticScope":["included","alreadyInZones","excluded","wholeWorld"]
+}

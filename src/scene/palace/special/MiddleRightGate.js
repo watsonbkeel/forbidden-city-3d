@@ -1,3 +1,4 @@
+import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import {middleRightRoofOptions,MIDDLE_RIGHT_ROOF} from './MiddleRightRoofProfile.js';
 import * as T from 'three';
 import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSupport.js';
@@ -18,7 +19,7 @@ export function buildMiddleRightGate(kit,item,zoneId,index){
  const ochre=color('middle_right_north_ochre',0x987653),edge=color('middle_right_north_blue_border',0x42685f);
  const box=(role,mat,w,h,d,x,y,z,parent=f)=>tag(typeof mat==='string'?kit.box(parent,mat,w,h,d,x,y,z):kit.mesh(parent,new T.BoxGeometry(w,h,d),mat,x,y,z),role);
  const solid=(role,mat,w,h,d,x,y,z,{overhead=false}={})=>{const m=box(role,mat,w,h,d,x,y,z);kit.col(f,x-w/2,y-h/2,z-d/2,x+w/2,y+h/2,z+d/2);if(overhead){const b=kit.colliders.at(-1);b.overhead={type:'piecewise-linear-x',sourceId:`middle-right:${role}`,points:[[b.min.x,b.min.y],[b.max.x,b.min.y]],minZ:b.min.z,maxZ:b.max.z,topY:b.max.y};}return m;};
- const platform=(role,x0,x1,z0,z1,y0,y1)=>{solid(role,'wall_brick',x1-x0,y1-y0,z1-z0,(x0+x1)/2,(y0+y1)/2,(z0+z1)/2);box(`${role}-paving`,'stone_slab',x1-x0,.04,z1-z0,(x0+x1)/2,y1-.02,(z0+z1)/2);kit.walkBox(f,x0,z0,x1,z1,y1);};
+ const platform=(role,x0,x1,z0,z1,y0,y1)=>{const base=solid(role,'wall_brick',x1-x0,y1-y0,z1-z0,(x0+x1)/2,(y0+y1)/2,(z0+z1)/2);const paving=box(`${role}-paving`,'stone_slab',x1-x0,.04,z1-z0,(x0+x1)/2,y1-.02,(z0+z1)/2);kit.walkBox(f,x0,z0,x1,z1,y1);removeCoveredPlatformSurface(base,paving,y1,{clipCoincidentSides:true});};
  // One real lower platform, raised hall only to the south of the north door.
  // North exterior paving is lower; no invisible full-height slab bridges it.
  platform('lower-platform',-8.4,8.4,-3.6,3.6,0,g.northPorchY);

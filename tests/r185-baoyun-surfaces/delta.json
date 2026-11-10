@@ -1,0 +1,52 @@
+{
+  "publicBase": "16e9e8224c1a4e3b0ed6b47793d5566ef05aeec2",
+  "priorRuntimeFilesSha256": "94dc90f9359fd13c7f35b14717d381e010613196d97eb0662324d9c6157710a3",
+  "rows": [
+    {
+      "path": "src/scene/palace/special/BaoyunStorehouse.js",
+      "mode": "100644",
+      "before": "0859e5d97d1f56484fcc2369fd334ba42067d0331917e16bad3ff1e44980fe30",
+      "after": "bccce31ab3217d0c35150ab0aaa5f662250e0adee34b6212f07646f10273a59d",
+      "edits": [
+        {
+          "before": "import * as THREE from 'three';\nimport { applyBoxUV } from '../../../utils/GeometryUV.js';\n\nconst SOURCE='https://www.dpm.org.cn/classify_detail/180962.html';\n",
+          "after": "import * as THREE from 'three';\nimport { applyBoxUV } from '../../../utils/GeometryUV.js';\nimport {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';\n\nconst SOURCE='https://www.dpm.org.cn/classify_detail/180962.html';\n"
+        },
+        {
+          "before": "  for(const s of[-1,1])for(let l=0;l<2;l++){\n    const y=g.bodyBase+l*g.storeyH,x=s*14.5;\n    if(l===0){box('baoyun-closed-gallery-plinth',grey,2.5,g.bodyBase,21.5,x,g.bodyBase/2,-2.75);kit.col(f,x-1.25,0,-13.5,x+1.25,g.bodyBase,8);}\n    box('baoyun-open-gallery-floor',pale,2.5,.18,21.5,x,y-.09,-2.75);box('baoyun-open-gallery-entablature',pale,2.5,.32,21.5,x,y+4.15,-2.75);\n    for(let k=0;k<7;k++){const z=-13.3+k*3.55;box('baoyun-gallery-white-column',pale,.28,4.0,.28,x-s*1.04,y+2,z);box('baoyun-gallery-column-capital',pale,.48,.2,.48,x-s*1.04,y+3.95,z);kit.col(f,x-s*1.04-.14,y,z-.14,x-s*1.04+.14,y+4,z+.14);}\n    if(l===1){box('baoyun-gallery-white-rail',pale,.16,.16,21.3,x-s*1.04,y+1,-2.75);for(let k=0;k<37;k++)box('baoyun-gallery-baluster',pale,.07,.85,.07,x-s*1.04,y+.48,-13.1+k*.58);}\n",
+          "after": "  for(const s of[-1,1])for(let l=0;l<2;l++){\n    const y=g.bodyBase+l*g.storeyH,x=s*14.5;\n    let galleryBase;\n    if(l===0){galleryBase=box('baoyun-closed-gallery-plinth',grey,2.5,g.bodyBase,21.5,x,g.bodyBase/2,-2.75);kit.col(f,x-1.25,0,-13.5,x+1.25,g.bodyBase,8);}\n    const galleryFloor=box('baoyun-open-gallery-floor',pale,2.5,.18,21.5,x,y-.09,-2.75);\n    if(galleryBase)removeCoveredPlatformSurface(galleryBase,galleryFloor,g.bodyBase,{clipCoincidentSides:true});\n    box('baoyun-open-gallery-entablature',pale,2.5,.32,21.5,x,y+4.15,-2.75);\n    for(let k=0;k<7;k++){const z=-13.3+k*3.55;box('baoyun-gallery-white-column',pale,.28,4.0,.28,x-s*1.04,y+2,z);box('baoyun-gallery-column-capital',pale,.48,.2,.48,x-s*1.04,y+3.95,z);kit.col(f,x-s*1.04-.14,y,z-.14,x-s*1.04+.14,y+4,z+.14);}\n    if(l===1){box('baoyun-gallery-white-rail',pale,.16,.16,21.3,x-s*1.04,y+1,-2.75);for(let k=0;k<37;k++)box('baoyun-gallery-baluster',pale,.07,.85,.07,x-s*1.04,y+.48,-13.1+k*.58);}\n"
+        }
+      ]
+    }
+  ],
+  "testEdits": [
+    {
+      "path": "tests/r169-current-source/source.test.mjs",
+      "mode": "100644",
+      "before": "b5da4d80a0661ea3bb07101132f1a53c388ed8cd14fdaa14564126480625f93b",
+      "after": "efcc05cd4910bf94acda918cd1c557dac620abb470a36244b997d9bcb36efdd6",
+      "edits": [
+        {
+          "before": "import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync} from 'node:child_process';import {manifest,physicalInputs,verifyInputs,restoreCurrentDelta,sha} from './boundary.mjs';\nconst data=physicalInputs(process.cwd());\ntest('all runtime bytes, modes and precise inverses are locked to the actual public main, without replacing runtime imports',()=>{const before=new Map([...data].map(([p,v])=>[p,sha(v.bytes)]));assert.deepEqual(verifyInputs(data),{physical:1012,prior:996,modified:30,added:16});for(const p of Object.keys(manifest.inverseEdits)){assert.deepEqual(restoreCurrentDelta(p,data.get(p).bytes),execFileSync('git',['show',manifest.baseCommit+':'+p],{maxBuffer:2**20}));}for(const [p,h] of before)assert.equal(sha(fs.readFileSync(p)),h);});\ntest('extra unlisted or missing runtime paths are rejected, never filtered by git ignore',()=>{for(const p of ['src/unlisted.js','public/.ignored-asset.bin','data/new.json']){const bad=new Map(data);bad.set(p,{mode:'100644',bytes:Buffer.from('x')});assert.throws(()=>verifyInputs(bad));}const missing=new Map(data);missing.delete('main.js');assert.throws(()=>verifyInputs(missing));});\ntest('unapproved bytes, old bytes, duplicated edits and executable-bit changes are rejected',()=>{for(const p of ['main.js',...Object.keys(manifest.inverseEdits),...manifest.files.filter(r=>r.before===null).map(r=>r.path)]){const row=data.get(p),bad=new Map(data);bad.set(p,{...row,bytes:Buffer.concat([row.bytes,Buffer.from('\\n')])});assert.throws(()=>verifyInputs(bad),p);bad.set(p,{...row,mode:'100755'});assert.throws(()=>verifyInputs(bad),p);if(manifest.inverseEdits[p]){const old=restoreCurrentDelta(p,row.bytes);assert.throws(()=>restoreCurrentDelta(p,old));const fragment=manifest.inverseEdits[p][0].after;assert.throws(()=>restoreCurrentDelta(p,Buffer.concat([row.bytes,Buffer.from(fragment)])));}}});\n",
+          "after": "import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync} from 'node:child_process';import {manifest,physicalInputs,verifyInputs,restoreCurrentDelta,sha} from './boundary.mjs';\nconst data=physicalInputs(process.cwd());\ntest('all runtime bytes, modes and precise inverses are locked to the actual public main, without replacing runtime imports',()=>{const before=new Map([...data].map(([p,v])=>[p,sha(v.bytes)]));assert.deepEqual(verifyInputs(data),{physical:1012,prior:996,modified:31,added:16});for(const p of Object.keys(manifest.inverseEdits)){assert.deepEqual(restoreCurrentDelta(p,data.get(p).bytes),execFileSync('git',['show',manifest.baseCommit+':'+p],{maxBuffer:2**20}));}for(const [p,h] of before)assert.equal(sha(fs.readFileSync(p)),h);});\ntest('extra unlisted or missing runtime paths are rejected, never filtered by git ignore',()=>{for(const p of ['src/unlisted.js','public/.ignored-asset.bin','data/new.json']){const bad=new Map(data);bad.set(p,{mode:'100644',bytes:Buffer.from('x')});assert.throws(()=>verifyInputs(bad));}const missing=new Map(data);missing.delete('main.js');assert.throws(()=>verifyInputs(missing));});\ntest('unapproved bytes, old bytes, duplicated edits and executable-bit changes are rejected',()=>{for(const p of ['main.js',...Object.keys(manifest.inverseEdits),...manifest.files.filter(r=>r.before===null).map(r=>r.path)]){const row=data.get(p),bad=new Map(data);bad.set(p,{...row,bytes:Buffer.concat([row.bytes,Buffer.from('\\n')])});assert.throws(()=>verifyInputs(bad),p);bad.set(p,{...row,mode:'100755'});assert.throws(()=>verifyInputs(bad),p);if(manifest.inverseEdits[p]){const old=restoreCurrentDelta(p,row.bytes);assert.throws(()=>restoreCurrentDelta(p,old));const fragment=manifest.inverseEdits[p][0].after;assert.throws(()=>restoreCurrentDelta(p,Buffer.concat([row.bytes,Buffer.from(fragment)])));}}});\n"
+        }
+      ]
+    },
+    {
+      "path": "tests/r182-gate-platforms/prior-source.mjs",
+      "mode": "100644",
+      "before": "0441e6300c73c2e7485a103e7832981b15a44093363adf1f9b23fcb500cf58a7",
+      "after": "8747e08dba718667f406feac556b4e22948c2fff4d999796d65a69ec28a1b076",
+      "edits": [
+        {
+          "before": "// Source-only composition: exact four gate repairs -> exact E45 view -> public16e9.\n// Behavioral builders always remain current. No unpublished Git object is read.\n",
+          "after": "import{projectBaoyunSurfaces,restorePriorTest as restoreR185Test}from'../r185-baoyun-surfaces/prior-source.mjs';\n// Source-only composition: exact four gate repairs -> exact E45 view -> public16e9.\n// Behavioral builders always remain current. No unpublished Git object is read.\n"
+        },
+        {
+          "before": "assert.equal(e45Files.size,1012);assert.equal(sha(JSON.stringify([...e45Files.values()].sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0))),delta.e45RuntimeFilesSha256);\nfunction restore(row,bytes){assert.equal(sha(bytes),row.after,row.path);let s=bytes.toString();for(const edit of row.edits){assert.equal(s.split(edit.after).length,2,'exact unique inverse '+row.path);s=s.replace(edit.after,edit.before)}assert.equal(sha(s),row.before,row.path);return Buffer.from(s)}\nexport function projectGatePlatforms(input){verifyCurrent(input);const out=new Map(input);assert.equal(delta.rows.length,4);for(const row of delta.rows){const current=out.get(row.path);assert.equal(current.mode,row.mode);out.set(row.path,{mode:row.mode,bytes:restore(row,current.bytes)})}assert.deepEqual([...out.keys()].sort(),[...e45Files.keys()].sort());for(const row of e45Files.values()){const current=out.get(row.path);assert.equal(current.mode,row.mode);assert.equal(sha(current.bytes),row.after,row.path)}return out}\nexport function restorePriorTest(path,bytes=fs.readFileSync(path)){const row=delta.testEdits.find(r=>r.path===path);return row?restore(row,bytes):bytes}\n",
+          "after": "assert.equal(e45Files.size,1012);assert.equal(sha(JSON.stringify([...e45Files.values()].sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0))),delta.e45RuntimeFilesSha256);\nfunction restore(row,bytes){assert.equal(sha(bytes),row.after,row.path);let s=bytes.toString();for(const edit of row.edits){assert.equal(s.split(edit.after).length,2,'exact unique inverse '+row.path);s=s.replace(edit.after,edit.before)}assert.equal(sha(s),row.before,row.path);return Buffer.from(s)}\nexport function projectGatePlatforms(input){verifyCurrent(input);input=projectBaoyunSurfaces(input);const out=new Map(input);assert.equal(delta.rows.length,4);for(const row of delta.rows){const current=out.get(row.path);assert.equal(current.mode,row.mode);out.set(row.path,{mode:row.mode,bytes:restore(row,current.bytes)})}assert.deepEqual([...out.keys()].sort(),[...e45Files.keys()].sort());for(const row of e45Files.values()){const current=out.get(row.path);assert.equal(current.mode,row.mode);assert.equal(sha(current.bytes),row.after,row.path)}return out}\nexport function restorePriorTest(path,bytes=fs.readFileSync(path)){bytes=restoreR185Test(path,bytes);const row=delta.testEdits.find(r=>r.path===path);return row?restore(row,bytes):bytes}\n"
+        }
+      ]
+    }
+  ]
+}

@@ -84,6 +84,35 @@ try {
   checks(m.name,s.rects['#minimap-close']?.centerHit,'detail map close remains unobstructed',s.rects['#minimap-close']);
   for(const control of ['#structural-preview-button','#place-travel'])checks(m.name,s.rects[control]?.centerHit,control+' reachable in detail',s.rects[control]);
   if(s.rects['#place-travel']?.visible){const expected=await page.evaluate(()=>window.qa.minimap.selection.name);await page.locator('#place-travel').click();checks(m.name,await page.evaluate(key=>window.qa.teleports.at(-1)===key,expected),'translated detail travels with original Chinese key');}
+  // E45-specific checks run in this existing browser/context. They do not
+  // replace the original HUD assertions or claim World/native-canvas coverage.
+  const e45Id='supp-fc-e8cc6a03c1';
+  const beforeE45=await page.evaluate(id=>({teleports:window.qa.teleports.slice(),
+   total:window.qa.minimap.placeCatalog.allPlaces.length,
+   matches:window.qa.minimap.placeCatalog.allPlaces.filter(p=>p.id===id).map(p=>({id:p.id,sourceObjectId:p.sourceObjectId,navigation:p.modelExperience.navigationMode}))}),e45Id);
+  checks(m.name,beforeE45.total===293&&beforeE45.matches.length===1&&beforeE45.matches[0]?.sourceObjectId==='FC-E8CC6A03C1'&&beforeE45.matches[0]?.navigation==='information-only','E45 adds exactly one independent information-only card to actual293 catalog',beforeE45);
+  if(!await page.evaluate(()=>window.qa.minimap.visible))await page.evaluate(()=>window.qa.minimap.toggle());
+  await page.evaluate(()=>window.qa.minimap.backToMap());
+  for(const query of ['前星门','Qianxing Gate','qian xing men','qianxingmen']){
+   await page.locator('#place-search').fill(query);
+   checks(m.name,await page.locator(`button[data-place-id="${e45Id}"]:visible`).count()>0,'E45 actual browser search: '+query);
+  }
+  for(const lang of ['zh-CN','en']){
+   await page.locator('#map-language').selectOption(lang);
+   const opened=await page.evaluate(id=>window.qa.minimap.showPlace(id),e45Id);
+   const e45=await state(page,m.name+'-e45-'+lang);
+   const panel=await page.evaluate(()=>({selected:window.qa.minimap.selectedPlaceId,
+    title:document.querySelector('#place-title')?.textContent,travel:!!document.querySelector('#place-travel'),
+    source:[...document.querySelectorAll('#place-info a')].filter(a=>a.href.includes('2026061517055186218.pdf')).map(a=>a.textContent),
+    text:document.querySelector('#place-info')?.textContent,teleports:window.qa.teleports.slice()}));
+   checks(m.name,opened===true&&panel.selected===e45Id&&e45.rects['#place-info']?.visible,'E45 real browser detail opens in '+lang);
+   checks(m.name,panel.title===(lang==='en'?'Qianxing Gate':'前星门')&&!panel.travel,'E45 localized information-only title and no travel action in '+lang,panel);
+   checks(m.name,panel.source.length===1&&panel.source[0].includes(lang==='en'?'Beijing Municipal Cultural Heritage Bureau':'北京市文物局')&&!panel.source[0].includes('The Palace Museum'),'E45 source publisher stays correctly attributed in '+lang);
+   checks(m.name,JSON.stringify(panel.teleports)===JSON.stringify(beforeE45.teleports),'E45 does not teleport in '+lang);
+   if(lang==='en')checks(m.name,!/[\u3400-\u9fff]|undefined|unavailable/.test(panel.text),'E45 complete English detail has no missing-label fallback');
+   await page.evaluate(()=>window.qa.minimap.backToMap());
+  }
+  await page.locator('#place-search').fill('');
   if(await page.evaluate(()=>window.qa.minimap.visible))await page.evaluate(()=>window.qa.minimap.toggle());
   for(let i=0;i<2;i++){await page.evaluate(()=>window.qa.minimap.toggle());await page.evaluate(()=>window.qa.minimap.setCompact(true));s=await state(page,m.name+'-en-compact-'+i);checks(m.name,s.rects['#structural-preview-button'].parent==='minimap','compact preserves same settings binding');for(const control of ['#structural-preview-button','#minimap-size-toggle','#minimap-close'])checks(m.name,s.rects[control]?.centerHit,control+' unobstructed in compact map',s.rects[control]);await page.evaluate(()=>window.qa.minimap.toggle());}
   s=await state(page,m.name+'-en-map-closed');closedChecks(s,m.name+'-en-map-closed',m.mobile,m.insets);

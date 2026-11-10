@@ -1,0 +1,103 @@
+{
+  "schema": "e45-native-source-evidence/v1",
+  "scope": "SOURCE_PINS_AND_DECLARED_READS_NOT_OS_CONFINEMENT_OR_PRODUCTION_RUN",
+  "node": "24.22.1",
+  "three": "0.162.0",
+  "canvas": "0.1.100",
+  "files": [
+    {
+      "path": "node_modules/@napi-rs/canvas/package.json",
+      "bytes": 4651,
+      "sha256": "8379e15beeaecdedc863f8ff0e2548935eed4fb7505b93a207600a212d7bc2c5"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/index.js",
+      "bytes": 5808,
+      "sha256": "bbdad32cab670261983ea56d4625fc7d07b1382f8bb7d6d31232bb2834861597"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/index.d.ts",
+      "bytes": 34280,
+      "sha256": "0f04ed30163f6501da3a7e0832e987a9396b5223674849974fbd6594a8112556"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/js-binding.js",
+      "bytes": 12799,
+      "sha256": "be59c8d4888630cf88656f65b63dd150e60bdb1d5eab0ba5b47c0a6cb389533e"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/geometry.js",
+      "bytes": 19312,
+      "sha256": "2e0ae365059fdb0424ddd2da8401e240a250c52b7efca68680996a99e804c1a1"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/load-image.js",
+      "bytes": 5736,
+      "sha256": "b4527335ec1d0505daf51be5ef919a8f951fc8296d88f4c5016e6ce772971570"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas-linux-x64-gnu/package.json",
+      "bytes": 820,
+      "sha256": "55eb689b9e7bf948154b49e2b763364bca65305d5112fa93ac8a0068703f5073"
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas-linux-x64-gnu/skia.linux-x64-gnu.node",
+      "bytes": 33393024,
+      "sha256": "059a0873c1114a8a59195f6c4bc76eab9c4e928251003cd501b59bc8aaaf3fa0"
+    },
+    {
+      "path": "node_modules/three/package.json",
+      "bytes": 4167,
+      "sha256": "2c5b740385ede44b4963ef366c3d29dd8e2e542a354af0ae2063f7dcb3dcde30"
+    }
+  ],
+  "sourceCitations": [
+    {
+      "path": "node_modules/@napi-rs/canvas/index.js",
+      "lines": [
+        150,
+        166
+      ],
+      "statement": "Truthy DISABLE_SYSTEM_FONTS_LOAD skips JS loadSystemFonts plus platform/home font directory loading."
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/index.js",
+      "lines": [
+        42,
+        47
+      ],
+      "statement": "families getter parses native getFamilies() JSON."
+    },
+    {
+      "path": "node_modules/@napi-rs/canvas/index.d.ts",
+      "lines": [
+        870,
+        875
+      ],
+      "statement": "families consists of family and styles(weight,width,style); registerFromPath(path,alias) returns FontKey or null."
+    }
+  ],
+  "readonlyInputs": [
+    "All runtime paths in tests/r169-current-source/delta.json; exact path/mode/hash set checked by child",
+    "All files in this eight-zone verifier directory and imported tests/r175-cuiyun-hall/replay.mjs plus tests/lib/kunning-walk.mjs, bounded-qa-clock.mjs and their transitive helper imports",
+    "Exact manifest and 43 image files in asset-pins.json; reads are synchronous in original TEXTURE_SPECS job order",
+    "Explicit parent-supplied font paths/bytes with fc-query family/index/charset evidence",
+    "Node executable, actual three and canvas dependency sources, actual GNU native binary and dynamic loader dependencies pinned by parent"
+  ],
+  "observedLocalLinkedLibraries": [
+    "libgcc_s.so.1",
+    "librt.so.1",
+    "libpthread.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "libc.so.6",
+    "ld-linux-x86-64.so.2"
+  ],
+  "persistentJavaScriptWriters": [],
+  "nativeInternalWrites": "NOT_PROVEN_ABSENT; parent must redirect/audit declared writable roots and reject unexplained files. No kernel confinement claim.",
+  "knownUnavailable": [
+    "Actual selected native face for each glyph is not exposed by API",
+    "No browser/native rendering equivalence",
+    "No real eight-zone execution or all-World collision result"
+  ]
+}
