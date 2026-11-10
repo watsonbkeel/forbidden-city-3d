@@ -173,6 +173,7 @@ export class ZoneManager {
         silhouette.visible = true;
         scene.add(silhouette);
       }
+      builder.releaseConstructionReferences?.();
       outcome='ok';
       } finally { finishZoneLoad(this.loadMetrics,trace,outcome,kitMergeMs(builder)); }
     }
