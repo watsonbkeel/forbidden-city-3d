@@ -22,6 +22,9 @@ function validateStructure(h){
  for(const m of ms){assert.ok(m.isMesh);assert.ok(m.parent===out.frame,'exact object identity: m.parent');assert.equal(out.frame.children.filter(x=>x===m).length,1);identity(m);assert.equal(m.castShadow,true);assert.equal(m.receiveShadow,true);assert.ok(kit.owned.includes(m.material));}
  return ms;
 }
+export function assertCachedSphere(g){const p=g.attributes.position;
+if(g.boundingSphere!==null){assert.ok(g.boundingSphere instanceof T.Sphere,'cached bounding sphere must be a THREE.Sphere or null');const centre=bounds(g).getCenter(new T.Vector3());let radius2=0;for(let k=0;k<p.count;k++)radius2=Math.max(radius2,centre.distanceToSquared(new T.Vector3().fromBufferAttribute(p,k)));same(g.boundingSphere.center.toArray(),centre.toArray(),'actual sphere centre');assert.equal(g.boundingSphere.radius,Math.sqrt(radius2),'actual sphere radius');}
+}
 // Independently derive every actual local triangle and translated owner box.
 // Reads world placement from guarded identity transforms, not mutable cache updates.
 export function assertCurrentLayoutSupport(h){
@@ -37,7 +40,7 @@ export function assertCurrentLayoutSupport(h){
   }
   same(box(s.template.bounds),box(local));const world=local.clone().translate(OFFSET);same(box(s.box),box(world));same(box(c),box(world));
   if(g.boundingBox)same(box(g.boundingBox),box(bounds(g)));
-  if(g.boundingSphere){const centre=bounds(g).getCenter(new T.Vector3());let radius2=0;for(let k=0;k<p.count;k++)radius2=Math.max(radius2,centre.distanceToSquared(new T.Vector3().fromBufferAttribute(p,k)));same(g.boundingSphere.center.toArray(),centre.toArray(),'actual sphere centre');assert.equal(g.boundingSphere.radius,Math.sqrt(radius2),'actual sphere radius');}
+  assertCachedSphere(g);
 
  }
  return true;

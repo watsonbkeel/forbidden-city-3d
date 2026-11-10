@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {T,fixture,candidate,baseline,beam} from './fixture.mjs';
 import {assertCurrentSource,priorR264LayoutSource,readPinnedFixture,loadPinnedLayout,SOURCE_PATH,sha256} from './source-view.mjs';
 import {projectR264LayoutSnapshot,assertCurrentLayoutSupport,snapshotLegacyMesh} from './snapshot-view.mjs';
+import * as snapshotView from './snapshot-view.mjs';
 const source=assertCurrentSource(),old=readPinnedFixture('r264-layout.js.txt').toString('utf8');
 test('immutable old source is distinct and exact inverse preserves original b4a836 bytes',()=>{assert.notEqual(source,old);assert.equal(sha256(priorR264LayoutSource(source,SOURCE_PATH)),sha256(old));assert.equal(sha256(old),'b4a8363eaa7f74fa11638aeeef5f660dcb45bb1268117a75d633035209c2cfeb');});
 for(const[name,s,p]of[['unknown source',source+'\n',SOURCE_PATH],['old as current',old,SOURCE_PATH],['second product path',source,'src/second.js'],['missing helper',source.replace('function createLowerFrontEntablatureGeometry(){','function missing(){'),SOURCE_PATH],['duplicate call',source.replace("add('lower-front-entablature',createLowerFrontEntablatureGeometry());","add('lower-front-entablature',createLowerFrontEntablatureGeometry());add('lower-front-entablature',createLowerFrontEntablatureGeometry());"),SOURCE_PATH],['missing metadata',source.replace("columnInset:.08,",''),SOURCE_PATH]])test('source inverse rejects '+name,()=>assert.throws(()=>priorR264LayoutSource(s,p)));
@@ -54,4 +55,17 @@ const mutate=[
  ['changed old beam',(h,b)=>beam(b.out).geometry.attributes.position.array[0]+=.1]
 ];
 for(const[name,change]of mutate)test('projection rejects '+name+' and does not mutate inputs',()=>pair((now,prior)=>{change(now,prior);const before=[state(now),state(prior)];assert.throws(()=>projectR264LayoutSnapshot(now,prior));assert.deepEqual([state(now),state(prior)],before);}));
+// Two miniature geometries exercise both owner contexts without a hall construction.
+for(const role of ['lower-front-entablature','other-layout-owner']) test('cached sphere rejects invalid non-null values: '+role,()=>{
+ const geometry=new T.BoxGeometry(1,2,3); geometry.name=role;
+ try {
+  assert.equal(typeof snapshotView.assertCachedSphere,'function','cached sphere validator must exist');
+  for(const invalid of [false,undefined,0,NaN,'']){
+   geometry.boundingSphere=invalid;
+   assert.throws(()=>snapshotView.assertCachedSphere(geometry),`reject ${String(invalid)}`);
+  }
+  geometry.boundingSphere=null; assert.doesNotThrow(()=>snapshotView.assertCachedSphere(geometry));
+  geometry.computeBoundingSphere(); assert.doesNotThrow(()=>snapshotView.assertCachedSphere(geometry));
+ } finally {geometry.dispose();}
+});
 process.on('exit',()=>console.log('RESOURCE_USAGE',JSON.stringify({usage:process.resourceUsage(),memory:process.memoryUsage()})));
