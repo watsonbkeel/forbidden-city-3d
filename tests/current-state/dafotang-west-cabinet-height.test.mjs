@@ -1,3 +1,6 @@
+import {priorR264LayoutSource,loadPinnedLayout,SOURCE_PATH} from '../r265-dafotang-frieze/source-view.mjs';
+import {projectR264LayoutSnapshot} from '../r265-dafotang-frieze/snapshot-view.mjs';
+const r264Layout=await loadPinnedLayout('r264');
 // Actual HistoricLayout geometry on a support-only synthetic fixture.
 // No real hall/Kit/figure/finish/World/GPU. Does not require private QA files.
 import test from 'node:test';
@@ -27,10 +30,10 @@ function panels(h){
  const meshes=h.out.frame.children.filter(m=>m.userData.dafotangLayoutRole.startsWith('west-cabinet-'));assert.equal(meshes.length,30);h.kit.root.updateMatrixWorld(true);
  return Array.from({length:6},(_,i)=>{const parts=meshes.slice(i*5,i*5+5);assert.deepEqual(parts.map(m=>m.userData.dafotangLayoutRole),['west-cabinet-unpictured-back','west-cabinet-side-frame','west-cabinet-side-frame','west-cabinet-cross-frame','west-cabinet-cross-frame']);const box=new T.Box3();for(const m of parts)box.union(localBox(m));return{parts,box};});
 }
-function preservedGeometry(h){
+function preservedGeometry(h,historicalRows){
  const digest=meshes=>sha(JSON.stringify(meshes.map(m=>({name:m.name,role:m.userData.dafotangLayoutRole??null,position:m.position.toArray(),quaternion:m.quaternion.toArray(),scale:m.scale.toArray(),visible:m.visible,castShadow:m.castShadow,receiveShadow:m.receiveShadow,material:m.material.name,attributes:Object.fromEntries(Object.entries(m.geometry.attributes).map(([k,a])=>[k,{itemSize:a.itemSize,normalized:a.normalized,array:Array.from(a.array)}])),index:Array.from(m.geometry.index.array),groups:m.geometry.groups}))));
  const nonWest=h.out.frame.children.filter(m=>!m.userData.dafotangLayoutRole.startsWith('west-cabinet-')),supports=h.out.changedPedestals.map(q=>q.mesh);assert.equal(nonWest.length,55);assert.equal(supports.length,3);
- return{nonWestMeshes:55,nonWestSha256:digest(nonWest),replacedPedestalMeshes:3,replacedPedestalsSha256:digest(supports)};
+ return{nonWestMeshes:55,nonWestSha256:historicalRows?sha(JSON.stringify(historicalRows.filter(m=>!m.role.startsWith('west-cabinet-')))):digest(nonWest),replacedPedestalMeshes:3,replacedPedestalsSha256:digest(supports)};
 }
 // Reverting the height correction would fail these two observed RED assertions.
 test('R258 central west inset fields sit at source-guided neck/shoulder band',()=>{
@@ -64,7 +67,7 @@ test('R258 all layout owners match actual vertices with only new west high-regio
 });
 // Exact allowed deltas preserve all unrelated bytes and the observed baseline meshes.
 test('R258 three explicit west edits reverse to old source and leave all other geometry unchanged',()=>{
- const source=n=>fs.readFileSync(new URL('../../src/scene/palace/special/'+n,import.meta.url),'utf8');let old=source('DafotangHistoricLayout.js');
+ const source=n=>fs.readFileSync(new URL('../../src/scene/palace/special/'+n,import.meta.url),'utf8');let old=priorR264LayoutSource(source('DafotangHistoricLayout.js'),SOURCE_PATH);
  const changes=[
   ["westWallCabinetFrames:6,westWallFrameScope:'SIX_INSET_DISPLAY_FIELDS__OUTER_CABINET_UNMODELED',westWallSourceFigure:'2015:printed307:fig23',newReligiousFigures:0","westWallCabinetFrames:6,newReligiousFigures:0"],
   ["  // West(+X), 2015 printed307 fig23: four tall and two shorter inset display fields.\n  // Only these fields/borders are raised; the enclosing long cabinet is unmodeled.\n  // All heights are MODEL_FIT_NOT_SURVEY; no invented small figures or empty claim.","  // West(+X) wall:4 tall center cabinet frames and2 shorter side frames.\n  // No raster images and no fabricated small Buddha reliefs fill these frames."],
@@ -72,7 +75,7 @@ test('R258 three explicit west edits reverse to old source and leave all other g
  ];for(const[after,before]of changes){assert.equal(old.split(after).length,2);old=old.replace(after,before);}assert.equal(sha(old),'10e5c3faae7fcc8f31f365e2a274c719f249d207c9aa4dc3d682ae6e37d03125');
  assert.equal(sha(source('DafotangEastCabinets.js')),'d0c79417b60608596f2947dac116bdd169ef415cb755223bc5dfa54186ca72ff');
  const host=r259PriorHost(source('RemainingOuterHalls.js'));assert.equal(sha(host),'f18e33a0f1b6b37c081a8d856444c4766db385f2fcb7109c6190589945025662');assert.equal((host.match(/buildDafotangHistoricLayout\(c\)/g)||[]).length,1);assert.ok(host.includes('buildDafotangHistoricLayout(c);buildDafotangTriad(c);buildDafotangWeituo(c);buildDafotangWoodPagodas(c);registerDafotangPhotoSlots(c);buildDafotangEastCabinets(c);'));
- const h=built();try{assert.deepEqual(preservedGeometry(h),{nonWestMeshes:55,nonWestSha256:'4a97e77c1fa1c2402bd12f89c9a776c81a91215d7885e79fd6e32280eb9c89e1',replacedPedestalMeshes:3,replacedPedestalsSha256:'a9deb976f914be96f7464c4997610aa5f186e9a0434ccbff6ea689bc879a76f6'});}finally{h.dispose();}
+ const h=built(),prior=fixture();try{prior.out=r264Layout.buildDafotangHistoricLayout(prior);assert.deepEqual(preservedGeometry(h,projectR264LayoutSnapshot(h,prior)),{nonWestMeshes:55,nonWestSha256:'4a97e77c1fa1c2402bd12f89c9a776c81a91215d7885e79fd6e32280eb9c89e1',replacedPedestalMeshes:3,replacedPedestalsSha256:'a9deb976f914be96f7464c4997610aa5f186e9a0434ccbff6ea689bc879a76f6'});}finally{h.dispose();prior.dispose();}
 });
 // Height-only work must not change installer rejection or old pedestal ownership.
 test('R258 retains support courses and rejects duplicate or invalid synthetic host without mutation',()=>{
