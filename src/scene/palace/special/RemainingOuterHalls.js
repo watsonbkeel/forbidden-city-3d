@@ -1,4 +1,5 @@
 import {buildDafotangUpperEastBand} from './DafotangUpperEastBand.js';
+import {buildDafotangUpperPendants} from './DafotangUpperPendants.js';
 import {buildDafotangUpperWestBand} from './DafotangUpperWestBand.js';
 import {buildDafotangUpperCentralBand} from './DafotangUpperCentralBand.js';
 import {buildDafotangMainPlaque} from './DafotangMainPlaque.js';
@@ -988,6 +989,7 @@ function buildCeremonialHall(kit,item,p) {
   if(p.key==='dafotang')buildDafotangUpperCentralBand(c);
   if(p.key==='dafotang')buildDafotangUpperWestBand(c);
   if(p.key==='dafotang')buildDafotangUpperEastBand(c);
+  if(p.key==='dafotang')buildDafotangUpperPendants(c);
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:g.eaveCount,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,-g.d/2-.32,1.2,1.9);
   const doorZ=g.centralFront??g.front;
