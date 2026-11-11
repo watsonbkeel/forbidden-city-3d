@@ -22,6 +22,15 @@ export const QIANDONG_SECOND_FRONT_COURT=freeze({
     "at": -116.1201461854728,
     "w": 6
   },
+  "southWallBand": {
+    "x0": -128.63727729556877,
+    "x1": -102.41388761991777,
+    "z": 466,
+    "t": 1,
+    "h": 4.5,
+    "originalHeight": 6.5,
+    "baseHeight": 1
+  },
   "rooms": [
     {
       "id": "westWing",
@@ -81,7 +90,7 @@ export const QIANDONG_SECOND_FRONT_COURT=freeze({
     "floorY": 0,
     "gateNetWidth": 3.4,
     "gateDepth": 0.8,
-    "gateRoofBaseY": 7.8,
+    "gateRoofBaseY": 5.8,
     "gateRoofDepth": 2.4,
     "gateNetHeight": 4.6,
     "gateRoofHeight": 1.2
@@ -192,13 +201,21 @@ const RETAINED=freeze([
 const equal=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
 const fail=()=>{throw Error('Qiandong second front court exact source/gap/selector contract mismatch')};
+/** Local engineering band is anchored to the existing equal-scale wing
+ * symbols, not a second registration or a claim of historical elevation. */
+export function validateQiandongSecondFrontCourtProfile(p=QIANDONG_SECOND_FRONT_COURT){
+ const b=p?.southWallBand,f=p?.fit,rooms=p?.rooms;
+ if(!b||!f||!Number.isFinite(p.gap?.at)||!Number.isFinite(p.gap?.w)||!Array.isArray(rooms)||rooms.length!==3||!Object.values(b).every(Number.isFinite)||!Object.values(f).every(Number.isFinite)||rooms.some(r=>!r.symbol||!Object.values(r.symbol).every(Number.isFinite)))fail();
+ if(b.x0!==rooms.find(r=>r.id==='eastWing')?.symbol.x0||b.x1!==rooms.find(r=>r.id==='westWing')?.symbol.x1||b.x0!==-128.63727729556877||b.x1!==-102.41388761991777||b.z!==466||b.z!==p.gate.z||b.t!==1||b.h!==4.5||b.originalHeight!==6.5||b.baseHeight!==1||f.gateRoofBaseY!==5.8||f.gateNetHeight!==4.6||f.gateNetWidth!==3.4||f.gateDepth!==.8||f.gateRoofDepth!==2.4||f.gateRoofHeight!==1.2||f.gateRoofBaseY<=f.gateNetHeight||b.x0>=p.gap.at-p.gap.w/2||b.x1<=p.gap.at+p.gap.w/2)fail();
+ return p;
+}
 export function validateQiandongSecondFrontCourt(zoneJson){
  const items=zoneJson?.items;
  const declared=Array.isArray(items)&&items.some(q=>q&&('qiandongSecondFrontGate' in q||'qiandongSecondFrontCourt' in q));
  if(zoneJson?.id!=='east-six'){if(declared)fail();return null}
  if(!Array.isArray(items)||items.length<60)fail();
  for(let i=42;i<=49;i++)if(!equal(items[i],RETAINED[i-42]))fail();
- const p=QIANDONG_SECOND_FRONT_COURT;
+ const p=validateQiandongSecondFrontCourtProfile();
  if(!equal(items[58],p.gate)||!equal(items[59],p.body))fail();
  if(items.filter(q=>q&&'qiandongSecondFrontGate' in q).length!==1||items.filter(q=>q&&'qiandongSecondFrontCourt' in q).length!==1)fail();
  // Explicit widths are same-source, never guessed from an anonymous name map.

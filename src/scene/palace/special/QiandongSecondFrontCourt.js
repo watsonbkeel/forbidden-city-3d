@@ -9,10 +9,16 @@ function selected(kit,item,zone,key,other){
  if(!item||!Object.hasOwn(item,key))return false;
  validateQiandongSecondFrontCourt(zone);
  if(item!==zone.items[key==='qiandongSecondFrontGate'?58:59]||Object.hasOwn(item,other))throw Error('Qiandong front selector identity mismatch');
+ preflight(kit,key);
+ return true;
+}
+// M1: Boolean(NaN) and lengthSq() are not finite-component validation.
+// Keep this root contract local to the three front-court producers.
+function preflight(kit,key){
  const writable=a=>Array.isArray(a)&&Object.isExtensible(a)&&Object.getOwnPropertyDescriptor(a,'length')?.writable;
  const r=kit.root;
- if(r.name!=='east-six'||r.parent||!r.visible||!r.matrixAutoUpdate||r.position.lengthSq()||r.rotation.toArray().slice(0,3).some(Boolean)||!r.scale.equals(new T.Vector3(1,1,1))||!r.matrix.equals(new T.Matrix4())||!r.matrixWorld.equals(new T.Matrix4())||!Object.isExtensible(r)||!writable(r.children)||ARRAYS.some(k=>!writable(kit[k]))||r.children.some(o=>o.userData[KEY]===key))throw Error('Qiandong front kit root/arrays/duplicate mismatch');
- return true;
+ const finite=r&&[...r.position.toArray(),...r.rotation.toArray().slice(0,3),...r.quaternion.toArray(),...r.scale.toArray(),...r.matrix.elements,...r.matrixWorld.elements].every(Number.isFinite);
+ if(!finite||r.name!=='east-six'||r.parent||!r.visible||!r.matrixAutoUpdate||r.position.lengthSq()||r.rotation.toArray().slice(0,3).some(Boolean)||!r.quaternion.equals(new T.Quaternion())||!r.scale.equals(new T.Vector3(1,1,1))||!r.matrix.equals(new T.Matrix4())||!r.matrixWorld.equals(new T.Matrix4())||!Object.isExtensible(r)||!writable(r.children)||ARRAYS.some(k=>!writable(kit[k]))||r.children.some(o=>o.userData[KEY]===key))throw Error('Qiandong front kit root/arrays/duplicate mismatch');
 }
 /** Atomic local staging, using the real CourtKit methods, not a parallel kit.
  * Library/retained kit materials are borrowed; only new geometries are freed
@@ -20,8 +26,11 @@ function selected(kit,item,zone,key,other){
 function stage(kit,key,build){
  const tmp=Object.assign(Object.create(Object.getPrototypeOf(kit)),kit,{root:new T.Group()});tmp.root.name=kit.root.name;
  for(const k of ARRAYS)tmp[k]=[];
- const geos=new Set(),mesh=kit.mesh;
+ const geos=new Set(),mesh=kit.mesh,adopt=kit.adopt;
  tmp.mesh=function(parent,g,...rest){geos.add(g);return mesh.call(this,parent,g,...rest)};
+ // wall() adopts a complete new cap before attaching it. Own its geometry
+ // before the delegate can throw; borrowed/adopted materials stay with kit.
+ tmp.adopt=function(object){object.traverse(o=>{if(o.isMesh)geos.add(o.geometry)});return adopt.call(this,object)};
  const cleanup=()=>{tmp.root.traverse(o=>{if(o.isMesh)geos.add(o.geometry)});for(const g of geos)g.dispose();for(const m of tmp.owned)m.dispose()};
  let result;
  try{result=build(tmp);result.source.userData[KEY]=key;tmp.root.updateMatrixWorld(true)}catch(e){cleanup();throw e}
@@ -50,13 +59,42 @@ function triangles(kit,root,id){
  const g=new T.BufferGeometry();g.setAttribute('position',new T.BufferAttribute(new Float64Array(values),3));
  try{const owner=triangleInstance(createTriangleTemplate(g),[0,0,0],`qiandong-front:actual-roof:${id}`);const b=owner.box.clone();b.triangleSupport=owner;kit.colliders.push(b)}finally{g.dispose()}
 }
+/** Exact item43-only dispatch, after the real court-wall resolver. Untargeted
+ * courts still use the generic producer. Source declarations stay unchanged. */
+export function buildQiandongSecondFrontCourtWalls(kit,item,zoneJson,resolved){
+ const target=item&&(zoneJson?.id==='east-six'&&item===zoneJson?.items?.[43]||item.kind==='courtWalls'&&item.x0===-211&&item.x1===-74&&item.z0===466);
+ if(!target)return null;
+ const fail=()=>{throw Error('Qiandong front wall exact source/resolved contract mismatch')};
+ if(zoneJson?.id!=='east-six'||item!==zoneJson.items?.[43])fail();
+ validateQiandongSecondFrontCourt(zoneJson);
+ const b=P.southWallBand;
+ if(!resolved||['x0','x1','z0','z1'].some(k=>!Number.isFinite(resolved[k])||resolved[k]!==item[k])||!Array.isArray(resolved.gates)||resolved.gates.length!==2)fail();
+ const [old,next]=resolved.gates;
+ if(!old||!next||old.side!=='s'||old.at!==item.gates[0].at||old.w!==6.4||next.side!=='s'||next.at!==item.gates[1].at||next.w!==P.gap.w||![old.at,old.w,next.at,next.w].every(Number.isFinite))fail();
+ preflight(kit,'qiandongSecondFrontWalls');
+ return stage(kit,'qiandongSecondFrontWalls',tmp=>{
+  const source=tmp.frame(0,0),{x0,x1,z0,z1}=resolved;
+  // Each solid interval is generated once with real wall/box/cap methods.
+  // No cut-after-merge and no gap from a different interval is passed along.
+  const segments=[[x0,old.at-old.w/2,b.originalHeight],[old.at+old.w/2,b.x0,b.originalHeight],[b.x0,next.at-next.w/2,b.h],[next.at+next.w/2,b.x1,b.h],[b.x1,x1,b.originalHeight]];
+  for(const [lo,hi,h] of segments)tmp.wall(lo,z0,hi,z0,{h,t:b.t,baseHeight:b.baseHeight});
+  tmp.wall(x0,z1,x1,z1);
+  tmp.wall(x0,z0,x0,z1);
+  tmp.wall(x1,z0,x1,z1);
+  // wall() returns no source and creates several tmp.root frames. stage only
+  // publishes result.source, so every identity-world frame must belong to it.
+  source.add(...tmp.root.children.filter(frame=>frame!==source));
+  source.userData.structure={id:P.id+'/south-wall-band',status:P.status,scope:'item43 local south band only; original other boundaries retained',band:{...b},unknown:'historic elevation; inherited wallcap bottom ring; visual acceptance pending'};
+  return {source};
+ });
+}
 export function buildQiandongSecondFrontGate(kit,item,zoneJson){
  if(!selected(kit,item,zoneJson,'qiandongSecondFrontGate','qiandongSecondFrontCourt'))return null;
  return stage(kit,'qiandongSecondFrontGate',tmp=>{
   const source=tmp.frame(item.x,item.z),net=P.fit.gateNetWidth,flank=(item.w-net)/2;
   // No platform or street ramp: threshold remains existing earth level y=0.
   // Separate 2.4m-deep roof is overhead-only. Net door height 4.6m; the
-  // solid upper transom joins the original tall perimeter without fake air.
+  // solid upper transom and roof join the locally lowered wall band.
   // Ground-bearing flanks fit entirely in the retained 1m-thick wall band.
   for(const side of[-1,1])box(tmp,source,'gate-flank',flank,P.fit.gateRoofBaseY,P.fit.gateDepth,side*(net/2+flank/2),P.fit.gateRoofBaseY/2,0);
   box(tmp,source,'gate-head',net,P.fit.gateRoofBaseY-P.fit.gateNetHeight,P.fit.gateDepth,0,(P.fit.gateRoofBaseY+P.fit.gateNetHeight)/2,0);

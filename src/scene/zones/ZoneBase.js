@@ -1,5 +1,5 @@
 import {validateQiandongSecondFrontCourt} from '../palace/special/QiandongSecondFrontCourtProfile.js';
-import {buildQiandongSecondFrontGate,buildQiandongSecondFrontCourt,applyQiandongCommonGateSlabSupport,applyQiandongRetainedHallSourceSupports} from '../palace/special/QiandongSecondFrontCourt.js';
+import {buildQiandongSecondFrontGate,buildQiandongSecondFrontCourt,buildQiandongSecondFrontCourtWalls,applyQiandongCommonGateSlabSupport,applyQiandongRetainedHallSourceSupports} from '../palace/special/QiandongSecondFrontCourt.js';
 import {validateTaijiSouthGateSource,applyTaijiSouthGateGlaze} from '../palace/special/TaijiSouthGateGlaze.js';
 import {buildHuiyaoLou} from '../palace/special/HuiyaoLou.js';
 import {registerXiananSource} from '../palace/special/XiananContactSources.js';
@@ -994,7 +994,9 @@ export class ZoneBase {
     if(item.gates?.some(g=>g.gate==='寿康门')&&this.gateGeometries.get('寿康门')?.profile==='shoukang-entry'){validateShoukangEntryCourtWall(item);const {x0,x1,z0,z1}=item,start=this.kit.root.children.length;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);registerShoukangRetainedPerimeter(this.kit,this.kit.root.children.slice(start));return;}
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 
-    const { x0, x1, z0, z1, gates } = resolveCourtWallContract(item, this.gateWidths);
+    const resolved = resolveCourtWallContract(item, this.gateWidths);
+    if(buildQiandongSecondFrontCourtWalls(this.kit,item,this.zoneJson,resolved))return;
+    const { x0, x1, z0, z1, gates } = resolved;
     const params = { h: item.h, t: item.t };
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     this.kit.courtWalls(x0, x1, z0, z1, gates, params);
