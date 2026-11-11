@@ -8,7 +8,7 @@ import {inventory} from './build-review.mjs';
 const out=process.env.EVIDENCE_DIR,base='/forbidden-city-3d/';
 assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.CI,'true');assert.ok(path.isAbsolute(out));
 const build=JSON.parse(fs.readFileSync(path.join(out,'review-build.json'),'utf8'));assert.equal(build.status,'PASS');assert.equal(build.identity.head,process.env.GITHUB_SHA);assert.deepEqual(inventory(build.out),build.manifest);
-const result={status:'FAILED',kind:'R267 isolated original R266 hall visual review',identity:build.identity,productionBuild:build.productionBuild,releaseAccepted:false,visualReview:'REQUIRED',scope:'Four review cameras of one complete original hall. Not full app, navigation, physics, cold return, old R265 eight-image gate, hardware GPU or phone acceptance.',screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],errors:[],cleanupErrors:[]};
+const result={status:'FAILED',kind:'R268 partial west upper band candidate; retained original triad; not a release',identity:build.identity,productionBuild:build.productionBuild,releaseAccepted:false,visualReview:'REQUIRED',scope:'Four review cameras of one complete original hall. Not full app, navigation, physics, cold return, old R265 eight-image gate, hardware GPU or phone acceptance.',screenshots:[],console:[],pageErrors:[],requestFailures:[],responses:[],errors:[],cleanupErrors:[]};
 let server,browser,context,page,closing=false;
 const checkpoint=()=>{fs.writeFileSync(path.join(out,'hall-review.json'),JSON.stringify(result,null,2)+'\n');};
 const add=(list,row)=>{if(list.length>=2000)throw Error('2000-event evidence bound');list.push(row);};
