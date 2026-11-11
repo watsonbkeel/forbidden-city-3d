@@ -42,6 +42,7 @@ function renderView(id){
 window.__R267_HALL_REVIEW__=Object.freeze({read:()=>structuredClone(receipt),dispose});
 window.addEventListener('error',e=>fail(e.error??e.message));window.addEventListener('unhandledrejection',e=>fail(e.reason));window.addEventListener('pagehide',dispose,{once:true});
 for(const v of VIEWS){const b=document.createElement('button');b.textContent=v.label;b.dataset.view=v.id;b.disabled=true;b.onclick=()=>{try{renderView(v.id);requireReady(receipt);}catch(e){fail(e);dispose();}};document.querySelector('#views').append(b);buttons.push(b);}
+async function initialize(){
 try{
  scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(60,SETTINGS.width/SETTINGS.height,.1,2500);
  renderer=new THREE.WebGLRenderer({canvas:document.querySelector('#hall'),antialias:true,alpha:false});renderer.setPixelRatio(SETTINGS.dpr);renderer.setSize(SETTINGS.width,SETTINGS.height,false);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=SETTINGS.exposure;renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -71,3 +72,5 @@ try{
  receipt.architecture=structuredClone(group.userData.architecture);receipt.environment={method:'Original Environment.init, explicit Beijing noon preview, original high shadows',dayCycle:structuredClone(environment.dayCycle),postProcessing:SETTINGS.postProcessing};
  renderView(VIEWS[0].id);requireReady(receipt);receipt.status='READY';buttons.forEach(b=>b.disabled=false);publish();
 }catch(error){fail(error);dispose();}
+}
+void initialize();

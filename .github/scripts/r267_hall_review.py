@@ -9,13 +9,13 @@ import subprocess
 import sys
 
 REPO='watsonbkeel/forbidden-city-3d'
-REF='refs/heads/dev/r267-dafotang-build-recheck'
-PARENT='1bd1e88d852de1746fb559a0d3d4441afc6fe3dd'
-PARENT_TREE='5a15dc1eba98ecc91beab61383dea29576408c3d'
+REF='refs/heads/dev/r267-hall-review-async-init'
+PARENT='f20bf5b3e893371b9a23d21136f82c41e75cee42'
+PARENT_TREE='5b2e1950aed5d8facef167dd9b9e44e66398f632'
 PRODUCT_TREE='8ac63f05ae9c968ab00d1b52711cff30144c4290'
 ROOT='tests/r267-dafotang-hall-review/'
-PATHS=sorted(['.github/scripts/r267_hall_review.py','.github/scripts/test_r267_hall_review.py','.github/scripts/r267_production_build_recheck.py','.github/workflows/r267-dafotang-hall-review.yml','.github/workflows/r267-dafotang-build-recheck.yml']+[ROOT+n for n in ('README.md','pins.json','contract.mjs','contract.test.mjs','review-hall.html','review-hall.mjs','build-review.mjs','capture.mjs')])
-CHANGES=sorted([('A',p) for p in ('.github/scripts/r267_production_build_recheck.py','.github/workflows/r267-dafotang-build-recheck.yml')]+[('M',p) for p in ('.github/scripts/r267_hall_review.py','.github/scripts/test_r267_hall_review.py',ROOT+'README.md',ROOT+'pins.json',ROOT+'contract.mjs',ROOT+'contract.test.mjs')],key=lambda row:row[1])
+PATHS=['.github/scripts/r267_hall_review.py', '.github/scripts/r267_production_build_recheck.py', '.github/scripts/test_r267_hall_review.py', '.github/workflows/r267-dafotang-build-recheck.yml', '.github/workflows/r267-dafotang-hall-review.yml', '.github/workflows/r267-hall-review-async-init.yml', 'tests/r267-dafotang-hall-review/README.md', 'tests/r267-dafotang-hall-review/build-review.mjs', 'tests/r267-dafotang-hall-review/capture.mjs', 'tests/r267-dafotang-hall-review/contract.mjs', 'tests/r267-dafotang-hall-review/contract.test.mjs', 'tests/r267-dafotang-hall-review/pins.json', 'tests/r267-dafotang-hall-review/review-hall.html', 'tests/r267-dafotang-hall-review/review-hall.mjs']
+CHANGES=[('M', '.github/scripts/r267_hall_review.py'), ('A', '.github/workflows/r267-hall-review-async-init.yml'), ('M', 'tests/r267-dafotang-hall-review/README.md'), ('M', 'tests/r267-dafotang-hall-review/contract.mjs'), ('M', 'tests/r267-dafotang-hall-review/contract.test.mjs'), ('M', 'tests/r267-dafotang-hall-review/pins.json'), ('M', 'tests/r267-dafotang-hall-review/review-hall.mjs')]
 GUARD_HASH='e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3'
 RECHECK_HASH='2e102777b68160b4ef3b10738c521f560c42ffce196535d635f44cd8f6cce205'
 def require(value,message):
