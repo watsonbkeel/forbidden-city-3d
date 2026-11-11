@@ -1,3 +1,5 @@
+import {validateQiandongSecondFrontCourt} from '../palace/special/QiandongSecondFrontCourtProfile.js';
+import {buildQiandongSecondFrontGate,buildQiandongSecondFrontCourt,applyQiandongCommonGateSlabSupport,applyQiandongRetainedHallSourceSupports} from '../palace/special/QiandongSecondFrontCourt.js';
 import {validateTaijiSouthGateSource,applyTaijiSouthGateGlaze} from '../palace/special/TaijiSouthGateGlaze.js';
 import {buildHuiyaoLou} from '../palace/special/HuiyaoLou.js';
 import {registerXiananSource} from '../palace/special/XiananContactSources.js';
@@ -290,6 +292,7 @@ export class ZoneBase {
   getBuildStepMetrics() { return getBuildStepMetrics(this); }
 
   *#buildSteps() {
+    validateQiandongSecondFrontCourt(this.zoneJson);
     const items = this.zoneJson.items ?? [];
     
     // 第一遍：构建所有 gate，记录开口宽度
@@ -312,6 +315,8 @@ export class ZoneBase {
       yield {phase:'item',index:itemIndex};
       switch (item.kind) {
         case 'hall':
+          // Source-specific rooms must append after every retained late hook.
+          if(item.qiandongSecondFrontCourt!==undefined)break;
           this.buildHall(item);
           break;
         case 'gate':
@@ -681,6 +686,9 @@ export class ZoneBase {
     buildQianxingGlazedGate(this.kit,this.zoneJson);
     yield {phase:'merge',index:0};
     finalizeNingshouCoveredPlatforms(this.kit);
+    // The complete preflight already locked this unique anonymous body at59.
+    // Keep every old room producer (including Jide/Weiyu) ahead of it.
+    if(this.zoneJson.id==='east-six')buildQiandongSecondFrontCourt(this.kit,items[59],this.zoneJson);
     this.group = this.kit.finish();
     if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2'))this.dafotangPhotoSession=createDafotangPhotoSession(this.group);
     yield {phase:'lod',index:0};
@@ -735,6 +743,7 @@ export class ZoneBase {
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
 
   buildHall(item) {
+    const roomStart=this.kit.rooms.length;
     if(item.structure==='chengqian-rear-wing')return buildChengqianRearWing(this.kit,item,this.zoneJson);
     const itemIndex=this.zoneJson.items.indexOf(item);
     const inventoryContext=this.zoneJson.id==='east-six'&&[2,9,16,30,37].includes(itemIndex)
@@ -749,7 +758,11 @@ export class ZoneBase {
     const finish=built=>{
       applyEastFiveRoofBeasts(this.kit,this.zoneJson.id,itemIndex,item,built);
       if(westAnnexContext)return applyChuxiuFrontWing(this.kit,this.zoneJson.id,itemIndex,item,applyWestUnknownAnnexInventory(this.kit,westAnnexContext,built));
-      if(annexContext)return applyEastUnknownAnnexInventory(this.kit,annexContext,built);
+      if(annexContext){
+        const retained=applyEastUnknownAnnexInventory(this.kit,annexContext,built);
+        if(this.zoneJson.id==='east-six'&&itemIndex>=44&&itemIndex<=48)applyQiandongRetainedHallSourceSupports(this.kit,retained,item,this.zoneJson,this.kit.rooms.slice(roomStart));
+        return retained;
+      }
       return inventoryContext?applyEastUnknownThroneInventory(this.kit,inventoryContext,built):built;
     };
     const shoukangRear=buildShoukangRearSouth(this.kit,item,{zoneId:this.zoneJson.id,itemIndex,zoneJson:this.zoneJson});
@@ -876,6 +889,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if(item.qiandongSecondFrontGate!==undefined){const built=buildQiandongSecondFrontGate(this.kit,item,this.zoneJson);if(!built)throw Error('Qiandong front gate dispatch mismatch');return built.width;}
     validateTaijiSouthGateSource(this.zoneJson,item);
     const xianan=this.zoneJson?.id==='outer-west'&&this.zoneJson.items?.[30]===item;
     if(xianan){const owner=zoneBirths.get(this);if(!owner||owner.kit!==this.kit||owner.zone!==this.zoneJson||owner.gate!==this.kit.gate||this.kit.gate!==CourtKit.prototype.gate||xiananBirths.has(this.kit))throw Error('Actual constructor-born Xianan builder required');}
@@ -923,6 +937,7 @@ export class ZoneBase {
     Object.keys(params).forEach(k => params[k] === undefined && delete params[k]);
     const ownGateColliderStart=this.kit.colliders.length,ownGateWalkableStart=this.kit.walkables.length;
     const width = this.kit.gate(params);
+    applyQiandongCommonGateSlabSupport(this.kit,this.kit.root.children.at(-1),item,this.zoneJson);
     applyTaijiSouthGateGlaze(this.kit,this.kit.root.children.at(-1),this.zoneJson,item);
     buildNingshouSideApproach(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
     fitNingshouFrontHall(this.kit,this.kit.root.children.at(-1),{zoneId:this.zoneJson.id,itemIndex:this.zoneJson.items.indexOf(item),item});
