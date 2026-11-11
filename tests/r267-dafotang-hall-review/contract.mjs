@@ -9,7 +9,7 @@ export const VIEWS=Object.freeze([
 ].map(v=>Object.freeze({...v,position:Object.freeze(v.position),target:Object.freeze(v.target)})));
 const need=(value,message)=>{if(!value)throw Error(message);};
 export function requireReady(r){
- need(/^[a-f0-9]{40}$/.test(r.identity?.head??'')&&/^[a-f0-9]{40}$/.test(r.identity?.tree??'')&&r.identity.parent==='aa11a2b92fcd858581397bac58c4ac637e04ed57'&&r.identity.productTree==='8ac63f05ae9c968ab00d1b52711cff30144c4290','frozen source identity missing');
+ need(/^[a-f0-9]{40}$/.test(r.identity?.head??'')&&/^[a-f0-9]{40}$/.test(r.identity?.tree??'')&&r.identity.parent==='1bd1e88d852de1746fb559a0d3d4441afc6fe3dd'&&r.identity.productTree==='8ac63f05ae9c968ab00d1b52711cff30144c4290','frozen source identity missing');
  need(r.physicsConsumer==='NONE','not a navigation review');
  need(r.source?.layoutOwners===85&&r.source?.upperBandOwners===1&&r.source?.principalSupports===3&&JSON.stringify(r.source?.subjects)===JSON.stringify(['amitabha','shakyamuni','bhaisajyaguru']),'original source owners missing');
  need(r.textures?.manifest===true&&r.textures.fallbacks.length===0&&r.textures.missingNormals.length===0&&r.textures.errors.length===0,'actual texture load incomplete');

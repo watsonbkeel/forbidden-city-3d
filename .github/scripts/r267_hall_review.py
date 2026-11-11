@@ -9,17 +9,20 @@ import subprocess
 import sys
 
 REPO='watsonbkeel/forbidden-city-3d'
-REF='refs/heads/dev/r267-dafotang-hall-review'
-PARENT='aa11a2b92fcd858581397bac58c4ac637e04ed57'
-TREE='8ac63f05ae9c968ab00d1b52711cff30144c4290'
+REF='refs/heads/dev/r267-dafotang-build-recheck'
+PARENT='1bd1e88d852de1746fb559a0d3d4441afc6fe3dd'
+PARENT_TREE='5a15dc1eba98ecc91beab61383dea29576408c3d'
+PRODUCT_TREE='8ac63f05ae9c968ab00d1b52711cff30144c4290'
 ROOT='tests/r267-dafotang-hall-review/'
-PATHS=sorted(['.github/scripts/r267_hall_review.py','.github/scripts/test_r267_hall_review.py','.github/workflows/r267-dafotang-hall-review.yml']+[ROOT+n for n in ('README.md','pins.json','contract.mjs','contract.test.mjs','review-hall.html','review-hall.mjs','build-review.mjs','capture.mjs')])
+PATHS=sorted(['.github/scripts/r267_hall_review.py','.github/scripts/test_r267_hall_review.py','.github/scripts/r267_production_build_recheck.py','.github/workflows/r267-dafotang-hall-review.yml','.github/workflows/r267-dafotang-build-recheck.yml']+[ROOT+n for n in ('README.md','pins.json','contract.mjs','contract.test.mjs','review-hall.html','review-hall.mjs','build-review.mjs','capture.mjs')])
+CHANGES=sorted([('A',p) for p in ('.github/scripts/r267_production_build_recheck.py','.github/workflows/r267-dafotang-build-recheck.yml')]+[('M',p) for p in ('.github/scripts/r267_hall_review.py','.github/scripts/test_r267_hall_review.py',ROOT+'README.md',ROOT+'pins.json',ROOT+'contract.mjs',ROOT+'contract.test.mjs')],key=lambda row:row[1])
 GUARD_HASH='e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3'
 RECHECK_HASH='2e102777b68160b4ef3b10738c521f560c42ffce196535d635f44cd8f6cce205'
 def require(value,message):
     if not value:raise ValueError(message)
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-def git(*args):return subprocess.check_output(['git','-c','core.preloadIndex=false','-c','index.threads=1','-c','core.packedGitWindowSize=1m','-c','core.packedGitLimit=16m',*args],text=True).strip()
+def git_bytes(*args):return subprocess.check_output(['git','-c','core.preloadIndex=false','-c','index.threads=1','-c','core.packedGitWindowSize=1m','-c','core.packedGitLimit=16m',*args])
+def git(*args):return git_bytes(*args).decode().strip()
 def select(phase):
     names={'review-build':'build-review.mjs','visual':'capture.mjs'}
     if phase not in names:raise ValueError('only fixed companion build or isolated visual phase')
@@ -37,13 +40,14 @@ def validate_checkout():
     # Reuse the unchanged proven npm-boundary helper, including its fixed temp filename.
     check_npm_environment(os.environ);check_fixed_npm_file(Path(os.environ['NPM_CONFIG_GLOBALCONFIG']));p=Path('.npmrc');check_project_config(p.exists(),p.is_symlink())
     require(git('rev-parse','HEAD')==os.environ['GITHUB_SHA'],'wrong checkout head')
-    require(git('show','-s','--format=%P','HEAD')==PARENT and git('rev-parse','HEAD^1^{tree}')==TREE,'wrong R266 parent/tree')
-    require(git('diff','--name-status','HEAD^1','HEAD')=='\n'.join('A\t'+p for p in PATHS),'existing path changed or unexpected added path')
+    require(git('show','-s','--format=%P','HEAD')==PARENT and git('rev-parse','HEAD^1^{tree}')==PARENT_TREE,'wrong reviewed R267 parent/tree')
+    require(git('diff','--name-status','HEAD^1','HEAD')=='\n'.join(action+'\t'+p for action,p in CHANGES),'unexpected successor path/action delta')
     require(not git('status','--porcelain=v1','--untracked-files=all'),'checkout dirty')
-    pins=json.loads(Path(ROOT+'pins.json').read_text());require(pins['remoteParent']==PARENT and pins['productTree']==TREE and pins['addedPaths']==PATHS,'pin identity mismatch')
+    pins=json.loads(Path(ROOT+'pins.json').read_text());require(pins['remoteParent']==PARENT and pins['parentTree']==PARENT_TREE and pins['productTree']==PRODUCT_TREE and pins['candidatePaths']==PATHS and pins['changes']==[list(row) for row in CHANGES],'pin identity mismatch')
     for p,digest in pins['sourcePins'].items():require(sha(p)==digest,'retained source changed: '+p)
+    for p,digest in pins['parentPins'].items():require(hashlib.sha256(git_bytes('show',PARENT+':'+p)).hexdigest()==digest,'reviewed parent source changed: '+p)
     require(sha('.github/scripts/r177_build_bound.py')==GUARD_HASH and sha('.github/scripts/r262_exit_recheck.py')==RECHECK_HASH,'guard/recheck changed')
-    return {'head':os.environ['GITHUB_SHA'],'tree':git('rev-parse','HEAD^{tree}'),'parent':PARENT,'productTree':TREE,'sourcePins':pins['sourcePins'],'candidateFiles':{p:sha(p) for p in PATHS},'runner':{k:os.environ.get(k) for k in ('ImageOS','ImageVersion','RUNNER_OS','RUNNER_ARCH','REVIEW_RUNNER_ENVIRONMENT')},'runId':os.environ.get('GITHUB_RUN_ID'),'runAttempt':os.environ['GITHUB_RUN_ATTEMPT']}
+    return {'head':os.environ['GITHUB_SHA'],'tree':git('rev-parse','HEAD^{tree}'),'parent':PARENT,'parentTree':PARENT_TREE,'productTree':PRODUCT_TREE,'sourcePins':pins['sourcePins'],'parentPins':pins['parentPins'],'candidateFiles':{p:sha(p) for p in PATHS},'runner':{k:os.environ.get(k) for k in ('ImageOS','ImageVersion','RUNNER_OS','RUNNER_ARCH','REVIEW_RUNNER_ENVIRONMENT')},'runId':os.environ.get('GITHUB_RUN_ID'),'runAttempt':os.environ['GITHUB_RUN_ATTEMPT']}
 def configure_guard(guard,phase):
     select(phase)
     require((guard.RSS_CAP,guard.WALL_SECONDS,guard.LOG_CAP,guard.SAMPLE_SECONDS,guard.MARGIN,guard.ADMISSION_INTERVAL,guard.HEAP_FLAGS)==(4*1024**3,720,32*1024**2,.1,256*1024**2,1.,'--max-old-space-size=2048 --max-semi-space-size=16'),'unexpected original guard policy')
