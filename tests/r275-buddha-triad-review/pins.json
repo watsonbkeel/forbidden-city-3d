@@ -1,23 +1,24 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "f1ed39a5a63af8ba02cae9fac1d3d69f8c89a424",
-  "parentTree": "8aedb79399e1a1cb70163f52e9975e6e35da1c5d",
+  "remoteParent": "d169aca5bfc42d0817f34cba6a36a43457c7f923",
+  "parentTree": "31ebed95501f3638e65bdcf46f573eb09acd5013",
   "productTree": "061b4a7b1824bfb8f3c226ce7858430940427d04",
   "candidatePaths": [
-    ".github/scripts/r322_triad_route_review.py",
-    ".github/workflows/r322-triad-route-review.yml",
+    ".github/scripts/r323_triad_route_review.py",
+    ".github/workflows/r323-triad-route-review.yml",
     "tests/r275-buddha-triad-review/capture.mjs",
-    "tests/r275-buddha-triad-review/pins.json"
+    "tests/r275-buddha-triad-review/pins.json",
+    "tests/r275-buddha-triad-review/review-hall.html"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r322_triad_route_review.py"
+      ".github/scripts/r323_triad_route_review.py"
     ],
     [
       "A",
-      ".github/workflows/r322-triad-route-review.yml"
+      ".github/workflows/r323-triad-route-review.yml"
     ],
     [
       "M",
@@ -26,6 +27,10 @@
     [
       "M",
       "tests/r275-buddha-triad-review/pins.json"
+    ],
+    [
+      "M",
+      "tests/r275-buddha-triad-review/review-hall.html"
     ]
   ],
   "sourcePins": {
@@ -1141,12 +1146,12 @@
     "tests/r275-buddha-original/triad-loader.test.mjs": "e9559a458edbc96606aa4d0a0356007b4eaa67b93d4123af5430108f14c3a3c0",
     "tests/r275-buddha-original/triad-presentation.test.mjs": "2b99635163d57907ec3d21fad97a437574a533be375c81e2689ac59251d0b880",
     "tests/r275-buddha-triad-review/build-review.mjs": "baef1e290ab022e231b24d8d768edf3430ed5765924ecbd2981ec3628b0b2fab",
-    "tests/r275-buddha-triad-review/capture.mjs": "c3f9b4d5bc5acb2acb1895b081eeb41289dcf7cc0357b24c87cf69819d471adf",
+    "tests/r275-buddha-triad-review/capture.mjs": "6d01d7ab2c5ace87c28bc89d18a4c8ebed2fd9d6065ba01a8ef0a9f9ef76d8a4",
     "tests/r275-buddha-triad-review/contract.mjs": "812134f80c12a914e6be6f391d9b4ca7b679a6099782e5e2ae2157c039b71fa1",
     "tests/r275-buddha-triad-review/contract.test.mjs": "e13e6b7479e8b7631c9310efd503345831504081634afadcaf39e473222069cd",
     "tests/r275-buddha-triad-review/legacy-blocked-baseline.mjs": "1423a1a61356753a9bd3b105b0723c067893647eb03f8594e7c6f755d3a3706a",
     "tests/r275-buddha-triad-review/legacy-blocked-query.mjs": "1302ba13970e22c796a587ea58fef648f72f9203bd2b2cc0c6ad64cc9570f66d",
-    "tests/r275-buddha-triad-review/review-hall.html": "7fa077105a5ce854a4a57fc9d6fdafa99e717f1dd410fddf5e104408a990e950",
+    "tests/r275-buddha-triad-review/review-hall.html": "0c9d6da8153a6b2ef3353a231887cba9cf8d64b3b5391c967a230acaed6f4e16",
     "tests/r275-buddha-triad-review/review-hall.mjs": "5ebb13d2b88a7d741df45f00de60c382457955e1de7fbbf3fb85a7a366c7107f",
     "tests/r275-buddha-triad-review/route-cleanup.mjs": "864b1a6f579e5edddd632c1878180fddfb000d1dc909b44118c67b5948672556",
     "tests/r275-buddha-triad-review/route-cleanup.test.mjs": "4c77e8291b4fe9c35a5fe5f58a6df6fb85a738447369b769bd4ebe1482561863",
@@ -1246,7 +1251,9 @@
     ".github/scripts/r321_triad_route_review.py": "c4f252c38831261827597311bbeee1f6d3ec8c52c0c81266ccbcaca446422e50",
     ".github/workflows/r321-triad-route-review.yml": "c16ae023569655093759ac8ed60eb796e1710c5739b401e6cd729a1e0a7410ed",
     ".github/scripts/r322_triad_route_review.py": "b4fa77a7ce59a543c7f3dc87efb24a26f0fffbedbff0969ccbdf585d7d87dc63",
-    ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad"
+    ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad",
+    ".github/scripts/r323_triad_route_review.py": "b2f23b7b1c863482d43bd42e5fbc50539b2b283b35c427b4f3302897ba2006ba",
+    ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1264,6 +1271,7 @@
     "Locally frozen after independent review; productTree is before CI, final root remains external to avoid hash self-reference. No remote upload or CI result.",
     "Module goldBrick singleton must remain zero-disposed across three observed generations; every other resource exact once. No WebGL result claimed.",
     "R321 recovery: exact R313 product and sample defaults retained; only CI wrapper/workflow identifiers and their binding pins changed. Earlier immutable R313 tree call remains UNKNOWN; no old branch or ref write was attempted.",
-    "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change."
+    "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change.",
+    "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified."
   ]
 }
