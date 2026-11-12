@@ -1,10 +1,18 @@
+import {assertDafotangPreviewContext} from './DafotangPreviewScope.js';
+import {buildCangzhenGate} from '../palace/special/CangzhenGate.js';
 import {validateQiandongSecondFrontCourt} from '../palace/special/QiandongSecondFrontCourtProfile.js';
 import {buildQiandongSecondFrontGate,buildQiandongSecondFrontCourt,buildQiandongSecondFrontCourtWalls,applyQiandongCommonGateSlabSupport,applyQiandongRetainedHallSourceSupports} from '../palace/special/QiandongSecondFrontCourt.js';
 import {validateTaijiSouthGateSource,applyTaijiSouthGateGlaze} from '../palace/special/TaijiSouthGateGlaze.js';
 import {buildHuiyaoLou} from '../palace/special/HuiyaoLou.js';
+import {buildDongnuanTopologyMassing} from '../palace/special/DongnuanTopologyBuilder.js';
+import {buildXinuanTopologyMassing} from '../palace/special/XinuanTopologyBuilder.js';
 import {registerXiananSource} from '../palace/special/XiananContactSources.js';
 import {buildCuiyunRearHall} from '../palace/special/CuiyunRearHall.js';
 import {createDafotangPhotoSession} from '../palace/special/DafotangPhotoPresentation.js';
+import {createOriginalCentralSession} from '../palace/special/DafotangOriginalPresentation.js';
+import {loadOriginalCentralArtwork,loadOriginalBuddhaArtwork} from '../palace/special/DafotangOriginalArtworkLoader.js';
+import {loadPreparedSideArtwork} from '../palace/special/PreparedSideArtworkLoader.js';
+import {createOriginalTriadSession} from '../palace/special/DafotangOriginalTriadPresentation.js';
 import {buildXiangxuGlazedGate} from '../palace/special/XiangxuGlazedGate.js';
 import {buildQianxingGlazedGate} from '../palace/special/QianxingGlazedGate.js';
 import {buildDailouWaitingHouse} from '../palace/special/DailouWaitingHouse.js';
@@ -16,6 +24,7 @@ import {buildYanxiRearEarHall} from '../palace/special/YanxiRearEarHall.js';
 import {buildYangxinCompanionHalls} from '../palace/special/YangxinCompanionHalls.js';
 import {buildXihuaNorthWatchHouse} from '../palace/special/XihuaNorthWatchHouse.js';
 import {buildFuyiThreeBay} from '../palace/special/FuyiThreeBay.js';
+import {buildChunxiSouthFront} from '../palace/special/ChunxiSouthFrontBuilder.js';
 import {buildXuanshouSouthFront} from '../palace/special/XuanshouSouthFront.js';
 import {buildXuhuiGallery} from '../palace/special/XuhuiGallery.js';
 import {buildXiefangHillPavilion} from '../palace/special/XiefangHillPavilion.js';
@@ -53,6 +62,8 @@ import {buildBaozhongEastHall} from '../palace/special/BaozhongEastHall.js';
 import {buildZhongzhengWestHall} from '../palace/special/ZhongzhengWestHall.js';
 import {buildZhongzhengEastHall} from '../palace/special/ZhongzhengEastHall.js';
 import {buildZhaofuGate} from '../palace/special/ZhaofuGate.js';
+import {buildChunhuaOpenFront} from '../palace/special/ChunhuaOpenFrontBuilder.js';
+import {buildMiaolianSouthPartial} from '../palace/special/MiaolianSouthPartialBuilder.js';
 import {buildYuhuaWestLou} from '../palace/special/YuhuaWestLou.js';
 import {buildYuhuaEastLou} from '../palace/special/YuhuaEastLou.js';
 import {buildHuifengPavilion} from '../palace/special/HuifengPavilion.js';
@@ -119,6 +130,7 @@ import {buildZhaigongFrontHall} from '../palace/special/ZhaigongFrontHall.js';
 import {finishFengxianFrontSteps} from '../palace/special/FengxianFrontSteps.js';
 import {buildJiuqingSouthPorchFragment} from '../palace/special/JiuqingSouthPorchFragment.js';
 import {buildJunjiSouthPorchFragment} from '../palace/special/JunjiSouthPorchFragment.js';
+import {buildNanshufangWallJoin} from '../palace/special/NanshufangWallJoin.js';
 import {buildShangshuSouthFragment} from '../palace/special/ShangshuSouthFragment.js';
 import {publicMapItem} from '../../ui/PublicPlaceNames.js';
 import {buildNansansuoWestMiddleHall} from '../palace/special/NansansuoWestMiddleHall.js';
@@ -130,7 +142,12 @@ import {buildNansansuoEastCourtEastSideHall} from '../palace/special/NansansuoEa
 import {buildNansansuoWestCourtEastSideHall} from '../palace/special/NansansuoWestCourtEastSideHall.js';
 import {buildNansansuoEastMiddleHall} from '../palace/special/NansansuoEastMiddleHall.js';
 import {buildNansansuoMiddleHall} from '../palace/special/NansansuoMiddleHall.js';
+import {buildManpiaoArchiveTopology} from '../palace/special/ManpiaoArchiveBuilder.js';
+import {buildDianjitingTopology} from '../palace/special/DianjitingTopologyBuilder.js';
+import {buildMongolDutyTopology} from '../palace/special/MongolDutyTopologyBuilder.js';
+import {buildNeigeZhubanTopology} from '../palace/special/NeigeZhubanTopologyBuilder.js';
 import {buildNeigeHanbenTextVolume} from '../palace/special/NeigeHanbenTextVolume.js';
+import {buildMantangHistoricalVolume} from '../palace/special/MantangHistoricalBuilder.js';
 import {finishWenhuaCompanionSteps} from '../palace/special/WenhuaCompanionSteps.js';
 import {buildChuanxinZhubanShell} from '../palace/special/ChuanxinZhubanShell.js';
 import {buildNeigeSecondStorehouse} from '../palace/special/NeigeSecondStorehouse.js';
@@ -154,6 +171,7 @@ import {finishNansansuoFrontHalls} from '../palace/special/NansansuoFrontFinaliz
 import {buildNeigeStorehouse} from '../palace/special/NeigeStorehouse.js';
 import {buildNeigeCourt} from '../palace/special/NeigeCourt.js';
 import {buildChuanxinHall} from '../palace/special/ChuanxinHall.js';
+import {buildChuanxinKitchen} from '../palace/special/ChuanxinKitchenBuilder.js';
 import {buildWenyuanStelePavilion} from '../palace/special/WenyuanStelePavilion.js';
 import {buildNansansuoCommonGate} from '../palace/special/NansansuoCommonGate.js';
 import {finishWenyuanEntryTread} from '../palace/special/WenyuanEntryTread.js';
@@ -171,6 +189,7 @@ import {applyJingrenGateStoneFrame} from '../palace/special/JingrenGateStoneFram
 import {finishYikunInnerSouthWindows} from '../palace/special/YikunInnerSouthWindows.js';
 import {finishChangchunSouthWindows} from '../palace/special/ChangchunSouthWindows.js';
 import {finishWuyingSouthWindows} from '../palace/special/WuyingSouthWindows.js';
+import {buildWuyingNorthDutyRooms} from '../palace/special/WuyingNorthDutyRoomsBuilder.js';
 import {finishWenhuaSouthWindows} from '../palace/special/WenhuaSouthWindows.js';
 import {finishWenhuaCentralDoors} from '../palace/special/WenhuaCentralDoors.js';
 import {finishArrowSouthHeadBands} from '../palace/special/ArrowSouthHeadBands.js';
@@ -237,6 +256,7 @@ import { buildSouthCourtGate } from '../palace/special/SouthCourtGates.js';
 import * as THREE from 'three';
 import { CourtKit, FACE } from '../palace/kit.js';
 import { resolveCourtWallContract } from './CourtWallContract.js';
+import {buildWuyingGateRoomWallJoin} from '../palace/special/WuyingGateRoomWallJoin.js';
 import { buildEastWestCityGate } from '../palace/special/EastWestCityGate.js';
 import { buildYanxiRuin } from '../palace/special/YanxiRuin.js';
 import { detachYanxiRuinFrames, installYanxiRuinLODs } from '../palace/special/YanxiRuinLOD.js';
@@ -257,6 +277,7 @@ import {applySourceGuidedNameboardMount} from '../palace/special/SourceGuidedNam
  */
 // Only this constructor and its real buildGate path can mint a birth record.
 // Public geometry/item equality and inherited fake receivers are not provenance.
+const dafoptPreviewUsed=new WeakSet();
 const zoneBirths=new WeakMap(),xiananBirths=new WeakMap();
 let xiananBirthSerial=0;
 export function getXiananConstructionBirth(kit){return xiananBirths.get(kit)??null;}
@@ -270,10 +291,19 @@ export class ZoneBase {
    * @param {object} library - 材质与贴图库
    * @param {object} zoneJson - zone 数据（含 id, name, bounds, neighbors, items）
    */
-  constructor(library, zoneJson) {
+  constructor(library, zoneJson, options={}) {
+    if(options.dafotangOriginalArtwork!==undefined&&typeof options.dafotangOriginalArtwork!=='boolean')throw Error('Explicit boolean original-artwork preview mode required');
+    if(options.dafotangOriginalScope!==undefined&&!['center','triad'].includes(options.dafotangOriginalScope))throw Error('Explicit original-artwork scope required');
+    if(options.dafotangOriginalScope==='triad'&&options.dafotangOriginalArtwork!==true)throw Error('Triad scope requires explicit original-artwork preview');
+    if(options.dafotangCentralRevision!==undefined&&(options.dafotangCentralRevision!=='refined-eight-tier-v2'||options.dafotangOriginalArtwork!==true))throw Error('Explicit original-artwork preview and allowlisted central revision required');
+    if(options.dafotangPrivateSideRevision!==undefined&&(options.dafotangPrivateSideRevision!=='private-side-eight-tier-v2'||options.dafotangOriginalArtwork!==true||options.dafotangOriginalScope!=='triad'||options.dafotangCentralRevision!=='refined-eight-tier-v2'))throw Error('Explicit private side revision requires triad preview and refined central');
     this.library = library;
     this.zoneJson = zoneJson;
     this.kit = new CourtKit(library, zoneJson.id);
+    this.kit.dafotangOriginalArtwork=options.dafotangOriginalArtwork===true;
+    this.kit.dafotangOriginalScope=options.dafotangOriginalScope??'center';
+    if(options.dafotangCentralRevision!==undefined)this.kit.dafotangCentralRevision=options.dafotangCentralRevision;
+    if(options.dafotangPrivateSideRevision!==undefined)this.kit.dafotangPrivateSideRevision=options.dafotangPrivateSideRevision;
     zoneBirths.set(this,{kit:this.kit,zone:zoneJson,gate:this.kit.gate});
     this.group = null;
     /** gate name → 返回的开口宽度（用于 wall gaps 引用） */
@@ -287,6 +317,28 @@ export class ZoneBase {
    */
   build() {
     return consumeSynchronousBuild(this, this.#buildSteps());
+  }
+
+  /** Explicit one-hall component scope. Ordinary full build remains unchanged. */
+  buildDafotangPreview(scope) {
+    if(dafoptPreviewUsed.has(this))throw Error('Dafotang preview once only; dispose and construct a fresh generation');
+    const item=assertDafotangPreviewContext(this,zoneBirths.get(this),scope,{buildHall:ZoneBase.prototype.buildHall,finish:CourtKit.prototype.finish});
+    dafoptPreviewUsed.add(this);
+    return consumeSynchronousBuild(this,this.#buildDafotangPreviewSteps(item));
+  }
+
+  *#buildDafotangPreviewSteps(item) {
+    yield {phase:'item',index:this.zoneJson.items.indexOf(item)};
+    this.buildHall(item);
+    yield {phase:'merge',index:0};
+    this.group=this.kit.finish();
+    if(this.group.userData.architecture.filter(r=>r.id==='place-outer-west-6cae88b6a2').length!==1)throw Error('Dafotang preview unique finished architecture required');
+    this.dafotangOriginalSession=this.kit.dafotangOriginalScope==='triad'
+      ?createOriginalTriadSession(this.group,{load:({subjectId,...request})=>this.kit.dafotangPrivateSideRevision==='private-side-eight-tier-v2'&&subjectId!=='shakyamuni'?loadPreparedSideArtwork(subjectId,{...request,preparationOnly:true}):loadOriginalBuddhaArtwork(subjectId,{...request,centralRevision:this.kit.dafotangCentralRevision})})
+      :createOriginalCentralSession(this.group,{load:request=>loadOriginalCentralArtwork({...request,centralRevision:this.kit.dafotangCentralRevision})});
+    this.group.userData.previewScope={kind:'DAFOTANG_ONLY_EXPLICIT_COMPONENT_PREVIEW',sourceContext:'CANONICAL_FULL_OUTER_WEST',placeId:'place-outer-west-6cae88b6a2',notFullZone:true};
+    yield {phase:'result',index:0};
+    return {group:this.group,colliders:[...this.kit.colliders],walkables:[...this.kit.walkables],rooms:[...this.kit.rooms],mapItems:this.kit.mapItems.map(publicMapItem),regions:[...this.kit.regions],silhouette:null};
   }
 
   getBuildStepMetrics() { return getBuildStepMetrics(this); }
@@ -404,6 +456,7 @@ export class ZoneBase {
     finishZhujingNorthWindows(this.kit);
     yield {phase:'hook',index:17};
     finishWuyingSouthWindows(this.kit);
+    buildWuyingNorthDutyRooms(this,this.zoneJson);
     yield {phase:'hook',index:18};
     finishChangchunSouthWindows(this.kit);
     yield {phase:'hook',index:19};
@@ -454,6 +507,8 @@ export class ZoneBase {
     buildNeigeSecondStorehouse(this.kit, this.zoneJson);
     yield {phase:'hook',index:40};
     buildNeigeHanbenTextVolume(this.kit, this.zoneJson);
+    buildMantangHistoricalVolume(this.kit, this.zoneJson);
+    buildManpiaoArchiveTopology(this.kit, this.zoneJson);
     yield {phase:'hook',index:41};
     buildZhishengShell(this.kit, this.zoneJson);
     yield {phase:'hook',index:42};
@@ -608,6 +663,7 @@ export class ZoneBase {
     buildYuhuaWestLou(this.kit,this.zoneJson);
     yield {phase:'hook',index:117};
     buildZhaofuGate(this.kit,this.zoneJson);
+    buildChunhuaOpenFront(this,this.zoneJson);
     yield {phase:'hook',index:118};
     buildZhongzhengEastHall(this.kit,this.zoneJson);
     yield {phase:'hook',index:119};
@@ -662,6 +718,7 @@ export class ZoneBase {
     buildXuanshouSouthFront(this.kit,this.zoneJson);
     yield {phase:'hook',index:144};
     buildFuyiThreeBay(this.kit,this.zoneJson);
+    buildChunxiSouthFront(this.kit,this.zoneJson);
     yield {phase:'hook',index:145};
     buildXihuaNorthWatchHouse(this.kit,this.zoneJson);
     yield {phase:'hook',index:146};
@@ -684,13 +741,29 @@ export class ZoneBase {
     buildYinghuaEastEarHall(this.kit,this.zoneJson);
     buildXiangxuGlazedGate(this.kit,this.zoneJson);
     buildQianxingGlazedGate(this.kit,this.zoneJson);
+    yield {phase:'hook',index:154};
+    buildCangzhenGate(this.kit,this.zoneJson);
+    buildDongnuanTopologyMassing(this.kit,this.zoneJson);
+    buildXinuanTopologyMassing(this.kit,this.zoneJson);
+    buildMiaolianSouthPartial(this.kit,this.zoneJson);
+    buildNeigeZhubanTopology(this,this.zoneJson);
+    buildChuanxinKitchen(this,this.zoneJson);
+    buildDianjitingTopology(this.kit,this.zoneJson);
+    buildMongolDutyTopology(this,this.zoneJson);
     yield {phase:'merge',index:0};
     finalizeNingshouCoveredPlatforms(this.kit);
     // The complete preflight already locked this unique anonymous body at59.
     // Keep every old room producer (including Jide/Weiyu) ahead of it.
     if(this.zoneJson.id==='east-six')buildQiandongSecondFrontCourt(this.kit,items[59],this.zoneJson);
     this.group = this.kit.finish();
-    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2'))this.dafotangPhotoSession=createDafotangPhotoSession(this.group);
+    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2')){
+      if(this.kit.dafotangOriginalArtwork){
+        this.dafotangOriginalSession=this.kit.dafotangOriginalScope==='triad'
+          ?createOriginalTriadSession(this.group,{load:({subjectId,...request})=>this.kit.dafotangPrivateSideRevision==='private-side-eight-tier-v2'&&subjectId!=='shakyamuni'?loadPreparedSideArtwork(subjectId,{...request,preparationOnly:true}):loadOriginalBuddhaArtwork(subjectId,{...request,centralRevision:this.kit.dafotangCentralRevision})})
+          :createOriginalCentralSession(this.group,{load:request=>loadOriginalCentralArtwork({...request,centralRevision:this.kit.dafotangCentralRevision})});
+      }
+      else this.dafotangPhotoSession=createDafotangPhotoSession(this.group);
+    }
     yield {phase:'lod',index:0};
     installYanxiRuinLODs(this.group, yanxiFrames, this.kit.owned);
     
@@ -727,6 +800,8 @@ export class ZoneBase {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
+    this.dafotangOriginalSession?.dispose();
+    this.dafotangOriginalSession=null;
     this.dafotangPhotoSession?.dispose();
     this.dafotangPhotoSession=null;
     // A failed build may own source resources before a merged group exists.
@@ -955,6 +1030,7 @@ export class ZoneBase {
   }
 
   buildWall(item) {
+    if(buildNanshufangWallJoin(this.kit,item,this.zoneJson))return;
     if(buildShangshuSouthFragment(this.kit,item,this.zoneJson.id,this.zoneJson.items.indexOf(item)))return;
     const [x1, z1] = item.from;
     const [x2, z2] = item.to;
@@ -995,6 +1071,7 @@ export class ZoneBase {
     if(item.gates?.some(g=>g.gate==='寿安门')&&this.gateGeometries.get('寿安门')?.profile==='shouan-entry'){validateShouanEntryCourtWall(item);const {x0,x1,z0,z1}=item;this.kit.wall(x0,z1,x1,z1);this.kit.wall(x0,z0,x0,z1);this.kit.wall(x1,z0,x1,z1);return;}
 
     const resolved = resolveCourtWallContract(item, this.gateWidths);
+    if(buildWuyingGateRoomWallJoin(this.kit,item,this.zoneJson,resolved))return;
     if(buildQiandongSecondFrontCourtWalls(this.kit,item,this.zoneJson,resolved))return;
     const { x0, x1, z0, z1, gates } = resolved;
     const params = { h: item.h, t: item.t };

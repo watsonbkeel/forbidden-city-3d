@@ -1,0 +1,117 @@
+name: R274 finite Cangzhen gate review (no deploy)
+'on':
+  push:
+    branches: [dev/r274-cangzhen-finite]
+permissions:
+  contents: read
+concurrency:
+  group: r274-cangzhen-finite-review-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r274-cangzhen-finite' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 50
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: '/dev/null'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize external one-shot evidence
+        env:
+          REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          test "$REVIEW_RUNNER_ENVIRONMENT" = 'github-hosted'
+          EVIDENCE_DIR="$RUNNER_TEMP/r274-cangzhen-finite-evidence"
+          mkdir "$EVIDENCE_DIR"
+          GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+          (set -C; : > "$GLOBAL_NPM_CONFIG")
+          chmod 444 "$GLOBAL_NPM_CONFIG"
+          printf 'EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n' "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Admit exact remote parent and fixed reviewed E54 successor
+        run: |
+          set -euo pipefail
+          (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/r274_cangzhen_finite_review.py admit) 2>&1 | tee "$EVIDENCE_DIR/admission.log"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+      - name: Install unchanged locked dependencies
+        run: |
+          set -euo pipefail
+          test "$(node --version)" = 'v24.22.1'
+          test "$(npm --version)" = '11.19.1'
+          { node --version; npm --version; cat /etc/os-release; printf 'ImageOS=%s\nImageVersion=%s\n' "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+          npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+      - name: Run small original guard and new review controls
+        run: |
+          set -euo pipefail
+          for script in test_build_bound.py test_r262_exit_recheck.py test_r267_hall_review.py test_r267_owned_rss_observation.py test_r274_cangzhen_finite_review.py; do
+            (ulimit -v 131072; timeout --signal=TERM --kill-after=5s 30s python3 ".github/scripts/$script" -v) 2>&1 | tee "$EVIDENCE_DIR/$script.log"
+          done
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r274-cangzhen-finite-review/contract.test.mjs 2>&1 | tee "$EVIDENCE_DIR/review-controls.log"
+          mkdir "$EVIDENCE_DIR/component-evidence"
+          CANGZHEN_EVIDENCE_DIR="$EVIDENCE_DIR/component-evidence" timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r273-cangzhen-gate/component.test.mjs tests/r273-cangzhen-gate/controller.test.mjs tests/r273-cangzhen-gate/seam.test.mjs tests/r273-cangzhen-gate/npc.test.mjs tests/r273-cangzhen-gate/lifecycle.test.mjs tests/r273-cangzhen-gate/integration.test.mjs 2>&1 | tee "$EVIDENCE_DIR/component.log"
+          grep -Fx 'ℹ tests 22' "$EVIDENCE_DIR/component.log"
+          grep -Fx 'ℹ pass 22' "$EVIDENCE_DIR/component.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/component.log"
+      - name: Build ordinary app with unchanged guard/recheck and first-failure observation
+        run: python3 .github/scripts/r274_cangzhen_finite_review.py
+      - name: Build distinct private companion from read-only source snapshot
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/r274_cangzhen_finite_review.py review-build 2>&1 | tee "$EVIDENCE_DIR/review-build-admission.log"
+      - name: Install official locked Chromium and pinned CJK font packages
+        run: |
+          set -euo pipefail
+          test "$(node -p "require('./node_modules/playwright/package.json').version")" = '1.64.0'
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y 'fonts-noto-cjk=1:20220127+repack1-1' 'fontconfig=2.13.1-4.2ubuntu5'
+          fc-match 'Noto Sans CJK SC' | tee "$EVIDENCE_DIR/fonts.txt"
+          grep -F 'Noto Sans CJK SC' "$EVIDENCE_DIR/fonts.txt"
+          dpkg-query -W -f='${Package} ${Version}\n' fonts-noto-cjk fontconfig >> "$EVIDENCE_DIR/fonts.txt"
+      - name: Capture the four gate views and finite actual controller routes under 6 GiB guard
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/r274_cangzhen_finite_review.py visual 2>&1 | tee "$EVIDENCE_DIR/visual-admission.log"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Preserve original production build without deployment
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r274-cangzhen-finite-production-dist-unaccepted-${{ github.sha }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve private review artifact without deployment
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r274-cangzhen-finite-private-review-unaccepted-${{ github.sha }}
+          path: ${{ runner.temp }}/r274-cangzhen-build/review-dist/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve all receipts and failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r274-cangzhen-finite-evidence-${{ github.sha }}
+          path: ${{ env.EVIDENCE_DIR }}/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

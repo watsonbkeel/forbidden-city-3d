@@ -4,8 +4,8 @@
   "status": "final-content-draft-not-integrated-not-accepted",
   "originalCardCount": 164,
   "supplementalMapCardCount": 28,
-  "supplementalDirectoryCardCount": 107,
-  "candidateCardDenominator": 299,
+  "supplementalDirectoryCardCount": 108,
+  "candidateCardDenominator": 300,
   "records": [
     {
       "id": "supp-neige-main-court",
@@ -14332,10 +14332,17 @@
       ],
       "sourceObjectId": "FC-4A84B24027",
       "parentObjectId": null,
-      "structureId": "source-identity-fc-4a84b24027",
-      "structureIdentityType": "historical-source-only-not-runtime",
-      "sourcePaths": [],
-      "runtimeBinding": null,
+      "structureId": "neige-mantang-historical-volume",
+      "structureIdentityType": "historical-model-fit-runtime",
+      "sourcePaths": [
+        "src/scene/palace/special/MantangHistoricalVolume.js",
+        "src/scene/palace/special/MantangHistoricalBuilder.js"
+      ],
+      "runtimeBinding": {
+        "zoneId": "outer-east",
+        "structureId": "neige-mantang-historical-volume",
+        "scope": "three-bay-south-facing-closed-historical-model-fit"
+      },
       "zoneId": "outer-east",
       "classification": "supplemental-directory-only",
       "mapBinding": null,
@@ -14352,12 +14359,12 @@
         "en": "Qing Grand Secretariat office"
       },
       "evidenceNote": {
-        "zh": "本条转述官网记述的历史房屋；“现不存”是来源原文，不等于本轮对2026年现场存续的独立核验。拆除年代、完整形体及尺寸未核定。",
-        "en": "This entry reports the historical building described on the museum website. “No longer survives” is the source’s statement, not an independent verification of site conditions in 2026. Its demolition date, complete form and dimensions remain unverified."
+        "zh": "本条转述官网记述的历史房屋；“现不存”是来源原文，不等于本轮对2026年现场存续的独立核验。拆除年代、完整形体及尺寸未核定。 本体参考官载民国间《清内阁遗址实测图》中自身具名轮廓；转载年份不等于精确测绘年份。",
+        "en": "This entry reports the historical building described on the museum website. “No longer survives” is the source’s statement, not an independent verification of site conditions in 2026. Its demolition date, complete form and dimensions remain unverified. The limited body follows its own labelled outline in the Republican-period measured Neige plan reproduced by the museum; the reprint year is not an exact survey date."
       },
       "modelNote": {
-        "zh": "本条仅提供历史信息，未绑定独立模型或地图位置，不提供直达。",
-        "en": "This is an information-only entry. No independent model or map position is bound, and direct travel is unavailable."
+        "zh": "已绑定南向三间历史低细节拟合本体，未知内部保持闭合，不虚构入口。工程位置、尺寸、朴素屋面及色调为可回退拟合；黄瓦类别依据历史文字，非现代实拍复原。未通过完整实景、全院通路或整栋原物复原验收；地图位置仍不绑定，不提供直达。",
+        "en": "Bound to a three-bay, south-facing historical low-detail model fit, with its unknown interior kept closed and no invented entrance. Position, dimensions, plain roof and tones are reversible engineering fits; the yellow-tile category follows historical text, not a modern photographic reconstruction. This is not full real-scene, courtyard-route or complete original-building acceptance. No map position or direct travel is provided."
       },
       "siteAccess": {
         "status": "not-verified",
@@ -14377,20 +14384,31 @@
           "reviewType": "stored-official-html-local-review",
           "titleStatus": "reviewed-primary-chinese-title-project-english-translation",
           "limitation": "Previously saved official HTML reviewed locally; historical building and office only. No fresh 2026 site-survival, demolition-date, shape, dimension or visitor-access verification."
+        },
+        {
+          "id": "b22-dpm-neige-plan-2011-p106",
+          "title": "民国间清内阁遗址实测图（2011年院刊转载，图三）",
+          "titleEn": "Republican-period measured Neige plan (reproduced in the 2011 museum journal, figure 3)",
+          "url": "https://www.dpm.org.cn/Uploads/File/pdf/dc/90/c9/dc90c935d785bbdf396ad66173ebf391.pdf",
+          "publisher": "故宫博物院",
+          "reviewedAt": "2026-11-11",
+          "reviewType": "retained-official-plan-pixels-reviewed-locally",
+          "limitation": "Own named plan outline only; not a verified facade, current survival survey, measured model dimensions or exact survey date."
         }
       ],
       "provenance": {
-        "type": "official-source-supported-historical-directory-identity",
+        "type": "official-historical-identity-with-limited-plan-guided-model-fit",
         "reviewedAt": "2026-11-09",
         "sourceRecordPath": "docs/photo-fidelity/BUILDING-REGISTER-FROM-MD.json#/losslessMarkdownRows/58",
         "primarySourcesFreshlyReviewed": [],
         "limitations": [
           "Stored official HTML reviewed locally; not a fresh online retrieval.",
           "The phrase 现不存 is attributed to the official page, not a 2026 physical-site finding.",
-          "No inferred demolition date, building shell, measurement, material, coordinates or visitor access."
+          "Model shell and engineering coordinates are explicit reversible fits, not surveyed dimensions, a verified facade or a visitor-access claim; demolition date remains unknown."
         ]
       },
-      "contentStatus": "historical-information-only-candidate-not-whole-building-accepted"
+      "contentStatus": "historical-low-detail-model-fit-not-whole-building-accepted",
+      "wholeObjectAccepted": false
     },
     {
       "id": "supp-fc-15e0b02776",
@@ -14405,11 +14423,18 @@
       ],
       "sourceObjectId": "FC-15E0B02776",
       "parentObjectId": null,
-      "structureId": "source-identity-fc-15e0b02776",
-      "structureIdentityType": "historical-source-only-not-runtime",
-      "sourcePaths": [],
-      "runtimeBinding": null,
-      "zoneId": "outer-east",
+      "structureId": "neige-zhuban-historical-topology",
+      "structureIdentityType": "historical-model-fit-runtime",
+      "sourcePaths": [
+        "src/scene/palace/special/NeigeZhubanTopology.js",
+        "src/scene/palace/special/NeigeZhubanTopologyBuilder.js"
+      ],
+      "runtimeBinding": {
+        "zoneId": "axis-courts",
+        "structureId": "neige-zhuban-historical-topology",
+        "scope": "closed-historical-topology-all-metrics-engineering-fit"
+      },
+      "zoneId": "axis-courts",
       "classification": "supplemental-directory-only",
       "mapBinding": null,
       "travel": "none",
@@ -14429,8 +14454,8 @@
         "en": "In the Republican-period Measured Plan of the Former Qing Grand Secretariat Site reproduced in the Palace Museum Journal in 2011, the legend marks this site as a former building already demolished. This is a statement in the historical plan, not a verification of site conditions in 2026. The demolition date and any later reconstruction remain unverified."
       },
       "modelNote": {
-        "zh": "本条仅提供历史信息，未绑定独立模型或地图位置，不提供直达。",
-        "en": "This is an information-only entry. No independent model or map position is bound, and direct travel is unavailable."
+        "zh": "已关联正常生产入口中的内阁祝版房有限历史拓扑工程拟合体量，单独归属轴线区运行；内阁历史身份不因此改变。为避免挤压既有满本堂和通路，位置、9×6米外框、4.2米高度、颜色及中性顶封均为工程拟合，不代表测绘、现存原物或历史平屋顶。闭合未知内部，不造门窗或开间；非全栋或实景验收。无地图定位、不提供直达，不能入内。",
+        "en": "Bound to a limited historical-topology engineering-fit volume of the Neige Zhuban Room through the normal production entry, owned once by the axis-courts runtime zone without changing its historical Neige identity. Its position, 9 by 6 metre envelope, 4.2 metre height, colors and neutral top closure are engineering fits chosen to preserve the existing Manben Hall and paths, not a survey, surviving original or evidenced historic flat roof. The unknown interior remains closed, with no invented doors, windows or bay count. This is not whole-building or real-scene acceptance. No map position, direct travel or entry is provided."
       },
       "siteAccess": {
         "status": "not-verified",
@@ -14474,11 +14499,13 @@
           "Stored official HTML and PDF reviewed locally; no fresh online retrieval.",
           "The writing function comes from the Neige body text, not the Chuanxin storage glossary.",
           "The demolition label belongs to the Republican-period historical plan reproduced in 2011, not a current-site finding.",
-          "No inferred demolition year, later reconstruction, building shell, bay count, facing, measurements, materials, coordinates or visitor access.",
-          "FC-73FC3BE9A7 and its Chuanxin model remain a distinct object."
+          "Historical evidence does not establish demolition year, later reconstruction, shell, bay count, facing, measurements, materials or visitor access. The limited runtime position and closed massing are expressly engineering fits, not source measurements.",
+          "FC-73FC3BE9A7 and its Chuanxin model remain a distinct object.",
+          "Single axis-courts runtime ownership does not redefine the historic Neige precinct. No map or direct travel; no whole-building or real-scene acceptance."
         ]
       },
-      "contentStatus": "historical-information-only-candidate-not-whole-building-accepted"
+      "contentStatus": "historical-topology-model-fit-runtime-not-whole-building-accepted",
+      "wholeObjectAccepted": false
     },
     {
       "id": "supp-fc-9cb03d7316",
@@ -14575,10 +14602,17 @@
       ],
       "sourceObjectId": "FC-6555093DAA",
       "parentObjectId": null,
-      "structureId": "source-identity-fc-6555093daa",
-      "structureIdentityType": "historical-source-only-not-runtime",
-      "sourcePaths": [],
-      "runtimeBinding": null,
+      "structureId": "neige-manpiao-archive-topology",
+      "structureIdentityType": "historical-model-fit-runtime",
+      "sourcePaths": [
+        "src/scene/palace/special/ManpiaoArchiveTopology.js",
+        "src/scene/palace/special/ManpiaoArchiveBuilder.js"
+      ],
+      "runtimeBinding": {
+        "zoneId": "outer-east",
+        "structureId": "neige-manpiao-archive-topology",
+        "scope": "closed-historical-topology-all-metrics-engineering-fit"
+      },
       "zoneId": "outer-east",
       "classification": "supplemental-directory-only",
       "mapBinding": null,
@@ -14595,12 +14629,12 @@
         "en": "Keeping Manchu-language archives"
       },
       "evidenceNote": {
-        "zh": "官方条目正文确认名称与相对位置，同页“满票签档子房”释义说明其用途。它与“满票签房”分别列名；本条不推定间数、朝向、屋顶、尺寸或现存形体。",
-        "en": "The official article identifies the name and relative location, and its glossary entry for the Manchu Archives Room explains the function. It is listed separately from the Manpiao Qian Room; no bay count, orientation, roof, dimensions or surviving form is inferred here."
+        "zh": "官方条目正文确认名称与相对位置，同页“满票签档子房”释义说明其用途。它与“满票签房”分别列名；本条不推定间数、朝向、屋顶、尺寸或现存形体。 当前独立运行体仅实现上述相对拓扑的工程拟合；不把斋宿区身份、满票签房或红本库的形制转给本体。",
+        "en": "The official article identifies the name and relative location, and its glossary entry for the Manchu Archives Room explains the function. It is listed separately from the Manpiao Qian Room; no bay count, orientation, roof, dimensions or surviving form is inferred here. The independent runtime body only implements an engineering fit of that relative topology; neither the lodging identity nor the Manpiao Qian Room or Red Book Storehouse form is transferred to it."
       },
       "modelNote": {
-        "zh": "本条仅提供历史信息，未绑定独立模型或地图位置，不提供直达。",
-        "en": "This is an information-only entry. No independent model or map position is bound, and direct travel is unavailable."
+        "zh": "已关联正常生产入口中的内阁满票签档子房历史拓扑工程拟合体量：仅闭合未知内部的低细节本体；位置、尺寸、外形及顶部均为工程拟合，不代表实测轮廓、原物屋面或现存形体。间数、朝向、门窗、具体屋型与现状仍未核实，未通过完整实景或整栋复原验收。无地图定位、不提供直达，不能入内。",
+        "en": "Bound to the normal production entry for a limited historical-topology engineering-fit volume of the Neige Manchu Archives Room, with its unknown interior closed. Position, dimensions, form and top closure are engineering fits, not a surveyed outline, original roof or verified surviving building. Bay count, orientation, doors, windows, roof type and present condition remain unverified; this is not complete real-scene or whole-building reconstruction acceptance. No map position or direct travel is provided, and the closed body is not enterable."
       },
       "siteAccess": {
         "status": "not-verified",
@@ -14632,11 +14666,12 @@
           "Stored official HTML reviewed locally; no fresh online retrieval.",
           "The body text gives relative location and the room’s own glossary gives its archival function.",
           "No transfer of the separate Manpiao Qian Room’s four-bay or roof description.",
-          "No inferred building shell, orientation, measurements, materials, coordinates, present condition or visitor access.",
-          "Historical information only; no independent model, map position or travel target."
+          "Historical evidence does not establish individual outline, orientation, measurements, roof type, present condition or visitor access; runtime coordinates and low-detail massing are explicitly engineering fits.",
+          "Limited independent historical-topology runtime body is bound; no map position or travel target, no whole-building or real-scene acceptance."
         ]
       },
-      "contentStatus": "historical-information-only-candidate-not-whole-building-accepted"
+      "contentStatus": "historical-topology-model-fit-runtime-not-whole-building-accepted",
+      "wholeObjectAccepted": false
     },
     {
       "id": "supp-fc-da0f70a4c4",
@@ -14651,10 +14686,17 @@
       ],
       "sourceObjectId": "FC-DA0F70A4C4",
       "parentObjectId": null,
-      "structureId": "source-identity-fc-da0f70a4c4",
-      "structureIdentityType": "historical-source-only-not-runtime",
-      "sourcePaths": [],
-      "runtimeBinding": null,
+      "structureId": "neige-dianjiting-topology",
+      "structureIdentityType": "historical-model-fit-runtime",
+      "sourcePaths": [
+        "src/scene/palace/special/DianjitingTopology.js",
+        "src/scene/palace/special/DianjitingTopologyBuilder.js"
+      ],
+      "runtimeBinding": {
+        "zoneId": "outer-east",
+        "structureId": "neige-dianjiting-topology",
+        "scope": "closed-historical-topology-all-metrics-engineering-fit"
+      },
       "zoneId": "outer-east",
       "classification": "supplemental-directory-only",
       "mapBinding": null,
@@ -14675,8 +14717,8 @@
         "en": "The location references remain unresolved: the official article places Dianji Hall east of the lodging area behind the main hall, while Qinggong Shuwen, volume two, leaf 13 verso (13b, chapter image 26/132, not printed page 26), says “Dianji Hall was to the west” without restating the reference point for west. This entry chooses no location and does not invent a relocation to reconcile the accounts. An associated storehouse does not make the hall identical to the Dianji storehouses, nor is it the Manchu Archives Room. No form is inferred from neighboring buildings."
       },
       "modelNote": {
-        "zh": "本条仅提供历史信息，未绑定独立模型或地图位置，不提供直达。",
-        "en": "This is an information-only entry. No independent model or map position is bound, and direct travel is unavailable."
+        "zh": "已关联正常生产入口中的独立典籍厅有限工程拟合体量，不借用典籍库、耳房或档子房。历史“又西”参照及斋宿所位置仍未解决，历史证据说明不作原物落位断言；当前只采用档子房以西的可撤回工程解释。全部坐标、8×6米外框、4.2米高度、颜色及中性顶封均为工程拟合，不代表测绘、现存原物或历史平屋顶。闭合未知内部，无门窗、无推定间数；非全栋或实景验收。无地图定位、不提供直达，不能入内。",
+        "en": "Bound to an independent limited engineering-fit volume of Dianji Hall through the normal production entry, without reusing a storehouse, side room or archives room. The historical reference for west and the lodging location remain unresolved; the historical evidence note asserts no original building position. The runtime only adopts a reversible engineering interpretation west of the archives room. All coordinates, the 8 by 6 metre envelope, 4.2 metre height, colors and neutral top closure are engineering fits, not a survey, surviving original or evidenced historic flat roof. The unknown interior remains closed, with no doors, windows or inferred bay count. This is not whole-building or real-scene acceptance. No map position, direct travel or entry is provided."
       },
       "siteAccess": {
         "status": "not-verified",
@@ -14719,7 +14761,83 @@
           "limitation": "Original image: leaf 13 verso (13b), chapter image 26/132, not printed page 26. The west reference is legible but its reference point is not restated. It cannot resolve the official east reference or establish geometry or relocation."
         }
       },
-      "contentStatus": "historical-information-only-candidate-not-whole-building-accepted"
+      "contentStatus": "historical-information-only-candidate-not-whole-building-accepted",
+      "wholeObjectAccepted": false
+    },
+    {
+      "id": "supp-fc-9abf21a275",
+      "name": "苍震门",
+      "displayName": "苍震门",
+      "nameEn": "Cangzhen Gate",
+      "nameTranslationStatus": "project-transliteration-not-claimed-official",
+      "pinyin": [
+        "cang zhen men",
+        "cangzhenmen"
+      ],
+      "sourceObjectId": "FC-9ABF21A275",
+      "parentObjectId": null,
+      "structureId": "cangzhen-limited-wall-gate-r273",
+      "sourcePaths": [
+        "src/scene/palace/special/CangzhenGate.js",
+        "src/scene/palace/special/CangzhenGateProfile.js",
+        "src/scene/palace/special/CangzhenGateGeometry.js"
+      ],
+      "runtimeBinding": {
+        "zoneId": "east-six",
+        "structureId": "cangzhen-limited-wall-gate-r273",
+        "scope": "limited-physical-gate-and-aligned-wall-fragments"
+      },
+      "zoneId": "east-six",
+      "classification": "supplemental-directory-only",
+      "mapBinding": null,
+      "travel": "none",
+      "wholeObjectAccepted": false,
+      "summary": {
+        "zh": "苍震门是东六宫东大墙上的东向单开间琉璃随墙门，设双扇门。门外为东筒子长街，与蹈和门斜对。",
+        "en": "Cangzhen Gate is a single-bay, east-facing glazed wall gate with two leaves in the eastern boundary wall of the Eastern Six Palaces. It opens toward East Tongzi Street and faces Daohe Gate obliquely.",
+        "sourceIds": [
+          "e54-dpm-cangzhen-236555"
+        ]
+      },
+      "functionTag": {
+        "zh": "琉璃随墙门",
+        "en": "Glazed wall gate"
+      },
+      "evidenceNote": {
+        "zh": "本体参考故宫官方20551照片；分层石脚、红色门侧、黄绿琉璃框带、低门罩与上续高墙作低细节拟合。没有复刻不可辨的满文、题字或精细浮雕。",
+        "en": "The low-detail body follows official photograph 20551: layered stone feet, red side fields, yellow-green glazed bands, a low canopy and high wall above. Illegible Manchu script, calligraphy and fine relief are not reconstructed."
+      },
+      "modelNote": {
+        "zh": "苍震门独立门体及同轴局部墙段；北侧外墙与门内墙街尚未完整复原。截面不是历史出口，开启姿态及尺度为游览模型拟合。当前没有地图直达；2.6米净孔不代表两名最大尺寸角色可同时并排通过。",
+        "en": "Independent Cangzhen Gate and limited aligned wall sections. The northern outer wall and inner wall-street remain incomplete. The cut is not a historic exit; dimensions and open leaves are visitor-model fits. No direct map travel is provided. The 2.6 m clear opening does not imply two maximum-size characters can pass side by side."
+      },
+      "siteAccess": {
+        "status": "not-verified",
+        "zh": "模型开启不代表实景常态开放，现场开放与入内安排尚未核实。",
+        "en": "Open model leaves do not imply the real gate is normally open. Current visitor access remains unverified."
+      },
+      "sources": [
+        {
+          "id": "e54-dpm-cangzhen-236555",
+          "title": "苍震门",
+          "titleEn": "Cangzhen Gate",
+          "publisher": "故宫博物院",
+          "url": "https://www.dpm.org.cn/explore/building/236555.html",
+          "reviewType": "retained-official-source-and-own-photograph-checked-locally",
+          "reviewedAt": "2026-11-11",
+          "scope": "Named identity and relative relationships; no surveyed dimensions."
+        },
+        {
+          "id": "e54-dpm-cangzhen-20551",
+          "title": "苍震门官方照片20551",
+          "titleEn": "Official photograph 20551 of Cangzhen Gate",
+          "publisher": "故宫博物院",
+          "url": "https://img.dpm.org.cn/Uploads/Picture/dc/20551[1024].jpg",
+          "reviewType": "local-pixels-inspected",
+          "reviewedAt": "2026-11-11",
+          "scope": "Own front appearance only; source photo bytes are not shipped."
+        }
+      ]
     }
   ]
 }
