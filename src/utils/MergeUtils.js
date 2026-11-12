@@ -13,7 +13,7 @@ function validateShouanColor(geometry) {
  * 把一个对象树内的所有 Mesh 按材质合并成少量 Mesh，减少绘制调用（draw call）。
  *
  * - 以 root 的局部坐标系为基准烘焙子网格的变换（root 自身的 position/rotation/scale 保留在返回的 Group 上）。
- * - 源几何体在合并后被 dispose；材质原样复用（材质归贴图库或调用方所有，这里不释放）。
+ * - 独占源几何体在合并后被 dispose；返回图仍引用的几何体保留给其所有者。材质原样复用，这里不释放。
  * - InstancedMesh、Points、Line、Sprite 以及 userData.noMerge === true 的对象不合并，原样保留在结果中。
  * - 各几何体属性不一致时（如有的缺 uv / normal），自动补齐 uv（全 0）或计算法线，保证可合并。
  *
@@ -84,6 +84,9 @@ export function mergeByMaterial(root, { castShadow = true, receiveShadow = true,
     group.add(child);
   }
 
+  // A retained object can share a geometry with a merged source. Ownership of
+  // that geometry remains with the returned graph, including retained children.
+  group.traverse(child => { if (child.geometry) sources.delete(child.geometry); });
   sources.forEach(g => g.dispose());
   return group;
 }
