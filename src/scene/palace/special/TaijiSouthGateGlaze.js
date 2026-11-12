@@ -2,7 +2,7 @@ import * as T from 'three';
 import {applyBoxUV} from '../../../utils/GeometryUV.js';
 
 const NAME='r242_taiji_south_green_registers_fit';
-const PROGRAM='r242-taiji-south-green-registers-v2';
+const PROGRAM='r242-taiji-south-green-registers-v3';
 const SOURCE={kind:'gate',name:'太极门',x:139.5,z:304.5,plaque:false};
 const near=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-7;
 const fail=what=>{throw Error('Taiji south gate '+what);};
@@ -40,11 +40,14 @@ vec3 p = vR242WorldPosition;
 vec3 n = normalize(vR242WorldNormal);
 bool r242Front = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.x >= 136.3 && p.x <= 142.7 && p.y >= 4.65 && p.y <= 5.4;
 bool r251Trim = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.y >= 1.0 && p.y < 4.65 && ((p.x >= 136.3 && p.x <= 136.46) || (p.x >= 137.54 && p.x <= 137.7) || (p.x >= 141.3 && p.x <= 141.46) || (p.x >= 142.54 && p.x <= 142.7));
+bool r263Bottom = n.z < -0.999 && abs(p.z - 303.1) < 0.0001 && p.y >= 1.0 && p.y < 1.10 && ((p.x >= 136.3 && p.x <= 137.7) || (p.x >= 141.3 && p.x <= 142.7));
 if (r242Front) {
   if (p.y < 4.95) diffuseColor.rgb = vec3(${green});
   else if (p.y < 5.03) diffuseColor.rgb = vec3(${yellow});
   else diffuseColor.rgb = vec3(${green});
 } else if (r251Trim) {
+  diffuseColor.rgb = vec3(${yellow});
+} else if (r263Bottom) {
   diffuseColor.rgb = vec3(${yellow});
 }`);
  shader.vertexShader=vertex;shader.fragmentShader=fragment;
@@ -65,7 +68,7 @@ export function applyTaijiSouthGateGlaze(kit,frame,zoneJson,item){
  let material;
  try{
   material=source.clone();material.name=NAME;
-  material.userData={...material.userData,taijiSouthGateGlaze:{status:'photo-fit-not-surveyed',verticalTrim:{status:'photo-fit-not-surveyed',width:0.16,y:[1,4.65],upperExclusive:true,x:[[136.3,136.46],[137.54,137.7],[141.3,141.46],[142.54,142.7]]},bands:[[4.65,4.95,'green'],[4.95,5.03,'yellow'],[5.03,5.4,'green']],colors:{green:'#3f7657',yellow:'#c59b3c'},source:'https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/FZFpYviOjXBmmTCpJaGYn2TGpB6DphJJQVt1CqpC.jpg'}};
+  material.userData={...material.userData,taijiSouthGateGlaze:{status:'photo-fit-not-surveyed',verticalTrim:{status:'photo-fit-not-surveyed',width:0.16,y:[1,4.65],upperExclusive:true,x:[[136.3,136.46],[137.54,137.7],[141.3,141.46],[142.54,142.7]]},bottomTrim:{status:'photo-fit-not-surveyed',height:0.10,y:[1,1.10],upperExclusive:true,x:[[136.3,137.7],[141.3,142.7]]},bands:[[4.65,4.95,'green'],[4.95,5.03,'yellow'],[5.03,5.4,'green']],colors:{green:'#3f7657',yellow:'#c59b3c'},source:'https://file-pano.dpm.org.cn/hotspotImage/2025/08/19/FZFpYviOjXBmmTCpJaGYn2TGpB6DphJJQVt1CqpC.jpg'}};
   material.onBeforeCompile=addShader;material.customProgramCacheKey=()=>PROGRAM;
  }catch(error){material?.dispose();throw error;}
  kit.owned.push(material);

@@ -1,0 +1,11 @@
+export const VIEWS=Object.freeze([
+ {id:'east-front',label:'东正面',position:[-230,5,303.8],target:[-215,3.5,303.8]},
+ {id:'east-oblique',label:'东南斜视',position:[-228,6,295],target:[-215,3.5,303.8]},
+ {id:'opening',label:'真实门洞',position:[-220,1.62,303.8],target:[-211,1.62,303.8]},
+ {id:'south-seam',label:'原墙帽搭接',position:[-221,8.5,296],target:[-215,6.5,300.5]}
+]);
+export const ROUTES=Object.freeze([...[303.03,303.8,304.57].flatMap(z=>[false,true].flatMap(sprint=>[false,true].map(reverse=>({id:`cross-${z}-${sprint}-${reverse}`,points:reverse?[[-211,z],[-220,z]]:[[-220,z],[-211,z]],sprint,expectedArrival:true})))),...[301.9,305.7].flatMap(z=>[false,true].map(reverse=>({id:`blocked-${z}-${reverse}`,points:reverse?[[-211,z],[-220,z]]:[[-220,z],[-211,z]],sprint:true,expectedArrival:false})))]);
+const need=(v,m)=>{if(!v)throw Error(m);};
+export function requireReady(r){need(r.status==='READY','not ready');need(r.scope==='FINITE_CANGZHEN_NATIVE_ADJACENCIES','wrong scope');need(r.releaseAccepted===false&&r.visualReview==='REQUIRED','not a release');need(r.oldInputsPreserved===true&&r.geometry.meshes===64&&r.geometry.triangles===784&&r.geometry.contacts===64,'actual geometry/old adjacency mismatch');need(r.rays.open===true&&r.rays.pierBlocked===true,'real ray evidence absent');need(r.textures.manifest&&!r.textures.fallbacks.length&&!r.textures.errors.length&&!r.textures.missingNormals.length,'incomplete textures');need(r.fonts.cjk,'CJK font unavailable');need(r.routes.length===ROUTES.length,'route count');for(let i=0;i<ROUTES.length;i++){const x=r.routes[i],p=ROUTES[i];need(x.id===p.id&&x.arrived===p.expectedArrival&&x.frames>0&&x.rescues===0&&x.teleports===0&&x.maxStep<=1.21&&x.minFeet>=-.03&&x.maxFeet<.1&&x.settled===true,'native route failed '+p.id);}need(r.gl.errors.length===0&&!r.gl.lost&&r.draw.calls>0&&r.draw.triangles>784,'actual draw absent');need(r.errors.length===0,'page error');}
+export function requireCaptureSet(rows){need(rows.length===VIEWS.length&&new Set(rows.map(r=>r.sha256)).size===VIEWS.length,'four distinct views required');for(let i=0;i<VIEWS.length;i++)need(rows[i].id===VIEWS[i].id&&rows[i].bytes>10000,'view mismatch');}
+export function requireCleanup(r){need(r?.status==='COMPLETE'&&!r.errors.length&&!r.bad.length&&r.physicsReferencesCleared&&r.controlsDetached&&r.zoneDisposed,'incomplete native resource cleanup');}

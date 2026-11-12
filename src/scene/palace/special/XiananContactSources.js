@@ -27,6 +27,11 @@ function boxFromTriangles(ts){
 }
 const revoke=p=>{p.revoked=true;const active=p.binding?.deref();if(active)active.invalid=true;};
 function watch(object,event,p){object.addEventListener(event,()=>revoke(p));}
+function watchMaterial(object,p){
+  const listener=revoke.bind(null,p);
+  (p.materialDisposals??=[]).push({target:new WeakRef(object),listener});
+  object.addEventListener('dispose',listener);
+}
 function sourceValid(p){
   const kit=p.kit.deref(),frame=p.frame.deref(),item=p.item.deref(),zone=p.zone.deref(),walkable=p.walkable.deref();
   return !!kit&&!!frame&&isBuiltXiananSource(kit,frame,item,zone,walkable)&&zone?.id==='outer-west'&&zone.items[30]===item&&sameItem(item)&&kit.root.name==='outer-west'&&verifyNode(p.root)&&verifyNode(p.frameNode)&&frame.children.length===p.children.length&&p.children.every((r,i)=>r.deref()===frame.children[i])&&p.source.every(verifyMesh)&&kit.walkables.includes(walkable)&&verifyDescriptor(p.walkDescriptor)&&p.solids.every((s,i)=>kit.colliders.includes(s.deref())&&s.deref().equals(p.solidBoxes[i]));
@@ -113,7 +118,7 @@ export function finalizeXiananVisible(kit,merged){
     active.invalid=true;p.detached=true;p.groupNode=snapshotNode(merged);
   });
   for(const s of [...p.source,...p.finished]){
-    const mesh=s.node.node.deref();watch(mesh.geometry,'dispose',p);watch(mesh.material,'dispose',p);
+    const mesh=s.node.node.deref();watch(mesh.geometry,'dispose',p);watchMaterial(mesh.material,p);
     if(p.finished.includes(s))watch(mesh,'removed',p);
   }
   return true;
@@ -144,7 +149,11 @@ export function preserveXiananOwner(cm,target,original){
   managers.set(cm,state);p.binding=new WeakRef(state);p.everBound=true;return true;
 }
 export function revokeXiananOwners(cm,tag){const state=managers.get(cm);if(state&&(tag===undefined||tag===state.tag)){state.invalid=true;state.cleared=true;}}
-export function revokeXiananKit(kit){const p=kits.get(kit);if(p)revoke(p);}
+export function revokeXiananKit(kit){
+  const p=kits.get(kit);if(!p)return;revoke(p);
+  for(const {target,listener} of p.materialDisposals??[])target.deref()?.removeEventListener('dispose',listener);
+  if(p.materialDisposals)p.materialDisposals.length=0;
+}
 export function queryXiananContact(cm,from,to,radius=.5,camera=null){
   const state=managers.get(cm);if(!state)return null;
   const p=state.p,b=p.domain,pad=.5+.25;

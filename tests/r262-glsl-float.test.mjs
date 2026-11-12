@@ -34,9 +34,9 @@ test('actual Taiji material emits only float literals in its scalar GLSL block',
     assert.match(block,/p\.y >= 1\.0 && p\.y < 4\.65/,'original inclusive trim floor is emitted as a float');
     const vectors=[...block.matchAll(/vec3\(([^)]+)\)/g)].map(m=>m[1]);
     const green=new T.Color('#3f7657').toArray().map(v=>v.toFixed(10)).join(', '),yellow=new T.Color('#c59b3c').toArray().map(v=>v.toFixed(10)).join(', ');
-    assert.deepEqual(vectors,[green,yellow,green,yellow],'dynamic colors retain original linear values and decimal formatting');
+    assert.deepEqual(vectors,[green,yellow,green,yellow,yellow],'dynamic colors retain original linear values and decimal formatting, followed by the bottom band yellow');
     assert.equal(shader.vertexShader,T.ShaderLib.standard.vertexShader.replace('#include <common>','#include <common>'+varyings).replace('#include <project_vertex>','#include <project_vertex>\nvR242WorldPosition = (modelMatrix * vec4(transformed, 1.0)).xyz;\nvR242WorldNormal = normalize(mat3(modelMatrix) * objectNormal);'));
-    assert.equal(material.customProgramCacheKey(),'r242-taiji-south-green-registers-v2');
+    assert.equal(material.customProgramCacheKey(),'r242-taiji-south-green-registers-v3');
   }finally{builder.dispose();a.dispose();}
 });
 

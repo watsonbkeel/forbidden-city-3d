@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';import * as T from 'three';
+import{createRefinedCentralRelief}from'../../src/scene/palace/special/RefinedCentralBuddha.js';import{createRefinedSideRelief}from'../../src/scene/palace/special/RefinedSideBuddha.js';
+const baseline=JSON.parse(fs.readFileSync(new URL('./geometry-baseline.json',import.meta.url))),hash=a=>crypto.createHash('sha256').update(Buffer.from(a.buffer,a.byteOffset,a.byteLength)).digest('hex');
+const rects={shakyamuni:[478,1024,547,1063],amitabha:[480,963,549,997],bhaisajyaguru:[470,905,541,936]};
+for(const id of Object.keys(rects))test(id+' shares its original texture once, maps individual petal interiors, retains all non-petal geometry',()=>{
+ const grid=JSON.parse(fs.readFileSync(new URL('../../public/textures/dafotang-original/'+id+'-refined-alpha-grid-v2.json',import.meta.url))),tex=new T.Texture();tex.colorSpace=T.SRGBColorSpace;let disposed=0;tex.addEventListener('dispose',()=>disposed++);const input={...grid,alpha:Uint8Array.from(grid.alpha)},a=id==='shakyamuni'?createRefinedCentralRelief(input,{texture:tex,ownsTexture:true}):createRefinedSideRelief(id,input,{texture:tex,ownsTexture:true});
+ try{
+  const mat=a.mesh.material[4];assert.equal(mat.map,tex);assert.equal(mat.color.getHex(),0xffffff);assert.equal(mat.transparent,false);assert.equal(mat.alphaTest,.5);assert.equal(mat.roughness,.65);assert.equal(mat.metalness,.3);assert.equal(a.mesh.material[3].map,null);assert.equal(a.mesh.material[5].map,null);assert.equal(tex.flipY,true);assert.deepEqual(tex.repeat.toArray(),[1,1]);assert.deepEqual(tex.offset.toArray(),[0,0]);
+  const g=a.mesh.geometry,b=baseline.rows[id],mask=new Set(a.meta.lotusTierVertexRanges.flatMap(r=>r.petals.flatMap(p=>Array.from({length:p.vertexCount},(_,j)=>p.vertexStart+j))));assert.equal(mask.size,3200);const uv=[],[x0,y0,x1,y1]=rects[id];
+  for(let i=0;i<g.attributes.uv.count;i++){const u=g.attributes.uv.getX(i),v=g.attributes.uv.getY(i);if(mask.has(i)){assert.ok(u>=(x0+.5)/1024-1e-7&&u<=(x1-.5)/1024+1e-7);assert.ok(v>=1-(y1-.5)/1536-1e-7&&v<=1-(y0+.5)/1536+1e-7);}else uv.push(u,v);}
+  assert.equal(hash(g.attributes.position.array),b.position);assert.equal(hash(g.attributes.normal.array),b.normal);assert.equal(hash(g.index.array),b.index);assert.equal(hash(new Float32Array(uv)),b.nonPetalUV);assert.deepEqual(g.groups,b.groups);assert.equal(g.index.count/3,b.triangles);assert.equal(a.meta.oldPaintedPedestalUsed,false);assert.equal(a.meta.lotusPetalTiers,8);assert.equal(a.meta.defaultProductReplacement,false);assert.equal(disposed,0);a.dispose();a.dispose();assert.equal(disposed,1);
+ }finally{a.dispose();}
+});

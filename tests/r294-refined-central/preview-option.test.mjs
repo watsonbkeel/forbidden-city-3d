@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {ZoneBase} from '../../src/scene/zones/ZoneBase.js';import {library} from '../lib/inner-palace-fixture.mjs';
+const source=()=>JSON.parse(fs.readFileSync(new URL('../../data/zones/outer-west.json',import.meta.url)));
+test('refined central must be explicit and does not change the ordinary default',()=>{const b=new ZoneBase(library(),source());try{assert.equal(b.kit.dafotangOriginalArtwork,false);assert.equal(b.kit.dafotangCentralRevision,undefined);}finally{b.dispose();}});
+test('canonical preview constructor carries the exact refined central revision to its kit',()=>{const b=new ZoneBase(library(),source(),{dafotangOriginalArtwork:true,dafotangOriginalScope:'triad',dafotangCentralRevision:'refined-eight-tier-v2'});try{assert.equal(b.kit.dafotangCentralRevision,'refined-eight-tier-v2');}finally{b.dispose();}});
+test('unknown revision or revision without original-art opt-in rejects',()=>{for(const options of[{dafotangCentralRevision:'refined-eight-tier-v2'},{dafotangOriginalArtwork:true,dafotangCentralRevision:'typo'}]){let b;try{assert.throws(()=>{b=new ZoneBase(library(),source(),options)},/central revision/);}finally{b?.dispose();}}});

@@ -1,3 +1,9 @@
+import {prepareOriginalTriadFallback} from './DafotangOriginalTriadPresentation.js';
+import {prepareCentralFallback} from './DafotangOriginalPresentation.js';
+import {buildDafotangUpperEastBand} from './DafotangUpperEastBand.js';
+import {buildDafotangUpperPendants} from './DafotangUpperPendants.js';
+import {buildDafotangUpperWestBand} from './DafotangUpperWestBand.js';
+import {buildDafotangUpperCentralBand} from './DafotangUpperCentralBand.js';
 import {buildDafotangMainPlaque} from './DafotangMainPlaque.js';
 import {buildDafotangEastCabinets} from './DafotangEastCabinets.js';
 import {buildDafotangWoodPagodas} from './DafotangWoodPagodas.js';
@@ -982,10 +988,18 @@ function buildCeremonialHall(kit,item,p) {
   for(const z of[g.front+(g.rear-g.front)/3,g.front+(g.rear-g.front)*2/3])box(p.key+'-longitudinal-ceiling-frame','timber',g.w,.24,.18,0,g.y+g.h-.72,z,false);
   addHallBearingRing(c);
   if(p.key==='dafotang')buildDafotangMainPlaque(c);
+  if(p.key==='dafotang')buildDafotangUpperCentralBand(c);
+  if(p.key==='dafotang')buildDafotangUpperWestBand(c);
+  if(p.key==='dafotang')buildDafotangUpperEastBand(c);
+  if(p.key==='dafotang')buildDafotangUpperPendants(c);
   kit.roof(c.f,{type:'xieshan',width:g.w+.5,depth:g.d+.5,baseY:g.y+g.h,layers:g.eaveCount,brackets:true});
   kit.plaque(c.f,item.name,0,g.y+g.h-.95,-g.d/2-.32,1.2,1.9);
   const doorZ=g.centralFront??g.front;
   c.register(item.name,-A+.4,A-.4,doorZ,g.rear,g.y,g.h-.8,[{x:0,z:doorZ},...(shouan?[{x:0,z:g.rear}]:[])],{x:0,z:doorZ+1.5});
+  if(p.key==='dafotang'&&kit.dafotangOriginalArtwork===true){
+    if(kit.dafotangOriginalScope==='triad')prepareOriginalTriadFallback(c);
+    else prepareCentralFallback(c);
+  }
   return finish(c,{interiorStatus:p.key==='shouan'?'SOURCE_RECESSED_ENTRY_LIBRARY_FURNITURE_UNRECONSTRUCTED':'SOURCE_ARCHITECTURAL_BAYS_CURRENT_MUSEUM_INVENTORY_UNRECONSTRUCTED'});
 }
 

@@ -1,3 +1,4 @@
+import {priorUpperCentralBandHostSource} from '../r266-dafotang-upper-band/prior-host.mjs';
 // R259 component/synthetic contracts only. No actual hall/Kit/finish/World/GPU.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -111,8 +112,8 @@ test('R259 publication and synchronous request exceptions roll back every old re
   finally{restoreMethods();for(const[p,old]of saved)p.dispose=old;c.dispose();}
  }
 });
-test('R259 actual host function bytes call the real builder after beams, before retained roof/exterior plaque',()=>{
- const host=fs.readFileSync(new URL('../../src/scene/palace/special/RemainingOuterHalls.js',import.meta.url),'utf8');
+test('R259 HISTORICAL_HOST_VIEW restored by exact R266 inverse calls real plaque builder after beams; not current new-band host runtime',()=>{
+ const host=priorUpperCentralBandHostSource(fs.readFileSync(new URL('../../src/scene/palace/special/RemainingOuterHalls.js',import.meta.url),'utf8'));
  assert.equal(host.split(IMP).length,2);assert.equal(host.split(CALL).length,2);assert.equal(sha(host.replace(IMP,'').replace(CALL,'')),'f18e33a0f1b6b37c081a8d856444c4766db385f2fcb7109c6190589945025662');
  const start=host.indexOf('function buildCeremonialHall(kit,item,p) {'),end=host.indexOf('\nfunction buildCiningModernDisplay',start);assert.ok(start>=0&&end>start);const actual=host.slice(start,end);
  const c=fixture(),loader=controlledLoader(),events=[];let out;const noop=()=>{};

@@ -7,12 +7,65 @@ const mutable=a=>Array.isArray(a)&&Object.isExtensible(a)&&Object.getOwnProperty
 const writable=(o,k)=>{const d=Object.getOwnPropertyDescriptor(o,k);return d?('value' in d&&d.writable):Object.isExtensible(o)&&!(k in o);};
 const fitted=(subjectId,position)=>({subjectId,position,dimensionStatus:'MODEL_FIT_NOT_SURVEY',assetId:null});
 export const DAFOTANG_SPATIAL_FIT=Object.freeze({shrineWidth:6.5,figureAndLotusHeight:2.25,buddhaCenters:Object.freeze([1.62,0,-1.62]),guardianCenters:Object.freeze([2.83,-2.83]),frontZ:4.4,backZ:7.05,figureZ:5.6,lowerTop:4.35,upperTop:6.45,sidePlatformX:8.48,sidePlatformZ:.6,sidePlatformLength:9,sidePlatformDepth:2.3});
-function metadata(){const p=DAFOTANG_SPATIAL_FIT;return{id:ID,status:'PARTIAL_SPATIAL_FIT_NOT_COMPLETE_INVENTORY',sourceUrls:sources,sourcePages:['2015:300-301,306-307','2014:78-80'],sourceShrineWidth:6.5,lowerBays:5,lowerColumnCount:6,upperBays:3,figureAndLotusHeight:2.25,coordinateContract:'POSITIVE_X_WEST__NEGATIVE_X_EAST__NEGATIVE_Z_SOUTH',buddhaSlots:['amitabha','shakyamuni','bhaisajyaguru'].map((s,i)=>fitted(s,[p.buddhaCenters[i],1.7,p.figureZ])),guardianSlots:['heavenly-king','weituo'].map((s,i)=>fitted(s,[p.guardianCenters[i],1.32,p.figureZ])),arhatPlatforms:['west','east'].map((side,i)=>({side,figureCount:9,position:[(i?-1:1)*p.sidePlatformX,.92,p.sidePlatformZ],individualOrder:null,dimensionStatus:'MODEL_FIT_NOT_SURVEY'})),westWallCabinetFrames:6,westWallFrameScope:'SIX_INSET_DISPLAY_FIELDS__OUTER_CABINET_UNMODELED',westWallSourceFigure:'2015:printed307:fig23',newReligiousFigures:0,newPhotographs:0,wholeHallInventory:'UNKNOWN',complete:false,upperVisitorAccess:false,fit:['all coordinates, bay divisions, depths, heights and simplified profiles except cited total shrine width and figure/lotus height','central nonhistorical pedestal footprint reduced to fit its opening; figure and lotus unchanged','plain frame/cabinet outlines omit unknown carving and every religious image'],unknown:['exact measured bay centers and statue depths','eastern individual arhat order','detailed cabinet contents, unseen profiles and present inventory'],notEmptyClaim:true};}
+function metadata(){const p=DAFOTANG_SPATIAL_FIT;return{id:ID,status:'PARTIAL_SPATIAL_FIT_NOT_COMPLETE_INVENTORY',sourceUrls:sources,sourcePages:['2015:300-301,306-307','2014:78-80'],sourceShrineWidth:6.5,lowerBays:5,lowerColumnCount:6,upperBays:3,figureAndLotusHeight:2.25,coordinateContract:'POSITIVE_X_WEST__NEGATIVE_X_EAST__NEGATIVE_Z_SOUTH',buddhaSlots:['amitabha','shakyamuni','bhaisajyaguru'].map((s,i)=>fitted(s,[p.buddhaCenters[i],1.7,p.figureZ])),guardianSlots:['heavenly-king','weituo'].map((s,i)=>fitted(s,[p.guardianCenters[i],1.32,p.figureZ])),arhatPlatforms:['west','east'].map((side,i)=>({side,figureCount:9,position:[(i?-1:1)*p.sidePlatformX,.92,p.sidePlatformZ],individualOrder:null,dimensionStatus:'MODEL_FIT_NOT_SURVEY'})),westWallCabinetFrames:6,westWallFrameScope:'SIX_INSET_DISPLAY_FIELDS__OUTER_CABINET_UNMODELED',westWallSourceFigure:'2015:printed307:fig23',newReligiousFigures:0,newPhotographs:0,wholeHallInventory:'UNKNOWN',complete:false,upperVisitorAccess:false,fit:['all coordinates, bay divisions, depths, heights and simplified profiles except cited total shrine width and figure/lotus height','central nonhistorical pedestal footprint reduced to fit its opening; figure and lotus unchanged','plain frame/cabinet outlines omit unknown carving and every religious image'],unknown:['exact measured bay centers and statue depths','eastern individual arhat order','detailed cabinet contents, unseen profiles and present inventory'],notEmptyClaim:true,lowerFrontEntablatureProfile:{endTreatment:'PLAIN_MODEL_RETURNS_NOT_SOURCE_CARVING',columnInset:.08,narrowBays:'UNCHANGED_PLAIN',dimensionStatus:'MODEL_FIT_NOT_SURVEY'}};}
 function validate(c){const{kit,f,g,p}=c??{};if(p?.id!==PLACE||p.key!=='dafotang'||g?.id!==PLACE||g.w!==45.7||g.d!==16.2||g.y!==.9||g.front!==-8.1||g.rear!==8.1||g.inventory?.status!=='UNKNOWN'||g.historicLayout||g.historicalPrincipal?.id!=='dafotang-shakyamuni-historical-fit'||f?.parent!==kit?.root||kit.root.name!=='outer-west'||!f.position.equals(new T.Vector3(221.9,0,241.1))||!f.quaternion.equals(new T.Quaternion())||!f.scale.equals(new T.Vector3(1,1,1))||!mutable(f.children)||!mutable(kit.colliders)||!mutable(kit.owned))throw Error('Exact unchanged Dafotang host and single fallback required');
  if(!writable(g,'historicLayout')||!writable(g.historicalPrincipal,'supportDimensions')||!writable(g.historicalPrincipal,'dimensionStatus'))throw Error('Writable Dafotang publication fields required');
  const principal=f.children.find(o=>o.userData.dafotangPrincipal==='dafotang-shakyamuni-historical-fit'),support=[];
  for(const[role,w,h,d,y]of[['support-foot',2.2,.16,1.8,.98],['support-waist',1.9,.46,1.52,1.29],['support-top',2.12,.18,1.72,1.61]]){const ms=[];principal?.traverse(m=>{if(m.isMesh&&m.name==='dafotang-shakyamuni-historical-fit/'+role)ms.push(m)});if(ms.length!==1)throw Error('Exact three original fallback pedestal owners required');const m=ms[0];if(!writable(m,'geometry'))throw Error('Writable Dafotang publication fields required');m.geometry.computeBoundingBox();const b=m.geometry.boundingBox,s=b.getSize(new T.Vector3()),o=b.getCenter(new T.Vector3());if(Math.abs(s.x-w)>1e-6||Math.abs(s.y-h)>1e-6||Math.abs(s.z-d)>1e-6||Math.abs(o.x)>1e-6||Math.abs(o.y-y)>1e-6||Math.abs(o.z-5.6)>1e-6||m.material.name!=='dafotang_principal_fitted_support'||m.position.lengthSq()||!m.quaternion.equals(new T.Quaternion())||!m.scale.equals(new T.Vector3(1,1,1)))throw Error('Original pedestal dimensions/transform/material changed');f.updateWorldMatrix(true,true);const world=new T.Box3().setFromObject(m),cs=kit.colliders.filter(q=>!q.triangleSupport&&q.equals(world));if(cs.length!==1)throw Error('Original pedestal collision owner changed');support.push({m,collider:cs[0]});}
  if(JSON.stringify(g.historicalPrincipal.supportDimensions)!=='[2.2,0.8,1.8]')throw Error('Original pedestal metadata changed');return support;}
+/** Central three interior outlines guided by 2014 printed079 fig8. The
+ * 27 scan-line midpoint seeds are approximate, not a surveyed carving trace.
+ * Each bay uses one XY scale and shape-preserving PCHIP, 8 steps per interval.
+ * Six straight returns at column-axis inset .08 are visible MODEL FIT closures,
+ * not historical endpoints. The two narrow bays keep the original plain edge.
+ * No ornamental carving, all-five-bay completion or hidden joint is claimed. */
+function createLowerFrontEntablatureGeometry(){
+ const seeds=[[516.0,345.0,638,2.43,[[552,716.0],[584,705.0],[620,705.0],[658,711.0],[690,712.0],[725,713.0],[762,705.0],[799,701.0],[819,716.0]]],[861.0,347.0,638,0.81,[[896,706.5],[928,703.5],[964,702.5],[1000,715.5],[1032,718.0],[1068,713.5],[1104,704.0],[1138,702.5],[1168,718.5]]],[1208.0,342.5,639,-0.81,[[1239,717.5],[1272,704.0],[1305,706.0],[1340,712.5],[1373,710.5],[1409,716.0],[1444,706.5],[1478,704.0],[1506,707.0]]]];
+ const edge=[[3.25,4.13]],top=4.35,front=4.24,back=4.56;
+ for(const[axis,span,rail,left,points]of seeds){
+  const h=points.slice(1).map((p,i)=>p[0]-points[i][0]);
+  const d=h.map((v,i)=>(points[i+1][1]-points[i][1])/v),n=points.length,m=Array(n).fill(0);
+  const end=(h0,h1,d0,d1)=>{let v=((2*h0+h1)*d0-h0*d1)/(h0+h1);if(Math.sign(v)!==Math.sign(d0))v=0;else if(Math.sign(d0)!==Math.sign(d1)&&Math.abs(v)>3*Math.abs(d0))v=3*d0;return v;};
+  m[0]=end(h[0],h[1],d[0],d[1]);m[n-1]=end(h[n-2],h[n-3],d[n-2],d[n-3]);
+  for(let i=1;i<n-1;i++)if(d[i-1]*d[i]>0){const w1=2*h[i]+h[i-1],w2=h[i]+2*h[i-1];m[i]=(w1+w2)/(w1/d[i-1]+w2/d[i]);}
+  const scale=1.62/span,map=(x,y)=>[left-scale*(x-axis),top-scale*(y-rail)];
+  edge.push([left-.08,4.13]);
+  for(let i=0;i<n-1;i++)for(let k=0;k<8;k++){
+   const t=k/8,t2=t*t,t3=t2*t;
+   const y=(2*t3-3*t2+1)*points[i][1]+(t3-2*t2+t)*h[i]*m[i]+(-2*t3+3*t2)*points[i+1][1]+(t3-t2)*h[i]*m[i+1];
+   edge.push(map(points[i][0]+h[i]*t,y));
+  }
+  edge.push(map(...points[n-1]),[left-1.62+.08,4.13]);
+ }
+ edge.push([-3.25,4.13]);
+ const positions=[],uvs=[],indices=[];
+ const quad=(a,b,c,d,side=false)=>{const start=positions.length/3;for(const v of[a,b,c,d]){positions.push(...v);uvs.push((v[0]+3.25)/6.5,side?(v[2]-front)/(back-front):(v[1]-3.97)/.38);}indices.push(start,start+1,start+2,start,start+2,start+3);};
+ // Every lower sample gets the same-x top vertex. Caps, top and lower wall
+ // therefore share all welded edge vertices, including collinear samples.
+ // A general polygon triangulator may drop those and create T-junctions.
+ for(let i=0;i<edge.length-1;i++){
+  const[r,y]=edge[i],[l,v]=edge[i+1];
+  quad([r,y,front],[l,v,front],[l,top,front],[r,top,front]);
+  quad([l,v,back],[r,y,back],[r,top,back],[l,top,back]);
+  quad([r,top,front],[l,top,front],[l,top,back],[r,top,back],true);
+  quad([r,y,back],[l,v,back],[l,v,front],[r,y,front],true);
+ }
+ quad([3.25,4.13,front],[3.25,top,front],[3.25,top,back],[3.25,4.13,back],true);
+ quad([-3.25,4.13,back],[-3.25,top,back],[-3.25,top,front],[-3.25,4.13,front],true);
+ const geometry=new T.BufferGeometry();
+ // add() cannot own this geometry until the helper returns. Recoverable
+ // finalization failures must release it here, before outer cleanup releases
+ // the six already registered columns. Successful return transfers ownership.
+ try{
+  geometry.setAttribute('position',new T.Float32BufferAttribute(positions,3));
+  geometry.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));
+  geometry.setIndex(indices);
+  // Four indexed vertices per planar quad reuse its diagonal endpoints, but
+  // vertices across separate faces remain distinct to preserve hard normals.
+  geometry.computeVertexNormals();geometry.computeBoundingBox();return geometry;
+ }catch(error){geometry.dispose();throw error;}
+}
+
 /** Reference-guided plain spatial frame only. No religious images, new figures,
  * public assets or arbitrary scene loading. Construction is staged atomically. */
 export function buildDafotangHistoricLayout(c){const prior=validate(c),{kit,f,g}=c,p=DAFOTANG_SPATIAL_FIT,frame=new T.Group();frame.name=ID;const materials=[],geometries=[],contacts=[],changed=[],meta=metadata();
@@ -22,7 +75,7 @@ export function buildDafotangHistoricLayout(c){const prior=validate(c),{kit,f,g}
  try{
   // Six lower posts form five openings; the3 middle fit widths are equal.
   for(const x of[-3.15,-2.43,-.81,.81,2.43,3.15])add('lower-column',new T.CylinderGeometry(.065,.075,p.lowerTop-.92,12).translate(x,(p.lowerTop+.92)/2,p.frontZ));
-  box('lower-front-entablature',6.5,.22,.32,0,p.lowerTop-.11,p.frontZ);
+  add('lower-front-entablature',createLowerFrontEntablatureGeometry());
   box('lower-rear-entablature',6.5,.22,.2,0,p.lowerTop-.11,p.backZ);
   for(const x of[-2.43,-.81,.81,2.43])box('rear-bearing-fit',.12,p.upperTop-.92,.12,x,(p.upperTop+.92)/2,p.backZ);
   // Upper three bays and a closed, unwalkable fitted gallery. It is not a
