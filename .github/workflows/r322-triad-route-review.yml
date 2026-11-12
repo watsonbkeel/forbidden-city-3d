@@ -1,0 +1,144 @@
+name: R322 triad network identity diagnostic and unchanged real single-hall preview (no deploy)
+'on':
+  push:
+    branches: [dev/r322-triad-route-review]
+permissions:
+  contents: read
+concurrency:
+  group: r322-triad-route-review-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/r322-triad-route-review' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: '/dev/null'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize external one-shot evidence
+        env:
+          REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          test "$REVIEW_RUNNER_ENVIRONMENT" = 'github-hosted'
+          EVIDENCE_DIR="$RUNNER_TEMP/r275-buddha-triad-review-evidence"
+          mkdir "$EVIDENCE_DIR"
+          GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+          (set -C; : > "$GLOBAL_NPM_CONFIG")
+          chmod 444 "$GLOBAL_NPM_CONFIG"
+          printf 'EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n' "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Admit exact remote parent and additive frozen sample paths
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/r322_triad_route_review.py admit 2>&1 | tee "$EVIDENCE_DIR/admission.log"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+          cache: npm
+      - name: Install unchanged locked dependencies on hosted runner only
+        run: |
+          set -euo pipefail
+          test "$(node --version)" = 'v24.22.1'
+          test "$(npm --version)" = '11.19.1'
+          { node --version; npm --version; cat /etc/os-release; printf 'ImageOS=%s\nImageVersion=%s\n' "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+          npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+      - name: Small sample contract controls only, no app build
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r275-buddha-triad-review/contract.test.mjs 2>&1 | tee "$EVIDENCE_DIR/contract-tests.log"
+          grep -Fx 'ℹ tests 11' "$EVIDENCE_DIR/contract-tests.log"
+          grep -Fx 'ℹ pass 11' "$EVIDENCE_DIR/contract-tests.log"
+          grep -Fx 'ℹ fail 0' "$EVIDENCE_DIR/contract-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/contract-tests.log"
+          grep -Fx 'ℹ cancelled 0' "$EVIDENCE_DIR/contract-tests.log"
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r275-buddha-triad-review/route-regression.test.mjs 2>&1 | tee "$EVIDENCE_DIR/route-regression-tests.log"
+          grep -Fx 'ℹ tests 3' "$EVIDENCE_DIR/route-regression-tests.log"
+          grep -Fx 'ℹ pass 3' "$EVIDENCE_DIR/route-regression-tests.log"
+          grep -Fx 'ℹ fail 0' "$EVIDENCE_DIR/route-regression-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/route-regression-tests.log"
+          grep -Fx 'ℹ cancelled 0' "$EVIDENCE_DIR/route-regression-tests.log"
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r275-buddha-triad-review/route-cleanup.test.mjs 2>&1 | tee "$EVIDENCE_DIR/route-cleanup-tests.log"
+          grep -Fx 'ℹ tests 3' "$EVIDENCE_DIR/route-cleanup-tests.log"
+          grep -Fx 'ℹ pass 3' "$EVIDENCE_DIR/route-cleanup-tests.log"
+          grep -Fx 'ℹ fail 0' "$EVIDENCE_DIR/route-cleanup-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/route-cleanup-tests.log"
+          grep -Fx 'ℹ cancelled 0' "$EVIDENCE_DIR/route-cleanup-tests.log"
+      - name: Check unchanged portable triad components serially before build
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r275-buddha-original/triad-presentation.test.mjs 2>&1 | tee "$EVIDENCE_DIR/triad-presentation-tests.log"
+          grep -Fx 'ℹ tests 9' "$EVIDENCE_DIR/triad-presentation-tests.log"
+          grep -Fx 'ℹ pass 9' "$EVIDENCE_DIR/triad-presentation-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/triad-presentation-tests.log"
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r275-buddha-original/triad-loader.test.mjs 2>&1 | tee "$EVIDENCE_DIR/triad-loader-tests.log"
+          grep -Fx 'ℹ tests 19' "$EVIDENCE_DIR/triad-loader-tests.log"
+          grep -Fx 'ℹ pass 19' "$EVIDENCE_DIR/triad-loader-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/triad-loader-tests.log"
+      - name: Check exact R301 metadata product tests without changing existing checks
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8 --test --test-concurrency=1 tests/r301-triad-metadata/metadata.test.mjs 2>&1 | tee "$EVIDENCE_DIR/triad-metadata-tests.log"
+          grep -Fx 'ℹ tests 6' "$EVIDENCE_DIR/triad-metadata-tests.log"
+          grep -Fx 'ℹ pass 6' "$EVIDENCE_DIR/triad-metadata-tests.log"
+          grep -Fx 'ℹ skipped 0' "$EVIDENCE_DIR/triad-metadata-tests.log"
+      - name: Build exact candidate ordinary app with original 4 GiB guard and observation
+        run: python3 .github/scripts/r322_triad_route_review.py
+      - name: Build private single-hall companion from read-only snapshot
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/r322_triad_route_review.py review-build 2>&1 | tee "$EVIDENCE_DIR/prepare-admission.log"
+      - name: Install official locked Chromium and pinned CJK fonts
+        run: |
+          set -euo pipefail
+          test "$(node -p "require('./node_modules/playwright/package.json').version")" = '1.64.0'
+          cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+          ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y 'fonts-noto-cjk=1:20220127+repack1-1' 'fontconfig=2.13.1-4.2ubuntu5'
+          fc-match 'Noto Sans CJK SC' | tee "$EVIDENCE_DIR/fonts.txt"
+          grep -F 'Noto Sans CJK SC' "$EVIDENCE_DIR/fonts.txt"
+          dpkg-query -W -f='${Package} ${Version}\n' fonts-noto-cjk fontconfig >> "$EVIDENCE_DIR/fonts.txt"
+      - name: Actual front and 30 degree views under 6 GiB 720 second guard
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/r322_triad_route_review.py visual 2>&1 | tee "$EVIDENCE_DIR/visual-admission.log"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Preserve three original PNG captures and every failure receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r275-buddha-triad-review-evidence-unaccepted-${{ github.sha }}
+          path: ${{ env.EVIDENCE_DIR }}/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+      - name: Preserve private minimal static artifact without deployment
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r275-buddha-triad-review-private-hall-unaccepted-${{ github.sha }}
+          path: ${{ runner.temp }}/r275-triad-build/review-dist/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve exact ordinary production artifact without deployment
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r275-buddha-triad-production-dist-unaccepted-${{ github.sha }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 7
