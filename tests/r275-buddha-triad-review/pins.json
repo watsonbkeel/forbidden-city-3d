@@ -1,36 +1,26 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "d169aca5bfc42d0817f34cba6a36a43457c7f923",
-  "parentTree": "31ebed95501f3638e65bdcf46f573eb09acd5013",
-  "productTree": "061b4a7b1824bfb8f3c226ce7858430940427d04",
+  "remoteParent": "4119342595e900fbf12a7a3eaf4506d5a4a4e038",
+  "parentTree": "76c16e5fdd6a2b1632f05522a66e52b07ee603f9",
+  "productTree": "76c16e5fdd6a2b1632f05522a66e52b07ee603f9",
   "candidatePaths": [
-    ".github/scripts/r323_triad_route_review.py",
-    ".github/workflows/r323-triad-route-review.yml",
-    "tests/r275-buddha-triad-review/capture.mjs",
-    "tests/r275-buddha-triad-review/pins.json",
-    "tests/r275-buddha-triad-review/review-hall.html"
+    ".github/scripts/r325_retained_geometry_review.py",
+    ".github/workflows/r325-retained-geometry-review.yml",
+    "tests/r275-buddha-triad-review/pins.json"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r323_triad_route_review.py"
+      ".github/scripts/r325_retained_geometry_review.py"
     ],
     [
       "A",
-      ".github/workflows/r323-triad-route-review.yml"
-    ],
-    [
-      "M",
-      "tests/r275-buddha-triad-review/capture.mjs"
+      ".github/workflows/r325-retained-geometry-review.yml"
     ],
     [
       "M",
       "tests/r275-buddha-triad-review/pins.json"
-    ],
-    [
-      "M",
-      "tests/r275-buddha-triad-review/review-hall.html"
     ]
   ],
   "sourcePins": {
@@ -1116,7 +1106,7 @@
     "src/utils/Collision.js": "2efa520333bec48ff3d9b644b374f82cbadcc07f2259d347479a1dc2d18a78c2",
     "src/utils/GeometryUV.js": "6c6f55acd7e96d8dd8169baa62e0fdee7f92b27deb30532de022b18858884e30",
     "src/utils/InstancedMeshPool.js": "9ec55ed1d28978c0a335b4dcb8bb07e7184f84c1551b30ce7e41d85839147235",
-    "src/utils/MergeUtils.js": "a40e1026dc2e182243d4bce255ff7aed4cc8777a1e4559f50d3aa7eef8588032",
+    "src/utils/MergeUtils.js": "42a33c254d9b1641721ef960cd63a91d7dbc78e716f000187bfad51b9bb4adf1",
     "src/utils/OverheadShape.js": "930f0088c1f0a31d6589e05e1a43769fd9a491bd89f07222d813441ea11274cc",
     "src/utils/SceneSourceProof.js": "60f78b5c04cfcec8c6e24615faba1ec03b06d6fc8d8f945137d4e2bce005bcca",
     "src/utils/TextureGenerator.js": "286bf1a9a657af4bbab36920ce126b68139cdb9764df7d212e2beb13b63d26cb",
@@ -1253,7 +1243,10 @@
     ".github/scripts/r322_triad_route_review.py": "b4fa77a7ce59a543c7f3dc87efb24a26f0fffbedbff0969ccbdf585d7d87dc63",
     ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad",
     ".github/scripts/r323_triad_route_review.py": "b2f23b7b1c863482d43bd42e5fbc50539b2b283b35c427b4f3302897ba2006ba",
-    ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde"
+    ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde",
+    "tests/r324-retained-mesh/ownership.test.mjs": "089746bff5808e3e10288c428abafce0a273ec7922e1c8bf81c3a02700ea3f53",
+    ".github/scripts/r325_retained_geometry_review.py": "bb223041d4721e88d33313815c152697283b9cf6640e689b8b795cb986249d23",
+    ".github/workflows/r325-retained-geometry-review.yml": "883d65e89f61e0867b8120d40128ea8c065f6bf1a00c66302db9afc3fce36546"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1272,6 +1265,7 @@
     "Module goldBrick singleton must remain zero-disposed across three observed generations; every other resource exact once. No WebGL result claimed.",
     "R321 recovery: exact R313 product and sample defaults retained; only CI wrapper/workflow identifiers and their binding pins changed. Earlier immutable R313 tree call remains UNKNOWN; no old branch or ref write was attempted.",
     "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change.",
-    "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified."
+    "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified.",
+    "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry."
   ]
 }
