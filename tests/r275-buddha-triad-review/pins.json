@@ -1,44 +1,63 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "d169aca5bfc42d0817f34cba6a36a43457c7f923",
-  "parentTree": "31ebed95501f3638e65bdcf46f573eb09acd5013",
-  "productTree": "061b4a7b1824bfb8f3c226ce7858430940427d04",
+  "remoteParent": "60cf4277b3a7f1e2912a54fbc35c13a1130db4a6",
+  "parentTree": "33121a7b9aeef82a445422fa91727dc826a1847e",
+  "productTree": "33121a7b9aeef82a445422fa91727dc826a1847e",
   "candidatePaths": [
-    ".github/scripts/r323_triad_route_review.py",
-    ".github/workflows/r323-triad-route-review.yml",
+    ".github/scripts/r326_native_fetch_trace.py",
+    ".github/workflows/r326-native-fetch-trace.yml",
     "tests/r275-buddha-triad-review/capture.mjs",
-    "tests/r275-buddha-triad-review/pins.json",
-    "tests/r275-buddha-triad-review/review-hall.html"
+    "tests/r275-buddha-triad-review/native-fetch-trace.mjs",
+    "tests/r275-buddha-triad-review/native-fetch-trace.test.mjs",
+    "tests/r275-buddha-triad-review/pins.json"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r323_triad_route_review.py"
+      ".github/scripts/r326_native_fetch_trace.py"
     ],
     [
       "A",
-      ".github/workflows/r323-triad-route-review.yml"
+      ".github/workflows/r326-native-fetch-trace.yml"
     ],
     [
       "M",
       "tests/r275-buddha-triad-review/capture.mjs"
     ],
     [
-      "M",
-      "tests/r275-buddha-triad-review/pins.json"
+      "A",
+      "tests/r275-buddha-triad-review/native-fetch-trace.mjs"
+    ],
+    [
+      "A",
+      "tests/r275-buddha-triad-review/native-fetch-trace.test.mjs"
     ],
     [
       "M",
-      "tests/r275-buddha-triad-review/review-hall.html"
+      "tests/r275-buddha-triad-review/pins.json"
     ]
   ],
   "sourcePins": {
+    ".github/scripts/r177_build_bound.py": "e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3",
+    ".github/scripts/r262_exit_recheck.py": "2e102777b68160b4ef3b10738c521f560c42ffce196535d635f44cd8f6cce205",
+    ".github/scripts/r265_dafotang_runtime_bound.py": "fe44140f1a674ca062692aee9b07b651ec63f3476cb8625a527aa5abef9bed81",
+    ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
+    ".github/scripts/r267_owned_rss_build.py": "ef466f77c2ad68fbb60cc6befecc1187ba6d62408d06b13e5ea2696e29d818b4",
+    ".github/scripts/r267_owned_rss_observation.py": "dfa9710045cd4a783bb9b030d39c81c8daea51d346df076a2fbbb343f0093d0a",
     ".github/scripts/r274_cangzhen_finite_review.py": "84fefe80a011cf7db3877171d28f2ac016d7ab9472210afcbd7e55273eebf6eb",
     ".github/scripts/r275_buddha_triad_review.py": "a189a63322ae4b1ef96e63cd4ca46a2dcd8a51a2af07f58c0147200776ba4e9c",
+    ".github/scripts/r321_triad_route_review.py": "c4f252c38831261827597311bbeee1f6d3ec8c52c0c81266ccbcaca446422e50",
+    ".github/scripts/r322_triad_route_review.py": "b4fa77a7ce59a543c7f3dc87efb24a26f0fffbedbff0969ccbdf585d7d87dc63",
+    ".github/scripts/r323_triad_route_review.py": "b2f23b7b1c863482d43bd42e5fbc50539b2b283b35c427b4f3302897ba2006ba",
+    ".github/scripts/r326_native_fetch_trace.py": "ece0ece9f15e66a79ad2ef5c357758cbb5f64c88f79746102dfcdeefec7da569",
     ".github/scripts/test_r274_cangzhen_finite_review.py": "5521c610461b004a2d1986e56890ea2204d31e26adfb4eb371b7da2b0b2c4bd6",
     ".github/workflows/r274-cangzhen-finite-review.yml": "54990eb79c8a1fd3dcaf8dcfa7a2d4741e1cb60331488a5f31a8b669ed35e8be",
     ".github/workflows/r275-buddha-triad-review.yml": "a8f4158c60e64b0ff4b7b4bc3d01cad4d0f7092b2d3c85371b7455894fa70f6a",
+    ".github/workflows/r321-triad-route-review.yml": "c16ae023569655093759ac8ed60eb796e1710c5739b401e6cd729a1e0a7410ed",
+    ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad",
+    ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde",
+    ".github/workflows/r326-native-fetch-trace.yml": "1ef23982e22938e277f424a301649a76d1f768fbbfdcb3bc620c7b6d71f10bc6",
     "README.history-20261111-pre-r300.md": "2d30583befdc60c5be20fdaa85bc1f549218e06421e060375b8c34e5c330cb15",
     "README.md": "43e5897522024dcc1a2297332b4042d0e54f1b8df93968e841d56daf693a2289",
     "data/anchors.json": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
@@ -284,7 +303,7 @@
     "public/textures/sd/wood_column_n.webp": "42c28e455d8308102aa765ee988b947a47dc2ed1901ccdc4f84430820bf4bc1c",
     "public/textures/sd/yulu.webp": "ce32b11174ef4f1b111ac1b3faf31c5a0b05a670addac4159a2eaef308dcfcb7",
     "public/textures/sd/yulu_n.webp": "6038f616799decd92e29e1aecd5eb12aa50fccd891946fd4a50256b1fbd12149",
-    "release.json": "38ec38bd6bc9963e2edf34de84b0e8b0fcca283547d4794d81f004f1f9b3221d",
+    "release.json": "3217cf93d0110390dc1a1491e9313b0c8a01036bdf09f53453def4e11b19a285",
     "scripts/build-identity.mjs": "e869587d399418fb72e368bf26a4a19dce8d60c872ba50e2d47d5c9b3cec6efd",
     "src/audio/Ambience.js": "983497ba68870c8f1354ffcc2c4f126a75437a2aae51588f3a26150a5e878d44",
     "src/config/constants.js": "19dfcca52781c69acf46e537661c9110c25b4eee88ea4522b21561f9dd47da7d",
@@ -1116,7 +1135,7 @@
     "src/utils/Collision.js": "2efa520333bec48ff3d9b644b374f82cbadcc07f2259d347479a1dc2d18a78c2",
     "src/utils/GeometryUV.js": "6c6f55acd7e96d8dd8169baa62e0fdee7f92b27deb30532de022b18858884e30",
     "src/utils/InstancedMeshPool.js": "9ec55ed1d28978c0a335b4dcb8bb07e7184f84c1551b30ce7e41d85839147235",
-    "src/utils/MergeUtils.js": "a40e1026dc2e182243d4bce255ff7aed4cc8777a1e4559f50d3aa7eef8588032",
+    "src/utils/MergeUtils.js": "42a33c254d9b1641721ef960cd63a91d7dbc78e716f000187bfad51b9bb4adf1",
     "src/utils/OverheadShape.js": "930f0088c1f0a31d6589e05e1a43769fd9a491bd89f07222d813441ea11274cc",
     "src/utils/SceneSourceProof.js": "60f78b5c04cfcec8c6e24615faba1ec03b06d6fc8d8f945137d4e2bce005bcca",
     "src/utils/TextureGenerator.js": "286bf1a9a657af4bbab36920ce126b68139cdb9764df7d212e2beb13b63d26cb",
@@ -1125,6 +1144,7 @@
     "style.css": "2c5602bfa474658abab81d42b4c2e9de92bb0897267c36a46e808507ebfd545a",
     "tests/lib/inner-palace-fixture.mjs": "2b83059860f50b61d12b2c432355b6e142a2ed2018b6c67c0b3bf464e1ee25b1",
     "tests/r163-ninghui/routes.mjs": "8112c2ac555a15303e8ee1a6262d3effa4d37d67c72a44b0537a4b50ccac1dd3",
+    "tests/r267-dafotang-hall-review/build-review.mjs": "cb9e8e98cd7bc28fe6dd59193fcc1003fbb015780bb69a5bb739e0323eedbaca",
     "tests/r273-cangzhen-gate/component.test.mjs": "2d038078fd71669fc822231a693ee27e03da7d9b35a2b69fcbdeda110ae45d74",
     "tests/r273-cangzhen-gate/controller.test.mjs": "254c050b77cf4400bbe77882fe68edd57e93d6d21579cee8c37f9719c7593b7d",
     "tests/r273-cangzhen-gate/integration.test.mjs": "b7a35b8f955396cca24fab59b7dbb1b9488f7367c2a85193e4334b376643a76d",
@@ -1146,11 +1166,13 @@
     "tests/r275-buddha-original/triad-loader.test.mjs": "e9559a458edbc96606aa4d0a0356007b4eaa67b93d4123af5430108f14c3a3c0",
     "tests/r275-buddha-original/triad-presentation.test.mjs": "2b99635163d57907ec3d21fad97a437574a533be375c81e2689ac59251d0b880",
     "tests/r275-buddha-triad-review/build-review.mjs": "baef1e290ab022e231b24d8d768edf3430ed5765924ecbd2981ec3628b0b2fab",
-    "tests/r275-buddha-triad-review/capture.mjs": "6d01d7ab2c5ace87c28bc89d18a4c8ebed2fd9d6065ba01a8ef0a9f9ef76d8a4",
+    "tests/r275-buddha-triad-review/capture.mjs": "7c2f479ce2ccd3e23542ca2b1c5a8cffc030011d5b03a27c50bcb39bceff3b77",
     "tests/r275-buddha-triad-review/contract.mjs": "812134f80c12a914e6be6f391d9b4ca7b679a6099782e5e2ae2157c039b71fa1",
     "tests/r275-buddha-triad-review/contract.test.mjs": "e13e6b7479e8b7631c9310efd503345831504081634afadcaf39e473222069cd",
     "tests/r275-buddha-triad-review/legacy-blocked-baseline.mjs": "1423a1a61356753a9bd3b105b0723c067893647eb03f8594e7c6f755d3a3706a",
     "tests/r275-buddha-triad-review/legacy-blocked-query.mjs": "1302ba13970e22c796a587ea58fef648f72f9203bd2b2cc0c6ad64cc9570f66d",
+    "tests/r275-buddha-triad-review/native-fetch-trace.mjs": "156878dbd1cdfc51b93ac2f79e0f4527ad630bd6b0b8b35226a2b8cf66e8a6fc",
+    "tests/r275-buddha-triad-review/native-fetch-trace.test.mjs": "f42df534118e0786e4b0f3412783225cbe22bc9b1a7af09780cd5fef216cdc87",
     "tests/r275-buddha-triad-review/review-hall.html": "0c9d6da8153a6b2ef3353a231887cba9cf8d64b3b5391c967a230acaed6f4e16",
     "tests/r275-buddha-triad-review/review-hall.mjs": "5ebb13d2b88a7d741df45f00de60c382457955e1de7fbbf3fb85a7a366c7107f",
     "tests/r275-buddha-triad-review/route-cleanup.mjs": "864b1a6f579e5edddd632c1878180fddfb000d1dc909b44118c67b5948672556",
@@ -1240,20 +1262,8 @@
     "tests/r299-petal-texture/material.test.mjs": "703d9a162376f9f3aede1b265f88c163ebace3290886f50ed5a3c0dc3b65cf7a",
     "tests/r300-explicit-central/retirement.test.mjs": "a7a1510d3a175883f89a1dee25a2d0e1260072a6f8a4a40558d5d1091e8bebd3",
     "tests/r301-triad-metadata/metadata.test.mjs": "b7867e578e69f385216d42d7e775f6ee87cb31a6618d1e2bc2a2caf425098594",
-    "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7",
-    ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
-    ".github/scripts/r177_build_bound.py": "e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3",
-    ".github/scripts/r262_exit_recheck.py": "2e102777b68160b4ef3b10738c521f560c42ffce196535d635f44cd8f6cce205",
-    ".github/scripts/r267_owned_rss_observation.py": "dfa9710045cd4a783bb9b030d39c81c8daea51d346df076a2fbbb343f0093d0a",
-    ".github/scripts/r265_dafotang_runtime_bound.py": "fe44140f1a674ca062692aee9b07b651ec63f3476cb8625a527aa5abef9bed81",
-    "tests/r267-dafotang-hall-review/build-review.mjs": "cb9e8e98cd7bc28fe6dd59193fcc1003fbb015780bb69a5bb739e0323eedbaca",
-    ".github/scripts/r267_owned_rss_build.py": "ef466f77c2ad68fbb60cc6befecc1187ba6d62408d06b13e5ea2696e29d818b4",
-    ".github/scripts/r321_triad_route_review.py": "c4f252c38831261827597311bbeee1f6d3ec8c52c0c81266ccbcaca446422e50",
-    ".github/workflows/r321-triad-route-review.yml": "c16ae023569655093759ac8ed60eb796e1710c5739b401e6cd729a1e0a7410ed",
-    ".github/scripts/r322_triad_route_review.py": "b4fa77a7ce59a543c7f3dc87efb24a26f0fffbedbff0969ccbdf585d7d87dc63",
-    ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad",
-    ".github/scripts/r323_triad_route_review.py": "b2f23b7b1c863482d43bd42e5fbc50539b2b283b35c427b4f3302897ba2006ba",
-    ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde"
+    "tests/r324-retained-mesh/ownership.test.mjs": "089746bff5808e3e10288c428abafce0a273ec7922e1c8bf81c3a02700ea3f53",
+    "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1272,6 +1282,7 @@
     "Module goldBrick singleton must remain zero-disposed across three observed generations; every other resource exact once. No WebGL result claimed.",
     "R321 recovery: exact R313 product and sample defaults retained; only CI wrapper/workflow identifiers and their binding pins changed. Earlier immutable R313 tree call remains UNKNOWN; no old branch or ref write was attempted.",
     "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change.",
-    "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified."
+    "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified.",
+    "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry."
   ]
 }
