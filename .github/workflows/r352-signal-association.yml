@@ -1,0 +1,224 @@
+name: R352 native Fetch signal association diagnostic (no deploy)
+'on':
+  push:
+    branches:
+    - dev/r352-signal-association
+permissions:
+  contents: read
+concurrency:
+  group: r352-signal-association-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name
+      == 'push' && github.ref == 'refs/heads/dev/r352-signal-association' && github.event.created
+      == true && github.event.deleted == false && github.event.forced == false &&
+      github.event.before == '0000000000000000000000000000000000000000' && github.run_number
+      == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Initialize external one-shot evidence
+      env:
+        REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+      run: 'set -euo pipefail
+
+        test "$REVIEW_RUNNER_ENVIRONMENT" = ''github-hosted''
+
+        EVIDENCE_DIR="$RUNNER_TEMP/r275-buddha-triad-review-evidence"
+
+        mkdir "$EVIDENCE_DIR"
+
+        GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+
+        (set -C; : > "$GLOBAL_NPM_CONFIG")
+
+        chmod 444 "$GLOBAL_NPM_CONFIG"
+
+        printf ''EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n''
+        "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+
+        '
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Admit exact remote parent and additive frozen sample paths
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/r352_signal_association.py
+        admit 2>&1 | tee "$EVIDENCE_DIR/admission.log"
+
+        '
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+        cache: npm
+    - name: Install unchanged locked dependencies on hosted runner only
+      run: 'set -euo pipefail
+
+        test "$(node --version)" = ''v24.22.1''
+
+        test "$(npm --version)" = ''11.19.1''
+
+        { node --version; npm --version; cat /etc/os-release; printf ''ImageOS=%s\nImageVersion=%s\n''
+        "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+
+        npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+        '
+    - name: Small sample contract controls only, no app build
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8
+        --test --test-concurrency=1 tests/r275-buddha-triad-review/contract.test.mjs
+        2>&1 | tee "$EVIDENCE_DIR/contract-tests.log"
+
+        grep -Fx ''ℹ tests 11'' "$EVIDENCE_DIR/contract-tests.log"
+
+        grep -Fx ''ℹ pass 11'' "$EVIDENCE_DIR/contract-tests.log"
+
+        grep -Fx ''ℹ fail 0'' "$EVIDENCE_DIR/contract-tests.log"
+
+        grep -Fx ''ℹ skipped 0'' "$EVIDENCE_DIR/contract-tests.log"
+
+        grep -Fx ''ℹ cancelled 0'' "$EVIDENCE_DIR/contract-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8
+        --test --test-concurrency=1 tests/r275-buddha-triad-review/route-regression.test.mjs
+        2>&1 | tee "$EVIDENCE_DIR/route-regression-tests.log"
+
+        grep -Fx ''ℹ tests 3'' "$EVIDENCE_DIR/route-regression-tests.log"
+
+        grep -Fx ''ℹ pass 3'' "$EVIDENCE_DIR/route-regression-tests.log"
+
+        grep -Fx ''ℹ fail 0'' "$EVIDENCE_DIR/route-regression-tests.log"
+
+        grep -Fx ''ℹ skipped 0'' "$EVIDENCE_DIR/route-regression-tests.log"
+
+        grep -Fx ''ℹ cancelled 0'' "$EVIDENCE_DIR/route-regression-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --max-semi-space-size=8
+        --test --test-concurrency=1 tests/r275-buddha-triad-review/route-cleanup.test.mjs
+        2>&1 | tee "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        grep -Fx ''ℹ tests 3'' "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        grep -Fx ''ℹ pass 3'' "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        grep -Fx ''ℹ fail 0'' "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        grep -Fx ''ℹ skipped 0'' "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        grep -Fx ''ℹ cancelled 0'' "$EVIDENCE_DIR/route-cleanup-tests.log"
+
+        '
+    - name: Check exact URLPattern and unchanged native observer controls
+      run: "set -euo pipefail\nfor spec in tests/r328-transport-pair/document-guard.test.mjs:15\
+        \ tests/r328-transport-pair/page-owner.test.mjs:13 tests/r328-transport-pair/boundary.test.mjs:9\
+        \ tests/r275-buddha-triad-review/native-fetch-trace.test.mjs:7; do\n  file=\"\
+        ${spec%:*}\"; count=\"${spec#*:}\"\n  log=\"$EVIDENCE_DIR/$(basename \"$file\"\
+        ).log\"\n  timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128\
+        \ --max-semi-space-size=8 --test --test-concurrency=1 \"$file\" 2>&1 | tee\
+        \ \"$log\"\n  grep -Fx \"ℹ tests $count\" \"$log\"\n  grep -Fx \"ℹ pass $count\"\
+        \ \"$log\"\n  grep -Fx 'ℹ fail 0' \"$log\"\n  grep -Fx 'ℹ skipped 0' \"$log\"\
+        \n  grep -Fx 'ℹ cancelled 0' \"$log\"\ndone"
+    - name: Raw control bytes and lifecycle only, not product graphics acceptance
+      run: "set -euo pipefail\nfor spec in raw-loader.test.mjs:12 entry.test.mjs:1;\
+        \ do\n file=\"tests/r337-raw-fetch/${spec%:*}\"; count=\"${spec#*:}\"; log=\"\
+        $EVIDENCE_DIR/${spec%:*}.log\"\n timeout --signal=TERM --kill-after=5s 30s\
+        \ node --max-old-space-size=128 --test --test-concurrency=1 \"$file\" 2>&1\
+        \ | tee \"$log\"\n grep -Fx \"ℹ tests $count\" \"$log\"\n grep -Fx \"ℹ pass\
+        \ $count\" \"$log\"\n grep -Fx 'ℹ fail 0' \"$log\"\n grep -Fx 'ℹ skipped 0'\
+        \ \"$log\"\n grep -Fx 'ℹ cancelled 0' \"$log\"\ndone\n"
+    - name: Absent observer and unchanged descriptor admission controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/unwrapped-admission-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=128 --test
+        --test-concurrency=1 tests/r338-no-observer/admission.test.mjs 2>&1 | tee
+        "$log"
+
+        grep -Fx ''ℹ tests 15'' "$log"
+
+        grep -Fx ''ℹ pass 15'' "$log"
+
+        grep -Fx ''ℹ fail 0'' "$log"
+
+        grep -Fx ''ℹ skipped 0'' "$log"
+
+        grep -Fx ''ℹ cancelled 0'' "$log"
+
+        '
+    - name: Bounded EOF terminal identity, ownership order and pair binding controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/eof-pair-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=128 --test
+        --test-concurrency=1 tests/r346-matched-checkpoint/terminal-ledger.test.mjs
+        tests/r346-matched-checkpoint/paired-loader.test.mjs tests/r346-matched-checkpoint/terminal-binding.test.mjs
+        tests/r346-matched-checkpoint/checkpoint.test.mjs 2>&1 | tee "$log"
+
+        for expected in ''tests 41'' ''pass 41'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Private exact signal association and active-window qualification controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/signal-association-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r352-signal-association/*.test.mjs 2>&1 | tee "$log"
+
+        for expected in ''tests 30'' ''pass 30'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Prove prior-bound kernel exit and unchanged fail-closed supervisor cases
+      run: "set -euo pipefail\nexport R327_FIXTURE_EVIDENCE=\"$EVIDENCE_DIR/exit-race-fixture\"\
+        \nfor spec in test_r327_bound_exit_guard:19 test_r327_supervisor_exit_race:2\
+        \ test_r327_supervisor_compat:26; do\n  name=\"${spec%:*}\"\n  count=\"${spec#*:}\"\
+        \n  timeout --signal=TERM --kill-after=5s 30s python3 \".github/scripts/$name.py\"\
+        \ 2>&1 | tee \"$EVIDENCE_DIR/$name.log\"\n  grep -E \"^Ran $count tests in\
+        \ \" \"$EVIDENCE_DIR/$name.log\"\n  grep -Fx 'OK' \"$EVIDENCE_DIR/$name.log\"\
+        \ndone\n"
+    - name: Install official locked Chromium without changing sandbox
+      run: 'set -euo pipefail
+
+        test "$(node -p "require(''./node_modules/playwright/package.json'').version")"
+        = ''1.64.0''
+
+        cp node_modules/playwright-core/browsers.json "$EVIDENCE_DIR/playwright-browsers.json"
+
+        ./node_modules/.bin/playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"'
+    - name: One bounded exact-input transport comparison under unchanged 6 GiB 720
+        seconds
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r352_signal_association.py visual 2>&1 | tee "$EVIDENCE_DIR/transport-admission.log"
+
+        test -z "$(git status --porcelain=v1 --untracked-files=all)"'
+    - name: Preserve all successes and failures without deployment
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r352-signal-association-diagnostic-unaccepted-${{ github.sha }}
+        path: ${{ env.EVIDENCE_DIR }}/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7

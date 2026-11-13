@@ -1,31 +1,32 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "ebe9ff34351c106a22b767a1e1f7207156d3e05f",
-  "parentTree": "0d57df9de920cc70fba6fc1a469e3022b2486b45",
-  "productTree": "0d57df9de920cc70fba6fc1a469e3022b2486b45",
+  "remoteParent": "bdeb4a3f5f1ad9b1caab88c81fd9808c7270dbba",
+  "parentTree": "47d7d6d95dc5bb44cc0c45945f093b1bf9b042a4",
+  "productTree": "47d7d6d95dc5bb44cc0c45945f093b1bf9b042a4",
   "candidatePaths": [
-    ".github/scripts/r346_matched_checkpoint.py",
-    ".github/workflows/r346-matched-checkpoint.yml",
+    ".github/scripts/r352_signal_association.py",
+    ".github/workflows/r352-signal-association.yml",
     "tests/r275-buddha-triad-review/pins.json",
-    "tests/r346-matched-checkpoint/checkpoint.test.mjs",
-    "tests/r346-matched-checkpoint/entry.mjs",
-    "tests/r346-matched-checkpoint/experiment.mjs",
-    "tests/r346-matched-checkpoint/paired-loader.mjs",
-    "tests/r346-matched-checkpoint/paired-loader.test.mjs",
-    "tests/r346-matched-checkpoint/terminal-binding.mjs",
-    "tests/r346-matched-checkpoint/terminal-binding.test.mjs",
-    "tests/r346-matched-checkpoint/terminal-ledger.mjs",
-    "tests/r346-matched-checkpoint/terminal-ledger.test.mjs"
+    "tests/r352-signal-association/entry.mjs",
+    "tests/r352-signal-association/entry.test.mjs",
+    "tests/r352-signal-association/experiment.mjs",
+    "tests/r352-signal-association/host-qualification.mjs",
+    "tests/r352-signal-association/host-qualification.test.mjs",
+    "tests/r352-signal-association/linkage.test.mjs",
+    "tests/r352-signal-association/paired-loader.mjs",
+    "tests/r352-signal-association/retained-loader.test.mjs",
+    "tests/r352-signal-association/signal-contract.mjs",
+    "tests/r352-signal-association/signal-contract.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r346_matched_checkpoint.py"
+      ".github/scripts/r352_signal_association.py"
     ],
     [
       "A",
-      ".github/workflows/r346-matched-checkpoint.yml"
+      ".github/workflows/r352-signal-association.yml"
     ],
     [
       "M",
@@ -33,39 +34,43 @@
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/checkpoint.test.mjs"
+      "tests/r352-signal-association/entry.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/entry.mjs"
+      "tests/r352-signal-association/entry.test.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/experiment.mjs"
+      "tests/r352-signal-association/experiment.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/paired-loader.mjs"
+      "tests/r352-signal-association/host-qualification.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/paired-loader.test.mjs"
+      "tests/r352-signal-association/host-qualification.test.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/terminal-binding.mjs"
+      "tests/r352-signal-association/linkage.test.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/terminal-binding.test.mjs"
+      "tests/r352-signal-association/paired-loader.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/terminal-ledger.mjs"
+      "tests/r352-signal-association/retained-loader.test.mjs"
     ],
     [
       "A",
-      "tests/r346-matched-checkpoint/terminal-ledger.test.mjs"
+      "tests/r352-signal-association/signal-contract.mjs"
+    ],
+    [
+      "A",
+      "tests/r352-signal-association/signal-contract.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1348,7 +1353,19 @@
     "tests/r346-matched-checkpoint/terminal-binding.mjs": "c2f95bf69334dae2f486f67a195696c7a622cc9ac92742ef4e56c4c308c53e61",
     "tests/r346-matched-checkpoint/terminal-binding.test.mjs": "1a7ad46006d801080b5e4ca9772aaeca05b3c294a41993404a21cf4a1fd2c3e2",
     "tests/r346-matched-checkpoint/terminal-ledger.mjs": "e761bf33245261eac659f3cf27f27bdc1fb41dc56c0d37251256eb1c3dd04d3e",
-    "tests/r346-matched-checkpoint/terminal-ledger.test.mjs": "067b3802a245b93ecdfedbc8a9f41e282c61706ec36059e3b4f456deea01a85d"
+    "tests/r346-matched-checkpoint/terminal-ledger.test.mjs": "067b3802a245b93ecdfedbc8a9f41e282c61706ec36059e3b4f456deea01a85d",
+    ".github/scripts/r352_signal_association.py": "f6cc8e2e4511bcbd4d75dfe620ff0811c3665c882dacfa9ab39a5b969a021b83",
+    ".github/workflows/r352-signal-association.yml": "49cd5d824a74ee313fd767b6872d21b1e3db7419f727a5c1c9d91737b2cd8cdc",
+    "tests/r352-signal-association/entry.mjs": "caf339fea73cda36a91c09a82579467420532fee782e6d474c3bd852b1cf1f0e",
+    "tests/r352-signal-association/entry.test.mjs": "a3d506bf8efc66b734bf525776676d1fc3d17ee84e2d7ca1b85803aafb079cb1",
+    "tests/r352-signal-association/experiment.mjs": "56ef53c773743104a46309bbaa1efc3e3c4a5146ca8770b858a3321ff3feafdf",
+    "tests/r352-signal-association/host-qualification.mjs": "0b44a5c71a5aacb3b6d3bd6af8cefa5f483404eb318d7b684b407c7064037457",
+    "tests/r352-signal-association/host-qualification.test.mjs": "b7760e614cd0d8b1668c75f62fbe2658ee3c0733d5a462dc014823a8d04783bc",
+    "tests/r352-signal-association/linkage.test.mjs": "45846bd3d3eef7892d488bf366456255e62819f5468ec470ef96574dcdfc9949",
+    "tests/r352-signal-association/paired-loader.mjs": "8593eb42e918564f536626d49038225c87d436664e0d43b20388b3a69aac5578",
+    "tests/r352-signal-association/retained-loader.test.mjs": "7465d2212d5e2170addac7614601c0945f7df2b31b6172b004938af3d2e67871",
+    "tests/r352-signal-association/signal-contract.mjs": "53ed0e712377b067d101746883952fae940d0fe3eaa52415ae1a24b4f3348f51",
+    "tests/r352-signal-association/signal-contract.test.mjs": "eb44331689adc31f8664b69db01be469c99ebc8ff212fc5dd5ac4259fcf31648"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1375,6 +1392,7 @@
     "R337: exact R336 parent, zero product changes. Preserve both original production-loader arms, append one raw native-control with same six frozen assets/reader/hash/grid validation and three generations; no Three/model/texture/image decode. Same strict cancellation/negative/security/defaultOFF and6GiB720s. Raw failure rules out removed graphics as necessary, raw pass is inconclusive, not a fix. No retainedResponse/forcedGC/new trace/NetLog. Counter and READY/DISPOSED refer to raw logical slots in that control, not graphical resources.",
     "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance.",
     "R344 private test-only EOF terminal ownership pair. Original four arms and loader sources retained, original strict failed terminals unchanged. Both pair modes same bounded6asset3slot3generation stream/hash/grid; A helper releases actual response/reader before common terminal bridge, B holds them through common bridge and checks then releases. Scalar exact perpage/frame/generation/url/CDPrequestId ledger; failure terminals settle but remain fatal, duplicates/redirects/deadlines fail closed, same10s maximum from generation admission (stricter than restarting request condition timers),same6GiB720outer and13nativeidentities. No arrayBuffer fallback in newpair. PostEOF lifetime/timingbundle,not GC/caller/productfix proof. No deployment or current production branch alteration.",
-    "R346 corrects known R344 extra-release-ack confound. Both modes await EOF then same-shaped checkpoint before hash/nextasset. No extra third bridge. A has released before EOF bridge, not necessarily before native terminal; B holds actualResponse/reader through EOF-terminal latch then releases before common checkpoint. Release evidence is source-control ordering and Node receipt upperbounds, not native release timestamps. Ledger requires unique checkpoint after exact request/EOF/terminal-ack with unchanged10s admission deadline, all terminal failures fatal downstream, all six assets/three generations and guards retained. Same6GiB720, original four arms/source bundles preserved. Fixed order/intermittency/lifetime-timing remain confounds, not productionfix/hall/merge acceptance."
+    "R346 corrects known R344 extra-release-ack confound. Both modes await EOF then same-shaped checkpoint before hash/nextasset. No extra third bridge. A has released before EOF bridge, not necessarily before native terminal; B holds actualResponse/reader through EOF-terminal latch then releases before common checkpoint. Release evidence is source-control ordering and Node receipt upperbounds, not native release timestamps. Ledger requires unique checkpoint after exact request/EOF/terminal-ack with unchanged10s admission deadline, all terminal failures fatal downstream, all six assets/three generations and guards retained. Same6GiB720, original four arms/source bundles preserved. Fixed order/intermittency/lifetime-timing remain confounds, not productionfix/hall/merge acceptance.",
+    "R352 independent diagnostic on exactR346, not cumulativeR350. Originalfourarms/bundles intact. Same new private heldreaderbundle bothnewarms, onlygen2/3 nativefetch signalproperty linkage differs; gen1 exactsignal trueabort retained. Shared scalar activitylistener qualifies only after allREADY/exactterminals/health under original10s deadline; late/activeabort invalid, normalcleanup separate. Omittingnative signaldoesnotpreserve nativeheaderabort; ownercontextclose/6GiB720 guard required, neverawaitpendingheader duringteardown. Strictnativefailures remainfatal; 12laterassets+3firstabort. No product/main/default/deploychange, no GC/caller/rootcause/fullmerge inference."
   ]
 }
