@@ -1,27 +1,25 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "7a95aec91a3ad1ce7cb13a1b5fcb9260f705e382",
-  "parentTree": "9f46e1e613174ce14d94a9c79a8359eb6ffd2b7f",
-  "productTree": "9f46e1e613174ce14d94a9c79a8359eb6ffd2b7f",
+  "remoteParent": "0e53f294eb2d821bd1517d860c84e9c988bf5f72",
+  "parentTree": "bff30aa6ba401457576ef6c2f483688f88e640d8",
+  "productTree": "bff30aa6ba401457576ef6c2f483688f88e640d8",
   "candidatePaths": [
-    ".github/scripts/r337_raw_fetch_control.py",
-    ".github/workflows/r337-raw-fetch-control.yml",
+    ".github/scripts/r338_no_observer.py",
+    ".github/workflows/r338-no-observer.yml",
     "tests/r275-buddha-triad-review/pins.json",
     "tests/r328-transport-pair/experiment.mjs",
-    "tests/r337-raw-fetch/entry.mjs",
-    "tests/r337-raw-fetch/entry.test.mjs",
-    "tests/r337-raw-fetch/raw-loader.mjs",
-    "tests/r337-raw-fetch/raw-loader.test.mjs"
+    "tests/r338-no-observer/admission.mjs",
+    "tests/r338-no-observer/admission.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r337_raw_fetch_control.py"
+      ".github/scripts/r338_no_observer.py"
     ],
     [
       "A",
-      ".github/workflows/r337-raw-fetch-control.yml"
+      ".github/workflows/r338-no-observer.yml"
     ],
     [
       "M",
@@ -33,19 +31,11 @@
     ],
     [
       "A",
-      "tests/r337-raw-fetch/entry.mjs"
+      "tests/r338-no-observer/admission.mjs"
     ],
     [
       "A",
-      "tests/r337-raw-fetch/entry.test.mjs"
-    ],
-    [
-      "A",
-      "tests/r337-raw-fetch/raw-loader.mjs"
-    ],
-    [
-      "A",
-      "tests/r337-raw-fetch/raw-loader.test.mjs"
+      "tests/r338-no-observer/admission.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1286,7 +1276,7 @@
     "tests/r328-transport-pair/boundary.mjs": "32f40260a25d5bb84d01802c78e007b581562f2058a93124712d0fe08058e556",
     "tests/r328-transport-pair/boundary.test.mjs": "a1690d61119bdddb0d317658b534239cdf73722af0e27a86087a9a0ae66afd97",
     "tests/r328-transport-pair/entry.mjs": "b2248b923caa1bdb7aa70dca56ec05ab115d36219367a22a4691ec8b33da4acd",
-    "tests/r328-transport-pair/experiment.mjs": "6e4d022e83dcd91b199394893a5bc9b3f90fbbb5aee7dea7153eb238263650af",
+    "tests/r328-transport-pair/experiment.mjs": "ea08fca7f4584f910b8330e51d611d5d24ceba4f34eb0b1364bfcf02ddc6098b",
     "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7",
     ".github/scripts/r331_ordered_blob_review.py": "f002429365d8052233dc7937288f61c45f072049c892c6827e2a1e7b32dd55dc",
     ".github/workflows/r331-ordered-blob-review.yml": "e3b27604c0b1ae0136ec425581c0680e6d8e7e9cd95c98b38791ac82e19da508",
@@ -1303,7 +1293,11 @@
     "tests/r337-raw-fetch/entry.mjs": "fdee02fa09c9777fb97abda4c80d46458b92d2728614130b4db6ba2ac94ad20d",
     "tests/r337-raw-fetch/entry.test.mjs": "211e1733cfeed1f689d1baeebadd4f22ddda5548d9203090e097122294cba6b3",
     "tests/r337-raw-fetch/raw-loader.mjs": "262cea737c022f7b4b7cd63b5641d19720f8e9ca594a3d9074037222692ac44f",
-    "tests/r337-raw-fetch/raw-loader.test.mjs": "2157fc8b1aa79a0b52b5413e5cac64dea9c334d8731697d65c7e88df29d2f9be"
+    "tests/r337-raw-fetch/raw-loader.test.mjs": "2157fc8b1aa79a0b52b5413e5cac64dea9c334d8731697d65c7e88df29d2f9be",
+    ".github/scripts/r338_no_observer.py": "4e8cf56d9087b8e70b87289a978701375e0166c332b3dcf05e02f881c7676aea",
+    ".github/workflows/r338-no-observer.yml": "280ee79e153c18d89a3a4bf740ec85e734f10aa8d1f6a98264dcd79e1a6b60a4",
+    "tests/r338-no-observer/admission.mjs": "2550febcb597825a4b604fa9aaa97bc73e2f87096a491e876710ba8fa97dfdbf",
+    "tests/r338-no-observer/admission.test.mjs": "0bfa31859ea0c48e916f6570a9f51e8f8beb86ad9faf29d8284ccc6b37de2f1a"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1327,6 +1321,7 @@
     "R331 follows exact R329 diagnostic parent, not R330 product fix: source-derived ordered exact empty-tail blob deny then same-origin full-wildcard allow. Fixed HTTP allows/CSP/runtime controls/6GiB720s/sandbox/production loaders and input assets unchanged. Preserve R328/R329 setup failures. Node policy success is not CDP acceptance. No merge or deployment; main and R330 remain separate.",
     "R333 follows exact R331 diagnostic parent, not R332 product fix: close and verify destructive boundary page, create exactly one fresh identity-checked protected page in same context, stable lexical roles and retained negative evidence. All three original loader generations on same fresh page per arm. Unchanged boundary helper/HTTP/CSP/sandbox/6GiB720s/native observer/product assets/defaultOFF. Preserve all prior failures; CPU mocks not browser evidence. No main/deployment or release acceptance.",
     "R336 follows exact R333 diagnostic parent, not R335 product branch. Native arm only: source-backed Document Request Fetch admission with exact unchanged allowlist; every PNG/non-Document paused event fails, no bodies read/fulfilled/rewritten. Both page owners await guard readiness; pending errors drain into health and final receipts. Route baseline owns its own Fetch, receives no new guard. Not completely interception-free or zero-timing-effect. Original three generations, all negative controls, CSP/sandbox/6GiB720s/native observer/assets/defaultOFF unchanged; R333 failures retained. No release/main/deployment acceptance.",
-    "R337: exact R336 parent, zero product changes. Preserve both original production-loader arms, append one raw native-control with same six frozen assets/reader/hash/grid validation and three generations; no Three/model/texture/image decode. Same strict cancellation/negative/security/defaultOFF and6GiB720s. Raw failure rules out removed graphics as necessary, raw pass is inconclusive, not a fix. No retainedResponse/forcedGC/new trace/NetLog. Counter and READY/DISPOSED refer to raw logical slots in that control, not graphical resources."
+    "R337: exact R336 parent, zero product changes. Preserve both original production-loader arms, append one raw native-control with same six frozen assets/reader/hash/grid validation and three generations; no Three/model/texture/image decode. Same strict cancellation/negative/security/defaultOFF and6GiB720s. Raw failure rules out removed graphics as necessary, raw pass is inconclusive, not a fix. No retainedResponse/forcedGC/new trace/NetLog. Counter and READY/DISPOSED refer to raw logical slots in that control, not graphical resources.",
+    "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance."
   ]
 }
