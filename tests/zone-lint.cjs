@@ -334,6 +334,16 @@ async function lintGeometry(zoneFiles) {
     return currentWuying;
   };
 
+  let currentChengqianRear;
+  const chengqianRearAccess = async () => {
+    if (!currentChengqianRear) {
+      const {checkChengqianRearAccess} = await import(pathToFileURL(path.join(__dirname, 'lib/chengqian-rear-current-access.mjs')).href);
+      currentChengqianRear = checkChengqianRearAccess(W);
+      console.log('CHENGQIAN_REAR_CURRENT_ACCESS_JSON ' + JSON.stringify(currentChengqianRear));
+    }
+    return currentChengqianRear;
+  };
+
   let currentShoukang;
   const shoukangAccess = async () => {
     if (!currentShoukang) {
@@ -458,6 +468,18 @@ async function lintGeometry(zoneFiles) {
         const current = await shoukangAccess();
         for (const fault of current.faults) error(`${where} current-native-front-access ${fault}`);
         if (!current.faults.length) info(`${where} 原控制器中路及两侧阶道连续入殿往返通过（10/30/60Hz）；旧218.9对照保留`);
+        if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
+      const rearIndex = W.zones.find(z => z.json.id === 'east-six')?.json.items.indexOf(h.item);
+      if (h.zone === 'east-six' && [56,57].includes(rearIndex) && h.item.structure === 'chengqian-rear-wing' && side === -1) {
+        // Only these two original FRONT entries use the actual native caller.
+        // Keep every other hall, rear probe, gate, BFS and all surrounding owners.
+        const current = await chengqianRearAccess();
+        const room = current.rooms.find(r => r.index === rearIndex);
+        if (!room) throw Error('Missing canonical Chengqian rear access result');
+        for (const fault of room.faults) error(`${where} current-native-front-access ${fault}`);
+        if (!room.faults.length) info(`${where} 原控制器真实短阶连续入门往返通过（10/30/60Hz）；旧五参数走法原结果另列`);
         if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
         continue;
       }
