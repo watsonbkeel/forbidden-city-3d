@@ -273,7 +273,7 @@ export function furnitureContact(cm,x,z,maxTop,radius=.5,height=PLAYER.HEIGHT){
   // (fall/lower-floor support), equality and every uncertain bound. Motion,
   // lift and vertical sweeps below still query their full original envelopes.
   const ceiling=maxTop+height;
-  const finiteEnvelope=Number.isFinite(maxTop)&&Number.isFinite(height)&&height>0&&Number.isFinite(ceiling);
+  const finiteEnvelope=[x,z,radius,maxTop,height,ceiling].every(Number.isFinite)&&radius>0&&height>0;
   const owners=furnitureLocalColliders(cm,bounds).filter(c=>{
     if(!bounds.intersectsBox(c.box))return false;
     const b=c.box;
