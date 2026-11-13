@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+test('main hall QA has explicit runtime witness binding and source-aware below-ground rejection',()=>{const p=new URL('../lib/main-hall-current-access.mjs',import.meta.url);assert.equal(fs.existsSync(p),true,'source-bound adapter missing');const s=fs.readFileSync(p,'utf8');for(const name of ['bindMainHallEnvironment','unbindMainHallEnvironment','captureMainHallSource','recordMainHallWalkables','checkMainHallAccess','below actual ground'])assert.ok(s.includes(name),name);});

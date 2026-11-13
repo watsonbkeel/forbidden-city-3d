@@ -1,3 +1,4 @@
+import {captureMainHallSource,recordMainHallWalkables,bindMainHallEnvironment,unbindMainHallEnvironment} from './main-hall-current-access.mjs';
 import {captureChuxiuRearSource,recordChuxiuRearWalkables} from './chuxiu-rear-current-access.mjs';
 import {captureChengqianRearSource,recordChengqianRearWalkables} from './chengqian-rear-current-access.mjs';
 import {captureWenyuanSupportSource,recordWenyuanWalkableBindings} from './wenyuan-bridge-support.mjs';
@@ -252,13 +253,13 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       };
     }
     let wenyuanSupportSource=null;const originalFinish=zb.kit.finish;
-    if(realFinish&&['outer-east','east-six','west-six'].includes(json.id))zb.kit.finish=function(...args){if(json.id==='outer-east')wenyuanSupportSource=captureWenyuanSupportSource(this);if(json.id==='east-six')captureChengqianRearSource(this);if(json.id==='west-six')captureChuxiuRearSource(this);return originalFinish.apply(this,args);};
+    if(realFinish&&['outer-east','east-six','west-six'].includes(json.id))zb.kit.finish=function(...args){if(json.id==='outer-east')wenyuanSupportSource=captureWenyuanSupportSource(this);if(['east-six','west-six'].includes(json.id))captureMainHallSource(this,json);if(json.id==='east-six')captureChengqianRearSource(this);if(json.id==='west-six')captureChuxiuRearSource(this);return originalFinish.apply(this,args);};
     let data;try{data=zb.build();}finally{zb.kit.finish=originalFinish;}
     if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data,wenyuanSupportSource});}
     cm.addColliders(data.colliders, json.id);
     const rearWalkableStart=cm.walkables.length;
     cm.addWalkables(data.walkables, json.id);
-    if(realFinish){recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
+    if(realFinish){recordMainHallWalkables(cm,zb.kit,json.id,rearWalkableStart);recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
     if(realFinish)recordWenyuanWalkableBindings(cm,data.walkables,json.id,wenyuanWalkableSources);
     rooms.push(...data.rooms);
     mapItems.push(...data.mapItems);
@@ -300,7 +301,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry','wenhua-gate-approaches','chengqian-rear-access'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);if(realFinish)owners.push({label:'environment:ground',value:env});env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
+  if((realFinish&&zones.some(z=>['east-six','west-six'].includes(z.json.id)))||cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry','wenhua-gate-approaches','chengqian-rear-access'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);if(realFinish)owners.push({label:'environment:ground',value:env});env.setupGround();environmentScene.updateMatrixWorld(true);if(realFinish&&zones.some(z=>['east-six','west-six'].includes(z.json.id))){owners.push({label:'mainHallEnvironmentWitness',value:{dispose(){unbindMainHallEnvironment(cm);}}});bindMainHallEnvironment(cm,environmentScene);}bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });

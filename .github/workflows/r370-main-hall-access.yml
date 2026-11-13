@@ -1,0 +1,497 @@
+name: R370 exact main hall native runtime context and unchanged full zone QA (no deploy)
+'on':
+  push:
+    branches:
+    - dev/r370-main-hall-access
+permissions:
+  contents: read
+concurrency:
+  group: r370-main-hall-access-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name
+      == 'push' && github.ref == 'refs/heads/dev/r370-main-hall-access' && github.event.created
+      == true && github.event.deleted == false && github.event.forced == false &&
+      github.event.before == '0000000000000000000000000000000000000000' && github.run_number
+      == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Initialize external one-shot evidence
+      env:
+        REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+      run: 'set -euo pipefail
+
+        test "$REVIEW_RUNNER_ENVIRONMENT" = ''github-hosted''
+
+        EVIDENCE_DIR="$RUNNER_TEMP/r370-main-hall-access-evidence"
+
+        mkdir "$EVIDENCE_DIR"
+
+        GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+
+        (set -C; : > "$GLOBAL_NPM_CONFIG")
+
+        chmod 444 "$GLOBAL_NPM_CONFIG"
+
+        printf ''EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n''
+        "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+
+        '
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Admit exact R369 parent and QA-only main hall runtime-source contract
+      run: 'set -euo pipefail
+
+        python3 - <<''PYINNER''
+
+        from pathlib import Path
+
+        import json,subprocess,hashlib,os
+
+        p=json.loads(Path(''tests/r370-main-hall-access/pins.json'').read_text())
+
+        def git(*a):return subprocess.check_output([''git'',*a],text=True).strip()
+
+        assert p[''frozen''] is True and p[''parent'']==''2ddf7d565387c4607b77b8f6b7ae699ee7cb5ce5''
+
+        head=git(''rev-parse'',''HEAD'');assert head==os.environ[''GITHUB_SHA''];assert
+        git(''rev-list'',''--parents'',''-n'',''1'',''HEAD'').split()==[head,p[''parent'']]
+
+        assert git(''rev-parse'',''HEAD^:'')==p[''parentTree'']
+
+        assert git(''status'',''--porcelain=v1'',''--untracked-files=all'')==''''
+
+        changes=[line.split(''\t'')for line in git(''diff'',''--name-status'',''HEAD^'',''HEAD'').splitlines()];assert
+        changes==p[''changes'']
+
+        for name,want in {**p[''sourcePins''],**p[''retainedPins'']}.items():assert
+        hashlib.sha256(Path(name).read_bytes()).hexdigest()==want,name
+
+        assert not Path(''dist'').exists()
+
+        e=Path(os.environ[''EVIDENCE_DIR'']);e.joinpath(''checkout-identity.json'').write_text(json.dumps({''frozen'':True,''head'':head,''tree'':git(''rev-parse'',''HEAD^{tree}''),''parent'':p[''parent''],''parentTree'':p[''parentTree''],''changes'':changes,''sourcePins'':p[''sourcePins''],''retainedPins'':p[''retainedPins''],''pinsSHA256'':hashlib.sha256(Path(''tests/r370-main-hall-access/pins.json'').read_bytes()).hexdigest(),''scope'':''EXACT_MAIN_HALL_RUNTIME_SOURCE_QA_ONLY_FULL_ZONES_UNFILTERED_NOT_NETWORK_ACCEPTANCE'',''knownUnresolved'':p[''knownUnresolved'']},indent=2)+''\n'')
+
+        PYINNER'
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+        cache: npm
+    - name: Install unchanged locked dependencies on hosted runner only
+      run: 'set -euo pipefail
+
+        test "$(node --version)" = ''v24.22.1''
+
+        test "$(npm --version)" = ''11.19.1''
+
+        { node --version; npm --version; cat /etc/os-release; printf ''ImageOS=%s\nImageVersion=%s\n''
+        "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+
+        npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+        '
+    - name: New actual normal teleport prefetch regressions (no browser)
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r334-prefetch/run.mjs
+
+        '
+    - name: Original R332 unload notification regressions, unchanged
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r332-unload/run.mjs
+
+        '
+    - name: Original R330 owner failure regressions, unchanged
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r330-disposal/run.mjs
+
+        '
+    - name: Existing focused session and manager lifecycle regressions only
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 90s node --max-old-space-size=512 --max-semi-space-size=16
+        --test --test-concurrency=1 tests/r275-buddha-original/triad-presentation.test.mjs
+        tests/r262-cold-release.test.mjs tests/r262-material-listener.test.mjs tests/r169-dafotang-photo-triptych/cache-lifecycle.test.mjs
+        2>&1 | tee "$EVIDENCE_DIR/focused-regressions.log"
+
+        for expected in ''tests 55'' ''pass 55'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$EVIDENCE_DIR/focused-regressions.log"; done
+
+        '
+    - name: All original resource controls plus atomic fixture handoff and durable
+        failure receipts
+      run: 'set -euo pipefail
+
+        for key in R262_REPO_ROOT R262_DISABLE_EXIT_RECHECK R327_FIXTURE_EVIDENCE;
+        do test -z "${!key:-}"; done
+
+        timeout --signal=TERM --kill-after=5s 90s python3 - <<''PYINNER'' 2>&1 | tee
+        "$EVIDENCE_DIR/resource-controls.log"
+
+        import sys,unittest
+
+        sys.path.insert(0,''.github/scripts'')
+
+        names=[''test_r327_bound_exit_guard'',''test_r327_supervisor_exit_race'',''test_r327_supervisor_compat'',''test_r262_exit_recheck'',''test_r267_owned_rss_observation'',''test_r335_bound_build'',''test_r362_fixture_evidence'']
+
+        suite=unittest.defaultTestLoader.loadTestsFromNames(names)
+
+        assert suite.countTestCases()==79
+
+        result=unittest.TextTestRunner(verbosity=2).run(suite)
+
+        assert result.testsRun==79 and not result.skipped and result.wasSuccessful()
+
+        PYINNER
+
+        '
+    - name: Material cache and source provenance controls
+      id: controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/material-cache-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=512 --test
+        --test-concurrency=1 tests/r339-material-contract/cache.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 6'' ''pass 6'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r339_material_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+        grep -E ''^Ran 6 tests in '' "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+        grep -Fx ''OK'' "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 tests/r340-material-name/run.mjs
+
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 tests/r341-real-world/run.mjs
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r341_world_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+        grep -E "^Ran 7 tests in " "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r342_finish_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+        grep -E "^Ran 8 tests in " "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+
+        log="$EVIDENCE_DIR/finished-world-contract-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r343-finished-world/lifecycle.test.mjs tests/r343-finished-world/world-contract.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 9" "pass 9" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r343_world_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+        grep -E "^Ran 9 tests in " "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+
+        log="$EVIDENCE_DIR/gate-route-diagnostic-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r345-gate-route/adapter.test.mjs tests/r345-gate-route/diagnostic.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 6" "pass 6" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+
+        log="$EVIDENCE_DIR/independent-profile-route-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        tests/r347-profile-passages/routes.test.mjs 2>&1 | tee "$log"
+
+        for expected in "tests 5" "pass 5" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+
+        log="$EVIDENCE_DIR/contact-envelope-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r348-contact-envelope/envelope.test.mjs tests/r348-contact-envelope/real-component.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 14" "pass 14" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        log="$EVIDENCE_DIR/retained-contact-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r96-movement/composed-motion.test.mjs tests/r96-movement/contact-sweep.test.mjs
+        tests/r96-movement/controller.test.mjs tests/r96-movement/dynamic-body.test.mjs
+        tests/r96-movement/lifecycle.test.mjs tests/r96-movement/substep-feet.test.mjs
+        tests/r109-stair-contact.test.mjs tests/r109-stair-lifecycle.test.mjs 2>&1
+        | tee "$log"
+
+        for expected in "tests 58" "pass 58" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Actual source-bound Wuying ingress and failure-restoration controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/wuying-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r350-wuying-access/access.test.mjs tests/r350-wuying-access/integration.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 5" "pass 5" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Actual source-bound Shoukang front identity, source solids and native
+        doorway controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/shoukang-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r353-shoukang-access/access.test.mjs tests/r353-shoukang-access/integration.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 6" "pass 6" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Exact actual Wenyuan deck/tread source and missing-piece controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/wenyuan-support-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r356-wenyuan-support/*.test.mjs 2>&1 | tee "$log"
+
+        for expected in "tests 10" "pass 10" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Normal sequence, strict late CDP, exact boundary and ownership controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/normal-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r360-normal-user/*.test.mjs 2>&1 | tee "$log"
+
+        for expected in ''tests 36'' ''pass 36'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        (cd .github/scripts && python3 -m unittest test_r360_hall_gate) 2>&1 | tee
+        "$EVIDENCE_DIR/normal-wrapper-controls.log"
+
+        grep -F ''Ran 6 tests'' "$EVIDENCE_DIR/normal-wrapper-controls.log"; grep
+        -Fx ''OK'' "$EVIDENCE_DIR/normal-wrapper-controls.log"
+
+        log="$EVIDENCE_DIR/default-metadata-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r301-triad-metadata/metadata.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 6'' ''pass 6'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Retained public controls plus exact native pointer and bounded look scheduling
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/public-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r361-public-default/*.test.mjs tests/r363-public-pointer/*.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in ''tests 19'' ''pass 19'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        (cd .github/scripts && python3 -m unittest test_r361_public_gate) 2>&1 | tee
+        "$EVIDENCE_DIR/public-wrapper-controls.log"
+
+        grep -F ''Ran 6 tests'' "$EVIDENCE_DIR/public-wrapper-controls.log"; grep
+        -Fx ''OK'' "$EVIDENCE_DIR/public-wrapper-controls.log"
+
+        '
+    - name: Actual candidate pins through unchanged private READY contract
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/private-schema-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r365-private-identity/schema.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 6'' ''pass 6'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Strict failure and exact terminal observation policy controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/functional-policy-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r366-functional-impact/policy.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 28'' ''pass 28'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        (cd .github/scripts && python3 -m unittest test_r366_impact_gate) 2>&1 | tee
+        "$EVIDENCE_DIR/functional-wrapper-controls.log"
+
+        grep -F ''Ran 6 tests'' "$EVIDENCE_DIR/functional-wrapper-controls.log"; grep
+        -Fx ''OK'' "$EVIDENCE_DIR/functional-wrapper-controls.log"
+
+        '
+    - name: Bounded six-source delivery and original cleanup handoff controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/delivery-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r364-asset-delivery/delivery.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 18'' ''pass 18'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        (cd .github/scripts && python3 -m unittest test_r364_delivery_gate) 2>&1 |
+        tee "$EVIDENCE_DIR/delivery-wrapper-controls.log"
+
+        grep -F ''Ran 10 tests'' "$EVIDENCE_DIR/delivery-wrapper-controls.log"; grep
+        -Fx ''OK'' "$EVIDENCE_DIR/delivery-wrapper-controls.log"
+
+        '
+    - name: Exact Wenhua actual-source routes and retained original contact negatives
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/wenhua-current-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=384 --test
+        --test-concurrency=1 tests/r367-wenhua-access/access.test.mjs 2>&1 | tee "$log"
+
+        for expected in ''tests 8'' ''pass 8'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        log="$EVIDENCE_DIR/wenhua-retained-contact-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=384 --test
+        --test-concurrency=1 tests/r158-wenhua-gate-contact/contact.test.mjs 2>&1
+        | tee "$log"
+
+        for expected in ''tests 12'' ''pass 12'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Exact Chengqian rear original native entry and fail-closed source controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/chengqian-rear-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=384 --test
+        --test-concurrency=1 tests/r368-chengqian-rear-access/entry.test.mjs tests/r368-chengqian-rear-access/contract.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in ''tests 11'' ''pass 11'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Exact Chuxiu rear original native entry and fail-closed source controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/chuxiu-rear-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=384 --test
+        --test-concurrency=1 tests/r369-chuxiu-rear-access/entry.test.mjs tests/r369-chuxiu-rear-access/contract.test.mjs
+        tests/r369-chuxiu-rear-access/red-presence.test.mjs 2>&1 | tee "$log"
+
+        for expected in ''tests 12'' ''pass 12'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Exact main hall runtime witness and underground rejection source controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/main-hall-access-controls.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=384 --test
+        --test-concurrency=1 tests/r370-main-hall-access/contract.test.mjs tests/r370-main-hall-access/runtime-contract.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in ''tests 12'' ''pass 12'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        '
+    - name: Same fixed 4GiB ordinary build with exact prior-bound exit proof and observation
+      id: production
+      run: "set -euo pipefail\ntest -z \"$(git status --porcelain=v1 --untracked-files=all)\"\
+        \npython3 .github/scripts/r335_bound_build.py 2>&1 | tee \"$EVIDENCE_DIR/ordinary-build-admission.log\"\
+        \npython3 - <<'PYINNER'\nfrom pathlib import Path\nimport json,hashlib,os\n\
+        p=Path('dist');assert p.is_dir();files=[]\nfor f in sorted(p.rglob('*')):\n\
+        \ if f.is_file():\n  assert not f.is_symlink();b=f.read_bytes();files.append({'path':str(f.relative_to(p)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})\n\
+        assert files\nPath(os.environ['EVIDENCE_DIR'],'ordinary-build-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'base':'/forbidden-city-3d/','files':files},indent=2)\
+        \ + chr(10))\nPYINNER"
+    - name: Preserve ordinary build only if all preceding checks succeeded
+      if: success()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r370-ordinary-build-${{ github.sha }}
+        path: dist/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7
+    - name: One original full zone QA with all owners and unchanged4GiB720s
+      if: success()
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py zones 2>&1 | tee "$EVIDENCE_DIR/zones-admission.log"
+
+        '
+    - name: Preserve all successful and failed verification evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r370-access-evidence-${{ github.sha }}
+        path: ${{ env.EVIDENCE_DIR }}/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7

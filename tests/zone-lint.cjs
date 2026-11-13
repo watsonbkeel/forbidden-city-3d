@@ -334,6 +334,15 @@ async function lintGeometry(zoneFiles) {
     return currentWuying;
   };
 
+  const currentMainHalls=new Map();
+  const mainHallAccess=async zone=>{
+    if(!currentMainHalls.has(zone)){
+      const {checkMainHallAccess}=await import(pathToFileURL(path.join(__dirname,'lib/main-hall-current-access.mjs')).href);
+      const result=checkMainHallAccess(W,zone);currentMainHalls.set(zone,result);
+      console.log('MAIN_HALL_CURRENT_ACCESS_JSON '+JSON.stringify(result));
+    }
+    return currentMainHalls.get(zone);
+  };
   let currentChuxiuRear;
   const chuxiuRearAccess = async () => {
     if (!currentChuxiuRear) {
@@ -478,6 +487,14 @@ async function lintGeometry(zoneFiles) {
         for (const fault of current.faults) error(`${where} current-native-front-access ${fault}`);
         if (!current.faults.length) info(`${where} 原控制器中路及两侧阶道连续入殿往返通过（10/30/60Hz）；旧218.9对照保留`);
         if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
+      const mainIndex=W.zones.find(z=>z.json.id===h.zone)?.json.items.indexOf(h.item);
+      if(side===-1&&((h.zone==='east-six'&&mainIndex===9&&h.item.name==='承乾宫')||(h.zone==='west-six'&&mainIndex===23&&h.item.name==='储秀宫'))){
+        const current=await mainHallAccess(h.zone);
+        for(const fault of current.faults)error(`${where} current-native-front-access ${fault}`);
+        if(!current.faults.length)info(`${where} 原控制器与实际Environment支撑上下文连续入殿往返通过（10/30/60Hz），逐帧地下拒绝；旧五参数结果保留`);
+        if(who.length)warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
         continue;
       }
       const rearIndex = W.zones.find(z => z.json.id === 'east-six')?.json.items.indexOf(h.item);

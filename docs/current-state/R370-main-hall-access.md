@@ -1,0 +1,11 @@
+# R370 main-hall QA runtime context and finite source contract
+
+Parent R369: `2ddf7d565387c4607b77b8f6b7ae699ee7cb5ce5`, tree `baa0ad36abd02d34276abd49649e43c5ad866f0f`. Revert to parent to roll back this QA-only change. No production src/public/data change, no main merge or deployment, original artwork default OFF.
+
+Actual ZoneManager binds ChengqianEnvironmentWitness in init and unbinds in disposal. Previous full-finish QA omitted it. Restore only that same real-scene binding, with an independently attempted cleanup owner before binding; create the actual Environment for either canonical main zone even without a rear-wing coincidence. Other witness behavior remains unchanged.
+
+Only canonical east-six item9 and west-six item23 FRONT probes use native controller continuous ground/stair/interior/return. Keep legacy results (0/4.76 at[-93.6,370.79],1.4/4.76 at[94.8,420.04]), all other halls/gates/BFS and all CM neighbors. Capture exact prefinish frames and low route-intersecting source solids/supports (11+10 collision sources,3+2 supports). Complete triangle/xiqing descriptions are SHA256-fingerprinted, not replaced by broadphase boxes; original object identities persist through original registration. Required source omission/copy/mutation fails closed; other neighbors stay active.
+
+Every movement and settling tick rejects nonfinite or below-ground feet and inconsistent grounded feet/groundY. Actual ground raycast and production native witness verify support context. Ordinary AABB overlap assertions explicitly exclude triangle/xiqing and are not a full rendered-volume proof. Early diagnostic coordinate-only passes were invalid due to below-ground motion, retained and excluded; new absent-witness runtime negative proves underground motion is rejected. Genuine wall/dynamic obstacles and cleanup failures retain negative controls.
+
+Local12 focused controls and retained lifecycle checks are required; original complete-world4GiB720s hosted run remains mandatory. Last real full-world result is R369 eleven errors/26warnings; do not infer11→9 from local results. Build success is not fullCI acceptance. Original R356 route/anchor failures, native network cancellation, realGPU/mobile/complete-route and art acceptance remain distinct open limits. No repeated black-box network run.
