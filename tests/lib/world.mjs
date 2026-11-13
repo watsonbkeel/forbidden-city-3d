@@ -1,3 +1,4 @@
+import {stubLibrary} from './material-stub.mjs';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../src/controls/SishenEnvironmentWitness.js';
 import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../src/controls/WestWellEnvironmentWitness.js';
 import {bindEastWellEnvironmentWitness} from '../../src/controls/EastWellEnvironmentWitness.js';
@@ -189,15 +190,6 @@ export function hallGeom(item) {
   return { rot, w, d, pad, ph, PW: w + 2 * pad, PD: d + 2 * pad, n, bay, r, doorX, run, enter, toW, facing, backDoor: !!item.backDoor, open: !!item.open };
 }
 
-function stubLibrary(THREE) {
-  const mats = new Map();
-  const lib = {
-    material: n => mats.get(n) ?? (mats.set(n, new THREE.MeshStandardMaterial({ name: n })), mats.get(n)),
-    tileSize: () => 1,
-    aspect: () => 1,
-  };
-  return new Proxy(lib, { get: (t, k) => (k in t ? t[k] : () => null) });
-}
 
 function stubDocument() {
   if (globalThis.document) return;
