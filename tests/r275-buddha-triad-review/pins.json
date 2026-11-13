@@ -1,24 +1,25 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "b6d34dd3afbbc02a7c5ba2292808be3135b7ba2b",
-  "parentTree": "62fabe304986e6516534a68a33d5254b03a78041",
-  "productTree": "62fabe304986e6516534a68a33d5254b03a78041",
+  "remoteParent": "c461a7b25bd2ae45480cdd6396920e1cbfe7cebf",
+  "parentTree": "564b8599ed17939cb1542eaae935a6ccebc66a1a",
+  "productTree": "564b8599ed17939cb1542eaae935a6ccebc66a1a",
   "candidatePaths": [
-    ".github/scripts/r331_ordered_blob_review.py",
-    ".github/workflows/r331-ordered-blob-review.yml",
+    ".github/scripts/r333_navigation_retirement.py",
+    ".github/workflows/r333-navigation-retirement.yml",
     "tests/r275-buddha-triad-review/pins.json",
-    "tests/r328-transport-pair/boundary.mjs",
-    "tests/r328-transport-pair/boundary.test.mjs"
+    "tests/r328-transport-pair/experiment.mjs",
+    "tests/r328-transport-pair/page-owner.mjs",
+    "tests/r328-transport-pair/page-owner.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r331_ordered_blob_review.py"
+      ".github/scripts/r333_navigation_retirement.py"
     ],
     [
       "A",
-      ".github/workflows/r331-ordered-blob-review.yml"
+      ".github/workflows/r333-navigation-retirement.yml"
     ],
     [
       "M",
@@ -26,11 +27,15 @@
     ],
     [
       "M",
-      "tests/r328-transport-pair/boundary.mjs"
+      "tests/r328-transport-pair/experiment.mjs"
     ],
     [
-      "M",
-      "tests/r328-transport-pair/boundary.test.mjs"
+      "A",
+      "tests/r328-transport-pair/page-owner.mjs"
+    ],
+    [
+      "A",
+      "tests/r328-transport-pair/page-owner.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1271,10 +1276,14 @@
     "tests/r328-transport-pair/boundary.mjs": "32f40260a25d5bb84d01802c78e007b581562f2058a93124712d0fe08058e556",
     "tests/r328-transport-pair/boundary.test.mjs": "a1690d61119bdddb0d317658b534239cdf73722af0e27a86087a9a0ae66afd97",
     "tests/r328-transport-pair/entry.mjs": "b2248b923caa1bdb7aa70dca56ec05ab115d36219367a22a4691ec8b33da4acd",
-    "tests/r328-transport-pair/experiment.mjs": "f2b9d63bd87d170817d4f9a2cfe45967d2b53dd4d40e00531c8d3ba17b7f435d",
+    "tests/r328-transport-pair/experiment.mjs": "6eb9f5533e5d2326885a9cf3d22c1d70c8cab944d77fae1bf853b8083a3b6ecd",
     "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7",
     ".github/scripts/r331_ordered_blob_review.py": "f002429365d8052233dc7937288f61c45f072049c892c6827e2a1e7b32dd55dc",
-    ".github/workflows/r331-ordered-blob-review.yml": "e3b27604c0b1ae0136ec425581c0680e6d8e7e9cd95c98b38791ac82e19da508"
+    ".github/workflows/r331-ordered-blob-review.yml": "e3b27604c0b1ae0136ec425581c0680e6d8e7e9cd95c98b38791ac82e19da508",
+    ".github/scripts/r333_navigation_retirement.py": "8584048fb43e68d253a5afaed8c4ea50dc800c62c447663d8d5a5a4c47fd5b14",
+    ".github/workflows/r333-navigation-retirement.yml": "b72b62ce984c627d4d58c542eaef0e1c3c86eb8de679042f4fdf8d13263d8590",
+    "tests/r328-transport-pair/page-owner.mjs": "70ec52db601a4669a74f05bd84d89b94c53dcf482db57c5e052073616b8f3f95",
+    "tests/r328-transport-pair/page-owner.test.mjs": "a822c8cb2fff46ff0cb9eb74ad86a6f92631df27eda249dffee9d975469db1d7"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1295,6 +1304,7 @@
     "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change.",
     "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified.",
     "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry.",
-    "R331 follows exact R329 diagnostic parent, not R330 product fix: source-derived ordered exact empty-tail blob deny then same-origin full-wildcard allow. Fixed HTTP allows/CSP/runtime controls/6GiB720s/sandbox/production loaders and input assets unchanged. Preserve R328/R329 setup failures. Node policy success is not CDP acceptance. No merge or deployment; main and R330 remain separate."
+    "R331 follows exact R329 diagnostic parent, not R330 product fix: source-derived ordered exact empty-tail blob deny then same-origin full-wildcard allow. Fixed HTTP allows/CSP/runtime controls/6GiB720s/sandbox/production loaders and input assets unchanged. Preserve R328/R329 setup failures. Node policy success is not CDP acceptance. No merge or deployment; main and R330 remain separate.",
+    "R333 follows exact R331 diagnostic parent, not R332 product fix: close and verify destructive boundary page, create exactly one fresh identity-checked protected page in same context, stable lexical roles and retained negative evidence. All three original loader generations on same fresh page per arm. Unchanged boundary helper/HTTP/CSP/sandbox/6GiB720s/native observer/product assets/defaultOFF. Preserve all prior failures; CPU mocks not browser evidence. No main/deployment or release acceptance."
   ]
 }
