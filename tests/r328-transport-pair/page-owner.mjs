@@ -66,7 +66,7 @@ export function createProtectedPageOwner(context, {policy, bind, onUnexpected, o
         await cdp.send('Network.setCacheDisabled', {cacheDisabled: true});
         await cdp.send('Network.setBypassServiceWorker', {bypass: true});
         await cdp.send('Network.setBlockedURLs', policy);
-        bind(returned, cdp, role);
+        await bind(returned, cdp, role, pageId(returned));
         assert.equal(failed, false, 'unexpected page event during protection');
         inventory([returned]);
         assert.equal(returned.isClosed(), false, 'candidate closed during protection');

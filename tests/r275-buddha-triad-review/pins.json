@@ -1,13 +1,15 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "c461a7b25bd2ae45480cdd6396920e1cbfe7cebf",
-  "parentTree": "564b8599ed17939cb1542eaae935a6ccebc66a1a",
-  "productTree": "564b8599ed17939cb1542eaae935a6ccebc66a1a",
+  "remoteParent": "3382133b5908993d61cde81eae3a0c1d528b2992",
+  "parentTree": "67d1cc13cade173f02f7ee184df8a4c5b0e77586",
+  "productTree": "67d1cc13cade173f02f7ee184df8a4c5b0e77586",
   "candidatePaths": [
-    ".github/scripts/r333_navigation_retirement.py",
-    ".github/workflows/r333-navigation-retirement.yml",
+    ".github/scripts/r336_document_boundary.py",
+    ".github/workflows/r336-document-boundary.yml",
     "tests/r275-buddha-triad-review/pins.json",
+    "tests/r328-transport-pair/document-guard.mjs",
+    "tests/r328-transport-pair/document-guard.test.mjs",
     "tests/r328-transport-pair/experiment.mjs",
     "tests/r328-transport-pair/page-owner.mjs",
     "tests/r328-transport-pair/page-owner.test.mjs"
@@ -15,26 +17,34 @@
   "changes": [
     [
       "A",
-      ".github/scripts/r333_navigation_retirement.py"
+      ".github/scripts/r336_document_boundary.py"
     ],
     [
       "A",
-      ".github/workflows/r333-navigation-retirement.yml"
+      ".github/workflows/r336-document-boundary.yml"
     ],
     [
       "M",
       "tests/r275-buddha-triad-review/pins.json"
     ],
     [
+      "A",
+      "tests/r328-transport-pair/document-guard.mjs"
+    ],
+    [
+      "A",
+      "tests/r328-transport-pair/document-guard.test.mjs"
+    ],
+    [
       "M",
       "tests/r328-transport-pair/experiment.mjs"
     ],
     [
-      "A",
+      "M",
       "tests/r328-transport-pair/page-owner.mjs"
     ],
     [
-      "A",
+      "M",
       "tests/r328-transport-pair/page-owner.test.mjs"
     ]
   ],
@@ -1276,14 +1286,18 @@
     "tests/r328-transport-pair/boundary.mjs": "32f40260a25d5bb84d01802c78e007b581562f2058a93124712d0fe08058e556",
     "tests/r328-transport-pair/boundary.test.mjs": "a1690d61119bdddb0d317658b534239cdf73722af0e27a86087a9a0ae66afd97",
     "tests/r328-transport-pair/entry.mjs": "b2248b923caa1bdb7aa70dca56ec05ab115d36219367a22a4691ec8b33da4acd",
-    "tests/r328-transport-pair/experiment.mjs": "6eb9f5533e5d2326885a9cf3d22c1d70c8cab944d77fae1bf853b8083a3b6ecd",
+    "tests/r328-transport-pair/experiment.mjs": "a554dc312eaafadf5d2041941d3d17ac448f86cf69d8e1ba58bc0f5e3a45bf27",
     "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7",
     ".github/scripts/r331_ordered_blob_review.py": "f002429365d8052233dc7937288f61c45f072049c892c6827e2a1e7b32dd55dc",
     ".github/workflows/r331-ordered-blob-review.yml": "e3b27604c0b1ae0136ec425581c0680e6d8e7e9cd95c98b38791ac82e19da508",
     ".github/scripts/r333_navigation_retirement.py": "8584048fb43e68d253a5afaed8c4ea50dc800c62c447663d8d5a5a4c47fd5b14",
     ".github/workflows/r333-navigation-retirement.yml": "b72b62ce984c627d4d58c542eaef0e1c3c86eb8de679042f4fdf8d13263d8590",
-    "tests/r328-transport-pair/page-owner.mjs": "70ec52db601a4669a74f05bd84d89b94c53dcf482db57c5e052073616b8f3f95",
-    "tests/r328-transport-pair/page-owner.test.mjs": "a822c8cb2fff46ff0cb9eb74ad86a6f92631df27eda249dffee9d975469db1d7"
+    "tests/r328-transport-pair/page-owner.mjs": "3f60732845f7525112a0e605a9352b433b3b790e0685f943c672a8755fbb861b",
+    "tests/r328-transport-pair/page-owner.test.mjs": "68062faa547d004f37908e0dd51f4d2ff73a26de8f3a724b47f6b984c1244470",
+    ".github/scripts/r336_document_boundary.py": "98eed5a4abdaead620813a5f6a281410530110e2a8d7db327d9bb5598d946bbe",
+    ".github/workflows/r336-document-boundary.yml": "9073c1f99e9dacb800cfb4f8d736a44396a05bffa9c7bc10e0f025d20b295c34",
+    "tests/r328-transport-pair/document-guard.mjs": "d12eedd6511bc7c85a81bea4da18d74164e24bc33fdf9bfb55377721ef0345f8",
+    "tests/r328-transport-pair/document-guard.test.mjs": "8e6ca2692b3050d1f855bb12710ffba1a55149092c0e8bcee9fd98ae300eb446"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1305,6 +1319,7 @@
     "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified.",
     "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry.",
     "R331 follows exact R329 diagnostic parent, not R330 product fix: source-derived ordered exact empty-tail blob deny then same-origin full-wildcard allow. Fixed HTTP allows/CSP/runtime controls/6GiB720s/sandbox/production loaders and input assets unchanged. Preserve R328/R329 setup failures. Node policy success is not CDP acceptance. No merge or deployment; main and R330 remain separate.",
-    "R333 follows exact R331 diagnostic parent, not R332 product fix: close and verify destructive boundary page, create exactly one fresh identity-checked protected page in same context, stable lexical roles and retained negative evidence. All three original loader generations on same fresh page per arm. Unchanged boundary helper/HTTP/CSP/sandbox/6GiB720s/native observer/product assets/defaultOFF. Preserve all prior failures; CPU mocks not browser evidence. No main/deployment or release acceptance."
+    "R333 follows exact R331 diagnostic parent, not R332 product fix: close and verify destructive boundary page, create exactly one fresh identity-checked protected page in same context, stable lexical roles and retained negative evidence. All three original loader generations on same fresh page per arm. Unchanged boundary helper/HTTP/CSP/sandbox/6GiB720s/native observer/product assets/defaultOFF. Preserve all prior failures; CPU mocks not browser evidence. No main/deployment or release acceptance.",
+    "R336 follows exact R333 diagnostic parent, not R335 product branch. Native arm only: source-backed Document Request Fetch admission with exact unchanged allowlist; every PNG/non-Document paused event fails, no bodies read/fulfilled/rewritten. Both page owners await guard readiness; pending errors drain into health and final receipts. Route baseline owns its own Fetch, receives no new guard. Not completely interception-free or zero-timing-effect. Original three generations, all negative controls, CSP/sandbox/6GiB720s/native observer/assets/defaultOFF unchanged; R333 failures retained. No release/main/deployment acceptance."
   ]
 }
