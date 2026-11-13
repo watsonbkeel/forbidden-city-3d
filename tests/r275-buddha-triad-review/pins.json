@@ -1,32 +1,25 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "bdeb4a3f5f1ad9b1caab88c81fd9808c7270dbba",
-  "parentTree": "47d7d6d95dc5bb44cc0c45945f093b1bf9b042a4",
-  "productTree": "47d7d6d95dc5bb44cc0c45945f093b1bf9b042a4",
+  "remoteParent": "2288f12a90b6250a382a3b5db0d2ea101a059ab8",
+  "parentTree": "0d2543052610131d8736080f2b46afd0e30e81c5",
+  "productTree": "0d2543052610131d8736080f2b46afd0e30e81c5",
   "candidatePaths": [
-    ".github/scripts/r352_signal_association.py",
-    ".github/workflows/r352-signal-association.yml",
+    ".github/scripts/r355_http_framing.py",
+    ".github/workflows/r355-http-framing.yml",
     "tests/r275-buddha-triad-review/pins.json",
-    "tests/r352-signal-association/entry.mjs",
-    "tests/r352-signal-association/entry.test.mjs",
-    "tests/r352-signal-association/experiment.mjs",
-    "tests/r352-signal-association/host-qualification.mjs",
-    "tests/r352-signal-association/host-qualification.test.mjs",
-    "tests/r352-signal-association/linkage.test.mjs",
-    "tests/r352-signal-association/paired-loader.mjs",
-    "tests/r352-signal-association/retained-loader.test.mjs",
-    "tests/r352-signal-association/signal-contract.mjs",
-    "tests/r352-signal-association/signal-contract.test.mjs"
+    "tests/r355-http-framing/experiment.mjs",
+    "tests/r355-http-framing/framing.mjs",
+    "tests/r355-http-framing/framing.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r352_signal_association.py"
+      ".github/scripts/r355_http_framing.py"
     ],
     [
       "A",
-      ".github/workflows/r352-signal-association.yml"
+      ".github/workflows/r355-http-framing.yml"
     ],
     [
       "M",
@@ -34,43 +27,15 @@
     ],
     [
       "A",
-      "tests/r352-signal-association/entry.mjs"
+      "tests/r355-http-framing/experiment.mjs"
     ],
     [
       "A",
-      "tests/r352-signal-association/entry.test.mjs"
+      "tests/r355-http-framing/framing.mjs"
     ],
     [
       "A",
-      "tests/r352-signal-association/experiment.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/host-qualification.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/host-qualification.test.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/linkage.test.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/paired-loader.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/retained-loader.test.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/signal-contract.mjs"
-    ],
-    [
-      "A",
-      "tests/r352-signal-association/signal-contract.test.mjs"
+      "tests/r355-http-framing/framing.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1365,7 +1330,12 @@
     "tests/r352-signal-association/paired-loader.mjs": "8593eb42e918564f536626d49038225c87d436664e0d43b20388b3a69aac5578",
     "tests/r352-signal-association/retained-loader.test.mjs": "7465d2212d5e2170addac7614601c0945f7df2b31b6172b004938af3d2e67871",
     "tests/r352-signal-association/signal-contract.mjs": "53ed0e712377b067d101746883952fae940d0fe3eaa52415ae1a24b4f3348f51",
-    "tests/r352-signal-association/signal-contract.test.mjs": "eb44331689adc31f8664b69db01be469c99ebc8ff212fc5dd5ac4259fcf31648"
+    "tests/r352-signal-association/signal-contract.test.mjs": "eb44331689adc31f8664b69db01be469c99ebc8ff212fc5dd5ac4259fcf31648",
+    ".github/scripts/r355_http_framing.py": "e50b1d3f35074f7ed645314f1f11b66bfbebbbeee8bea335198964dd9efe4858",
+    ".github/workflows/r355-http-framing.yml": "443c3eb7594270262da4500ded7608cad44cf7c00b569381ae6caba3fd6e03ba",
+    "tests/r355-http-framing/experiment.mjs": "562de68d861315d19c1387d0af1b99c9f14f9f186a56338e08e25d741a174d40",
+    "tests/r355-http-framing/framing.mjs": "6b6c84abcef10cef31de36d2368728b8e3b708b71eaad3b1ba9fab914bbcf82a",
+    "tests/r355-http-framing/framing.test.mjs": "79c7960db8409a8ff093a6cf426798266085c87fb17206d8cefa93d11bc8086a"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1393,6 +1363,7 @@
     "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance.",
     "R344 private test-only EOF terminal ownership pair. Original four arms and loader sources retained, original strict failed terminals unchanged. Both pair modes same bounded6asset3slot3generation stream/hash/grid; A helper releases actual response/reader before common terminal bridge, B holds them through common bridge and checks then releases. Scalar exact perpage/frame/generation/url/CDPrequestId ledger; failure terminals settle but remain fatal, duplicates/redirects/deadlines fail closed, same10s maximum from generation admission (stricter than restarting request condition timers),same6GiB720outer and13nativeidentities. No arrayBuffer fallback in newpair. PostEOF lifetime/timingbundle,not GC/caller/productfix proof. No deployment or current production branch alteration.",
     "R346 corrects known R344 extra-release-ack confound. Both modes await EOF then same-shaped checkpoint before hash/nextasset. No extra third bridge. A has released before EOF bridge, not necessarily before native terminal; B holds actualResponse/reader through EOF-terminal latch then releases before common checkpoint. Release evidence is source-control ordering and Node receipt upperbounds, not native release timestamps. Ledger requires unique checkpoint after exact request/EOF/terminal-ack with unchanged10s admission deadline, all terminal failures fatal downstream, all six assets/three generations and guards retained. Same6GiB720, original four arms/source bundles preserved. Fixed order/intermittency/lifetime-timing remain confounds, not productionfix/hall/merge acceptance.",
-    "R352 independent diagnostic on exactR346, not cumulativeR350. Originalfourarms/bundles intact. Same new private heldreaderbundle bothnewarms, onlygen2/3 nativefetch signalproperty linkage differs; gen1 exactsignal trueabort retained. Shared scalar activitylistener qualifies only after allREADY/exactterminals/health under original10s deadline; late/activeabort invalid, normalcleanup separate. Omittingnative signaldoesnotpreserve nativeheaderabort; ownercontextclose/6GiB720 guard required, neverawaitpendingheader duringteardown. Strictnativefailures remainfatal; 12laterassets+3firstabort. No product/main/default/deploychange, no GC/caller/rootcause/fullmerge inference."
+    "R352 independent diagnostic on exactR346, not cumulativeR350. Originalfourarms/bundles intact. Same new private heldreaderbundle bothnewarms, onlygen2/3 nativefetch signalproperty linkage differs; gen1 exactsignal trueabort retained. Shared scalar activitylistener qualifies only after allREADY/exactterminals/health under original10s deadline; late/activeabort invalid, normalcleanup separate. Omittingnative signaldoesnotpreserve nativeheaderabort; ownercontextclose/6GiB720 guard required, neverawaitpendingheader duringteardown. Strictnativefailures remainfatal; 12laterassets+3firstabort. No product/main/default/deploychange, no GC/caller/rootcause/fullmerge inference.",
+    "R355 only explicit HTTP Content-Length vs chunked on exact six later assets; both new arms reuse unchangedR352linkedheldreaderbundle and sameactivity. Originalfourarms/firstabort/security/deadline/resource controls retained. Source stream tracking/cleanup onlynewlaterpair, symmetricboth; exactserverphase+CDPrequestId/frame+originalledger identity joins. Header absence neversetsallocation; frozenlength/overflow/EOF/hash/grid unchanged. Framing sensitivity only, not nativecaller/GC/ContentLengthSignalSize mechanism/productfix. No cumulativeR356 inheritance."
   ]
 }
