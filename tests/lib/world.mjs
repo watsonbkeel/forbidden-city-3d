@@ -1,3 +1,4 @@
+import {createWorldCleanup,installCpuDocument} from './finished-world-lifecycle.mjs';
 import {stubLibrary} from './material-stub.mjs';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../src/controls/SishenEnvironmentWitness.js';
 import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../src/controls/WestWellEnvironmentWitness.js';
@@ -16,7 +17,7 @@ import {resolveRemainingProfile as resolveNingshou} from '../../src/scene/palace
 import { southCourtGeometry } from '../../src/scene/palace/special/SouthCourtProfiles.js';
 import { wenyuanGeometry } from '../../src/scene/palace/special/WenyuanPavilion.js';
 // 纯 node 构建"全场景碰撞世界"：直接调用真实的 ZoneBase / CourtKit / PalaceBuilder / Enclosure / GardenBuilder
-// 与 CollisionManager（不渲染、不合并几何），得到与游戏一致的碰撞体与可行走面。
+// 与 CollisionManager（不渲染；默认legacy不合并，realFinish显式执行真实合并），得到碰撞体与可行走面。
 // 供 tests/zone-lint.cjs（几何检查）与 tests/stepwalk-auto.cjs（路线生成预检）使用。
 //
 // 用法（ESM；.cjs 里用 await import(pathToFileURL(...))）：
@@ -208,20 +209,27 @@ export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {
     .map(f => ({ file: f, json: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) }));
 }
 
-export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false, realMaterials = process.env.R48_REAL_TEXTURE_LIBRARY === '1' } = {}) {
-  stubDocument();
+export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false, realMaterials = process.env.R48_REAL_TEXTURE_LIBRARY === '1', realFinish = false } = {}) {
+  if(realFinish && !realMaterials)throw Error('realFinish requires realMaterials');
+  let cpuDocument=null;
+  if(realFinish){const {createCanvas}=await import('@napi-rs/canvas');cpuDocument=installCpuDocument(createCanvas);}else stubDocument();
+  let dispose=null;
+  try {
   const THREE = await import('three');
   const { ZoneBase } = await src('scene/zones/ZoneBase.js');
   const { CollisionManager } = await src('utils/Collision.js');
   const lib = realMaterials ? (await import('./r48-real-texture-library.mjs')).realTextureLibrary() : stubLibrary(THREE);
   const cm = new CollisionManager();
+  const owners=[],finishedZones=[],zoneScene=realFinish?new THREE.Scene():null;
+  if(realFinish)dispose=createWorldCleanup({cm,owners,library:lib,restore:()=>cpuDocument.restore()});
   const owner = new Map(); // 原始 Box3 → { zone, item }
   const rooms = [], mapItems = [];
   const METHODS = ['buildHall', 'buildGate', 'buildWall', 'buildCourtWalls', 'buildCorridor', 'buildCityGate', 'buildNineDragonWall'];
 
   for (const { json } of zones) {
     const zb = new ZoneBase(lib, json);
-    zb.kit.finish = () => { // Skip expensive render merge, preserve its metadata contract.
+    if(realFinish)owners.push({label:'zone:'+json.id,value:zb});
+    if(!realFinish)zb.kit.finish = () => { // Skip expensive render merge, preserve its metadata contract.
       const group = new THREE.Group(), architecture = [];
       zb.kit.root.traverse(o => {
         const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);
@@ -240,6 +248,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       };
     }
     const data = zb.build();
+    if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data});}
     cm.addColliders(data.colliders, json.id);
     cm.addWalkables(data.walkables, json.id);
     rooms.push(...data.rooms);
@@ -258,13 +267,18 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       const { GardenBuilder } = await src('scene/GardenBuilder.js');
       const scene = new THREE.Scene();
       const pb = new PalaceBuilder(scene, lib);
+      if(realFinish)owners.push({label:'static:palace',value:pb});
       pb.buildAll(PALACE_LAYOUT);
       if (retainScene) retainedScene = scene;
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
       baoheNorthTiers.push(...pb.baoheNorthTiers);
-      const en = new Enclosure(scene, lib).build();
-      const gb = new GardenBuilder(scene, lib).build(PALACE_LAYOUT.find(i => i.type === 'garden'));
+      const en = new Enclosure(scene, lib);
+      if(realFinish)owners.push({label:'static:enclosure',value:en});
+      en.build();
+      const gb = new GardenBuilder(scene, lib);
+      if(realFinish)owners.push({label:'static:garden',value:gb});
+      gb.build(PALACE_LAYOUT.find(i => i.type === 'garden'));
       for (const [name, cols, walks] of [['PalaceBuilder', pb.getColliders(), pb.getWalkables()], ['Enclosure', en.getColliders(), []], ['GardenBuilder', gb.getColliders(), gb.getWalkables()]]) {
         const before = cm.colliders.length;
         cm.addColliders(cols, 'static');
@@ -275,17 +289,19 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
+  if(cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);if(realFinish)owners.push({label:'environment:ground',value:env});env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
+    ...(realFinish?{dispose,finishedZones,zoneScene,cpuDocumentStats:cpuDocument.stats}:{}),
     THREE, cm, zones, gates, halls, rooms, mapItems, environmentScene, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
     ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
+  }catch(error){if(dispose)dispose(error);else cpuDocument?.restore();throw error;}
 }
 
 /** 世界 AABB 与碰撞体相交查询（只算高于可迈高度 0.35 的实体），返回碰撞体列表 */

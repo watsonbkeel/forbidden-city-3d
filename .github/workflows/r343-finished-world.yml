@@ -1,0 +1,280 @@
+name: R343 actual finished eight-zone world QA (no deploy)
+'on':
+  push:
+    branches:
+    - dev/r343-finished-world
+permissions:
+  contents: read
+concurrency:
+  group: r343-finished-world-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name
+      == 'push' && github.ref == 'refs/heads/dev/r343-finished-world' && github.event.created
+      == true && github.event.deleted == false && github.event.forced == false &&
+      github.event.before == '0000000000000000000000000000000000000000' && github.run_number
+      == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Initialize external one-shot evidence
+      env:
+        REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+      run: 'set -euo pipefail
+
+        test "$REVIEW_RUNNER_ENVIRONMENT" = ''github-hosted''
+
+        EVIDENCE_DIR="$RUNNER_TEMP/r343-finished-world-evidence"
+
+        mkdir "$EVIDENCE_DIR"
+
+        GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+
+        (set -C; : > "$GLOBAL_NPM_CONFIG")
+
+        chmod 444 "$GLOBAL_NPM_CONFIG"
+
+        printf ''EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n''
+        "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+
+        '
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Verify exact R342 parent, changed paths and frozen input bytes
+      run: 'set -euo pipefail
+
+        python3 - <<''PYINNER''
+
+        from pathlib import Path
+
+        import json,subprocess,hashlib,os
+
+        p=json.loads(Path(''tests/r343-finished-world/pins.json'').read_text())
+
+        def git(*a):return subprocess.check_output([''git'',*a],text=True).strip()
+
+        assert p[''frozen''] is True and p[''parent'']==''9665097f7d2caa9c6845173d36194dfc133c25cc''
+
+        head=git(''rev-parse'',''HEAD'');assert head==os.environ[''GITHUB_SHA''];assert
+        git(''rev-list'',''--parents'',''-n'',''1'',''HEAD'').split()==[head,p[''parent'']]
+
+        assert git(''rev-parse'',''HEAD^:'')==p[''parentTree'']
+
+        assert git(''status'',''--porcelain=v1'',''--untracked-files=all'')==''''
+
+        changes=[line.split(''\t'') for line in git(''diff'',''--name-status'',''HEAD^'',''HEAD'').splitlines()];assert
+        changes==p[''changes'']
+
+        for name,want in p[''sourcePins''].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==want,name
+
+        for name,want in p[''retainedPins''].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==want,name
+
+        assert not Path(''dist'').exists()
+
+        e=Path(os.environ[''EVIDENCE_DIR'']);e.joinpath(''checkout-identity.json'').write_text(json.dumps({''head'':head,''tree'':git(''rev-parse'',''HEAD^{tree}''),''parent'':p[''parent''],''parentTree'':p[''parentTree''],''changes'':changes,''sourcePins'':p[''sourcePins''],''retainedPins'':p[''retainedPins''],''pinsSHA256'':hashlib.sha256(Path(''tests/r343-finished-world/pins.json'').read_bytes()).hexdigest(),''scope'':''TEST_ACTUAL_ALL_WORLD_FINISH_NO_VISUAL_OR_COLDRETURN_ACCEPTANCE''},indent=2)
+        + chr(10))
+
+        PYINNER'
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+        cache: npm
+    - name: Install unchanged locked dependencies on hosted runner only
+      run: 'set -euo pipefail
+
+        test "$(node --version)" = ''v24.22.1''
+
+        test "$(npm --version)" = ''11.19.1''
+
+        { node --version; npm --version; cat /etc/os-release; printf ''ImageOS=%s\nImageVersion=%s\n''
+        "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+
+        npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+        '
+    - name: New actual normal teleport prefetch regressions (no browser)
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r334-prefetch/run.mjs
+
+        '
+    - name: Original R332 unload notification regressions, unchanged
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r332-unload/run.mjs
+
+        '
+    - name: Original R330 owner failure regressions, unchanged
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 --max-semi-space-size=8
+        tests/r330-disposal/run.mjs
+
+        '
+    - name: Existing focused session and manager lifecycle regressions only
+      run: 'set -euo pipefail
+
+        timeout --signal=TERM --kill-after=5s 90s node --max-old-space-size=512 --max-semi-space-size=16
+        --test --test-concurrency=1 tests/r275-buddha-original/triad-presentation.test.mjs
+        tests/r262-cold-release.test.mjs tests/r262-material-listener.test.mjs tests/r169-dafotang-photo-triptych/cache-lifecycle.test.mjs
+        2>&1 | tee "$EVIDENCE_DIR/focused-regressions.log"
+
+        for expected in ''tests 55'' ''pass 55'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$EVIDENCE_DIR/focused-regressions.log"; done
+
+        '
+    - name: Unchanged resource controls plus narrow wrapper receipts
+      run: 'set -euo pipefail
+
+        for key in R262_REPO_ROOT R262_DISABLE_EXIT_RECHECK R327_FIXTURE_EVIDENCE;
+        do test -z "${!key:-}"; done
+
+        timeout --signal=TERM --kill-after=5s 90s python3 - <<''PYINNER'' 2>&1 | tee
+        "$EVIDENCE_DIR/resource-controls.log"
+
+        import sys,unittest
+
+        sys.path.insert(0,''.github/scripts'')
+
+        names=[''test_r327_bound_exit_guard'',''test_r327_supervisor_exit_race'',''test_r327_supervisor_compat'',''test_r262_exit_recheck'',''test_r267_owned_rss_observation'',''test_r335_bound_build'']
+
+        suite=unittest.defaultTestLoader.loadTestsFromNames(names)
+
+        assert suite.countTestCases()==73
+
+        result=unittest.TextTestRunner(verbosity=2).run(suite)
+
+        assert result.testsRun==73 and not result.skipped and result.wasSuccessful()
+
+        PYINNER
+
+        '
+    - name: Material cache and source provenance controls
+      id: controls
+      run: 'set -euo pipefail
+
+        log="$EVIDENCE_DIR/material-cache-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=512 --test
+        --test-concurrency=1 tests/r339-material-contract/cache.test.mjs 2>&1 | tee
+        "$log"
+
+        for expected in ''tests 6'' ''pass 6'' ''fail 0'' ''skipped 0'' ''cancelled
+        0''; do grep -Fx "ℹ $expected" "$log"; done
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r339_material_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+        grep -E ''^Ran 6 tests in '' "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+        grep -Fx ''OK'' "$EVIDENCE_DIR/fixed-phase-tests.log"
+
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 tests/r340-material-name/run.mjs
+
+
+        timeout --signal=TERM --kill-after=5s 60s node --max-old-space-size=256 tests/r341-real-world/run.mjs
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r341_world_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+        grep -E "^Ran 7 tests in " "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/real-world-phase-tests.log"
+
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r342_finish_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+        grep -E "^Ran 8 tests in " "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/real-finish-phase-tests.log"
+
+
+        log="$EVIDENCE_DIR/finished-world-contract-tests.log"
+
+        timeout --signal=TERM --kill-after=5s 30s node --max-old-space-size=256 --test
+        --test-concurrency=1 tests/r343-finished-world/lifecycle.test.mjs tests/r343-finished-world/world-contract.test.mjs
+        2>&1 | tee "$log"
+
+        for expected in "tests 9" "pass 9" "fail 0" "skipped 0" "cancelled 0"; do
+        grep -Fx "ℹ $expected" "$log"; done
+
+        timeout --signal=TERM --kill-after=5s 30s python3 .github/scripts/test_r343_world_gate.py
+        2>&1 | tee "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+        grep -E "^Ran 9 tests in " "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+        grep -Fx OK "$EVIDENCE_DIR/finished-world-phase-tests.log"
+
+        '
+    - name: Same fixed 4GiB ordinary build with exact prior-bound exit proof and observation
+      id: production
+      run: "set -euo pipefail\ntest -z \"$(git status --porcelain=v1 --untracked-files=all)\"\
+        \npython3 .github/scripts/r335_bound_build.py 2>&1 | tee \"$EVIDENCE_DIR/ordinary-build-admission.log\"\
+        \npython3 - <<'PYINNER'\nfrom pathlib import Path\nimport json,hashlib,os\n\
+        p=Path('dist');assert p.is_dir();files=[]\nfor f in sorted(p.rglob('*')):\n\
+        \ if f.is_file():\n  assert not f.is_symlink();b=f.read_bytes();files.append({'path':str(f.relative_to(p)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})\n\
+        assert files\nPath(os.environ['EVIDENCE_DIR'],'ordinary-build-manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'base':'/forbidden-city-3d/','files':files},indent=2)\
+        \ + chr(10))\nPYINNER"
+    - name: Preserve ordinary build only if all preceding checks succeeded
+      if: success()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r343-ordinary-build-${{ github.sha }}
+        path: dist/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7
+    - name: Actual full outer-west original finish, Scene/owner/session and cleanup
+        under unchanged4GiB720s
+      if: success() || (failure() && steps.controls.outcome == 'success')
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py outerwest 2>&1 | tee "$EVIDENCE_DIR/outerwest-admission.log"'
+    - name: Fixed actual-finish CPU finishedworld unchanged4GiB720s
+      if: success() || (failure() && steps.controls.outcome == 'success')
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py finishedworld 2>&1 | tee "$EVIDENCE_DIR/finishedworld-admission.log"'
+    - name: Fixed actual-finish CPU zones unchanged4GiB720s
+      if: success() || (failure() && steps.controls.outcome == 'success')
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py zones 2>&1 | tee "$EVIDENCE_DIR/zones-admission.log"'
+    - name: Fixed actual-finish CPU routes unchanged4GiB720s
+      if: success() || (failure() && steps.controls.outcome == 'success')
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py routes 2>&1 | tee "$EVIDENCE_DIR/routes-admission.log"'
+    - name: Fixed actual-finish CPU anchors unchanged4GiB720s
+      if: success() || (failure() && steps.controls.outcome == 'success')
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/r343_world_gate.py anchors 2>&1 | tee "$EVIDENCE_DIR/anchors-admission.log"'
+    - name: Preserve all successful and failed verification evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: r343-world-evidence-${{ github.sha }}
+        path: ${{ env.EVIDENCE_DIR }}/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7

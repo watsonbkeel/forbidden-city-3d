@@ -313,7 +313,9 @@ async function checkHallSourceProfile(W, h) {
 async function lintGeometry(zoneFiles) {
   const L = await import(pathToFileURL(path.join(__dirname, 'lib/world.mjs')).href);
   const t0 = Date.now();
-  const W = await L.buildWorld({ zones: zoneFiles, realMaterials: true });
+  const W = await L.buildWorld({ zones: zoneFiles, realMaterials: true, realFinish: true });
+  let primary;
+  try {
   console.log(`\n几何检查：碰撞体 ${W.cm.colliders.length}、可行走面 ${W.cm.walkables.length}（${zoneFiles.length} 区 + 中轴静态场景，${Date.now() - t0} ms）`);
   const blockersIn = (x0, z0, x1, z1, self) => [...new Set(L.collidersIn(W, x0, z0, x1, z1).filter(c => W.ownerOf(c).item !== self).map(c => L.describeOwner(W.ownerOf(c))))];
   const name = g => `${g.zone}: ${g.item.kind}「${g.item.name ?? '?'}」(${g.item.x}, ${g.item.z})`;
@@ -416,6 +418,7 @@ async function lintGeometry(zoneFiles) {
     }
   }
   console.log(`几何检查完成：门 ${gateChecked}/${W.gates.length}（×2 侧）、enter 殿 ${hallChecked}`);
+  }catch(error){primary=error;}finally{W.dispose(primary);}
 }
 
 // Importable only for fail-closed tests; normal CLI behavior stays unchanged.
