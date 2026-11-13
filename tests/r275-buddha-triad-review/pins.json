@@ -1,46 +1,36 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "0ddd3d85ee96317a520259e3746ba016bca53e56",
-  "parentTree": "c64b6f0fef3552293c2ed75618a926e58602b037",
-  "productTree": "c64b6f0fef3552293c2ed75618a926e58602b037",
+  "remoteParent": "0dc13bb8da813f5e0f247858161817a202f039b5",
+  "parentTree": "f32922017549de6267082afbdad0804965a37636",
+  "productTree": "f32922017549de6267082afbdad0804965a37636",
   "candidatePaths": [
-    ".github/scripts/r328_loader_transport_pair.py",
-    ".github/workflows/r328-loader-transport-pair.yml",
+    ".github/scripts/r329_blob_pattern_review.py",
+    ".github/workflows/r329-blob-pattern-review.yml",
     "tests/r275-buddha-triad-review/pins.json",
     "tests/r328-transport-pair/boundary.mjs",
-    "tests/r328-transport-pair/boundary.test.mjs",
-    "tests/r328-transport-pair/entry.mjs",
-    "tests/r328-transport-pair/experiment.mjs"
+    "tests/r328-transport-pair/boundary.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r328_loader_transport_pair.py"
+      ".github/scripts/r329_blob_pattern_review.py"
     ],
     [
       "A",
-      ".github/workflows/r328-loader-transport-pair.yml"
+      ".github/workflows/r329-blob-pattern-review.yml"
     ],
     [
       "M",
       "tests/r275-buddha-triad-review/pins.json"
     ],
     [
-      "A",
+      "M",
       "tests/r328-transport-pair/boundary.mjs"
     ],
     [
-      "A",
+      "M",
       "tests/r328-transport-pair/boundary.test.mjs"
-    ],
-    [
-      "A",
-      "tests/r328-transport-pair/entry.mjs"
-    ],
-    [
-      "A",
-      "tests/r328-transport-pair/experiment.mjs"
     ]
   ],
   "sourcePins": {
@@ -59,6 +49,7 @@
     ".github/scripts/r327_bound_exit_guard.py": "87920775bf21de5a965dcbb00f6ae2840014a7b786292394db73ed382d007c73",
     ".github/scripts/r327_bound_exit_review.py": "60ddd473b36f36313c9edc0c65e5f33e2dd7501b128921c9a7c942708010c7c6",
     ".github/scripts/r328_loader_transport_pair.py": "4fd8da365f1a7deeaacadbd7aca55082225a5f267e7c3948dd58d9b465c96bdd",
+    ".github/scripts/r329_blob_pattern_review.py": "3b7cb3666b1420d39e3089de789fede23d94f27421d375137150ab5e6b8d7d73",
     ".github/scripts/test_r274_cangzhen_finite_review.py": "5521c610461b004a2d1986e56890ea2204d31e26adfb4eb371b7da2b0b2c4bd6",
     ".github/scripts/test_r327_bound_exit_guard.py": "6166c7e3bc43a6d9578978fe3c65d5d8029e70280527b01a9cf49c77234ff44a",
     ".github/scripts/test_r327_supervisor_compat.py": "6e1b57e3067583ee72be23a9bdf0bd14176f1800424ef748ee332edbf8261162",
@@ -71,6 +62,7 @@
     ".github/workflows/r326-native-fetch-trace.yml": "1ef23982e22938e277f424a301649a76d1f768fbbfdcb3bc620c7b6d71f10bc6",
     ".github/workflows/r327-bound-exit-review.yml": "24270c9463a287876dd480533812d83ec2f89fa8ca252e4c22dbc5edd93b844d",
     ".github/workflows/r328-loader-transport-pair.yml": "a17554c6a9415df7367a32929fe360b131d870458df288a6df06e9f500d33f42",
+    ".github/workflows/r329-blob-pattern-review.yml": "b87a89bc4ab36ac13b69901952caeb1a1352a84ec098f3a5511acae6fbaff4d6",
     "README.history-20261111-pre-r300.md": "2d30583befdc60c5be20fdaa85bc1f549218e06421e060375b8c34e5c330cb15",
     "README.md": "43e5897522024dcc1a2297332b4042d0e54f1b8df93968e841d56daf693a2289",
     "data/anchors.json": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
@@ -1276,8 +1268,8 @@
     "tests/r300-explicit-central/retirement.test.mjs": "a7a1510d3a175883f89a1dee25a2d0e1260072a6f8a4a40558d5d1091e8bebd3",
     "tests/r301-triad-metadata/metadata.test.mjs": "b7867e578e69f385216d42d7e775f6ee87cb31a6618d1e2bc2a2caf425098594",
     "tests/r324-retained-mesh/ownership.test.mjs": "089746bff5808e3e10288c428abafce0a273ec7922e1c8bf81c3a02700ea3f53",
-    "tests/r328-transport-pair/boundary.mjs": "a80fbc3e64e6d708822e52d23f921c529585485761112d18880083a5a50c3edf",
-    "tests/r328-transport-pair/boundary.test.mjs": "3def650a2130978ff9a39291d11100373c6a92a8e7d04bca32a81fdbdb8187dc",
+    "tests/r328-transport-pair/boundary.mjs": "244410a8a3502807be8cbd7b521711361c860787f2770f9044c4666979e8cd6f",
+    "tests/r328-transport-pair/boundary.test.mjs": "ac9d9343326aca8079cb1be385a685c11524a8e8a22b2e71c52827868dffc9e5",
     "tests/r328-transport-pair/entry.mjs": "b2248b923caa1bdb7aa70dca56ec05ab115d36219367a22a4691ec8b33da4acd",
     "tests/r328-transport-pair/experiment.mjs": "f2b9d63bd87d170817d4f9a2cfe45967d2b53dd4d40e00531c8d3ba17b7f435d",
     "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7"
