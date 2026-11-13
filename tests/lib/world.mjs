@@ -1,3 +1,4 @@
+import {captureShouanGate,recordShouanWalkables} from './shouan-current-access.mjs';
 import {captureMainHallSource,recordMainHallWalkables,bindMainHallEnvironment,unbindMainHallEnvironment} from './main-hall-current-access.mjs';
 import {captureChuxiuRearSource,recordChuxiuRearWalkables} from './chuxiu-rear-current-access.mjs';
 import {captureChengqianRearSource,recordChengqianRearWalkables} from './chengqian-rear-current-access.mjs';
@@ -246,8 +247,9 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
     for (const m of METHODS) {
       const orig = ZoneBase.prototype[m];
       zb[m] = item => {
-        const n0 = zb.kit.colliders.length;
+        const n0 = zb.kit.colliders.length, w0=zb.kit.walkables.length;
         const r = orig.call(zb, item);
+        if(realFinish&&m==='buildGate'&&item.gateProfile==='shouan-entry')captureShouanGate(zb,item,n0,w0);
         for (let i = n0; i < zb.kit.colliders.length; i++) owner.set(zb.kit.colliders[i], { zone: json.id, item });
         return r;
       };
@@ -259,7 +261,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
     cm.addColliders(data.colliders, json.id);
     const rearWalkableStart=cm.walkables.length;
     cm.addWalkables(data.walkables, json.id);
-    if(realFinish){recordMainHallWalkables(cm,zb.kit,json.id,rearWalkableStart);recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
+    if(realFinish){recordShouanWalkables(cm,zb.kit,json.id,rearWalkableStart);recordMainHallWalkables(cm,zb.kit,json.id,rearWalkableStart);recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
     if(realFinish)recordWenyuanWalkableBindings(cm,data.walkables,json.id,wenyuanWalkableSources);
     rooms.push(...data.rooms);
     mapItems.push(...data.mapItems);

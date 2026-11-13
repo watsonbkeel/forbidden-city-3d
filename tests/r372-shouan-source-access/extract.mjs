@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {fixture} from './fixture.mjs';import {gateSource} from './source-schema.mjs';let row;const W=fixture(true,{capture:(...args)=>row=gateSource(...args).descriptor});W.dispose();fs.writeFileSync(new URL('source-contract.json',import.meta.url),JSON.stringify(row,null,2)+'\n');console.log(row.colliders.length,row.walkables.length);
