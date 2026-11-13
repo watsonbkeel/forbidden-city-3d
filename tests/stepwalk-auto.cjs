@@ -22,7 +22,7 @@ const UNLOADED_WALK_MAX = 1; // m
   const zoneFiles = L.loadZoneJsons(process.env.ZONES_DIR ? path.resolve(process.env.ZONES_DIR) : undefined);
   // 路线规划用碰撞世界（门外净空、绕殿），与浏览器里是同一套 CourtKit 碰撞
   const log = console.log; console.log = () => {};
-  const W = await L.buildWorld({ zones: zoneFiles });
+  const W = await L.buildWorld({ zones: zoneFiles, realMaterials: true });
   console.log = log;
   const all = buildAutoRoutes(W, zoneFiles.map(z => z.json), { knownIssues: {} });
   const which = args[2] || 'all';
