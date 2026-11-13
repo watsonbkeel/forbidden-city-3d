@@ -323,6 +323,15 @@ async function lintGeometry(zoneFiles) {
     const [dx, dz] = [dir[0] * s, dir[1] * s];
     return Math.abs(dz) >= Math.abs(dx) ? (dz > 0 ? '北侧' : '南侧') : (dx < 0 ? '东侧' : '西侧');
   };
+  let currentWuying;
+  const wuyingAccess = async () => {
+    if (!currentWuying) {
+      const { checkWuyingCurrentAccess } = await import(pathToFileURL(path.join(__dirname, 'lib/wuying-current-access.mjs')).href);
+      currentWuying = checkWuyingCurrentAccess(W);
+      console.log('WUYING_CURRENT_ACCESS_JSON ' + JSON.stringify(currentWuying));
+    }
+    return currentWuying;
+  };
 
   // 8. 门洞两侧
   let gateChecked = 0;
@@ -346,6 +355,14 @@ async function lintGeometry(zoneFiles) {
         const who = blockersIn(c0[0], c0[1], c1[0], c1[1], g.item);
         (clear < GATE_CLEAR_ERR ? error : warn)(`${where} 出门净空 ${clear.toFixed(1)} m（< ${clear < GATE_CLEAR_ERR ? GATE_CLEAR_ERR + ' m，被封死' : GATE_SCAN + ' m'}），挡路：${who.join('；') || '（台基/地形）'}`);
         if (clear < GATE_CLEAR_ERR) continue;
+      }
+      if (g.item.southGateProfile === 'wuying' && s === 1) {
+        // The raised causeway covers the old zero-ground north BFS seed.
+        // Retain centre/clearance scans above and the unchanged south BFS.
+        const current = await wuyingAccess();
+        for (const fault of current.faults) error(`${where} current-side-access ${fault}`);
+        if (!current.faults.length) info(`${where} 实际侧门连续往返及原12m外通达通过；旧地面起点阻挡负例保留`);
+        continue;
       }
       // 出门 0.7 m 处起 BFS，不许退回门内（沿出门方向的投影 < 门体半进深的格子禁止）
       const st = [g.x + dx * (g.half + 0.7), g.z + dz * (g.half + 0.7)];
@@ -396,6 +413,14 @@ async function lintGeometry(zoneFiles) {
     const faces = [[-1, '前门']];
     if (g.backDoor) faces.push([1, '后门']);
     for (const [side, label] of faces) {
+      if (h.item.southCourtProfile === 'wuying-front' && side === -1) {
+        // Only the covered front approach migrates; the generic rear-door
+        // probe and every other hall remain unchanged.
+        const current = await wuyingAccess();
+        for (const fault of current.faults) error(`${h.zone}: hall「${h.item.name}」current-side-access ${fault}`);
+        if (!current.faults.length) info(`${h.zone}: hall「${h.item.name}」两侧真实阶道连续往返通过（10/30/60Hz）；旧地面入口负例保留`);
+        continue;
+      }
       const z0 = side * (g.PD / 2 + g.run);            // 台阶外沿（局部 z）
       const z1 = side * (g.PD / 2 + g.run + HALL_FRONT);
       const c0 = g.toW(g.doorX - doorHalf, z0), c1 = g.toW(g.doorX + doorHalf, z1);
