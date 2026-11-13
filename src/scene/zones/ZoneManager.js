@@ -227,6 +227,19 @@ export class ZoneManager {
       this.onEnterZone(newId);
     }
 
+    // A teleport can leave prefetch queued for the previous position. Retain
+    // only still-relevant work and rank it from this frame's actual position;
+    // discarding an ID must not consume its preserved prebuilt/cache owner.
+    const queued = new Set();
+    this.buildQueue = this.buildQueue.flatMap(({ zoneId }) => {
+      const config = this.zones.get(zoneId);
+      if (!config || this.loaded.has(zoneId) || queued.has(zoneId)) return [];
+      const distance = this.distanceToZone(playerPos.x, playerPos.z, config.bounds);
+      if (zoneId !== this.currentId && distance > 40) return [];
+      queued.add(zoneId);
+      return [{ zoneId, priority: zoneId === this.currentId ? 0 : distance }];
+    });
+
     // 预载：距离 ≤ 40m 的区（已在队列中的不重复入队）
     for (const [id, config] of this.zones) {
       if (this.loaded.has(id) || this.buildQueue.some(b => b.zoneId === id)) continue;

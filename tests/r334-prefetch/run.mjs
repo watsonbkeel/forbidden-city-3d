@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {build} from 'esbuild';
+const evidence=process.env.EVIDENCE_DIR;
+assert.ok(evidence&&path.isAbsolute(evidence)&&!path.relative(process.cwd(),evidence).split(path.sep).every(x=>x!=='..'),'external evidence required');
+assert.ok(fs.statSync(evidence).isDirectory());
+const result=await build({entryPoints:['tests/r334-prefetch/prefetch.test.mjs'],bundle:true,platform:'node',format:'esm',write:false,metafile:true,logLevel:'silent'});
+assert.equal(result.outputFiles.length,1);const bytes=result.outputFiles[0].contents;assert.ok(bytes.length<16*1024**2);
+const bundle=path.join(evidence,'prefetch.bundle.mjs');fs.writeFileSync(bundle,bytes,{flag:'wx'});
+fs.writeFileSync(path.join(evidence,'prefetch-bundle.json'),JSON.stringify({sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,inputs:result.metafile.inputs},null,2)+'\n',{flag:'wx'});
+const child=spawnSync(process.execPath,['--max-old-space-size=256','--max-semi-space-size=8','--test','--test-concurrency=1',bundle],{encoding:'utf8',timeout:30000,maxBuffer:8*1024**2});
+const text=(child.stdout??'')+(child.stderr??'');fs.writeFileSync(path.join(evidence,'prefetch-tests.log'),text,{flag:'wx'});process.stdout.write(text);
+assert.equal(child.error,undefined);assert.equal(child.signal,null);assert.equal(child.status,0);
+for(const line of ['ℹ tests 8','ℹ pass 8','ℹ fail 0','ℹ cancelled 0','ℹ skipped 0'])assert.ok(text.split('\n').includes(line),line);
