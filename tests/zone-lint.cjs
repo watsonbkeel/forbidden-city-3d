@@ -333,6 +333,16 @@ async function lintGeometry(zoneFiles) {
     return currentWuying;
   };
 
+  let currentShoukang;
+  const shoukangAccess = async () => {
+    if (!currentShoukang) {
+      const { checkShoukangCurrentAccess } = await import(pathToFileURL(path.join(__dirname, 'lib/shoukang-current-access.mjs')).href);
+      currentShoukang = checkShoukangCurrentAccess(W);
+      console.log('SHOUKANG_CURRENT_ACCESS_JSON ' + JSON.stringify(currentShoukang));
+    }
+    return currentShoukang;
+  };
+
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
@@ -426,6 +436,16 @@ async function lintGeometry(zoneFiles) {
       const c0 = g.toW(g.doorX - doorHalf, z0), c1 = g.toW(g.doorX + doorHalf, z1);
       const who = blockersIn(c0[0], c0[1], c1[0], c1[1], h.item);
       const where = `${h.zone}: hall「${h.item.name ?? '?'}」(${h.item.x}, ${h.item.z}) ${label}`;
+      if (h.zone === 'outer-west' && h.item === W.zones.find(z => z.json.id === 'outer-west')?.json.items[47] && h.item.structure === 'shoukang-front-hall' && side === -1) {
+        // This exact front approach needs the real native motion contract.
+        // Keep original gate scans, rear and other halls; preserve legacy
+        // five-argument observations and source-column negatives in receipt.
+        const current = await shoukangAccess();
+        for (const fault of current.faults) error(`${where} current-native-front-access ${fault}`);
+        if (!current.faults.length) info(`${where} 原控制器中路及两侧阶道连续入殿往返通过（10/30/60Hz）；旧218.9对照保留`);
+        if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
       // 门洞中线 + 两侧车道（±(门洞半宽 − 玩家半径 − 0.05)）从门前 2 m 实走进殿内 1 m
       // 判定：中线走不进 = 错误；中线可走但 2 m 内有其他构件（如工字殿前后殿台明相接）= 警告
       const lane = Math.max(0, doorHalf - 0.55);
