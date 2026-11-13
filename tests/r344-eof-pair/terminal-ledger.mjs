@@ -1,0 +1,25 @@
+// Per-page diagnostic ledger. Scalars only; no request bodies or JS fetch objects.
+export class TerminalLedger{
+ constructor({specs,frameId,pageId,mode,now=()=>performance.now(),schedule=setTimeout,cancel=clearTimeout}){
+  if(!['release-before-terminal','release-after-terminal'].includes(mode))throw Error('fixed pair mode required');this.mode=mode;
+  if(specs.length!==6||new Set(specs.map(x=>x.url)).size!==6||!frameId||!pageId)throw Error('six exact assets and page/frame required');
+  this.specs=new Map(specs.map(x=>[x.url,x.bytes]));this.frameId=frameId;this.pageId=pageId;this.now=now;this.schedule=schedule;this.cancel=cancel;this.rows=[];this.ids=new Map();this.ignored=new Set();this.errors=[];this.generation=0;this.closed=false;this.active=false;
+ }
+ fail(message){const e=Error(message);this.errors.push(message);this.close(message);throw e;}
+ live(){if(this.closed)throw Error('terminal ledger closed');}
+ begin(generation){this.live();if(this.active||generation!==this.generation+1||generation>3)this.fail('invalid generation admission');this.generation=generation;this.active=true;this.deadline=this.now()+10000;for(const[url,bytes]of this.specs)this.rows.push({generation,url,bytes,deadline:this.deadline,pageId:this.pageId,requestId:null,eof:null,terminal:null,release:null,waiter:null});if(this.rows.length>18)this.fail('record overflow');}
+ row(g,url){const r=this.rows.find(x=>x.generation===g&&x.url===url);if(!r)this.fail('unknown asset generation');return r;}
+ request(event){this.live();const {requestId:id,frameId,request,redirectResponse}=event;if(typeof id!=='string'||!id||id.length>128)this.fail('invalid requestId');if(this.ids.has(id)||this.ignored.has(id))this.fail('requestId reuse');if(!this.specs.has(request?.url)){this.ignored.add(id);if(this.ignored.size>32)this.fail('nonasset request overflow');return;}
+  if(!this.active)this.fail('asset outside generation');if(redirectResponse)this.fail('asset redirect');if(frameId!==this.frameId)this.fail('wrong frame');const r=this.row(this.generation,request.url);if(r.requestId)this.fail('duplicate asset request');if(this.now()>=r.deadline)this.fail('request deadline');r.requestId=id;r.requestAt=this.now();this.ids.set(id,r);this.flush(r);
+ }
+ terminal(kind,event){this.live();if(this.ignored.has(event.requestId))return;const r=this.ids.get(event.requestId);if(!r)this.fail('unknown terminal ID');if(r.terminal)this.fail('duplicate terminal');if(!['finished','failed'].includes(kind))this.fail('unknown terminal status');r.terminal={status:kind,at:this.now(),errorText:String(event.errorText??'').slice(0,256),canceled:event.canceled===true};if(this.now()>=r.deadline)this.fail('late terminal deadline');this.flush(r);}
+ async bridge(message){this.live();const{kind,generation,url,mode}=message??{};if(mode!==this.mode)this.fail('invalid fixed pair mode');if(!this.active||generation!==this.generation)this.fail('bridge wrong generation');const r=this.row(generation,url);if(this.now()>=r.deadline)this.fail('bridge deadline');
+  if(kind==='release'){if(Object.keys(message).sort().join()!=='generation,kind,mode,url'||mode!=='release-after-terminal'||!r.eof||!r.terminal||r.release!==null)this.fail('invalid release receipt');r.release=this.now();return{released:true,requestId:r.requestId};}
+  if(kind!=='eof'||Object.keys(message).sort().join()!=='bytes,generation,kind,mode,url'||message.bytes!==r.bytes)this.fail('invalid EOF receipt');if(r.eof)this.fail('duplicate EOF');r.eof={at:this.now(),mode};if(mode==='release-before-terminal')r.release=r.eof.at;
+  return await new Promise((resolve,reject)=>{r.waiter={resolve,reject,timer:this.schedule(()=>{this.errors.push('terminal deadline');this.close('terminal deadline');},Math.max(0,r.deadline-this.now()))};this.flush(r);});
+ }
+ flush(r){if(r.waiter&&r.requestId&&r.terminal){if(this.now()>=r.deadline)this.fail('flush deadline');const w=r.waiter;r.waiter=null;this.cancel(w.timer);w.resolve({requestId:r.requestId,generation:r.generation,status:r.terminal.status,errorText:r.terminal.errorText});}}
+ finishGeneration(g,{intentionalAbort=false}={}){this.live();if(this.now()>=this.deadline)this.fail('generation completion deadline');if(g!==this.generation||!this.active)this.fail('wrong generation completion');const rows=this.rows.filter(r=>r.generation===g),started=rows.filter(r=>r.requestId);if(intentionalAbort){if(started.length!==3||started.some(r=>!r.url.endsWith('.png')||r.terminal?.status!=='failed'||r.terminal.errorText!=='net::ERR_ABORTED'||r.eof))this.fail('three original pending aborts required');}else if(started.length!==6||rows.some(r=>!r.eof||!r.terminal||r.release===null||r.waiter))this.fail('six complete EOF terminal release pairs required');this.active=false;}
+ close(reason='ledger closed'){if(this.closed)return;this.closed=true;for(const r of this.rows)if(r.waiter){const w=r.waiter;r.waiter=null;this.cancel(w.timer);w.reject(Error(reason));}}
+ snapshot(){return{pageId:this.pageId,frameId:this.frameId,generation:this.generation,closed:this.closed,errors:[...this.errors],records:this.rows.map(({waiter,...r})=>({...r,waiting:!!waiter}))};}
+}

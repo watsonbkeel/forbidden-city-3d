@@ -1,41 +1,66 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "0e53f294eb2d821bd1517d860c84e9c988bf5f72",
-  "parentTree": "bff30aa6ba401457576ef6c2f483688f88e640d8",
-  "productTree": "bff30aa6ba401457576ef6c2f483688f88e640d8",
+  "remoteParent": "4939ac4613688b60a28d60d1cfd6a3c2bc83e791",
+  "parentTree": "40199d11abb1a25677a9ce93ca4e3a47ce0820b8",
+  "productTree": "40199d11abb1a25677a9ce93ca4e3a47ce0820b8",
   "candidatePaths": [
-    ".github/scripts/r338_no_observer.py",
-    ".github/workflows/r338-no-observer.yml",
+    ".github/scripts/r344_eof_pair.py",
+    ".github/workflows/r344-eof-pair.yml",
     "tests/r275-buddha-triad-review/pins.json",
-    "tests/r328-transport-pair/experiment.mjs",
-    "tests/r338-no-observer/admission.mjs",
-    "tests/r338-no-observer/admission.test.mjs"
+    "tests/r344-eof-pair/entry.mjs",
+    "tests/r344-eof-pair/experiment.mjs",
+    "tests/r344-eof-pair/paired-loader.mjs",
+    "tests/r344-eof-pair/paired-loader.test.mjs",
+    "tests/r344-eof-pair/terminal-binding.mjs",
+    "tests/r344-eof-pair/terminal-binding.test.mjs",
+    "tests/r344-eof-pair/terminal-ledger.mjs",
+    "tests/r344-eof-pair/terminal-ledger.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r338_no_observer.py"
+      ".github/scripts/r344_eof_pair.py"
     ],
     [
       "A",
-      ".github/workflows/r338-no-observer.yml"
+      ".github/workflows/r344-eof-pair.yml"
     ],
     [
       "M",
       "tests/r275-buddha-triad-review/pins.json"
     ],
     [
-      "M",
-      "tests/r328-transport-pair/experiment.mjs"
+      "A",
+      "tests/r344-eof-pair/entry.mjs"
     ],
     [
       "A",
-      "tests/r338-no-observer/admission.mjs"
+      "tests/r344-eof-pair/experiment.mjs"
     ],
     [
       "A",
-      "tests/r338-no-observer/admission.test.mjs"
+      "tests/r344-eof-pair/paired-loader.mjs"
+    ],
+    [
+      "A",
+      "tests/r344-eof-pair/paired-loader.test.mjs"
+    ],
+    [
+      "A",
+      "tests/r344-eof-pair/terminal-binding.mjs"
+    ],
+    [
+      "A",
+      "tests/r344-eof-pair/terminal-binding.test.mjs"
+    ],
+    [
+      "A",
+      "tests/r344-eof-pair/terminal-ledger.mjs"
+    ],
+    [
+      "A",
+      "tests/r344-eof-pair/terminal-ledger.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1297,7 +1322,17 @@
     ".github/scripts/r338_no_observer.py": "4e8cf56d9087b8e70b87289a978701375e0166c332b3dcf05e02f881c7676aea",
     ".github/workflows/r338-no-observer.yml": "280ee79e153c18d89a3a4bf740ec85e734f10aa8d1f6a98264dcd79e1a6b60a4",
     "tests/r338-no-observer/admission.mjs": "2550febcb597825a4b604fa9aaa97bc73e2f87096a491e876710ba8fa97dfdbf",
-    "tests/r338-no-observer/admission.test.mjs": "0bfa31859ea0c48e916f6570a9f51e8f8beb86ad9faf29d8284ccc6b37de2f1a"
+    "tests/r338-no-observer/admission.test.mjs": "0bfa31859ea0c48e916f6570a9f51e8f8beb86ad9faf29d8284ccc6b37de2f1a",
+    ".github/scripts/r344_eof_pair.py": "1cc3c0b735e38e93c86c377a110ce305b007251a9d71c76149b5076f4808ad73",
+    ".github/workflows/r344-eof-pair.yml": "8c039cec4d34d29c87c82c7d1562e8aa97aec3fdb47e27270ba174d5114a6d36",
+    "tests/r344-eof-pair/entry.mjs": "39af43ab6ae802aee0d1d2f6bb3333f221c888db6d5bee251c1574ff1d3a6316",
+    "tests/r344-eof-pair/experiment.mjs": "78dc5d571706a6f53c0e53249787b3ac0de4cf7ca6197f8f0d9d980fa9925498",
+    "tests/r344-eof-pair/paired-loader.mjs": "b38a321a273aa570aa84f2779102852cb814af34537e85adac95ef76298337ad",
+    "tests/r344-eof-pair/paired-loader.test.mjs": "18e4e2607fc1235cb830e6b1a4ae4e135e1498170a182fda3fc5d6d5989a06e8",
+    "tests/r344-eof-pair/terminal-binding.mjs": "54681b38aab1a75fdf62e5d6a231b5077bac56fb148296b335f741c26fec1fad",
+    "tests/r344-eof-pair/terminal-binding.test.mjs": "ea6cacda46ae08bc9298206aec0335dc8f086edbd211e1169a750a399d85cb3a",
+    "tests/r344-eof-pair/terminal-ledger.mjs": "f5afdbce9d8e284b0d7c3b3b1704f40c6b7eeeb349621547c447e259180ffce1",
+    "tests/r344-eof-pair/terminal-ledger.test.mjs": "639a9df5115d99f72f3d7c2c8b189d484979681f32920d79596bd8bd7ee4a5e4"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1322,6 +1357,7 @@
     "R333 follows exact R331 diagnostic parent, not R332 product fix: close and verify destructive boundary page, create exactly one fresh identity-checked protected page in same context, stable lexical roles and retained negative evidence. All three original loader generations on same fresh page per arm. Unchanged boundary helper/HTTP/CSP/sandbox/6GiB720s/native observer/product assets/defaultOFF. Preserve all prior failures; CPU mocks not browser evidence. No main/deployment or release acceptance.",
     "R336 follows exact R333 diagnostic parent, not R335 product branch. Native arm only: source-backed Document Request Fetch admission with exact unchanged allowlist; every PNG/non-Document paused event fails, no bodies read/fulfilled/rewritten. Both page owners await guard readiness; pending errors drain into health and final receipts. Route baseline owns its own Fetch, receives no new guard. Not completely interception-free or zero-timing-effect. Original three generations, all negative controls, CSP/sandbox/6GiB720s/native observer/assets/defaultOFF unchanged; R333 failures retained. No release/main/deployment acceptance.",
     "R337: exact R336 parent, zero product changes. Preserve both original production-loader arms, append one raw native-control with same six frozen assets/reader/hash/grid validation and three generations; no Three/model/texture/image decode. Same strict cancellation/negative/security/defaultOFF and6GiB720s. Raw failure rules out removed graphics as necessary, raw pass is inconclusive, not a fix. No retainedResponse/forcedGC/new trace/NetLog. Counter and READY/DISPOSED refer to raw logical slots in that control, not graphical resources.",
-    "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance."
+    "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance.",
+    "R344 private test-only EOF terminal ownership pair. Original four arms and loader sources retained, original strict failed terminals unchanged. Both pair modes same bounded6asset3slot3generation stream/hash/grid; A helper releases actual response/reader before common terminal bridge, B holds them through common bridge and checks then releases. Scalar exact perpage/frame/generation/url/CDPrequestId ledger; failure terminals settle but remain fatal, duplicates/redirects/deadlines fail closed, same10s maximum from generation admission (stricter than restarting request condition timers),same6GiB720outer and13nativeidentities. No arrayBuffer fallback in newpair. PostEOF lifetime/timingbundle,not GC/caller/productfix proof. No deployment or current production branch alteration."
   ]
 }
