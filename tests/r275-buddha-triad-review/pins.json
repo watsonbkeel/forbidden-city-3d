@@ -1,30 +1,31 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "4939ac4613688b60a28d60d1cfd6a3c2bc83e791",
-  "parentTree": "40199d11abb1a25677a9ce93ca4e3a47ce0820b8",
-  "productTree": "40199d11abb1a25677a9ce93ca4e3a47ce0820b8",
+  "remoteParent": "ebe9ff34351c106a22b767a1e1f7207156d3e05f",
+  "parentTree": "0d57df9de920cc70fba6fc1a469e3022b2486b45",
+  "productTree": "0d57df9de920cc70fba6fc1a469e3022b2486b45",
   "candidatePaths": [
-    ".github/scripts/r344_eof_pair.py",
-    ".github/workflows/r344-eof-pair.yml",
+    ".github/scripts/r346_matched_checkpoint.py",
+    ".github/workflows/r346-matched-checkpoint.yml",
     "tests/r275-buddha-triad-review/pins.json",
-    "tests/r344-eof-pair/entry.mjs",
-    "tests/r344-eof-pair/experiment.mjs",
-    "tests/r344-eof-pair/paired-loader.mjs",
-    "tests/r344-eof-pair/paired-loader.test.mjs",
-    "tests/r344-eof-pair/terminal-binding.mjs",
-    "tests/r344-eof-pair/terminal-binding.test.mjs",
-    "tests/r344-eof-pair/terminal-ledger.mjs",
-    "tests/r344-eof-pair/terminal-ledger.test.mjs"
+    "tests/r346-matched-checkpoint/checkpoint.test.mjs",
+    "tests/r346-matched-checkpoint/entry.mjs",
+    "tests/r346-matched-checkpoint/experiment.mjs",
+    "tests/r346-matched-checkpoint/paired-loader.mjs",
+    "tests/r346-matched-checkpoint/paired-loader.test.mjs",
+    "tests/r346-matched-checkpoint/terminal-binding.mjs",
+    "tests/r346-matched-checkpoint/terminal-binding.test.mjs",
+    "tests/r346-matched-checkpoint/terminal-ledger.mjs",
+    "tests/r346-matched-checkpoint/terminal-ledger.test.mjs"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r344_eof_pair.py"
+      ".github/scripts/r346_matched_checkpoint.py"
     ],
     [
       "A",
-      ".github/workflows/r344-eof-pair.yml"
+      ".github/workflows/r346-matched-checkpoint.yml"
     ],
     [
       "M",
@@ -32,35 +33,39 @@
     ],
     [
       "A",
-      "tests/r344-eof-pair/entry.mjs"
+      "tests/r346-matched-checkpoint/checkpoint.test.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/experiment.mjs"
+      "tests/r346-matched-checkpoint/entry.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/paired-loader.mjs"
+      "tests/r346-matched-checkpoint/experiment.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/paired-loader.test.mjs"
+      "tests/r346-matched-checkpoint/paired-loader.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/terminal-binding.mjs"
+      "tests/r346-matched-checkpoint/paired-loader.test.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/terminal-binding.test.mjs"
+      "tests/r346-matched-checkpoint/terminal-binding.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/terminal-ledger.mjs"
+      "tests/r346-matched-checkpoint/terminal-binding.test.mjs"
     ],
     [
       "A",
-      "tests/r344-eof-pair/terminal-ledger.test.mjs"
+      "tests/r346-matched-checkpoint/terminal-ledger.mjs"
+    ],
+    [
+      "A",
+      "tests/r346-matched-checkpoint/terminal-ledger.test.mjs"
     ]
   ],
   "sourcePins": {
@@ -1332,7 +1337,18 @@
     "tests/r344-eof-pair/terminal-binding.mjs": "54681b38aab1a75fdf62e5d6a231b5077bac56fb148296b335f741c26fec1fad",
     "tests/r344-eof-pair/terminal-binding.test.mjs": "ea6cacda46ae08bc9298206aec0335dc8f086edbd211e1169a750a399d85cb3a",
     "tests/r344-eof-pair/terminal-ledger.mjs": "f5afdbce9d8e284b0d7c3b3b1704f40c6b7eeeb349621547c447e259180ffce1",
-    "tests/r344-eof-pair/terminal-ledger.test.mjs": "639a9df5115d99f72f3d7c2c8b189d484979681f32920d79596bd8bd7ee4a5e4"
+    "tests/r344-eof-pair/terminal-ledger.test.mjs": "639a9df5115d99f72f3d7c2c8b189d484979681f32920d79596bd8bd7ee4a5e4",
+    ".github/scripts/r346_matched_checkpoint.py": "5a7e924a0aa7604217bb16f240b7fc9de7cde9767877ab2e5e2b213077c6103b",
+    ".github/workflows/r346-matched-checkpoint.yml": "18576254ed837cdc3921d7807dc8a4fff4a8dfbc000e0dd2c41ac3d47b851c9e",
+    "tests/r346-matched-checkpoint/checkpoint.test.mjs": "86478d2f3cdf9f5fb94600ffd645f8fd8fedcab26ca8bf9d04ab5d01e788a2a4",
+    "tests/r346-matched-checkpoint/entry.mjs": "c70c0d8e7eedfb2b56ee620edb2b05eb1bac9c041091386f72cb41ed3aac1902",
+    "tests/r346-matched-checkpoint/experiment.mjs": "94756b8693595dd52c4eda6daeae8bae15fc2ac9295000428e2c6b89df442fb3",
+    "tests/r346-matched-checkpoint/paired-loader.mjs": "7c12839687b25d437d697a7f7ffd071bfef07e53948adf50a60fd4db5d9c49a7",
+    "tests/r346-matched-checkpoint/paired-loader.test.mjs": "f7674e07892683fab0201bebe21c46890454a7fba20aea64585448924857e6d4",
+    "tests/r346-matched-checkpoint/terminal-binding.mjs": "c2f95bf69334dae2f486f67a195696c7a622cc9ac92742ef4e56c4c308c53e61",
+    "tests/r346-matched-checkpoint/terminal-binding.test.mjs": "1a7ad46006d801080b5e4ca9772aaeca05b3c294a41993404a21cf4a1fd2c3e2",
+    "tests/r346-matched-checkpoint/terminal-ledger.mjs": "e761bf33245261eac659f3cf27f27bdc1fb41dc56c0d37251256eb1c3dd04d3e",
+    "tests/r346-matched-checkpoint/terminal-ledger.test.mjs": "067b3802a245b93ecdfedbc8a9f41e282c61706ec36059e3b4f456deea01a85d"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1358,6 +1374,7 @@
     "R336 follows exact R333 diagnostic parent, not R335 product branch. Native arm only: source-backed Document Request Fetch admission with exact unchanged allowlist; every PNG/non-Document paused event fails, no bodies read/fulfilled/rewritten. Both page owners await guard readiness; pending errors drain into health and final receipts. Route baseline owns its own Fetch, receives no new guard. Not completely interception-free or zero-timing-effect. Original three generations, all negative controls, CSP/sandbox/6GiB720s/native observer/assets/defaultOFF unchanged; R333 failures retained. No release/main/deployment acceptance.",
     "R337: exact R336 parent, zero product changes. Preserve both original production-loader arms, append one raw native-control with same six frozen assets/reader/hash/grid validation and three generations; no Three/model/texture/image decode. Same strict cancellation/negative/security/defaultOFF and6GiB720s. Raw failure rules out removed graphics as necessary, raw pass is inconclusive, not a fix. No retainedResponse/forcedGC/new trace/NetLog. Counter and READY/DISPOSED refer to raw logical slots in that control, not graphical resources.",
     "R338: preserve R337 three arms, append native raw control with NO JS fetch/reader observer. Init captures 13 function/getter/constructor descriptors without calling getters or retaining response/body/reader/promise/signal instances. Original three arms retain mandatory observer admission. Fourth arm explicitly checks observer absence and reference/descriptor stability in each document and final cleanup. No per-read/body-cancel/signal timing collected in fourth arm; absence is not zero events. Same raw bundle/six files/bytes/SHA/grid/CDP terminals/strict cancellation/security/sandbox/6GiB720s. Failure excludes observer installation as necessary; pass inconclusive. No product fix or visual acceptance.",
-    "R344 private test-only EOF terminal ownership pair. Original four arms and loader sources retained, original strict failed terminals unchanged. Both pair modes same bounded6asset3slot3generation stream/hash/grid; A helper releases actual response/reader before common terminal bridge, B holds them through common bridge and checks then releases. Scalar exact perpage/frame/generation/url/CDPrequestId ledger; failure terminals settle but remain fatal, duplicates/redirects/deadlines fail closed, same10s maximum from generation admission (stricter than restarting request condition timers),same6GiB720outer and13nativeidentities. No arrayBuffer fallback in newpair. PostEOF lifetime/timingbundle,not GC/caller/productfix proof. No deployment or current production branch alteration."
+    "R344 private test-only EOF terminal ownership pair. Original four arms and loader sources retained, original strict failed terminals unchanged. Both pair modes same bounded6asset3slot3generation stream/hash/grid; A helper releases actual response/reader before common terminal bridge, B holds them through common bridge and checks then releases. Scalar exact perpage/frame/generation/url/CDPrequestId ledger; failure terminals settle but remain fatal, duplicates/redirects/deadlines fail closed, same10s maximum from generation admission (stricter than restarting request condition timers),same6GiB720outer and13nativeidentities. No arrayBuffer fallback in newpair. PostEOF lifetime/timingbundle,not GC/caller/productfix proof. No deployment or current production branch alteration.",
+    "R346 corrects known R344 extra-release-ack confound. Both modes await EOF then same-shaped checkpoint before hash/nextasset. No extra third bridge. A has released before EOF bridge, not necessarily before native terminal; B holds actualResponse/reader through EOF-terminal latch then releases before common checkpoint. Release evidence is source-control ordering and Node receipt upperbounds, not native release timestamps. Ledger requires unique checkpoint after exact request/EOF/terminal-ack with unchanged10s admission deadline, all terminal failures fatal downstream, all six assets/three generations and guards retained. Same6GiB720, original four arms/source bundles preserved. Fixed order/intermittency/lifetime-timing remain confounds, not productionfix/hall/merge acceptance."
   ]
 }
