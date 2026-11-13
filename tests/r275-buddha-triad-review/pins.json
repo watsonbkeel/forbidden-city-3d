@@ -1,37 +1,42 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "60cf4277b3a7f1e2912a54fbc35c13a1130db4a6",
-  "parentTree": "33121a7b9aeef82a445422fa91727dc826a1847e",
-  "productTree": "33121a7b9aeef82a445422fa91727dc826a1847e",
+  "remoteParent": "099f3f4bb75a85c5e2560601453242188f1229e0",
+  "parentTree": "fab96edf52df5ef621be612f68a5ffb3db313607",
+  "productTree": "fab96edf52df5ef621be612f68a5ffb3db313607",
   "candidatePaths": [
-    ".github/scripts/r326_native_fetch_trace.py",
-    ".github/workflows/r326-native-fetch-trace.yml",
-    "tests/r275-buddha-triad-review/capture.mjs",
-    "tests/r275-buddha-triad-review/native-fetch-trace.mjs",
-    "tests/r275-buddha-triad-review/native-fetch-trace.test.mjs",
+    ".github/scripts/r327_bound_exit_guard.py",
+    ".github/scripts/r327_bound_exit_review.py",
+    ".github/scripts/test_r327_bound_exit_guard.py",
+    ".github/scripts/test_r327_supervisor_compat.py",
+    ".github/scripts/test_r327_supervisor_exit_race.py",
+    ".github/workflows/r327-bound-exit-review.yml",
     "tests/r275-buddha-triad-review/pins.json"
   ],
   "changes": [
     [
       "A",
-      ".github/scripts/r326_native_fetch_trace.py"
+      ".github/scripts/r327_bound_exit_guard.py"
     ],
     [
       "A",
-      ".github/workflows/r326-native-fetch-trace.yml"
-    ],
-    [
-      "M",
-      "tests/r275-buddha-triad-review/capture.mjs"
+      ".github/scripts/r327_bound_exit_review.py"
     ],
     [
       "A",
-      "tests/r275-buddha-triad-review/native-fetch-trace.mjs"
+      ".github/scripts/test_r327_bound_exit_guard.py"
     ],
     [
       "A",
-      "tests/r275-buddha-triad-review/native-fetch-trace.test.mjs"
+      ".github/scripts/test_r327_supervisor_compat.py"
+    ],
+    [
+      "A",
+      ".github/scripts/test_r327_supervisor_exit_race.py"
+    ],
+    [
+      "A",
+      ".github/workflows/r327-bound-exit-review.yml"
     ],
     [
       "M",
@@ -51,13 +56,19 @@
     ".github/scripts/r322_triad_route_review.py": "b4fa77a7ce59a543c7f3dc87efb24a26f0fffbedbff0969ccbdf585d7d87dc63",
     ".github/scripts/r323_triad_route_review.py": "b2f23b7b1c863482d43bd42e5fbc50539b2b283b35c427b4f3302897ba2006ba",
     ".github/scripts/r326_native_fetch_trace.py": "ece0ece9f15e66a79ad2ef5c357758cbb5f64c88f79746102dfcdeefec7da569",
+    ".github/scripts/r327_bound_exit_guard.py": "87920775bf21de5a965dcbb00f6ae2840014a7b786292394db73ed382d007c73",
+    ".github/scripts/r327_bound_exit_review.py": "60ddd473b36f36313c9edc0c65e5f33e2dd7501b128921c9a7c942708010c7c6",
     ".github/scripts/test_r274_cangzhen_finite_review.py": "5521c610461b004a2d1986e56890ea2204d31e26adfb4eb371b7da2b0b2c4bd6",
+    ".github/scripts/test_r327_bound_exit_guard.py": "6166c7e3bc43a6d9578978fe3c65d5d8029e70280527b01a9cf49c77234ff44a",
+    ".github/scripts/test_r327_supervisor_compat.py": "6e1b57e3067583ee72be23a9bdf0bd14176f1800424ef748ee332edbf8261162",
+    ".github/scripts/test_r327_supervisor_exit_race.py": "fa3fe323969f2ffb1db3d5cee856249e787666a8e1ecb2521caf95b173679a94",
     ".github/workflows/r274-cangzhen-finite-review.yml": "54990eb79c8a1fd3dcaf8dcfa7a2d4741e1cb60331488a5f31a8b669ed35e8be",
     ".github/workflows/r275-buddha-triad-review.yml": "a8f4158c60e64b0ff4b7b4bc3d01cad4d0f7092b2d3c85371b7455894fa70f6a",
     ".github/workflows/r321-triad-route-review.yml": "c16ae023569655093759ac8ed60eb796e1710c5739b401e6cd729a1e0a7410ed",
     ".github/workflows/r322-triad-route-review.yml": "e9294883cb5830d42a548eb11a6f81f4a7ec936519a095d904cdc1c06648f9ad",
     ".github/workflows/r323-triad-route-review.yml": "f96640b7f64462cf84b744efadd6a6b6bd279c1871f2a81681757d50a719dbde",
     ".github/workflows/r326-native-fetch-trace.yml": "1ef23982e22938e277f424a301649a76d1f768fbbfdcb3bc620c7b6d71f10bc6",
+    ".github/workflows/r327-bound-exit-review.yml": "24270c9463a287876dd480533812d83ec2f89fa8ca252e4c22dbc5edd93b844d",
     "README.history-20261111-pre-r300.md": "2d30583befdc60c5be20fdaa85bc1f549218e06421e060375b8c34e5c330cb15",
     "README.md": "43e5897522024dcc1a2297332b4042d0e54f1b8df93968e841d56daf693a2289",
     "data/anchors.json": "73249fd0cd4aadb35912ed811ae14e99df49f20928270dfa68a39889d0e2a883",
