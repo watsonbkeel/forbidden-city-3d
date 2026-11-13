@@ -247,7 +247,7 @@ async function checkHallSourceProfile(W, h) {
   const { replayTerrace, traceTerraceGround } = await import(pathToFileURL(path.join(__dirname, 'lib/terrace-walk.mjs')).href);
   const { mock } = await import('node:test');
   const faults = [], runs = [];
-  let profile, go, floors, bridge;
+  let profile, go, floors, bridge, wenyuanSupport;
   if (wenyuan) {
     const { wenyuanGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/WenyuanPavilion.js')).href);
     const { southWaterProfile } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthWaterSystem.js')).href);
@@ -257,6 +257,7 @@ async function checkHallSourceProfile(W, h) {
     floors = [p];
     bridge = W.cm.rivers.flatMap(river => southWaterProfile(river)?.bridges ?? []).find(b => b.id === 'wenyuan-pond');
     if (!bridge) faults.push('missing-bridge-profile: wenyuan-pond');
+    if(bridge){const {bindWenyuanBridgeSupport}=await import(pathToFileURL(path.join(__dirname,'lib/wenyuan-bridge-support.mjs')).href);wenyuanSupport=bindWenyuanBridgeSupport(W,h);console.log('WENYUAN_BRIDGE_SUPPORT_JSON '+JSON.stringify(wenyuanSupport.receipt));}
   } else {
     const { southCourtGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthCourtProfiles.js')).href);
     profile = h.item.southCourtProfile;
@@ -297,11 +298,11 @@ async function checkHallSourceProfile(W, h) {
     }
     if (bridge) {
       // Collision's water aperture is a horizontal permission test, not proof
-      // that a physical deck exists. Require selected real ramp support over
-      // the whole bridge interior, including partial missing deck segments.
+      // that a physical deck exists. Require all32 actual registered deck sources
+      // independently; only exact physical entry-tread overlap may select box.
       const samples = trace.samples.filter(sample => Math.abs(sample.x - bridge.x) < .6 &&
         Math.abs(sample.z - bridge.z) < bridge.length / 2 - .2);
-      if (!samples.length || samples.some(sample => sample.supportType !== 'ramp' || sample.height <= 0)) {
+      if (wenyuanSupport.checkSamples(samples).length) {
         faults.push(`missing-bridge-support ${fps}Hz: ${bridge.id}`);
       }
     }

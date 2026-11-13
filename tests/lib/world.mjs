@@ -1,3 +1,4 @@
+import {captureWenyuanSupportSource,recordWenyuanWalkableBindings} from './wenyuan-bridge-support.mjs';
 import {groundWithEvidence} from './ground-query-evidence.mjs';
 import {createWorldCleanup,installCpuDocument} from './finished-world-lifecycle.mjs';
 import {stubLibrary} from './material-stub.mjs';
@@ -221,7 +222,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
   const { CollisionManager } = await src('utils/Collision.js');
   const lib = realMaterials ? (await import('./r48-real-texture-library.mjs')).realTextureLibrary() : stubLibrary(THREE);
   const cm = new CollisionManager();
-  const owners=[],finishedZones=[],zoneScene=realFinish?new THREE.Scene():null;
+  const owners=[],finishedZones=[],finishedStatics=[],wenyuanWalkableSources=new Map(),zoneScene=realFinish?new THREE.Scene():null;
   if(realFinish)dispose=createWorldCleanup({cm,owners,library:lib,restore:()=>cpuDocument.restore()});
   const owner = new Map(); // 原始 Box3 → { zone, item }
   const rooms = [], mapItems = [];
@@ -248,10 +249,13 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
         return r;
       };
     }
-    const data = zb.build();
-    if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data});}
+    let wenyuanSupportSource=null;const originalFinish=zb.kit.finish;
+    if(realFinish&&json.id==='outer-east')zb.kit.finish=function(...args){wenyuanSupportSource=captureWenyuanSupportSource(this);return originalFinish.apply(this,args);};
+    let data;try{data=zb.build();}finally{zb.kit.finish=originalFinish;}
+    if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data,wenyuanSupportSource});}
     cm.addColliders(data.colliders, json.id);
     cm.addWalkables(data.walkables, json.id);
+    if(realFinish)recordWenyuanWalkableBindings(cm,data.walkables,json.id,wenyuanWalkableSources);
     rooms.push(...data.rooms);
     mapItems.push(...data.mapItems);
   }
@@ -270,6 +274,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       const pb = new PalaceBuilder(scene, lib);
       if(realFinish)owners.push({label:'static:palace',value:pb});
       pb.buildAll(PALACE_LAYOUT);
+      if(realFinish)finishedStatics.push({name:'PalaceBuilder',builder:pb,scene,walkables:pb.getWalkables()});
       if (retainScene) retainedScene = scene;
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
@@ -284,6 +289,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
         const before = cm.colliders.length;
         cm.addColliders(cols, 'static');
         cm.addWalkables(walks, 'static');
+        if(realFinish)recordWenyuanWalkableBindings(cm,walks,'static',wenyuanWalkableSources);
         for (let i = before; i < cm.colliders.length; i++) owner.set(cm.colliders[i].mesh, { zone: 'static', item: { kind: 'static', name } });
       }
     } finally { console.log = log; }
@@ -297,7 +303,7 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
-    ...(realFinish?{dispose,finishedZones,zoneScene,cpuDocumentStats:cpuDocument.stats}:{}),
+    ...(realFinish?{dispose,finishedZones,finishedStatics,wenyuanWalkableSources,zoneScene,cpuDocumentStats:cpuDocument.stats}:{}),
     THREE, cm, zones, gates, halls, rooms, mapItems, environmentScene, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
     ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
