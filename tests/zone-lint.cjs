@@ -347,6 +347,20 @@ async function lintGeometry(zoneFiles) {
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
+    if (g.zone === 'outer-east' && g.item.southGateProfile === 'wenhua') {
+      // Only this exact source replaced its generic stairs with asymmetric
+      // rendered approaches. Keep all world owners, original outside scope,
+      // native movement and source-negative evidence instead of a nominal .8.
+      gateChecked++;
+      try {
+        const {checkWenhuaCurrentAccess} = await import(pathToFileURL(path.join(__dirname, 'lib/wenhua-current-access.mjs')).href);
+        const current = checkWenhuaCurrentAccess(W, g);
+        console.log('WENHUA_CURRENT_ACCESS_JSON ' + JSON.stringify(current));
+        for (const fault of current.faults) error(`${name(g)} current-source-access ${fault}`);
+        if (!current.faults.length) info(`${name(g)} 真实台面/南北坡原生往返、4m净空及12m外通达通过；不覆盖门至殿路线`);
+      } catch (cause) { error(`${name(g)} current-source-access ${cause.message}`); }
+      continue;
+    }
     if (L.pointBlocked(W, g.x, g.z, g.platformY)) {
       error(`${name(g)} 门洞中心被碰撞体占据：${blockersIn(g.x - 0.5, g.z - 0.5, g.x + 0.5, g.z + 0.5, g.item).join('；')}`);
       continue;
