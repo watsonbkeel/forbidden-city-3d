@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';test('Chuxiu exact-source QA adapter is available',()=>assert.equal(fs.existsSync(new URL('../lib/chuxiu-rear-current-access.mjs',import.meta.url)),true));

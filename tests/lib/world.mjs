@@ -1,3 +1,4 @@
+import {captureChuxiuRearSource,recordChuxiuRearWalkables} from './chuxiu-rear-current-access.mjs';
 import {captureChengqianRearSource,recordChengqianRearWalkables} from './chengqian-rear-current-access.mjs';
 import {captureWenyuanSupportSource,recordWenyuanWalkableBindings} from './wenyuan-bridge-support.mjs';
 import {groundWithEvidence} from './ground-query-evidence.mjs';
@@ -251,13 +252,13 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       };
     }
     let wenyuanSupportSource=null;const originalFinish=zb.kit.finish;
-    if(realFinish&&['outer-east','east-six'].includes(json.id))zb.kit.finish=function(...args){if(json.id==='outer-east')wenyuanSupportSource=captureWenyuanSupportSource(this);if(json.id==='east-six')captureChengqianRearSource(this);return originalFinish.apply(this,args);};
+    if(realFinish&&['outer-east','east-six','west-six'].includes(json.id))zb.kit.finish=function(...args){if(json.id==='outer-east')wenyuanSupportSource=captureWenyuanSupportSource(this);if(json.id==='east-six')captureChengqianRearSource(this);if(json.id==='west-six')captureChuxiuRearSource(this);return originalFinish.apply(this,args);};
     let data;try{data=zb.build();}finally{zb.kit.finish=originalFinish;}
     if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data,wenyuanSupportSource});}
     cm.addColliders(data.colliders, json.id);
     const rearWalkableStart=cm.walkables.length;
     cm.addWalkables(data.walkables, json.id);
-    if(realFinish)recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);
+    if(realFinish){recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
     if(realFinish)recordWenyuanWalkableBindings(cm,data.walkables,json.id,wenyuanWalkableSources);
     rooms.push(...data.rooms);
     mapItems.push(...data.mapItems);
