@@ -8,7 +8,7 @@ const SPECS=Object.freeze([
  Object.freeze({subjectId:'shakyamuni',x:221.9,min:[221.2502,1.7,246.4300],max:[222.5498,3.95,246.8335]}),
  Object.freeze({subjectId:'bhaisajyaguru',x:220.28,min:[219.6302,1.7,246.4300],max:[220.9418,3.95,246.8335]})
 ]);
-const sessions=new WeakMap(),require=(v,m)=>{if(!v)throw Error(m);};
+const sessions=new WeakMap(),stateOwners=new WeakMap(),require=(v,m)=>{if(!v)throw Error(m);};
 const identity=o=>o&&o.quaternion.equals(new T.Quaternion())&&o.scale.equals(new T.Vector3(1,1,1));
 const mutable=a=>Array.isArray(a)&&Object.isExtensible(a)&&Object.getOwnPropertyDescriptor(a,'length')?.writable;
 const names=id=>MATERIALS.map(n=>`${n}_original_artwork_${id}_fallback`);
@@ -64,11 +64,31 @@ export function createOriginalTriadSession(group,{load}={}){
  const records=group.userData.architecture?.filter(r=>r.id===PLACE)??[];require(records.length===1&&records[0].inventory?.status==='UNKNOWN','One unchanged hall record required');
  const state=records[0].originalArtworkTriad;require(state?.id==='dafotang-original-triad-artwork-v1'&&!records[0].originalArtworkCentral,'Prepared original triad fallback required');
  const internals=SPECS.map(spec=>{const meta=state.slots?.[spec.subjectId];require(meta?.subjectId===spec.subjectId&&JSON.stringify(meta.fallbackMaterialNames)===JSON.stringify(names(spec.subjectId))&&JSON.stringify(meta.position)===JSON.stringify([spec.x,1.7,246.7]),'Exact prepared subject identity required');const old=names(spec.subjectId).map(name=>{const found=group.children.filter(m=>m.isMesh&&!Array.isArray(m.material)&&m.material.name===name);require(found.length===1,'One merged subject bucket per material required');return found[0];});const proxy=new T.Box3(new T.Vector3(...meta.contact.min),new T.Vector3(...meta.contact.max));require(finiteBox(proxy),'Finite prepared subject contact required');return{spec,meta,old,previous:old.map(m=>m.visible),proxy,output:null};});
- const controller=new AbortController();let disposed=false;
+ const controller=new AbortController(),ownership={};let disposed=false;
  const slots=Object.fromEntries(internals.map(p=>[p.spec.subjectId,{status:'LOADING',presentation:null}]));
  const restore=p=>p.old.forEach((m,i)=>{m.visible=p.previous[i];});
- const session={status:'LOADING',slots,ready:null,dispose(){if(disposed)return;disposed=true;controller.abort();for(const p of internals){if(p.output){const out=p.output;p.output=null;out.mesh.removeFromParent();out.dispose();}restore(p);slots[p.spec.subjectId].presentation=null;p.meta.activeLotus=null;slots[p.spec.subjectId].status=p.meta.status='DISPOSED';}session.status=state.status='DISPOSED';state.lotusEightTiers='NO_ACTIVE_ORIGINAL_RELIEFS';sessions.delete(group);}};
- sessions.set(group,session);state.status='LOADING';state.lotusEightTiers='NOT_ALL_ORIGINAL_RELIEFS_READY';for(const p of internals){p.meta.status='LOADING';p.meta.activeLotus=null;}
+ // A throwing owner/listener must not strand unrelated subjects. A failed
+ // resource's internal cleanup is not certified; preserve errors explicitly.
+ const disposalErrors=[];
+ const disposeSlot=(p,out=p.output)=>{
+  const errors=[],attempt=fn=>{try{fn();}catch(error){errors.push(error);}};
+  p.output=null;
+  if(out){attempt(()=>out.mesh?.removeFromParent?.());attempt(()=>out.dispose());}
+  attempt(()=>restore(p));
+  const slot=slots[p.spec.subjectId];slot.presentation=null;p.meta.activeLotus=null;
+  const failed=errors.length>0||slot.status==='DISPOSED_WITH_ERRORS';
+  slot.status=p.meta.status=failed?'DISPOSED_WITH_ERRORS':'DISPOSED';
+  if(errors.length){disposalErrors.push(...errors);p.meta.reason='Owned output cleanup reported an error';}
+ };
+ const finishDisposal=()=>{session.status=state.status=disposalErrors.length?'DISPOSED_WITH_ERRORS':'DISPOSED';state.lotusEightTiers='NO_ACTIVE_ORIGINAL_RELIEFS';};
+ const session={status:'LOADING',slots,ready:null,get disposalErrors(){return [...disposalErrors];},dispose(){
+  if(disposed)return;disposed=true;
+  try{controller.abort();}catch(error){disposalErrors.push(error);}
+  for(const p of internals)disposeSlot(p);
+  finishDisposal();sessions.delete(group);
+  if(disposalErrors.length)throw new AggregateError([...disposalErrors],'Original triad disposal reported errors');
+ }};
+ sessions.set(group,session);stateOwners.set(state,ownership);state.status='LOADING';state.lotusEightTiers='NOT_ALL_ORIGINAL_RELIEFS_READY';for(const p of internals){p.meta.status='LOADING';p.meta.activeLotus=null;}
  const update=()=>{if(disposed)return;const values=Object.values(slots).map(s=>s.status);session.status=state.status=values.includes('LOADING')?'LOADING':values.every(s=>s==='READY_FOR_HALL_QA')?'READY_FOR_HALL_QA':values.some(s=>s==='READY_FOR_HALL_QA')?'PARTIAL_FALLBACK':'FALLBACK';
   state.lotusEightTiers=values.every(s=>s==='READY_FOR_HALL_QA')
    ?internals.every(p=>p.meta.activeLotus?.reportedProceduralTiers===8)
@@ -77,7 +97,15 @@ export function createOriginalTriadSession(group,{load}={}){
    :'NOT_ALL_ORIGINAL_RELIEFS_READY';
  };
  const jobs=internals.map(p=>Promise.resolve().then(()=>disposed?null:load({subjectId:p.spec.subjectId,signal:controller.signal})).then(result=>{
-  if(disposed){result?.dispose?.();return;}
+  if(disposed){
+   // A late unpublished output belongs only to this retired session. Never
+   // restore fallback or rewrite metadata owned by a subsequent admission.
+   try{result?.dispose?.();}catch(error){
+    disposalErrors.push(error);slots[p.spec.subjectId].status='DISPOSED_WITH_ERRORS';session.status='DISPOSED_WITH_ERRORS';
+    if(stateOwners.get(state)===ownership){p.meta.status='DISPOSED_WITH_ERRORS';p.meta.reason='Late owned output cleanup reported an error';state.status='DISPOSED_WITH_ERRORS';}
+   }
+   return;
+  }
   try{
    require(result?.mesh?.isMesh&&!result.mesh.parent&&typeof result.dispose==='function'&&result.meta?.historicalPhoto===false&&result.meta.originalAsset?.subjectId===p.spec.subjectId,'Correct owned original subject relief required');
    const geometry=result.mesh.geometry;geometry.computeBoundingBox();const box=geometry.boundingBox;require(finiteBox(box),'Finite subject geometry required');const height=box.max.y-box.min.y;require(Number.isFinite(height)&&height>0,'Finite visible subject height required');

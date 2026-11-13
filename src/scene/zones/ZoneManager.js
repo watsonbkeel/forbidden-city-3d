@@ -422,12 +422,22 @@ export class ZoneManager {
     // Pending photos may grow the retained resource set after cost admission.
     // Dispose/cancel only that pending session; completed or disabled photos
     // still use the original cost accounting and normal cache budget below.
-    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && builder.dafotangOriginalSession?.status !== 'LOADING' && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && !['LOADING','DISPOSED_WITH_ERRORS'].includes(builder.dafotangOriginalSession?.status) && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
       builder.releaseConstructionReferences?.();
       entry.cost = zoneRetainedResourceCost(entry,this.library);
       const retained=this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
       retainXiananEntry(this,data,retained);
-    } else { builder.dispose(); forgetXiananEntry(this,data); }
+    } else {
+      // A retired builder must not remain admitted after reporting a cleanup
+      // error. Keep that original error visible while closing bookkeeping.
+      try { builder.dispose(); }
+      finally {
+        forgetXiananEntry(this,data);
+        const silhouette = this.silhouettes.get(zoneId);
+        if (silhouette) silhouette.visible = true;
+        this.loaded.delete(zoneId);
+      }
+    }
     const silhouette = this.silhouettes.get(zoneId);
     if (silhouette) silhouette.visible = true;
     this.loaded.delete(zoneId);

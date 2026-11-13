@@ -800,19 +800,23 @@ export class ZoneBase {
   dispose() {
     if (this.disposed) return;
     this.disposed = true;
-    this.dafotangOriginalSession?.dispose();
-    this.dafotangOriginalSession=null;
-    this.dafotangPhotoSession?.dispose();
-    this.dafotangPhotoSession=null;
-    // A failed build may own source resources before a merged group exists.
-    this.kit.dispose(this.group ?? this.kit.root);
-    this.group?.removeFromParent();
+    const errors = [];
+    const attempt = fn => { try { fn(); } catch (error) { errors.push(error); } };
+    attempt(() => this.dafotangOriginalSession?.dispose());
+    this.dafotangOriginalSession = null;
+    attempt(() => this.dafotangPhotoSession?.dispose());
+    this.dafotangPhotoSession = null;
+    // Each owner is attempted once; an internal dispose failure is reported,
+    // not treated as proof that every resource inside that owner was freed.
+    attempt(() => this.kit.dispose(this.group ?? this.kit.root));
+    attempt(() => this.group?.removeFromParent());
     this.group = null;
-    this.kit.root.clear();
+    attempt(() => this.kit.root.clear());
     this.kit.plaques.length = 0;
-    forgetConstructionSources(this.kit);
+    attempt(() => forgetConstructionSources(this.kit));
     this.gateWidths.clear();
     this.gateGeometries.clear();
+    if (errors.length) throw new AggregateError(errors, 'Zone disposal reported errors');
   }
 
   // ───────────────────────── 各 kind 构建方法 ─────────────────────────
