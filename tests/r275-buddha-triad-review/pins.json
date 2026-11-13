@@ -1,12 +1,12 @@
 {
   "frozen": true,
   "bindingStatus": "COORDINATOR_FROZEN_AFTER_INDEPENDENT_REVIEW",
-  "remoteParent": "0dc13bb8da813f5e0f247858161817a202f039b5",
-  "parentTree": "f32922017549de6267082afbdad0804965a37636",
-  "productTree": "f32922017549de6267082afbdad0804965a37636",
+  "remoteParent": "b6d34dd3afbbc02a7c5ba2292808be3135b7ba2b",
+  "parentTree": "62fabe304986e6516534a68a33d5254b03a78041",
+  "productTree": "62fabe304986e6516534a68a33d5254b03a78041",
   "candidatePaths": [
-    ".github/scripts/r329_blob_pattern_review.py",
-    ".github/workflows/r329-blob-pattern-review.yml",
+    ".github/scripts/r331_ordered_blob_review.py",
+    ".github/workflows/r331-ordered-blob-review.yml",
     "tests/r275-buddha-triad-review/pins.json",
     "tests/r328-transport-pair/boundary.mjs",
     "tests/r328-transport-pair/boundary.test.mjs"
@@ -14,11 +14,11 @@
   "changes": [
     [
       "A",
-      ".github/scripts/r329_blob_pattern_review.py"
+      ".github/scripts/r331_ordered_blob_review.py"
     ],
     [
       "A",
-      ".github/workflows/r329-blob-pattern-review.yml"
+      ".github/workflows/r331-ordered-blob-review.yml"
     ],
     [
       "M",
@@ -1268,11 +1268,13 @@
     "tests/r300-explicit-central/retirement.test.mjs": "a7a1510d3a175883f89a1dee25a2d0e1260072a6f8a4a40558d5d1091e8bebd3",
     "tests/r301-triad-metadata/metadata.test.mjs": "b7867e578e69f385216d42d7e775f6ee87cb31a6618d1e2bc2a2caf425098594",
     "tests/r324-retained-mesh/ownership.test.mjs": "089746bff5808e3e10288c428abafce0a273ec7922e1c8bf81c3a02700ea3f53",
-    "tests/r328-transport-pair/boundary.mjs": "244410a8a3502807be8cbd7b521711361c860787f2770f9044c4666979e8cd6f",
-    "tests/r328-transport-pair/boundary.test.mjs": "ac9d9343326aca8079cb1be385a685c11524a8e8a22b2e71c52827868dffc9e5",
+    "tests/r328-transport-pair/boundary.mjs": "32f40260a25d5bb84d01802c78e007b581562f2058a93124712d0fe08058e556",
+    "tests/r328-transport-pair/boundary.test.mjs": "a1690d61119bdddb0d317658b534239cdf73722af0e27a86087a9a0ae66afd97",
     "tests/r328-transport-pair/entry.mjs": "b2248b923caa1bdb7aa70dca56ec05ab115d36219367a22a4691ec8b33da4acd",
     "tests/r328-transport-pair/experiment.mjs": "f2b9d63bd87d170817d4f9a2cfe45967d2b53dd4d40e00531c8d3ba17b7f435d",
-    "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7"
+    "vite.config.js": "634403d607431ec904ba154784b80c7827b5f964892baae4bb302d5cfd0099d7",
+    ".github/scripts/r331_ordered_blob_review.py": "f002429365d8052233dc7937288f61c45f072049c892c6827e2a1e7b32dd55dc",
+    ".github/workflows/r331-ordered-blob-review.yml": "e3b27604c0b1ae0136ec425581c0680e6d8e7e9cd95c98b38791ac82e19da508"
   },
   "parentPins": {
     ".github/scripts/r267_hall_review.py": "b1312e13e313c547b591e3138d3080b8fc40a795066ca117d1d59824f77cc710",
@@ -1283,7 +1285,7 @@
     "tests/r267-dafotang-hall-review/build-review.mjs": "cb9e8e98cd7bc28fe6dd59193fcc1003fbb015780bb69a5bb739e0323eedbaca",
     ".github/scripts/r267_owned_rss_build.py": "ef466f77c2ad68fbb60cc6befecc1187ba6d62408d06b13e5ea2696e29d818b4"
   },
-  "scope": "THREE_ORIGINAL_SUBJECTS_ONE_REAL_HALL_ONLY_UNACCEPTED",
+  "scope": "LOADER_ONLY_TRANSPORT_DISCRIMINATOR_NOT_HALL_OR_PRODUCT_ACCEPTANCE",
   "localBaseline": "45801254fb551155546bef8634473c6ef28491ab",
   "notes": [
     "R313 exact R301 application + original R300 README + R313 CI overlay. No R300 new workflow included.",
@@ -1292,6 +1294,7 @@
     "R321 recovery: exact R313 product and sample defaults retained; only CI wrapper/workflow identifiers and their binding pins changed. Earlier immutable R313 tree call remains UNKNOWN; no old branch or ref write was attempted.",
     "R322 diagnostic successor of exact R321: request-object IDs, phases, read-only CDP and HTTP completion evidence only. Original assertions/6GiB/720s/security remain. R321 failed and is not reclassified. No product or default enablement change.",
     "R323 exact R322 successor: fixed private header 160px integer layout, exact canvas rect and overflow checks before unchanged 1280x800 screenshot assertion. No crop/resize, product/default/budget/security change. Preserve R321 extra abort failure (not reproduced in R322), R322 801px screenshot failure; neither reclassified.",
-    "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry."
+    "R325 independent first-run validation of exact R324 product: productTree is R324 full root BEFORE these three CI binding files; final root stays external. Only new wrapper/workflow/pins differ from parent. Preserve ordinary 4GiB and browser 6GiB/720s gates, sandbox, source/default/release. R323 success is not inherited; R324 historical Taihe anchor pin failure remains unresolved. No deployment or old-run retry.",
+    "R331 follows exact R329 diagnostic parent, not R330 product fix: source-derived ordered exact empty-tail blob deny then same-origin full-wildcard allow. Fixed HTTP allows/CSP/runtime controls/6GiB720s/sandbox/production loaders and input assets unchanged. Preserve R328/R329 setup failures. Node policy success is not CDP acceptance. No merge or deployment; main and R330 remain separate."
   ]
 }
