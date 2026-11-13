@@ -1,0 +1,8 @@
+// Private raw transport control. No production imports, rendering or release acceptance.
+import {loadRawArtwork} from './raw-loader.mjs';
+const ids=['amitabha','shakyamuni','bhaisajyaguru'],generations=[];let current=null;
+const snap=()=>generations.map(g=>({index:g.index,disposed:g.disposed,slots:g.slots.map(s=>({id:s.id,status:s.status,error:s.error,disposeCount:s.disposeCount,asset:s.asset}))}));
+function start(){if(current&&!current.disposed)throw Error('previous generation still live');if(generations.length>=3)throw Error('three generations only');const g={index:generations.length+1,controller:new AbortController(),disposed:false,slots:ids.map(id=>({id,status:'LOADING',output:null,disposeCount:0}))};generations.push(g);current=g;
+ g.ready=Promise.all(g.slots.map(async s=>{try{const options={baseURL:location.origin+'/forbidden-city-3d/',signal:g.controller.signal};const o=await loadRawArtwork(s.id,options);s.asset=o.meta.originalAsset;if(g.disposed){o.dispose();s.disposeCount++;s.status='DISPOSED';}else{s.output=o;s.status='READY';}}catch(e){s.error={name:e.name,message:e.message};s.status=g.disposed&&e.name==='AbortError'?'ABORTED':'FAILED';}}));return snap();}
+function dispose(){if(!current||current.disposed)throw Error('one disposal per generation');const g=current;g.disposed=true;g.controller.abort();for(const s of g.slots)if(s.output){s.output.dispose();s.output=null;s.disposeCount++;s.status='DISPOSED';}return snap();}
+Object.defineProperty(window,'__R328_LOADER__',{value:Object.freeze({start,dispose,read:snap,async ready(){if(!current)throw Error('no generation');await current.ready;return snap();}})});
