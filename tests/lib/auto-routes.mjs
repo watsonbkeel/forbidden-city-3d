@@ -1,3 +1,4 @@
+import {dedicatedGateRoute} from './dedicated-gate-route.mjs';
 import {kunningGateAccess} from '../../src/scene/palace/special/KunningGate.js';
 import { wuyingGateToGallery } from './r52-wuying-routes.mjs';
 import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
@@ -95,14 +96,16 @@ function gateLeg(W, gate, toward, plan) {
   const s = (toward[0] - g.x) * dx + (toward[1] - g.z) * dz >= 0 ? 1 : -1;
   const ix = dx * s, iz = dz * s;
   const centerX = g.profile?.portalCenters.reduce((a, b) => Math.abs(a) < Math.abs(b) ? a : b) ?? 0;
-  const center = g.profile?.toWorld(centerX, 0) ?? [g.x, g.z];
+  const dedicated=dedicatedGateRoute(g,centerX);
+  const center = dedicated?.center ?? g.profile?.toWorld(centerX, 0) ?? [g.x, g.z];
   const P = (along, lat = 0) => [center[0] + ix * along - iz * lat, center[1] + iz * along + ix * lat];
-  const innerDepth = s > 0 ? g.rear : g.front, outerDepth = s > 0 ? g.front : g.rear;
+  const geometry=dedicated??g;
+  const innerDepth = s > 0 ? geometry.rear : geometry.front, outerDepth = s > 0 ? geometry.front : geometry.rear;
   const inner = P(innerDepth + 2);
-  const passage = g.profile ? g.profile.ramps.flatMap(r => [r.zToe, r.zTop]).sort((a, b) => s * (a - b))
+  const passage = dedicated ? dedicated.passage(s) : g.profile ? g.profile.ramps.flatMap(r => [r.zToe, r.zTop]).sort((a, b) => s * (a - b))
     .map(z => g.profile.toWorld(centerX, z)) : [];
   // 门外实测净空（从门心往外走）
-  const probe = walkStraight(W, center, P(-(outerDepth + GATE_OUT + 1)), { feet0: g.platformY });
+  const probe = walkStraight(W, center, P(-(outerDepth + GATE_OUT + 1)), { feet0: geometry.platformY });
   const clear = probe.reached >= probe.total - 0.1 ? GATE_OUT + 1 : probe.reached + 0.5 - outerDepth;
   if (clear >= GATE_OUT + 1) return [P(-(outerDepth + GATE_OUT)), ...passage, inner];
   const laneD = outerDepth + Math.max(0.6, clear / 2);       // 夹道中线

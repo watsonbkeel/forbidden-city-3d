@@ -1,3 +1,4 @@
+import {groundWithEvidence} from './ground-query-evidence.mjs';
 import {createWorldCleanup,installCpuDocument} from './finished-world-lifecycle.mjs';
 import {stubLibrary} from './material-stub.mjs';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../src/controls/SishenEnvironmentWitness.js';
@@ -343,11 +344,11 @@ export function walkStraight(W, a, b, { step = 0.4, feet0 } = {}) {
  * 从 start 出发，不进入 forbid(x,z) 为真的格子；返回 { blockedStart, maxDist（离 center 最远可达距离）, cells }。
  * 到达 radius 即提前结束（说明连通到外面的大片区域）。
  */
-export function reachFrom(W, start, center, radius, forbid = () => false, cell = 0.5) {
+export function reachFrom(W, start, center, radius, forbid = () => false, cell = 0.5, diagnosticContext = {}) {
   const { THREE, cm } = W;
   const v = new THREE.Vector3();
   const blockedAt = (x, z, feet) => { v.set(x, feet + 1.7, z); return cm.checkCollision(v, KIT.PLAYER_R); };
-  const f0 = cm.getGroundHeight(start[0], start[1], 0, 0.6);
+  const f0 = groundWithEvidence(W,start[0],start[1],0,0.6,{...diagnosticContext,stage:'initial',start,center,radius,cell});
   if (blockedAt(start[0], start[1], f0)) return { blockedStart: true, maxDist: 0, cells: 0 };
   const key = (i, k) => i * 4096 + k;
   const seen = new Map([[key(0, 0), f0]]);
@@ -361,7 +362,7 @@ export function reachFrom(W, start, center, radius, forbid = () => false, cell =
       const x = start[0] + ni * cell, z = start[1] + nk * cell;
       const dist = Math.hypot(x - center[0], z - center[1]);
       if (dist > radius + cell || forbid(x, z)) continue;
-      const g = cm.getGroundHeight(x, z, feet, 0.6);
+      const g = groundWithEvidence(W,x,z,feet,0.6,{...diagnosticContext,stage:'bfs',start,center,radius,cell,fromCell:[i,k],toCell:[ni,nk],visited:seen.size,queueIndex:h});
       if (blockedAt(x, z, g)) continue;
       seen.set(kk, g);
       q.push([ni, nk, g]);

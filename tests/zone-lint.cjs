@@ -350,7 +350,7 @@ async function lintGeometry(zoneFiles) {
       // 出门 0.7 m 处起 BFS，不许退回门内（沿出门方向的投影 < 门体半进深的格子禁止）
       const st = [g.x + dx * (g.half + 0.7), g.z + dz * (g.half + 0.7)];
       const forbid = (x, z) => (x - g.x) * dx + (z - g.z) * dz < g.half;
-      const r = L.reachFrom(W, st, [g.x, g.z], GATE_POCKET_R + g.half, forbid);
+      const r = L.reachFrom(W, st, [g.x, g.z], GATE_POCKET_R + g.half, forbid, 0.5, {gate:name(g),side:sideName(g.dir,s),direction:s});
       if (r.blockedStart) error(`${where} 出门 0.7 m 处即被挡（站不下玩家）`);
       else if (r.maxDist < GATE_POCKET_R + g.half) error(`${where} 门外是封闭死角：${GATE_POCKET_R} m 内走不出去（最远 ${r.maxDist} m，可达 ${r.cells} 格）`);
     }
