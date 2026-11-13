@@ -1,3 +1,5 @@
+import { createLookBudget } from '../r363-public-pointer/look-budget.mjs';
+import { trackedTravelClick } from '../r363-public-pointer/travel-pointer.mjs';
 // Candidate destination: tests/production-smoke.mjs. Execute only in normal CI.
 // Real production dist, real UI, no fixture, request mock, injected app hook or source imports.
 import fs from 'node:fs';
@@ -100,14 +102,18 @@ async function resume(){
   await page.waitForFunction(()=>!!document.pointerLockElement,null,{timeout:15000});
   await page.locator('#welcome-overlay').waitFor({state:'hidden'});
 }
+async function travelClick(){
+  const row=await trackedTravelClick(page,page.locator('#place-travel'),{timeout:180000});
+  nativePointer=row.pointer;result.travelPointerEvents??=[];appendBounded(result.travelPointerEvents,row);checkpoint();return row;
+}
 async function entryInput(name,code,timeoutMs=30000){
   const index=result.inputSegments.length;appendBounded(result.inputSegments,{name,code,status:'PENDING'});checkpoint();
   return runEntryKey(page,{name,code,timeoutMs,save:row=>{result.inputSegments[index]=row;checkpoint();}});
 }
 
 async function defaultViews(prefix){
-  const deadline=Date.now()+60000; // 60s admission cutoff for look actions only, not a total view timeout. Screenshots retain separate60s limits under outer720s.
-  async function look(name,dx){const left=deadline-Date.now();check(left>0,'fixed public view budget');const i=result.lookSegments.length;result.lookSegments.push({name,status:'PENDING'});await runNativeLook(page,{name,pointer:nativePointer,dx,dy:0,timeoutMs:Math.min(30000,left),save:row=>{result.lookSegments[i]=row;checkpoint();}});nativePointer={x:nativePointer.x+dx,y:nativePointer.y};}
+  const lookBudget=createLookBudget(); // Explicit cumulative activity60s, excluding separate60s screenshots; outer720s unchanged.
+  async function look(name,dx){const i=result.lookSegments.length;result.lookSegments.push({name,status:'PENDING'});try{await lookBudget.run(timeoutMs=>runNativeLook(page,{name,pointer:nativePointer,dx,dy:0,timeoutMs,save:row=>{result.lookSegments[i]=row;checkpoint();}}));nativePointer={x:nativePointer.x+dx,y:nativePointer.y};}finally{result.lookSegments[i].cumulativeLookActivityMs=lookBudget.usedMs;checkpoint();}}
   async function shot(name){const i=result.sceneCaptureStates.length;result.sceneCaptureStates.push({name,status:'PENDING'});await runSceneCapture(page,{name,hall:true,action:()=>snapshot(name),save:row=>{result.sceneCaptureStates[i]=row;checkpoint();}});await healthy();}
   await shot(prefix+'-default-front');for(const step of PUBLIC_LOOK_PLAN){await look(prefix+'-'+step.name,step.dx);if(step.image)await shot(prefix+'-'+step.image);}
 }
@@ -199,7 +205,7 @@ try {
   await button.click();await page.locator('#map-language').selectOption('zh-CN');
   await page.waitForFunction(()=>document.documentElement.lang==='zh-CN');
   mark('real UI travel to complete outer-west');
-  await page.locator('#place-travel').click({timeout:180000});
+  await travelClick();
   if(!plaqueResponses.length)await page.waitForResponse(r=>r.url()===origin+base+plaque,{timeout:180000});
   const actualRequest=plaqueResponses.at(-1),response=actualRequest.response;
   check(response.status()===200&&response.request().resourceType()==='image','actual app issued the plaque image request before independent decode');
@@ -222,7 +228,7 @@ try {
     boundary:'Input only if requested images are missing. Even with images, no internal trajectory instrumentation or proven full collision trajectory.'};checkpoint();
   await openMap();await page.locator('#place-search').fill('奉先殿');
   await page.locator('button[data-place-id]').filter({hasText:/^奉先殿$/}).click();
-  await page.locator('#place-travel').click({timeout:180000});await page.locator('#minimap').waitFor({state:'hidden',timeout:180000});await resume();
+  await travelClick();await page.locator('#minimap').waitFor({state:'hidden',timeout:180000});await resume();
   await page.waitForFunction(()=>{const s=document.querySelector('#perf-hud')?.textContent??'';return /^Zone  east-six$/m.test(s)&&!/^Loaded .*outer-west/m.test(s);},null,{timeout:60000});
   await snapshot('08-east-six-outer-west-unloaded');
   result.outerWestUnloadedPerf=await page.locator('#perf-hud').textContent();
@@ -234,7 +240,7 @@ try {
   await page.locator('#place-search').fill('大佛堂');await button.click();
   const countBeforeReturn=plaqueResponses.length;
   mark('cold return travel requested');
-  const [returned]=await Promise.all([page.waitForResponse(r=>r.url()===origin+base+plaque,{timeout:180000}),page.locator('#place-travel').click({timeout:180000})]);
+  const [returned]=await Promise.all([page.waitForResponse(r=>r.url()===origin+base+plaque,{timeout:180000}),travelClick()]);
   mark('cold return response and click completed');
   check(plaqueResponses.length>countBeforeReturn&&hash(await returned.body())===plaqueHash,'cold outer-west return loads actual plaque bytes again');
   await page.locator('#minimap').waitFor({state:'hidden',timeout:180000});await resume();
