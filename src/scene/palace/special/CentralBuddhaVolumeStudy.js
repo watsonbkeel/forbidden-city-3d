@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createStudyHair,createStudyEar,STUDY_HAIR_COLOUR} from './StudyHeadDetails.js';
 import {createStudyArtMaterial,prepareStudyArtBlend,STUDY_GOLD} from './StudyArtBlend.js';
 import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
 import {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -19,7 +20,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
  const geometries=[],materials=[],parts=[];let merged,disposed=false,unmappedFrontTriangles=0;
  const release=()=>{const errors=[];for(const g of geometries)try{g.dispose();}catch(e){errors.push(e);}for(const m of materials)try{m.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal errors');};
  const ellipsoid=(name,center,radii,orientation=null)=>{
-  const g=new T.SphereGeometry(1,32,24);geometries.push(g);g.scale(...radii);if(orientation)g.applyQuaternion(orientation);g.translate(...center);g.computeBoundingBox();
+  const isEar=name.includes('ear'),g=isEar?createStudyEar(Math.sign(center[0])):new T.SphereGeometry(1,32,24);geometries.push(g);if(!isEar){g.scale(...radii);if(orientation)g.applyQuaternion(orientation);g.translate(...center);}g.computeBoundingBox();
   const p=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv;const box=g.boundingBox,sourceRegionXY=regionFor(name),[xmin,xmax,ymin,ymax]=sourceRegionXY;const roi={u:[xmin/1.5+.5,xmax/1.5+.5],v:[ymin/2.25,ymax/2.25]};
   for(let i=0;i<p.count;i++)uv.setXY(i,T.MathUtils.clamp(p.getX(i)/1.5+.5,0,1),T.MathUtils.clamp(p.getY(i)/2.25,0,1));
   g.clearGroups();const idx=g.index;let start=0,previous=-1;
@@ -32,7 +33,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   for(let j=0;j<idx.count;j+=3){const a=idx.getX(j),b=idx.getX(j+1),c=idx.getX(j+2);const front=(n.getZ(a)+n.getZ(b)+n.getZ(c))/3>.25;const valid=opaqueTriangle(a,b,c);if(front&&!valid)unmappedFrontTriangles++;
    const mat=front&&valid?0:1;if(previous!==mat){if(previous!==-1)g.addGroup(start,j-start,previous);start=j;previous=mat;}
   }g.addGroup(start,idx.count-start,previous);
-  parts.push({name,kind:'closed-ellipsoid-engineering-fit',center,radii,orientation:orientation?.toArray()??[0,0,0,1],depth:box.max.z-box.min.z,roi,sourceRegionXY,regionBasis:'INDEPENDENT_FRONT_ART_FIT_NOT_HISTORICAL_MEASURE',vertices:p.count,triangles:idx.count/3});return g;
+  parts.push({name,kind:isEar?'closed-ear-shallow-relief-engineering-fit':'closed-ellipsoid-engineering-fit',center,radii,orientation:orientation?.toArray()??[0,0,0,1],depth:box.max.z-box.min.z,roi,sourceRegionXY,regionBasis:'INDEPENDENT_FRONT_ART_FIT_NOT_HISTORICAL_MEASURE',vertices:p.count,triangles:idx.count/3});return g;
  };
  const limb=(name,a,b,radius)=>{const av=new T.Vector3(...a),bv=new T.Vector3(...b),delta=bv.clone().sub(av);ellipsoid(name,av.clone().add(bv).multiplyScalar(.5).toArray(),[radius,delta.length()/2+radius,radius],new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),delta.normalize()));};
  try{
@@ -41,6 +42,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   materials.push(new T.MeshStandardMaterial({name:'lotus-core',color:0x986327,roughness:.76,metalness:.18}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-petals',map:options.texture??null,color:0xffffff,roughness:.65,metalness:.3,alphaTest:.5}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-base',color:0x9f6c35,roughness:.78,metalness:.18}));
+  materials.push(new T.MeshStandardMaterial({name:'unverified-back-hair-engineering-colour',color:STUDY_HAIR_COLOUR,roughness:.88,metalness:.08}));
   ellipsoid('torso',[0,1.455,-.015],[.33,.30,.19]);
   ellipsoid('abdomen',[0,1.17,.015],[.34,.22,.23]);
   ellipsoid('lap',[0,.940,.08],[.54,.165,.32]);
@@ -69,14 +71,14 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   }body.addGroup(groupStart,bi.count-groupStart,prior);
   const renderGeometries=[body,...parts.map((p,i)=>({p,g:geometries[i]})).filter(({p})=>p.name.includes('finger')||p.name.includes('ear')||p.name==='nose').map(x=>x.g)];
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,'shakyamuni'));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;
-  renderGeometries.push(lotus);merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
+  renderGeometries.push(lotus);const hair=createStudyHair();geometries.push(hair);hair.addGroup(0,hair.index.count,5);renderGeometries.push(hair);merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   // Batch all parts by shared material; partitioning must not create one draw
   // call per row of every sphere.
   const byMaterial=materials.map(()=>[]),sourceIndex=merged.index.array;
   for(const group of merged.groups)for(let i=group.start;i<group.start+group.count;i++)byMaterial[group.materialIndex].push(sourceIndex[i]);
   merged.setIndex(byMaterial.flat());merged.clearGroups();let materialStart=0;byMaterial.forEach((indices,materialIndex)=>{if(indices.length)merged.addGroup(materialStart,indices.length,materialIndex);materialStart+=indices.length;});
   const artTransition=prepareStudyArtBlend(merged);merged.computeBoundingBox();merged.computeBoundingSphere();const mesh=new T.Mesh(merged,materials);mesh.name='central-buddha-volume-study-not-product';
-  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,artTransition,seatFit:{loweredLapAndKneesMetres:.035,method:'FIVE_POINT_CODE_CORE_CONTACT_NOT_HISTORICAL_HEIGHT'},continuousBodySurface:true,bodyField:{...body.userData.bodyField,unionParts:unionParts.map(p=>p.name),fusedUnmappedFrontTriangles:fusedUnmapped},historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
+  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,headDetail:{hair:hair.userData,ear:'CLOSED_SHALLOW_CONCHA_ENGINEERING_FIT'},artTransition,seatFit:{loweredLapAndKneesMetres:.035,method:'FIVE_POINT_CODE_CORE_CONTACT_NOT_HISTORICAL_HEIGHT'},continuousBodySurface:true,bodyField:{...body.userData.bodyField,unionParts:unionParts.map(p=>p.name),fusedUnmappedFrontTriangles:fusedUnmapped},historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
   const box=merged.boundingBox;const collisionProxy={type:'volume-study-inactive-only',boxes:[{center:box.getCenter(new T.Vector3()).toArray(),size:box.getSize(new T.Vector3()).toArray()}],activeInProduct:false};
   return{mesh,meta,collisionProxy,dispose(){if(disposed)return;disposed=true;const errors=[];try{merged.dispose();}catch(e){errors.push(e);}try{release();}catch(e){errors.push(e);}if(options.ownsTexture===true)try{options.texture?.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal failed');}};
  }catch(error){const errors=[error];try{merged?.dispose();}catch(e){errors.push(e);}try{release();}catch(e){if(e instanceof AggregateError)errors.push(...e.errors);else errors.push(e);}if(errors.length>1)throw new AggregateError(errors,'Volume study construction and cleanup failed');throw error;}
