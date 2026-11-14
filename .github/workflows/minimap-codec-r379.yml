@@ -1,0 +1,93 @@
+name: R379 exact production map metadata and Canvas diagnostic only
+'on':
+  push:
+    branches: [dev/minimap-codec-r379]
+permissions:
+  contents: read
+concurrency:
+  group: minimap-codec-r379-one-shot
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Initialize evidence
+        env:
+          REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/minimap-hosted-evidence"
+          echo "EVIDENCE_DIR=$RUNNER_TEMP/minimap-hosted-evidence" >> "$GITHUB_ENV"
+          echo "REVIEW_RUNNER_ENVIRONMENT=$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+          test "$REVIEW_RUNNER_ENVIRONMENT" = github-hosted
+          (set -C; : > "$RUNNER_TEMP/minimap-empty.npmrc")
+          chmod 444 "$RUNNER_TEMP/minimap-empty.npmrc"
+          echo "NPM_CONFIG_GLOBALCONFIG=$RUNNER_TEMP/minimap-empty.npmrc" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          path: harness
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7feaaca1b6bb34d456f87b90f7bf4a872add703f
+          path: product-staging
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Admit and materialize exact isolated inputs
+        working-directory: harness
+        run: |
+          set -euo pipefail
+          test ! -e /tmp/minimap-r379-exact
+          mv "$GITHUB_WORKSPACE/product-staging" /tmp/minimap-r379-exact
+          python3 tests/minimap-hosted/admit.py 2>&1 | tee "$EVIDENCE_DIR/admission.log"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.22.1
+          check-latest: false
+      - name: Locked hosted dependencies and browser preparation
+        working-directory: /tmp/minimap-r379-exact
+        run: |
+          set -euo pipefail
+          { test "$(node --version)" = v24.22.1
+            test "$(npm --version)" = 11.19.1
+            npm ci
+            ./node_modules/.bin/playwright install --with-deps chromium
+            fc-list --format '%{file}|%{family}|%{style}\n' > "$EVIDENCE_DIR/font-inventory.txt"
+            test -s "$EVIDENCE_DIR/font-inventory.txt"
+            node --test /tmp/minimap-zone-export/contract.test.mjs /tmp/minimap-zone-export/codec.test.mjs
+            python3 /tmp/minimap-zone-export/gate_test.py
+          } 2>&1 | tee "$EVIDENCE_DIR/setup.log"
+      - name: One guarded export and Canvas capture
+        working-directory: /tmp/minimap-r379-exact
+        run: |
+          set -euo pipefail
+          GITHUB_SHA=7feaaca1b6bb34d456f87b90f7bf4a872add703f python3 /tmp/minimap-zone-export/gate.py 2>&1 | tee "$EVIDENCE_DIR/guard-stdout.log"
+      - name: Preserve final setup or execution status
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/minimap-hosted-evidence"
+          python3 - <<'PY'
+          import os,json,pathlib
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'minimap-hosted-evidence/workflow-status.json'
+          p.write_text(json.dumps({'jobStatus':os.environ['JOB_STATUS'],'runId':os.environ['GITHUB_RUN_ID'],'attempt':os.environ['GITHUB_RUN_ATTEMPT'],'diagnosticHead':os.environ['GITHUB_SHA'],'scope':'QA diagnostic only, not product or bug acceptance'},indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: minimap-codec-r379-evidence
+          path: ${{ runner.temp }}/minimap-hosted-evidence
+          if-no-files-found: error
+          retention-days: 14
