@@ -1,0 +1,2 @@
+# Central code volume sample
+Private default-OFF central-only prototype. Generated artwork front partition, code-fitted closed ellipsoids for head/body/arms/hands/lap, existing lotus retained. Side/back and unsupported front regions are explicit plain gold engineering fit, not historical evidence. Six unit controls pass; five-view visual/joins/art acceptance still pending at upload. No production switch, no main or deployment change, no claim to complete three statues.
