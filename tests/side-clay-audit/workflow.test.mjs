@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+test('workflow admission expected parent equals frozen pin parent',()=>{const p=JSON.parse(fs.readFileSync(new URL('./pins.json',import.meta.url))),s=fs.readFileSync(new URL('../../.github/workflows/side-clay-audit.yml',import.meta.url),'utf8').replaceAll("''","'"),match=s.match(/p\['parent'\]=='([a-f0-9]{40})'/);assert.ok(match);assert.equal(match[1],p.parent);assert.match(s,/github.run_number == 1/);assert.match(s,/github.run_attempt == 1/);});

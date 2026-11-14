@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+test('diagnostic provides same-light clay and isolated bowl views without product geometry mutation',()=>{const s=fs.readFileSync(new URL('./page.mjs',import.meta.url),'utf8');assert.ok(s.includes("'bowl-clay'"));assert.ok(s.includes("'bowl-art'"));assert.ok(s.includes('m.map=null'));assert.ok(s.includes('m.color.set(0xad8146)'));assert.ok(s.includes('active.bowlGeometry'));assert.ok(!s.includes('setXYZ('));});
