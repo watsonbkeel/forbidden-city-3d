@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {createStudyHair,createStudyEar,STUDY_HAIR_COLOUR} from './StudyHeadDetails.js';
+import {createStudyHair,createStudyEar,createStudyCurlTexture,STUDY_HAIR_COLOUR} from './StudyHeadDetails.js';
 import {createStudyArtMaterial,prepareStudyArtBlend,STUDY_GOLD} from './StudyArtBlend.js';
 import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
 import {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -17,8 +17,8 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   'right-hand':[-.450,-.315,.913,1.207],'left-hand':[-.126,.198,1.104,1.206],
   'right-sleeve':[-.51,-.13,1.10,1.78],'left-sleeve':[.11,.51,1.10,1.78],nose:[-.06,.06,1.91,2.06]};
  const regionFor=name=>regions[name]??regions[name.includes('finger')?'right-hand':name.includes('ear')?'head':name.includes('knee')?'lap':name.startsWith('right-')?'right-sleeve':'left-sleeve'];
- const geometries=[],materials=[],parts=[];let merged,disposed=false,unmappedFrontTriangles=0;
- const release=()=>{const errors=[];for(const g of geometries)try{g.dispose();}catch(e){errors.push(e);}for(const m of materials)try{m.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal errors');};
+ const geometries=[],materials=[],parts=[],derivedTextures=[];let merged,disposed=false,unmappedFrontTriangles=0;
+ const release=()=>{const errors=[];for(const g of geometries)try{g.dispose();}catch(e){errors.push(e);}for(const m of materials)try{m.dispose();}catch(e){errors.push(e);}for(const t of derivedTextures)try{t.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal errors');};
  const ellipsoid=(name,center,radii,orientation=null)=>{
   const isEar=name.includes('ear'),g=isEar?createStudyEar(Math.sign(center[0])):new T.SphereGeometry(1,32,24);geometries.push(g);if(!isEar){g.scale(...radii);if(orientation)g.applyQuaternion(orientation);g.translate(...center);}g.computeBoundingBox();
   const p=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv;const box=g.boundingBox,sourceRegionXY=regionFor(name),[xmin,xmax,ymin,ymax]=sourceRegionXY;const roi={u:[xmin/1.5+.5,xmax/1.5+.5],v:[ymin/2.25,ymax/2.25]};
@@ -43,6 +43,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   materials.push(new T.MeshStandardMaterial({name:'lotus-petals',map:options.texture??null,color:0xffffff,roughness:.65,metalness:.3,alphaTest:.5}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-base',color:0x9f6c35,roughness:.78,metalness:.18}));
   materials.push(new T.MeshStandardMaterial({name:'unverified-back-hair-engineering-colour',color:0xffffff,vertexColors:true,roughness:.88,metalness:.08}));
+  const curlTexture=createStudyCurlTexture(options.texture);if(curlTexture)derivedTextures.push(curlTexture);materials.push(new T.MeshStandardMaterial({name:'unverified-generated-curl-colour-not-pbr',map:curlTexture,color:curlTexture?0xffffff:STUDY_HAIR_COLOUR,roughness:.88,metalness:.08}));
   ellipsoid('torso',[0,1.455,-.015],[.33,.30,.19]);
   ellipsoid('abdomen',[0,1.17,.015],[.34,.22,.23]);
   ellipsoid('lap',[0,.940,.08],[.54,.165,.32]);
@@ -71,7 +72,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   }body.addGroup(groupStart,bi.count-groupStart,prior);
   const renderGeometries=[body,...parts.map((p,i)=>({p,g:geometries[i]})).filter(({p})=>p.name.includes('finger')||p.name.includes('ear')||p.name==='nose').map(x=>x.g)];
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,'shakyamuni'));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;
-  renderGeometries.push(lotus);const hair=createStudyHair();geometries.push(hair);hair.addGroup(0,hair.index.count,5);renderGeometries.push(hair);for(const g of renderGeometries)if(!g.attributes.color)g.setAttribute('color',new T.Float32BufferAttribute(new Float32Array(g.attributes.position.count*3).fill(1),3));merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
+  renderGeometries.push(lotus);const hair=createStudyHair();geometries.push(hair);renderGeometries.push(hair);for(const g of renderGeometries)if(!g.attributes.color)g.setAttribute('color',new T.Float32BufferAttribute(new Float32Array(g.attributes.position.count*3).fill(1),3));merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   // Batch all parts by shared material; partitioning must not create one draw
   // call per row of every sphere.
   const byMaterial=materials.map(()=>[]),sourceIndex=merged.index.array;
