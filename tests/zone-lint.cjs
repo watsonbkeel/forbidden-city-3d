@@ -375,6 +375,12 @@ async function lintGeometry(zoneFiles) {
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
+    if(g.zone==='axis-courts'&&g.item.rearAxisGate){
+      gateChecked++;
+      try{const {checkRearCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/rear-axis-current-access.mjs')).href);const r=checkRearCurrentAccess(W,g);console.log('REAR_AXIS_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源长坡原生往返、4m净空及12m外连通通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}
+      continue;
+    }
+
     if(g.zone==='outer-west'&&g.item.gateProfile==='shouan-entry'){
       gateChecked++;
       try{const {checkShouanCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/shouan-current-access.mjs')).href);const r=checkShouanCurrentAccess(W,g);console.log('SHOUAN_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源三门原生往返、原净空端点及原外部BFS通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}
