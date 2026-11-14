@@ -1,0 +1,2 @@
+# Central continuous-body sample
+Parent central-volume-study 21a1f2cb. Fuse13 named main ellipsoids with fixed .025m grid/.035m polynomial smooth-min of minRadius-scaled ellipsoid fields; retain4 fingers,2 ears andnose separately to avoid grid-detail loss. Code-engineering fit only, not source-recovered depth. Default product remains untouched/OFF. Five-view comparison required; plain side/back and unsupported-front gold remains unverified. This change does not by itself solve material hard boundaries or artistic acceptance.

@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
 import {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import {createEightTierLotus} from './EightTierLotus.js';
 import {preparePetalUV} from './OriginalLotusPetalUV.js';
@@ -30,7 +31,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   for(let j=0;j<idx.count;j+=3){const a=idx.getX(j),b=idx.getX(j+1),c=idx.getX(j+2);const front=(n.getZ(a)+n.getZ(b)+n.getZ(c))/3>.25;const valid=opaqueTriangle(a,b,c);if(front&&!valid)unmappedFrontTriangles++;
    const mat=front&&valid?0:1;if(previous!==mat){if(previous!==-1)g.addGroup(start,j-start,previous);start=j;previous=mat;}
   }g.addGroup(start,idx.count-start,previous);
-  parts.push({name,kind:'closed-ellipsoid-engineering-fit',center,radii,depth:box.max.z-box.min.z,roi,sourceRegionXY,regionBasis:'INDEPENDENT_FRONT_ART_FIT_NOT_HISTORICAL_MEASURE',vertices:p.count,triangles:idx.count/3});return g;
+  parts.push({name,kind:'closed-ellipsoid-engineering-fit',center,radii,orientation:orientation?.toArray()??[0,0,0,1],depth:box.max.z-box.min.z,roi,sourceRegionXY,regionBasis:'INDEPENDENT_FRONT_ART_FIT_NOT_HISTORICAL_MEASURE',vertices:p.count,triangles:idx.count/3});return g;
  };
  const limb=(name,a,b,radius)=>{const av=new T.Vector3(...a),bv=new T.Vector3(...b),delta=bv.clone().sub(av);ellipsoid(name,av.clone().add(bv).multiplyScalar(.5).toArray(),[radius,delta.length()/2+radius,radius],new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),delta.normalize()));};
  try{
@@ -52,15 +53,28 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   ellipsoid('right-hand',[-.383,1.105,.27],[.061,.10,.045]);
   for(let i=0;i<4;i++)limb(`right-finger-${i}`,[-.423+i*.027,1.06,.28],[-.425+i*.027,.935+Math.abs(i-1.5)*.008,.28],.011);
   ellipsoid('left-hand',[.035,1.155,.285],[.16,.045,.065]);
+  const unionParts=parts.filter(p=>!p.name.includes('finger')&&!p.name.includes('ear')&&p.name!=='nose');
+  const body=createSmoothBuddhaBody(unionParts);geometries.push(body);const bp=body.attributes.position,bn=body.attributes.normal,bu=body.attributes.uv,bi=body.index;
+  for(let i=0;i<bp.count;i++)bu.setXY(i,T.MathUtils.clamp(bp.getX(i)/1.5+.5,0,1),T.MathUtils.clamp(bp.getY(i)/2.25,0,1));
+  const fixedFields=unionParts.map(p=>({...p,q:new T.Quaternion(...p.orientation).invert()})),q=new T.Vector3();
+  const regionAt=(x,y,z)=>{let min=Infinity,chosen;for(const part of fixedFields){q.set(x-part.center[0],y-part.center[1],z-part.center[2]).applyQuaternion(part.q);const d=(Math.hypot(q.x/part.radii[0],q.y/part.radii[1],q.z/part.radii[2])-1)*Math.min(...part.radii);if(d<min){min=d;chosen=part;}}return chosen.roi;};
+  let groupStart=0,prior=-1;let fusedUnmapped=0;
+  for(let j=0;j<bi.count;j+=3){const ids=[bi.getX(j),bi.getX(j+1),bi.getX(j+2)],roi=regionAt(...[0,1,2].map(axis=>ids.reduce((sum,i)=>sum+bp.array[i*3+axis],0)/3));const front=ids.reduce((sum,i)=>sum+bn.getZ(i),0)/3>.25;
+   let valid=ids.every(i=>bu.getX(i)>=roi.u[0]&&bu.getX(i)<=roi.u[1]&&bu.getY(i)>=roi.v[0]&&bu.getY(i)<=roi.v[1]);
+   const xs=ids.map(i=>bu.getX(i)*128),ys=ids.map(i=>(1-bu.getY(i))*192);
+   if(valid)for(let y=Math.max(0,Math.floor(Math.min(...ys)-.5));y<=Math.min(192,Math.ceil(Math.max(...ys)+.5));y++)for(let x=Math.max(0,Math.floor(Math.min(...xs)-.5));x<=Math.min(128,Math.ceil(Math.max(...xs)+.5));x++)if(input.alpha[y*129+x]<128)valid=false;
+   if(front&&!valid)fusedUnmapped++;const mat=front&&valid?0:1;if(mat!==prior){if(prior!==-1)body.addGroup(groupStart,j-groupStart,prior);groupStart=j;prior=mat;}
+  }body.addGroup(groupStart,bi.count-groupStart,prior);
+  const renderGeometries=[body,...parts.map((p,i)=>({p,g:geometries[i]})).filter(({p})=>p.name.includes('finger')||p.name.includes('ear')||p.name==='nose').map(x=>x.g)];
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,'shakyamuni'));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;
-  merged=mergeGeometries(geometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of geometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
+  renderGeometries.push(lotus);merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   // Batch all parts by shared material; partitioning must not create one draw
   // call per row of every sphere.
   const byMaterial=materials.map(()=>[]),sourceIndex=merged.index.array;
   for(const group of merged.groups)for(let i=group.start;i<group.start+group.count;i++)byMaterial[group.materialIndex].push(sourceIndex[i]);
   merged.setIndex(byMaterial.flat());merged.clearGroups();let materialStart=0;byMaterial.forEach((indices,materialIndex)=>{if(indices.length)merged.addGroup(materialStart,indices.length,materialIndex);materialStart+=indices.length;});
   merged.computeBoundingBox();merged.computeBoundingSphere();const mesh=new T.Mesh(merged,materials);mesh.name='central-buddha-volume-study-not-product';
-  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
+  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,continuousBodySurface:true,bodyField:{...body.userData.bodyField,unionParts:unionParts.map(p=>p.name),fusedUnmappedFrontTriangles:fusedUnmapped},historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
   const box=merged.boundingBox;const collisionProxy={type:'volume-study-inactive-only',boxes:[{center:box.getCenter(new T.Vector3()).toArray(),size:box.getSize(new T.Vector3()).toArray()}],activeInProduct:false};
   return{mesh,meta,collisionProxy,dispose(){if(disposed)return;disposed=true;const errors=[];try{merged.dispose();}catch(e){errors.push(e);}try{release();}catch(e){errors.push(e);}if(options.ownsTexture===true)try{options.texture?.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal failed');}};
  }catch(error){const errors=[error];try{merged?.dispose();}catch(e){errors.push(e);}try{release();}catch(e){if(e instanceof AggregateError)errors.push(...e.errors);else errors.push(e);}if(errors.length>1)throw new AggregateError(errors,'Volume study construction and cleanup failed');throw error;}
