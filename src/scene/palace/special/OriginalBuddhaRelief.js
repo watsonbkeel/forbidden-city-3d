@@ -77,7 +77,16 @@ export function createOriginalRelief(input,options={}){
  const scale=height/2.25;
  const collisionProxy={type:'bounded-research-proxy-only',boxes:[{center:[0,height/2,.065*scale],size:[width,height,.5*scale]}],activeInProduct:false};
  let disposed=false;
- return {mesh,meta,collisionProxy,dispose(){if(disposed)return;disposed=true;geometry.dispose();for(const m of materials)m.dispose();if(options.ownsTexture===true)options.texture?.dispose();}};
+ return {mesh,meta,collisionProxy,dispose(){
+  if(disposed)return;disposed=true;
+  // A throwing listener must not strand the other resources owned by this model.
+  // Mark first so reentrant calls cannot release any resource twice.
+  const errors=[];
+  try{geometry.dispose();}catch(error){errors.push(error);}
+  for(const material of materials){try{material.dispose();}catch(error){errors.push(error);}}
+  if(options.ownsTexture===true){try{options.texture?.dispose();}catch(error){errors.push(error);}}
+  if(errors.length)throw new AggregateError(errors,'Original Buddha relief resource disposal failed');
+ }};
  }catch(error){
   // Keep releasing other owned resources even if a dispose listener throws.
   try{geometry?.dispose();}catch{}

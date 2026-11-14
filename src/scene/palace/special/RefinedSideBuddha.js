@@ -51,7 +51,13 @@ export function createRefinedSideRelief(subjectId,input,options={}){
   const box=upper.mesh.geometry.boundingBox,center=box.getCenter(new T.Vector3()),size=box.getSize(new T.Vector3());
   upper.collisionProxy={type:'bounded-research-proxy-only',boxes:[{center:center.toArray(),size:size.toArray()}],activeInProduct:false};
   const disposeUpper=upper.dispose;let disposed=false;
-  upper.dispose=()=>{if(disposed)return;disposed=true;try{disposeUpper();}finally{if(options.ownsTexture===true)options.texture?.dispose();}};
+  upper.dispose=()=>{
+   if(disposed)return;disposed=true;
+   const errors=[];
+   try{disposeUpper();}catch(error){if(error instanceof AggregateError)errors.push(...error.errors);else errors.push(error);}
+   if(options.ownsTexture===true){try{options.texture?.dispose();}catch(error){errors.push(error);}}
+   if(errors.length)throw new AggregateError(errors,'Refined Buddha relief resource disposal failed');
+  };
   return upper;
  }catch(error){try{upper?.dispose();}catch{}throw error;}
  finally{try{merged?.dispose();}catch{}try{lotus?.dispose();}catch{}}
