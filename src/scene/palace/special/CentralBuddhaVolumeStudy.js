@@ -42,7 +42,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   materials.push(new T.MeshStandardMaterial({name:'lotus-core',color:0x986327,roughness:.76,metalness:.18}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-petals',map:options.texture??null,color:0xffffff,roughness:.65,metalness:.3,alphaTest:.5}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-base',color:0x9f6c35,roughness:.78,metalness:.18}));
-  materials.push(new T.MeshStandardMaterial({name:'unverified-back-hair-engineering-colour',color:STUDY_HAIR_COLOUR,roughness:.88,metalness:.08}));
+  materials.push(new T.MeshStandardMaterial({name:'unverified-back-hair-engineering-colour',color:0xffffff,vertexColors:true,roughness:.88,metalness:.08}));
   ellipsoid('torso',[0,1.455,-.015],[.33,.30,.19]);
   ellipsoid('abdomen',[0,1.17,.015],[.34,.22,.23]);
   ellipsoid('lap',[0,.940,.08],[.54,.165,.32]);
@@ -71,7 +71,7 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   }body.addGroup(groupStart,bi.count-groupStart,prior);
   const renderGeometries=[body,...parts.map((p,i)=>({p,g:geometries[i]})).filter(({p})=>p.name.includes('finger')||p.name.includes('ear')||p.name==='nose').map(x=>x.g)];
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,'shakyamuni'));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;
-  renderGeometries.push(lotus);const hair=createStudyHair();geometries.push(hair);hair.addGroup(0,hair.index.count,5);renderGeometries.push(hair);merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
+  renderGeometries.push(lotus);const hair=createStudyHair();geometries.push(hair);hair.addGroup(0,hair.index.count,5);renderGeometries.push(hair);for(const g of renderGeometries)if(!g.attributes.color)g.setAttribute('color',new T.Float32BufferAttribute(new Float32Array(g.attributes.position.count*3).fill(1),3));merged=mergeGeometries(renderGeometries,false);if(!merged)throw Error('Volume study merge failed');let offset=0;for(const g of renderGeometries){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   // Batch all parts by shared material; partitioning must not create one draw
   // call per row of every sphere.
   const byMaterial=materials.map(()=>[]),sourceIndex=merged.index.array;

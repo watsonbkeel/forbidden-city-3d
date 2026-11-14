@@ -10,3 +10,6 @@ Review focus: front/ear exclusions, closed topology, true root contact, bounded 
 - [ ] Run all previous controls plus new tests and independent real geometry review.
 - [ ] Freeze new identity, upload dev only, full file readback, one hosted five-view run.
 - [ ] Independent art review and Library images, canonical ledger update; no acceptance inferred from CI.
+
+## Reviewed bridge revision
+First half-cap render rejected: straight meridian and stud-like curls. Initial hard-clamp bridge rejected before upload:59 strict inner/outer crossings and18 reversed average normals. Current revision uses a shared ring/angle boundary, positive shell thickness, and bounded side wings preserving the complete front rectangle. Independent full triangle clipping and strict nonadjacent face intersection checks zero.87 low spiral curls,7759 vertices/10816 triangles hair;33 controls plus4 guard. All engineering fit, not historical validation.
