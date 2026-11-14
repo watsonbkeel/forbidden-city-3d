@@ -1,0 +1,40 @@
+name: Isolated source mesh preflight QA (no product or deploy)
+'on':
+  push:
+    branches: [dev/qa-semantic-preflight-r379]
+permissions:
+  contents: read
+concurrency:
+  group: semantic-preflight-one-shot
+  cancel-in-progress: false
+jobs:
+  unit:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Require hosted runner
+        env:
+          RUNNER_KIND: ${{ runner.environment }}
+        run: test "$RUNNER_KIND" = github-hosted
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Admit QA-only cumulative parent and exact changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 7feaaca1b6bb34d456f87b90f7bf4a872add703f
+          printf '%s\n' '.github/workflows/semantic-mesh-preflight.yml' 'README.md' 'docs/qa/semantic-mesh-preflight.md' 'scripts/qa/semantic_mesh_preflight.py' 'tests/semantic-preflight/test_preflight.py' > "$RUNNER_TEMP/expected-paths"
+          git diff --name-only HEAD^ HEAD > "$RUNNER_TEMP/actual-paths"
+          cmp "$RUNNER_TEMP/expected-paths" "$RUNNER_TEMP/actual-paths"
+      - name: Bounded standard-library regression (not art acceptance)
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout --signal=TERM --kill-after=5s 120s python3 tests/semantic-preflight/test_preflight.py
+          git diff --exit-code
