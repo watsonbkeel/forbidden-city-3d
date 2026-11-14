@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {createStudyArtMaterial,prepareStudyArtBlend,STUDY_GOLD} from './StudyArtBlend.js';
 import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
 import {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import {createEightTierLotus} from './EightTierLotus.js';
@@ -35,15 +36,15 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
  };
  const limb=(name,a,b,radius)=>{const av=new T.Vector3(...a),bv=new T.Vector3(...b),delta=bv.clone().sub(av);ellipsoid(name,av.clone().add(bv).multiplyScalar(.5).toArray(),[radius,delta.length()/2+radius,radius],new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),delta.normalize()));};
  try{
-  materials.push(new T.MeshStandardMaterial({name:'generated-art-front-partition',map:options.texture??null,color:0xffffff,roughness:.72,metalness:.12}));
-  materials.push(new T.MeshStandardMaterial({name:'unverified-side-back-and-unmapped-gold',color:0xad8146,roughness:.76,metalness:.16}));
+  materials.push(createStudyArtMaterial(options.texture));
+  materials.push(new T.MeshStandardMaterial({name:'unverified-side-back-and-unmapped-gold',color:STUDY_GOLD,roughness:.76,metalness:.16}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-core',color:0x986327,roughness:.76,metalness:.18}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-petals',map:options.texture??null,color:0xffffff,roughness:.65,metalness:.3,alphaTest:.5}));
   materials.push(new T.MeshStandardMaterial({name:'lotus-base',color:0x9f6c35,roughness:.78,metalness:.18}));
   ellipsoid('torso',[0,1.455,-.015],[.33,.30,.19]);
   ellipsoid('abdomen',[0,1.17,.015],[.34,.22,.23]);
-  ellipsoid('lap',[0,.975,.08],[.54,.165,.32]);
-  ellipsoid('right-knee',[-.30,.985,.10],[.28,.16,.24]);ellipsoid('left-knee',[.30,.985,.10],[.28,.16,.24]);
+  ellipsoid('lap',[0,.940,.08],[.54,.165,.32]);
+  ellipsoid('right-knee',[-.30,.950,.10],[.28,.16,.24]);ellipsoid('left-knee',[.30,.950,.10],[.28,.16,.24]);
   ellipsoid('neck',[0,1.765,-.005],[.11,.10,.10]);
   ellipsoid('head',[0,2.005,0],[.18,.22,.16]);
   ellipsoid('right-ear',[-.18,1.965,0],[.035,.095,.06]);ellipsoid('left-ear',[.18,1.965,0],[.035,.095,.06]);
@@ -73,8 +74,8 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   const byMaterial=materials.map(()=>[]),sourceIndex=merged.index.array;
   for(const group of merged.groups)for(let i=group.start;i<group.start+group.count;i++)byMaterial[group.materialIndex].push(sourceIndex[i]);
   merged.setIndex(byMaterial.flat());merged.clearGroups();let materialStart=0;byMaterial.forEach((indices,materialIndex)=>{if(indices.length)merged.addGroup(materialStart,indices.length,materialIndex);materialStart+=indices.length;});
-  merged.computeBoundingBox();merged.computeBoundingSphere();const mesh=new T.Mesh(merged,materials);mesh.name='central-buddha-volume-study-not-product';
-  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,continuousBodySurface:true,bodyField:{...body.userData.bodyField,unionParts:unionParts.map(p=>p.name),fusedUnmappedFrontTriangles:fusedUnmapped},historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
+  const artTransition=prepareStudyArtBlend(merged);merged.computeBoundingBox();merged.computeBoundingSphere();const mesh=new T.Mesh(merged,materials);mesh.name='central-buddha-volume-study-not-product';
+  const meta={assetClass:'GENERATED_ART_AND_CODE_VOLUME_ENGINEERING_STUDY',defaultProductReplacement:false,artTransition,seatFit:{loweredLapAndKneesMetres:.035,method:'FIVE_POINT_CODE_CORE_CONTACT_NOT_HISTORICAL_HEIGHT'},continuousBodySurface:true,bodyField:{...body.userData.bodyField,unionParts:unionParts.map(p=>p.name),fusedUnmappedFrontTriangles:fusedUnmapped},historicalShapeVerified:false,sourceDepthRecovered:false,parts,unmappedFrontTriangles,unmappedFrontPolicy:'EXPLICIT_UNVERIFIED_GOLD_NOT_SOURCE_COLOUR',sideBack:'UNVERIFIED_PLAIN_MATERIAL',lotusReused:true};mesh.userData.originalArtResearch=meta;
   const box=merged.boundingBox;const collisionProxy={type:'volume-study-inactive-only',boxes:[{center:box.getCenter(new T.Vector3()).toArray(),size:box.getSize(new T.Vector3()).toArray()}],activeInProduct:false};
   return{mesh,meta,collisionProxy,dispose(){if(disposed)return;disposed=true;const errors=[];try{merged.dispose();}catch(e){errors.push(e);}try{release();}catch(e){errors.push(e);}if(options.ownsTexture===true)try{options.texture?.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Volume study disposal failed');}};
  }catch(error){const errors=[error];try{merged?.dispose();}catch(e){errors.push(e);}try{release();}catch(e){if(e instanceof AggregateError)errors.push(...e.errors);else errors.push(e);}if(errors.length>1)throw new AggregateError(errors,'Volume study construction and cleanup failed');throw error;}

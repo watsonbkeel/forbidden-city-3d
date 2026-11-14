@@ -21,5 +21,10 @@ export function createSmoothBuddhaBody(parts,{step=.025,blend=.035}={}){
    if(inside.length===1){const ids=outside.map(i=>vertex(inside[0],i));emit(...ids,direction);}else if(outside.length===1){const ids=inside.map(i=>vertex(i,outside[0]));emit(...ids,direction);}else{const[a,b]=inside,[c,d]=outside,ac=vertex(a,c),ad=vertex(a,d),bc=vertex(b,c),bd=vertex(b,d);emit(ac,ad,bc,direction);emit(ad,bd,bc,direction);}
   }
  }
- const g=new T.BufferGeometry();try{g.setAttribute('position',new T.Float32BufferAttribute(points,3));g.setAttribute('uv',new T.Float32BufferAttribute(new Float32Array(points.length/3*2),2));g.setIndex(indices);g.computeVertexNormals();g.computeBoundingBox();g.computeBoundingSphere();g.userData.bodyField={step,blend,zeroSnapMetres:1e-7,distanceApproximation:'MIN_RADIUS_SCALED_NORMALIZED_ELLIPSOID',domainBoundaryOutside:true,samples:values.length,kind:'CONTINUOUS_SMOOTH_ELLIPSOID_UNION_ENGINEERING_FIT'};return g;}catch(e){try{g.dispose();}catch{}throw e;}
+ const g=new T.BufferGeometry();try{g.setAttribute('position',new T.Float32BufferAttribute(points,3));g.setAttribute('uv',new T.Float32BufferAttribute(new Float32Array(points.length/3*2),2));g.setIndex(indices);g.computeVertexNormals();
+  // Smooth shading follows the same continuous field, not irregular tetrahedron
+  // triangle area averages. Geometry/topology are unchanged by this step.
+  const normals=g.attributes.normal,h=.001;
+  for(let i=0;i<points.length/3;i++){const x=points[i*3],y=points[i*3+1],z=points[i*3+2],nx=field(x+h,y,z)-field(x-h,y,z),ny=field(x,y+h,z)-field(x,y-h,z),nz=field(x,y,z+h)-field(x,y,z-h),length=Math.hypot(nx,ny,nz);if(length>1e-12)normals.setXYZ(i,nx/length,ny/length,nz/length);}
+  g.computeBoundingBox();g.computeBoundingSphere();g.userData.bodyField={step,blend,normalMethod:'SAME_FIELD_CENTRAL_GRADIENT',gradientStepMetres:.001,zeroSnapMetres:1e-7,distanceApproximation:'MIN_RADIUS_SCALED_NORMALIZED_ELLIPSOID',domainBoundaryOutside:true,samples:values.length,kind:'CONTINUOUS_SMOOTH_ELLIPSOID_UNION_ENGINEERING_FIT'};return g;}catch(e){try{g.dispose();}catch{}throw e;}
 }

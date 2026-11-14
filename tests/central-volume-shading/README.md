@@ -1,0 +1,2 @@
+# Central shading/contact sample
+Same-field .001m central-gradient normals; verified-art-only mesh-boundary distance/normal fade to matching gold standard material, never sample invalid mask triangles. Lap and knees lowered .035m for five-point actual core contact, lotus unchanged.12 unit controls plus4guard controls locally pass; shader compilation and visual comparison require hosted five views. Still defaultOFF central-only engineering study; not historical, GPU/mobile, whole-palace or full-product acceptance.
