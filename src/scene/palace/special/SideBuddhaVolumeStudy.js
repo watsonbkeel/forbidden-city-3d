@@ -57,7 +57,7 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
  if(isA)for(const p of parts)if(p.name==='lap'||p.name.includes('knee'))p.center[1]-=.03;
  for(const p of parts)if(p.name==='abdomen'){p.center[1]-=.015;p.radii[1]+=.025;p.sourceRegion[3]=isA?790:746;}
  for(const sign of[-1,1])part(sign<0?'image-left-neck-robe-bridge':'image-right-neck-robe-bridge',sign<0?406:618,isA?314:299,-.015,27,34,.075,sign<0?[375,450,isA?265:253,isA?365:348]:[574,650,isA?265:253,isA?365:348]);
- const robeProfile=[[.835,.35,.30,-.18],[.96,.40,.31,-.20],[1.10,.31,.27,-.22],[1.28,.27,.23,-.23],[1.50,.25,.20,-.23],[1.68,.21,.15,-.19],[1.80,.10,.10,-.12]];
+ const robeProfile=[[.835,.35,.24,-.16],[.96,.40,.28,-.23],[1.10,.31,.27,-.23],[1.28,.27,.23,-.20],[1.50,.25,.20,-.21],[1.68,.21,.15,-.19],[1.80,.10,.10,-.12]];
  for(let i=parts.length-1;i>=0;i--)if(['torso','abdomen','lap'].includes(parts[i].name))parts.splice(i,1);
  const robeField=createRobeProfileField(robeProfile),robeSource={name:'continuous-robe',sourceRegion:isA?[111,914,319,928]:[115,901,297,864]};
  const release=()=>{const errors=[];for(const x of[...geometries,...materials])try{x.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side study release');};
