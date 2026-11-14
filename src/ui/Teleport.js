@@ -21,13 +21,17 @@ export class Teleport {
     this.zoneManager = zoneManager;
     this.collisionManager = collisionManager;
     this.targets = new Map();
+    this.targetOwners = new Map();
     for (const item of PALACE_LAYOUT) {
       if (!['palace', 'gate', 'garden'].includes(item.type)) continue;
       this.targets.set(item.name, { name: item.name, x: item.position.x, z: item.position.z, d: item.dimensions.depth });
     }
     for (const zone of ZONES) {
       for (const item of zone.items) {
-        if (['hall', 'gate', 'cityGate'].includes(item.kind) && item.name) this.targets.set(item.name, item);
+        if (['hall', 'gate', 'cityGate'].includes(item.kind) && item.name) {
+          this.targets.set(item.name, item);
+          this.targetOwners.set(item.name, { zoneId: zone.id, item });
+        }
       }
     }
     for (const item of zoneManager.getMapItems()) {
@@ -348,10 +352,21 @@ export class Teleport {
     this.overlay.style.display = 'block';
     clearTimeout(this.overlayTimer);
     this.overlayTimer = setTimeout(() => { this.overlay.style.display = 'none'; }, TELEPORT.OVERLAY_MS);
+    // Source ownership is independent of bounds: some genuine gate approaches
+    // are outside both the owner's and every other zone's spatial bounds.
+    const owner = this.targetOwners?.get(name);
+    if (owner) {
+      if (owner.item !== this.targets.get(name)) throw new Error('Teleport source target identity changed');
+      this.zoneManager.ensureLoadedForTarget(owner.zoneId, owner.item);
+    }
     // 建筑所在区与门外落点所在区都同步加载（门外可能不属于任何区）
     this.zoneManager.ensureLoadedAt(g.cx, g.cz);
     const guess = this.landingFor(name);
     this.zoneManager.ensureLoadedAt(guess.x, guess.z);
+    if (owner) {
+      if (this.targetOwners.get(name) !== owner || this.targets.get(name) !== owner.item) throw new Error('Teleport source target identity changed during admission');
+      this.zoneManager.assertLoadedForTarget(owner.zoneId, owner.item);
+    }
     const point = this.resolveLanding(name);
     if (!point) {
       this.overlay.textContent = g.navigation?.mode === 'exterior-view'

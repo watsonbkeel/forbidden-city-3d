@@ -1,7 +1,3 @@
-## R373 后左/后右门原源 QA 适配（待上传复验）
-
-见 [R373范围和限制](docs/current-state/R373-rear-axis-access.md)。本地受控合同23/23通过，尚待hosted全区复验。1075产品文件原样；不宣称全区已通过或三佛已验收。
-
 # 故宫 3D 虚拟游览
 
 陈华山、陈诺制作的独立非官方浏览器漫游项目，使用 Three.js 与 Vite。
@@ -91,13 +87,15 @@ README 的命令说明不等于对应候选已经完成安装、构建或完整�
 
 ## 版本与验收边界
 
-本累计候选的 `release.json` 标签为 **R360**，不表示已上线或全部门禁通过。请用实际提交 SHA、构建的 `build-info.json` 和设置界面的构建标识确认版本；开发轮次、分支名、`package.json` 版本号和线上部署不是同一身份。这里不预告某个尚未验收的候选已可合并或上线。
+当前开发候选包含[中央佛单独预览会话异常收尾修复](docs/current-state/R379-central-session.md)，累计保留奉先门准入及三佛资源清理修复。正式通过情况请核对该候选精确提交的 CI，不以编号较新替代验收。
+
+已核 main 提交 `17b95c3c2257e853b9e84c80c4f08c054dff702f` 的 `release.json` 为 **R373**，本累计分支保留此标识；这不等于线上实例已核验。请结合实际提交 SHA、`build-info.json` 和设置界面构建标识判断运行版本，不能仅凭开发轮次推定上线。
 
 原 397 项登记已按“本地实际调整”口径推进，**不是 397 项历史精确复原或视觉/设备验收通过**。建筑形态、尺寸和通路中的工程拟合须按各对象说明阅读；具体状态以主台账及对应精确源码证据为准，不在首页重建逐轮调试记录。
 
 私有候选中的三尊均由各自原创 V2 贴图上身与真实八圈代码莲座组成，莲瓣使用本尊原图的单瓣内部纹理，不是把画中的整座贴回去。三尊仅在显式私有研究预览中启用，默认替换关闭；中尊样板尚待用户确认，左右私有预览不等于确认后正式启用。 旧中心 V1 实验资源不再随新版本分发；中心研究加载必须显式选择 `refined-eight-tier-v2`，缺省或旧版本请求会在下载前拒绝并保留程序模型，不会悄悄切换。原实验源码和图像保留在历史恢复材料中。几何、比例、手势和材质仍含拟合，其他陈设不能继承这些结果。CPU 构造、碰撞、构建或软件渲染通过，仅证明相应输入与范围，不代替浏览器、真实设备、全部路线或最终艺术验收。
 
-本轮 R372 仅校正寿安门 QA 的真实源脚高与原生控制器调用，保留全场景碰撞、三门原净空范围和原外部 BFS，不改生产模型。最近 R371 全区实际为 **9 项错误、28 项警告**；本轮结果待本提交一次性托管全区检查，不预减错误数。三佛冷返取消、实际 GPU/手机/全路线与艺术验收仍未闭合。详见 [R372 变更与回滚](docs/current-state/R372-shouan-source-access.md)。
+最近已核绿色累计基线为 [R378 提交](https://github.com/watsonbkeel/forbidden-city-3d/commit/11be351e2ce1aee9ef52d425897c3f0cc29b66e4)，[对应 CI](https://github.com/watsonbkeel/forbidden-city-3d/actions/runs/43541567801) 的全区检查为 **0 项错误、28 项警告**。这是对应源码和检查范围的结果，不代表三佛艺术、真实 GPU/手机或全路线验收。此前 R375 修复三佛资源清理异常后跳过剩余资源的问题，发布和复验状态见 [R375 范围与证据](docs/current-state/R375-relief-disposal.md)；不把该修复称为网络 `ERR_ABORTED` 已解决。
 
 旧 4 GiB 冷返失败及其他历史失败继续保留。今后云端浏览器测试的用户预算上限为 6 GiB，仍服从平台硬限与真实可用资源；这不是用户设备的最低内存要求，也不追认旧失败为通过。
 
@@ -148,3 +146,15 @@ Playwright 已列为本地开发依赖，使用锁文件安装，不需要手改
 代码使用 [MIT 许可证](LICENSE)。
 外部照片、文献与引用内容的权利归各自权利人，不因代码开源而自动获得再分发许可。
 
+
+
+### 隔离模型源网格预检（开发工具）
+
+新增[语义模型预检说明](docs/qa/semantic-mesh-preflight.md)，用于固定阿弥陀下半身研究坐标中的拓扑和五点承托预检。它不改变运行时，不启用研究模型，也不证明美术、自交、GPU或三佛完成。R379累计产品与其回滚保持不变。
+
+
+### Compact map notice visibility correction
+
+The 390px hosted diagnostic found that the factual moat notice was omitted from the compact visibility group, producing a narrow vertical text column. This change adds the existing notice to that group without deleting or rewriting it, and restores its prior hidden/inert state when expanded. Detail return and close/reopen behavior are covered by seven focused regression tests (23 including existing compact tests). This is a UI correction, not a Buddha art update. BUG-002 English gate-label retention and zoom-edge clipping remain unresolved; no physical mobile, GPU, full route or whole-project acceptance is claimed.
+
+Baseline evidence: https://github.com/watsonbkeel/forbidden-city-3d/actions/runs/43595039421 . Parent/rollback: `1a5c86b50f0af7d54ad3c60a0eb434fc65c715a1`, preserving the cumulative R379 state and mesh-preflight QA tool. Browser verification of this correction is tracked separately; passing unit tests alone does not establish visual acceptance.

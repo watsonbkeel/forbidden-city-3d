@@ -283,6 +283,33 @@ export class ZoneManager {
     return id;
   }
 
+  /** Read-only final check after synchronous source/spatial load callbacks. */
+  assertLoadedForTarget(zoneId, item) {
+    const config = this.zones.get(zoneId);
+    if (!config || !config.items?.includes(item)) throw new Error('Teleport target owner is not registered');
+    for (const id of [zoneId, ...(config.neighbors ?? [])]) {
+      if (!this.zones.has(id) || !this.loaded.has(id)) throw new Error('Teleport target zone not admitted: ' + id);
+    }
+  }
+
+  /** Admit an exact registered source target, not a nearest spatial guess. */
+  ensureLoadedForTarget(zoneId, item) {
+    const config = this.zones.get(zoneId);
+    if (!config || !config.items?.includes(item)) throw new Error('Teleport target owner is not registered');
+    const ids = [...new Set([zoneId, ...(config.neighbors ?? [])])];
+    // Validate every declaration before performing partial admissions.
+    for (const id of ids) if (!this.zones.has(id)) throw new Error('Teleport target neighbor is not registered: ' + id);
+    for (const id of ids) {
+      this.loadZone(id);
+      if (!this.loaded.has(id)) throw new Error('Teleport target zone admission failed: ' + id);
+      this.buildQueue = this.buildQueue.filter(b => b.zoneId !== id);
+    }
+    // Lifecycle notifications can reenter the manager while a neighbor loads.
+    if (this.zones.get(zoneId) !== config || !config.items?.includes(item)) throw new Error('Teleport target registration changed during admission');
+    for (const id of ids) if (!this.loaded.has(id)) throw new Error('Teleport target zone retired during admission: ' + id);
+    return zoneId;
+  }
+
   /**
    * Enter the current zone first. update() immediately queues all zones within
    * 40m of the actual player, rather than every distant topological neighbor.

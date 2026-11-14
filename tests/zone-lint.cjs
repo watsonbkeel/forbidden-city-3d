@@ -375,6 +375,12 @@ async function lintGeometry(zoneFiles) {
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
+    if(g.zone==='axis-courts'&&['左翼门','右翼门','中左门','中右门'].includes(g.item.name)){
+      gateChecked++;
+      try{const {checkAxisCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/axis-current-access.mjs')).href);const r=checkAxisCurrentAccess(W,g);console.log('AXIS_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源原生往返、原4m净空及12m外连通通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}
+      continue;
+    }
+
     if(g.zone==='axis-courts'&&g.item.rearAxisGate){
       gateChecked++;
       try{const {checkRearCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/rear-axis-current-access.mjs')).href);const r=checkRearCurrentAccess(W,g);console.log('REAR_AXIS_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源长坡原生往返、4m净空及12m外连通通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}

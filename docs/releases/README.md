@@ -4,7 +4,10 @@
 
 ## 当前阅读边界
 
-- 当前产品构建 release 标识为 R262；线上实例须按实际构建身份核验。R265 仍为开发候选，不代表正式发布或可合并。
+- 当前产品候选范围：[R379 中央佛单独预览会话异常收尾](../current-state/R379-central-session.md)，正式 CI 结果须另核。R377 全区虽打印0/28，但资源测量失败，不能列为绿色基线。
+
+- 已核 main `17b95c3c2257e853b9e84c80c4f08c054dff702f` 的 release 标识为 R373；线上实例仍须按实际构建身份核验。
+- 最近累计 QA 基线为 [R378](https://github.com/watsonbkeel/forbidden-city-3d/commit/11be351e2ce1aee9ef52d425897c3f0cc29b66e4)，[对应 CI](https://github.com/watsonbkeel/forbidden-city-3d/actions/runs/43541567801) 全区 0 错误、28 警告。其检查通过不等于全设备或艺术验收；累计 R375 清理修复范围见 [当前说明](../current-state/R375-relief-disposal.md)。
 - 大佛堂三佛为研究预览，下层三宽间梁枋为模型拟合；部分护法、罗汉等内容尚待研究和恢复。
 - 原 4 GiB 冷返失败尚未关闭。[原 120 秒路线记录](https://github.com/watsonbkeel/forbidden-city-3d/actions/runs/42921935309)未完成且资源测量失败；180 秒路线仅为后续补充诊断，不代替完整验收。
 
@@ -41,3 +44,4 @@ R97/R98 等未采纳运行实验不因归档或链接而被重新接受。
 - 恢复旧首页时，可从该固定提交取回 README.md 或使用归档原字节；不要删历史证据来回滚。
 
 上述旧文档整理只更改文档入口，不更改几何、运行逻辑、依赖、测试断言或部署配置。
+
