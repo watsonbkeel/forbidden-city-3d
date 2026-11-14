@@ -226,7 +226,7 @@ export class Minimap {
     this.container.appendChild(quick);
     this.initPlaceInformation();
     this.mapSections = [title, this.canvas, moatNotice, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
-    this.compactSections = [title, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
+    this.compactSections = [title, moatNotice, bar, hint, quickTitle, quick, this.placeList, this.supplementalPlaceList, this.bridgeFacilityList, this.resumePlace];
     
     document.body.appendChild(this.container);
     

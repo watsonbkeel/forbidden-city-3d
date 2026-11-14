@@ -151,3 +151,10 @@ Playwright 已列为本地开发依赖，使用锁文件安装，不需要手改
 ### 隔离模型源网格预检（开发工具）
 
 新增[语义模型预检说明](docs/qa/semantic-mesh-preflight.md)，用于固定阿弥陀下半身研究坐标中的拓扑和五点承托预检。它不改变运行时，不启用研究模型，也不证明美术、自交、GPU或三佛完成。R379累计产品与其回滚保持不变。
+
+
+### Compact map notice visibility correction
+
+The 390px hosted diagnostic found that the factual moat notice was omitted from the compact visibility group, producing a narrow vertical text column. This change adds the existing notice to that group without deleting or rewriting it, and restores its prior hidden/inert state when expanded. Detail return and close/reopen behavior are covered by seven focused regression tests (23 including existing compact tests). This is a UI correction, not a Buddha art update. BUG-002 English gate-label retention and zoom-edge clipping remain unresolved; no physical mobile, GPU, full route or whole-project acceptance is claimed.
+
+Baseline evidence: https://github.com/watsonbkeel/forbidden-city-3d/actions/runs/43595039421 . Parent/rollback: `1a5c86b50f0af7d54ad3c60a0eb434fc65c715a1`, preserving the cumulative R379 state and mesh-preflight QA tool. Browser verification of this correction is tracked separately; passing unit tests alone does not establish visual acceptance.
