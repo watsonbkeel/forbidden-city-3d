@@ -1,0 +1,131 @@
+name: Side single crossleg lower field isolated review (no deploy)
+'on':
+  push:
+    branches:
+    - dev/side-crossleg-r379
+permissions:
+  contents: read
+concurrency:
+  group: side-crossleg-one-shot
+  cancel-in-progress: false
+jobs:
+  review:
+    if: ${{ github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name
+      == 'push' && github.ref == 'refs/heads/dev/side-crossleg-r379' &&
+      github.event.created == true && github.event.deleted == false && github.event.forced
+      == false && github.event.before == '0000000000000000000000000000000000000000'
+      && github.run_number == 1 && github.run_attempt == 1 }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+    - name: Initialize external one-shot evidence
+      env:
+        REVIEW_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+      run: 'set -euo pipefail
+
+        test "$REVIEW_RUNNER_ENVIRONMENT" = ''github-hosted''
+
+        EVIDENCE_DIR="$RUNNER_TEMP/side-crossleg-evidence"
+
+        mkdir "$EVIDENCE_DIR"
+
+        GLOBAL_NPM_CONFIG="$RUNNER_TEMP/r265-empty-global.npmrc"
+
+        (set -C; : > "$GLOBAL_NPM_CONFIG")
+
+        chmod 444 "$GLOBAL_NPM_CONFIG"
+
+        printf ''EVIDENCE_DIR=%s\nNPM_CONFIG_GLOBALCONFIG=%s\nREVIEW_RUNNER_ENVIRONMENT=%s\n''
+        "$EVIDENCE_DIR" "$GLOBAL_NPM_CONFIG" "$REVIEW_RUNNER_ENVIRONMENT" >> "$GITHUB_ENV"
+
+        '
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      with:
+        ref: ${{ github.sha }}
+        fetch-depth: 2
+        persist-credentials: false
+    - name: Admit frozen diagnostic parent and bounded rear candidate
+      run: 'set -euo pipefail
+
+        python3 - <<''PYINNER''
+
+        from pathlib import Path
+
+        import json,subprocess,hashlib,os
+
+        p=json.loads(Path(''tests/side-crossleg/pins.json'').read_text())
+
+        def git(*a):return subprocess.check_output([''git'',*a],text=True).strip()
+
+        assert p[''frozen''] is True and p[''parent'']==''0a4dcddf788cae7a56a132f8c59d2be47dca9dc8''
+
+        head=git(''rev-parse'',''HEAD'');assert head==os.environ[''GITHUB_SHA''];assert
+        git(''rev-list'',''--parents'',''-n'',''1'',''HEAD'').split()==[head,p[''parent'']]
+
+        assert git(''rev-parse'',''HEAD^:'')==p[''parentTree'']
+
+        assert git(''status'',''--porcelain=v1'',''--untracked-files=all'')==''''
+
+        changes=[line.split(''\t'')for line in git(''diff'',''--name-status'',''HEAD^'',''HEAD'').splitlines()];assert
+        changes==p[''changes'']
+
+        for name,want in {**p[''sourcePins''],**p[''retainedPins'']}.items():assert
+        hashlib.sha256(Path(name).read_bytes()).hexdigest()==want,name
+
+        assert not Path(''dist'').exists()
+
+        e=Path(os.environ[''EVIDENCE_DIR'']);e.joinpath(''checkout-identity.json'').write_text(json.dumps({''frozen'':True,''head'':head,''tree'':git(''rev-parse'',''HEAD^{tree}''),''parent'':p[''parent''],''parentTree'':p[''parentTree''],''changes'':changes,''sourcePins'':p[''sourcePins''],''retainedPins'':p[''retainedPins''],''pinsSHA256'':hashlib.sha256(Path(''tests/side-crossleg/pins.json'').read_bytes()).hexdigest(),''scope'':''BOUNDED_REAR_CANDIDATE_ISOLATED_VIEWS_NOT_PRODUCT_NETWORK_OR_ART_ACCEPTANCE'',''knownUnresolved'':p[''knownUnresolved'']},indent=2)+''\n'')
+
+        PYINNER'
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: 24.22.1
+        check-latest: false
+        cache: npm
+    - name: Install unchanged locked dependencies on hosted runner only
+      run: 'set -euo pipefail
+
+        test "$(node --version)" = ''v24.22.1''
+
+        test "$(npm --version)" = ''11.19.1''
+
+        { node --version; npm --version; cat /etc/os-release; printf ''ImageOS=%s\nImageVersion=%s\n''
+        "$ImageOS" "$ImageVersion"; } > "$EVIDENCE_DIR/toolchain.txt"
+
+        npm ci 2>&1 | tee "$EVIDENCE_DIR/npm-ci.log"
+
+        '
+    - name: Diagnostic view and boundary unit controls
+      run: 'set -euo pipefail
+
+        node --test tests/side-crossleg/*.test.mjs
+
+        python3 tests/side-crossleg/test_gate.py'
+    - name: Install official locked Chromium without changing sandbox
+      run: 'set -euo pipefail
+
+        npx --no-install playwright install --with-deps chromium 2>&1 | tee "$EVIDENCE_DIR/browser-install.log"'
+    - name: One isolated exact-asset closeup capture with unchanged 6GiB720s
+      run: 'set -euo pipefail
+
+        python3 .github/scripts/side_crossleg_gate.py visual 2>&1 | tee
+        "$EVIDENCE_DIR/closeup-capture.log"'
+    - name: Preserve diagnostic success and failure evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: side-crossleg-${{ github.sha }}
+        path: ${{ env.EVIDENCE_DIR }}/
+        include-hidden-files: true
+        if-no-files-found: error
+        retention-days: 7

@@ -1,0 +1,2 @@
+# Side crossleg one-shot research
+Parent 0a4dcddf788cae7a56a132f8c59d2be47dca9dc8 (art rejected hem). Cumulative history retained. New lower-field structure, not art accepted. Fixed local tests + guarded hosted34-view diagnostic, original6GiB/720s. RealGPU/mobile/fullroutes and fullselfintersection not validated. Local recovered package npm test lacks test script. Rollback to parent research or accepted product R379 7feaaca1b6bb34d456f87b90f7bf4a872add703f. No product entrypoint is changed.
