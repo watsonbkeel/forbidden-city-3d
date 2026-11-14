@@ -34,12 +34,18 @@ export function createOriginalRelief(input,options={}){
  const boundary=[...new Set([...sourceEdges.values()].filter(e=>e.count===1).flatMap(e=>[e.a,e.b]))];
  const remap=new Map(),points=[],uv=[],backs=[];const width=height*imageWidth/imageHeight;
  const boundaryXY=boundary.map(i=>[(i%columns)/(columns-1)*width,Math.floor(i/columns)/(rows-1)*height]);
- const bevel=.12*height/2.25,back=-.13*height/2.25,minThickness=.02*height/2.25;
-
+ const scale=height/2.25,minThickness=.02*scale;
+ // A smooth, non-saturating distance profile replaces the old flat rear
+ // plateau. The physical transition scale applies at top/bottom cuts and
+ // holes too; unlike row normalization, unrelated components cannot couple.
  for(const old of used){const x=old%columns,y=Math.floor(old/columns),u=x/(columns-1),v=y/(rows-1);
   let distance2=Infinity;for(const [bx,by]of boundaryXY)distance2=Math.min(distance2,(u*width-bx)**2+(v*height-by)**2);
-  const t=Math.min(1,Math.sqrt(distance2)/bevel),blend=t*t*(3-2*t);
-  const z=reliefDepth(u,v)*height/2.25;
+  const blend=-Math.expm1(-Math.sqrt(distance2)/(.14*scale));
+  const g=(center,spread)=>Math.exp(-.5*((v-center)/spread)**2);
+  // Bounded engineering fit only. Head, torso and lap vary gently in depth;
+  // the rear never exceeds the previous -0.13 m envelope at default scale.
+  const back=-(.035+.095*Math.min(1,.55*g(.135,.10)+.90*g(.38,.17)+.60*g(.775,.15)))*scale;
+  const z=reliefDepth(u,v)*scale;
   backs.push((z-minThickness)*(1-blend)+back*blend);
   remap.set(old,remap.size);points.push((u-.5)*width,(1-v)*height,z);uv.push(u,1-v);
  }
@@ -68,13 +74,12 @@ export function createOriginalRelief(input,options={}){
  materials.push(new T.MeshStandardMaterial({color:0xb78944,roughness:.72,metalness:.12}));
  const mesh=new T.Mesh(geometry,materials);mesh.name='original-central-buddha-shallow-relief-research';mesh.castShadow=true;mesh.receiveShadow=false;
  const meta={assetClass:'ORIGINAL_GENERATED_ART_MODEL_FIT',historicalPhoto:false,method:'MANUAL_CONTINUOUS_DEPTH_ALPHA_SILHOUETTE',
-  cameraFacing:false,depthRecoveredFromLight:false,sideAndBack:'ENGINEERING_FIT_NOT_SOURCE_VERIFIED',edgeTreatment:'ORIGINAL_FRONT_PRESERVED_ROUNDED_BACK_THIN_CLOSURE',
+  cameraFacing:false,depthRecoveredFromLight:false,sideAndBack:'ENGINEERING_FIT_NOT_SOURCE_VERIFIED',edgeTreatment:'ORIGINAL_FRONT_PRESERVED_CONTINUOUS_BACK_THIN_CLOSURE',
   lotusEightTiers:'NOT_VERIFIED',pedestalProportion:'HIGH_V1_RETAINED_FOR_REVIEW',defaultProductReplacement:false,
   vertices:count*2,triangles:indices.length/3,frontTriangles:fi.length/3,sourceGrid:[columns,rows],alphaThreshold:threshold};
  mesh.userData.originalArtResearch=meta;
  // Independent conservative box, intentionally inactive until actual product integration.
  // It does not reuse render triangles, and scales with both aspect ratio and height.
- const scale=height/2.25;
  const collisionProxy={type:'bounded-research-proxy-only',boxes:[{center:[0,height/2,.065*scale],size:[width,height,.5*scale]}],activeInProduct:false};
  let disposed=false;
  return {mesh,meta,collisionProxy,dispose(){
