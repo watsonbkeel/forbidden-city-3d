@@ -2,7 +2,7 @@ import * as T from 'three';
 const PLACE='place-outer-west-6cae88b6a2',PRINCIPAL='dafotang-shakyamuni-historical-fit';
 const ORIGINAL=['worn_gold','red_lacquer','dark_curls'].map(n=>'dafotang_principal_'+n);
 const NAMES=ORIGINAL.map(n=>n+'_original_artwork_central_fallback');
-const sessions=new WeakMap();
+const sessions=new WeakMap(),stateOwners=new WeakMap();
 const require=(v,m)=>{if(!v)throw Error(m);};
 const identity=o=>o&&o.quaternion.equals(new T.Quaternion())&&o.scale.equals(new T.Vector3(1,1,1));
 /** Must run after all old hall builders, before material merge and collider publication.
@@ -41,12 +41,29 @@ export function createOriginalCentralSession(group,{load}={}){
  const records=group.userData.architecture?.filter(r=>r.id===PLACE)??[];require(records.length===1&&records[0].inventory?.status==='UNKNOWN','One unchanged hall record required');
  const state=records[0].originalArtworkCentral;require(state?.id==='dafotang-original-central-artwork-v1'&&JSON.stringify(state.fallbackMaterialNames)===JSON.stringify(NAMES),'Prepared central-only fallback required');
  const old=NAMES.map(name=>{const found=group.children.filter(m=>m.isMesh&&!Array.isArray(m.material)&&m.material.name===name);require(found.length===1,'One merged central bucket required');return found[0];});
- const previous=old.map(m=>m.visible),controller=new AbortController();let disposed=false,output=null;
+ const previous=old.map(m=>m.visible),controller=new AbortController(),ownership={};let disposed=false,output=null;
  const restore=()=>old.forEach((m,i)=>m.visible=previous[i]);
- const session={status:'LOADING',presentation:null,ready:null,dispose(){if(disposed)return;disposed=true;controller.abort();if(output){output.mesh.removeFromParent();output.dispose();output=null;}restore();session.presentation=null;session.status=state.status='DISPOSED';sessions.delete(group);}};
- sessions.set(group,session);state.status='LOADING';
+ const disposalErrors=[];
+ const finishDisposal=()=>{session.status=disposalErrors.length?'DISPOSED_WITH_ERRORS':'DISPOSED';if(stateOwners.get(state)===ownership)state.status=session.status;};
+ const release=(result,detach=true)=>{
+  const errors=[],attempt=fn=>{try{fn();}catch(error){errors.push(error);}};
+  if(result){if(detach)attempt(()=>result.mesh?.removeFromParent?.());attempt(()=>result.dispose?.());}
+  disposalErrors.push(...errors);if(disposed)finishDisposal();return errors;
+ };
+ const session={status:'LOADING',presentation:null,ready:null,loadError:null,get disposalErrors(){return [...disposalErrors];},dispose(){
+  if(disposed)return;disposed=true;
+  const retired=output;output=null;session.presentation=null;
+  // Restore and relinquish this session before resource/listener callbacks can
+  // reenter. A successor must never inherit the retired hidden fallback state.
+  for(let i=0;i<old.length;i++){try{old[i].visible=previous[i];}catch(error){disposalErrors.push(error);}}
+  finishDisposal();if(sessions.get(group)===session)sessions.delete(group);
+  try{controller.abort();}catch(error){disposalErrors.push(error);}
+  release(retired);finishDisposal();
+  if(disposalErrors.length)throw new AggregateError([...disposalErrors],'Original central session disposal reported errors');
+ }};
+ sessions.set(group,session);stateOwners.set(state,ownership);state.status='LOADING';
  session.ready=Promise.resolve().then(()=>disposed?null:load({signal:controller.signal})).then(result=>{
-  if(disposed){result?.dispose?.();return session;}
+  if(disposed){release(result,false);return session;}
   try{
    require(result?.mesh?.isMesh&&typeof result.dispose==='function'&&result.meta?.historicalPhoto===false,'Owned original relief required');
    const geometry=result.mesh.geometry;geometry.computeBoundingBox();const box=geometry.boundingBox,size=box.max.y-box.min.y;require(Number.isFinite(size)&&size>0,'Finite figure height required');
@@ -56,8 +73,12 @@ export function createOriginalCentralSession(group,{load}={}){
    const proxy=new T.Box3(new T.Vector3(...state.contact.min),new T.Vector3(...state.contact.max)).expandByScalar(1e-6);
    require(proxy.containsBox(new T.Box3().setFromObject(result.mesh)),'New relief escaped old/new conservative contact reserve');
    group.add(result.mesh);require(!disposed,'Disposed during original artwork publication');old.forEach(m=>m.visible=false);output=result;session.presentation=result.mesh;session.status=state.status='READY_FOR_HALL_QA';state.display='ORIGINAL_PAINTED_ART_MANUAL_RELIEF_NOT_PHOTOGRAPH';state.actualFigureAndLotusHeight=2.25;state.complete=false;
-  }catch(e){result?.mesh?.removeFromParent?.();result?.dispose?.();restore();throw e;}
+  }catch(e){
+   const errors=release(result);if(!disposed&&stateOwners.get(state)===ownership)restore();
+   if(errors.length)throw new AggregateError([e,...errors],'Original central publication and cleanup reported errors');
+   throw e;
+  }
   return session;
- }).catch(error=>{if(!disposed){session.status=state.status='FALLBACK';state.reason=String(error.message).slice(0,256);restore();}return session;});
+ }).catch(error=>{session.loadError=error;if(!disposed&&stateOwners.get(state)===ownership){session.status=state.status='FALLBACK';state.reason=String(error.message).slice(0,256);restore();}return session;});
  return session;
 }
