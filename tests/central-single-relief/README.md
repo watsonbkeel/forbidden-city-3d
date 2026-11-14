@@ -1,0 +1,4 @@
+# Single continuous low-relief diagnostic (default OFF)
+One engineering-fit spiral ridge on the existing continuous central head surface, radius20mm and maximum2mm height (3mm upper safety bound). Local global-edge conforming refinement, original-normal displacement, before/after geometry-normal delta; original art material0 triangles/attributes unchanged. No independent disc or cap expansion. Original generated art is not historical photographic evidence.
+
+Five standard fixed views and90zoom plus matched zero-height90/135/zoom controls. No groove-normal shader or changed lighting. Capture releases final active geometry/materials after all9images. Real GPU/mobile/fullroute remain untested. Focused tests and strict6GiB/720s hosted diagnostic are not product or art acceptance. Retain7a7a contour baseline and eda6240 rejected groove predecessor.
