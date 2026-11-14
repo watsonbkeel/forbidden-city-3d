@@ -47,7 +47,8 @@ export function createCentralBuddhaVolumeStudy(input,options={}){
   ellipsoid('right-knee',[-.30,.950,.10],[.28,.16,.24]);ellipsoid('left-knee',[.30,.950,.10],[.28,.16,.24]);
   ellipsoid('neck',[0,1.765,-.005],[.11,.10,.10]);
   ellipsoid('head',[0,2.005,0],[.18,.22,.16]);
-  ellipsoid('right-ear',[-.18,1.965,0],[.035,.095,.06]);ellipsoid('left-ear',[.18,1.965,0],[.035,.095,.06]);
+  // Bounded visual-fit ear study, not a recovered historical measurement.
+  ellipsoid('right-ear',[-.175,1.95,-.015],[.020,.085,.035]);ellipsoid('left-ear',[.175,1.95,-.015],[.020,.085,.035]);
   ellipsoid('nose',[0,1.984,.145],[.025,.055,.047]);
   limb('right-upper-sleeve',[-.25,1.64,0],[-.38,1.37,.04],.12);limb('right-lower-sleeve',[-.38,1.37,.04],[-.39,1.205,.22],.09);
   limb('left-upper-sleeve',[.25,1.64,0],[.39,1.34,.04],.12);limb('left-lower-sleeve',[.39,1.34,.04],[.20,1.18,.24],.09);
