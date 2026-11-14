@@ -22,15 +22,17 @@ const UNLOADED_WALK_MAX = 1; // m
   const zoneFiles = L.loadZoneJsons(process.env.ZONES_DIR ? path.resolve(process.env.ZONES_DIR) : undefined);
   // 路线规划用碰撞世界（门外净空、绕殿），与浏览器里是同一套 CourtKit 碰撞
   const log = console.log; console.log = () => {};
-  const W = await L.buildWorld({ zones: zoneFiles });
-  console.log = log;
+  let W;
+  try{W=await L.buildWorld({ zones: zoneFiles, realMaterials: true, realFinish: true });}finally{console.log=log;}
+  let primary;
+  try {
   const all = buildAutoRoutes(W, zoneFiles.map(z => z.json), { knownIssues: {} });
   const which = args[2] || 'all';
   const routes = which === 'all' ? all : all.filter(r => r.name.includes(which));
   if (flags.has('--list') || process.env.DUMP) {
     for (const r of routes) console.log(`${r.name}  ${r.via ?? r.zone}${r.plan?.length ? '；' + r.plan.join('；') : ''}${process.env.DUMP ? '\n   ' + JSON.stringify(r.pts) : ''}`);
     console.log(`共 ${routes.length} 条`);
-    process.exit(0);
+    process.exitCode=0;return;
   }
 
   if (flags.has('--check')) {
@@ -47,7 +49,7 @@ const UNLOADED_WALK_MAX = 1; // m
       console.log(`${bad ? (r.knownIssue ? 'KNOWN' : 'FAIL') : 'PASS'} ${r.name}${bad ? `  段${bad.seg} ${JSON.stringify(bad.from)}→${JSON.stringify(bad.to)} 停在 ${JSON.stringify(bad.end)}（${bad.reached}/${bad.total}）挡：${bad.blockers.join('；') || '?'}` : ''}`);
     }
     console.log(`预检 ${routes.length} 条，受阻 ${fail} 条`);
-    process.exit(fail ? 1 : 0);
+    process.exitCode=fail ? 1 : 0;return;
   }
 
   const { openPage, runRoutes, routeForBrowser } = require('./lib/stepwalk-runner.cjs');
@@ -71,5 +73,6 @@ const UNLOADED_WALK_MAX = 1; // m
     if (process.env.PROFILE) console.log('   高度剖面', r.profile.join(' '));
   }
   console.log(`共 ${result.length} 条，失败 ${fail} 条，knownIssue 跳过 ${known} 条`);
-  process.exit(fail ? 1 : 0);
+  process.exitCode=fail ? 1 : 0;
+  }catch(error){primary=error;}finally{W.dispose(primary);}
 })().catch(e => { console.error(e); process.exit(1); });

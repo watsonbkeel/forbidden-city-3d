@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import{assertDefaultBuild,assertPublicNetwork}from './contract.mjs';
+const head='a'.repeat(40),build={release:'R360',buildId:'R360-f5c900666236',sourceFingerprint:'17117a2675738ccd340981c778d5f1faba3fbb40b4dfe666fc19d2841a931c92',sourceCommit:head,sourceDirty:false,base:'/forbidden-city-3d/'};
+const good=()=>({cdp:[],pageErrors:[],responses:[],requestFailures:[],unexpected:[],console:[],originalArtworkRequests:[],serverBad:[],trapHits:[]});
+test('exact unchanged source build and new event commit admitted',()=>assert.doesNotThrow(()=>assertDefaultBuild(build,head)));
+test('dirty, wrong release, fingerprint, event or base always rejected',()=>{for(const patch of[{sourceDirty:true},{release:'R361'},{sourceFingerprint:'b'.repeat(64)},{sourceCommit:'b'.repeat(40)},{base:'/'}])assert.throws(()=>assertDefaultBuild({...build,...patch},head));});
+test('healthy public network does not require private session APIs',()=>assert.doesNotThrow(()=>assertPublicNetwork(good())));
+test('any original artwork request forbidden even successful',()=>{const r=good();r.originalArtworkRequests.push({url:'textures/dafotang-original/amitabha-refined-v2.png',status:200});assert.throws(()=>assertPublicNetwork(r));});
+test('late CDP, HTTP, console and page failures remain fatal through cleanup',()=>{for(const mutate of[r=>r.cdp.push({pageRole:'EXPERIMENT',event:'Network.loadingFailed',phase:'FINAL_CLEANUP'}),r=>r.responses.push({status:404}),r=>r.console.push({type:'error',text:'bad'}),r=>r.pageErrors.push('error')]){const r=good();mutate(r);assert.throws(()=>assertPublicNetwork(r));}});
+test('server offlist, foreign trap or unexpected page remains fatal',()=>{for(const key of['serverBad','trapHits','unexpected']){const r=good();r[key].push('bad');assert.throws(()=>assertPublicNetwork(r));}});
+test('public native view plan obeys retained160pixel helper and restores yaw',async()=>{const{PUBLIC_LOOK_PLAN}=await import('./contract.mjs');assert.ok(Array.isArray(PUBLIC_LOOK_PLAN));assert.deepEqual(PUBLIC_LOOK_PLAN.map(x=>x.dx),[160,-160,-160,160]);assert.ok(PUBLIC_LOOK_PLAN.every(x=>Math.abs(x.dx)<=160));assert.equal(PUBLIC_LOOK_PLAN.reduce((s,x)=>s+x.dx,0),0);assert.equal(PUBLIC_LOOK_PLAN.filter(x=>x.image).length,2);});

@@ -34,6 +34,8 @@ import { buildSilhouette } from '../../render/SilhouetteBuilder.js';
 // Private synchronous provenance for the one source-bound Xianan component.
 // Public loaded/prebuilt/cache maps are bookkeeping, never authorization.
 const xiananManagers=new WeakMap(),xiananGroupWindows=new WeakMap(),xiananCMWindows=new WeakMap();
+// Synchronous retirement claim: notifications may reenter the manager.
+const unloadingEntries=new WeakSet();
 const xiananConfig=c=>c?.id==='outer-west'&&c.items?.[30]?.name==='咸安门';
 const xiananAdmissionError=()=>Object.assign(new Error('Untrusted Xianan managed admission'),{code:'XIANAN_UNTRUSTED_ADMISSION'});
 function xiananManagerState(manager,config){
@@ -225,6 +227,19 @@ export class ZoneManager {
       this.onEnterZone(newId);
     }
 
+    // A teleport can leave prefetch queued for the previous position. Retain
+    // only still-relevant work and rank it from this frame's actual position;
+    // discarding an ID must not consume its preserved prebuilt/cache owner.
+    const queued = new Set();
+    this.buildQueue = this.buildQueue.flatMap(({ zoneId }) => {
+      const config = this.zones.get(zoneId);
+      if (!config || this.loaded.has(zoneId) || queued.has(zoneId)) return [];
+      const distance = this.distanceToZone(playerPos.x, playerPos.z, config.bounds);
+      if (zoneId !== this.currentId && distance > 40) return [];
+      queued.add(zoneId);
+      return [{ zoneId, priority: zoneId === this.currentId ? 0 : distance }];
+    });
+
     // 预载：距离 ≤ 40m 的区（已在队列中的不重复入队）
     for (const [id, config] of this.zones) {
       if (this.loaded.has(id) || this.buildQueue.some(b => b.zoneId === id)) continue;
@@ -408,31 +423,47 @@ export class ZoneManager {
    */
   unloadZone(zoneId, {retain=true}={}) {
     const entry = this.loaded.get(zoneId);
-    if (!entry) return;
-
-    const { builder, data } = entry;
-    for (const listener of this.lifecycleListeners) listener('unload',zoneId,data);
-    this.onUnload?.(zoneId, data.group);
-    const xiananUnload=beginXiananUnload(this,entry.config,builder,data);
+    if (!entry || unloadingEntries.has(entry)) return;
+    unloadingEntries.add(entry);
+    const errors=[],attempt=fn=>{try{fn();return true;}catch(error){errors.push(error);return false;}};
+    const report=()=>{if(errors.length===1)throw errors[0];if(errors.length>1)throw new AggregateError(errors,`Zone ${zoneId} unload reported errors`);};
     try {
-      data.group.removeFromParent();
-      this.collisionManager.removeByTag(zoneId);
-      if(xiananUnload)xiananUnload.row.status='detached';
-    } finally { closeXiananWindow(xiananUnload); }
-    // Pending photos may grow the retained resource set after cost admission.
-    // Dispose/cancel only that pending session; completed or disabled photos
-    // still use the original cost accounting and normal cache budget below.
-    if (retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && builder.dafotangOriginalSession?.status !== 'LOADING' && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
-      builder.releaseConstructionReferences?.();
-      entry.cost = zoneRetainedResourceCost(entry,this.library);
-      const retained=this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
-      retainXiananEntry(this,data,retained);
-    } else { builder.dispose(); forgetXiananEntry(this,data); }
-    const silhouette = this.silhouettes.get(zoneId);
-    if (silhouette) silhouette.visible = true;
-    this.loaded.delete(zoneId);
-
-    console.log(`[ZoneManager] 卸载区域 ${zoneId}`);
+      const { builder, data } = entry;
+      for (const listener of [...this.lifecycleListeners]) attempt(()=>listener('unload',zoneId,data));
+      attempt(()=>this.onUnload?.(zoneId, data.group));
+      let xiananUnload;
+      try { xiananUnload=beginXiananUnload(this,entry.config,builder,data); }
+      catch(error){errors.push(error);report();}
+      // Failed provenance validation above never enters destructive cleanup.
+      try {
+        const detached=attempt(()=>data.group.removeFromParent());
+        const collisionsRemoved=attempt(()=>this.collisionManager.removeByTag(zoneId));
+        if(xiananUnload&&detached&&collisionsRemoved)xiananUnload.row.status='detached';
+      } finally { closeXiananWindow(xiananUnload); }
+      // Only a fault-free completed detachment may transfer into inactive cache.
+      // Pending photos and cleanup-error sessions retain their original gate.
+      if (!errors.length && retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && !['LOADING','DISPOSED_WITH_ERRORS'].includes(builder.dafotangOriginalSession?.status) && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+        builder.releaseConstructionReferences?.();
+        entry.cost = zoneRetainedResourceCost(entry,this.library);
+        const retained=this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));
+        retainXiananEntry(this,data,retained);
+      } else {
+        // A reported inner failure remains visible, but cannot skip independent
+        // retirement bookkeeping. No claim that the failing owner fully freed.
+        try { attempt(()=>builder.dispose()); }
+        finally {
+          forgetXiananEntry(this,data);
+          const silhouette = this.silhouettes.get(zoneId);
+          if (silhouette) silhouette.visible = true;
+          this.loaded.delete(zoneId);
+        }
+      }
+      const silhouette = this.silhouettes.get(zoneId);
+      if (silhouette) silhouette.visible = true;
+      this.loaded.delete(zoneId);
+      report();
+      console.log(`[ZoneManager] 卸载区域 ${zoneId}`);
+    } finally { unloadingEntries.delete(entry); }
   }
 
   /**

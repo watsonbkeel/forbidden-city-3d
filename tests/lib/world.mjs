@@ -1,3 +1,12 @@
+import {captureRearGate,recordRearWalkables} from './rear-axis-current-access.mjs';
+import {captureShouanGate,recordShouanWalkables} from './shouan-current-access.mjs';
+import {captureMainHallSource,recordMainHallWalkables,bindMainHallEnvironment,unbindMainHallEnvironment} from './main-hall-current-access.mjs';
+import {captureChuxiuRearSource,recordChuxiuRearWalkables} from './chuxiu-rear-current-access.mjs';
+import {captureChengqianRearSource,recordChengqianRearWalkables} from './chengqian-rear-current-access.mjs';
+import {captureWenyuanSupportSource,recordWenyuanWalkableBindings} from './wenyuan-bridge-support.mjs';
+import {groundWithEvidence} from './ground-query-evidence.mjs';
+import {createWorldCleanup,installCpuDocument} from './finished-world-lifecycle.mjs';
+import {stubLibrary} from './material-stub.mjs';
 import {bindSishenEnvironmentWitness,unbindSishenEnvironmentWitness} from '../../src/controls/SishenEnvironmentWitness.js';
 import {bindWestWellEnvironmentWitness,unbindWestWellEnvironmentWitness} from '../../src/controls/WestWellEnvironmentWitness.js';
 import {bindEastWellEnvironmentWitness} from '../../src/controls/EastWellEnvironmentWitness.js';
@@ -15,7 +24,7 @@ import {resolveRemainingProfile as resolveNingshou} from '../../src/scene/palace
 import { southCourtGeometry } from '../../src/scene/palace/special/SouthCourtProfiles.js';
 import { wenyuanGeometry } from '../../src/scene/palace/special/WenyuanPavilion.js';
 // 纯 node 构建"全场景碰撞世界"：直接调用真实的 ZoneBase / CourtKit / PalaceBuilder / Enclosure / GardenBuilder
-// 与 CollisionManager（不渲染、不合并几何），得到与游戏一致的碰撞体与可行走面。
+// 与 CollisionManager（不渲染；默认legacy不合并，realFinish显式执行真实合并），得到碰撞体与可行走面。
 // 供 tests/zone-lint.cjs（几何检查）与 tests/stepwalk-auto.cjs（路线生成预检）使用。
 //
 // 用法（ESM；.cjs 里用 await import(pathToFileURL(...))）：
@@ -189,15 +198,6 @@ export function hallGeom(item) {
   return { rot, w, d, pad, ph, PW: w + 2 * pad, PD: d + 2 * pad, n, bay, r, doorX, run, enter, toW, facing, backDoor: !!item.backDoor, open: !!item.open };
 }
 
-function stubLibrary(THREE) {
-  const mats = new Map();
-  const lib = {
-    material: n => mats.get(n) ?? (mats.set(n, new THREE.MeshStandardMaterial({ name: n })), mats.get(n)),
-    tileSize: () => 1,
-    aspect: () => 1,
-  };
-  return new Proxy(lib, { get: (t, k) => (k in t ? t[k] : () => null) });
-}
 
 function stubDocument() {
   if (globalThis.document) return;
@@ -216,20 +216,27 @@ export function loadZoneJsons(dir = path.join(ROOT, 'data/zones')) {
     .map(f => ({ file: f, json: JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) }));
 }
 
-export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false, realMaterials = process.env.R48_REAL_TEXTURE_LIBRARY === '1' } = {}) {
-  stubDocument();
+export async function buildWorld({ zones = loadZoneJsons(), statics = true, retainScene = false, realMaterials = process.env.R48_REAL_TEXTURE_LIBRARY === '1', realFinish = false } = {}) {
+  if(realFinish && !realMaterials)throw Error('realFinish requires realMaterials');
+  let cpuDocument=null;
+  if(realFinish){const {createCanvas}=await import('@napi-rs/canvas');cpuDocument=installCpuDocument(createCanvas);}else stubDocument();
+  let dispose=null;
+  try {
   const THREE = await import('three');
   const { ZoneBase } = await src('scene/zones/ZoneBase.js');
   const { CollisionManager } = await src('utils/Collision.js');
   const lib = realMaterials ? (await import('./r48-real-texture-library.mjs')).realTextureLibrary() : stubLibrary(THREE);
   const cm = new CollisionManager();
+  const owners=[],finishedZones=[],finishedStatics=[],wenyuanWalkableSources=new Map(),zoneScene=realFinish?new THREE.Scene():null;
+  if(realFinish)dispose=createWorldCleanup({cm,owners,library:lib,restore:()=>cpuDocument.restore()});
   const owner = new Map(); // 原始 Box3 → { zone, item }
   const rooms = [], mapItems = [];
   const METHODS = ['buildHall', 'buildGate', 'buildWall', 'buildCourtWalls', 'buildCorridor', 'buildCityGate', 'buildNineDragonWall'];
 
   for (const { json } of zones) {
     const zb = new ZoneBase(lib, json);
-    zb.kit.finish = () => { // Skip expensive render merge, preserve its metadata contract.
+    if(realFinish)owners.push({label:'zone:'+json.id,value:zb});
+    if(!realFinish)zb.kit.finish = () => { // Skip expensive render merge, preserve its metadata contract.
       const group = new THREE.Group(), architecture = [];
       zb.kit.root.traverse(o => {
         const record = o.userData.pavilion ?? (o.userData.structure?.id ? o.userData.structure : null);
@@ -241,15 +248,23 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
     for (const m of METHODS) {
       const orig = ZoneBase.prototype[m];
       zb[m] = item => {
-        const n0 = zb.kit.colliders.length;
+        const n0 = zb.kit.colliders.length, w0=zb.kit.walkables.length;
         const r = orig.call(zb, item);
+        if(realFinish&&m==='buildGate'&&item.rearAxisGate)captureRearGate(zb,item,n0,w0);
+        if(realFinish&&m==='buildGate'&&item.gateProfile==='shouan-entry')captureShouanGate(zb,item,n0,w0);
         for (let i = n0; i < zb.kit.colliders.length; i++) owner.set(zb.kit.colliders[i], { zone: json.id, item });
         return r;
       };
     }
-    const data = zb.build();
+    let wenyuanSupportSource=null;const originalFinish=zb.kit.finish;
+    if(realFinish&&['outer-east','east-six','west-six'].includes(json.id))zb.kit.finish=function(...args){if(json.id==='outer-east')wenyuanSupportSource=captureWenyuanSupportSource(this);if(['east-six','west-six'].includes(json.id))captureMainHallSource(this,json);if(json.id==='east-six')captureChengqianRearSource(this);if(json.id==='west-six')captureChuxiuRearSource(this);return originalFinish.apply(this,args);};
+    let data;try{data=zb.build();}finally{zb.kit.finish=originalFinish;}
+    if(realFinish){zoneScene.add(data.group);finishedZones.push({id:json.id,builder:zb,group:data.group,data,wenyuanSupportSource});}
     cm.addColliders(data.colliders, json.id);
+    const rearWalkableStart=cm.walkables.length;
     cm.addWalkables(data.walkables, json.id);
+    if(realFinish){recordRearWalkables(cm,zb.kit,json.id,rearWalkableStart);recordShouanWalkables(cm,zb.kit,json.id,rearWalkableStart);recordMainHallWalkables(cm,zb.kit,json.id,rearWalkableStart);recordChengqianRearWalkables(cm,data.walkables,json.id,rearWalkableStart);recordChuxiuRearWalkables(cm,data.walkables,json.id,rearWalkableStart);}
+    if(realFinish)recordWenyuanWalkableBindings(cm,data.walkables,json.id,wenyuanWalkableSources);
     rooms.push(...data.rooms);
     mapItems.push(...data.mapItems);
   }
@@ -266,34 +281,43 @@ export async function buildWorld({ zones = loadZoneJsons(), statics = true, reta
       const { GardenBuilder } = await src('scene/GardenBuilder.js');
       const scene = new THREE.Scene();
       const pb = new PalaceBuilder(scene, lib);
+      if(realFinish)owners.push({label:'static:palace',value:pb});
       pb.buildAll(PALACE_LAYOUT);
+      if(realFinish)finishedStatics.push({name:'PalaceBuilder',builder:pb,scene,walkables:pb.getWalkables()});
       if (retainScene) retainedScene = scene;
       terraceProfiles.push(...pb.terraceProfiles);
       taiheSouthTiers.push(...pb.taiheSouthTiers);
       baoheNorthTiers.push(...pb.baoheNorthTiers);
-      const en = new Enclosure(scene, lib).build();
-      const gb = new GardenBuilder(scene, lib).build(PALACE_LAYOUT.find(i => i.type === 'garden'));
+      const en = new Enclosure(scene, lib);
+      if(realFinish)owners.push({label:'static:enclosure',value:en});
+      en.build();
+      const gb = new GardenBuilder(scene, lib);
+      if(realFinish)owners.push({label:'static:garden',value:gb});
+      gb.build(PALACE_LAYOUT.find(i => i.type === 'garden'));
       for (const [name, cols, walks] of [['PalaceBuilder', pb.getColliders(), pb.getWalkables()], ['Enclosure', en.getColliders(), []], ['GardenBuilder', gb.getColliders(), gb.getWalkables()]]) {
         const before = cm.colliders.length;
         cm.addColliders(cols, 'static');
         cm.addWalkables(walks, 'static');
+        if(realFinish)recordWenyuanWalkableBindings(cm,walks,'static',wenyuanWalkableSources);
         for (let i = before; i < cm.colliders.length; i++) owner.set(cm.colliders[i].mesh, { zone: 'static', item: { kind: 'static', name } });
       }
     } finally { console.log = log; }
   }
 
   let environmentScene=null;
-  if(cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);env.setupGround();environmentScene.updateMatrixWorld(true);bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
+  if((realFinish&&zones.some(z=>['east-six','west-six'].includes(z.json.id)))||cm.colliders.some(c=>['sishen','west-well','east-well','shoukang-entry','yanshou-compound','cining-gate','ciyin-front','shouan-entry','wenhua-gate-approaches','chengqian-rear-access'].includes(c.furnitureMotionScope?.kind))){const {Environment}=await src('scene/Environment.js');environmentScene=new THREE.Scene();const env=new Environment(environmentScene,null,lib);if(realFinish)owners.push({label:'environment:ground',value:env});env.setupGround();environmentScene.updateMatrixWorld(true);if(realFinish&&zones.some(z=>['east-six','west-six'].includes(z.json.id))){owners.push({label:'mainHallEnvironmentWitness',value:{dispose(){unbindMainHallEnvironment(cm);}}});bindMainHallEnvironment(cm,environmentScene);}bindShouanEntryEnvironmentWitness(cm,environmentScene);bindShoukangEntryEnvironmentWitness(cm,environmentScene);bindEastWellEnvironmentWitness(cm,environmentScene);bindWestWellEnvironmentWitness(cm,environmentScene);bindSishenEnvironmentWitness(cm,environmentScene);bindCiyinFacadeEnvironmentWitness(cm,environmentScene);bindCiningGateEnvironmentWitness(cm,environmentScene);bindYanshouCompoundEnvironmentWitness(cm,environmentScene);}
   const gates = [], halls = [];
   for (const { json } of zones) for (const item of json.items) {
     if (item.kind === 'gate' || item.kind === 'cityGate') gates.push({ zone: json.id, item, ...gateGeom(item) });
     if (item.kind === 'hall') halls.push({ zone: json.id, item, g: hallGeom(item) });
   }
   return {
+    ...(realFinish?{dispose,finishedZones,finishedStatics,wenyuanWalkableSources,zoneScene,cpuDocumentStats:cpuDocument.stats}:{}),
     THREE, cm, zones, gates, halls, rooms, mapItems, environmentScene, terraceProfiles, taiheSouthTiers, baoheNorthTiers,
     ...(retainScene ? { scene: retainedScene } : {}),
     ownerOf: c => owner.get(c.mesh) ?? { zone: c.tag ?? '?', item: { kind: '?' } },
   };
+  }catch(error){if(dispose)dispose(error);else cpuDocument?.restore();throw error;}
 }
 
 /** 世界 AABB 与碰撞体相交查询（只算高于可迈高度 0.35 的实体），返回碰撞体列表 */
@@ -335,11 +359,12 @@ export function walkStraight(W, a, b, { step = 0.4, feet0 } = {}) {
  * 从 start 出发，不进入 forbid(x,z) 为真的格子；返回 { blockedStart, maxDist（离 center 最远可达距离）, cells }。
  * 到达 radius 即提前结束（说明连通到外面的大片区域）。
  */
-export function reachFrom(W, start, center, radius, forbid = () => false, cell = 0.5) {
+export function reachFrom(W, start, center, radius, forbid = () => false, cell = 0.5, diagnosticContext = {}) {
   const { THREE, cm } = W;
   const v = new THREE.Vector3();
   const blockedAt = (x, z, feet) => { v.set(x, feet + 1.7, z); return cm.checkCollision(v, KIT.PLAYER_R); };
-  const f0 = cm.getGroundHeight(start[0], start[1], 0, 0.6);
+  const initialFeet=diagnosticContext.initialFeet??0;if(!Number.isFinite(initialFeet)||initialFeet<0)throw Error('invalid BFS initial feet');
+  const f0 = groundWithEvidence(W,start[0],start[1],initialFeet,0.6,{...diagnosticContext,stage:'initial',start,center,radius,cell});
   if (blockedAt(start[0], start[1], f0)) return { blockedStart: true, maxDist: 0, cells: 0 };
   const key = (i, k) => i * 4096 + k;
   const seen = new Map([[key(0, 0), f0]]);
@@ -353,7 +378,7 @@ export function reachFrom(W, start, center, radius, forbid = () => false, cell =
       const x = start[0] + ni * cell, z = start[1] + nk * cell;
       const dist = Math.hypot(x - center[0], z - center[1]);
       if (dist > radius + cell || forbid(x, z)) continue;
-      const g = cm.getGroundHeight(x, z, feet, 0.6);
+      const g = groundWithEvidence(W,x,z,feet,0.6,{...diagnosticContext,stage:'bfs',start,center,radius,cell,fromCell:[i,k],toCell:[ni,nk],visited:seen.size,queueIndex:h});
       if (blockedAt(x, z, g)) continue;
       seen.set(kk, g);
       q.push([ni, nk, g]);

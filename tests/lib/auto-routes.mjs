@@ -1,3 +1,4 @@
+import {dedicatedGateRoute} from './dedicated-gate-route.mjs';
 import {kunningGateAccess} from '../../src/scene/palace/special/KunningGate.js';
 import { wuyingGateToGallery } from './r52-wuying-routes.mjs';
 import { southWaterProfile } from '../../src/scene/palace/special/SouthWaterSystem.js';
@@ -95,14 +96,16 @@ function gateLeg(W, gate, toward, plan) {
   const s = (toward[0] - g.x) * dx + (toward[1] - g.z) * dz >= 0 ? 1 : -1;
   const ix = dx * s, iz = dz * s;
   const centerX = g.profile?.portalCenters.reduce((a, b) => Math.abs(a) < Math.abs(b) ? a : b) ?? 0;
-  const center = g.profile?.toWorld(centerX, 0) ?? [g.x, g.z];
+  const dedicated=dedicatedGateRoute(g,centerX);
+  const center = dedicated?.center ?? g.profile?.toWorld(centerX, 0) ?? [g.x, g.z];
   const P = (along, lat = 0) => [center[0] + ix * along - iz * lat, center[1] + iz * along + ix * lat];
-  const innerDepth = s > 0 ? g.rear : g.front, outerDepth = s > 0 ? g.front : g.rear;
+  const geometry=dedicated??g;
+  const innerDepth = s > 0 ? geometry.rear : geometry.front, outerDepth = s > 0 ? geometry.front : geometry.rear;
   const inner = P(innerDepth + 2);
-  const passage = g.profile ? g.profile.ramps.flatMap(r => [r.zToe, r.zTop]).sort((a, b) => s * (a - b))
+  const passage = dedicated ? dedicated.passage(s) : g.profile ? g.profile.ramps.flatMap(r => [r.zToe, r.zTop]).sort((a, b) => s * (a - b))
     .map(z => g.profile.toWorld(centerX, z)) : [];
   // 门外实测净空（从门心往外走）
-  const probe = walkStraight(W, center, P(-(outerDepth + GATE_OUT + 1)), { feet0: g.platformY });
+  const probe = walkStraight(W, center, P(-(outerDepth + GATE_OUT + 1)), { feet0: geometry.platformY });
   const clear = probe.reached >= probe.total - 0.1 ? GATE_OUT + 1 : probe.reached + 0.5 - outerDepth;
   if (clear >= GATE_OUT + 1) return [P(-(outerDepth + GATE_OUT)), ...passage, inner];
   const laneD = outerDepth + Math.max(0.6, clear / 2);       // 夹道中线
@@ -392,7 +395,11 @@ export function crossRoutes(W, zones) {
 export function profileGateRoutes(zones) {
   return zones.flatMap(zone => zone.items.filter(item => item.kind === 'gate' && item.gateProfile && item.gateProfile !== 'zhaode').flatMap(item => {
     if(item.gateProfile==='kunning'){const go=kunningGateAccess(item);return [{name:`[${zone.id}] ${item.name}门道1→实际两侧踏步→返回`,zone:zone.id,gate:item.name,gateProfile:'kunning',portalCenter:0,waypointDriver:'physical-crossing-v1',plan:['独立阶梯门壳不适用旧侧门双坡道接口；保留实际全部踏步/台面转向点'],pts:[...go,...go.slice(0,-1).reverse()]}];}
-    const { profile: g } = gateGeom(item);
+    const geometry=gateGeom(item),g=geometry.profile;
+    if(dedicatedGateRoute(geometry,g.portalCenters?.[0]??0))return g.portalCenters.map((u,index)=>{
+      const a=dedicatedGateRoute(geometry,u),go=[[a.center[0],g.z-a.front-2],...a.passage(1),[a.center[0],g.z+a.rear+2]];
+      return{name:`[${zone.id}] ${item.name}门道${index+1}→实际门体接触点→返回`,zone:zone.id,gate:item.name,gateProfile:item.gateProfile,portalCenter:u,waypointDriver:'physical-crossing-v1',plan:['保留真实门道/门槛/踏步及已有屏门，不虚构双坡道；顺贞可见薄门槛不宣称新增支撑'],pts:[...go,...go.slice(0,-1).reverse()]};
+    });
     if(g.profile==='xiqing')return g.portals.map((portal,index)=>({
       name:`[${zone.id}] ${item.name}门道${index+1}→真实分立门地面→返回`,zone:zone.id,gate:item.name,gateProfile:'xiqing',portalCenter:portal.x,
       plan:['按生产三门位置与实际门深生成地面路线，不虚构坡道'],

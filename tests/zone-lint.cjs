@@ -247,7 +247,7 @@ async function checkHallSourceProfile(W, h) {
   const { replayTerrace, traceTerraceGround } = await import(pathToFileURL(path.join(__dirname, 'lib/terrace-walk.mjs')).href);
   const { mock } = await import('node:test');
   const faults = [], runs = [];
-  let profile, go, floors, bridge;
+  let profile, go, floors, bridge, wenyuanSupport;
   if (wenyuan) {
     const { wenyuanGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/WenyuanPavilion.js')).href);
     const { southWaterProfile } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthWaterSystem.js')).href);
@@ -257,6 +257,7 @@ async function checkHallSourceProfile(W, h) {
     floors = [p];
     bridge = W.cm.rivers.flatMap(river => southWaterProfile(river)?.bridges ?? []).find(b => b.id === 'wenyuan-pond');
     if (!bridge) faults.push('missing-bridge-profile: wenyuan-pond');
+    if(bridge){const {bindWenyuanBridgeSupport}=await import(pathToFileURL(path.join(__dirname,'lib/wenyuan-bridge-support.mjs')).href);wenyuanSupport=bindWenyuanBridgeSupport(W,h);console.log('WENYUAN_BRIDGE_SUPPORT_JSON '+JSON.stringify(wenyuanSupport.receipt));}
   } else {
     const { southCourtGeometry } = await import(pathToFileURL(path.join(__dirname, '../src/scene/palace/special/SouthCourtProfiles.js')).href);
     profile = h.item.southCourtProfile;
@@ -297,11 +298,11 @@ async function checkHallSourceProfile(W, h) {
     }
     if (bridge) {
       // Collision's water aperture is a horizontal permission test, not proof
-      // that a physical deck exists. Require selected real ramp support over
-      // the whole bridge interior, including partial missing deck segments.
+      // that a physical deck exists. Require all32 actual registered deck sources
+      // independently; only exact physical entry-tread overlap may select box.
       const samples = trace.samples.filter(sample => Math.abs(sample.x - bridge.x) < .6 &&
         Math.abs(sample.z - bridge.z) < bridge.length / 2 - .2);
-      if (!samples.length || samples.some(sample => sample.supportType !== 'ramp' || sample.height <= 0)) {
+      if (wenyuanSupport.checkSamples(samples).length) {
         faults.push(`missing-bridge-support ${fps}Hz: ${bridge.id}`);
       }
     }
@@ -313,7 +314,9 @@ async function checkHallSourceProfile(W, h) {
 async function lintGeometry(zoneFiles) {
   const L = await import(pathToFileURL(path.join(__dirname, 'lib/world.mjs')).href);
   const t0 = Date.now();
-  const W = await L.buildWorld({ zones: zoneFiles });
+  const W = await L.buildWorld({ zones: zoneFiles, realMaterials: true, realFinish: true });
+  let primary;
+  try {
   console.log(`\n几何检查：碰撞体 ${W.cm.colliders.length}、可行走面 ${W.cm.walkables.length}（${zoneFiles.length} 区 + 中轴静态场景，${Date.now() - t0} ms）`);
   const blockersIn = (x0, z0, x1, z1, self) => [...new Set(L.collidersIn(W, x0, z0, x1, z1).filter(c => W.ownerOf(c).item !== self).map(c => L.describeOwner(W.ownerOf(c))))];
   const name = g => `${g.zone}: ${g.item.kind}「${g.item.name ?? '?'}」(${g.item.x}, ${g.item.z})`;
@@ -321,10 +324,83 @@ async function lintGeometry(zoneFiles) {
     const [dx, dz] = [dir[0] * s, dir[1] * s];
     return Math.abs(dz) >= Math.abs(dx) ? (dz > 0 ? '北侧' : '南侧') : (dx < 0 ? '东侧' : '西侧');
   };
+  let currentWuying;
+  const wuyingAccess = async () => {
+    if (!currentWuying) {
+      const { checkWuyingCurrentAccess } = await import(pathToFileURL(path.join(__dirname, 'lib/wuying-current-access.mjs')).href);
+      currentWuying = checkWuyingCurrentAccess(W);
+      console.log('WUYING_CURRENT_ACCESS_JSON ' + JSON.stringify(currentWuying));
+    }
+    return currentWuying;
+  };
+
+  const currentMainHalls=new Map();
+  const mainHallAccess=async zone=>{
+    if(!currentMainHalls.has(zone)){
+      const {checkMainHallAccess}=await import(pathToFileURL(path.join(__dirname,'lib/main-hall-current-access.mjs')).href);
+      const result=checkMainHallAccess(W,zone);currentMainHalls.set(zone,result);
+      console.log('MAIN_HALL_CURRENT_ACCESS_JSON '+JSON.stringify(result));
+    }
+    return currentMainHalls.get(zone);
+  };
+  let currentChuxiuRear;
+  const chuxiuRearAccess = async () => {
+    if (!currentChuxiuRear) {
+      const {checkChuxiuRearAccess} = await import(pathToFileURL(path.join(__dirname, 'lib/chuxiu-rear-current-access.mjs')).href);
+      currentChuxiuRear = checkChuxiuRearAccess(W);
+      console.log('CHUXIU_REAR_CURRENT_ACCESS_JSON ' + JSON.stringify(currentChuxiuRear));
+    }
+    return currentChuxiuRear;
+  };
+  let currentChengqianRear;
+  const chengqianRearAccess = async () => {
+    if (!currentChengqianRear) {
+      const {checkChengqianRearAccess} = await import(pathToFileURL(path.join(__dirname, 'lib/chengqian-rear-current-access.mjs')).href);
+      currentChengqianRear = checkChengqianRearAccess(W);
+      console.log('CHENGQIAN_REAR_CURRENT_ACCESS_JSON ' + JSON.stringify(currentChengqianRear));
+    }
+    return currentChengqianRear;
+  };
+
+  let currentShoukang;
+  const shoukangAccess = async () => {
+    if (!currentShoukang) {
+      const { checkShoukangCurrentAccess } = await import(pathToFileURL(path.join(__dirname, 'lib/shoukang-current-access.mjs')).href);
+      currentShoukang = checkShoukangCurrentAccess(W);
+      console.log('SHOUKANG_CURRENT_ACCESS_JSON ' + JSON.stringify(currentShoukang));
+    }
+    return currentShoukang;
+  };
 
   // 8. 门洞两侧
   let gateChecked = 0;
   for (const g of W.gates) {
+    if(g.zone==='axis-courts'&&g.item.rearAxisGate){
+      gateChecked++;
+      try{const {checkRearCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/rear-axis-current-access.mjs')).href);const r=checkRearCurrentAccess(W,g);console.log('REAR_AXIS_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源长坡原生往返、4m净空及12m外连通通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}
+      continue;
+    }
+
+    if(g.zone==='outer-west'&&g.item.gateProfile==='shouan-entry'){
+      gateChecked++;
+      try{const {checkShouanCurrentAccess}=await import(pathToFileURL(path.join(__dirname,'lib/shouan-current-access.mjs')).href);const r=checkShouanCurrentAccess(W,g);console.log('SHOUAN_CURRENT_ACCESS_JSON '+JSON.stringify(r));for(const fault of r.faults)error(`${name(g)} current-source-access ${fault}`);if(!r.faults.length)info(`${name(g)} 原源三门原生往返、原净空端点及原外部BFS通过`);}catch(cause){error(`${name(g)} current-source-access ${cause.message}`);}
+      continue;
+    }
+
+    if (g.zone === 'outer-east' && g.item.southGateProfile === 'wenhua') {
+      // Only this exact source replaced its generic stairs with asymmetric
+      // rendered approaches. Keep all world owners, original outside scope,
+      // native movement and source-negative evidence instead of a nominal .8.
+      gateChecked++;
+      try {
+        const {checkWenhuaCurrentAccess} = await import(pathToFileURL(path.join(__dirname, 'lib/wenhua-current-access.mjs')).href);
+        const current = checkWenhuaCurrentAccess(W, g);
+        console.log('WENHUA_CURRENT_ACCESS_JSON ' + JSON.stringify(current));
+        for (const fault of current.faults) error(`${name(g)} current-source-access ${fault}`);
+        if (!current.faults.length) info(`${name(g)} 真实台面/南北坡原生往返、4m净空及12m外通达通过；不覆盖门至殿路线`);
+      } catch (cause) { error(`${name(g)} current-source-access ${cause.message}`); }
+      continue;
+    }
     if (L.pointBlocked(W, g.x, g.z, g.platformY)) {
       error(`${name(g)} 门洞中心被碰撞体占据：${blockersIn(g.x - 0.5, g.z - 0.5, g.x + 0.5, g.z + 0.5, g.item).join('；')}`);
       continue;
@@ -345,10 +421,18 @@ async function lintGeometry(zoneFiles) {
         (clear < GATE_CLEAR_ERR ? error : warn)(`${where} 出门净空 ${clear.toFixed(1)} m（< ${clear < GATE_CLEAR_ERR ? GATE_CLEAR_ERR + ' m，被封死' : GATE_SCAN + ' m'}），挡路：${who.join('；') || '（台基/地形）'}`);
         if (clear < GATE_CLEAR_ERR) continue;
       }
+      if (g.item.southGateProfile === 'wuying' && s === 1) {
+        // The raised causeway covers the old zero-ground north BFS seed.
+        // Retain centre/clearance scans above and the unchanged south BFS.
+        const current = await wuyingAccess();
+        for (const fault of current.faults) error(`${where} current-side-access ${fault}`);
+        if (!current.faults.length) info(`${where} 实际侧门连续往返及原12m外通达通过；旧地面起点阻挡负例保留`);
+        continue;
+      }
       // 出门 0.7 m 处起 BFS，不许退回门内（沿出门方向的投影 < 门体半进深的格子禁止）
       const st = [g.x + dx * (g.half + 0.7), g.z + dz * (g.half + 0.7)];
       const forbid = (x, z) => (x - g.x) * dx + (z - g.z) * dz < g.half;
-      const r = L.reachFrom(W, st, [g.x, g.z], GATE_POCKET_R + g.half, forbid);
+      const r = L.reachFrom(W, st, [g.x, g.z], GATE_POCKET_R + g.half, forbid, 0.5, {gate:name(g),side:sideName(g.dir,s),direction:s});
       if (r.blockedStart) error(`${where} 出门 0.7 m 处即被挡（站不下玩家）`);
       else if (r.maxDist < GATE_POCKET_R + g.half) error(`${where} 门外是封闭死角：${GATE_POCKET_R} m 内走不出去（最远 ${r.maxDist} m，可达 ${r.cells} 格）`);
     }
@@ -394,11 +478,61 @@ async function lintGeometry(zoneFiles) {
     const faces = [[-1, '前门']];
     if (g.backDoor) faces.push([1, '后门']);
     for (const [side, label] of faces) {
+      if (h.item.southCourtProfile === 'wuying-front' && side === -1) {
+        // Only the covered front approach migrates; the generic rear-door
+        // probe and every other hall remain unchanged.
+        const current = await wuyingAccess();
+        for (const fault of current.faults) error(`${h.zone}: hall「${h.item.name}」current-side-access ${fault}`);
+        if (!current.faults.length) info(`${h.zone}: hall「${h.item.name}」两侧真实阶道连续往返通过（10/30/60Hz）；旧地面入口负例保留`);
+        continue;
+      }
       const z0 = side * (g.PD / 2 + g.run);            // 台阶外沿（局部 z）
       const z1 = side * (g.PD / 2 + g.run + HALL_FRONT);
       const c0 = g.toW(g.doorX - doorHalf, z0), c1 = g.toW(g.doorX + doorHalf, z1);
       const who = blockersIn(c0[0], c0[1], c1[0], c1[1], h.item);
       const where = `${h.zone}: hall「${h.item.name ?? '?'}」(${h.item.x}, ${h.item.z}) ${label}`;
+      if (h.zone === 'outer-west' && h.item === W.zones.find(z => z.json.id === 'outer-west')?.json.items[47] && h.item.structure === 'shoukang-front-hall' && side === -1) {
+        // This exact front approach needs the real native motion contract.
+        // Keep original gate scans, rear and other halls; preserve legacy
+        // five-argument observations and source-column negatives in receipt.
+        const current = await shoukangAccess();
+        for (const fault of current.faults) error(`${where} current-native-front-access ${fault}`);
+        if (!current.faults.length) info(`${where} 原控制器中路及两侧阶道连续入殿往返通过（10/30/60Hz）；旧218.9对照保留`);
+        if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
+      const mainIndex=W.zones.find(z=>z.json.id===h.zone)?.json.items.indexOf(h.item);
+      if(side===-1&&((h.zone==='east-six'&&mainIndex===9&&h.item.name==='承乾宫')||(h.zone==='west-six'&&mainIndex===23&&h.item.name==='储秀宫'))){
+        const current=await mainHallAccess(h.zone);
+        for(const fault of current.faults)error(`${where} current-native-front-access ${fault}`);
+        if(!current.faults.length)info(`${where} 原控制器与实际Environment支撑上下文连续入殿往返通过（10/30/60Hz），逐帧地下拒绝；旧五参数结果保留`);
+        if(who.length)warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
+      const rearIndex = W.zones.find(z => z.json.id === 'east-six')?.json.items.indexOf(h.item);
+      if (h.zone === 'east-six' && [56,57].includes(rearIndex) && h.item.structure === 'chengqian-rear-wing' && side === -1) {
+        // Only these two original FRONT entries use the actual native caller.
+        // Keep every other hall, rear probe, gate, BFS and all surrounding owners.
+        const current = await chengqianRearAccess();
+        const room = current.rooms.find(r => r.index === rearIndex);
+        if (!room) throw Error('Missing canonical Chengqian rear access result');
+        for (const fault of room.faults) error(`${where} current-native-front-access ${fault}`);
+        if (!room.faults.length) info(`${where} 原控制器真实短阶连续入门往返通过（10/30/60Hz）；旧五参数走法原结果另列`);
+        if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
+      const chuxiuRearIndex = W.zones.find(z => z.json.id === 'west-six')?.json.items.indexOf(h.item);
+      if (h.zone === 'west-six' && [56,57].includes(chuxiuRearIndex) && h.item.structure === 'chuxiu-rear-wing' && side === -1) {
+        // Only these two original FRONT entries use the actual native caller.
+        // Keep every other hall, rear probe, gate, BFS and all surrounding owners.
+        const current = await chuxiuRearAccess();
+        const room = current.rooms.find(r => r.index === chuxiuRearIndex);
+        if (!room) throw Error('Missing canonical Chuxiu rear access result');
+        for (const fault of room.faults) error(`${where} current-native-front-access ${fault}`);
+        if (!room.faults.length) info(`${where} 原控制器真实短阶连续入门往返通过（10/30/60Hz）；旧五参数走法原结果另列`);
+        if (who.length) warn(`${where} 原门前范围仍有其他构件：${who.join('；')}；实际控制器结果另列，不隐去周边占用`);
+        continue;
+      }
       // 门洞中线 + 两侧车道（±(门洞半宽 − 玩家半径 − 0.05)）从门前 2 m 实走进殿内 1 m
       // 判定：中线走不进 = 错误；中线可走但 2 m 内有其他构件（如工字殿前后殿台明相接）= 警告
       const lane = Math.max(0, doorHalf - 0.55);
@@ -416,6 +550,7 @@ async function lintGeometry(zoneFiles) {
     }
   }
   console.log(`几何检查完成：门 ${gateChecked}/${W.gates.length}（×2 侧）、enter 殿 ${hallChecked}`);
+  }catch(error){primary=error;}finally{W.dispose(primary);}
 }
 
 // Importable only for fail-closed tests; normal CLI behavior stays unchanged.

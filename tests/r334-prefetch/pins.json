@@ -1,0 +1,63 @@
+{
+  "frozen": true,
+  "parent": "6ada43190eb8ef94a856a0636ef55ad098a7b57e",
+  "parentTree": "5804f07e7ad112ff9043ad5824cfea85e97b74e1",
+  "changes": [
+    [
+      "A",
+      ".github/workflows/r334-teleport-prefetch.yml"
+    ],
+    [
+      "M",
+      "src/scene/zones/ZoneManager.js"
+    ],
+    [
+      "A",
+      "tests/r334-prefetch/pins.json"
+    ],
+    [
+      "A",
+      "tests/r334-prefetch/prefetch.test.mjs"
+    ],
+    [
+      "A",
+      "tests/r334-prefetch/run.mjs"
+    ]
+  ],
+  "sourcePins": {
+    ".github/workflows/r334-teleport-prefetch.yml": "a17404ac392a796ad3b2a8936bb9d6c7425a60bbe5f95eab39c54f20011c776c",
+    "src/scene/zones/ZoneManager.js": "9bd6fdfac66180ac4829d9869faae9aa42183313fdd62f184f968a7e7ccfd463",
+    "tests/r334-prefetch/prefetch.test.mjs": "d427ac66bafbcd3c074fd3b8b0abafe0852dc644ab3d6c914d8d05be3a12a7f5",
+    "tests/r334-prefetch/run.mjs": "d7c7a583590e16ec854538cadd089e0501b93011b7a1a8413e10d9037f068294"
+  },
+  "retainedPins": {
+    ".github/scripts/r177_build_bound.py": "e33618941b55f134b6e455cae016033e08412d7849e1d1b26a414f33ec88e8a3",
+    "package.json": "9a107f6414392f7728159875bb75c4341fd0c7fc06ca1fba40b968930a49c9e4",
+    "package-lock.json": "e89d1c2e5f46fcd8571433e059f23b26463d9c0f317d78c09636190ab2d21b5c",
+    "src/utils/MergeUtils.js": "42a33c254d9b1641721ef960cd63a91d7dbc78e716f000187bfad51b9bb4adf1",
+    "tests/r275-buddha-original/triad-presentation.test.mjs": "2b99635163d57907ec3d21fad97a437574a533be375c81e2689ac59251d0b880",
+    "tests/r262-cold-release.test.mjs": "0ce3066a1971e7bf6f8ad721d9dca6121bf2d19ee1913a8ed2783db75b699efa",
+    "tests/r262-material-listener.test.mjs": "65d612d99e34f6133502c96353ac0ae8ad64ccd694533bfa7d344667affcfd3c",
+    "tests/r169-dafotang-photo-triptych/cache-lifecycle.test.mjs": "28a075efc30b25bfddf83dbac0cd25b2a29e934237455eb83d1920c89dc8a3b1",
+    "src/scene/zones/ZoneBase.js": "d5cccb29c5920d3eb1eafed37603101415ca5cd4936f3ddee50a3393ce5ce66b",
+    "src/scene/palace/special/DafotangOriginalTriadPresentation.js": "6a146f7a7bc23588a72442b968c3eea6629eb1a9805ed518493679412b870224",
+    "tests/r330-disposal/run.mjs": "d37bc4106f117061d229330fd4714a450d0186e7280ed78c622d3710d881c749",
+    "tests/r330-disposal/disposal.test.mjs": "c33d42ecf3928a375a9812b964cfd4be41030cb98dae65dfe62bd7759d6ae483",
+    "tests/r332-unload/run.mjs": "3cc0abc576f4127706cebe554064c860c0efd78c137267577d00295498da2a45",
+    "tests/r332-unload/unload.test.mjs": "f2402492d6c18cb5d69d9c3bd9d629b2978a062d371287219428a1976ccccefc"
+  },
+  "limits": "Retained R177 ordinary build 4GiB/720s. No browser run. User browser ceiling remains 6GiB.",
+  "knownUnresolved": [
+    "R327 cold-return CDP cancellation unproven",
+    "R328 and R329 setup failures preserved",
+    "Legacy xianan baseline pin excludes R324 MergeUtils;17 tests failed before exercise",
+    "zone-lint Qiandong common gate actual slab source mismatch",
+    "anchor-check Shenwumen11m Yinghuamen6.5m over tolerance; Qiandong kind mismatch",
+    "New paintings default OFF; user visual acceptance pending",
+    "Does not certify cleanup inside an owner whose dispose throws or global manager.dispose completion",
+    "R331 protected negative navigation produced late chrome error-page commit; zero loader generations",
+    "Failed inner collision/owner cleanup not certified; cache.put internals and global manager.dispose loop remain out of scope",
+    "R333 fetch-route second generation reports unexpected CDP cancellation despite complete native EOF; native arm failed document negative control, so no paired conclusion",
+    "R334 fixes normal stale prefetch only; no measured hall memory improvement, no cold-return or visual acceptance"
+  ]
+}

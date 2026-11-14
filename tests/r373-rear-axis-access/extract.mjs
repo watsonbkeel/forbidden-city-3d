@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {fixture} from './fixture.mjs';import {gateSource} from './source-schema.mjs';const rows={};for(const index of[16,18]){const W=fixture(index,{capture:(...a)=>rows[index]=gateSource(...a).descriptor});W.dispose();}fs.writeFileSync(new URL('source-contract.json',import.meta.url),JSON.stringify(rows,null,2)+'\n');

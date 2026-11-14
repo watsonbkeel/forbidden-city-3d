@@ -268,7 +268,21 @@ export function qianqingGroundedFloorHandoff(cm,from,to,ground,motion,radius=.5)
 }
 export function furnitureContact(cm,x,z,maxTop,radius=.5,height=PLAYER.HEIGHT){
   const bounds=new THREE.Box3(new THREE.Vector3(x-radius,-Infinity,z-radius),new THREE.Vector3(x+radius,Infinity,z+radius));
-  const owners=furnitureLocalColliders(cm,bounds).filter(c=>bounds.intersectsBox(c.box));
+  // This static query can only choose support <= maxTop. Its possible standing
+  // bodies therefore end <= maxTop+height. Keep the lower halfspace unbounded
+  // (fall/lower-floor support), equality and every uncertain bound. Motion,
+  // lift and vertical sweeps below still query their full original envelopes.
+  const ceiling=maxTop+height;
+  const finiteEnvelope=[x,z,radius,maxTop,height,ceiling].every(Number.isFinite)&&radius>0&&height>0;
+  const owners=furnitureLocalColliders(cm,bounds).filter(c=>{
+    if(!bounds.intersectsBox(c.box))return false;
+    const b=c.box;
+    const valid=finiteEnvelope&&['x','y','z'].every(k=>Number.isFinite(b.min[k])&&Number.isFinite(b.max[k])&&b.min[k]<b.max[k]);
+    // Registration validates actual triangle ownership. Retain any later
+    // mismatch rather than trusting a smaller/stale enclosing box.
+    const matchingTriangle=!c.triangleSupport||c.triangleSupport.box?.equals(b)===true;
+    return !(valid&&matchingTriangle&&b.min.y>ceiling);
+  });
   const contact=furnitureStaticContact(owners,x,z,maxTop,radius,height);
   const ground=furnitureGroundWitness(cm,x,z,radius);
   let surface=contact.surface??(ground&&maxTop>=ground.height?ground:null);
