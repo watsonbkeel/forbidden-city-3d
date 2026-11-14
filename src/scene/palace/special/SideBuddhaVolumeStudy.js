@@ -4,6 +4,16 @@ import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
 import {createEightTierLotus} from './EightTierLotus.js';
 import {preparePetalUV} from './OriginalLotusPetalUV.js';
 
+// Generated-art bowl outline, visually fitted +/- 3..5 px. Not historic proof.
+export const SIDE_BOWL_OUTLINE=[[506,579],[542,576],[577,580],[588,593],[596,612],[589,632],[566,645],[526,647],[497,637],[487,615],[494,594]];
+export function sideBowlIntersects(triangle){
+ if(!Array.isArray(triangle)||triangle.length!==3||triangle.some(p=>!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)))throw Error('Finite source triangle required');
+ let poly=triangle.map(p=>p.slice());
+ for(let j=0;j<SIDE_BOWL_OUTLINE.length;j++){const a=SIDE_BOWL_OUTLINE[j],b=SIDE_BOWL_OUTLINE[(j+1)%SIDE_BOWL_OUTLINE.length],cross=p=>(b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]),next=[];
+  for(let k=0;k<poly.length;k++){const p=poly[k],q=poly[(k+1)%poly.length],dp=cross(p),dq=cross(q);if(dp>=0)next.push(p);if((dp>=0)!==(dq>=0)){const t=dp/(dp-dq);next.push(p.map((v,i)=>v+t*(q[i]-v)));}}poly=next;if(!poly.length)return false;
+ }
+ return poly.length>=3&&Math.abs(poly.reduce((sum,p,k)=>{const q=poly[(k+1)%poly.length];return sum+p[0]*q[1]-p[1]*q[0];},0))>1e-8;
+}
 // Independent front-art fitting. Neither depth nor historical gesture is recovered.
 export function sideRegistration(subject,input){
  if(!['amitabha','bhaisajyaguru'].includes(subject)||input?.columns!==129||input?.rows!==193||input?.imageWidth!==1024||input?.imageHeight!==1536||!(input.alpha instanceof Uint8Array)||input.alpha.length!==129*193)throw Error('Exact allowlisted side source required');
@@ -44,6 +54,8 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
  for(const sign of[-1,1])part(sign<0?'image-left-ear':'image-right-ear',sign<0?386:638,isA?221:208,-.005,18,71,.033,isA?[366,662,130,298]:[366,662,121,284]);
  part('nose',512,isA?190:174,.165,20,29,.045,isA?[480,545,153,224]:[480,545,138,210]);
  if(isA)for(const p of parts)if(p.name==='lap'||p.name.includes('knee'))p.center[1]-=.03;
+ for(const p of parts)if(p.name==='abdomen'){p.center[1]-=.015;p.radii[1]+=.025;p.sourceRegion[3]=isA?790:746;}
+ for(const sign of[-1,1])part(sign<0?'image-left-neck-robe-bridge':'image-right-neck-robe-bridge',sign<0?406:618,isA?314:299,-.015,27,34,.075,sign<0?[375,450,isA?265:253,isA?365:348]:[574,650,isA?265:253,isA?365:348]);
  const release=()=>{const errors=[];for(const x of[...geometries,...materials])try{x.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side study release');};
  try{
   materials.push(new T.MeshStandardMaterial({name:'own-generated-side-art',map:options.texture??null,color:0xffffff,roughness:.76,metalness:.16}));
@@ -68,16 +80,16 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
   const applyArt=(g,choose)=>{const pos=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv,idx=g.index;for(let i=0;i<pos.count;i++)uv.setXY(i,...sourceUV(pos.getX(i),pos.getY(i)));g.clearGroups();let start=0,previous=-1,art=0;
    for(let j=0;j<idx.count;j+=3){const ids=[idx.getX(j),idx.getX(j+1),idx.getX(j+2)],p=choose(...[0,1,2].map(k=>ids.reduce((s,i)=>s+pos.array[i*3+k],0)/3)),roi=p.sourceRegion;
     const pixels=ids.map(i=>[uv.getX(i)*1024,(1-uv.getY(i))*1536]);let valid=ids.reduce((s,i)=>s+n.getZ(i),0)/3>.25&&pixels.every(([x,y])=>x>=roi[0]&&x<=roi[1]&&y>=roi[2]&&y<=roi[3]);
-    if(!isA&&p.name!=='bowl'&&Math.min(...pixels.map(p=>p[0]))<=599&&Math.max(...pixels.map(p=>p[0]))>=485&&Math.min(...pixels.map(p=>p[1]))<=651&&Math.max(...pixels.map(p=>p[1]))>=573)valid=false;
+    if(!isA&&p.name!=='bowl'&&sideBowlIntersects(pixels))valid=false;
     if(valid){const xs=pixels.map(p=>p[0]/8),ys=pixels.map(p=>p[1]/8);for(let y=Math.max(0,Math.floor(Math.min(...ys)-.5));y<=Math.min(192,Math.ceil(Math.max(...ys)+.5));y++)for(let x=Math.max(0,Math.floor(Math.min(...xs)-.5));x<=Math.min(128,Math.ceil(Math.max(...xs)+.5));x++)if(input.alpha[y*129+x]<128)valid=false;}
     const mat=valid?0:1;if(valid)art++;if(mat!==previous){if(previous>=0)g.addGroup(start,j-start,previous);start=j;previous=mat;}
    }g.addGroup(start,idx.count-start,previous);return art;};
   const texturedBodyFaces=applyArt(bodyGeometry,nearest),render=[bodyGeometry];let bowlGeometry=null;
-  if(!isA){const profile=[[0,0],[.035,0],[.070,.025],[.078,.065],[.074,.079],[.065,.079],[.062,.064],[.052,.030],[.025,.018],[0,.018]].map(p=>new T.Vector2(...p));const raw=new T.LatheGeometry(profile,48);try{raw.deleteAttribute('normal');raw.deleteAttribute('uv');bowlGeometry=mergeVertices(raw,1e-7);}finally{raw.dispose();}geometries.push(bowlGeometry);const clean=[];for(let j=0;j<bowlGeometry.index.count;j+=3){const ids=[0,1,2].map(k=>bowlGeometry.index.getX(j+k));if(new Set(ids).size===3)clean.push(...ids);}bowlGeometry.setIndex(clean);bowlGeometry.computeVertexNormals();bowlGeometry.setAttribute('uv',new T.Float32BufferAttribute(new Float32Array(bowlGeometry.attributes.position.count*2),2));const[bx,by]=xy(543,648);bowlGeometry.translate(bx,by,.35);applyArt(bowlGeometry,()=>({name:'bowl',sourceRegion:[485,599,573,651]}));render.push(bowlGeometry);}
+  if(!isA){const sourceProfile=[[0,648],[.035,648],[.065,637],[.078,615],[.068,594],[.054,582],[.054,576],[.046,576],[.046,584],[.058,598],[.067,615],[.050,632],[.025,638],[0,638]];const profile=sourceProfile.map(([radius,py])=>new T.Vector2(radius,(648-py)/1536*2.25*fitY));const raw=new T.LatheGeometry(profile,48);try{raw.deleteAttribute('normal');raw.deleteAttribute('uv');bowlGeometry=mergeVertices(raw,1e-7);}finally{raw.dispose();}geometries.push(bowlGeometry);const clean=[];for(let j=0;j<bowlGeometry.index.count;j+=3){const ids=[0,1,2].map(k=>bowlGeometry.index.getX(j+k));if(new Set(ids).size===3)clean.push(...ids);}bowlGeometry.setIndex(clean);bowlGeometry.computeVertexNormals();bowlGeometry.setAttribute('uv',new T.Float32BufferAttribute(new Float32Array(bowlGeometry.attributes.position.count*2),2));const[bx,by]=xy(543,648);bowlGeometry.translate(bx,by,.35);applyArt(bowlGeometry,()=>({name:'bowl',sourceRegion:[485,599,573,651]}));render.push(bowlGeometry);}
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,subject));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;render.push(lotus);
   merged=mergeGeometries(render,false);if(!merged)throw Error('Side volume merge failed');geometries.push(merged);let offset=0;for(const g of render){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   const buckets=materials.map(()=>[]);for(const group of merged.groups)for(let j=group.start;j<group.start+group.count;j++)buckets[group.materialIndex].push(merged.index.getX(j));merged.setIndex(buckets.flat());merged.clearGroups();let at=0;buckets.forEach((a,i)=>{if(a.length)merged.addGroup(at,a.length,i);at+=a.length;});merged.computeBoundingBox();merged.computeBoundingSphere();
-  const mesh=new T.Mesh(merged,materials);mesh.name=subject+'-volume-study-not-product';const meta={subjectId:subject,defaultProductReplacement:false,historicalShapeVerified:false,sourceDepthRecovered:false,continuousBodySurface:true,hasBowl:!isA,lotusPetalTiers:8,registration,parts,shading,texturedBodyFaces,bodyField:bodyGeometry.userData.bodyField,poseBasis:'OWN_GENERATED_FRONT_ART_NOT_HISTORICAL_PROOF',sideBack:'ENGINEERING_FIT',lotusReused:true};mesh.userData.originalArtResearch=meta;
+  const mesh=new T.Mesh(merged,materials);mesh.name=subject+'-volume-study-not-product';const meta={subjectId:subject,defaultProductReplacement:false,historicalShapeVerified:false,sourceDepthRecovered:false,continuousBodySurface:true,hasBowl:!isA,lotusPetalTiers:8,registration,continuityFit:{abdomenCentreDownMetres:.015,abdomenVerticalRadiusAddedMetres:.025,neckRobeBridges:true,bowlSourceOutline:SIDE_BOWL_OUTLINE,bowlHeightSourcePixels:[576,648],notHistorical:true},parts,shading,texturedBodyFaces,bodyField:bodyGeometry.userData.bodyField,poseBasis:'OWN_GENERATED_FRONT_ART_NOT_HISTORICAL_PROOF',sideBack:'ENGINEERING_FIT',lotusReused:true};mesh.userData.originalArtResearch=meta;
   return{mesh,meta,bodyGeometry,bowlGeometry,dispose(){if(disposed)return;disposed=true;const errors=[];try{release();}catch(e){errors.push(e);}if(options.ownsTexture===true)try{options.texture?.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side volume disposal');}};
  }catch(error){try{release();}catch(e){throw new AggregateError([error,e],'Side volume construction and release');}throw error;}
 }
