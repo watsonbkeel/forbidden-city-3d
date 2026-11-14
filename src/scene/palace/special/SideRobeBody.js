@@ -1,12 +1,14 @@
 import * as T from 'three';
 import {createRobeProfileField} from './SideRobeField.js';
+import {createSideHemWarp} from './SideHemWarp.js';
 // Fixed-budget continuous engineering surface; no recovered or surveyed depth.
-export function createSideRobeBody({profile,retainedParts:parts,step=.025,blend=.035}){
- const robe=createRobeProfileField(profile);
+export function createSideRobeBody({profile,retainedParts:parts,step=.025,blend=.035,hemWarp=null}){
+ const robe=createRobeProfileField(profile),hem=hemWarp===null?null:createSideHemWarp(hemWarp);
  if(!Array.isArray(parts)||parts.length>24||!Number.isFinite(step)||step<.02||step>.08||!Number.isFinite(blend)||blend<0||blend>.06)throw Error('Bounded body field required');
  const fields=parts.map(p=>{if(![...p.center,...p.radii].every(Number.isFinite)||p.radii.some(r=>r<=0))throw Error('Invalid ellipsoid');return{...p,q:new T.Quaternion(...(p.orientation??[0,0,0,1])).invert(),scale:Math.min(...p.radii)};});
- const v=new T.Vector3();const field=(x,y,z)=>{let d=robe.distance(x,y,z);for(const p of fields){v.set(x-p.center[0],y-p.center[1],z-p.center[2]).applyQuaternion(p.q);const e=(Math.hypot(v.x/p.radii[0],v.y/p.radii[1],v.z/p.radii[2])-1)*p.scale;if(!Number.isFinite(d)||blend===0)d=Math.min(d,e);else{const h=T.MathUtils.clamp(.5+.5*(e-d)/blend,0,1);d=T.MathUtils.lerp(e,d,h)-blend*h*(1-h);}}return d;};
+ const v=new T.Vector3();const field=(x,y,z)=>{let d=robe.distance(x,y,hem?hem.mapZ(x,y,z):z);for(const p of fields){v.set(x-p.center[0],y-p.center[1],z-p.center[2]).applyQuaternion(p.q);const e=(Math.hypot(v.x/p.radii[0],v.y/p.radii[1],v.z/p.radii[2])-1)*p.scale;if(!Number.isFinite(d)||blend===0)d=Math.min(d,e);else{const h=T.MathUtils.clamp(.5+.5*(e-d)/blend,0,1);d=T.MathUtils.lerp(e,d,h)-blend*h*(1-h);}}return d;};
  const box=new T.Box3(new T.Vector3(...robe.bounds.min).addScalar(-blend-.04),new T.Vector3(...robe.bounds.max).addScalar(blend+.04));for(const p of fields){const radius=Math.max(...p.radii)+blend+.04;box.expandByPoint(new T.Vector3(...p.center).addScalar(radius));box.expandByPoint(new T.Vector3(...p.center).addScalar(-radius));}
+ if(hem)box.max.z+=hem.frontExpansion;
  const lo=box.min.toArray().map(x=>Math.floor(x/step)*step),hi=box.max.toArray().map(x=>Math.ceil(x/step)*step),n=hi.map((x,i)=>Math.round((x-lo[i])/step)+1);if(n[0]*n[1]*n[2]>650000)throw Error('Body field budget exceeded');
  const at=(x,y,z)=>(z*n[1]+y)*n[0]+x,xyz=i=>{const x=i%n[0],y=Math.floor(i/n[0])%n[1],z=Math.floor(i/(n[0]*n[1]));return[lo[0]+x*step,lo[1]+y*step,lo[2]+z*step];};const values=new Float32Array(n[0]*n[1]*n[2]);for(let i=0;i<values.length;i++){const d=field(...xyz(i));values[i]=Math.abs(d)<1e-7?0:d;}
  // Shared zero-node identity plus sub-micron field snapping avoids duplicate
@@ -28,5 +30,5 @@ export function createSideRobeBody({profile,retainedParts:parts,step=.025,blend=
   // triangle area averages. Geometry/topology are unchanged by this step.
   const normals=g.attributes.normal,h=.001;
   for(let i=0;i<points.length/3;i++){const x=points[i*3],y=points[i*3+1],z=points[i*3+2],nx=field(x+h,y,z)-field(x-h,y,z),ny=field(x,y+h,z)-field(x,y-h,z),nz=field(x,y,z+h)-field(x,y,z-h),length=Math.hypot(nx,ny,nz);if(length>1e-12)normals.setXYZ(i,nx/length,ny/length,nz/length);}
-  g.computeBoundingBox();g.computeBoundingSphere();g.userData.bodyField={step,blend,normalMethod:'SAME_FIELD_CENTRAL_GRADIENT',gradientStepMetres:.001,zeroSnapMetres:1e-7,distanceApproximation:'MIN_RADIUS_SCALED_NORMALIZED_ELLIPSOID',domainBoundaryOutside:true,samples:values.length,profile:robe.profile,kind:'CONTINUOUS_PROFILE_AND_RETAINED_PARTS_ENGINEERING_FIT'};return g;}catch(e){try{g.dispose();}catch{}throw e;}
+  g.computeBoundingBox();g.computeBoundingSphere();g.userData.bodyField={step,blend,normalMethod:'SAME_FIELD_CENTRAL_GRADIENT',gradientStepMetres:.001,zeroSnapMetres:1e-7,distanceApproximation:'MIN_RADIUS_SCALED_NORMALIZED_ELLIPSOID',domainBoundaryOutside:true,samples:values.length,profile:robe.profile,hemWarp:hem?.controls??null,hemMinJacobian:hem?.minJacobian??1,kind:'CONTINUOUS_PROFILE_AND_RETAINED_PARTS_ENGINEERING_FIT'};return g;}catch(e){try{g.dispose();}catch{}throw e;}
 }

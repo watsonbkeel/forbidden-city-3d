@@ -1,0 +1,3 @@
+# Bounded lateral hem study, default OFF
+
+Parent8d24bc8540e88e064bc0a3e0c05d67a76dc74145. One x-related front-hem experiment; current small front/back profile unchanged. Do not claim mesh outside controls byte-identical until measured. Zero-amplitude mesh exact regression, fixed-camera art/clay and flat controls. Historical fullQA/native cancellation/mobile/GPU restrictions retained. No deployment or main change. Recovered local npm test script missing; focused tests only. Strong profile support failure retained. If normal-scale art fails, stop this construction instead of tweaking amplitudes.

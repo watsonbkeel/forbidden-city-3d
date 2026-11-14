@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+async function load(){const m=await import('../../src/scene/palace/special/SideHemWarp.js').catch(()=>null);assert.equal(typeof m?.createSideHemWarp,'function','bounded lateral hem warp missing');return m.createSideHemWarp;}
+test('fixed hem candidate retracts centre and blends knee roots without changing support/back',async()=>{const f=(await load())();assert.ok(f.mapZ(0,1,.2)>.2);assert.ok(f.mapZ(.23,1,.2)<.2);for(const y of[.7,.80,.84,1.16,1.4])for(const x of[-.5,-.23,0,.23,.5])for(const z of[-.3,0,.3])assert.equal(f.mapZ(x,y,z),z);for(const x of[-.5,-.23,0,.23,.5])assert.equal(f.mapZ(x,1,-.03),-.03);assert.ok(f.minJacobian>.5);});
+test('zero warp exactly preserves all tested coordinates',async()=>{const f=(await load())({centre:0,side:0});for(let i=0;i<100;i++){const x=-.6+i*.012,y=.7+i*.006,z=-.3+i*.006;assert.equal(f.mapZ(x,y,z),z);}});
+test('reject unsafe, reversed, nonfinite and unknown controls',async()=>{const create=await load();for(const p of[{centre:.026},{side:.016},{centre:-.025},{side:-.015},{centre:NaN},{other:1}])assert.throws(()=>create(p));});

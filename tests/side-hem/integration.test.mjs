@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {createSideRobeBody}from '../../src/scene/palace/special/SideRobeBody.js';
+const profile=[[.835,.35,.24,-.16],[.96,.40,.28,-.23],[1.10,.31,.27,-.23],[1.28,.27,.23,-.20],[1.50,.25,.20,-.21],[1.68,.21,.15,-.19],[1.80,.10,.10,-.12]];
+test('active hem map reaches mesher and zero map reproduces old geometry exactly',()=>{const a=createSideRobeBody({profile,retainedParts:[]}),b=createSideRobeBody({profile,retainedParts:[],hemWarp:{centre:0,side:0}}),c=createSideRobeBody({profile,retainedParts:[],hemWarp:{}});try{assert.equal(c.userData.bodyField.hemWarp?.centre,.025);assert.deepEqual(a.index.array,b.index.array);for(const k of['position','normal','uv'])assert.deepEqual(a.attributes[k].array,b.attributes[k].array);assert.notDeepEqual(a.attributes.position.array,c.attributes.position.array);}finally{a.dispose();b.dispose();c.dispose();}});
