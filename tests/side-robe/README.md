@@ -1,0 +1,5 @@
+# Side continuous robe diagnostic, default OFF
+
+Parent: side-clay-audit 21f5dafd96d17ae6a1eb19d9464d18581601afd1. Replace three disconnected-looking torso/abdomen/lap primitives with a bounded monotone height-section field, retain two knees, distinct hand poses, head/ear/neck and original lotus. Same-light four-angle art/clay pairs against exact continuity parent. No deployment/product entrypoint change. Bowl/neck/arm shape is not fixed in this bounded stage; preserve them for attribution.
+
+First profile endpoint scale discontinuity and independently found front/back interpolation crossing were RED then corrected with continuous scaling and analytic interval minimum-depth rejection. First seat test found up to2.44mm unsupported gap; lower only robe cap5mm, no change to lotus or hands. Focused tests are not whole project QA. Artwork/depth are engineering fitting, not historical reconstruction acceptance. Local recovered package has no npm test script. 6GiB/720s guard unchanged. No real GPU/mobile/full-route acceptance.

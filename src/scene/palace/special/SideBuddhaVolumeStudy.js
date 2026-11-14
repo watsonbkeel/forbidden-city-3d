@@ -1,6 +1,7 @@
 import * as T from 'three';
 import {mergeGeometries,mergeVertices} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import {createSmoothBuddhaBody} from './SmoothBuddhaBody.js';
+import {createSideRobeBody} from './SideRobeBody.js';
+import {createRobeProfileField} from './SideRobeField.js';
 import {createEightTierLotus} from './EightTierLotus.js';
 import {preparePetalUV} from './OriginalLotusPetalUV.js';
 
@@ -56,12 +57,15 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
  if(isA)for(const p of parts)if(p.name==='lap'||p.name.includes('knee'))p.center[1]-=.03;
  for(const p of parts)if(p.name==='abdomen'){p.center[1]-=.015;p.radii[1]+=.025;p.sourceRegion[3]=isA?790:746;}
  for(const sign of[-1,1])part(sign<0?'image-left-neck-robe-bridge':'image-right-neck-robe-bridge',sign<0?406:618,isA?314:299,-.015,27,34,.075,sign<0?[375,450,isA?265:253,isA?365:348]:[574,650,isA?265:253,isA?365:348]);
+ const robeProfile=[[.835,.35,.30,-.18],[.96,.40,.31,-.20],[1.10,.31,.27,-.22],[1.28,.27,.23,-.23],[1.50,.25,.20,-.23],[1.68,.21,.15,-.19],[1.80,.10,.10,-.12]];
+ for(let i=parts.length-1;i>=0;i--)if(['torso','abdomen','lap'].includes(parts[i].name))parts.splice(i,1);
+ const robeField=createRobeProfileField(robeProfile),robeSource={name:'continuous-robe',sourceRegion:isA?[111,914,319,928]:[115,901,297,864]};
  const release=()=>{const errors=[];for(const x of[...geometries,...materials])try{x.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side study release');};
  try{
   materials.push(new T.MeshStandardMaterial({name:'own-generated-side-art',map:options.texture??null,color:0xffffff,roughness:.76,metalness:.16}));
   materials.push(new T.MeshStandardMaterial({name:'unverified-side-back-gold',color:0xad8146,roughness:.76,metalness:.16}));
   for(const[name,color,roughness,metalness]of[['core',0x986327,.76,.18],['petals',0xffffff,.65,.3],['base',0x9f6c35,.78,.18]])materials.push(new T.MeshStandardMaterial({name:'retained-eight-tier-'+name,color,map:name==='petals'?(options.texture??null):null,roughness,metalness,...(name==='petals'?{alphaTest:.5}:{})}));
-  bodyGeometry=createSmoothBuddhaBody(parts);geometries.push(bodyGeometry);
+  bodyGeometry=createSideRobeBody({profile:robeProfile,retainedParts:parts});geometries.push(bodyGeometry);
   // Side-only discrete-surface shading. This does not repair or certify the
   // sampled implicit surface; large corrections are recorded and flat controls
   // are mandatory in the diagnostic. Original shared body generator is unchanged.
@@ -76,7 +80,7 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
   const shading={method:'AREA_WEIGHTED_WITH_INCIDENT_FACE_HALFSPACE_PROJECTION',projectedVertices,maxCorrectionRadians,discreteGeometryStillUnverified:true,flatShadingComparisonRequired:true};
 
   const fixed=parts.map(p=>({...p,q:new T.Quaternion(...p.orientation).invert()})),local=new T.Vector3();
-  const nearest=(x,y,z)=>{let best=Infinity,chosen;for(const p of fixed){local.set(x-p.center[0],y-p.center[1],z-p.center[2]).applyQuaternion(p.q);const d=(Math.hypot(local.x/p.radii[0],local.y/p.radii[1],local.z/p.radii[2])-1)*Math.min(...p.radii);if(d<best){best=d;chosen=p;}}return chosen;};
+  const nearest=(x,y,z)=>{let best=robeField.distance(x,y,z),chosen=robeSource;for(const p of fixed){local.set(x-p.center[0],y-p.center[1],z-p.center[2]).applyQuaternion(p.q);const d=(Math.hypot(local.x/p.radii[0],local.y/p.radii[1],local.z/p.radii[2])-1)*Math.min(...p.radii);if(d<best){best=d;chosen=p;}}return chosen;};
   const applyArt=(g,choose)=>{const pos=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv,idx=g.index;for(let i=0;i<pos.count;i++)uv.setXY(i,...sourceUV(pos.getX(i),pos.getY(i)));g.clearGroups();let start=0,previous=-1,art=0;
    for(let j=0;j<idx.count;j+=3){const ids=[idx.getX(j),idx.getX(j+1),idx.getX(j+2)],p=choose(...[0,1,2].map(k=>ids.reduce((s,i)=>s+pos.array[i*3+k],0)/3)),roi=p.sourceRegion;
     const pixels=ids.map(i=>[uv.getX(i)*1024,(1-uv.getY(i))*1536]);let valid=ids.reduce((s,i)=>s+n.getZ(i),0)/3>.25&&pixels.every(([x,y])=>x>=roi[0]&&x<=roi[1]&&y>=roi[2]&&y<=roi[3]);
@@ -89,7 +93,7 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
   const lotus=createEightTierLotus();geometries.push(lotus);lotus.scale(1,.81/lotus.boundingBox.max.y,1);lotus.attributes.uv.array.set(preparePetalUV(lotus,subject));lotus.deleteAttribute('lotusTier');for(const group of lotus.groups)group.materialIndex+=2;render.push(lotus);
   merged=mergeGeometries(render,false);if(!merged)throw Error('Side volume merge failed');geometries.push(merged);let offset=0;for(const g of render){for(const group of g.groups)merged.addGroup(offset+group.start,group.count,group.materialIndex);offset+=g.index.count;}
   const buckets=materials.map(()=>[]);for(const group of merged.groups)for(let j=group.start;j<group.start+group.count;j++)buckets[group.materialIndex].push(merged.index.getX(j));merged.setIndex(buckets.flat());merged.clearGroups();let at=0;buckets.forEach((a,i)=>{if(a.length)merged.addGroup(at,a.length,i);at+=a.length;});merged.computeBoundingBox();merged.computeBoundingSphere();
-  const mesh=new T.Mesh(merged,materials);mesh.name=subject+'-volume-study-not-product';const meta={subjectId:subject,defaultProductReplacement:false,historicalShapeVerified:false,sourceDepthRecovered:false,continuousBodySurface:true,hasBowl:!isA,lotusPetalTiers:8,registration,continuityFit:{abdomenCentreDownMetres:.015,abdomenVerticalRadiusAddedMetres:.025,neckRobeBridges:true,bowlSourceOutline:SIDE_BOWL_OUTLINE,bowlHeightSourcePixels:[576,648],notHistorical:true},parts,shading,texturedBodyFaces,bodyField:bodyGeometry.userData.bodyField,poseBasis:'OWN_GENERATED_FRONT_ART_NOT_HISTORICAL_PROOF',sideBack:'ENGINEERING_FIT',lotusReused:true};mesh.userData.originalArtResearch=meta;
+  const mesh=new T.Mesh(merged,materials);mesh.name=subject+'-volume-study-not-product';const meta={subjectId:subject,defaultProductReplacement:false,historicalShapeVerified:false,sourceDepthRecovered:false,continuousBodySurface:true,hasBowl:!isA,lotusPetalTiers:8,registration,continuityFit:{robeProfile,removedCoreFields:['torso','abdomen','lap'],robeCapLoweredMetres:.005,neckRobeBridges:true,bowlSourceOutline:SIDE_BOWL_OUTLINE,bowlHeightSourcePixels:[576,648],notHistorical:true},parts,shading,texturedBodyFaces,bodyField:bodyGeometry.userData.bodyField,poseBasis:'OWN_GENERATED_FRONT_ART_NOT_HISTORICAL_PROOF',sideBack:'ENGINEERING_FIT',lotusReused:true};mesh.userData.originalArtResearch=meta;
   return{mesh,meta,bodyGeometry,bowlGeometry,dispose(){if(disposed)return;disposed=true;const errors=[];try{release();}catch(e){errors.push(e);}if(options.ownsTexture===true)try{options.texture?.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side volume disposal');}};
  }catch(error){try{release();}catch(e){throw new AggregateError([error,e],'Side volume construction and release');}throw error;}
 }
