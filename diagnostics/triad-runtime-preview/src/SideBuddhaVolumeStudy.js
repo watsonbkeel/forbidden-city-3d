@@ -56,6 +56,8 @@ export function createSideBuddhaVolumeStudy(subject,input,options={}){
  if(isA)for(const p of parts)if(p.name==='lap'||p.name.includes('knee'))p.center[1]-=.03;
  for(const p of parts)if(p.name==='abdomen'){p.center[1]-=.015;p.radii[1]+=.025;p.sourceRegion[3]=isA?790:746;}
  for(const sign of[-1,1])part(sign<0?'image-left-neck-robe-bridge':'image-right-neck-robe-bridge',sign<0?406:618,isA?314:299,-.015,27,34,.075,sign<0?[375,450,isA?265:253,isA?365:348]:[574,650,isA?265:253,isA?365:348]);
+ if(!isA){const p=parts.find(p=>p.name==='image-right-upper-sleeve');p.kind='DRAPED_SLEEVE';p.stations=[[304,660,0,0,0],[352,674,.005,54,.075],[416,696,.015,64,.095],[480,720,.025,64,.095],[544,752,.04,48,.075],[592,780,.04,0,0]].map(([py,px,z,rx,rz])=>[...xy(px,py),z,rx*1.5/1024,rz]);}
+ if(!isA){part('image-right-visible-cloth-bridge',685,532.5,.08,20,22.5,.015,[601,827,300,700]);parts.at(-1).kind='CLOTH_BRIDGE';}
  const release=()=>{const errors=[];for(const x of[...geometries,...materials])try{x.dispose();}catch(e){errors.push(e);}if(errors.length)throw new AggregateError(errors,'Side study release');};
  try{
   materials.push(new T.MeshStandardMaterial({name:'own-generated-side-art',map:options.texture??null,color:0xffffff,roughness:.76,metalness:.16}));
