@@ -1,0 +1,75 @@
+name: Isolated opt-in triad preview (no deploy)
+on:
+  push:
+    branches: [dev/triad-central-combined-preview-20261115]
+permissions:
+  contents: read
+concurrency:
+  group: triad-central-combined-preview-20261115
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.repository == 'watsonbkeel/forbidden-city-3d' && github.event_name == 'push' && github.ref == 'refs/heads/dev/triad-central-combined-preview-20261115' && github.event.created == true && github.event.deleted == false && github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' && github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      npm_config_audit: 'false'
+      npm_config_fund: 'false'
+      NPM_CONFIG_USERCONFIG: /dev/null
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Hosted-only admission
+        env:
+          RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          test "$RUNNER_ENVIRONMENT" = github-hosted
+          touch "$RUNNER_TEMP/empty-global-npmrc"
+          chmod 444 "$RUNNER_TEMP/empty-global-npmrc"
+          echo "NPM_CONFIG_GLOBALCONFIG=$RUNNER_TEMP/empty-global-npmrc" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Frozen parent and permitted changes
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git rev-parse HEAD^)" = 776d80d9fe404188008d014d57b24551ebcf6a30
+          test "$(git rev-parse HEAD^:)" = 9810c06f0aa9b3ed91e5de976503d9f6c3a450ec
+          test -z "$(git status --porcelain)"
+          git diff --name-only HEAD^ HEAD | python3 -c 'import sys; p=sys.stdin.read().splitlines(); assert p and all(x.startswith("diagnostics/triad-runtime-preview/") or x==".github/workflows/triad-central-combined-preview.yml" for x in p),p'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.22.1
+      - name: Dependencies and official Chromium
+        run: |
+          npm --version
+          npm ci --ignore-scripts
+          npx --no-install playwright install --with-deps chromium
+          python3 -m pip install psutil==7.0.0
+      - name: Verify assets and local contracts
+        run: |
+          node diagnostics/triad-runtime-preview/prepare.cjs
+          python3 diagnostics/triad-runtime-preview/node_guard.py
+          python3 diagnostics/triad-runtime-preview/lifecycle_guard.py
+      - name: Actual isolated browser under resource guard
+        run: python3 diagnostics/triad-runtime-preview/run_guard.py
+      - name: Collect standalone preview and evidence
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/triad-runtime-evidence"
+          cp -a diagnostics/triad-runtime-preview "$RUNNER_TEMP/triad-runtime-evidence/preview"
+          git rev-parse HEAD > "$RUNNER_TEMP/triad-runtime-evidence/commit.txt"
+          git status --porcelain > "$RUNNER_TEMP/triad-runtime-evidence/checkout-status.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: triad-runtime-preview-${{ github.sha }}
+          path: ${{ runner.temp }}/triad-runtime-evidence
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
