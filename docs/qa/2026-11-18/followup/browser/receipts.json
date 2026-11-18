@@ -1,0 +1,63 @@
+{
+  "workflowRun": 44336565474,
+  "job": 134914772148,
+  "artifact": 14442835839,
+  "harnessCommit": "bf0ea54b74ac51781d3efd461d6cafcaaff6ba66",
+  "productParent": "a0b4c4d4ee057079304468d97024f03f9548003b",
+  "artifactSHA256": "73092017035b7763691ab9cd446c5fb4545eb746728271b2756eb938da09b61b",
+  "captureStatus": "FAILED_OR_INCOMPLETE",
+  "hardLimitBytes": 6442450944,
+  "peakSampledBytes": 5060124672,
+  "cleanupCompleted": true,
+  "screenshotsSHA256": {
+    "touch-after-short-input.png": "ac812240545b8116af8be42a0183cc02199223a12f730e9eadfe6e10fb20e3bc",
+    "touch-hall-card.png": "bfaba777634274188f500cb8043bf586621b8a7791e15a4fc5dadb1d4f80b0f0",
+    "touch-initial-axis.png": "a0775260da8bc4167a1fca6453546eef943e9b149b7c4859071fbf51bd8fc3f8",
+    "touch-map-arrival.png": "bd1556169210b7b34d4e43f618b828ad29ca32c04b6f390e4b7c697869b547d8"
+  },
+  "runs": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "status": "FAILED_OR_BLOCKED",
+      "pageErrors": [],
+      "requestFailures": [],
+      "httpErrors": [],
+      "blockedRequests": [],
+      "screenshots": [],
+      "actions": [
+        "Click genuine desktop welcome overlay to enter pointer lock"
+      ]
+    },
+    {
+      "name": "touch",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "TECHNICAL_UI_AND_LOAD_PASS_PIXELS_PENDING",
+      "pageErrors": [],
+      "requestFailures": [],
+      "httpErrors": [],
+      "blockedRequests": [],
+      "screenshots": [
+        "touch-initial-axis.png",
+        "touch-hall-card.png",
+        "touch-map-arrival.png",
+        "touch-after-short-input.png"
+      ],
+      "actions": [
+        "Open normal map",
+        "Select actual hall card and 前往",
+        "900ms touchscreen joystick forward"
+      ],
+      "inputDistance": 0.8665756836170585,
+      "pngDistinctSuccessful": 3,
+      "hallInteriorWalkVerified": false
+    }
+  ],
+  "statusInterpretation": "The touch screenshots were reviewed manually. Desktop screenshot timed out after 20 s; actual desktop game views not captured. GPU, real phone, entrance-by-foot and art acceptance remain unverified."
+}

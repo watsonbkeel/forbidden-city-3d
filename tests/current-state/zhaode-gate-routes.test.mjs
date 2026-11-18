@@ -67,6 +67,11 @@ import { bindProfileSupports, traceProfileSupports, profileSupportReport } from 
 
 let worldPromise;
 const fullWorld = () => worldPromise ??= buildWorld();
+// Positive, read-only runs use the actual current registered owners, never copies.
+// Historical mutation/rescue experiments below retain their original isolation.
+let ownedWorldPromise;
+const ownedWorld = () => ownedWorldPromise ??= buildWorld({ realMaterials: true, realFinish: true });
+test.after(async () => { if (ownedWorldPromise) (await ownedWorldPromise).dispose(); });
 function diagnosticWorld(W, noBoxRescue = false) {
   const cm = new CollisionManager();
   for (const c of W.cm.colliders) cm.addCollider(c.mesh, c.tag);
@@ -111,7 +116,7 @@ function assertPhysicalFeet(result, p) {
 for (const noBoxRescue of [false,true]) for (const from of ['front','rear'])
 for (const fps of [60,10]) for (const sprint of [false,true]) for (const backward of [false,true]) {
   test(`昭德 true support ${from} origin ${fps}Hz ${sprint?'sprint':'walk'} ${backward?'backward':'forward'} rescueDisabled=${noBoxRescue}`, async t => {
-    const W=diagnosticWorld(await fullWorld(),noBoxRescue), p=gateGeom(explicit).profile;
+    const W=noBoxRescue ? diagnosticWorld(await fullWorld(),true) : await ownedWorld(), p=gateGeom(explicit).profile;
     const identities=bindProfileSupports(W.cm,p);
     assert.equal([...identities].find(([,id])=>id===p.supports.platform.supportId)[0].rescue,false);
     const trace=traceProfileSupports(W.cm,identities);
@@ -129,7 +134,7 @@ for (const fps of [60,10]) for (const sprint of [false,true]) for (const backwar
 }
 
 for(const offsetSign of [-1,1]) for(const from of ['front','rear']) test(`both clear-aperture sides are physically usable: ${offsetSign}, ${from}`,async t=>{
-  const W=diagnosticWorld(await fullWorld()),p=gateGeom(explicit).profile;
+  const W=await ownedWorld(),p=gateGeom(explicit).profile;
   const offset=offsetSign*(p.portals[0].clearWidth/2-0.5-0.2);
   const trace=traceProfileSupports(W.cm,bindProfileSupports(W.cm,p));
   let result;

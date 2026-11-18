@@ -130,7 +130,10 @@ for (const loadAll of [false, true]) for (const quality of ['high', 'low']) {
     // Run the real app method with unrelated DOM/audio/streaming collaborators replaced.
     // This verifies ordering only; it does not claim a GPU or full app integration run.
     const source = readFileSync(new URL('../../main.js', import.meta.url), 'utf8');
-    const method = source.slice(source.indexOf('  animate() {'), source.indexOf('\n  dispose() {'));
+    // Extract the real class member including current parameters; never silently slice from -1.
+    const methods = [...source.matchAll(/^  animate\([^\n]*\) \{[\s\S]*?^  \}/gm)];
+    assert.equal(methods.length, 1, 'one complete application animation method');
+    const method = methods[0][0];
     const animate = new Function(`return function ${method.trim()}`)();
     const { env, ring } = environment();
     env.setQuality(quality === 'high');
