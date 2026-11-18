@@ -1,0 +1,245 @@
+{
+  "baseline301": {
+    "tests": 1243,
+    "pass": 942,
+    "fail": 301,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "finalSuite": {
+    "tests": 1243,
+    "pass": 985,
+    "fail": 258,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "primaryClasses": {
+    "PRODUCT": 3,
+    "TEST_OR_REFERENCE": 253,
+    "UNKNOWN": 45
+  },
+  "finalStillFailedByClass": {
+    "TEST_OR_REFERENCE": 213,
+    "UNKNOWN": 45
+  },
+  "resolved": [
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "Qinan teleport consumes the one profile viewpoint and true look-at instead of the inherited facade depth",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "a real occluding wall between ground viewpoint and annex rejects the view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "blocked or elevated viewpoint fails closed with one candidate and no lateral/platform fallback",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "duplicate or moved source facade identity fails closed instead of blessing an ambiguous terminal surface",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "minimap draws two separate physical footprints, keeps inherited label anchor, and identifies the exterior action",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "missing actual Qin’an support rejects viewpoint validation even when cached map and loaded ids remain",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "missing, enlarged or foreign-tagged target facade cannot validate the view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "real ZoneManager loads and registers Qin’an before the first collision query, then real controls land at ground view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "real full-world Qin’an viewpoint accepts only resident collision geometry and remains on world ground",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "source-bounded facade termination accepts the actual thin panel at an oblique angle",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "stale resident profile identity cannot validate the current source viewpoint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "target-containing occluder cannot inherit the observed facade exemption, even with the garden tag",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-aliases.test.mjs",
+      "name": "eight curated historical/current aliases retain the source-backed current cards and 159 exact bindings",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "canonical names and demolished-site explanations remain searchable without losing their identities",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "historical name input opens the current card and preserves keyboard return state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "historical name input opens the current card and preserves touch return state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "皇极殿 search keeps two distinct card IDs and navigation targets on desktop",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "皇极殿 search keeps two distinct card IDs and navigation targets on touch",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/terrace-side-stairs.test.mjs",
+      "name": "new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete front ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete rear ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift front ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift rear ramp is rejected with rescueDisabled=false",
+      "count": 1
+    }
+  ],
+  "newFailures": [],
+  "baselineLogSHA256": "b64084a6f0f28603520ed8944abefa383f4bc2fea1677a60c3e0f7fa922bbeb1",
+  "completeLogSHA256": "a6806a90518ba6af09a42b1e8d3d7663204664018fed2501ca3c1bfd6bef35cf"
+}

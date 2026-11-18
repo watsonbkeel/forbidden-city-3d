@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { registerHooks } from 'node:module';
 import * as THREE from 'three';
 import { buildWorld, hallGeom } from '../lib/world.mjs';
+import { realTextureLibrary } from '../lib/r48-real-texture-library.mjs';
 import { qinanGeometry, QINAN_PROFILE } from '../../src/scene/palace/special/QinanProfile.js';
 import { PLAYER } from '../../src/config/constants.js';
 const hooks=registerHooks({load(url,context,next){return next(url,url.endsWith('.json')?{...context,importAttributes:{...context.importAttributes,type:'json'}}:context);}});
@@ -12,7 +13,8 @@ const {Minimap}=await import('../../src/ui/Minimap.js');
 hooks.deregister();
 const item={kind:'hall',name:'钦安殿',structure:'qinan-hall',qinanProfile:'qinan',x:0,z:493.1,rot:0};
 const g=qinanGeometry(item);
-let promise;const world=()=>promise??=buildWorld();
+let promise;const world=()=>promise??=buildWorld({realMaterials:true,realFinish:true});
+test.after(async()=>{ if(promise) (await promise).dispose(); });
 function target(W){const t=Object.create(Teleport.prototype);t.targets=new Map([[item.name,item]]);t.zoneManager={getMapItems:()=>W.mapItems,getLoadedIds:()=>['garden'],loaded:new Map([['garden',{data:{mapItems:W.mapItems}}]])};t.collisionManager=W.cm;return t;}
 
 test('Qinan map landing remains exterior while its dedicated virtual side routes avoid the generic doorway adapter',()=>{
@@ -21,7 +23,7 @@ test('Qinan map landing remains exterior while its dedicated virtual side routes
 });
 test('Qinan teleport consumes the one profile viewpoint and true look-at instead of the inherited facade depth',async()=>{
  const t=target(await world()),geometry=t.geometryFor(item.name),p=t.landingFor(item.name);
- assert.equal(geometry.navigation.mode,'exterior-view');assert.deepEqual([p.x,p.z,p.y],[18,477,0]);
+ assert.equal(geometry.navigation.mode,'exterior-view');assert.deepEqual([p.x,p.z,p.y],[18,470,0]);
  assert.deepEqual([p.lookAtX,p.lookAtY,p.lookAtZ],[0,3,481.08]);assert.equal(p.viewpointId,'qinan-southwest-ground');
  assert.equal(p.profileHash,QINAN_PROFILE.profileHash);assert.equal(p.validatedAgainstProfileHash,null);
  assert.deepEqual(t.candidate(geometry,100,999),p,'caller distances cannot invent another exterior point');
@@ -39,14 +41,14 @@ test('missing actual Qin’an support rejects viewpoint validation even when cac
 });
 test('blocked or elevated viewpoint fails closed with one candidate and no lateral/platform fallback',async()=>{
  const W=await world(),t=target(W);let calls=0;const original=t.candidate;t.candidate=function(...args){calls++;return original.apply(this,args);};
- W.cm.addCollider(new THREE.Box3(new THREE.Vector3(17,0,476),new THREE.Vector3(19,4,478)),'qinan-negative');
+ W.cm.addCollider(new THREE.Box3(new THREE.Vector3(17,0,469),new THREE.Vector3(19,4,471)),'qinan-negative');
  try{assert.equal(t.resolveLanding(item.name),null);assert.equal(calls,1);}finally{W.cm.removeByTag('qinan-negative');}
- W.cm.addWalkable({type:'box',box:new THREE.Box3(new THREE.Vector3(17,0,476),new THREE.Vector3(19,5,478)),rescue:false},'qinan-negative');
+ W.cm.addWalkable({type:'box',box:new THREE.Box3(new THREE.Vector3(17,0,469),new THREE.Vector3(19,5,471)),rescue:false},'qinan-negative');
  try{assert.equal(t.resolveLanding(item.name),null,'infinite-height spawn may not bless a platform above the candidate');}finally{W.cm.removeByTag('qinan-negative');}
 });
 test('a real occluding wall between ground viewpoint and annex rejects the view',async()=>{
  const W=await world(),t=target(W);
- W.cm.addCollider(new THREE.Box3(new THREE.Vector3(8,0,477),new THREE.Vector3(10,8,481)),'qinan-negative');
+ W.cm.addCollider(new THREE.Box3(new THREE.Vector3(8,0,474),new THREE.Vector3(10,8,478)),'qinan-negative');
  try{assert.equal(t.resolveLanding(item.name),null);}finally{W.cm.removeByTag('qinan-negative');}
 });
 test('minimap draws two separate physical footprints, keeps inherited label anchor, and identifies the exterior action',async()=>{
@@ -75,13 +77,13 @@ test('real ZoneManager loads and registers Qin’an before the first collision q
  globalThis.document={...savedDoc,addEventListener:noop,removeEventListener:noop,exitPointerLock:noop};
  const {ZoneManager}=await import('../../src/scene/zones/ZoneManager.js');
  const {FirstPersonControls}=await import('../../src/controls/FirstPerson.js');
- const mats=new Map(),lib=new Proxy({material:n=>mats.get(n)??(mats.set(n,new THREE.MeshStandardMaterial({name:n})),mats.get(n)),tileSize:()=>1,aspect:()=>1},{get:(t,k)=>k in t?t[k]:()=>null});
+ const lib=realTextureLibrary();
  const zm=new ZoneManager(),scene=new THREE.Scene();
  zm.register({id:'qinan-test-origin',bounds:{x0:-10,x1:10,z0:-1000,z1:-900},neighbors:[],items:[]});
  const garden=(await world()).zones.find(z=>z.json.id==='garden').json;zm.register({...garden,neighbors:[]});
  zm.init(scene,lib,W.cm,{x:0,z:-950});
  const camera=new THREE.PerspectiveCamera(),controls=new FirstPersonControls(camera,{ownerDocument:globalThis.document,addEventListener:noop,removeEventListener:noop},W.cm);
- const t=target(W);t.zoneManager=zm;t.controls=controls;t.overlay={textContent:'',style:{}};
+ const t=target(W);t.zoneManager=zm;t.controls=controls;const current=garden.items.find(row=>row.qinanProfile==='qinan');t.targets.set(item.name,current);t.targetOwners=new Map([[item.name,{zoneId:'garden',item:current}]]);t.overlay={textContent:'',style:{},setAttribute(){}};
  const checks=[],original=W.cm.getGroundHeight;
  W.cm.getGroundHeight=function(...args){checks.push({loaded:zm.getLoadedIds(),resident:this.walkables.filter(w=>w.tag==='garden').length});return original.apply(this,args);};
  try{
@@ -90,7 +92,7 @@ test('real ZoneManager loads and registers Qin’an before the first collision q
   assert.equal(p.validatedAgainstProfileHash,g.profileHash);assert.ok(checks.length>0);assert.ok(checks.every(c=>c.loaded.includes('garden')&&c.resident>=g.supports.length));
   const direction=camera.getWorldDirection(new THREE.Vector3()),expected=new THREE.Vector3(0,3,481.08).sub(camera.position).normalize();assert.ok(direction.distanceTo(expected)<1e-8);
   assert.ok(t.overlay.textContent.includes('东西侧阶入殿并原路返回'));
- }finally{clearTimeout(t.overlayTimer);W.cm.getGroundHeight=original;controls.dispose();zm.dispose();globalThis.document=savedDoc;globalThis.window=savedWindow;}
+ }finally{clearTimeout(t.overlayTimer);W.cm.getGroundHeight=original;controls.dispose();zm.dispose();lib.dispose();globalThis.document=savedDoc;globalThis.window=savedWindow;}
 });
 
 test('browser teleport harness isolates the exterior view while every original entrance-target statement stays byte-exact',async()=>{
@@ -111,8 +113,8 @@ function sourceTargetPanel(W) {
  assert.equal(matches.length,1,'one actual source-derived central annex panel');return matches[0];
 }
 test('target-containing occluder cannot inherit the observed facade exemption, even with the garden tag',async()=>{
- const W=await world(),t=target(W),eye=new THREE.Vector3(18,PLAYER.HEIGHT,477),look=new THREE.Vector3(0,3,481.08);
- const blocker=new THREE.Box3(new THREE.Vector3(-1,0,477),new THREE.Vector3(10,8,482));
+ const W=await world(),t=target(W),eye=new THREE.Vector3(18,PLAYER.HEIGHT,470),look=new THREE.Vector3(0,3,481.08);
+ const blocker=new THREE.Box3(new THREE.Vector3(-1,0,473),new THREE.Vector3(11,8,482));
  const hit=new THREE.Ray(eye,look.clone().sub(eye).normalize()).intersectBox(blocker,new THREE.Vector3());
  assert.ok(blocker.containsPoint(look));assert.ok(eye.distanceTo(look)-eye.distanceTo(hit)>10,'negative box begins over 10m before target');
  for(const tag of ['qinan-negative','garden']){const original=W.cm.colliders;W.cm.colliders=[...original,{mesh:blocker,box:blocker,tag}];

@@ -1332,6 +1332,7 @@ export class PalaceBuilder {
     this.walkables.length = 0;
     this.terraceProfiles.length = 0;
     this.taiheSouthTiers.length = 0;
+    this.baoheNorthTiers.length = 0;
     this.ownedMaterials.length = 0;
     this._own.clear();
     this.materials = {};

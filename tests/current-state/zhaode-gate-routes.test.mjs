@@ -78,6 +78,31 @@ function diagnosticWorld(W, noBoxRescue = false) {
   for (const w of W.cm.walkables) cm.addWalkable(noBoxRescue && w.type === 'box' ? { ...w, rescue: false } : w, w.tag);
   return { ...W, cm };
 }
+// Mutate only the two actual registered Zhaode ramps in a per-case array view.
+// Never copy/register a foreign owner's collider or support. Non-target objects
+// stay identical; even a failed assertion must leave the shared world unchanged.
+async function mutationWorld(t, noBoxRescue) {
+  if (noBoxRescue) return diagnosticWorld(await fullWorld(),true);
+  const W=await ownedWorld(), cm=W.cm, originalRows=cm.walkables;
+  const profile=gateGeom(explicit).profile, ids=bindProfileSupports(cm,profile);
+  const ramps=[...ids.keys()].filter(w=>w.type==='ramp');
+  assert.equal(ramps.length,2);
+  const descriptors=ramps.map(r=>Object.getOwnPropertyDescriptors(r));
+  const view=originalRows.slice();
+  cm.walkables=view; // Isolate splice/add; existing producers and the manager retain their identity.
+  t.after(()=>{
+    try {
+      assert.strictEqual(cm.walkables,view);
+    } finally {
+      cm.walkables=originalRows;
+      for(let i=0;i<ramps.length;i++) Object.defineProperties(ramps[i],descriptors[i]);
+    }
+    assert.strictEqual(cm.walkables,originalRows);
+    const restored=bindProfileSupports(cm,profile);
+    for(const [w,id] of ids) assert.equal(restored.get(w),id,'restore actual registered support identity');
+  });
+  return W;
+}
 const routeContactNames = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];
 function profileRoute(p, from = 'front', offset = 0) {
   let go = routeContactNames.map(name => {
@@ -145,7 +170,7 @@ for(const offsetSign of [-1,1]) for(const from of ['front','rear']) test(`both c
 
 for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(const mutation of ['delete','shift']) {
   test(`support mutation ${mutation} ${side} ramp is rejected with rescueDisabled=${noBoxRescue}`,async t=>{
-    const W=diagnosticWorld(await fullWorld(),noBoxRescue),p=gateGeom(explicit).profile;
+    const W=await mutationWorld(t,noBoxRescue),p=gateGeom(explicit).profile;
     const identities=bindProfileSupports(W.cm,p),id=p.ramps.find(r=>r.side===side).supportId;
     const original=[...identities].find(([,name])=>name===id)[0];
     if(mutation==='delete')W.cm.walkables.splice(W.cm.walkables.indexOf(original),1);
@@ -164,7 +189,7 @@ for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(c
 
 for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(const mutation of ['delete','shift'])
 test(`endpoint arrival cannot hide ${mutation}d ${side} support behind an unowned substitute, noRescue=${noBoxRescue}`,async t=>{
-  const W=diagnosticWorld(await fullWorld(),noBoxRescue),p=gateGeom(explicit).profile;
+  const W=await mutationWorld(t,noBoxRescue),p=gateGeom(explicit).profile;
   const identities=bindProfileSupports(W.cm,p),id=p.ramps.find(r=>r.side===side).supportId;
   const original=[...identities].find(([,name])=>name===id)[0],substitute={...original};
   if(mutation==='delete')W.cm.walkables.splice(W.cm.walkables.indexOf(original),1);
@@ -259,7 +284,7 @@ test('additive browser dispatch leaves both published old driver bodies byte-exa
 
 for(const fps of [60,10])for(const sprint of [false,true])for(const backward of [false,true])for(const from of ['front','rear'])
 test(`shared live-app helper uses actual production controller: ${fps}/${sprint}/${backward}/${from}`,async t=>{
-  const W=diagnosticWorld(await fullWorld()),p=gateGeom(explicit).profile;
+  const W=await ownedWorld(),p=gateGeom(explicit).profile;
   const oldDoc=globalThis.document,oldWindow=globalThis.window,noop=()=>{};
   const doc={...oldDoc,addEventListener:noop,removeEventListener:noop,exitPointerLock:noop};
   globalThis.document=doc;globalThis.window={addEventListener:noop,removeEventListener:noop};

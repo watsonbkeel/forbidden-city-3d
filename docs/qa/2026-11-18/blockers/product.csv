@@ -1,0 +1,4 @@
+id,classification,previousGroup,file,name,evidence,finalSuite
+24,PRODUCT,fixture-stub,tests/current-state/qinan-exterior-navigation.test.mjs:29:1,real full-world Qin’an viewpoint accepts only resident collision geometry and remains on world ground,真实场景在旧许可站位被现行庭院前景遮蔽；唯一外观点被拒，无安全备用。三条用例关联同一地图功能故障。,passes
+30,PRODUCT,fixture-stub,tests/current-state/qinan-exterior-navigation.test.mjs:72:1,"real ZoneManager loads and registers Qin’an before the first collision query, then real controls land at ground view",真实场景在旧许可站位被现行庭院前景遮蔽；唯一外观点被拒，无安全备用。三条用例关联同一地图功能故障。 原测试先遇假材质；另用真实ZoneManager、玩家控制器、8区注册和4区真实驻留，new Teleport.go 返回null且原姿态没有移动。,passes
+32,PRODUCT,fixture-stub,tests/current-state/qinan-exterior-navigation.test.mjs:121:1,source-bounded facade termination accepts the actual thin panel at an oblique angle,真实场景在旧许可站位被现行庭院前景遮蔽；唯一外观点被拒，无安全备用。三条用例关联同一地图功能故障。,passes

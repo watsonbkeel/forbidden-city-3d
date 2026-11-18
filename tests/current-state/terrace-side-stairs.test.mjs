@@ -30,7 +30,7 @@ function fixture(name = '三台') {
   const cm = new CollisionManager();
   cm.addColliders(builder.colliders); cm.addWalkables(builder.walkables);
   group.updateMatrixWorld(true);
-  return { builder, group, cm, THREE, library, rects, options };
+  return { builder, group, cm, THREE, library, libraryMaterials: mats, rects, options };
 }
 
 function sideRamps(builder) {
@@ -208,13 +208,15 @@ test('post-batch front-face ray hits and normals preserve both sides without mir
 
 test('new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates',()=>{
   const W=fixture();
-  const mats=new Set();W.group.traverse(o=>{if(o.material)mats.add(o.material);});W.library.owns=m=>mats.has(m);
+  const mats=new Set(W.libraryMaterials.values());W.library.owns=m=>mats.has(m);
+  const owned=new Map([...new Set(W.builder.ownedMaterials)].map(m=>[m,0]));
+  assert.ok(mats.size>0 && owned.size>0);for(const m of owned.keys()){assert.ok(!mats.has(m));m.addEventListener('dispose',()=>owned.set(m,owned.get(m)+1));}
   let libraryDisposals=0;mats.forEach(m=>m.addEventListener('dispose',()=>libraryDisposals++));
   const merged=PalaceBuilder.prototype.finish.call(W.builder,W.group),counts={geometry:0,disposed:0};
   merged.traverse(o=>{if(o.geometry){counts.geometry++;o.geometry.addEventListener('dispose',()=>counts.disposed++);}});
   const cm=new CollisionManager();cm.addColliders(W.builder.colliders,'terrace');cm.addWalkables(W.builder.walkables,'terrace');
   cm.removeByTag('terrace'); assert.equal(cm.colliders.length,0);assert.equal(cm.walkables.length,0);
-  W.builder.dispose();assert.equal(counts.disposed,counts.geometry);assert.equal(libraryDisposals,0);
+  W.builder.dispose();assert.equal(counts.disposed,counts.geometry);assert.equal(libraryDisposals,0);assert.ok([...owned.values()].every(n=>n===1));
   assert.equal(W.builder.terraceProfiles.length,0,'disposed profile must not remain live metadata');
   assert.equal(W.builder.colliders.length,0);assert.equal(W.builder.walkables.length,0);assert.equal(W.builder.scene.children.length,0);
   const rebuilt=fixture();assert.equal(rebuilt.builder.terraceProfiles.length,1);assert.equal(sideRamps(rebuilt.builder).length,6);
