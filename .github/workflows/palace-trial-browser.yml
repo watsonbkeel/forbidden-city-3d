@@ -1,0 +1,62 @@
+name: Palace texture-first actual root trial (QA only)
+'on':
+  push:
+    branches: [dev/palace-trial-browser-20261118]
+permissions:
+  contents: read
+concurrency:
+  group: palace-trial-browser-20261118-once
+  cancel-in-progress: false
+jobs:
+  root-game:
+    if: >-
+      github.repository == 'watsonbkeel/forbidden-city-3d' &&
+      github.ref == 'refs/heads/dev/palace-trial-browser-20261118' &&
+      github.event.created == true && github.event.deleted == false &&
+      github.event.forced == false && github.event.before == '0000000000000000000000000000000000000000' &&
+      github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      CI: 'true'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Check QA-only revision
+        env:
+          RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          E="$RUNNER_TEMP/palace-trial-browser-evidence"
+          mkdir "$E"
+          printf 'EVIDENCE_DIR=%s\n' "$E" >> "$GITHUB_ENV"
+          python3 -B -c "import sys;sys.path.insert(0,'.github/scripts');from palace_trial_browser_gate import valid_source;print(valid_source())" | tee "$E/revision.log"
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.1'
+          check-latest: false
+      - name: Install locked dependencies and official Chromium
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          test "$(node -p "require('./node_modules/playwright/package.json').version")" = '1.64.0'
+          ./node_modules/.bin/playwright install chromium
+      - name: One budgeted root game session
+        env:
+          RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          python3 -B .github/scripts/palace_trial_browser_gate.py 2>&1 | tee "$EVIDENCE_DIR/job.log"
+      - name: Preserve scope, failures, screenshots and receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: palace-trial-browser-${{ github.sha }}
+          path: ${{ runner.temp }}/palace-trial-browser-evidence/
+          if-no-files-found: error
+          retention-days: 7
