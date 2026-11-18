@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "number": "H1",
+  "stableId": "FC-DC1832BAF2",
+  "name": "重华宫",
+  "section": "H",
+  "parent": "重华宫区",
+  "nature": "建筑或构筑物",
+  "scope": "正殿五间硬山接三间抱厦；图集多张室内尚未逐张定位子房间。；弘历潜邸升宫；不同年代室内改装需留差异记录。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L648",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236506.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075737310.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/06/s5f0293fb25b6d.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff075738d0d.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff07573438b.jpg"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/west-six.json#/items/54",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "重华宫",
+      "engineeringCoordinates": {
+        "x": 118.9,
+        "z": 498.3
+      }
+    },
+    {
+      "ref": "data/zones/west-six.json#/items/55",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "重华宫",
+      "engineeringCoordinates": {
+        "x0": 92.62,
+        "x1": 145.18,
+        "z0": 460,
+        "z1": 505.6
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/ChonghuaSouthKnees.js:7",
+    "src/scene/palace/special/HUnknownInventory.js:5"
+  ],
+  "directoryCandidates": [
+    "place-west-six-dc1832baf2"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 118.9,
+    "z": 498.3,
+    "w": 21.5,
+    "d": 8.6,
+    "conf": "中",
+    "src": "dimensions.md:288"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

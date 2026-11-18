@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "number": "B41",
+  "stableId": "FC-1DB501EB23",
+  "name": "南三所中所后殿撷芳殿",
+  "section": "B",
+  "parent": "执行时核实所属院落与位置",
+  "nature": "仓库身份待核记录",
+  "scope": "仓库命名待核，勿与中所后殿重复新建；仓库名称包含撷芳殿，但现有官方证据尚未精确证成中所后殿；保留待核记录，不与其他后殿重复新建。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L423",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236452.html"
+    ],
+    "exterior": [],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-east.json#/items/15",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "南三所中所后殿撷芳殿",
+      "engineeringCoordinates": {
+        "x": -285.1,
+        "z": 68.9
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-outer-east-1db501eb23"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

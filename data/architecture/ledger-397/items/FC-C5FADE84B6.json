@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "number": "L10",
+  "stableId": "FC-C5FADE84B6",
+  "name": "护城河",
+  "section": "L",
+  "parent": "宫城四周",
+  "nature": "室外构件/设施",
+  "scope": "官方总说记城外约52m宽护城河；角楼实景可核河面、石岸与城台关系。；四边现状岸线、河岸植被和跨河桥未逐一确认；室内不适用。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L791",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/buildings.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d3ef250ba9.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/0",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": "筒子河",
+      "engineeringCoordinates": {
+        "position": {
+          "x": -0.4,
+          "y": -0.5,
+          "z": 88.9
+        }
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

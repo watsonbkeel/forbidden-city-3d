@@ -89,7 +89,9 @@ function beginXiananUnload(manager,config,builder,data){
 function retainXiananEntry(manager,data,retained){const row=xiananManagers.get(manager)?.entries.get(data);if(row){if(retained)row.status='retained';else forgetXiananEntry(manager,data);}}
 
 export class ZoneManager {
-  constructor({reuseInactive=false}={}) {
+  constructor({reuseInactive=false,triadTextureFirst=false}={}) {
+    if(typeof triadTextureFirst!=='boolean')throw Error('Explicit boolean texture-first option required');
+    this.triadTextureFirst=triadTextureFirst;
     xiananManagers.set(this,{entries:new WeakMap(),window:null,cm:null,scene:null,library:null});
     this.loadMetrics = new ZoneLoadMetrics();
     this.inactiveCache = reuseInactive ? new InactiveZoneCache() : null;
@@ -161,7 +163,7 @@ export class ZoneManager {
       const trace = beginZoneLoad(this.loadMetrics,id,'startup');
       let builder, data, outcome='error';
       try {
-      measureZonePhase(trace,'build',()=>{ builder = new config.BuilderClass(this.library, config); data = builder.build(); });
+      measureZonePhase(trace,'build',()=>{ builder = new config.BuilderClass(this.library, config, ...this.textureFirstOptions(config)); data = builder.build(); });
       rememberXiananPrebuilt(this,config,builder,data);
       this.allRegions.push(...data.regions);
       this.allMapItems.push(...data.mapItems);
@@ -376,6 +378,11 @@ export class ZoneManager {
     return removed;
   }
 
+  textureFirstOptions(config) {
+    return this.triadTextureFirst && config.id==='outer-west'
+      ? [{triadTextureFirst:true,dafotangOriginalArtwork:true,dafotangOriginalScope:'triad'}] : [];
+  }
+
   loadZone(zoneId) {
     const config = this.zones.get(zoneId);
     if (!config || this.loaded.has(zoneId)) return;
@@ -392,12 +399,13 @@ export class ZoneManager {
     const silhouette = this.silhouettes.get(zoneId);
     const notified = [], previousTime = this.buildTimes.get(zoneId);
     const hadTime = this.buildTimes.has(zoneId);
-    let onLoadStarted = false;
+    let onLoadStarted = false, admittedEntry;
+    const isTextureGeneration=this.triadTextureFirst && zoneId==='outer-west';
     // Transfer ownership before building/registration. Failed admissions are
     // disposed, never returned to prebuilt or the inactive cache for reuse.
     this.prebuilt.delete(zoneId);
     try {
-      if (!builder || !data) measureZonePhase(trace,'build',()=>{ builder ??= new config.BuilderClass(this.library, config); data ??= builder.build(); });
+      if (!builder || !data) measureZonePhase(trace,'build',()=>{ builder ??= new config.BuilderClass(this.library, config, ...this.textureFirstOptions(config)); data ??= builder.build(); });
       if (!cached) builder.releaseConstructionReferences?.();
       const elapsed = performance.now() - start;
       const xiananLoad=beginXiananLoad(this,config,builder,data,!!cached);
@@ -407,20 +415,28 @@ export class ZoneManager {
         measureZonePhase(trace,'walkables',()=>this.collisionManager.addWalkables(data.walkables, zoneId));
         finishXiananLoad(this,xiananLoad);
       } finally { closeXiananWindow(xiananLoad); }
-      const entry = cached ?? { builder, data, config, detailQuality };
+      const entry = admittedEntry = cached ?? { builder, data, config, detailQuality };
       entry.lastUsedAt = zoneId === this.currentId ? performance.now() : (entry.lastUsedAt ?? 0);
       this.loaded.set(zoneId, entry);
       this.buildTimes.set(zoneId, +elapsed.toFixed(1));
       measureZonePhase(trace,'notify',()=>{
       for (const listener of this.lifecycleListeners) {
+        if(isTextureGeneration && (this.loaded.get(zoneId)!==entry || builder.disposed)) break;
         notified.push(listener);
         listener('load', zoneId, data);
       }
-      if (this.onLoad) { onLoadStarted = true; this.onLoad(zoneId, data.group); }
+      if (this.onLoad && (!isTextureGeneration || (this.loaded.get(zoneId)===entry && !builder.disposed))) { onLoadStarted = true; this.onLoad(zoneId, data.group); }
       });
       console.log(`[ZoneManager] 加载区域 ${zoneId}（${config.name}），构建/复用准备 ${elapsed.toFixed(1)}ms（完整加载见F3）`);
+      if(isTextureGeneration && this.loaded.get(zoneId)===entry && !builder.disposed)builder.startTextureFirstSession?.();
       outcome='ok';
     } catch (error) {
+      // A listener may have unloaded this generation and admitted its successor.
+      // Never undo the successor's physics, notification state or ownership.
+      if(isTextureGeneration && admittedEntry && this.loaded.get(zoneId)!==admittedEntry){
+        try{builder?.dispose();}catch(cleanup){throw new AggregateError([error,cleanup],'Retired texture generation failed',{cause:error});}
+        throw error;
+      }
       forgetXiananEntry(this,data);
       const cleanupErrors = [];
       measureZonePhase(trace,'rollback',()=>{
@@ -469,7 +485,7 @@ export class ZoneManager {
       } finally { closeXiananWindow(xiananUnload); }
       // Only a fault-free completed detachment may transfer into inactive cache.
       // Pending photos and cleanup-error sessions retain their original gate.
-      if (!errors.length && retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && !['LOADING','DISPOSED_WITH_ERRORS'].includes(builder.dafotangOriginalSession?.status) && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
+      if (!builder.triadTextureFirst && !errors.length && retain && this.inactiveCache && builder.dafotangPhotoSession?.status !== 'LOADING' && !['LOADING','DISPOSED_WITH_ERRORS'].includes(builder.dafotangOriginalSession?.status) && entry.config === this.zones.get(zoneId) && entry.detailQuality === this.detailQualityFor(zoneId)) {
         builder.releaseConstructionReferences?.();
         entry.cost = zoneRetainedResourceCost(entry,this.library);
         const retained=this.inactiveCache.put(zoneId,entry,new Set(this.buildQueue.map(q=>q.zoneId)));

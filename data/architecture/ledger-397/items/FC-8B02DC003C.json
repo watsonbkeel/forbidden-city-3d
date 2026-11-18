@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "number": "E31",
+  "stableId": "FC-8B02DC003C",
+  "name": "御书房",
+  "section": "E",
+  "parent": "东六宫/景阳宫/后院",
+  "nature": "建筑或构筑物",
+  "scope": "同项名：景阳宫后殿；独立核对后殿屋顶、开间、槛墙/门窗；不可拿前殿图套用。；清代藏书用途与现有陈设分列；旧官方地图全景深链本次未在现行目录找到对应，需复核。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L518",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236511.html"
+    ],
+    "exterior": [
+      "https://www.dpm.org.cn/explore/building/236511.html"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/38",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": null,
+      "engineeringCoordinates": {
+        "x": -148.5,
+        "z": 453.5
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/JingyangRearFacade.js:58",
+    "src/scene/palace/special/JingyangRearFacade.js:64",
+    "src/scene/palace/special/JingyangRearFacade.js:103"
+  ],
+  "directoryCandidates": [],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

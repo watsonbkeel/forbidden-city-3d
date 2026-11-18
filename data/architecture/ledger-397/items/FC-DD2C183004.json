@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "number": "D3",
+  "stableId": "FC-DD2C183004",
+  "name": "交泰殿",
+  "section": "D",
+  "parent": "后三宫",
+  "nature": "建筑或构筑物",
+  "scope": "深广各三间、四角攒尖、铜镀金宝顶；明间宝座、无为匾、交泰殿铭、盘龙藻井可看。；室内照片主要朝北正面；铜壶滴漏和自鸣钟需额外角度核尺寸与位置。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L453",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236467.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e99791384387.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e99791387403.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2016/12/22/s585b381e7251b.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1620[1024].jpg",
+      "https://pano.dpm.org.cn/#/panorama?regionId=61&secondAreaId=94&vpId=2010961675107012610&sphPicId=1943649840763027456"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/10",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "交泰殿",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 354.1
+        }
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/JiaotaiCrownCandidate.js:6",
+    "src/scene/palace/special/JiaotaiFrontVessels.js:62",
+    "src/scene/palace/special/JiaotaiLowRooms.js:62"
+  ],
+  "directoryCandidates": [
+    "jiaotai"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 1.2,
+    "z": 354.1,
+    "w": 19,
+    "d": 19,
+    "conf": "中",
+    "src": "dimensions.md:57,125"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

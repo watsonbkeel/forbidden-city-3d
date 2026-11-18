@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "number": "E15",
+  "stableId": "FC-479353AF2C",
+  "name": "钟粹宫",
+  "section": "E",
+  "parent": "东六宫/钟粹宫",
+  "nature": "建筑或构筑物",
+  "scope": "前廊、苏式彩画及晚清增建垂花门/游廊均须保留。；建筑老页称玉器陈列；官方当前地图列古琴文化展，不能把老页展陈描述视作2026现状。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L502",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236484.html"
+    ],
+    "exterior": [
+      "https://pano.dpm.org.cn/#/panorama?regionId=65&secondAreaId=128&vpId=3436&sphPicId=1943332324912185344"
+    ],
+    "interior": [
+      "https://ggzlquanjing.dpm.org.cn/scene/1fmTma1lR7yLqb4T4YgWHlRNvk6tSBxx/20231208_gqwh/tour.html"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/16",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "钟粹宫",
+      "engineeringCoordinates": {
+        "x": -93.4,
+        "z": 433.2
+      }
+    },
+    {
+      "ref": "data/zones/east-six.json#/items/20",
+      "nameMatch": true,
+      "basis": [
+        "exact-current-name"
+      ],
+      "declaredName": "钟粹宫",
+      "engineeringCoordinates": {
+        "x0": -114.4,
+        "x1": -72.4,
+        "z0": 413.7,
+        "z1": 462
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-east-six-479353af2c"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": -93.4,
+    "z": 433.2,
+    "w": 28.6,
+    "d": 15.2,
+    "conf": "中",
+    "src": "dimensions.md:179"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "number": "B30",
+  "stableId": "FC-B0B56A63EE",
+  "name": "南三所共用宫门",
+  "section": "B",
+  "parent": "南三所",
+  "nature": "建筑或构筑物",
+  "scope": "同项名：南三所宫门；方向/用途工作名，非牌匾名；三间绿瓦歇山；三所各自另有南端琉璃门，不能只留一扇总门。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L412",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236452.html"
+    ],
+    "exterior": [
+      "https://www.dpm.org.cn/explore/building/236452.html"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-east.json#/items/10",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": "南三所宫门",
+      "engineeringCoordinates": {
+        "x": -285,
+        "z": 20
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/NansansuoCommonGate.js:5",
+    "src/scene/palace/special/NansansuoCourtyardGates.js:22"
+  ],
+  "directoryCandidates": [],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

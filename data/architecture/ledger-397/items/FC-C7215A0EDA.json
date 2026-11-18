@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "number": "J13",
+  "stableId": "FC-C7215A0EDA",
+  "name": "延趣楼",
+  "section": "J",
+  "parent": "宁寿宫花园第三进西侧",
+  "nature": "建筑或构筑物",
+  "scope": "两层楼体与山石关系、瓷片镶嵌的宝座周围装修；宝座图可证明照片中的局部相对位置；其余室内和当前陈列待核",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L742",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236515.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1549[1024].jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/2670[1024].jpg"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/20",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "延趣楼",
+      "engineeringCoordinates": {
+        "x": -242.9,
+        "z": 439.1
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/YanquPhotoNiche.js:37"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-c7215a0eda"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

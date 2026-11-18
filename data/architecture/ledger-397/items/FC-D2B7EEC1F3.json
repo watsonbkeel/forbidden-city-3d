@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "number": "E22",
+  "stableId": "FC-D2B7EEC1F3",
+  "name": "永和宫",
+  "section": "E",
+  "parent": "东六宫/永和宫",
+  "nature": "建筑或构筑物",
+  "scope": "正殿五间，前抱厦三间；不得误写为太极殿；后殿硬山，门窗形制与正殿不同。；官方地图列诚慎仁术清宫医药文物展，属于展厅影像；后殿并非被删除的对象。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L509",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236518.html"
+    ],
+    "exterior": [
+      "https://www.dpm.org.cn/explore/building/236518.html"
+    ],
+    "interior": [
+      "https://ggzlquanjing.dpm.org.cn/scene/foAQFBWf3fT6hkZgIVPIZJ5sit7TdgCT/20210208yyyg/tour.html?exhibit_id=134"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/30",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "永和宫",
+      "engineeringCoordinates": {
+        "x": -149,
+        "z": 379.1
+      }
+    },
+    {
+      "ref": "data/zones/east-six.json#/items/34",
+      "nameMatch": true,
+      "basis": [
+        "exact-current-name"
+      ],
+      "declaredName": "永和宫",
+      "engineeringCoordinates": {
+        "x0": -170,
+        "x1": -128,
+        "z0": 359.8,
+        "z1": 407.7
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-east-six-d2b7eec1f3"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": -149.0,
+    "z": 379.1,
+    "w": 27.8,
+    "conf": "中",
+    "src": "dimensions.md:185"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

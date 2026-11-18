@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "number": "J1",
+  "stableId": "FC-453DB70001",
+  "name": "宁寿宫花园",
+  "section": "J",
+  "parent": "宁寿宫区后寝西路",
+  "nature": "院落/设施组",
+  "scope": "同项名：宁寿宫花园（乾隆花园）、乾隆花园；四进院落顺序、院墙/廊道与假山通行关系；鸟瞰图为示意绘图；不能作为尺寸或立面比例实测依据",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L730",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236440.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/2657[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/2660[1024].jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/47",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": "乾隆花园",
+      "engineeringCoordinates": {
+        "x0": -275,
+        "x1": -235,
+        "z0": 350,
+        "z1": 520
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

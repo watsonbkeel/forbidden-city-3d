@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "number": "A7",
+  "stableId": "FC-A43B1DAB0B",
+  "name": "弘义阁",
+  "section": "A",
+  "parent": "太和殿广场西侧",
+  "nature": "建筑或构筑物",
+  "scope": "面东，与体仁阁相对；两层之间腰檐和平座，上为单檐庑殿；外观和匾额可核。；未找到本次范围内公开室内图；官方称与体仁阁形式相同但高度记载有差异，测量基准待核。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L347",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236491.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1980[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1982.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/axis-courts.json#/items/25",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "弘义阁",
+      "engineeringCoordinates": {
+        "x": 102.1,
+        "z": -110.4
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/HongyiLowerWindowLeaves.js:4",
+    "src/scene/palace/special/HongyiLowerWindowLeaves.js:16"
+  ],
+  "directoryCandidates": [
+    "hongyi"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 104.1,
+    "z": -110.4,
+    "w": 39.2,
+    "conf": "中",
+    "src": "dimensions.md:93"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

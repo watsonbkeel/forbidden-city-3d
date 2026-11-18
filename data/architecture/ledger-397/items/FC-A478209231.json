@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "number": "A3",
+  "stableId": "FC-A478209231",
+  "name": "太和殿",
+  "section": "A",
+  "parent": "三大殿",
+  "nature": "建筑或构筑物",
+  "scope": "十一间五进深、重檐庑殿、三层台基；图可核宝座、金龙柱、藻井及台基栏板、嘉量、日晷、铜龟铜鹤和脊兽。；内景只覆盖中央礼仪空间；背面、侧间、隐藏构架仍需逐角度证据。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L343",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236465.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e9926e6ea567.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efefbd5093a9.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/14498.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1606[1024].jpg",
+      "https://pano.dpm.org.cn/#/panorama?regionId=20&secondAreaId=1&vpId=2&sphPicId=1942945065130049536"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/5",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "太和殿",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/HallWalkingBeasts.js:13",
+    "src/scene/palace/special/TaiheBronzeSilhouettes.js:6",
+    "src/scene/palace/special/TaiheEighteenTripods.js:12",
+    "src/scene/palace/special/TaiheTerraceInstruments.js:73"
+  ],
+  "directoryCandidates": [
+    "taihe"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 0,
+    "z": 0,
+    "w": 63.96,
+    "d": 37.17,
+    "conf": "高",
+    "src": "dimensions.md:98"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

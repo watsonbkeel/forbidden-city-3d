@@ -18,7 +18,8 @@ const root = new URL('../../', import.meta.url);
 const read = name => fs.readFileSync(new URL(name, root), 'utf8');
 const main = read('main.js');
 let worldPromise;
-const world = () => worldPromise ??= buildWorld();
+const world = () => worldPromise ??= buildWorld({ realMaterials: true, realFinish: true });
+test.after(async () => { if (worldPromise) (await worldPromise).dispose(); });
 const near = (a, b, label) => assert.ok(Math.abs(a - b) < 1e-8, `${label}: ${a} vs ${b}`);
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -98,7 +99,7 @@ test('existing ground mesh, logical support, body and head are clear inside unch
     assert.deepEqual(hits.map(h => h.object.material.name), ['stone_slab', 'ground_brick']);
     near(hits[0].point.y, .01, 'existing decorative road');
     near(hits[1].point.y, 0, 'existing ground');
-  } finally { for (const object of env.objects) object.geometry.dispose(); }
+  } finally { env.dispose(); }
 });
 
 test('real collision world permits all 54m forward to the existing pre-gate approach without raised support', async () => {
@@ -114,8 +115,7 @@ test('real collision world permits all 54m forward to the existing pre-gate appr
 
 for (const fps of [10, 60]) for (const sprint of [false, true]) {
   test(`real controls walk the added approach at ${fps}Hz, sprint=${sprint}`, async t => {
-    const W = await world(), f = setupInput(t);
-    f.c.collisionManager = W.cm;
+    const W = await world(), f = setupInput(t, { collisionManager: W.cm });
     f.c.setPosition(position.x, position.y, position.z);
     f.c.lookAt(0, LAYOUT.WUMEN_Z);
     f.camera.updateMatrixWorld(true); // The ordinary first render precedes input.

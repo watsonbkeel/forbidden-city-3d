@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "number": "C1",
+  "stableId": "FC-786C150547",
+  "name": "武英殿",
+  "section": "C",
+  "parent": "武英殿院落",
+  "nature": "建筑或构筑物",
+  "scope": "主殿五间三进深、黄瓦歇山、须弥座及月台；后接敬思殿与穿廊，东西为凝道殿和焕章殿。；该页两张照片实为武英门外观和武英门匾额，不能视作武英殿本殿外观；需全景或新陶瓷馆资料补内外。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L429",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236500.html"
+    ],
+    "exterior": [
+      "https://pano.dpm.org.cn/#/panorama?regionId=70&secondAreaId=147&vpId=3542&sphPicId=1943424062764208128"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-west.json#/items/2",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "武英殿",
+      "engineeringCoordinates": {
+        "x": 219.5,
+        "z": -199.2
+      }
+    },
+    {
+      "ref": "data/zones/outer-west.json#/items/7",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "武英殿",
+      "engineeringCoordinates": {
+        "x0": 185,
+        "x1": 256,
+        "z0": -249.8,
+        "z1": -152
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/WuyingSouthWindows.js:26"
+  ],
+  "directoryCandidates": [
+    "wuying"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 219.5,
+    "z": -199.2,
+    "conf": "中",
+    "src": "R36 dedicated single-hall fit; legacy group/approximate anchor retained below",
+    "w": 31.8,
+    "d": 16.8,
+    "dimensionStatus": "OFFICIAL_TOPOLOGY_REVERSIBLE_MODEL_FIT_NOT_SURVEYED",
+    "legacyAnchor": {
+      "x": 219.5,
+      "z": -185.9,
+      "src": "dimensions.md:452"
+    }
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

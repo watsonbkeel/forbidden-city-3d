@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "number": "H19",
+  "stableId": "FC-12BEB1BB0E",
+  "name": "延春阁",
+  "section": "H",
+  "parent": "建福宫花园",
+  "nature": "建筑或构筑物",
+  "scope": "西部中心建筑，重檐攒尖；不能将1922旧照当现状。；复建后建筑与清代旧影/火场/施工照必须分期。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L666",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236524.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41a1d280f.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d41b19d7f7.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-west.json#/items/39",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "延春阁",
+      "engineeringCoordinates": {
+        "x": 216,
+        "z": 485.5
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/HUnknownInventory.js:6",
+    "src/scene/palace/special/YanchunSouthPhotoFit.js:5",
+    "src/scene/palace/special/YanchunSouthVessels.js:8"
+  ],
+  "directoryCandidates": [
+    "place-outer-west-12beb1bb0e"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 216.0,
+    "z": 485.5,
+    "w": 23.5,
+    "d": 24.3,
+    "conf": "中",
+    "src": "dimensions.md:300"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

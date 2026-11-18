@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "number": "B29",
+  "stableId": "FC-C640AE8651",
+  "name": "南三所",
+  "section": "B",
+  "parent": "外朝东路/文华殿东北 / 外朝东路·南三所院落群",
+  "nature": "院落/设施组",
+  "scope": "并列东中西三所，每所三进；撷芳殿不应被当作另一个西北建筑，也不等于宁寿花园撷芳亭。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L411",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236452.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/4647[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/7996.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-east.json#/items/18",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "南三所",
+      "engineeringCoordinates": {
+        "x0": -335,
+        "x1": -234,
+        "z0": 20,
+        "z1": 100
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/NansansuoCourtyardGates.js:47",
+    "src/scene/palace/special/NansansuoEastCourtEastSideHall.js:44",
+    "src/scene/palace/special/NansansuoMiddleEastSideHall.js:36",
+    "src/scene/palace/special/NansansuoMiddleWell.js:45",
+    "src/scene/palace/special/NansansuoMiddleWestSideHall.js:39",
+    "src/scene/palace/special/NansansuoWestCourtEastSideHall.js:45",
+    "src/scene/palace/special/NansansuoWestCourtWestSideHall.js:42"
+  ],
+  "directoryCandidates": [],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": -285,
+    "z": 20,
+    "conf": "低",
+    "src": "dimensions.md:429",
+    "note": "宫门位置"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

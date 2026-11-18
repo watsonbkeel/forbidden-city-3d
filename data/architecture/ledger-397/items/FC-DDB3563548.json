@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "number": "K12",
+  "stableId": "FC-DDB3563548",
+  "name": "含清斋",
+  "section": "K",
+  "parent": "慈宁宫花园东侧·宝相楼南",
+  "nature": "建筑或构筑物",
+  "scope": "灰瓦三卷勾连搭、前后房与天井、朴素砖墙；图集为侧外观；落地装修、房间分隔和陈设未找到",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L767",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236580.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/8363.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-west.json#/items/15",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "含清斋",
+      "engineeringCoordinates": {
+        "x": 238.6,
+        "z": 82.4
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-outer-west-ddb3563548"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "number": "E55",
+  "stableId": "FC-1400B5FC62",
+  "name": "延禧宫",
+  "section": "E",
+  "parent": "东六宫·延禧宫院",
+  "nature": "院落总项（现存与历史分期）",
+  "scope": "补父院；现模型名延禧宫实为灵沼轩遗构，可关联已有灵沼轩条目。门与北、东、西楼各独立，不能当旧正后殿现存。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L542",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236535"
+    ],
+    "exterior": [
+      "https://www.dpm.org.cn/explore/building/236535"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/23",
+      "nameMatch": true,
+      "basis": [
+        "exact-current-name"
+      ],
+      "declaredName": "延禧宫",
+      "engineeringCoordinates": {
+        "x": -148.2,
+        "z": 324.9
+      }
+    },
+    {
+      "ref": "data/zones/east-six.json#/items/27",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "延禧宫",
+      "engineeringCoordinates": {
+        "x0": -169.2,
+        "x1": -127.2,
+        "z0": 303.2,
+        "z1": 353.2
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-east-six-1400b5fc62"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": -148.2,
+    "z": 324.9,
+    "w": 16.3,
+    "d": 11.7,
+    "conf": "中",
+    "src": "dimensions.md:183",
+    "note": "现存为水殿遗址，宽度不代表原宫殿"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

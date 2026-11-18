@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "number": "I5",
+  "stableId": "FC-D653A5843E",
+  "name": "颐和轩",
+  "section": "I",
+  "parent": "宁寿宫区后寝中路",
+  "nature": "建筑或构筑物",
+  "scope": "前出抱厦、月台日晷、甬路与景祺阁工字形连接；静态图缺室内与后穿廊全貌",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L700",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236516.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff004189c37.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff00418c7dc.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/15",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "颐和轩",
+      "engineeringCoordinates": {
+        "x": -293.7,
+        "z": 470.8
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/YiheCourtCensers.js:45",
+    "src/scene/palace/special/YiheJingqiConnector.js:71",
+    "src/scene/palace/special/YiheSouthPorch.js:6"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-d653a5843e"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": -293.7,
+    "z": 470.8,
+    "w": 34.1,
+    "conf": "中",
+    "src": "dimensions.md:355"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

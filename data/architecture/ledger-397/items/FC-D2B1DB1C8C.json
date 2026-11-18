@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "number": "G28",
+  "stableId": "FC-D2B1DB1C8C",
+  "name": "长康左门",
+  "section": "G",
+  "parent": "御花园周边街巷",
+  "nature": "建筑或构筑物",
+  "scope": "目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L641",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/classify_detail/175908.html"
+    ],
+    "exterior": [],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/garden.json#/items/30",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "长康左门",
+      "engineeringCoordinates": {
+        "x": -64,
+        "z": 422.7
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/GardenStreetGatePins.js:8"
+  ],
+  "directoryCandidates": [
+    "place-garden-d2b1db1c8c"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": -64,
+    "z": 421.6,
+    "w": 8.4,
+    "conf": "中",
+    "src": "dimensions.md:132"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

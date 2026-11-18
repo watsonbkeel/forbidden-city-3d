@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "number": "F24",
+  "stableId": "FC-0B25381D42",
+  "name": "同道堂",
+  "section": "F",
+  "parent": "西六宫/咸福宫/后院",
+  "nature": "建筑或构筑物",
+  "scope": "同项名：咸福宫后殿；官方咸福宫总页写硬山，独立同道堂页写歇山；已查看同道堂外景照片，呈歇山，应以实景复核并保留来源冲突。；官方说明为原状式陈列；房内琴德簃、画禅室为室名/匾题，不能当另一座外殿。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L577",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236583.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/18015[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/18014[1024].jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/west-six.json#/items/47",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": "咸福宫后殿",
+      "engineeringCoordinates": {
+        "x": 149.3,
+        "z": 449.8
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/WestRearSouthWindows.js:6"
+  ],
+  "directoryCandidates": [
+    "place-west-six-856e48412c"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "number": "D10",
+  "stableId": "FC-C12F0510F9",
+  "name": "内左门",
+  "section": "D",
+  "parent": "乾清门",
+  "nature": "建筑或构筑物",
+  "scope": "乾清门东侧内廷出入门，邻九卿值房。；父页可确认名称/关系；完整立面、屋面细节、尺寸及室内尚缺专门图证。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L460",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236473.html"
+    ],
+    "exterior": [],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/axis-courts.json#/items/20",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "内左门",
+      "engineeringCoordinates": {
+        "x": -62.4,
+        "z": 203.85
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-axis-courts-c12f0510f9"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": -62.4,
+    "z": 203.8,
+    "conf": "中",
+    "src": "dimensions.md:109"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

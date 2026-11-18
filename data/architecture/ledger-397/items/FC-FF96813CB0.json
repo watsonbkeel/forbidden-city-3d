@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "number": "G27",
+  "stableId": "FC-FF96813CB0",
+  "name": "御花园",
+  "section": "G",
+  "parent": "内廷中路·坤宁宫北",
+  "nature": "院落/设施组",
+  "scope": "子建筑已大量覆盖，但缺园区总节点；补地形、道路、围墙与院落关系范围，不新增一座建筑。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L640",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236519"
+    ],
+    "exterior": [
+      "https://www.dpm.org.cn/explore/building/236519"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/12",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "御花园",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 470.5
+        }
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-layout-ff96813cb0"
+  ],
+  "referenceAnchor": {
+    "kind": "garden",
+    "x": 0,
+    "z": 475,
+    "w": 135,
+    "d": 89,
+    "conf": "中",
+    "src": "dimensions.md:502"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "number": "G1",
+  "stableId": "FC-89576A9B7C",
+  "name": "钦安殿",
+  "section": "G",
+  "parent": "御花园",
+  "nature": "建筑或构筑物",
+  "scope": "重檐盝顶，不是庑殿/歇山；乾隆曾添抱厦后拆除，现状不得补旧抱厦。；公开资料的建筑沿革与陈设记述须和现存照片分开；文件URL中的年月不代表实拍日期。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L614",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236494.html"
+    ],
+    "exterior": [
+      "https://pano.dpm.org.cn/#/panorama?regionId=63&secondAreaId=106&vpId=3317&sphPicId=1943330470011981824"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/garden.json#/items/36",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "钦安殿",
+      "engineeringCoordinates": {
+        "x": 0,
+        "z": 493.1
+      }
+    },
+    {
+      "ref": "data/zones/garden.json#/items/37",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "钦安殿",
+      "engineeringCoordinates": {
+        "x0": -14.46,
+        "x1": 14.46,
+        "z0": 477.03,
+        "z1": 509.17
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "qinan"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 0,
+    "z": 493.1,
+    "w": 24.1,
+    "d": 14.1,
+    "conf": "中",
+    "src": "dimensions.md:60,134"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

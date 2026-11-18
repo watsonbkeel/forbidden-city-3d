@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "number": "D4",
+  "stableId": "FC-8FF65D8732",
+  "name": "坤宁宫",
+  "section": "D",
+  "parent": "后三宫",
+  "nature": "建筑或构筑物",
+  "scope": "连廊九间三进深、重檐庑殿；偏东开门及直棂吊搭窗；东暖阁洞房内景、门及御笔联可看。；照片未覆盖西侧萨满祭祀间全貌、三面炕、锅灶；东暖阁是宫内房间，勿混作独立的东暖殿。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L454",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236487.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e997ecca81fc.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/17/s5e997ee07b730.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1589.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/09/24/s5f6bf4dfc4c43.png",
+      "https://pano.dpm.org.cn/#/panorama?regionId=61&secondAreaId=95&vpId=2010956597969129476&sphPicId=1943661062321389568"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/11",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "坤宁宫",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 386.1
+        }
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/KunningWalkingBeasts.js:9"
+  ],
+  "directoryCandidates": [
+    "kunning"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 0.3,
+    "z": 386.1,
+    "w": 46,
+    "d": 20,
+    "conf": "中",
+    "src": "dimensions.md:58,126"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

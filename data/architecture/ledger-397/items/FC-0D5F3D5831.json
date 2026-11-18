@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "number": "I18",
+  "stableId": "FC-0D5F3D5831",
+  "name": "庆寿堂",
+  "section": "I",
+  "parent": "宁寿宫区后寝东路·阅是楼北",
+  "nature": "院落总项（仓库仅绑定一座五间正房）",
+  "scope": "四进狭长院落、各殿甬道、黄绿屋面交替与西廊；官方庆寿堂是四进院落；现有同名模型只是一座五间正房，必须查明在第几院，不得以该模型通过代表四院完成。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L713",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236539.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/8395.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/8396.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/28",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "庆寿堂",
+      "engineeringCoordinates": {
+        "x": -334.8,
+        "z": 439.6
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/QingshouRaisedWalk.js:51"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-0d5f3d5831"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}
