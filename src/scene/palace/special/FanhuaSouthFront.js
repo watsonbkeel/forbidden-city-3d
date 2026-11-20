@@ -22,7 +22,13 @@ export function buildFanhuaSouthFront(c){
     for(const s of[-1,1]){box('fanhua-south-door-jamb','red',.11,dh,.16,x+s*(dw/2+.06),y+dh/2,front,true);for(let n=0;n<2;n++){const xx=x+s*(dw/2+.13+n*.07),zz=front+.23+n*.5;box('fanhua-south-folded-leaf','red',.065,dh,.46,xx,y+dh/2,zz,true);box('fanhua-south-leaf-field','glass',.012,dh*.58,.37,xx-s*.04,y+dh*.66,zz);}
      const fill=(pw-dw)/2-.03;if(fill>0)box('fanhua-south-door-filler','red',fill,h,.15,x+s*(dw/2+(pw-dw)/4),y+h/2,front,true);
     }
-    box('fanhua-south-door-lintel','red',dw+.24,.18,.18,x,y+dh+.09,front,true);const th=h-dh-.18;if(th>0)box('fanhua-south-door-transom','green',dw,th,.13,x,y+dh+.18+th/2,front,true);
+    box('fanhua-south-door-lintel','red',dw+.24,.18,.18,x,y+dh+.09,front,true);
+    // The visible flat head already owns this exact Box3. Opt only that beam
+    // into the existing upward sweep; ordinary collision boxes stay unchanged.
+    const lintel=c.kit.colliders.at(-1);
+    lintel.overhead={type:'piecewise-linear-x',sourceId:'fanhua:south-door-lintel',
+      points:[[lintel.min.x,lintel.min.y],[lintel.max.x,lintel.min.y]],minZ:lintel.min.z,maxZ:lintel.max.z,topY:lintel.max.y};
+    const th=h-dh-.18;if(th>0)box('fanhua-south-door-transom','green',dw,th,.13,x,y+dh+.18+th/2,front,true);
    }else{
     const sill=upper?.20:.62,top=h-.16,mid=(sill+top)/2;
     box('fanhua-south-sill',upper?'red':'stone',pw,sill,.20,x,y+sill/2,front,true);
