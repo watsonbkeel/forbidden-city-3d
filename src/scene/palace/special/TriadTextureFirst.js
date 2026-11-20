@@ -6,6 +6,12 @@ export function hasTextureFirstQuery(search) {
   return p.getAll('triad').length === 1 && p.get('triad') === 'texture-first';
 }
 
+// Browser entry defaults to the selected manual-trial artwork. An explicit
+// triad=legacy (or an unknown/ambiguous selector) keeps the old presentation.
+export function usesTextureFirstTriad(search) {
+  return !new URLSearchParams(search).has('triad') || hasTextureFirstQuery(search);
+}
+
 // Restores the finite front-facing artwork of the manual trial, not a 360° statue.
 export function makeTextureFirstCard(subjectId, texture) {
   if (!subjects.has(subjectId) || !texture?.isTexture) throw Error('Allowlisted subject and texture required');

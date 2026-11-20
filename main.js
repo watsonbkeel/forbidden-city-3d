@@ -1,4 +1,4 @@
-import {hasTextureFirstQuery} from './src/scene/palace/special/TriadTextureFirst.js';
+import {usesTextureFirstTriad} from './src/scene/palace/special/TriadTextureFirst.js';
 import { TourLocalization } from './src/ui/TourLocalization.js';
 import { LanguageControl } from './src/ui/LanguageControl.js';
 import { TourFailureNotice } from './src/ui/TourFailureNotice.js';
@@ -148,7 +148,7 @@ class ForbiddenCityApp {
       ['东西六宫与两路宫殿', () => {
         // 碰撞管理器先建：ZoneManager 加载区时要往里注册带 tag 的碰撞体
         this.collisionManager = new CollisionManager();
-        this.zoneManager = new ZoneManager({reuseInactive:true,triadTextureFirst:hasTextureFirstQuery(window.location.search)});
+        this.zoneManager = new ZoneManager({reuseInactive:true,triadTextureFirst:usesTextureFirstTriad(window.location.search)});
         this.zoneManager.onLoad = (_id, group) => group.traverse(o => { if (o.isMesh) this.shadowObjects.push(o); });
         this.zoneManager.onUnload = (_id, group) => {
           const gone = new Set();
