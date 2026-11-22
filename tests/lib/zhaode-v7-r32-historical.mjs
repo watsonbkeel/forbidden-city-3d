@@ -85,7 +85,7 @@ export function verifyFrozenV7RouteOutput(output) {
   }
 }
 
-export function replayFrozenV7Route() {
+function withFrozenRouteTree(run) {
   const inputs = readFrozenV7RouteInputs();
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'palace-r32-v7-'));
   try {
@@ -95,17 +95,52 @@ export function replayFrozenV7Route() {
       fs.writeFileSync(destination, bytes, {mode: 0o444, flag: 'wx'});
     }
     linkPinnedDependencies(dir, JSON.parse(inputs.get('package-lock.json')));
-    // Use only the original Node runtime/package graph. Private process env
-    // contains no project overlays, current-root loader flags, or credentials.
-    const env = {TZ: 'UTC', LC_ALL: 'C', NODE_OPTIONS: '--max-old-space-size=3072'};
-    for (const key of ['PATH', 'SystemRoot', 'SYSTEMROOT']) if (process.env[key] !== undefined) env[key] = process.env[key];
-    const child = spawnSync(process.execPath, ['--test', '--test-concurrency=1', '--test-reporter=tap', '--test-name-pattern', `^${v7HistoricalRouteCase}$`, originalTest], {
-      cwd: dir, env, encoding: 'utf8', timeout: 60_000, maxBuffer: 2 * 1024 * 1024, windowsHide: true,
-    });
-    assert.equal(child.error, undefined);
-    assert.equal(child.signal, null, child.stderr);
-    assert.equal(child.status, 0, `${child.stdout}\n${child.stderr}`);
-    verifyFrozenV7RouteOutput(child.stdout);
-    return {commit, tree, tests: 1, originalCase: v7HistoricalRouteCase};
+    return run(dir);
   } finally {fs.rmSync(dir, {force: true, recursive: true});}
+}
+
+function runFrozenNode(dir, args) {
+  // Use only the original Node runtime/package graph. Private process env
+  // contains no project overlays, current-root loader flags, or credentials.
+  const env = {TZ: 'UTC', LC_ALL: 'C', NODE_OPTIONS: '--max-old-space-size=3072'};
+  for (const key of ['PATH', 'SystemRoot', 'SYSTEMROOT']) if (process.env[key] !== undefined) env[key] = process.env[key];
+  const child = spawnSync(process.execPath, args, {
+    cwd: dir, env, encoding: 'utf8', timeout: 60_000, maxBuffer: 2 * 1024 * 1024, windowsHide: true,
+  });
+  assert.equal(child.error, undefined);
+  assert.equal(child.signal, null, child.stderr);
+  assert.equal(child.status, 0, `${child.stdout}\n${child.stderr}`);
+  return child.stdout;
+}
+
+export function replayFrozenV7Route() {
+  return withFrozenRouteTree(dir => {
+    const output = runFrozenNode(dir, ['--test', '--test-concurrency=1', '--test-reporter=tap', '--test-name-pattern', `^${v7HistoricalRouteCase}$`, originalTest]);
+    verifyFrozenV7RouteOutput(output);
+    return {commit, tree, tests: 1, originalCase: v7HistoricalRouteCase};
+  });
+}
+
+/** Execute only the original R32 route-input preamble. The five original
+ * retention and mutation tests then consume its actual ordered route rows. */
+export function replayFrozenR32RouteDescriptors() {
+  const original = fs.readFileSync(new URL('r32-route-retention.native.txt', fixture));
+  assert.equal(sha(original), 'a9a4e5fc0e1a44ff82fa75667f9e52ca64bfb415232457d061c74056b11c8e25', 'original R32 route test source');
+  assert.equal(blob(original), '721cec56a02fe8cb125630e49b8b54e0948f36ed', 'independently recovered R32 test Git blob');
+  assert.equal(sha(fs.readFileSync(path.join(here, 'tests/lib/r32-route-retention.mjs'))), '51034986b22836ffd2bd74a4527ddadee68c29ca50aab6c94744e9a79801082f', 'original R32 reversal helper');
+  const text = original.toString('utf8'), start = text.indexOf('for(const[k,rs]of Object.entries');
+  assert.ok(start > 0 && text.indexOf('for(const[k,rs]of Object.entries', start + 1) < 0, 'one original test-registration boundary');
+  return withFrozenRouteTree(dir => {
+    const capture = 'tests/current-state/r32-route-descriptor-capture.mjs';
+    const preamble = text.slice(0, start);
+    fs.writeFileSync(path.join(dir, capture), preamble + 'process.stdout.write(JSON.stringify({fixed,auto}));\n', {mode: 0o444, flag: 'wx'});
+    const rows = JSON.parse(runFrozenNode(dir, [capture]));
+    assert.deepEqual(Object.keys(rows), ['fixed', 'auto']);
+    const d = JSON.parse(fs.readFileSync(path.join(dir, 'tests/fixtures/r32-route-delta.json')));
+    for (const kind of ['fixed', 'auto']) {
+      assert.equal(rows[kind].length, d[kind].afterCount, `R32 ${kind} count`);
+      assert.equal(sha(JSON.stringify(rows[kind])), d[kind].afterSHA256, `exact R32 ${kind} descriptor input`);
+    }
+    return rows;
+  });
 }

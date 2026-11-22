@@ -2,20 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {registerHooks} from 'node:module';
-
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format: 'module', source: 'export default ' + fs.readFileSync(new URL(url), 'utf8'), shortCircuit: true};
-  return next(url, context);
-}});
-const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
+import {captureNativeR32ResidentScene} from '../lib/r32-resident-native-replay.mjs';
 const {restoreR32ArtworkCaptureIfPresent} = await import('../lib/r32-screen-scene-retention.mjs');
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
-// This historical contract first binds/reverses the exact later artwork bytes.
-// R33 is first bound and reversed by the exact R33 scene layer. The live a9 capture and independently rebuilt afb UVs are checked separately
-// by r32-screen-scene-retention; no current behavior uses this test adapter.
-const current = restoreR32ArtworkCaptureIfPresent(captureJiaotaiScene(PalaceBuilder));
+// Rebuild the pre-artwork resident epoch with its actual independent source.
+// Later artwork reversals remain strict and separate from this capture.
+const current = restoreR32ArtworkCaptureIfPresent(captureNativeR32ResidentScene());
 const helper = new URL('../lib/r32-scene-retention.mjs', import.meta.url);
 const getHelper = async () => {
   assert.ok(fs.existsSync(helper), 'strict R32 historical scene adapter is required');
