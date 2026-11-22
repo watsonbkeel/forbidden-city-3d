@@ -32,6 +32,23 @@ function atR35Finish(name, bytes) {
   assert.equal(blob(original), d.candidateGitBlob, name);
   return original;
 }
+// Independently enumerated Git tree plus original bytes only for retained
+// paths changed in the pinned current checkout. Never derive original files
+// from the registry or silently trim the live path inventory to old paths.
+const retainedArchiveBytes = read('tests/fixtures/r35-retained-epoch.json.gz');
+assert.equal(sha(retainedArchiveBytes), '6dd1b23c000909e9c8ae1fb3c24dd54fbd3b1fc9e63a2273706d6f534c2b9870', 'immutable independent R35 inventory and source archive');
+const historical = JSON.parse(gunzipSync(retainedArchiveBytes, {maxOutputLength: 2_000_000}));
+const liveInventorySHA256 = '2f7effa66bf6f74ca5df30317fae12151509c74293f8abc040ee9d24cce756d4';
+function assertLiveProductInventory(paths) {
+  assert.equal(sha(JSON.stringify(paths)), liveInventorySHA256, 'unreviewed live product path inventory');
+}
+function atR35Retained(name, bytes) {
+  if (!Object.hasOwn(historical.retainedOverlay, name)) return bytes;
+  const [successor, encoding, source] = historical.retainedOverlay[name];
+  if (sha(bytes) !== successor) return bytes;
+  assert.ok(encoding === 'utf8' || encoding === 'base64');
+  return assertR35RetainedSource(name, Buffer.from(source, encoding));
+}
 function mutations(bytes) {
   const changed = Buffer.from(bytes); changed[Math.floor(changed.length / 2)] ^= 1;
   return [Buffer.alloc(0), changed, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n// unreviewed')])];
@@ -50,9 +67,22 @@ test('R35 binds the complete raw finish scope, independent R34 sources, unchange
   assert.ok(Object.isFrozen(r35Source.files));
   assert.ok(Object.isFrozen(r35Source.retainedFiles));
   assert.ok(Object.isFrozen(r35Source.preservedFixtures));
-  const actual = ['src', 'data', 'public'].flatMap(dir => fs.readdirSync(new URL(dir + '/', root), {recursive: true, withFileTypes: true})
+  const live = ['src', 'data', 'public'].flatMap(dir => fs.readdirSync(new URL(dir + '/', root), {recursive: true, withFileTypes: true})
     .filter(entry => entry.isFile())
     .map(entry => path.relative(root.pathname, path.join(entry.parentPath, entry.name)))).sort();
+  assertLiveProductInventory(live);
+  for (const changed of [[...live, 'src/unreviewed.js'].sort(), live.slice(1), [...live, live[0]].sort(), live.toReversed()]) {
+    assert.throws(() => assertLiveProductInventory(changed), /unreviewed live product path inventory/);
+  }
+  assert.equal(historical.commit, '0d7bbf23c1d79b36170a36b27a988488554f1b9f');
+  assert.equal(historical.tree, '8536222213a47655a66e0280d28df183c299ae29');
+  assert.equal(Object.keys(historical.retainedOverlay).length, 78);
+  const actual = Object.entries(historical.inventory).map(([name, gitBlob]) => {
+    const raw = read(name);
+    const bytes = Object.hasOwn(r35Source.files, name) ? atR35Finish(name, raw) : atR35Retained(name, raw);
+    assert.equal(blob(bytes), gitBlob, 'exact historical product-tree blob: ' + name);
+    return name;
+  });
   assert.deepEqual(actual, [...Object.keys(r35Source.files), ...Object.keys(r35Source.retainedFiles)].filter(name => /^(src|data|public)\//.test(name)).sort());
   for (const [name, digest] of Object.entries(r35Source.preservedFixtures)) assert.equal(sha(read(name)), digest, name);
   assert.ok(Object.hasOwn(r35Source.preservedFixtures, 'tests/fixtures/r34-source-delta.json'));
@@ -116,8 +146,20 @@ for (const name of expectedPaths) test(`${name}: raw R35 bytes restore only the 
 });
 
 test('every retained production and provenance file remains byte-exact, including binary assets', () => {
+  for (const name of Object.keys(historical.retainedOverlay)) assert.ok(Object.hasOwn(r35Source.retainedFiles, name));
   for (const name of Object.keys(r35Source.retainedFiles)) {
-    const bytes = read(name);
+    const raw = read(name), bytes = atR35Retained(name, raw);
+    const binding = Object.hasOwn(historical.retainedOverlay, name) ? historical.retainedOverlay[name] : null;
+    if (binding) {
+      assert.equal(sha(raw), binding[0], 'unreviewed superseding retained source: ' + name);
+      assert.notEqual(bytes, raw, 'frozen restoration cannot overwrite live bytes');
+      assert.throws(() => assertR35RetainedSource(name, raw), /exact retained R34 source/);
+      for (const mutation of mutations(raw)) {
+        assert.equal(atR35Retained(name, mutation), mutation);
+        assert.throws(() => assertR35RetainedSource(name, mutation), /exact retained R34 source/);
+      }
+      for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(atR35Retained(unknown, raw), raw);
+    } else assert.equal(bytes, raw, 'matching live bytes are read directly');
     assert.equal(assertR35RetainedSource(name, bytes), bytes);
     for (const mutation of mutations(bytes)) assert.throws(() => assertR35RetainedSource(name, mutation), /exact retained R34 source/);
   }
