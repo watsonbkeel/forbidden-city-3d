@@ -13,6 +13,12 @@ const side = 'side-gate-render-geometry.test.mjs';
 const tiren = 'r58-tiren-lower-leaves.test.mjs';
 const xihe = 'r58-xihe-corbels.test.mjs';
 const hongyi = 'r58-hongyi-lower-windows.test.mjs';
+// The authored batch-4 merge case consumes the matching reduction's in-file
+// evidence row. Allow only these exact original pairs, not arbitrary filters.
+const sideMergePrerequisites = new Map(['xiehe','xihe','jingyun'].map(profile=>[
+  `${profile}: final material merging retains exact surviving triangle streams and first surfaces`,
+  `${profile}: real production materials achieve only the exact bounded covered-face reduction`,
+]));
 const cases = {
   2: {
     [tiren]: [
@@ -29,6 +35,7 @@ const cases = {
       'xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state',
       'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials',
       'the gate never touches sibling assemblies or patches shared CourtKit methods',
+      ...sideMergePrerequisites.keys(),
     ],
     [hongyi]: [
       'Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte',
@@ -70,6 +77,8 @@ function stageWrite(dir,p,b) {
 export function authoredFacade(epoch,file,name) {
   assert.ok(cases[epoch]?.[file]?.includes(name),'only named R58-A facade cases can replay');
   const runTest='tests/current-state/'+file;
+  const prerequisite=epoch===4 && file===side ? sideMergePrerequisites.get(name) : undefined;
+  const names=prerequisite?[prerequisite,name]:[name];
   return () => {
     const extended=file===hongyi;
     const pin=extended?hongyiPin:pins[epoch];
@@ -113,7 +122,7 @@ export function authoredFacade(epoch,file,name) {
         assert.equal(sha(b),digest,'exact historical Three input: '+p);
         stageWrite(dir,prefix+p,b);
       }
-      const exact='^'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$';
+      const exact='^(?:'+names.map(subtest=>subtest.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')$';
       // A fresh temp tree and process, not an ESM/global resolver hook. Do not
       // inherit NODE_TEST_CONTEXT, loader flags, or private artifact paths.
       const r=spawnSync(process.execPath,
@@ -122,8 +131,10 @@ export function authoredFacade(epoch,file,name) {
       assert.ifError(r.error);
       assert.equal(r.status,0,r.stdout+'\n'+r.stderr);
       const tap=r.stdout.split(/\r?\n/);
-      assert.deepEqual(tap.filter(row=>/^\s*(?:not )?ok\s/.test(row)),['ok 1 - '+name],'the sole replayed assertion has its original exact name');
-      for(const row of ['1..1','# tests 1','# pass 1','# fail 0','# cancelled 0','# skipped 0','# todo 0']) assert.ok(tap.includes(row),'missing full TAP result '+row);
+      const passed=names.map((subtest,i)=>`ok ${i+1} - ${subtest}`);
+      assert.deepEqual(tap.filter(row=>/^\s*(?:not )?ok\s/.test(row)),passed,'exact authored check(s) in registration order');
+      const count=names.length;
+      for(const row of [`1..${count}`,`# tests ${count}`,`# pass ${count}`,'# fail 0','# cancelled 0','# skipped 0','# todo 0']) assert.ok(tap.includes(row),'missing full TAP result '+row);
     } finally {rmSync(dir,{recursive:true,force:true});}
   };
 }

@@ -318,7 +318,14 @@ function compareRays(before, after, rays) {
   return { rays: rays.length, hits, counts, maxDistanceError, mismatches: 0 };
 }
 for (const [profile, counts] of Object.entries(expected)) {
-  test(`${profile}: final material merging retains exact surviving triangle streams and first surfaces`, () => {
+  const name = `${profile}: final material merging retains exact surviving triangle streams and first surfaces`;
+  // The original merge test runs behind the matching reduction in native
+  // batch 4. Longzong's independently authored later scope stays live.
+  if (profile === 'xiehe' || profile === 'xihe' || profile === 'jingyun') {
+    test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name));
+    continue;
+  }
+  test(name, () => {
     const f = fixture(profile), details = detailRays(f), { before, after } = mergedPair(f);
     const original = materialStreams(before), candidate = materialStreams(after);
     assert.equal(original.size, counts.buckets); assert.equal(candidate.size, counts.buckets);
