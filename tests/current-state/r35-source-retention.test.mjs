@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import {r35Source, validateR35SourceRegistry, restorePreR35Source, restoreR35SourceIfPresent,
   independentR34Source, assertR35RetainedSource} from '../lib/r35-source-retention.mjs';
 
@@ -12,6 +13,25 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 const raw = read('tests/fixtures/r35-source-delta.json');
 const expectedPaths = ['src/render/PostProcessing.js', 'src/scene/palace/kit.js', 'src/scene/zones/ZoneBase.js', 'src/utils/TextureLibrary.js'];
+// Independent source from published R35 commit 0d7bbf23c1d79b36170a36b27a988488554f1b9f
+// (Git tree 8536222213a47655a66e0280d28df183c299ae29).
+// Only the two exact superseding 2eaac9c inputs select authenticated original
+// candidate blobs. The inventory/retained-file sections remain uncoupled.
+const successors = new Map([
+  ['src/scene/palace/kit.js', 'b06365e333bfd0235aa6ab3fb8913a02d844d85296858355214e5375575d5322'],
+  ['src/scene/zones/ZoneBase.js', 'e0728e42af334585466951359848f5b067683ad44a75001af01b0a719e32765b'],
+]);
+const archiveBytes = read('tests/fixtures/r35-finish-source-blobs.json.gz');
+assert.equal(sha(archiveBytes), '67ba4e73da99fab450954d2884ce233fdc4eded3a350c16eda7b47d67d750582', 'immutable R35 finish source inputs');
+const archive = Object.freeze(JSON.parse(gunzipSync(archiveBytes, {maxOutputLength: 250_000})));
+function atR35Finish(name, bytes) {
+  if (!successors.has(name) || sha(bytes) !== successors.get(name)) return bytes;
+  const d = r35Source.files[name], original = Buffer.from(archive[name], 'utf8');
+  assert.equal(original.length, d.candidateBytes, name);
+  assert.equal(sha(original), d.candidateSHA256, name);
+  assert.equal(blob(original), d.candidateGitBlob, name);
+  return original;
+}
 function mutations(bytes) {
   const changed = Buffer.from(bytes); changed[Math.floor(changed.length / 2)] ^= 1;
   return [Buffer.alloc(0), changed, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n// unreviewed')])];
@@ -41,6 +61,13 @@ test('R35 binds the complete raw finish scope, independent R34 sources, unchange
 });
 
 test('R35 immutable registry rejects forged epochs, source identities, finite hunks, retained paths and fixture bindings', () => {
+  assert.deepEqual(Object.keys(archive), [...successors.keys()]);
+  for (const [name, approved] of successors) {
+    const current = read(name);
+    assert.equal(sha(current), approved, 'unreviewed live R35 finish source change: ' + name);
+    for (const mutation of mutations(current)) assert.equal(atR35Finish(name, mutation), mutation);
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(atR35Finish(unknown, current), current);
+  }
   for (const bytes of mutations(raw)) assert.throws(() => validateR35SourceRegistry(bytes), /immutable R35/);
   const first = expectedPaths[0], retained = Object.keys(r35Source.retainedFiles)[0];
   for (const mutate of [
@@ -60,7 +87,7 @@ test('R35 immutable registry rejects forged epochs, source identities, finite hu
 });
 
 for (const name of expectedPaths) test(`${name}: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate`, () => {
-  const delta = r35Source.files[name], bytes = read(name), original = Buffer.from(bytes), text = bytes.toString();
+  const delta = r35Source.files[name], bytes = atR35Finish(name, read(name)), original = Buffer.from(bytes), text = bytes.toString();
   assert.equal(sha(bytes), delta.candidateSHA256);
   assert.equal(bytes.length, delta.candidateBytes);
   assert.equal(blob(bytes), delta.candidateGitBlob);

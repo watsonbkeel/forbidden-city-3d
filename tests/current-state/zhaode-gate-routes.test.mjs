@@ -60,29 +60,62 @@ test('V7 historical routes retain exact descriptors with only the later Qin’an
   assert.equal(p.routeContacts.rearGround[1], p.ramps[1].zToe + 2);
 });
 
-import { CollisionManager } from '../../src/utils/Collision.js';
 import { PLAYER } from '../../src/config/constants.js';
 import { replayTerrace as replayPhysicalRoute } from '../lib/terrace-walk.mjs';
 import { bindProfileSupports, traceProfileSupports, profileSupportReport } from '../lib/profile-support-trace.mjs';
 
-let worldPromise;
-const fullWorld = () => worldPromise ??= buildWorld();
-// Positive, read-only runs use the actual current registered owners, never copies.
-// Historical mutation/rescue experiments below retain their original isolation.
+// Every current route uses the actual live registration. Historical V7 replay above stays separate.
 let ownedWorldPromise;
 const ownedWorld = () => ownedWorldPromise ??= buildWorld({ realMaterials: true, realFinish: true });
 test.after(async () => { if (ownedWorldPromise) (await ownedWorldPromise).dispose(); });
-function diagnosticWorld(W, noBoxRescue = false) {
-  const cm = new CollisionManager();
-  for (const c of W.cm.colliders) cm.addCollider(c.mesh, c.tag);
-  for (const w of W.cm.walkables) cm.addWalkable(noBoxRescue && w.type === 'box' ? { ...w, rescue: false } : w, w.tag);
-  return { ...W, cm };
+// Box rescue has a strict .6m inset in production. Restrict the intervention
+// to the actual swept lane and leave all authored, possibly private owners
+// untouched. Fail closed if an authored rescue-capable row enters that lane.
+function rescueDisabledView(W,p) {
+  const cm=W.cm, rows=cm.walkables, points=profileRoute(p), margin=PLAYER.SPRINT_SPEED*.1+.5;
+  const xr=points.map(q=>q[0]),zr=points.map(q=>q[1]);
+  const xmin=Math.min(...xr)-margin,xmax=Math.max(...xr)+margin;
+  const zmin=Math.min(...zr)-margin,zmax=Math.max(...zr)+margin;
+  const overlaps=w=>w.type==='box'&&w.rescue&&
+    w.box.min.x+.6<xmax&&w.box.max.x-.6>xmin&&w.box.min.x+.6<w.box.max.x-.6&&
+    w.box.min.z+.6<zmax&&w.box.max.z-.6>zmin&&w.box.min.z+.6<w.box.max.z-.6;
+  const assertNoLocalOwners=()=>assert.deepEqual(cm.walkables.filter(overlaps).map(w=>
+    ({tag:w.tag,min:w.box.min.toArray(),max:w.box.max.toArray()})),[],
+    'a rescue-capable live owner entered the route; do not change a private registration');
+  assertNoLocalOwners();
+
+  // On this exact production manager, a probe would really rescue the starting
+  // foot. Toggle only its test-owned flag; restore the array on every exit.
+  const [x,z]=points[0], initial=cm.getGroundHeight(x,z,0,PLAYER.STEP_UP), probeY=p.platform.topY+8;
+  assert.equal(initial,0,'probe starts from the original ground approach');
+  const controlView=rows.slice();
+  cm.walkables=controlView;
+  try{
+    const box=new W.THREE.Box3(new W.THREE.Vector3(x-2,0,z-2),new W.THREE.Vector3(x+2,probeY,z+2));
+    cm.addWalkable({type:'box',box,rescue:true},'zhaode-rescue-test-only');
+    assert.equal(controlView.length,rows.length+1);
+    const probe=controlView.at(-1);
+    assert.equal(probe.tag,'zhaode-rescue-test-only');
+    assert.equal(probe.rescue,true);
+    assert.equal(cm.getGroundHeight(x,z,0,PLAYER.STEP_UP),probeY,'the enabled probe actually rescues');
+    probe.rescue=false;
+    assert.equal(cm.getGroundHeight(x,z,0,PLAYER.STEP_UP),initial,'the disabled probe cannot rescue');
+  }finally{cm.walkables=rows;}
+  assert.strictEqual(cm.walkables,rows);
+
+  return {...W,assertNoBoxRescue(samples){
+    assert.ok(samples.length>0,'the no-rescue intervention must observe real support queries');
+    for(const q of samples){
+      assert.ok(q.x>=xmin&&q.x<=xmax&&q.z>=zmin&&q.z<=zmax,`support escaped the no-rescue envelope: ${JSON.stringify(q)}`);
+      assert.notEqual(q.source,'rescue','no query used a raised rescue box');
+    }
+    assertNoLocalOwners();
+  }};
 }
 // Mutate only the two actual registered Zhaode ramps in a per-case array view.
 // Never copy/register a foreign owner's collider or support. Non-target objects
 // stay identical; even a failed assertion must leave the shared world unchanged.
 async function mutationWorld(t, noBoxRescue) {
-  if (noBoxRescue) return diagnosticWorld(await fullWorld(),true);
   const W=await ownedWorld(), cm=W.cm, originalRows=cm.walkables;
   const profile=gateGeom(explicit).profile, ids=bindProfileSupports(cm,profile);
   const ramps=[...ids.keys()].filter(w=>w.type==='ramp');
@@ -101,7 +134,7 @@ async function mutationWorld(t, noBoxRescue) {
     const restored=bindProfileSupports(cm,profile);
     for(const [w,id] of ids) assert.equal(restored.get(w),id,'restore actual registered support identity');
   });
-  return W;
+  return noBoxRescue ? rescueDisabledView(W,profile) : W;
 }
 const routeContactNames = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];
 function profileRoute(p, from = 'front', offset = 0) {
@@ -136,18 +169,20 @@ function assertPhysicalFeet(result, p) {
   near(result.end[2],0,'physical feet settle back at ground after ordinary braking');
 }
 
-// This full cross-product runs in both the ordinary all-zone world and a copy
-// with box rescue disabled. The production controller itself is never changed.
+// Both variants run in the same all-zone world. The no-rescue variant proves
+// the physically bounded lane has no usable box rescue without copying owners.
 for (const noBoxRescue of [false,true]) for (const from of ['front','rear'])
 for (const fps of [60,10]) for (const sprint of [false,true]) for (const backward of [false,true]) {
   test(`昭德 true support ${from} origin ${fps}Hz ${sprint?'sprint':'walk'} ${backward?'backward':'forward'} rescueDisabled=${noBoxRescue}`, async t => {
-    const W=noBoxRescue ? diagnosticWorld(await fullWorld(),true) : await ownedWorld(), p=gateGeom(explicit).profile;
+    const actual=await ownedWorld(),p=gateGeom(explicit).profile;
+    const W=noBoxRescue ? rescueDisabledView(actual,p) : actual;
     const identities=bindProfileSupports(W.cm,p);
     assert.equal([...identities].find(([,id])=>id===p.supports.platform.supportId)[0].rescue,false);
     const trace=traceProfileSupports(W.cm,identities);
     let result;
     try { result=replayPhysicalRoute(t,W,profileRoute(p,from),{fps,sprint,backward,recordFrames:true}); }
     finally {trace.restore();}
+    if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
     assertPhysicalSupport(trace.samples,p,from);
     assertPhysicalFeet(result,p);
     assert.equal(result.arrived,true,JSON.stringify({stuckAt:result.stuckAt,end:result.end}));
@@ -182,6 +217,7 @@ for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(c
     let result;
     try{result=replayPhysicalRoute(t,W,profileRoute(p),{fps:10,sprint:true,recordFrames:true});}
     finally{trace.restore();}
+    if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
     assert.throws(()=>assertPhysicalSupport(trace.samples,p),/true-support|missing ascent|other-box|other-ramp|increment/);
     t.diagnostic(`XY arrived=${result.arrived}; physical support correctly rejected ${mutation}:${id}`);
   });
@@ -200,6 +236,7 @@ test(`endpoint arrival cannot hide ${mutation}d ${side} support behind an unowne
   W.cm.addWalkable(substitute,'injected-unowned-support');
   const trace=traceProfileSupports(W.cm,identities);let result;
   try{result=replayPhysicalRoute(t,W,profileRoute(p),{fps:10,sprint:true});}finally{trace.restore();}
+  if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
   assert.equal(result.arrived,true,'deliberate defect reproduces the endpoint-only false positive');
   assert.ok(trace.samples.some(s=>s.source==='other-ramp'));
   assert.throws(()=>assertPhysicalSupport(trace.samples,p),/other-ramp/);
