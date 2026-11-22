@@ -1,4 +1,5 @@
 import test, { after } from 'node:test';
+import {authoredLongzong} from '../lib/longzong-authored.mjs';
 import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -126,7 +127,9 @@ function exactInvariance(f) {
 }
 
 for (const [profile, counts] of Object.entries(expected)) {
-  test(`${profile}: real production materials achieve only the exact bounded covered-face reduction`, () => {
+  const name = `${profile}: real production materials achieve only the exact bounded covered-face reduction`;
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
+  test(name, () => {
     const f = fixture(profile);
     assert.equal(total(f.before.baseline), counts.source);
     assert.equal(total(f.before.baseline) - total(f.frame), counts.removed, 'source-integrated hidden-face savings');
@@ -224,6 +227,7 @@ for (const profile of Object.keys(expected)) {
     });
     continue;
   }
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
   test(name, () => {
     for (const rot of Object.values(FACE)) for (const open of [true, false]) for (const plaque of [true, false]) {
       const f = fixture(profile, { x: 37.25, z: -62.75, rot, open, plaque });
@@ -385,11 +389,12 @@ function compareRays(before, after, rays) {
 for (const [profile, counts] of Object.entries(expected)) {
   const name = `${profile}: final material merging retains exact surviving triangle streams and first surfaces`;
   // The original merge test runs behind the matching reduction in native
-  // batch 4. Longzong's independently authored later scope stays live.
+  // batch 4. Longzong uses its separate byte-matched delivered scope.
   if (profile === 'xiehe' || profile === 'xihe' || profile === 'jingyun') {
     test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name));
     continue;
   }
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
   test(name, () => {
     const f = fixture(profile), details = detailRays(f), { before, after } = mergedPair(f);
     const original = materialStreams(before), candidate = materialStreams(after);

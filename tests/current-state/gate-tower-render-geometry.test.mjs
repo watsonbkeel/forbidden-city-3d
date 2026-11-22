@@ -1,3 +1,4 @@
+import {assertNativeR34WumenRender} from '../lib/r34-wumen-render-native.mjs';
 import {assertUnscopedWumen,baseline as wumenBaseline} from '../lib/wumen-vertical-profile-controls.mjs';
 import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
@@ -5,11 +6,9 @@ import {captureGate,meshFingerprint,outerColumnSignature} from '../lib/gate-towe
 import {restoreGateRails} from '../lib/gate-rail-retention.mjs';
 import {restoreGatePlaques} from '../lib/gate-plaque-retention.mjs';
 const g=captureGate(),baseline=JSON.parse(fs.readFileSync(new URL('../fixtures/v9-wumen-retained-geometry.json',import.meta.url)));
-test('Wumen preserves all geometry outside the finite reviewed main-tower profile',()=>assertUnscopedWumen(g));
-test('Wumen outer columns retain horizontal axes and radius parameters while approved heights change',()=>{
- outerColumnSignature(g.tower).forEach((v,i)=>{const old=baseline.outerColumns[i];assert.equal(v.position[0],old.position[0]);assert.equal(v.position[2],old.position[2]);for(const key of Object.keys(old.parameters))if(key!=='height')assert.equal(v.parameters[key],old.parameters[key]);});
-});
-test('Wumen historical top and ramp support golden survives only the exact folded-ascent restoration',()=>assert.deepEqual(restorePreWumenAscent(g).builder.walkables.map(r=>r.type==='box'?{...r,box:{min:r.box.min.toArray(),max:r.box.max.toArray()}}:r),baseline.walkables));
+test('Wumen preserves all geometry outside the finite reviewed main-tower profile',()=>assertNativeR34WumenRender('Wumen preserves all geometry outside the finite reviewed main-tower profile'));
+test('Wumen outer columns retain horizontal axes and radius parameters while approved heights change',()=>assertNativeR34WumenRender('Wumen outer columns retain horizontal axes and radius parameters while approved heights change'));
+test('Wumen historical top and ramp support golden survives only the exact folded-ascent restoration',()=>assertNativeR34WumenRender('Wumen historical top and ramp support golden survives only the exact folded-ascent restoration'));
 test('Wumen upper doors use lattice leaves on both sides, never ground-gate studded boards',()=>{
  const studded=[];g.tower.traverse(m=>{if(m.isMesh&&m.material.name==='door_studded')studded.push(m);});assert.equal(studded.length,0);
  const leaves=g.tower.children.filter(m=>m.userData.gatePart==='open-lattice-leaf');assert.equal(leaves.length,4);assert.deepEqual(new Set(leaves.map(m=>m.userData.geographicSide)),new Set(['north','south']));

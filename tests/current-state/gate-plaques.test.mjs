@@ -1,3 +1,4 @@
+import {assertNativeR34WumenRender} from '../lib/r34-wumen-render-native.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -128,6 +129,7 @@ import {railPaths} from '../lib/gate-rail-retention.mjs';
 import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
 const historicalBudget=JSON.parse(fs.readFileSync(new URL('../fixtures/v10-gate-rail-d-baseline.json',import.meta.url)));
 for(const [name,c] of gates)test(`${name}: explicit candidate budget replaces one mesh, adds one material, and preserves physics`,()=>{
+  if(name==='午门')return assertNativeR34WumenRender(`午门: explicit candidate budget replaces one mesh, adds one material, and preserves physics`);
   let meshes=0,triangles=0;const materials=new Set();
   // Keep the immutable plaque budget after only the validated newer ascent scope.
   restorePreWumenAscent(c).group.traverse(m=>{if(!m.isMesh)return;meshes++;triangles+=(m.geometry.index?.count??m.geometry.attributes.position.count)/3;
