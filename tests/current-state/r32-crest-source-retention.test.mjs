@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {readR32PaintCheckpoint, readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-crest-source-retention.mjs', import.meta.url);
@@ -81,7 +82,7 @@ test('crest registry rejects same-length corruption and missing, extra, altered 
 
 test('crest reverses only exact full bytes and two unique review hunks without mutating input', async () => {
   const {restorePreR32CrestSource: restore, restoreR32CrestSourceIfPresent: conditional} = await load();
-  const delta = fixture.files[settingPath], bytes = read(settingPath), original = Buffer.from(bytes), text = bytes.toString('utf8');
+  const delta = fixture.files[settingPath], bytes = readR32PaintCheckpoint(settingPath), original = Buffer.from(bytes), text = bytes.toString('utf8');
   assert.equal(sha(bytes), delta.candidateSHA256);
   assert.equal(bytes.length, delta.candidateBytes);
   const old = restore(settingPath, bytes);
@@ -119,7 +120,7 @@ test('all historical entry chains consume crest only through exact full-byte dis
   const {restoreR31CombinedSourceIfPresent} = await import('../lib/r31-combined-source-retention.mjs');
   const {restoreR31SourceIfPresent} = await import('../lib/r31-flight-operations-retention.mjs');
   const {restorePreR15Source} = await import('../lib/r15-flight-source-retention.mjs');
-  const bytes = read(settingPath), old = restore(settingPath, bytes);
+  const bytes = readR32PaintCheckpoint(settingPath), old = restore(settingPath, bytes);
   for (const chain of [restorePreR32Source, restoreR32SourceIfPresent, restoreR31CombinedSourceIfPresent, restoreR31SourceIfPresent, restorePreR15Source]) {
     assert.deepEqual(chain(settingPath, bytes), chain(settingPath, old), 'existing strict entry chain');
   }
@@ -143,18 +144,18 @@ test('added crest module has one exact identity and every inventory rejects alte
   for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) {
     assert.throws(() => check(crestPath, bad), /exact R32 crest added source/);
     for (const verify of [verifiedR32CrestAddedProductPaths, verifiedR32AddedProductPaths]) {
-      assert.throws(() => verify(p => p === crestPath ? bad : read(p)), /exact R32 crest added source/);
+      assert.throws(() => verify(p => p === crestPath ? bad : readR32PaintInventory(p)), /exact R32 crest added source/);
     }
   }
   for (const verify of [verifiedR32CrestAddedProductPaths, verifiedR32AddedProductPaths]) {
-    assert.throws(() => verify(p => {if (p === crestPath) throw new Error('missing frozen file: ' + p); return read(p);}), /missing frozen file/);
+    assert.throws(() => verify(p => {if (p === crestPath) throw new Error('missing frozen file: ' + p); return readR32PaintInventory(p);}), /missing frozen file/);
   }
   assert.deepEqual(bytes, original, 'added-source buffer is never overwritten');
 });
 
 test('unregistered paths and changed epochs cannot acquire a crest exception', async () => {
   const {restorePreR32CrestSource: restore, restoreR32CrestSourceIfPresent: conditional, assertR32CrestAddedSource: added} = await load();
-  const bytes = read(settingPath);
+  const bytes = readR32PaintCheckpoint(settingPath);
   for (const name of ['src/unknown.js', settingPath + '-copy', crestPath + '-copy', 'public/textures/art/unknown.webp', '__proto__', 'toString']) {
     assert.equal(restore(name, bytes), bytes);
     assert.equal(conditional(name, bytes), bytes);
@@ -170,8 +171,8 @@ test('unregistered paths and changed epochs cannot acquire a crest exception', a
 test('existing product inventory adds exactly one independently bound crest runtime module', async () => {
   await load();
   const {verifiedR32AddedProductPaths, verifiedR32CrestAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
-  assert.deepEqual(verifiedR32CrestAddedProductPaths(), [crestPath]);
-  const all = verifiedR32AddedProductPaths();
+  assert.deepEqual(verifiedR32CrestAddedProductPaths(readR32PaintInventory), [crestPath]);
+  const all = verifiedR32AddedProductPaths(readR32PaintInventory);
   assert.deepEqual(all.slice(-1), fixture.productAdditions);
   assert.equal(all.length, 18);
   assert.equal(all.length, new Set(all).size, 'no duplicated inventory entries');

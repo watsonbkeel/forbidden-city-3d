@@ -50,3 +50,28 @@ for path, content in archive.items():
 print(f'{len(archive)} files matched original Git bytes')
 PY
 ```
+
+## Delivered R63 overlay and live coverage
+
+The R63 test label denotes the delivered `6bd936cbbbd45ddee2fca90060a3530485908cd0`
+build, not the current development geometry. Its reachable source closure is
+125 members: the same R62 archive with two replaced modules and four added
+modules. The six exact new contents come from the R63 Git object; the compressed
+40,459-byte overlay and per-file SHA-256 manifest are adjacent. It is restored
+under a separate URL namespace. The full 125 reconstructed members match the
+corresponding R63 Git bytes. Original test names, movement modes, coordinates
+and assertions do not change.
+
+Current coverage stays independently live. The approved R123 main/front-wing
+shift (`ChuxiuRearCourtFrame.js`) moves the genuine Chuxiu north-wall collider
+south by five model metres. The old `(94.5,439.7)` point is now in the court;
+a distinct live witness approaches the current wall from the supported
+hall interior, checks its actual visible material and registered box, and keeps
+the original direction clear to Lijing. An exterior-to-interior test first hit
+the valid platform edge, so it was not used as a claimed wall-contact witness. The other historical starting point `(110.5,440)` remains
+occupied by the fitted rear wing. The public entry tests instead start at the
+ordinary live map resolver (the pre-existing full-world fallback covers 10/60 Hz
+walking), enter and return twice in each of the eight input/rate combinations.
+Tongdao retains all eight prior live tests on its unchanged routes. The live
+archive-independent supplement uses the ordinary merged west-six builder and
+registered collisions, not a standalone hall or a substitute collider.

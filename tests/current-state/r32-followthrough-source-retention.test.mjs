@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {readR32PaintCheckpoint, readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-followthrough-source-retention.mjs', import.meta.url);
@@ -75,7 +76,8 @@ for (const [name, delta] of Object.entries(fixture.files)) {
     const {restoreR31CombinedSourceIfPresent} = await import('../lib/r31-combined-source-retention.mjs');
     const {restoreR31SourceIfPresent} = await import('../lib/r31-flight-operations-retention.mjs');
     const {restorePreR15Source} = await import('../lib/r15-flight-source-retention.mjs');
-    const bytes = read(name), original = Buffer.from(bytes), text = bytes.toString('utf8');
+    const bytes = name === 'src/scene/palace/QianqingCeiling.js' ? readR32PaintCheckpoint(name) : read(name);
+    const original = Buffer.from(bytes), text = bytes.toString('utf8');
     assert.equal(sha(bytes), delta.candidateSHA256);
     assert.equal(bytes.length, delta.candidateBytes);
     const old = restore(name, bytes);
@@ -126,11 +128,11 @@ for (const [name, delta] of Object.entries(fixture.addedFiles)) {
     for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) {
       assert.throws(() => check(name, bad), /exact R32 follow-through added source/);
       for (const verify of [verifiedR32FollowthroughAddedProductPaths, verifiedR32AddedProductPaths]) {
-        assert.throws(() => verify(p => p === name ? bad : read(p)), /exact R32 follow-through added source/);
+        assert.throws(() => verify(p => p === name ? bad : readR32PaintInventory(p)), /exact R32 follow-through added source/);
       }
     }
     for (const verify of [verifiedR32FollowthroughAddedProductPaths, verifiedR32AddedProductPaths]) {
-      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return read(p);}), /missing frozen file/);
+      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return readR32PaintInventory(p);}), /missing frozen file/);
     }
   });
 }
@@ -154,8 +156,8 @@ test('unregistered paths and changed epochs cannot acquire a follow-through exce
 test('existing product inventory includes exactly the two bound follow-through product additions', async () => {
   await load();
   const {verifiedR32AddedProductPaths, verifiedR32FollowthroughAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
-  assert.deepEqual(verifiedR32FollowthroughAddedProductPaths(), fixture.productAdditions);
-  const all = verifiedR32AddedProductPaths();
+  assert.deepEqual(verifiedR32FollowthroughAddedProductPaths(readR32PaintInventory), fixture.productAdditions);
+  const all = verifiedR32AddedProductPaths(readR32PaintInventory);
   assert.deepEqual(all.slice(-7), [...fixture.productAdditions,
     'public/textures/art/qianqing-screen-illustration-r32.webp', 'src/scene/palace/QianqingScreenPaint.js',
     'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js',
