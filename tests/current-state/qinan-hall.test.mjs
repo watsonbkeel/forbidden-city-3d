@@ -5,6 +5,8 @@ import * as THREE from 'three';
 import {RoomNightLights} from '../../src/scene/sky/RoomNightLights.js';
 import { CourtKit } from '../../src/scene/palace/kit.js';
 import { ZoneBase } from '../../src/scene/zones/ZoneBase.js';
+import {registerHooks} from 'node:module';
+import {realTextureLibrary} from '../lib/r48-real-texture-library.mjs';
 const url=new URL('../../src/scene/palace/special/QinanProfile.js',import.meta.url);
 const api=existsSync(url)?await import(url):{};
 const ctx=new Proxy({},{get:()=>()=>({data:[]}),set:()=>true});
@@ -39,10 +41,17 @@ test('bad transform, missing annex and generic overrides fail before any geometr
  const malformed=structuredClone(api.QINAN_PROFILE);malformed.roofBoard.width=Infinity;assert.throws(()=>geometry({},malformed),/finite|profile|dimension/i);
 });
 test('actual assembly owns the low annex, closed north wall, two dedicated lighting rooms and no generic furniture',()=>{
- const f=fixture();assert.equal(nodes(f.root,'qinan-main-column').length,16);assert.equal(nodes(f.root,'qinan-annex-column').length,6);assert.equal(nodes(f.root,'qinan-north-wall').length,1);
- assert.equal(nodes(f.root,'qinan-annex-front-panel').length,5);assert.equal(f.kit.rooms.length,2);assert.equal(f.root.userData.structure.id,'garden/qinan');assert.equal(f.root.userData.structure.eaveCount,2);
- assert.equal(f.kit.walkables.every(s=>s.rescue===false&&s.supportId.startsWith('qinan-')),true);
- const zone=new ZoneBase(library(),{id:'garden',items:[item]});const data=zone.build();assert.equal(data.group.userData.architecture[0].profileId,api.QINAN_PROFILE.profileId);assert.equal(data.rooms.length,2);zone.dispose();
+ const lib=realTextureLibrary(),kit=new CourtKit(lib),{f:root}=kit.hall({...item,plaque:false});
+ const zone=new ZoneBase(lib,garden);
+ try {
+  assert.equal(nodes(root,'qinan-main-column').length,16);assert.equal(nodes(root,'qinan-annex-column').length,6);assert.equal(nodes(root,'qinan-north-wall').length,1);
+  assert.equal(nodes(root,'qinan-annex-front-panel').length,5);assert.equal(kit.rooms.length,2);assert.equal(root.userData.structure.id,'garden/qinan');assert.equal(root.userData.structure.eaveCount,2);
+  assert.ok(kit.walkables.length>0&&kit.walkables.every(s=>s.rescue===false&&s.supportId.startsWith('qinan-')));
+  const data=zone.build(),hall=data.group.userData.architecture.filter(r=>r.id==='garden/qinan');
+  assert.equal(hall.length,1);assert.equal(hall[0].profileId,api.QINAN_PROFILE.profileId);
+  assert.deepEqual(data.rooms.filter(r=>r.name.startsWith('钦安殿·')).map(r=>r.name),['钦安殿·主殿','钦安殿·前抱厦']);
+  assert.equal(data.mapItems.filter(r=>r.name==='钦安殿'&&r.profileId===api.QINAN_PROFILE.profileId).length,1);
+ } finally { zone.dispose();kit.dispose(kit.root);lib.dispose(); }
 });
 
 test('explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice',async()=>{
@@ -118,21 +127,56 @@ test('source geometries, merged geometries and owned materials dispose once; lib
  assert.ok(mergedResources.every(r=>counts.get(r)===1));assert.ok([...libraryCounts.values()].every(n=>n===0));assert.equal(kit.colliders.length,0);assert.equal(kit.walkables.length,0);
 });
 test('actual ZoneManager three-cycle lifecycle preserves deterministic metadata and zone ownership',async()=>{
- globalThis.window??={location:{search:''}};const {ZoneManager}=await import('../../src/scene/zones/ZoneManager.js');const {CollisionManager}=await import('../../src/utils/Collision.js');
- const lib=library(),scene=new THREE.Scene(),cm=new CollisionManager(),manager=new ZoneManager(),staticBox=new THREE.Box3(new THREE.Vector3(30,0,470),new THREE.Vector3(31,2,471));cm.rivers=[];cm.addCollider(staticBox,'static-garden-fixture');
- manager.register({id:'garden',name:'Qinan lifecycle fixture',bounds:{x0:-40,x1:40,z0:450,z1:520},neighbors:[],items:[item]});manager.init(scene,lib,cm,{x:18,z:477});
- const first=structuredClone(manager.loaded.get('garden').data.group.userData.architecture),map=structuredClone(manager.getMapItems());let colliderCount,supportCount;
- for(let cycle=0;cycle<3;cycle++){
-  const loaded=manager.loaded.get('garden');assert.deepEqual(loaded.data.group.userData.architecture,first);assert.deepEqual(loaded.data.mapItems,map);assert.equal(loaded.data.rooms.length,2);
-  assert.deepEqual(loaded.data.rooms.map(r=>r.name),['钦安殿·主殿','钦安殿·前抱厦']);
-  const lamps=new RoomNightLights({scene,rooms:loaded.data.rooms,collisionManager:cm});assert.equal(lamps.rooms.length,2);assert.ok(lamps.sites.some(v=>v.room===0)&&lamps.sites.some(v=>v.room===1));
-  let disposed=0;lamps.fixtures.addEventListener('dispose',()=>disposed++);lamps.update(0,new THREE.Vector3(0,3,477));assert.ok(lamps.lights.some(l=>l.visible));
-  colliderCount??=cm.colliders.filter(c=>c.tag==='garden').length;supportCount??=cm.walkables.filter(s=>s.tag==='garden').length;assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,colliderCount);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,supportCount);assert.equal(manager.silhouettes.get('garden').visible,false);
-  const counts=new Map(),resources=new Set([...loaded.builder.kit.owned,...(loaded.builder.kit.ownedTextures??[])]);loaded.data.group.traverse(o=>{if(o.geometry)resources.add(o.geometry);});for(const r of resources){counts.set(r,0);r.addEventListener('dispose',()=>counts.set(r,counts.get(r)+1));}
-  lamps.dispose();assert.equal(disposed,1);assert.equal(lamps.root.parent,null);assert.equal(scene.children.filter(o=>o.name==='r72-interpretive-room-lights').length,0);
-  manager.unloadZone('garden');assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,0);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,0);assert.equal(cm.colliders.filter(c=>c.tag==='static-garden-fixture').length,1);assert.equal(manager.silhouettes.get('garden').visible,true);assert.ok([...counts.values()].every(n=>n===1));if(cycle<2)manager.loadZone('garden');
- }
- manager.dispose();
+ globalThis.window??={location:{search:''}};
+ const {ZoneManager}=await import('../../src/scene/zones/ZoneManager.js');const {CollisionManager}=await import('../../src/utils/Collision.js');
+ // Use the exact topology (including real neighbor references); the old one-item
+ // stand-in is correctly rejected by the current D25 garden host validator.
+ const hook=registerHooks({load(url,context,next){return next(url,url.endsWith('.json')?{...context,importAttributes:{...context.importAttributes,type:'json'}}:context);}});
+ let zones;
+ try { ({ZONES:zones}=await import('../../data/zones/index.js')); } finally { hook.deregister(); }
+ const lib=realTextureLibrary(),scene=new THREE.Scene(),cm=new CollisionManager(),manager=new ZoneManager();
+ const staticBox=new THREE.Box3(new THREE.Vector3(30,0,470),new THREE.Vector3(31,2,471));
+ cm.rivers=[];cm.addCollider(staticBox,'static-garden-fixture');
+ try {
+  for(const zone of zones)manager.register(zone);
+  manager.init(scene,lib,cm,{x:18,z:477});
+  const firstData=manager.loaded.get('garden').data;
+  const first=structuredClone(firstData.group.userData.architecture),map=structuredClone(firstData.mapItems),allMap=structuredClone(manager.getMapItems());
+  let colliderCount,supportCount;
+  for(let cycle=0;cycle<3;cycle++){
+   const {data,builder}=manager.loaded.get('garden'),silhouette=manager.silhouettes.get('garden');
+   assert.deepEqual(data.group.userData.architecture,first);assert.deepEqual(data.mapItems,map);assert.deepEqual(manager.getMapItems(),allMap);
+   const rooms=data.rooms.filter(r=>r.name.startsWith('钦安殿·'));
+   assert.deepEqual(rooms.map(r=>r.name),['钦安殿·主殿','钦安殿·前抱厦']);
+   const lamps=new RoomNightLights({scene,rooms,collisionManager:cm});
+   let disposed=0;lamps.fixtures.addEventListener('dispose',()=>disposed++);
+   try {
+    assert.equal(lamps.rooms.length,2);assert.ok(lamps.sites.some(v=>v.room===0)&&lamps.sites.some(v=>v.room===1));
+    lamps.update(0,new THREE.Vector3(0,3,477));assert.ok(lamps.lights.some(l=>l.visible));
+   } finally { lamps.dispose(); }
+   assert.equal(disposed,1);assert.equal(lamps.root.parent,null);assert.equal(scene.children.filter(o=>o.name==='r72-interpretive-room-lights').length,0);
+   colliderCount??=cm.colliders.filter(c=>c.tag==='garden').length;supportCount??=cm.walkables.filter(s=>s.tag==='garden').length;
+   assert.ok(colliderCount>0&&supportCount>0);
+   assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,colliderCount);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,supportCount);
+   assert.equal(data.group.parent,scene);assert.equal(data.group.visible,true);assert.equal(silhouette.parent,scene);assert.equal(silhouette.visible,false);
+   const resources=new Set([...builder.kit.owned,...(builder.kit.ownedTextures??[])]),shared=new Set();
+   data.group.traverse(o=>{if(o.geometry)resources.add(o.geometry);for(const m of [o.material].flat())if(m&&lib.owns(m))shared.add(m);});
+   const dispositions=new Map();
+   const watch=r=>{let count=0;const add=()=>count++;r.addEventListener('dispose',add);dispositions.set(r,{count:()=>count,stop:()=>r.removeEventListener('dispose',add)});};
+   assert.ok(resources.size>0&&shared.size>0);
+   assert.ok([...resources].every(r=>!shared.has(r)));
+   resources.forEach(watch);shared.forEach(watch);
+   try {
+    manager.unloadZone('garden');
+    assert.equal(cm.colliders.filter(c=>c.tag==='garden').length,0);assert.equal(cm.walkables.filter(s=>s.tag==='garden').length,0);
+    assert.equal(cm.colliders.filter(c=>c.tag==='static-garden-fixture').length,1);
+    assert.equal(data.group.parent,null);assert.equal(silhouette.parent,scene);assert.equal(silhouette.visible,true);
+    assert.ok([...resources].every(r=>dispositions.get(r).count()===1));
+    assert.ok([...shared].every(r=>dispositions.get(r).count()===0));
+   } finally { for(const d of dispositions.values())d.stop(); }
+   if(cycle<2)manager.loadZone('garden');
+  }
+ } finally { manager.dispose();lib.dispose(); }
 });
 
 test('profileHash is a deterministic SHA256 content digest independent of revision and detects stale parameters',async()=>{
