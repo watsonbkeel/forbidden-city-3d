@@ -13,6 +13,7 @@ const side = 'side-gate-render-geometry.test.mjs';
 const tiren = 'r58-tiren-lower-leaves.test.mjs';
 const xihe = 'r58-xihe-corbels.test.mjs';
 const hongyi = 'r58-hongyi-lower-windows.test.mjs';
+const pavilion = 'pavilion-render-geometry.test.mjs';
 // The authored batch-4 merge case consumes the matching reduction's in-file
 // evidence row. Allow only these exact original pairs, not arbitrary filters.
 const sideMergePrerequisites = new Map(['xiehe','xihe','jingyun'].map(profile=>[
@@ -21,11 +22,13 @@ const sideMergePrerequisites = new Map(['xiehe','xihe','jingyun'].map(profile=>[
 ]));
 const cases = {
   2: {
+    [pavilion]: ['hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars'],
     [tiren]: [
       'Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves',
       'Hongyi, including its six original windows and upper gallery, is byte-identical',
     ],
     [xihe]: [
+      'raw pre-pruning source and final corbel triangles are all nondegenerate',
       'six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact',
       ...['xiehe','jingyun','longzong'].map(p=>p+' remains byte-identical and gets no copied Xihe silhouette'),
     ],
@@ -49,7 +52,7 @@ const cases = {
 };
 const pins = {
   2:{archive:'fbd4c65f8a96febed1c3e52476d85986a9585bff92e61e2b56a3c2f0fc54473c',manifest:'ef78ca7ab481dc15c1594ad9ffb307945a84462227d8295e109eb1f20d2db950',n:51,
-    tests:{[tiren]:'e81e711ce1beec1296169e6d912991cd084fffee',[xihe]:'8d54895f9c0fc845ac9dee4b65156d2eb4563d47'}},
+    tests:{[pavilion]:'5927da3d5887d823dbbbbe30404d8222f5111ef2',[tiren]:'e81e711ce1beec1296169e6d912991cd084fffee',[xihe]:'8d54895f9c0fc845ac9dee4b65156d2eb4563d47'}},
   4:{archive:'4d717a1becc924e505b4e67d42a59f86d8ee2998e3c1481a0fb6ec145cfb6974',manifest:'4e19f91221a3fcacc40ca304e0f078356903d93b06b33489fdaeb5a40c4ca258',n:43,
     tests:{[side]:'c16ee8c8ac14450375a3574edd6acf538437815f'}},
 };
@@ -107,6 +110,16 @@ export function authoredFacade(epoch,file,name) {
     assert.equal(snapshot.delivery,'82d8ab9d2b7cf13af6d2233ef3d262f183ce8cbd');
     assert.equal(Object.keys(snapshot.files).length,pin.n);
     assert.deepEqual(snapshot.missing,{});
+    // This source predates Hongyi's paired windows. Only the authenticated
+    // batch-2 imports are used; the delivered batch-4 version was genuinely red.
+    if(file===pavilion){
+      assert.equal(epoch,2);
+      assert.ok(!Object.hasOwn(snapshot.files,runTest));
+      const p=read('tests/fixtures/r58-authored-facade/pavilion-render-batch2.mjs.txt');
+      assert.equal(sha(p),'644a43b4589deb4818b8269604e7f2a0a9293453241918b53267ec47d2394a4a');
+      assert.equal(blob(p),pin.tests[file]);
+      snapshot.files[runTest]={source:p.toString('utf8'),size:p.length,sha256:sha(p),gitBlob:blob(p)};
+    }
     assert.equal(snapshot.files[runTest].gitBlob,pin.tests[file],'unaltered authored test blob');
     const dir=mkdtempSync(path.join(tmpdir(),'palace-facade-batch'+epoch+'-'));
     try {
@@ -140,4 +153,20 @@ export function authoredFacade(epoch,file,name) {
       for(const row of [`1..${count}`,`# tests ${count}`,`# pass ${count}`,'# fail 0','# cancelled 0','# skipped 0','# todo 0']) assert.ok(tap.includes(row),'missing full TAP result '+row);
     } finally {rmSync(dir,{recursive:true,force:true});}
   };
+}
+
+// Source-only, three-declaration inverse. This is not the modern axis owner:
+// the two actual ZoneBase/route checks use live axis data in their original file.
+export function authoredR58ZhenduAxis() {
+  const pin=pins[2], snapshot=archive('batch2',pin.archive,800_000);
+  assert.equal(snapshot.delivery,'82d8ab9d2b7cf13af6d2233ef3d262f183ce8cbd');
+  assert.equal(snapshot.baselineTag,'R58-A internal batch 2');
+  assert.equal(snapshot.manifestSHA256,pin.manifest);
+  assert.equal(Object.keys(snapshot.files).length,pin.n);
+  assert.deepEqual(snapshot.missing,{});
+  const row=snapshot.files['data/zones/axis-courts.json'], source=Buffer.from(row.source,'utf8');
+  assert.equal(source.length,6593);
+  assert.equal(sha(source),'e7dd532dfe7a177d6540674e7927b9a8f3199e1d0f109dbd6cfdd6004d179231');
+  assert.equal(blob(source),'7fe3396624bab33d44c5b6984feef844fde25c7a');
+  return JSON.parse(source);
 }

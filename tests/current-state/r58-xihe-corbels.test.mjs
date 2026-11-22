@@ -6,7 +6,22 @@ import * as THREE from 'three';
 import {fixture,roles,meshes,meshRows,hash,physical,triangles,snapshot,rayLocal,geometryHealth} from '../lib/r58-court-facade-fixture.mjs';
 const baseline=JSON.parse(readFileSync(new URL('../fixtures/r58-court-facade-baseline.json',import.meta.url))).profiles;
 const corbel=m=>m.userData.role==='xihe-courtyard-corbel';
-test('raw pre-pruning source and final corbel triangles are all nondegenerate',()=>{let raw;const f=fixture('xihe',{},null,kit=>{const map=kit.mapRect.bind(kit);kit.mapRect=(...args)=>{raw=geometryHealth(args[0]);return map(...args);};});assert.equal(raw.triangles,7600);assert.equal(geometryHealth(f.frame).triangles,6634);});
+test('raw pre-pruning source and final corbel triangles are all nondegenerate', authoredFacade(2, 'r58-xihe-corbels.test.mjs', 'raw pre-pruning source and final corbel triangles are all nondegenerate'));
+
+test('current Xihe submitted geometry is nondegenerate before and after real covered-face pruning',()=>{
+ const raw=[];
+ const f=fixture('xihe',{},null,kit=>{
+  const map=kit.mapRect.bind(kit);
+  kit.mapRect=(...args)=>{raw.push({root:args[0],health:geometryHealth(args[0])});return map(...args);};
+ });
+ assert.equal(raw.length,1);assert.equal(raw[0].root,f.frame);
+ const before=raw[0].health,after=geometryHealth(f.frame);
+ assert.equal(roles(f.frame,'xihe-courtyard-corbel').length,6);
+ for(const health of [before,after]){
+  assert.ok(health.triangles>0);assert.ok(Number.isFinite(health.minArea)&&health.minArea>=1e-10);
+ }
+ assert.ok(after.triangles<before.triangles,'actual covered-face pruning reduces the submitted triangle count');
+});
 
 test('six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact', authoredFacade(2, 'r58-xihe-corbels.test.mjs', 'six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact'));
 for(const profile of ['xiehe','jingyun','longzong']) {

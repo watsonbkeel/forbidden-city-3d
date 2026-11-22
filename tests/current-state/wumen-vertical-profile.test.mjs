@@ -1,3 +1,4 @@
+import {assertExactOldWumenVertical} from '../lib/old-wumen-exact-native.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {captureGate} from '../lib/gate-tower-fixture.mjs';
@@ -26,15 +27,12 @@ for(const entry of baseline.genericRoofs)test(`non-opt-in roof stays byte-exact:
  const g=buildRoof(c.lib,entry.opts);assert.equal(meshFingerprint(g),entry.geometry);assert.equal(renderStateHash(g),entry.renderState);
  assert.deepEqual({topY:g.userData.topY,eaveY:g.userData.eaveY,band:g.userData.doubleEaveMountingBand??null},entry.metadata);
 });
-test('all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact',()=>{assertUnscopedWumen(c);assert.equal(renderStateHash(unscopedWumen(c)),baseline.unscopedRenderState);});
+test('all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact',()=>assertExactOldWumenVertical('all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact'));
 test('Shenwu whole gate remains byte-exact',()=>{const s=captureGate('神武门');assert.equal(meshFingerprint(s.group),baseline.shenwu.geometry);assert.equal(hash({colliders:s.builder.colliders,walkables:s.builder.walkables}),baseline.shenwu.physics);});
 test('Wumen floor, thresholds and open leaves stay byte-exact',()=>{
  const actual=c.tower.children.filter(m=>['open-lattice-leaf','threshold','interior-floor'].includes(m.userData.gatePart)).map(m=>({part:m.userData.gatePart,geometry:meshFingerprint(m)}));assert.deepEqual(actual,baseline.protectedBody);
 });
-test('Wumen column count, plan, radii and horizontal tessellation remain fixed',()=>{
- const actual=outerColumnSignature(c.tower);assert.equal(actual.length,baseline.outerColumns.length);
- actual.forEach((v,i)=>{const b=baseline.outerColumns[i];assert.equal(v.position[0],b.position[0]);assert.equal(v.position[2],b.position[2]);for(const k of Object.keys(b.parameters))if(k!=='height')assert.equal(v.parameters[k],b.parameters[k]);near(v.parameters.height,card.body.wallHeight,'column height');});
-});
+test('Wumen column count, plan, radii and horizontal tessellation remain fixed',()=>assertExactOldWumenVertical('Wumen column count, plan, radii and horizontal tessellation remain fixed'));
 test('profile opt-in cannot be reused for a different building or silently accept a modified card',()=>{
  for(const delta of [{width:61},{width:NaN},{depth:26},{depth:NaN},{baseY:20},{baseY:undefined},{baseY:NaN},{baseY:Infinity},{height:8},{layers:1},{type:'xieshan'},{brackets:false},{overhang:3},{_lift:1},{wumenVerticalProfile:structuredClone(card)},{_wumenUpper:card.roof}])assert.throws(()=>buildRoof(c.lib,{...roofOpts,...delta}),/Wumen/);
  assert.ok(Object.isFrozen(card)&&Object.isFrozen(card.roof)&&Object.isFrozen(card.plaque));
@@ -102,13 +100,4 @@ for(const detail of ['high','low']){
 
 import {restoreWumenFootRoundoff,footRoundoff} from '../lib/wumen-vertical-profile-controls.mjs';
 import {restorePreWumenAscent} from '../lib/wumen-ascent-retention.mjs';
-test('after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas',()=>{
- const retained=restorePreWumenAscent(c);
- assert.equal(hash({colliders:retained.builder.colliders,walkables:retained.builder.walkables}),footRoundoff.rawAfterPhysics);
- assert.equal(hash({colliders:restoreWumenFootRoundoff(retained.builder.colliders),walkables:retained.builder.walkables}),baseline.physics);
- assert.equal(footRoundoff.rawBeforePhysics,baseline.physics);
- for(const row of footRoundoff.changes)for(const axis of ['x','y','z']){
-  const changed=retained.builder.colliders.map(b=>b.clone());changed[row.index].min[axis]+=.000001;
-  assert.throws(()=>restoreWumenFootRoundoff(changed));
- }
-});
+test('after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas',()=>assertExactOldWumenVertical('after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas'));
