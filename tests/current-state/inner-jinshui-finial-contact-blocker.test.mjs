@@ -1,17 +1,14 @@
+import {replayR58FinialDiagnostic} from '../lib/r58-finial-native-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import * as THREE from 'three';
 import {CollisionManager} from '../../src/utils/Collision.js';
-import {finialFixture,replayFinialJump} from '../lib/r58-bridge-contact-probe.mjs';
-// These are BLOCKER REPRODUCTIONS, not acceptance of the experimental caps.
-// The failed no-penetration assertions are preserved in contact-red.txt.
-for(const fps of [10,60])for(const walkAlongRail of [false,true])test(`unhooked experimental caps reproduce ${walkAlongRail?'rail-walk':'jump'} penetration at ${fps}Hz`,t=>{
- const W=finialFixture(),p=W.g.userData.innerJinshuiSideFinials.placements.find(p=>p.bridgeId==='inner-jinshui:bridge-2'&&p.side===-1&&p.postIndex===0),result=replayFinialJump(t,W,p,fps,{walkAlongRail});
- result.scope='BLOCKER REPRODUCTION ONLY; NOT CONTACT FIX OR GAME ACCEPTANCE';
- fs.writeFileSync(`reports/r58-a-bridge-contact-fix/${walkAlongRail?'rail-walk':'jump'}-${fps}hz.json`,JSON.stringify(result,null,2)+'\n');
- assert.equal(result.end.airborne,false);assert.ok(result.actualCapSurfaceY!==null,'actual cap is reached without disabling water guard');assert.ok(result.penetration>.10&&result.penetration<.12,`documented penetration changed: ${result.penetration}`);
-});
+import {finialFixture} from '../lib/r58-bridge-contact-probe.mjs';
+// The four named blocker reproductions use the exact unhooked R58 fixture.
+for(const fps of [10,60])for(const walkAlongRail of [false,true]){
+ const name=`unhooked experimental caps reproduce ${walkAlongRail?'rail-walk':'jump'} penetration at ${fps}Hz`;
+ test(name,()=>replayR58FinialDiagnostic(name));
+}
 
 test('a full-cap AABB creates unsupported diagonal apex-height support',()=>{
  const W=finialFixture(),p=W.g.userData.innerJinshuiSideFinials.placements[0],box=new THREE.Box3(new THREE.Vector3(p.x-.125,p.y,p.z-.125),new THREE.Vector3(p.x+.125,p.y+.22,p.z+.125));

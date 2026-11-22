@@ -38,6 +38,7 @@ const cases = {
       'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials',
       'the gate never touches sibling assemblies or patches shared CourtKit methods',
       ...sideMergePrerequisites.keys(),
+      ...sideMergePrerequisites.values(),
     ],
     [hongyi]: [
       'Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte',
