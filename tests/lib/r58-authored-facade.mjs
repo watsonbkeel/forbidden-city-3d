@@ -12,6 +12,7 @@ const blob = b => createHash('sha1').update('blob '+b.length+'\0').update(b).dig
 const side = 'side-gate-render-geometry.test.mjs';
 const tiren = 'r58-tiren-lower-leaves.test.mjs';
 const xihe = 'r58-xihe-corbels.test.mjs';
+const hongyi = 'r58-hongyi-lower-windows.test.mjs';
 const cases = {
   2: {
     [tiren]: [
@@ -27,6 +28,12 @@ const cases = {
     [side]: [
       'xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state',
       'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials',
+      'the gate never touches sibling assemblies or patches shared CourtKit methods',
+    ],
+    [hongyi]: [
+      'Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte',
+      'existing Hongyi central inscription and every other non-target stream stay exact',
+      'Tiren entire assembly, materials and navigation stay exact',
     ],
   },
 };
@@ -35,6 +42,10 @@ const pins = {
     tests:{[tiren]:'e81e711ce1beec1296169e6d912991cd084fffee',[xihe]:'8d54895f9c0fc845ac9dee4b65156d2eb4563d47'}},
   4:{archive:'4d717a1becc924e505b4e67d42a59f86d8ee2998e3c1481a0fb6ec145cfb6974',manifest:'4e19f91221a3fcacc40ca304e0f078356903d93b06b33489fdaeb5a40c4ca258',n:43,
     tests:{[side]:'c16ee8c8ac14450375a3574edd6acf538437815f'}},
+};
+const hongyiPin = {
+  archive:'36d22728e3960158dee7851f9de676326b6c176e4c0a2730ab57665777967c0c', manifest:pins[4].manifest, n:54,
+  tests:{[hongyi]:'8c6b80b9b9078ffa373f90b117da21d045a0c5e5'},
 };
 const threeFiles = {
   'package.json':'2c5b740385ede44b4963ef366c3d29dd8e2e542a354af0ae2063f7dcb3dcde30',
@@ -60,7 +71,25 @@ export function authoredFacade(epoch,file,name) {
   assert.ok(cases[epoch]?.[file]?.includes(name),'only named R58-A facade cases can replay');
   const runTest='tests/current-state/'+file;
   return () => {
-    const pin=pins[epoch], snapshot=archive('batch'+epoch,pin.archive,800_000);
+    const extended=file===hongyi;
+    const pin=extended?hongyiPin:pins[epoch];
+    const snapshot=archive(extended?'hongyi-batch4':'batch'+epoch,pin.archive,800_000);
+    // These exact shared bytes are from the same batch-4 epoch. The Hongyi
+    // closure has its own authenticated manifest, extra files, and file list.
+    if(extended){
+      const shared=archive('batch4',pins[4].archive,800_000);
+      assert.equal(shared.manifestSHA256,snapshot.manifestSHA256);
+      let inherited=0,local=0;
+      for(const [p,row] of Object.entries(snapshot.files)){
+        if(row.inherit===undefined){assert.equal(typeof row.source,'string');local++;continue;}
+        assert.equal(row.inherit,'exact-batch4-authored-source');
+        assert.equal(row.source,undefined);
+        const original=shared.files[p];
+        for(const key of ['size','sha256','gitBlob','provenance'])assert.equal(row[key],original[key],p);
+        row.source=original.source;inherited++;
+      }
+      assert.equal(inherited,42);assert.equal(local,12);
+    }
     assert.equal(snapshot.baselineTag,'R58-A internal batch '+epoch);
     assert.equal(snapshot.manifestSHA256,pin.manifest,'correct independent batch manifest');
     assert.equal(snapshot.delivery,'82d8ab9d2b7cf13af6d2233ef3d262f183ce8cbd');
