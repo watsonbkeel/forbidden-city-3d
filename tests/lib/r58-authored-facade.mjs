@@ -33,6 +33,8 @@ const cases = {
   4: {
     [side]: [
       'xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state',
+      'xihe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state',
+      'jingyun: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state',
       'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials',
       'the gate never touches sibling assemblies or patches shared CourtKit methods',
       ...sideMergePrerequisites.keys(),

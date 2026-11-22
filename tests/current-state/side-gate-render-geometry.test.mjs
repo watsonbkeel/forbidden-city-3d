@@ -156,9 +156,74 @@ after(() => {
   writeFileSync(`${process.env.SIDE_GATE_EVIDENCE_DIR}/integrated-proof.json`, `${JSON.stringify({ scope: 'Source-integrated real-material geometry and resource proof; no browser/GPU acceptance.', results: evidence }, null, 2)}\n`);
 });
 
+// A separate live control uses each real nondefault canonical orientation.
+// In particular, relocating Jingyun would silently bypass its fitted plaque.
+async function currentCanonicalDoorPlaqueModes(profile) {
+  const { CollisionManager } = await import('../../src/utils/Collision.js');
+  const { PLAYER } = await import('../../src/config/constants.js');
+  for (const open of [true, false]) for (const plaque of [true, false]) {
+    const f = fixture(profile, { open, plaque });
+    const cm = new CollisionManager();
+    try {
+      const { kit, frame, options, before } = f;
+      const g = frame.userData.structure;
+      assert.equal(options.rot, profile === 'xihe' ? 'west' : 'east');
+      const turn = 2 * Math.PI;
+      assert.equal(frame.rotation.y, (FACE[options.rot] + turn) % turn);
+      assert.equal(g.facing, options.rot);
+      assert.deepEqual(nodeState(frame), before.state, 'current premerge nodes, transforms, materials and metadata');
+      assert.equal(physicalState(kit), before.physics, 'current prune/clip does not mutate physical rows');
+      assert.equal(g.openState, open ? 'playable-open' : 'closed');
+      assert.equal(g.portals.length, 3);
+      const leaves = nodes(frame).filter(o => o.userData.role === 'gate-door-leaf');
+      assert.equal(leaves.length, 6);
+      cm.rivers = [];
+      cm.addColliders(kit.colliders);
+      cm.addWalkables(kit.walkables);
+      const forward = new THREE.Vector3(0, 0, 1).transformDirection(frame.matrixWorld);
+      for (const p of g.portals) {
+        const pair = leaves.filter(o => o.userData.bay === p.bay);
+        assert.equal(pair.length, 2);
+        assert.ok(pair.every(o => o.userData.open === open));
+        const eye = new THREE.Vector3(p.door.x, p.door.y + PLAYER.HEIGHT, p.door.z);
+        assert.equal(cm.checkCollision(eye, .5), !open, 'current door changes actual portal collision');
+        for (const side of [-1, 1]) {
+          // The center seam is a genuine thin gap when both visible leaves are closed.
+          const origin = new THREE.Vector3(p.centerX + side * p.clearWidth * .24, g.platformY + PLAYER.HEIGHT, g.doorZ - 1.7).applyMatrix4(frame.matrixWorld);
+          assert.equal(new THREE.Raycaster(origin, forward, 0, 3.4).intersectObjects(pair, true).length > 0, !open, 'current door visibly covers each leaf position only when closed');
+        }
+      }
+      assert.equal(kit.plaques.length, plaque ? 1 : 0);
+      const inset = nodes(frame).filter(o => o.userData.jingyunFrameInset);
+      assert.equal(inset.length, profile === 'jingyun' && plaque ? 1 : 0);
+      if (plaque) {
+        const face = kit.plaques[0];
+        assert.equal(face.text, options.name);
+        assert.equal(face.mesh.parent, frame);
+        assert.equal(face.frame.parent, frame);
+        if (profile === 'jingyun') assert.equal(face.frame.userData.jingyunPlaqueFrame?.scope, 'coarse-own-photo-frame');
+        kit.buildPlaqueAtlas();
+        assert.ok(face.mesh.material?.map?.isCanvasTexture && kit.owned.includes(face.mesh.material), 'actual plaque face binds the owned atlas');
+        assert.equal(physicalState(kit), before.physics, 'actual plaque atlas touches no navigation rows');
+      }
+    } finally {
+      cm.clear();
+      f.kit.dispose(f.kit.root);
+      f.lib.dispose();
+    }
+  }
+}
+
 for (const profile of Object.keys(expected)) {
   const name = `${profile}: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state`;
   if (profile === 'xiehe') { test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name)); continue; }
+  if (profile === 'xihe' || profile === 'jingyun') {
+    test(name, async () => {
+      await currentCanonicalDoorPlaqueModes(profile);
+      authoredFacade(4, 'side-gate-render-geometry.test.mjs', name)();
+    });
+    continue;
+  }
   test(name, () => {
     for (const rot of Object.values(FACE)) for (const open of [true, false]) for (const plaque of [true, false]) {
       const f = fixture(profile, { x: 37.25, z: -62.75, rot, open, plaque });
