@@ -86,8 +86,28 @@ test('lower nine bays are brick, three windows, double plank door, three windows
   assert.equal(bays.length, 9);
   assert.deepEqual(bays.map(b => b.userData.kind), ['brick', 'window', 'window', 'window', 'door', 'window', 'window', 'window', 'brick']);
   assert.equal(nodes(group, 'lower-door-leaf').length, 2);
-  assert.equal(nodes(group, 'lower-window').length, 6);
-  assert.ok(nodes(group, 'lower-window-bar').length >= 6 * 10, 'real bars, not a door texture');
+  const windows = nodes(group, 'lower-window');
+  assert.deepEqual(windows.map(w => w.userData.bay), [1, 2, 3, 5, 6, 7]);
+  // R58 splits each lower window into two physical sashes. A pane texture,
+  // empty labelled group, or twelve bars piled into a single sash is not enough.
+  for (const window of windows) {
+    const leaves = nodes(window, 'lower-window-leaf');
+    assert.equal(leaves.length, 2);
+    for (const leaf of leaves) {
+      const bars = nodes(leaf, 'lower-window-leaf-bar');
+      assert.equal(bars.length, 6);
+      const xPositions = new Set();
+      for (const bar of bars) {
+        assert.ok(bar.isMesh && bar.visible && bar.geometry.attributes.position.count >= 3);
+        bar.geometry.computeBoundingBox();
+        const size = bar.geometry.boundingBox.getSize(new THREE.Vector3());
+        assert.ok(size.x > 0 && size.z > 0 && size.y > size.x, 'visible vertical bar has volume');
+        xPositions.add(bar.position.x);
+      }
+      assert.equal(xPositions.size, 6, 'six distinct bar positions in each sash');
+    }
+  }
+  assert.equal(nodes(group, 'lower-window-bar').length, 0, 'no obsolete second overlay');
   const lower = info.storeys[0];
   const endX = lower.width / 2 - lower.width / 18;
   assert.equal(blocked(0, lower.floorY, -lower.depth / 2), true, 'closed central door is solid');

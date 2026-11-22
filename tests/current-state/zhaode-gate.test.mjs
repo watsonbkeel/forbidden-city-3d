@@ -75,7 +75,10 @@ test('ridge datum is documentary while actual roof bounds and ornament maximum a
  const f=fixture(),roof=nodes(f.frame,'zhaode-roof')[0];const ridge=ray(roof,[0,30,0],[0,-1,0]).filter(h=>h.object.material===f.kit.ridge);assert.ok(ridge.length);close(ridge[0].point.y,16.16);const box=new THREE.Box3().setFromObject(roof);const info=f.frame.userData.structure.roofBounds;assert.ok(info);close(info.min[0],box.min.x);close(info.max[1],box.max.y);assert.ok(box.min.x<-f.g.building.width/2);assert.ok(f.g.roof.overhang>0);
 });
 test('only the two explicit corridor ends resolve to the profile envelope and remain closed',()=>{
- const joins=axis.items.filter(i=>i.gateJoin);assert.equal(joins.length,2);assert.deepEqual(joins.map(i=>i.facing),['z-','z-']);const zone=new ZoneBase(library(),{id:'joins',items:[item,...joins]});zone.kit.finish=()=>zone.kit.root;const built=zone.build();built.group.updateMatrixWorld(true);close(zone.gateWidths.get('昭德门'),24.4);const g=geom(item);
+ // Resolve the same explicit gate owner as ZoneBase.buildCorridor, not all joins in the zone.
+ const joins=axis.items.filter(i=>i.gateJoin?.gate===item.name);
+ assert.deepEqual(joins.map(i=>[i.gateJoin.side,i.gateJoin.end]),[['left','to'],['right','from']]);
+ assert.equal(joins.length,2);assert.deepEqual(joins.map(i=>i.facing),['z-','z-']);const zone=new ZoneBase(library(),{id:'joins',items:[item,...joins]});zone.kit.finish=()=>zone.kit.root;const built=zone.build();built.group.updateMatrixWorld(true);close(zone.gateWidths.get('昭德门'),24.4);const g=geom(item);
  assert.deepEqual(joins[0].from,[-105.97,-217.3]);assert.deepEqual(joins[1].to,[-26.5,-217.3]);
  const corridorFrames=zone.kit.root.children.filter(o=>o.userData.gateJoin);assert.equal(corridorFrames.length,2);
  for(const f of corridorFrames){const join=g.joins[f.userData.gateJoin.side];close(f.userData.gateJoin.boundary[0],join.world[0]);close(f.userData.gateJoin.boundary[1],-217.3);const bounds=new THREE.Box3().setFromObject(f);assert.ok(f.userData.gateJoin.provisional);if(join.side==='left')assert.ok(bounds.max.x<=join.world[0]+.071);else assert.ok(bounds.min.x>=join.world[0]-.071);}

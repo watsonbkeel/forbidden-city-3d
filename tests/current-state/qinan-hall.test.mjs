@@ -45,10 +45,43 @@ test('actual assembly owns the low annex, closed north wall, two dedicated light
  const zone=new ZoneBase(library(),{id:'garden',items:[item]});const data=zone.build();assert.equal(data.group.userData.architecture[0].profileId,api.QINAN_PROFILE.profileId);assert.equal(data.rooms.length,2);zone.dispose();
 });
 
-test('explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice',()=>{
- const {root}=fixture(),r=root.userData.structure.roleBudget;
- assert.equal(r.triangleInstances,3252+144+96+124,'original exterior + R48 columns/bases + R49 split side doors + 124-triangle name plaque');
- near(Object.values(r.roles).reduce((n,r)=>n+r.triangleInstances,0),r.triangleInstances);assert.equal(r.oldAlternativeSilhouetteTriangles,800);assert.match(r.comparison,/alternative/);
+test('explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice',async()=>{
+ const {qinan,QinanBefore,lineage}=await import('../fixtures/r64-g-garden/fixture.mjs');
+ const {buildSilhouette}=await import('../../src/render/SilhouetteBuilder.js');
+ const historical=qinan(QinanBefore.buildQinanHall),{root,kit}=fixture();
+ let merged,silhouette;
+ try {
+  // R64-G continuation records the intentional photo-fitted annex joinery.
+  // The frozen, SHA-checked predecessor still exercises the original total.
+  assert.equal(lineage.baselineCommit,'bfafb63aff4984b266b02600d1364001000e0bc6');
+  const before=historical.f.userData.structure.roleBudget,r=root.userData.structure.roleBudget;
+  assert.equal(before.triangleInstances,3252+144+96+124,'original exterior + R48 columns/bases + R49 split side doors + 124-triangle name plaque');
+  assert.equal(r.oldAlternativeSilhouetteTriangles,800);assert.match(r.comparison,/alternative/);
+  const isJoinery=role=>role.startsWith('r64-qinan-front-');
+  assert.deepEqual(Object.fromEntries(Object.entries(r.roles).filter(([role])=>!isJoinery(role))),before.roles);
+  assert.deepEqual(Object.fromEntries(Object.entries(r.roles).filter(([role])=>isJoinery(role))),{
+   'r64-qinan-front-lower-panel':{meshInstances:5,triangleInstances:60},
+   'r64-qinan-front-rail':{meshInstances:10,triangleInstances:120},
+   'r64-qinan-front-lattice-field':{meshInstances:20,triangleInstances:240},
+   'r64-qinan-front-lattice-bar':{meshInstances:312,triangleInstances:3744},
+   'r64-qinan-front-border':{meshInstances:80,triangleInstances:960},
+   'r64-qinan-front-mullion':{meshInstances:25,triangleInstances:300},
+  });
+  assert.equal(r.triangleInstances,before.triangleInstances+5424);
+  assert.equal(Object.values(r.roles).reduce((sum,role)=>sum+role.triangleInstances,0),r.triangleInstances);
+  const triangles=m=>(m.geometry.index?.count??m.geometry.attributes.position.count)/3;
+  merged=kit.finish();
+  let renderedTriangles=0;
+  merged.traverseVisible(m=>{if(m.isMesh)renderedTriangles+=triangles(m);});
+  assert.equal(renderedTriangles,r.triangleInstances,'all submitted detail geometry is accounted for exactly once after merging');
+  silhouette=buildSilhouette(merged);
+  assert.ok(silhouette);assert.equal(silhouette.visible,false);
+  assert.equal(triangles(silhouette),720,'roof-only fallback is separate from detailed geometry');
+ } finally {
+  kit.dispose(merged??kit.root);
+  historical.dispose();
+  silhouette?.geometry.dispose();silhouette?.material.dispose();
+ }
 });
 test('roof has a separate wooden board, truncated top tile cover and visible non-floating bracket aprons',()=>{
  const {g,root}=fixture();assert.equal(nodes(root,'qinan-wood-roof-board').length,1);assert.equal(nodes(root,'qinan-flat-roof-cover').length,1);
@@ -193,12 +226,41 @@ test('all vertical tile-thickness cap triangles have noncollapsed UVs without ch
  }
  assert.equal(count,196);
 });
-test('new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling',()=>{
- const {root}=fixture();let count=0;
- root.traverse(m=>{if(!m.isMesh||!['lattice_doors','caihua_beam'].includes(m.material.name)||/apron/.test(m.userData.role))return;const {position:p,normal:n,uv}=m.geometry.attributes;const values=[];for(let i=0;i<p.count;i++)if(Math.abs(n.getY(i))<.1)values.push(uv.getY(i));assert.equal(Math.min(...values),0,m.userData.role);assert.equal(Math.max(...values),1,m.userData.role);count++;});
- assert.equal(count,20,'five front panels, ten side-door panels/leaves, and five beam boxes');
+test('new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling',async()=>{
+ const {qinan,QinanBefore}=await import('../fixtures/r64-g-garden/fixture.mjs');
+ const historical=qinan(QinanBefore.buildQinanHall),{root,kit}=fixture();
+ const checkBandUVs=root=>{
+  const roles={};
+  root.traverse(m=>{
+   if(!m.isMesh||!['lattice_doors','caihua_beam'].includes(m.material.name)||/apron/.test(m.userData.role))return;
+   const {position:p,normal:n,uv}=m.geometry.attributes,values=[];
+   for(let i=0;i<p.count;i++)if(Math.abs(n.getY(i))<.1)values.push(uv.getY(i));
+   assert.equal(Math.min(...values),0,m.userData.role);assert.equal(Math.max(...values),1,m.userData.role);
+   const role=m.userData.role;roles[role]=(roles[role]??0)+1;
+  });
+  return roles;
+ };
+ try {
+  const retained={'qinan-annex-side-panel':4,'qinan-virtual-door-header':2,'qinan-virtual-open-door-leaf':4,'qinan-main-beam':4,'qinan-annex-beam':1};
+  assert.deepEqual(checkBandUVs(historical.f),{...retained,'qinan-annex-front-panel':5},'the predecessor used five additional full-height front lattice panels');
+  assert.deepEqual(checkBandUVs(root),retained,'the R64 change only replaced the front-panel lattice treatment');
+  const front=nodes(root,'qinan-annex-front-panel'),recess=nodes(root,'r64-qinan-front-lattice-field'),bars=nodes(root,'r64-qinan-front-lattice-bar');
+  assert.deepEqual(front.map(m=>m.userData.bay),[1,2,3,4,5]);
+  assert.ok(front.every(m=>m.material.name==='wood_column'));
+  for(const bay of [1,2,3,4,5]){
+   const fields=recess.filter(m=>m.userData.bay===bay);
+   assert.deepEqual(fields.map(m=>m.userData.fieldIndex),[1,2,3,4]);
+   for(const field of fields){
+    assert.equal(field.material.name,'r64_qinan_recess_plain');
+    const {fieldIndex,cellGrid}=field.userData;
+    const fieldBars=bars.filter(m=>m.userData.bay===bay&&m.userData.fieldIndex===fieldIndex);
+    assert.equal(fieldBars.filter(m=>m.userData.axis==='vertical').length,cellGrid.columns-1);
+    assert.equal(fieldBars.filter(m=>m.userData.axis==='horizontal').length,cellGrid.rows-1);
+    assert.ok(fieldBars.every(m=>m.material.name==='r64_qinan_joinery_border'));
+   }
+  }
+ } finally { historical.dispose();kit.dispose(kit.root); }
 });
-
 test('painted apron U uses the library band period continuously along each perimeter',()=>{
  const lib=library();lib.tileSize=n=>n==='caihua_beam'?4:1;
  const kit=new CourtKit(lib),{f:root}=kit.hall({...item,plaque:false});

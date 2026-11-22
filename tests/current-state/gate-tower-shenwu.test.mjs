@@ -3,7 +3,14 @@ import assert from 'node:assert/strict';
 import {captureGate} from '../lib/gate-tower-fixture.mjs';
 import {buildWorld,walkStraight} from '../lib/world.mjs';
 import {DIMENSIONS,LAYOUT} from '../../src/config/constants.js';
-const g=captureGate('神武门'),W=await buildWorld();
+// Build the finished collision world first: the raw-geometry capture otherwise installs
+// a stub document which is deliberately rejected by the real material/merge fixture.
+const W=await buildWorld({realMaterials:true,realFinish:true});
+test.after(()=>W.dispose());
+const g=captureGate('神武门');
+// The isolated raw capture bypasses finish(), so register the raw tree for its owner's cleanup.
+g.builder.addObject(g.group);
+test.after(()=>g.builder.dispose());
 const Z=LAYOUT.SHENWU_Z,top=10.3;
 function route(points,feet0=top){let cur=[points[0][0],points[0][1]+Z],feet=feet0;for(const p of points.slice(1)){const target=[p[0],p[1]+Z],r=walkStraight(W,cur,target,{feet0:feet,step:.05});assert.ok(Math.hypot(r.end[0]-target[0],r.end[1]-target[1])<.08,JSON.stringify({from:cur,to:target,r}));cur=r.end;feet=r.feet;}return feet;}
 test('Shenwu nominal city platform is coherent with layout, visible deck, top support and relocated ramps',()=>{
