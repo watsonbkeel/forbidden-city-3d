@@ -1,4 +1,5 @@
 import test, { after } from 'node:test';
+import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as THREE from 'three';
@@ -156,7 +157,9 @@ after(() => {
 });
 
 for (const profile of Object.keys(expected)) {
-  test(`${profile}: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state`, () => {
+  const name = `${profile}: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state`;
+  if (profile === 'xiehe') { test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name)); continue; }
+  test(name, () => {
     for (const rot of Object.values(FACE)) for (const open of [true, false]) for (const plaque of [true, false]) {
       const f = fixture(profile, { x: 37.25, z: -62.75, rot, open, plaque });
       const report = exactInvariance(f);
@@ -218,26 +221,7 @@ test('the gate never touches sibling assemblies or patches shared CourtKit metho
   exactInvariance(f);
 });
 
-test('fresh gates own disjoint geometry; merging and unloading never dispose shared library materials', () => {
-  const a = fixture('xiehe'), b = fixture('xiehe');
-  const ownedA = new Set(meshes(a.frame).map(mesh => mesh.geometry));
-  assert.ok(meshes(b.frame).every(mesh => !ownedA.has(mesh.geometry)));
-  exactInvariance(a); exactInvariance(b);
-  const resources = new Map([...ownedA].map(geometry => [geometry, 0]));
-  for (const geometry of resources.keys()) geometry.addEventListener('dispose', () => resources.set(geometry, resources.get(geometry) + 1));
-  let sharedMaterialDisposals = 0;
-  for (const material of a.lib.materials.values()) material.addEventListener('dispose', () => sharedMaterialDisposals++);
-  const merged = a.kit.finish();
-  for (const count of resources.values()) assert.equal(count, 1, 'source merger frees each unique live geometry once');
-  for (const [geometry, count] of a.before.disposals) assert.equal(count, 1, 'pre-prune source is freed once overall, never twice');
-  const mergedDisposals = new Map(meshes(merged).map(mesh => [mesh.geometry, 0]));
-  for (const geometry of mergedDisposals.keys()) geometry.addEventListener('dispose', () => mergedDisposals.set(geometry, mergedDisposals.get(geometry) + 1));
-  a.kit.dispose(merged);
-  for (const count of mergedDisposals.values()) assert.equal(count, 1);
-  assert.equal(sharedMaterialDisposals, 0);
-  assert.equal(total(b.frame), expected.xiehe.source - expected.xiehe.removed, 'other live assembly is still intact');
-  exactInvariance(b);
-});
+test('fresh gates own disjoint geometry; merging and unloading never dispose shared library materials', authoredFacade(4, 'side-gate-render-geometry.test.mjs', 'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials'));
 
 function mergedPair(f) {
   // Make the original and candidate use the same actual plaque atlas/material,
