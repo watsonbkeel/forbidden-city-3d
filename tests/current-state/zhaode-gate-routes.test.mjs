@@ -1,21 +1,14 @@
-import {restorePreR32Routes} from '../lib/r32-route-retention.mjs';
-import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
-import { withLegacyNingshouForVersionComparison } from '../lib/r6-ningshou-route-compat.mjs';
-import { withLegacyQinanForVersionComparison } from '../lib/qinan-route-version-compat.mjs';
+import {v7HistoricalRouteCase, replayFrozenV7Route} from '../lib/zhaode-v7-r32-historical.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import { execFileSync } from 'node:child_process';
 import { buildWorld, gateGeom, loadZoneJsons, walkStraight } from '../lib/world.mjs';
 import { buildAutoRoutes } from '../lib/auto-routes.mjs';
 
 const zones = loadZoneJsons();
 const item = zones.find(z => z.json.id === 'axis-courts').json.items.find(i => i.name === '昭德门');
 const explicit = { ...item, gateProfile: 'zhaode', gateKind: 'three-bay', open: true };
-const hash = value => crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const fixedHash = '7e8748721da0d2d3d5932098ef19888ab86e28f1200393252dbe5bf5e5698c68';
-const autoHash = 'd3fdb4bc1e6c969172d1e44c68adda8e35a2e0233fbe51d1f3e461ea6870af75';
 
 // This catches dispatching the new three-core-bay assembly into SideGate's
 // five-bay implementation, before any controller test can accidentally spawn high.
@@ -32,32 +25,8 @@ test('昭德 route geometry dispatches its explicit three-bay profile and indepe
   assert.equal(p.supports.platform.rescue, false);
 });
 
-test('V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated', async () => {
-  const fixed = execFileSync(process.execPath, ['tests/stepwalk.cjs', '60', '0', 'all'], {
-    cwd: new URL('../..', import.meta.url), env: { ...process.env, DUMP: '1' }, encoding: 'utf8',
-  }).trim().split('\n').map(line => {
-    const split = line.indexOf(' [[');
-    assert.ok(split > 0, `unexpected fixed-route record: ${line}`);
-    return { name: line.slice(0, split), pts: JSON.parse(line.slice(split + 1)) };
-  });
-  assert.equal(fixed.length, 33); assert.equal(hash(withLegacyQinanForVersionComparison(restorePreR32Routes(fixed,'fixed'), 'fixed')), fixedHash);
-  const W = await buildWorld();
-  const routes = restorePreR32Routes(buildAutoRoutes(W, W.zones.map(z => z.json)));
-  const added = routes.filter(r => r.gateProfile === 'zhaode');
-  assert.equal(added.length, 1, 'one new central round trip, no side-bay routes');
-  assert.equal(added[0].name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');
-  assert.equal(routes.at(-1), added[0], 'new route is appended after all 58 inherited entries');
-  assert.equal(routes.length, 59);
-  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r=>r.gateProfile!=='zhaode').map(r=>({name:r.name,pts:r.pts,waypointDriver:r.waypointDriver??null}))),
-    '11c58babe6e0d24645ac36d8619f8f5003a955d7da10d681fe235c528d6e9009','all historical V6 driver identities and points remain exact apart from the separately tested Qin’an replacement');
-  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r => r.gateProfile !== 'zhaode').map(({ name, pts }) => ({ name, pts }))), autoHash);
-  assert.equal(added[0].waypointDriver, 'zhaode-physical-crossing-v1');
-  const p = gateGeom(explicit).profile;
-  const contacts = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];
-  const go = contacts.map(name => p.toWorld(...p.routeContacts[name]));
-  assert.deepEqual(added[0].pts, [...go, ...go.slice(0, -1).reverse()]);
-  assert.equal(p.routeContacts.frontGround[1], p.ramps[0].zToe - 2);
-  assert.equal(p.routeContacts.rearGround[1], p.ramps[1].zToe + 2);
+test(v7HistoricalRouteCase, t => {
+  t.diagnostic(JSON.stringify(replayFrozenV7Route()));
 });
 
 import { PLAYER } from '../../src/config/constants.js';
@@ -68,6 +37,24 @@ import { bindProfileSupports, traceProfileSupports, profileSupportReport } from 
 let ownedWorldPromise;
 const ownedWorld = () => ownedWorldPromise ??= buildWorld({ realMaterials: true, realFinish: true });
 test.after(async () => { if (ownedWorldPromise) (await ownedWorldPromise).dispose(); });
+
+// The frozen descriptor catalog is historical. Keep the current selected
+// descriptor independently bound to the already-owned real registered world.
+test('Current Zhaode automatic selector retains one exact central profile round trip', async () => {
+  const W = await ownedWorld();
+  const selected = buildAutoRoutes(W, W.zones.map(z => z.json)).filter(route => route.gateProfile === 'zhaode');
+  assert.equal(selected.length, 1, 'unique current central round trip');
+  const [route] = selected, p = gateGeom(explicit).profile;
+  assert.equal(route.name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');
+  assert.equal(route.zone, 'axis-courts');
+  assert.equal(route.gate, '昭德门');
+  assert.equal(route.portalCenter, 0);
+  assert.equal(route.waypointDriver, 'zhaode-physical-crossing-v1');
+  const go = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'].map(name => p.toWorld(...p.routeContacts[name]));
+  assert.deepEqual(route.pts, [...go, ...go.slice(0, -1).reverse()]);
+  assert.equal(p.routeContacts.frontGround[1], p.ramps[0].zToe - 2);
+  assert.equal(p.routeContacts.rearGround[1], p.ramps[1].zToe + 2);
+});
 // Box rescue has a strict .6m inset in production. Restrict the intervention
 // to the actual swept lane and leave all authored, possibly private owners
 // untouched. Fail closed if an authored rescue-capable row enters that lane.

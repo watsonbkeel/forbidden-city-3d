@@ -2,16 +2,43 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import {restoreR32SourceIfPresent} from '../lib/r32-source-retention.mjs';
+import {readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
+import {r31CombinedSource} from '../lib/r31-combined-source-retention.mjs';
 import {restoreR31SourceIfPresent} from '../lib/r31-flight-operations-retention.mjs';
 import {restorePreR30Source, r30Source} from '../lib/r30-qianqing-passage-retention.mjs';
 import {restorePreR15Source} from '../lib/r15-flight-source-retention.mjs';
 import {restoreR6PlaceCatalog, restoreR6PlaceSource, baseline as r6} from '../lib/r6-place-retention.mjs';
 const root = new URL('../../', import.meta.url);
-// Historical R31 source identities only; exact R32 dispatch precedes them.
-// Current R32 behavior is covered by the independent R32 product tests.
-const read = path => restoreR32SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
+const readRaw = path => fs.readFileSync(new URL(path, root));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const sourceBytes = gunzipSync(readRaw('tests/fixtures/r31-combined-replay.json.gz'), {maxOutputLength:16_000});
+assert.equal(sha(sourceBytes), '4284732f3a8160c44b19e44e6e205f2ffd66d4ccac7adc78a90feb8104afe5c2', 'immutable R31 combined replay inputs');
+const replay = JSON.parse(sourceBytes);
+const r32Bytes = gunzipSync(readRaw('tests/fixtures/r32-base-source-inputs.json.gz'), {maxOutputLength:800_000});
+assert.equal(sha(r32Bytes), '3c6e803545e73bb53011cc6944d00a71f7e4678c2bf6af870b7e0fa316bd5dcf', 'immutable R32 bridge inputs');
+const r32Inputs = JSON.parse(r32Bytes);
+// Authenticate R31 candidates against their independently published Git
+// blobs. Reuse existing exact R32 inputs where possible; unknown successor
+// edits go to the old exact guards unchanged, never to a fixture fallback.
+function checkpoint(path, raw) {
+  if (!Object.hasOwn(replay.files, path) || sha(raw) !== replay.files[path].currentSHA256) return raw;
+  const row = replay.files[path];
+  let bytes;
+  if (row.input === 'original') bytes = Buffer.from(row.utf8, 'utf8');
+  else if (row.input === 'paint') bytes = restoreR32SourceIfPresent(path, readR32PaintInventory(path));
+  else {
+    assert.equal(row.input, 'r32');
+    assert.equal(r32Inputs[path].currentSHA256, row.currentSHA256, 'same successor as R32 replay');
+    bytes = restoreR32SourceIfPresent(path, Buffer.from(r32Inputs[path].utf8, 'utf8'));
+  }
+  assert.equal(bytes.length, row.candidateBytes, path);
+  assert.equal(sha(bytes), r31CombinedSource.files[path].candidateSHA256, path);
+  assert.equal(createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex'), row.candidateGitBlob, path);
+  return bytes;
+}
+const read = path => restoreR32SourceIfPresent(path, checkpoint(path, readRaw(path)));
 const helper = new URL('../lib/r31-combined-source-retention.mjs', import.meta.url);
 const paths = [
   'assets-src/interiors/build_qianqing_auxiliary.py',
@@ -38,6 +65,15 @@ test('R31 combines only the ten reviewed source changes and four added product f
   assert.equal(registry.baseline, '2be17512d4bda20a80cb477e4ce7afc6836d8737');
   assert.equal(registry.candidate, 'e446ecd4d8c66f632c625381dc207ddf2a4f8523');
   assert.deepEqual(Object.keys(registry.files), paths);
+  assert.equal(replay.publishedCommit, 'bdfcbd083b3bdf12b0151b99f7c0b30ce9dcb5a9');
+  assert.equal(Object.keys(replay.files).length, 6);
+  for (const path of Object.keys(replay.files)) {
+    assert.ok(Object.hasOwn(registry.files, path), 'finite R31 replay path: ' + path);
+    const raw = readRaw(path);
+    const altered = Buffer.from(raw); altered[Math.floor(altered.length / 2)] ^= 1;
+    assert.equal(checkpoint(path, altered), altered);
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(checkpoint(unknown, raw), raw);
+  }
   assert.equal(Object.values(registry.files).reduce((count, delta) => count + delta.deltas.length, 0), 28);
   assert.deepEqual(Object.keys(registry.addedFiles), addedPaths);
   assert.equal(Object.keys(registry.preservedFixtures).length, 120);
