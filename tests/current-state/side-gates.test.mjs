@@ -9,7 +9,8 @@ import { buildWorld } from '../lib/world.mjs';
 const url = new URL('../../src/scene/palace/special/SideGateProfiles.js', import.meta.url);
 const profiles = existsSync(url) ? await import(url) : {};
 const ctx = new Proxy({}, { get: () => () => ({ data: [] }), set: () => true });
-globalThis.document ??= { createElement: () => ({ getContext: () => ctx, width: 0, height: 0 }), createElementNS: () => ({ addEventListener() {}, removeEventListener() {} }) };
+const componentDocument = { createElement: () => ({ getContext: () => ctx, width: 0, height: 0 }), createElementNS: () => ({ addEventListener() {}, removeEventListener() {} }) };
+globalThis.document ??= componentDocument;
 const axis = JSON.parse(readFileSync(new URL('../../data/zones/axis-courts.json', import.meta.url)));
 const names = ['协和门', '熙和门', '景运门', '隆宗门'];
 const ids = ['xiehe', 'xihe', 'jingyun', 'longzong'];
@@ -166,8 +167,17 @@ test('full axis zone cuts each wall and map to the real gate width, with only fo
   assert.ok(Math.abs(c[6].to[1]-(axis.items[1].z-xi.width/2-.6))<1e-9);assert.ok(Math.abs(c[7].from[1]-(axis.items[1].z+xi.width/2+.6))<1e-9);
 });
 
-test('full scene collision construction retains every three-passage side gate',async()=>{
-  const W=await buildWorld();assert.ok(W.cm.colliders.length>0);
+test('full scene collision construction retains every three-passage side gate',async t=>{
+  // The real CPU world installs its own canvas. Suspend only this file's
+  // component stub, and give it back to the later isolated geometry checks.
+  const ownsComponentDocument=globalThis.document===componentDocument;
+  if(ownsComponentDocument)delete globalThis.document;
+  let W;
+  t.after(()=>{
+    try { W?.dispose(); }
+    finally { if(ownsComponentDocument)globalThis.document=componentDocument; }
+  });
+  W=await buildWorld({realMaterials:true,realFinish:true});assert.ok(W.cm.colliders.length>0);
   for(const name of names) {
     const item=axis.items.find(o=>o.name===name),g=profiles.sideGateGeometry(item);
     for(const p of g.portals)for(const z of [-g.depth/2,0,g.depth/2]) {
