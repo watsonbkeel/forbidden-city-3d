@@ -1,21 +1,36 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import {registerHooks} from 'node:module';
 import * as THREE from 'three';
-import {library} from '../lib/inner-palace-fixture.mjs';
-import {historicalR33ModuleURL} from '../lib/historical-r33-scene-dependencies.mjs';
+import {stageNativeR34} from '../lib/r34-resident-night-native-fixture.mjs';
 import {FlightEnvelope} from '../../src/scene/flight/FlightEnvelope.js';
-import {PALACE_LAYOUT} from '../../src/scene/Layout.js';
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format:'module',source:'export default '+fs.readFileSync(new URL(url),'utf8'),shortCircuit:true};
-  return next(url,context);
-}});
-const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-const PriorBuilder = (await import(historicalR33ModuleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder;
+const native = stageNativeR34('scene');
+test.after(native.dispose);
+const {PalaceBuilder, PriorBuilder, historicalEnvelope, PALACE_LAYOUT, library} = await (async () => {
+  try {
+    return {
+      PalaceBuilder:(await import(new URL('src/scene/PalaceBuilder.js', native.after))).PalaceBuilder,
+      PriorBuilder:(await import(new URL('src/scene/PalaceBuilder.js', native.before))).PalaceBuilder,
+      historicalEnvelope:(await import(new URL('src/scene/flight/FlightEnvelope.js', native.after))).FlightEnvelope,
+      PALACE_LAYOUT:(await import(new URL('src/scene/Layout.js', native.after))).PALACE_LAYOUT,
+      library:(await import(new URL('tests/lib/inner-palace-fixture.mjs', native.after))).library
+    };
+  } catch (error) {
+    native.dispose();
+    throw error;
+  }
+})();
 function envelope(Builder) {
   const scene=new THREE.Scene(),builder=new Builder(scene,library());
-  try {builder.buildAll(PALACE_LAYOUT);return new FlightEnvelope().addRoot(scene);}
+  try {
+    builder.buildAll(PALACE_LAYOUT);
+    const original = new historicalEnvelope().addRoot(scene);
+    const current = new FlightEnvelope().addRoot(scene);
+    // Resident-only historical input; current streamed water/zone collection
+    // has a separate current world acceptance test.
+    for (const key of ['bounds','cellSize','clearance','heights','water']) assert.deepEqual(current[key],original[key],key);
+    assert.deepEqual(current.summary(),original.summary());
+    return current;
+  }
   finally {builder.dispose();}
 }
 test('raw R34 interior fits preserve every independently frozen R33 flight roof and water cell',()=>{

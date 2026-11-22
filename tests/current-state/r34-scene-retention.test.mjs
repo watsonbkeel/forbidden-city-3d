@@ -3,28 +3,29 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {registerHooks} from 'node:module';
 import {r34Scene, validateR34SceneRegistry, restorePreR34Capture, restoreR34CaptureIfPresent,
   restorePreR34Navigation, restoreR34NavigationIfPresent, restorePreR34ScenePart,
   restoreR34ScenePartIfPresent, restoreR34SceneRowIfPresent} from '../lib/r34-scene-retention.mjs';
 import {r33Scene, restorePreR33Capture} from '../lib/r33-scene-retention.mjs';
-import {historicalR33ModuleURL} from '../lib/historical-r33-scene-dependencies.mjs';
+import {stageNativeR34} from '../lib/r34-resident-night-native-fixture.mjs';
 import {r34Source} from '../lib/r34-source-retention.mjs';
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format: 'module', source: 'export default ' + fs.readFileSync(new URL(url), 'utf8'), shortCircuit: true};
-  return next(url, context);
-}});
-const root = new URL('../../', import.meta.url);
 const raw = fs.readFileSync(new URL('../fixtures/r34-scene-delta.json', import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const hash = value => sha(JSON.stringify(value));
-const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
-const current = captureJiaotaiScene(PalaceBuilder);
-const oldBuilder = (await import(historicalR33ModuleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder;
-// Expected R33 output executes independent Git blob sources. Neither the new
-// scene reversal nor source reversal creates the expected historical capture.
-const historical = captureJiaotaiScene(oldBuilder);
+const native = stageNativeR34('scene');
+test.after(native.dispose);
+const {current, historical} = await (async () => {
+  try {
+    const {PalaceBuilder} = await import(new URL('src/scene/PalaceBuilder.js', native.after));
+    const {captureJiaotaiScene} = await import(new URL('tests/lib/r27-jiaotai-capture.mjs', native.after));
+    const oldBuilder = (await import(new URL('src/scene/PalaceBuilder.js', native.before))).PalaceBuilder;
+    // Independently executed R33 source, never a reversed R34 output.
+    return {current:captureJiaotaiScene(PalaceBuilder),historical:captureJiaotaiScene(oldBuilder)};
+  } catch (error) {
+    native.dispose();
+    throw error;
+  }
+})();
 const costs = value => ({triangles: Object.values(value.rows).reduce((n, row) => n + row.triangles, 0),
   meshes: value.meshes.length, graphNodes: value.graph.length, geometryBytes: value.geometryBytes,
   uniqueMaterials: value.uniqueMaterials, uniqueTextures: value.uniqueTextures,
@@ -44,7 +45,7 @@ test('R34 scene registry binds independent R33 sources and exact source/capture 
     assert.equal(record.sha256, r34Source.files[path].baselineSHA256, path);
     assert.equal(record.utf8, r34Source.files[path].baselineUTF8, path);
   }
-  for (const [path, digest] of Object.entries(r34Scene.retainedSources)) assert.equal(sha(restoreR35SourceIfPresent(path, fs.readFileSync(new URL(path, root)))), digest, path);
+  for (const [path, digest] of Object.entries(r34Scene.retainedSources)) assert.equal(sha(restoreR35SourceIfPresent(path, native.readRetained(path))), digest, path);
 });
 
 test('R34 registry rejects corruption, changed identities, missing bindings and altered independent sources', () => {
@@ -134,8 +135,8 @@ function captureCentralLevel(root) {
 }
 for (const [kind,fine] of [['near',true],['far',false]]) test(`raw R34 central ${kind} attributes, index bytes and transforms bind the independent R33 control`, async () => {
   const T=await import('three');
-  const live=await import('../../src/scene/palace/QianqingCentralSetting.js');
-  const old=await import(historicalR33ModuleURL('src/scene/palace/QianqingCentralSetting.js'));
+  const live=await import(new URL('src/scene/palace/QianqingCentralSetting.js', native.after));
+  const old=await import(new URL('src/scene/palace/QianqingCentralSetting.js', native.before));
   const {restorePreR34CentralLevel:restore,restoreR34CentralLevelIfPresent:conditional}=await import('../lib/r34-scene-retention.mjs');
   const before=captureCentralLevel(old.buildQianqingCentralLevel(new T.MeshBasicMaterial(),r34Scene.centralFrame,fine));
   const after=captureCentralLevel(live.buildQianqingCentralLevel(new T.MeshBasicMaterial(),r34Scene.centralFrame,fine));

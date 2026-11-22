@@ -3,7 +3,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import {getBeijingDayCycle} from '../../src/scene/sky/BeijingDayCycle.js';
-import {Environment} from '../../src/scene/Environment.js';
+import {stageNativeR34} from '../lib/r34-resident-night-native-fixture.mjs';
+const native = stageNativeR34('light');
+test.after(native.dispose);
+const {Environment} = await (async () => {
+ try {return await import(new URL('src/scene/Environment.js', native.after));}
+ catch (error) {native.dispose();throw error;}
+})();
+// The exact three-light contract predates the approved R65 virtual moon
+// fill. Current R65/R78 suites exercise the live four-light policies.
 const state = hour => getBeijingDayCycle(new Date(`2026-06-21T${hour}:00:00+08:00`));
 test('R34 night raises readable ambient and warm fill without raising sky or daylight exposure', () => {
  const n=state('00').lighting,d=state('12').lighting;
@@ -31,7 +39,9 @@ import {createHash} from 'node:crypto';
 import {r34NightSource,restorePreR34NightSource} from '../lib/r34-night-source-retention.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 for(const [path,d] of Object.entries(r34NightSource.files)) test(`Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: ${path}`,()=>{
- const bytes=restoreR34NightCheckpointIfPresent(path,fs.readFileSync(new URL('../../'+path,import.meta.url)));
+ const input=path==='src/scene/Environment.js' ? native.readIntegratedEnvironment() :
+   fs.readFileSync(new URL('../../'+path,import.meta.url));
+ const bytes=restoreR34NightCheckpointIfPresent(path,input);
  assert.equal(sha(bytes),d.candidateSHA256);assert.equal(sha(restorePreR34NightSource(path,bytes)),d.baselineSHA256);
  assert.throws(()=>restorePreR34NightSource(path,Buffer.concat([bytes,Buffer.from('\n')])));
  for(const h of d.deltas)assert.throws(()=>restorePreR34NightSource(path,Buffer.from(bytes.toString().replace(h.after,h.before))));
