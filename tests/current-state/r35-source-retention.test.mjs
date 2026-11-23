@@ -39,8 +39,11 @@ const retainedArchiveBytes = read('tests/fixtures/r35-retained-epoch.json.gz');
 assert.equal(sha(retainedArchiveBytes), '6dd1b23c000909e9c8ae1fb3c24dd54fbd3b1fc9e63a2273706d6f534c2b9870', 'immutable independent R35 inventory and source archive');
 const historical = JSON.parse(gunzipSync(retainedArchiveBytes, {maxOutputLength: 2_000_000}));
 const liveInventorySHA256 = '2f7effa66bf6f74ca5df30317fae12151509c74293f8abc040ee9d24cce756d4';
+const reviewedGardenAddition = 'src/scene/palace/special/ShunzhenCourtWalls.js';
 function assertLiveProductInventory(paths) {
-  assert.equal(sha(JSON.stringify(paths)), liveInventorySHA256, 'unreviewed live product path inventory');
+  const kept = paths.filter(name => name !== reviewedGardenAddition);
+  assert.equal(paths.length - kept.length, 1, 'unreviewed live product path inventory');
+  assert.equal(sha(JSON.stringify(kept)), liveInventorySHA256, 'unreviewed live product path inventory');
 }
 function atR35Retained(name, bytes) {
   if (!Object.hasOwn(historical.retainedOverlay, name)) return bytes;
@@ -71,7 +74,7 @@ test('R35 binds the complete raw finish scope, independent R34 sources, unchange
     .filter(entry => entry.isFile())
     .map(entry => path.relative(root.pathname, path.join(entry.parentPath, entry.name)))).sort();
   assertLiveProductInventory(live);
-  for (const changed of [[...live, 'src/unreviewed.js'].sort(), live.slice(1), [...live, live[0]].sort(), live.toReversed()]) {
+  for (const changed of [[...live, 'src/unreviewed.js'].sort(), live.slice(1), live.filter(name => name !== reviewedGardenAddition), [...live, reviewedGardenAddition].sort(), [...live, live[0]].sort(), live.toReversed()]) {
     assert.throws(() => assertLiveProductInventory(changed), /unreviewed live product path inventory/);
   }
   assert.equal(historical.commit, '0d7bbf23c1d79b36170a36b27a988488554f1b9f');
