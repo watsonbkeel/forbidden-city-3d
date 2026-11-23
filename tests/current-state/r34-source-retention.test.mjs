@@ -3,13 +3,36 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
 import {r34Source, validateR34SourceRegistry, restorePreR34Source, restoreR34SourceIfPresent,
   assertR34AddedSource, independentR33Source} from '../lib/r34-source-retention.mjs';
 import {verifiedR34AddedProductPaths} from '../lib/r34-product-inventory.mjs';
-// Explicit frozen R34 source boundary; raw R35 bytes have separate acceptance.
-const read = path => restoreR35SourceIfPresent(path, fs.readFileSync(new URL('../../' + path, import.meta.url)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
+const readFile = path => fs.readFileSync(new URL('../../' + path, import.meta.url));
+// The six files that diverged by 1608d8c. Only these exact successor bytes
+// select historical inputs: an unreviewed change must still fail the guard.
+const successors = new Map([
+  ['data/zones/west-six.json', '9a39fb072da2d4a608e0736e4056c688613a66cbb78783b8cfba06173966b457'],
+  ['src/scene/Environment.js', 'b7a0e7531cf2d9c1009b4e0fbc65f3e5d19ed6da555c28ed6e2dd052e0cd0419'],
+  ['src/scene/PalaceBuilder.js', 'a4fea0a828d1e36147506b232b1caf8a9c2d72f37837a57fee04737bd5382daa'],
+  ['src/scene/zones/ZoneBase.js', 'e0728e42af334585466951359848f5b067683ad44a75001af01b0a719e32765b'],
+  ['tests/lib/world.mjs', '237d1d78314f4e99b6705a1f34170d7ee7bf7381798f2c7ad526b82329118327'],
+  ['src/scene/palace/special/ChuxiuCourtyard.js', 'f55725d212f71d014908681bc16e51644c4dafea90da31aa0b07220f42f72663'],
+]);
+// Original Git blobs from 5f5e7b3 (UTF-8 text keyed by path), obtained by
+// candidateGitBlob, independently of both R33 baselineUTF8 and the reverse hunks.
+const archive = Object.freeze(JSON.parse(gunzipSync(readFile('tests/fixtures/r34-source-blobs.json.gz'))));
+function atR34(path, bytes) {
+  if (!successors.has(path) || sha(bytes) !== successors.get(path)) return restoreR35SourceIfPresent(path, bytes);
+  const d = r34Source.files[path] ?? r34Source.addedFiles[path];
+  const original = Buffer.from(archive[path], 'utf8');
+  assert.equal(original.length, d.candidateBytes, path);
+  assert.equal(sha(original), d.candidateSHA256, path);
+  assert.equal(blob(original), d.candidateGitBlob, path);
+  return original;
+}
+const read = path => atR34(path, readFile(path));
 const raw = read('tests/fixtures/r34-source-delta.json');
 function mutations(bytes) {
   const altered = Buffer.from(bytes); altered[Math.floor(altered.length / 2)] ^= 1;
@@ -29,6 +52,12 @@ test('R34 integrated registry binds exact historical production and keeps every 
     'src/scene/palace/special/ChuxiuCourtyard.js', 'src/scene/palace/special/YikunSideAccess.js'
   ]);
   assert.deepEqual(validateR34SourceRegistry(raw), r34Source);
+  assert.deepEqual(Object.keys(archive).sort(), [...successors.keys()].sort());
+  for (const path of successors.keys()) {
+    const bytes = readFile(path);
+    for (const mutation of mutations(bytes)) assert.equal(atR34(path, mutation), mutation);
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(atR34(unknown, bytes), bytes);
+  }
   assert.ok(Object.isFrozen(r34Source));
   assert.ok(Object.isFrozen(r34Source.files));
   assert.ok(Object.isFrozen(r34Source.productAdditions));
@@ -99,7 +128,7 @@ for (const [path, delta] of Object.entries(r34Source.addedFiles)) test(`${path}:
 });
 
 test('R34 inventory and dispatch allow no unregistered paths, prototype properties or broad filename exceptions', () => {
-  assert.deepEqual(verifiedR34AddedProductPaths(), r34Source.productAdditions);
+  assert.deepEqual(verifiedR34AddedProductPaths(read), r34Source.productAdditions);
   assert.equal(new Set(r34Source.productAdditions).size, r34Source.productAdditions.length);
   assert.deepEqual(r34Source.productAdditions, Object.keys(r34Source.addedFiles).filter(path => /^(src|data|public)\//.test(path)));
   const bytes = read(Object.keys(r34Source.files)[0]);
@@ -109,7 +138,7 @@ test('R34 inventory and dispatch allow no unregistered paths, prototype properti
     assert.throws(() => assertR34AddedSource(path, bytes), /registered R34 added source/);
     assert.throws(() => independentR33Source(path), /registered independent R33 source/);
   }
-  for (const paths of [r34Source.productAdditions.slice(1), [...r34Source.productAdditions, r34Source.productAdditions[0]], [...r34Source.productAdditions, 'src/unknown.js']]) assert.throws(() => assert.deepEqual(paths, verifiedR34AddedProductPaths()));
+  for (const paths of [r34Source.productAdditions.slice(1), [...r34Source.productAdditions, r34Source.productAdditions[0]], [...r34Source.productAdditions, 'src/unknown.js']]) assert.throws(() => assert.deepEqual(paths, verifiedR34AddedProductPaths(read)));
 });
 
 test('later integrated fixes preserve only the exact original lighting checkpoint and never normalize unknown sources', async () => {

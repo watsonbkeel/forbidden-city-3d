@@ -2,12 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {readR32PaintCheckpoint, readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
 import {restoreR32FriezeSourceIfPresent} from '../lib/r32-frieze-source-retention.mjs';
 import {restoreR32CrestSourceIfPresent} from '../lib/r32-crest-source-retention.mjs';
 
-const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-screen-source-retention.mjs', import.meta.url);
-const read = name => fs.readFileSync(new URL(name, root));
+const read = readR32PaintCheckpoint;
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-screen-source-delta.json';
 const fixture = JSON.parse(read(fixturePath));
@@ -125,11 +125,11 @@ for (const [name, delta] of Object.entries(fixture.addedFiles)) {
     for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) {
       assert.throws(() => check(name, bad), /exact R32 screen added source/);
       for (const verify of [verifiedR32ScreenAddedProductPaths, verifiedR32AddedProductPaths]) {
-        assert.throws(() => verify(p => p === name ? bad : read(p)), /exact R32 screen added source/);
+        assert.throws(() => verify(p => p === name ? bad : readR32PaintInventory(p)), /exact R32 screen added source/);
       }
     }
     for (const verify of [verifiedR32ScreenAddedProductPaths, verifiedR32AddedProductPaths]) {
-      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return read(p);}), /missing frozen file/);
+      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return readR32PaintInventory(p);}), /missing frozen file/);
     }
   });
 }
@@ -153,8 +153,8 @@ test('unregistered paths and changed epochs cannot acquire a screen exception', 
 test('existing product inventory includes exactly the two bound screen product additions', async () => {
   await load();
   const {verifiedR32AddedProductPaths, verifiedR32ScreenAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
-  assert.deepEqual(verifiedR32ScreenAddedProductPaths(), fixture.productAdditions);
-  const all = verifiedR32AddedProductPaths();
+  assert.deepEqual(verifiedR32ScreenAddedProductPaths(readR32PaintInventory), fixture.productAdditions);
+  const all = verifiedR32AddedProductPaths(readR32PaintInventory);
   assert.deepEqual(all.slice(-5), [...fixture.productAdditions,
     'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js',
     'src/scene/palace/QianqingScreenCrest.js']);

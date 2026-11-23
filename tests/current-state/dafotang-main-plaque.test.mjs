@@ -1,3 +1,4 @@
+import {replayR266DafotangHistoricalView} from '../lib/r266-dafotang-historical-view.mjs';
 import {priorUpperCentralBandHostSource} from '../r266-dafotang-upper-band/prior-host.mjs';
 // R259 component/synthetic contracts only. No actual hall/Kit/finish/World/GPU.
 import test from 'node:test';
@@ -112,17 +113,7 @@ test('R259 publication and synchronous request exceptions roll back every old re
   finally{restoreMethods();for(const[p,old]of saved)p.dispose=old;c.dispose();}
  }
 });
-test('R259 HISTORICAL_HOST_VIEW restored by exact R266 inverse calls real plaque builder after beams; not current new-band host runtime',()=>{
- const host=priorUpperCentralBandHostSource(fs.readFileSync(new URL('../../src/scene/palace/special/RemainingOuterHalls.js',import.meta.url),'utf8'));
- assert.equal(host.split(IMP).length,2);assert.equal(host.split(CALL).length,2);assert.equal(sha(host.replace(IMP,'').replace(CALL,'')),'f18e33a0f1b6b37c081a8d856444c4766db385f2fcb7109c6190589945025662');
- const start=host.indexOf('function buildCeremonialHall(kit,item,p) {'),end=host.indexOf('\nfunction buildCiningModernDisplay',start);assert.ok(start>=0&&end>start);const actual=host.slice(start,end);
- const c=fixture(),loader=controlledLoader(),events=[];let out;const noop=()=>{};
- c.box=(role)=>events.push(role);c.wallX=c.wallZ=c.face=c.partition=c.register=noop;c.item={name:'大佛堂'};c.kit.dafotangFrontFit=false;c.kit.roof=()=>events.push('roof');c.kit.plaque=(...args)=>{events.push('exterior');assert.equal(args[1],'大佛堂');near(args[4],-8.42);assert.deepEqual(args.slice(5),[1.2,1.9]);};
- const deps={base:()=>c,columns:noop,buildCiningFrontFit:noop,buildDafotangFrontFit:noop,buildCiningModernDisplay:noop,retainLegacyFurniture:noop,buildDafotangMainBuddha:noop,buildDafotangHistoricLayout:noop,buildDafotangTriad:noop,buildDafotangWeituo:noop,buildDafotangWoodPagodas:noop,registerDafotangPhotoSlots:noop,buildDafotangEastCabinets:noop,plainCeiling:()=>events.push('ceiling'),addHallBearingRing:()=>events.push('bearing'),buildDafotangMainPlaque:ctx=>{assert.equal(ctx,c);events.push('main');out=api.buildDafotangMainPlaque(ctx,{imageLoader:loader,baseURL:'/gugong/'});},finish:ctx=>ctx};
- try{const fn=new Function('deps','const {'+Object.keys(deps).join(',')+'}=deps;'+actual+';return buildCeremonialHall;')(deps);assert.equal(fn(c.kit,c.item,c.p),c);assert.equal(events.filter(x=>x==='main').length,1);assert.ok(events.indexOf('main')>events.lastIndexOf('dafotang-longitudinal-ceiling-frame'));assert.deepEqual(events.slice(-4),['bearing','main','roof','exterior']);assert.equal(loader.calls.length,1);
- }finally{out?.dispose();c.dispose();}
- const png=fs.readFileSync(new URL('../../public/textures/dafotang/wanshou-wujiang-modern-tc-r259.png',import.meta.url));assert.equal(png.length,11151);assert.equal(sha(png),'8b814c7439788f2eb0f4bedbe08f7e674de18120d0bb4f1d38e1175943f8e70e');const license=fs.readFileSync(new URL('../../public/textures/dafotang/wanshou-wujiang-modern-tc-r259.SOURCE-LICENSE.txt',import.meta.url));assert.equal(sha(license),'0eb3f5c26fc702117dc11b64f2e5d5bc1dbef27ec0476dbe7eb4f091c287bac9');
-});
+test('R259 HISTORICAL_HOST_VIEW restored by exact R266 inverse calls real plaque builder after beams; not current new-band host runtime',replayR266DafotangHistoricalView('dafotang-main-plaque.test.mjs','R259 HISTORICAL_HOST_VIEW restored by exact R266 inverse calls real plaque builder after beams; not current new-band host runtime'));
 
 // Any owned geometry can be disposed before the host material phase. Its
 // event must terminate loading without mutating an in-progress traversal.

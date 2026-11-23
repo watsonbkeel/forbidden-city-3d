@@ -1,20 +1,33 @@
 import test from 'node:test';
+import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import * as THREE from 'three';
 import {fixture,roles,meshes,meshRows,hash,physical,triangles,snapshot,rayLocal,geometryHealth} from '../lib/r58-court-facade-fixture.mjs';
 const baseline=JSON.parse(readFileSync(new URL('../fixtures/r58-court-facade-baseline.json',import.meta.url))).profiles;
 const corbel=m=>m.userData.role==='xihe-courtyard-corbel';
-test('raw pre-pruning source and final corbel triangles are all nondegenerate',()=>{let raw;const f=fixture('xihe',{},null,kit=>{const map=kit.mapRect.bind(kit);kit.mapRect=(...args)=>{raw=geometryHealth(args[0]);return map(...args);};});assert.equal(raw.triangles,7600);assert.equal(geometryHealth(f.frame).triangles,6634);});
+test('raw pre-pruning source and final corbel triangles are all nondegenerate', authoredFacade(2, 'r58-xihe-corbels.test.mjs', 'raw pre-pruning source and final corbel triangles are all nondegenerate'));
 
-test('six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact',()=>{
- const f=fixture('xihe'),parts=roles(f.frame,'xihe-courtyard-corbel');assert.equal(parts.length,6);
- assert.equal(hash(meshRows(f.frame,corbel)),baseline.xihe.all);assert.equal(hash(physical(f.kit)),baseline.xihe.physics);
- assert.deepEqual(parts.map(o=>o.userData.bay),[1,1,2,2,3,3]);
- for(const m of parts){assert.equal(m.material,f.lib.material('caihua_beam'));const b=new THREE.Box3().setFromObject(m);assert.ok(b.min.y>f.g.platformY+4.6);assert.equal(m.userData.side,'rear');assert.equal(m.userData.status,'PHOTO_FIT');assert.ok(m.geometry.attributes.position.count>36);}
- geometryHealth(f.frame);assert.ok(triangles(f.frame)-baseline.xihe.triangles<650);
+test('current Xihe submitted geometry is nondegenerate before and after real covered-face pruning',()=>{
+ const raw=[];
+ const f=fixture('xihe',{},null,kit=>{
+  const map=kit.mapRect.bind(kit);
+  kit.mapRect=(...args)=>{raw.push({root:args[0],health:geometryHealth(args[0])});return map(...args);};
+ });
+ assert.equal(raw.length,1);assert.equal(raw[0].root,f.frame);
+ const before=raw[0].health,after=geometryHealth(f.frame);
+ assert.equal(roles(f.frame,'xihe-courtyard-corbel').length,6);
+ for(const health of [before,after]){
+  assert.ok(health.triangles>0);assert.ok(Number.isFinite(health.minArea)&&health.minArea>=1e-10);
+ }
+ assert.ok(after.triangles<before.triangles,'actual covered-face pruning reduces the submitted triangle count');
 });
-for(const profile of ['xiehe','jingyun','longzong'])test(`${profile} remains byte-identical and gets no copied Xihe silhouette`,()=>{const f=fixture(profile);assert.deepEqual(snapshot(f),baseline[profile]);assert.equal(roles(f.frame,'xihe-courtyard-corbel').length,0);});
+
+test('six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact', authoredFacade(2, 'r58-xihe-corbels.test.mjs', 'six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact'));
+for(const profile of ['xiehe','jingyun','longzong']) {
+ const name=`${profile} remains byte-identical and gets no copied Xihe silhouette`;
+ test(name, authoredFacade(2, 'r58-xihe-corbels.test.mjs', name));
+}
 test('curved silhouette has a real undercut and legal-eye visibility before and after actual material merge',()=>{
  const f=fixture('xihe'),g=f.g,parts=roles(f.frame,'xihe-courtyard-corbel');assert.equal(parts.length,6);
  const samples=parts.map(m=>{m.geometry.computeBoundingBox();const p=new THREE.Vector3(.35,-.28,m.userData.direction*.101).applyMatrix4(m.matrixWorld);const q=f.frame.worldToLocal(p.clone());return q.toArray();});

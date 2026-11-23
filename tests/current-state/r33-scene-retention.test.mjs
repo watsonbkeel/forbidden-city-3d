@@ -4,28 +4,26 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {registerHooks} from 'node:module';
 import {r33Scene, validateR33SceneRegistry, restorePreR33Capture, restoreR33CaptureIfPresent,
   restorePreR33Navigation, restoreR33NavigationIfPresent, restorePreR33ScenePart,
   restoreR33ScenePartIfPresent, restoreR33SceneRowIfPresent} from '../lib/r33-scene-retention.mjs';
-import {historicalR32ModuleURL} from '../lib/historical-r32-scene-dependencies.mjs';
+import {stageNativeR33} from '../lib/r33-native-fixture.mjs';
 
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format: 'module', source: 'export default ' + fs.readFileSync(new URL(url), 'utf8'), shortCircuit: true};
-  return next(url, context);
-}});
-const root = new URL('../../', import.meta.url);
 const raw = fs.readFileSync(new URL('../fixtures/r33-scene-delta.json', import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const hash = value => sha(JSON.stringify(value));
-const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
-// Explicit historical R33 boundary; raw current R34 capture has separate acceptance.
-const current = restoreR34CaptureIfPresent(captureJiaotaiScene(PalaceBuilder));
-const oldBuilder = (await import(historicalR32ModuleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder;
-// Expected R32 output is executed from independent baseline module bytes, never
-// derived from the scene restoration helper under test.
-const historical = captureJiaotaiScene(oldBuilder);
+const native = stageNativeR33();
+const {current, historical} = await (async () => {
+  try {
+    const {PalaceBuilder} = await import(new URL('src/scene/PalaceBuilder.js', native.after));
+    const {captureJiaotaiScene} = await import(new URL('tests/lib/r27-jiaotai-capture.mjs', native.after));
+    const oldBuilder = (await import(new URL('src/scene/PalaceBuilder.js', native.before))).PalaceBuilder;
+    // Raw historical captures execute the real independent epoch modules, with
+    // the same capture/layout imports the authored R33 suite used for both.
+    return {current:restoreR34CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)),
+      historical:captureJiaotaiScene(oldBuilder)};
+  } finally { native.dispose(); }
+})();
 const costs = value => ({triangles: Object.values(value.rows).reduce((n, row) => n + row.triangles, 0),
   meshes: value.meshes.length, graphNodes: value.graph.length, geometryBytes: value.geometryBytes,
   uniqueMaterials: value.uniqueMaterials, uniqueTextures: value.uniqueTextures,
@@ -48,7 +46,7 @@ test('R33 immutable registry binds the frozen product and independent R32 source
   const crest = JSON.parse(fs.readFileSync(new URL('../fixtures/r32-crest-scene-delta.json', import.meta.url)));
   assert.equal(r33Scene.capture.beforeSHA256, crest.capture.afterSHA256);
   assert.equal(r33Scene.baselineSources['src/scene/PalaceBuilder.js'].sha256, crest.retainedBuilderSHA256);
-  for (const [path, digest] of Object.entries(r33Scene.retainedSources)) assert.equal(sha(restoreR34SourceIfPresent(path, fs.readFileSync(new URL(path, root)))), digest, path);
+  for (const [path, digest] of Object.entries(r33Scene.retainedSources)) assert.equal(sha(restoreR34SourceIfPresent(path, native.readRetained(path))), digest, path);
 });
 
 test('R33 registry rejects altered, truncated, appended and same-length-corrupted identities, patches and independent sources', () => {

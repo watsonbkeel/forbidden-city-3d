@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "number": "I25",
+  "stableId": "FC-65CDB57C48",
+  "name": "养性门",
+  "section": "I",
+  "parent": "宁寿宫后·养性殿前",
+  "nature": "建筑或构筑物",
+  "scope": "目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L720",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236458.html"
+    ],
+    "exterior": [],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/8",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "养性门",
+      "engineeringCoordinates": {
+        "x": -293.3,
+        "z": 354.8
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/YangxingFrontCeiling.js:28"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-65cdb57c48"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": -293.3,
+    "z": 354.8,
+    "w": 23.1,
+    "conf": "中",
+    "src": "dimensions.md:350"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

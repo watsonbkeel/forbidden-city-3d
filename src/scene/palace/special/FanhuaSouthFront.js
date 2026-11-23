@@ -22,7 +22,13 @@ export function buildFanhuaSouthFront(c){
     for(const s of[-1,1]){box('fanhua-south-door-jamb','red',.11,dh,.16,x+s*(dw/2+.06),y+dh/2,front,true);for(let n=0;n<2;n++){const xx=x+s*(dw/2+.13+n*.07),zz=front+.23+n*.5;box('fanhua-south-folded-leaf','red',.065,dh,.46,xx,y+dh/2,zz,true);box('fanhua-south-leaf-field','glass',.012,dh*.58,.37,xx-s*.04,y+dh*.66,zz);}
      const fill=(pw-dw)/2-.03;if(fill>0)box('fanhua-south-door-filler','red',fill,h,.15,x+s*(dw/2+(pw-dw)/4),y+h/2,front,true);
     }
-    box('fanhua-south-door-lintel','red',dw+.24,.18,.18,x,y+dh+.09,front,true);const th=h-dh-.18;if(th>0)box('fanhua-south-door-transom','green',dw,th,.13,x,y+dh+.18+th/2,front,true);
+    box('fanhua-south-door-lintel','red',dw+.24,.18,.18,x,y+dh+.09,front,true);
+    // The visible flat head already owns this exact Box3. Opt only that beam
+    // into the existing upward sweep; ordinary collision boxes stay unchanged.
+    const lintel=c.kit.colliders.at(-1);
+    lintel.overhead={type:'piecewise-linear-x',sourceId:'fanhua:south-door-lintel',
+      points:[[lintel.min.x,lintel.min.y],[lintel.max.x,lintel.min.y]],minZ:lintel.min.z,maxZ:lintel.max.z,topY:lintel.max.y};
+    const th=h-dh-.18;if(th>0)box('fanhua-south-door-transom','green',dw,th,.13,x,y+dh+.18+th/2,front,true);
    }else{
     const sill=upper?.20:.62,top=h-.16,mid=(sill+top)/2;
     box('fanhua-south-sill',upper?'red':'stone',pw,sill,.20,x,y+sill/2,front,true);
@@ -46,4 +52,27 @@ export function buildFanhuaSouthFront(c){
  }
  addFanhuaStairContacts(c);
  const data={object:'FC-D40CEF5893',source:'https://www.dpm.org.cn/explore/building/236572.html',accepted:false,scope:'TWO_LEVEL_SEVEN_BAY_SOUTH_JOINERY_GALLERY_SOFFIT_AND_CENTRAL_APPROACH',dimensions:'MODEL_FIT_NOT_SURVEY',upperCentralState:'CLOSED_GLAZED_JOINERY_PHOTO_STATE_NOT_PROOF_OF_PERMANENT_FIXED_WINDOW',lowerDoorPose:'FOUR_FOLDED_LEAVES_MODEL_CIRCULATION_FIT',stair:'FITTED_GROUND_TRANSITION_NOT_PHOTO_MEASURED_TREAD_COUNT',newGroundRamps:1,newUpperDestinations:0,retained:['previous source balustrade and floor fascia','roof and six floor voids','all interior partitions and altar outlines'],missing:['exact original lattice characters and carving','painted decoration','unseen six-category Buddhist inventories','full stair dimensions']};c.f.userData.fanhuaSouthFront=data;return data;
+}
+
+// Only the visible lower entrance beam and the existing floor slab immediately
+// behind it. Do not create a full-gallery ceiling or close the six floor voids.
+export function registerFanhuaEntranceHeadroom({kit,f,p}) {
+ const doorway = new THREE.Vector3(p.x, p.upperFloorY-.09, p.z-p.localD/2+p.gallery);
+ const boxOf = mesh => new THREE.Box3().setFromObject(mesh);
+ const select = (role, predicate) => {
+  const matches=f.children.filter(m=>m.isMesh&&m.userData.role===role&&predicate(m));
+  if(matches.length!==1)throw Error('Ambiguous Fanhua entrance '+role);
+  return boxOf(matches[0]);
+ };
+ const slab=select('upper-floor-slab',m=>boxOf(m).containsPoint(doorway));
+ const beam=select('eave-beam',m=>m.position.x===0&&m.position.z===-p.localD/2&&m.position.y<p.upperFloorY);
+ // Three's visible box vertices are Float32; CourtKit's registered owner is
+ // computed at double precision. Keep its exact six bounds; never resize it.
+ const owners=kit.colliders.filter(b=>
+  b.min.distanceTo(slab.min)<1e-5&&b.max.distanceTo(slab.max)<1e-5);
+ if(owners.length!==1||owners[0].overhead)throw Error('Missing or duplicate Fanhua entrance floor owner');
+ const flat=(b,id)=>({type:'piecewise-linear-x',sourceId:'fanhua:south-'+id,
+  points:[[b.min.x,b.min.y],[b.max.x,b.min.y]],minZ:b.min.z,maxZ:b.max.z,topY:b.max.y});
+ owners[0].overhead=flat(owners[0],'entrance-floor');
+ beam.overhead=flat(beam,'lower-eave-beam');kit.colliders.push(beam);
 }

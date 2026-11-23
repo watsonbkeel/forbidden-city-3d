@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "number": "A9",
+  "stableId": "FC-06B1BADE77",
+  "name": "熙和门",
+  "section": "A",
+  "parent": "太和门广场西侧",
+  "nature": "建筑或构筑物",
+  "scope": "五间二进深、单檐歇山；慢道、门扉、雀替、霸王拳和彩画有图。；虽与协和门形制相仿，构件与彩画仍应分别核；无完整门厅内景。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L349",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236567.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d4bf591346.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d4c11ebd8b.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/axis-courts.json#/items/1",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "熙和门",
+      "engineeringCoordinates": {
+        "x": 110.7,
+        "z": -301.1
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/SideGateExteriorDetails.js:30"
+  ],
+  "directoryCandidates": [
+    "place-axis-courts-06b1bade77"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": 109.8,
+    "z": -301.1,
+    "conf": "中",
+    "src": "dimensions.md:87"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -1,6 +1,7 @@
 import {restorePreR12InnerSource} from '../lib/r12-inner-source-retention.mjs';
 import {restorePreWumenVerticalSource} from '../lib/wumen-vertical-source-delta.mjs';
 import test from 'node:test';
+import {replayR34PlaqueVisibilitySource} from '../lib/r34-plaque-visibility-native.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -20,6 +21,8 @@ const unchanged={
  'src/config/constants.js':'464eabc753a393b325c17de3a7ee1e49dc746d9fdf95ef8f7e1ed5a5c1efe439',
 };
 for(const [path,sha]of Object.entries(unchanged))test(`${path}: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization`,()=>{
+ // Only roof and builder were affected by later source epochs; keep the six live cases unchanged.
+ if(path==='src/scene/RoofBuilder.js'||path==='src/scene/PalaceBuilder.js')return replayR34PlaqueVisibilitySource(path);
  const raw=restorePreWumenVerticalSource(path,restorePreR12InnerSource(path,fs.readFileSync(new URL('../../'+path,import.meta.url))));
  const retained=path==='src/scene/PalaceBuilder.js'?restoreV13GroundDoorSource(raw):raw;
  assert.equal(createHash('sha256').update(retained).digest('hex'),sha);

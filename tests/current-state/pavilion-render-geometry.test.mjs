@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 
@@ -158,7 +159,9 @@ function pavilion(profile) {
   return { kit, built, baseline, currentMeshes, baselineMeshes };
 }
 for (const profile of ['hongyi', 'tiren']) {
-  test(`${profile}: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars`, () => {
+  const name = `${profile}: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars`;
+  if (profile === 'hongyi') test(name, authoredFacade(2, 'pavilion-render-geometry.test.mjs', name));
+  else test(name, () => {
     const { built, currentMeshes, baselineMeshes } = pavilion(profile);
     const count = meshes => meshes.reduce((total, mesh) => total + triangles(mesh), 0);
     assert.ok(count(baselineMeshes) - count(currentMeshes) >= (profile === 'hongyi' ? 2600 : 2700));

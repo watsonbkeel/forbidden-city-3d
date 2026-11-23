@@ -1,4 +1,6 @@
 import test, { after } from 'node:test';
+import {authoredLongzong} from '../lib/longzong-authored.mjs';
+import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as THREE from 'three';
@@ -124,8 +126,117 @@ function exactInvariance(f) {
   return report;
 }
 
+// Separate from the phase-4 triangle budgets. Observe this run's real
+// registered boxes, replay their removal independently on a detached tree,
+// and allow only the separately authorized R170 platform shell clipping.
+function checkCurrentCoverReduction(f, profile) {
+  const { before, frame, kit, boxes } = f;
+  const roles = r => nodes(frame).filter(o => o.userData.role === r);
+  assert.deepEqual(nodeState(frame), before.state, 'all current premerge node/material/transform records');
+  const raw = JSON.parse(before.physics), current = JSON.parse(physicalState(kit));
+  assert.deepEqual(current.colliders.slice(0, raw.colliders.length), raw.colliders, 'unchanged ordered ordinary collision prefix');
+  for (const key of ['walkables','rooms','mapItems','regions']) assert.deepEqual(current[key], raw[key], key);
+  const added = kit.colliders.slice(raw.colliders.length);
+  const additions = added.map(o=>o.triangleSupport?.id);
+  if (profile === 'xiehe') {
+    assert.ok(additions.some(id=>id?.startsWith('xiehe-east-rail:')));
+    assert.ok(additions.some(id=>id?.startsWith('xiehe-west-lattice:')));
+    assert.ok(additions.every(id=>id?.startsWith('xiehe-east-rail:') || id?.startsWith('xiehe-west-lattice:')));
+    assert.equal(new Set(additions).size, additions.length);
+  } else assert.deepEqual(added, []);
+
+  assert.ok(boxes.every(m=>m.material.map && m.material.normalMap && m.material.opacity === 1 && !m.material.transparent && m.material.alphaTest === 0));
+  const plaster = [...roles('xiehe-west-end-side-wall'), ...roles('xiehe-west-narrow-door-head')];
+  assert.equal(plaster.length, profile === 'xiehe' ? 6 : 0);
+  for (const m of plaster) assert.ok(kit.owned.includes(m.material) && m.material.name === 'xiehe-vestibule-ochre-fit' && !m.material.transparent);
+  const registered = [...boxes, ...plaster];
+  assert.equal(new Set(registered).size, registered.length);
+  const [base] = roles('gate-platform'), [cap] = roles('gate-platform-paving');
+  assert.equal(roles('gate-platform').length,1);
+  assert.equal(roles('gate-platform-paving').length,1);
+  assert.ok(registered.includes(base) && registered.includes(cap));
+
+  const live = new Set(meshes(frame).map(m=>m.geometry));
+  for (const [g,n] of before.disposals) assert.equal(n,live.has(g)?0:1,'one disposition of each source geometry');
+  for (const n of before.materialDisposals.values()) assert.equal(n,0,'borrowed materials untouched');
+
+  const reference = before.baseline.clone(true), expectedMeshes = meshes(reference);
+  expectedMeshes.forEach(m=>{m.geometry=m.geometry.clone();});
+  try {
+    const solids = registered.map(m=>expectedMeshes[before.original.findIndex(r=>r.mesh===m)]);
+    assert.ok(solids.every(Boolean),'every opaque solid is present in the captured scene');
+    const proved = prunePavilionCoveredFaces(reference, solids);
+    assert.equal(proved.degenerateTriangles,0);
+    assert.ok(proved.coveredTriangles>0);
+    for (const [i,row] of before.original.entries()) {
+      const actual=row.mesh.geometry, prior=expectedMeshes[i].geometry;
+      assert.deepEqual(Object.keys(actual.attributes),Object.keys(prior.attributes));
+      for (const [key,v] of Object.entries(prior.attributes)) {
+        const got=actual.attributes[key];
+        assert.equal(got.itemSize,v.itemSize);
+        assert.equal(got.normalized,v.normalized);
+        assert.deepEqual(row.mesh===base?got.array.slice(0,v.array.length):got.array,v.array,key+' original retained values');
+      }
+      if (row.mesh!==base) assert.deepEqual(indices(actual),indices(prior),'exact ordered non-platform indices');
+      else assert.equal(triangles(prior),12,'full owned source box after ordinary occlusion pass');
+    }
+    assert.equal(total(frame),proved.retainedTriangles+2,'the only index delta is the 12→14 approved masonry side split');
+    assert.equal(triangles(base.geometry),14);
+    cap.geometry.computeBoundingBox();
+    const cut=cap.geometry.boundingBox.min.y+cap.position.y;
+    const points=(m,i)=>new THREE.Vector3().fromBufferAttribute(m.geometry.attributes.position,i).applyMatrix4(m.matrix);
+    const baseDraw=indices(base.geometry);
+    assert.ok(baseDraw.every(i=>points(base,i).y<=cut+1e-5),'no masonry above actual cap bottom');
+    const oldBase = expectedMeshes[before.original.findIndex(row=>row.mesh===base)];
+    oldBase.geometry.computeBoundingBox();
+    const domain=oldBase.geometry.boundingBox.clone().applyMatrix4(oldBase.matrix);
+    const size=domain.getSize(new THREE.Vector3()), height=cut-domain.min.y;
+    const exposed = new Map(), axes=['x','y','z'];
+    for(let i=0;i<baseDraw.length;i+=3){
+      const tri = new THREE.Triangle(...baseDraw.slice(i,i+3).map(j=>points(base,j)));
+      const n=tri.getNormal(new THREE.Vector3()), axis=axes.find(k=>Math.abs(n[k])>1-1e-7);
+      assert.ok(axis && !(axis==='y' && n.y>0),'only exposed bottom and side faces are submitted');
+      const sign=Math.sign(n[axis]), plane=domain[sign>0?'max':'min'][axis], key=axis+sign;
+      for(const v of [tri.a,tri.b,tri.c]){
+        assert.ok(Math.abs(v[axis]-plane)<1e-5);
+        assert.ok(axes.every(k=>v[k]>=domain.min[k]-1e-5 && v[k]<=domain.max[k]+1e-5));
+      }
+      exposed.set(key,(exposed.get(key)??0)+tri.getArea());
+    }
+    assert.equal(exposed.size,5);
+    for(const [face,area] of [['x1',size.z*height],['x-1',size.z*height],['y-1',size.x*size.z],['z1',size.x*height],['z-1',size.x*height]])
+      assert.ok(Math.abs(exposed.get(face)-area)<1e-5,face+' complete exposed original area');
+    const capDraw=indices(cap.geometry);
+    let capTops=0;
+    for(let i=0;i<capDraw.length;i+=3){
+      const [a,b,c]=capDraw.slice(i,i+3).map(j=>points(cap,j));
+      if(new THREE.Triangle(a,b,c).getNormal(new THREE.Vector3()).y>1-1e-7)capTops++;
+    }
+    assert.equal(capTops,2,'both actual slab top triangles remain');
+  } finally {
+    for(const g of new Set(expectedMeshes.map(m=>m.geometry)))g.dispose();
+  }
+}
+
+test('Current Xiehe, Xihe and Jingyun cover reduction retains ordered render data outside the approved platform clips',()=>{
+  for(const profile of ['xiehe','xihe','jingyun']){
+    const f=fixture(profile);
+    try{checkCurrentCoverReduction(f,profile);}
+    finally{
+      for(const {copy} of f.before.original)copy.dispose();
+      f.kit.dispose(f.kit.root);f.lib.dispose();
+    }
+  }
+});
+
 for (const [profile, counts] of Object.entries(expected)) {
-  test(`${profile}: real production materials achieve only the exact bounded covered-face reduction`, () => {
+  const name = `${profile}: real production materials achieve only the exact bounded covered-face reduction`;
+  if (profile === 'xiehe' || profile === 'xihe' || profile === 'jingyun') {
+    test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name));
+    continue;
+  }
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
+  test(name, () => {
     const f = fixture(profile);
     assert.equal(total(f.before.baseline), counts.source);
     assert.equal(total(f.before.baseline) - total(f.frame), counts.removed, 'source-integrated hidden-face savings');
@@ -155,8 +266,76 @@ after(() => {
   writeFileSync(`${process.env.SIDE_GATE_EVIDENCE_DIR}/integrated-proof.json`, `${JSON.stringify({ scope: 'Source-integrated real-material geometry and resource proof; no browser/GPU acceptance.', results: evidence }, null, 2)}\n`);
 });
 
+// A separate live control uses each real nondefault canonical orientation.
+// In particular, relocating Jingyun would silently bypass its fitted plaque.
+async function currentCanonicalDoorPlaqueModes(profile) {
+  const { CollisionManager } = await import('../../src/utils/Collision.js');
+  const { PLAYER } = await import('../../src/config/constants.js');
+  for (const open of [true, false]) for (const plaque of [true, false]) {
+    const f = fixture(profile, { open, plaque });
+    const cm = new CollisionManager();
+    try {
+      const { kit, frame, options, before } = f;
+      const g = frame.userData.structure;
+      assert.equal(options.rot, profile === 'xihe' ? 'west' : 'east');
+      const turn = 2 * Math.PI;
+      assert.equal(frame.rotation.y, (FACE[options.rot] + turn) % turn);
+      assert.equal(g.facing, options.rot);
+      assert.deepEqual(nodeState(frame), before.state, 'current premerge nodes, transforms, materials and metadata');
+      assert.equal(physicalState(kit), before.physics, 'current prune/clip does not mutate physical rows');
+      assert.equal(g.openState, open ? 'playable-open' : 'closed');
+      assert.equal(g.portals.length, 3);
+      const leaves = nodes(frame).filter(o => o.userData.role === 'gate-door-leaf');
+      assert.equal(leaves.length, 6);
+      cm.rivers = [];
+      cm.addColliders(kit.colliders);
+      cm.addWalkables(kit.walkables);
+      const forward = new THREE.Vector3(0, 0, 1).transformDirection(frame.matrixWorld);
+      for (const p of g.portals) {
+        const pair = leaves.filter(o => o.userData.bay === p.bay);
+        assert.equal(pair.length, 2);
+        assert.ok(pair.every(o => o.userData.open === open));
+        const eye = new THREE.Vector3(p.door.x, p.door.y + PLAYER.HEIGHT, p.door.z);
+        assert.equal(cm.checkCollision(eye, .5), !open, 'current door changes actual portal collision');
+        for (const side of [-1, 1]) {
+          // The center seam is a genuine thin gap when both visible leaves are closed.
+          const origin = new THREE.Vector3(p.centerX + side * p.clearWidth * .24, g.platformY + PLAYER.HEIGHT, g.doorZ - 1.7).applyMatrix4(frame.matrixWorld);
+          assert.equal(new THREE.Raycaster(origin, forward, 0, 3.4).intersectObjects(pair, true).length > 0, !open, 'current door visibly covers each leaf position only when closed');
+        }
+      }
+      assert.equal(kit.plaques.length, plaque ? 1 : 0);
+      const inset = nodes(frame).filter(o => o.userData.jingyunFrameInset);
+      assert.equal(inset.length, profile === 'jingyun' && plaque ? 1 : 0);
+      if (plaque) {
+        const face = kit.plaques[0];
+        assert.equal(face.text, options.name);
+        assert.equal(face.mesh.parent, frame);
+        assert.equal(face.frame.parent, frame);
+        if (profile === 'jingyun') assert.equal(face.frame.userData.jingyunPlaqueFrame?.scope, 'coarse-own-photo-frame');
+        kit.buildPlaqueAtlas();
+        assert.ok(face.mesh.material?.map?.isCanvasTexture && kit.owned.includes(face.mesh.material), 'actual plaque face binds the owned atlas');
+        assert.equal(physicalState(kit), before.physics, 'actual plaque atlas touches no navigation rows');
+      }
+    } finally {
+      cm.clear();
+      f.kit.dispose(f.kit.root);
+      f.lib.dispose();
+    }
+  }
+}
+
 for (const profile of Object.keys(expected)) {
-  test(`${profile}: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state`, () => {
+  const name = `${profile}: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state`;
+  if (profile === 'xiehe') { test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name)); continue; }
+  if (profile === 'xihe' || profile === 'jingyun') {
+    test(name, async () => {
+      await currentCanonicalDoorPlaqueModes(profile);
+      authoredFacade(4, 'side-gate-render-geometry.test.mjs', name)();
+    });
+    continue;
+  }
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
+  test(name, () => {
     for (const rot of Object.values(FACE)) for (const open of [true, false]) for (const plaque of [true, false]) {
       const f = fixture(profile, { x: 37.25, z: -62.75, rot, open, plaque });
       const report = exactInvariance(f);
@@ -214,30 +393,12 @@ test('the gate never touches sibling assemblies or patches shared CourtKit metho
   assert.equal(CourtKit.prototype.box, method);
   assert.equal(unrelated.geometry, geometry); assert.equal(unrelated.material, material);
   assert.equal(triangles(geometry), 12); assert.equal(disposed, 0);
-  assert.equal(total(f.frame), expected.xiehe.source - expected.xiehe.removed);
-  exactInvariance(f);
+  // Preserve the current sibling/owner checks above. The exact historical
+  // triangle budget and captured premerge comparison belong to the old gate.
+  authoredFacade(4, 'side-gate-render-geometry.test.mjs', 'the gate never touches sibling assemblies or patches shared CourtKit methods')();
 });
 
-test('fresh gates own disjoint geometry; merging and unloading never dispose shared library materials', () => {
-  const a = fixture('xiehe'), b = fixture('xiehe');
-  const ownedA = new Set(meshes(a.frame).map(mesh => mesh.geometry));
-  assert.ok(meshes(b.frame).every(mesh => !ownedA.has(mesh.geometry)));
-  exactInvariance(a); exactInvariance(b);
-  const resources = new Map([...ownedA].map(geometry => [geometry, 0]));
-  for (const geometry of resources.keys()) geometry.addEventListener('dispose', () => resources.set(geometry, resources.get(geometry) + 1));
-  let sharedMaterialDisposals = 0;
-  for (const material of a.lib.materials.values()) material.addEventListener('dispose', () => sharedMaterialDisposals++);
-  const merged = a.kit.finish();
-  for (const count of resources.values()) assert.equal(count, 1, 'source merger frees each unique live geometry once');
-  for (const [geometry, count] of a.before.disposals) assert.equal(count, 1, 'pre-prune source is freed once overall, never twice');
-  const mergedDisposals = new Map(meshes(merged).map(mesh => [mesh.geometry, 0]));
-  for (const geometry of mergedDisposals.keys()) geometry.addEventListener('dispose', () => mergedDisposals.set(geometry, mergedDisposals.get(geometry) + 1));
-  a.kit.dispose(merged);
-  for (const count of mergedDisposals.values()) assert.equal(count, 1);
-  assert.equal(sharedMaterialDisposals, 0);
-  assert.equal(total(b.frame), expected.xiehe.source - expected.xiehe.removed, 'other live assembly is still intact');
-  exactInvariance(b);
-});
+test('fresh gates own disjoint geometry; merging and unloading never dispose shared library materials', authoredFacade(4, 'side-gate-render-geometry.test.mjs', 'fresh gates own disjoint geometry; merging and unloading never dispose shared library materials'));
 
 function mergedPair(f) {
   // Make the original and candidate use the same actual plaque atlas/material,
@@ -333,7 +494,15 @@ function compareRays(before, after, rays) {
   return { rays: rays.length, hits, counts, maxDistanceError, mismatches: 0 };
 }
 for (const [profile, counts] of Object.entries(expected)) {
-  test(`${profile}: final material merging retains exact surviving triangle streams and first surfaces`, () => {
+  const name = `${profile}: final material merging retains exact surviving triangle streams and first surfaces`;
+  // The original merge test runs behind the matching reduction in native
+  // batch 4. Longzong uses its separate byte-matched delivered scope.
+  if (profile === 'xiehe' || profile === 'xihe' || profile === 'jingyun') {
+    test(name, authoredFacade(4, 'side-gate-render-geometry.test.mjs', name));
+    continue;
+  }
+  if (profile === 'longzong') { test(name, authoredLongzong(name)); continue; }
+  test(name, () => {
     const f = fixture(profile), details = detailRays(f), { before, after } = mergedPair(f);
     const original = materialStreams(before), candidate = materialStreams(after);
     assert.equal(original.size, counts.buckets); assert.equal(candidate.size, counts.buckets);

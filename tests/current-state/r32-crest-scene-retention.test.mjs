@@ -1,10 +1,9 @@
 import {restoreR33CaptureIfPresent} from '../lib/r33-scene-retention.mjs';
-import {historicalR32ModuleURL} from '../lib/historical-r32-scene-dependencies.mjs';
-import test from 'node:test';
+import {stageNativeR32Crest} from '../lib/r32-crest-native-fixture.mjs';
+import test, {after} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {registerHooks} from 'node:module';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-crest-scene-retention.mjs', import.meta.url);
@@ -18,19 +17,8 @@ async function load() {
   return import(helper);
 }
 
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format: 'module', source: 'export default ' + fs.readFileSync(new URL(url), 'utf8'), shortCircuit: true};
-  return next(url, context);
-}});
-
-// Execute independently stored 8ba57d6 source bytes. Do not derive expected crest geometry
-// with the adapter under test, patch the current mapper, or reset attributes.
-async function historicalModules() {
-  const sources = {...fixture.baselineSources};
-  const moduleURL = path => historicalR32ModuleURL(path, sources);
-  return {central: await import(moduleURL('src/scene/palace/QianqingCentralSetting.js')),
-    Builder: (await import(moduleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder};
-}
+let mounted;
+after(() => mounted?.dispose());
 
 function captureLevel(root) {
   return root.children.map(object => ({name: object.name, matrix: (object.updateMatrix(), object.matrix.toArray()),
@@ -45,14 +33,18 @@ let builds;
 async function scenes() {
   await load();
   if (!builds) builds = (async () => {
+    mounted = stageNativeR32Crest(fixture.baselineSources);
+    const central = 'src/scene/palace/QianqingCentralSetting.js';
+    const builder = 'src/scene/PalaceBuilder.js';
     const T = await import('three');
-    const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
-    const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-    const current = await import('../../src/scene/palace/QianqingCentralSetting.js');
-    const old = await historicalModules();
+    const {captureJiaotaiScene} = await import(new URL('tests/lib/r27-jiaotai-capture.mjs', mounted.after));
+    const {PalaceBuilder} = await import(new URL(builder, mounted.after));
+    const current = await import(new URL(central, mounted.after));
+    const old = {central: await import(new URL(central, mounted.before)),
+      Builder: (await import(new URL(builder, mounted.before))).PalaceBuilder};
     const levels = module => Object.fromEntries([['near', true], ['far', false]].map(([kind, fine]) =>
       [kind, captureLevel(module.buildQianqingCentralLevel(new T.MeshBasicMaterial(), fixture.frame, fine))]));
-    return {T, current, old, currentLevels: levels(current), oldLevels: levels(old.central),
+    return {T, current, old, nativeRoot: mounted.after, currentLevels: levels(current), oldLevels: levels(old.central),
       capture: restoreR33CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)), oldCapture: captureJiaotaiScene(old.Builder)};
   })();
   return builds;
@@ -147,21 +139,22 @@ for (const kind of ['near', 'far']) test(`${kind} exact crest geometry reverses 
 
 test('actual same-count rebuilt crest from unknown source never acquires the frozen geometry exception', async () => {
   const h = await load(), s = await scenes();
-  const path = 'src/scene/palace/QianqingScreenCrest.js', original = read(path).toString();
+  const nativeRead = name => fs.readFileSync(new URL(name, s.nativeRoot), 'utf8');
+  const path = 'src/scene/palace/QianqingScreenCrest.js', original = nativeRead(path);
   assert.equal(original.split('height:.43').length, 2);
   const changed = original.replace('height:.43', 'height:.42');
   assert.equal(changed.length, original.length);
   const {assertR32CrestAddedSource} = await import('../lib/r32-crest-source-retention.mjs');
   assert.throws(() => assertR32CrestAddedSource(path, Buffer.from(changed)), /exact R32 crest added source/);
   function importURL(source, name) {
-    const url = new URL(name, root);
+    const url = new URL(name, s.nativeRoot);
     const code = source.replace(/^([ \t]*import\b[^;]*?\bfrom\s*)(['"])([^'"]+)\2/gm, (_, prefix, quote, specifier) =>
       prefix + JSON.stringify(specifier.startsWith('three') ? import.meta.resolve(specifier) : new URL(specifier, url).href));
     return 'data:text/javascript;base64,' + Buffer.from(code).toString('base64');
   }
   const alteredCrest = importURL(changed, path);
   const setting = 'src/scene/palace/QianqingCentralSetting.js';
-  const source = read(setting).toString().replace("'./QianqingScreenCrest.js'", JSON.stringify(alteredCrest));
+  const source = nativeRead(setting).replace("'./QianqingScreenCrest.js'", JSON.stringify(alteredCrest));
   const module = await import(importURL(source, setting));
   const bad = captureLevel(module.buildQianqingCentralLevel(new s.T.MeshBasicMaterial(), fixture.frame, true));
   assert.equal(bad.length, s.currentLevels.near.length);

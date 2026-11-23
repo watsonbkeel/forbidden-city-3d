@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "number": "E52",
+  "stableId": "FC-4188F97D66",
+  "name": "乾东五所",
+  "section": "E",
+  "parent": "东六宫以北",
+  "nature": "院落/设施组",
+  "scope": "官方页的匾额图不可支持五所整体布局；已列逐所展开任务。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L539",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236577.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/8248.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/42",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "乾东五所",
+      "engineeringCoordinates": {
+        "x": -142,
+        "z": 466
+      }
+    },
+    {
+      "ref": "data/zones/east-six.json#/items/49",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "乾东五所",
+      "engineeringCoordinates": {
+        "x0": -211,
+        "x1": -74,
+        "z0": 466,
+        "z1": 520
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-east-six-4188f97d66"
+  ],
+  "referenceAnchor": {
+    "kind": "group",
+    "x": -141.6,
+    "z": 490,
+    "conf": "中",
+    "src": "dimensions.md:216-222",
+    "note": "五所群中心（头所 -83.7 … 五所 -199.5，前殿行 z480/后罩 z512）"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

@@ -72,7 +72,9 @@ export class Minimap {
     const spanX = maxX - minX;
     const spanZ = maxZ - minZ;
     this.mapSize = 400; // 宽
-    this.mapHeight = Math.round(this.mapSize * (spanZ / spanX) * 0.82);
+    // Preserve the model's metre scale on both axes. resizeCanvas fits the view
+    // inside shorter screens without compressing the north–south map geometry.
+    this.mapHeight = Math.round(this.mapSize * (spanZ / spanX));
     this.scaleX = this.mapSize / spanX;
     this.scaleZ = this.mapHeight / spanZ;
     

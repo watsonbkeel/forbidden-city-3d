@@ -3,12 +3,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {readR32PaintCheckpoint, readR32PaintInventory, r32PaintCheckpoint} from '../lib/r32-paint-source-inputs.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-frieze-source-retention.mjs', import.meta.url);
 // Historical R32 source acceptance reads only the exact frozen R32 projection.
 // Raw R33 identities and behavior remain independently tested by R33 tests.
-const read = name => restoreR33SourceIfPresent(name, fs.readFileSync(new URL(name, root)));
+const read = name => restoreR33SourceIfPresent(name, readR32PaintCheckpoint(name));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-frieze-source-delta.json';
 const fixture = JSON.parse(read(fixturePath));
@@ -43,6 +44,12 @@ test('frieze registry binds only d5e1 source/additions against 898b4e6 and prese
   assert.equal(registry.preservedFixtures['tests/fixtures/r32-source-delta.json'], '233e700c22d2fc2bc1db1049ab9b8aca98ae88bea0a0596ab282dbf70e4013aa');
   for (const [name, digest] of Object.entries(registry.preservedFixtures)) assert.equal(sha(read(name)), digest, name);
   assert.deepEqual(validate(read(fixturePath)), registry);
+  for (const path of Object.keys(registry.files)) {
+    const raw = fs.readFileSync(new URL(path, root));
+    const changed = Buffer.concat([raw, Buffer.from('\n// unknown successor')]);
+    assert.equal(r32PaintCheckpoint(path, changed), changed);
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(r32PaintCheckpoint(unknown, raw), raw);
+  }
   for (const bytes of [Buffer.alloc(0), Buffer.concat([read(fixturePath), Buffer.from('\n')])]) {
     assert.throws(() => validate(bytes), /immutable R32 frieze source registry/);
   }
@@ -128,11 +135,11 @@ for (const [name, delta] of Object.entries(fixture.addedFiles)) {
     for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) {
       assert.throws(() => check(name, bad), /exact R32 frieze added source/);
       for (const verify of [verifiedR32FriezeAddedProductPaths, verifiedR32AddedProductPaths]) {
-        assert.throws(() => verify(p => p === name ? bad : read(p)), /exact R32 frieze added source/);
+        assert.throws(() => verify(p => p === name ? bad : readR32PaintInventory(p)), /exact R32 frieze added source/);
       }
     }
     for (const verify of [verifiedR32FriezeAddedProductPaths, verifiedR32AddedProductPaths]) {
-      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return read(p);}), /missing frozen file/);
+      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return readR32PaintInventory(p);}), /missing frozen file/);
     }
   });
 }
@@ -156,8 +163,8 @@ test('unregistered paths and changed epochs cannot acquire a frieze exception', 
 test('existing product inventory includes exactly the two bound frieze product additions', async () => {
   await load();
   const {verifiedR32AddedProductPaths, verifiedR32FriezeAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
-  assert.deepEqual(verifiedR32FriezeAddedProductPaths(), fixture.productAdditions);
-  const all = verifiedR32AddedProductPaths();
+  assert.deepEqual(verifiedR32FriezeAddedProductPaths(readR32PaintInventory), fixture.productAdditions);
+  const all = verifiedR32AddedProductPaths(readR32PaintInventory);
   assert.deepEqual(all.slice(-3), [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js']);
   assert.equal(all.length, new Set(all).size, 'no duplicated inventory entries');
   assert.ok(all.every(p => /^(src|data|public)\//.test(p)), 'provenance is bound but not a runtime inventory path');

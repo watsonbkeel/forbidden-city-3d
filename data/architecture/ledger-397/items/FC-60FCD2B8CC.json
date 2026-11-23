@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "number": "D5",
+  "stableId": "FC-60FCD2B8CC",
+  "name": "坤宁门",
+  "section": "D",
+  "parent": "后三宫北界",
+  "nature": "建筑或构筑物",
+  "scope": "面北三间单檐歇山，中间开门、次间值房及侧接庑房；两侧斜出八字琉璃影壁。；值房室内未核；不要和御花园北口顺贞门混同。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L455",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236582.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d4d72b8eba.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d4d8432052.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/garden.json#/items/29",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "坤宁门",
+      "engineeringCoordinates": {
+        "x": 1.1,
+        "z": 422.7
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/KunningGate.js:12",
+    "src/scene/palace/special/KunningGate.js:19",
+    "src/scene/palace/special/KunningGateStairContact.js:25",
+    "src/scene/palace/special/KunningNorthBalustrades.js:9"
+  ],
+  "directoryCandidates": [
+    "place-garden-60fcd2b8cc"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": 1.1,
+    "z": 422.7,
+    "w": 20.8,
+    "conf": "中",
+    "src": "dimensions.md:59,131"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

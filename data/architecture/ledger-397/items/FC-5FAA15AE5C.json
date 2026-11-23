@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "number": "A4",
+  "stableId": "FC-5FAA15AE5C",
+  "name": "中和殿",
+  "section": "A",
+  "parent": "三大殿",
+  "nature": "建筑或构筑物",
+  "scope": "平面正方形，深广各三间；四角攒尖单檐、铜鎏金宝顶、四面出廊；内景有地屏宝座及陈设。 2020年官方刊物实景及图解明确，其南北位置在三层大台基中心偏北，殿堂两侧未与台基踏步中心对中。；不能用交泰殿替代其门窗和内陈；室内照片非完整环视。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L344",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236464.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff05cd7866d.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5eff05e43c733.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1569.jpg",
+      "https://pano.dpm.org.cn/#/panorama?regionId=20&secondAreaId=3&vpId=42&sphPicId=1943120536287363072"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/6",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "中和殿",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 65
+        }
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/HallWalkingBeasts.js:17"
+  ],
+  "directoryCandidates": [
+    "zhonghe"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": 0,
+    "z": 65,
+    "w": 24.15,
+    "d": 24.15,
+    "conf": "中",
+    "src": "dimensions.md:53,100"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

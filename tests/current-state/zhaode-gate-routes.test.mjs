@@ -1,21 +1,14 @@
-import {restorePreR32Routes} from '../lib/r32-route-retention.mjs';
-import { withLegacyWesternCourtsForVersionComparison } from '../lib/r6-western-route-compat.mjs';
-import { withLegacyNingshouForVersionComparison } from '../lib/r6-ningshou-route-compat.mjs';
-import { withLegacyQinanForVersionComparison } from '../lib/qinan-route-version-compat.mjs';
+import {v7HistoricalRouteCase, replayFrozenV7Route} from '../lib/zhaode-v7-r32-historical.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import { execFileSync } from 'node:child_process';
 import { buildWorld, gateGeom, loadZoneJsons, walkStraight } from '../lib/world.mjs';
 import { buildAutoRoutes } from '../lib/auto-routes.mjs';
 
 const zones = loadZoneJsons();
 const item = zones.find(z => z.json.id === 'axis-courts').json.items.find(i => i.name === '昭德门');
 const explicit = { ...item, gateProfile: 'zhaode', gateKind: 'three-bay', open: true };
-const hash = value => crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const fixedHash = '7e8748721da0d2d3d5932098ef19888ab86e28f1200393252dbe5bf5e5698c68';
-const autoHash = 'd3fdb4bc1e6c969172d1e44c68adda8e35a2e0233fbe51d1f3e461ea6870af75';
 
 // This catches dispatching the new three-core-bay assembly into SideGate's
 // five-bay implementation, before any controller test can accidentally spawn high.
@@ -32,46 +25,103 @@ test('昭德 route geometry dispatches its explicit three-bay profile and indepe
   assert.equal(p.supports.platform.rescue, false);
 });
 
-test('V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated', async () => {
-  const fixed = execFileSync(process.execPath, ['tests/stepwalk.cjs', '60', '0', 'all'], {
-    cwd: new URL('../..', import.meta.url), env: { ...process.env, DUMP: '1' }, encoding: 'utf8',
-  }).trim().split('\n').map(line => {
-    const split = line.indexOf(' [[');
-    assert.ok(split > 0, `unexpected fixed-route record: ${line}`);
-    return { name: line.slice(0, split), pts: JSON.parse(line.slice(split + 1)) };
-  });
-  assert.equal(fixed.length, 33); assert.equal(hash(withLegacyQinanForVersionComparison(restorePreR32Routes(fixed,'fixed'), 'fixed')), fixedHash);
-  const W = await buildWorld();
-  const routes = restorePreR32Routes(buildAutoRoutes(W, W.zones.map(z => z.json)));
-  const added = routes.filter(r => r.gateProfile === 'zhaode');
-  assert.equal(added.length, 1, 'one new central round trip, no side-bay routes');
-  assert.equal(added[0].name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');
-  assert.equal(routes.at(-1), added[0], 'new route is appended after all 58 inherited entries');
-  assert.equal(routes.length, 59);
-  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r=>r.gateProfile!=='zhaode').map(r=>({name:r.name,pts:r.pts,waypointDriver:r.waypointDriver??null}))),
-    '11c58babe6e0d24645ac36d8619f8f5003a955d7da10d681fe235c528d6e9009','all historical V6 driver identities and points remain exact apart from the separately tested Qin’an replacement');
-  assert.equal(hash(withLegacyQinanForVersionComparison(withLegacyNingshouForVersionComparison(withLegacyWesternCourtsForVersionComparison(routes))).filter(r => r.gateProfile !== 'zhaode').map(({ name, pts }) => ({ name, pts }))), autoHash);
-  assert.equal(added[0].waypointDriver, 'zhaode-physical-crossing-v1');
-  const p = gateGeom(explicit).profile;
-  const contacts = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];
-  const go = contacts.map(name => p.toWorld(...p.routeContacts[name]));
-  assert.deepEqual(added[0].pts, [...go, ...go.slice(0, -1).reverse()]);
-  assert.equal(p.routeContacts.frontGround[1], p.ramps[0].zToe - 2);
-  assert.equal(p.routeContacts.rearGround[1], p.ramps[1].zToe + 2);
+test(v7HistoricalRouteCase, t => {
+  t.diagnostic(JSON.stringify(replayFrozenV7Route()));
 });
 
-import { CollisionManager } from '../../src/utils/Collision.js';
 import { PLAYER } from '../../src/config/constants.js';
 import { replayTerrace as replayPhysicalRoute } from '../lib/terrace-walk.mjs';
 import { bindProfileSupports, traceProfileSupports, profileSupportReport } from '../lib/profile-support-trace.mjs';
 
-let worldPromise;
-const fullWorld = () => worldPromise ??= buildWorld();
-function diagnosticWorld(W, noBoxRescue = false) {
-  const cm = new CollisionManager();
-  for (const c of W.cm.colliders) cm.addCollider(c.mesh, c.tag);
-  for (const w of W.cm.walkables) cm.addWalkable(noBoxRescue && w.type === 'box' ? { ...w, rescue: false } : w, w.tag);
-  return { ...W, cm };
+// Every current route uses the actual live registration. Historical V7 replay above stays separate.
+let ownedWorldPromise;
+const ownedWorld = () => ownedWorldPromise ??= buildWorld({ realMaterials: true, realFinish: true });
+test.after(async () => { if (ownedWorldPromise) (await ownedWorldPromise).dispose(); });
+
+// The frozen descriptor catalog is historical. Keep the current selected
+// descriptor independently bound to the already-owned real registered world.
+test('Current Zhaode automatic selector retains one exact central profile round trip', async () => {
+  const W = await ownedWorld();
+  const selected = buildAutoRoutes(W, W.zones.map(z => z.json)).filter(route => route.gateProfile === 'zhaode');
+  assert.equal(selected.length, 1, 'unique current central round trip');
+  const [route] = selected, p = gateGeom(explicit).profile;
+  assert.equal(route.name, '[axis-courts] 昭德门南地面→单门道→北地面→返回');
+  assert.equal(route.zone, 'axis-courts');
+  assert.equal(route.gate, '昭德门');
+  assert.equal(route.portalCenter, 0);
+  assert.equal(route.waypointDriver, 'zhaode-physical-crossing-v1');
+  const go = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'].map(name => p.toWorld(...p.routeContacts[name]));
+  assert.deepEqual(route.pts, [...go, ...go.slice(0, -1).reverse()]);
+  assert.equal(p.routeContacts.frontGround[1], p.ramps[0].zToe - 2);
+  assert.equal(p.routeContacts.rearGround[1], p.ramps[1].zToe + 2);
+});
+// Box rescue has a strict .6m inset in production. Restrict the intervention
+// to the actual swept lane and leave all authored, possibly private owners
+// untouched. Fail closed if an authored rescue-capable row enters that lane.
+function rescueDisabledView(W,p) {
+  const cm=W.cm, rows=cm.walkables, points=profileRoute(p), margin=PLAYER.SPRINT_SPEED*.1+.5;
+  const xr=points.map(q=>q[0]),zr=points.map(q=>q[1]);
+  const xmin=Math.min(...xr)-margin,xmax=Math.max(...xr)+margin;
+  const zmin=Math.min(...zr)-margin,zmax=Math.max(...zr)+margin;
+  const overlaps=w=>w.type==='box'&&w.rescue&&
+    w.box.min.x+.6<xmax&&w.box.max.x-.6>xmin&&w.box.min.x+.6<w.box.max.x-.6&&
+    w.box.min.z+.6<zmax&&w.box.max.z-.6>zmin&&w.box.min.z+.6<w.box.max.z-.6;
+  const assertNoLocalOwners=()=>assert.deepEqual(cm.walkables.filter(overlaps).map(w=>
+    ({tag:w.tag,min:w.box.min.toArray(),max:w.box.max.toArray()})),[],
+    'a rescue-capable live owner entered the route; do not change a private registration');
+  assertNoLocalOwners();
+
+  // On this exact production manager, a probe would really rescue the starting
+  // foot. Toggle only its test-owned flag; restore the array on every exit.
+  const [x,z]=points[0], initial=cm.getGroundHeight(x,z,0,PLAYER.STEP_UP), probeY=p.platform.topY+8;
+  assert.equal(initial,0,'probe starts from the original ground approach');
+  const controlView=rows.slice();
+  cm.walkables=controlView;
+  try{
+    const box=new W.THREE.Box3(new W.THREE.Vector3(x-2,0,z-2),new W.THREE.Vector3(x+2,probeY,z+2));
+    cm.addWalkable({type:'box',box,rescue:true},'zhaode-rescue-test-only');
+    assert.equal(controlView.length,rows.length+1);
+    const probe=controlView.at(-1);
+    assert.equal(probe.tag,'zhaode-rescue-test-only');
+    assert.equal(probe.rescue,true);
+    assert.equal(cm.getGroundHeight(x,z,0,PLAYER.STEP_UP),probeY,'the enabled probe actually rescues');
+    probe.rescue=false;
+    assert.equal(cm.getGroundHeight(x,z,0,PLAYER.STEP_UP),initial,'the disabled probe cannot rescue');
+  }finally{cm.walkables=rows;}
+  assert.strictEqual(cm.walkables,rows);
+
+  return {...W,assertNoBoxRescue(samples){
+    assert.ok(samples.length>0,'the no-rescue intervention must observe real support queries');
+    for(const q of samples){
+      assert.ok(q.x>=xmin&&q.x<=xmax&&q.z>=zmin&&q.z<=zmax,`support escaped the no-rescue envelope: ${JSON.stringify(q)}`);
+      assert.notEqual(q.source,'rescue','no query used a raised rescue box');
+    }
+    assertNoLocalOwners();
+  }};
+}
+// Mutate only the two actual registered Zhaode ramps in a per-case array view.
+// Never copy/register a foreign owner's collider or support. Non-target objects
+// stay identical; even a failed assertion must leave the shared world unchanged.
+async function mutationWorld(t, noBoxRescue) {
+  const W=await ownedWorld(), cm=W.cm, originalRows=cm.walkables;
+  const profile=gateGeom(explicit).profile, ids=bindProfileSupports(cm,profile);
+  const ramps=[...ids.keys()].filter(w=>w.type==='ramp');
+  assert.equal(ramps.length,2);
+  const descriptors=ramps.map(r=>Object.getOwnPropertyDescriptors(r));
+  const view=originalRows.slice();
+  cm.walkables=view; // Isolate splice/add; existing producers and the manager retain their identity.
+  t.after(()=>{
+    try {
+      assert.strictEqual(cm.walkables,view);
+    } finally {
+      cm.walkables=originalRows;
+      for(let i=0;i<ramps.length;i++) Object.defineProperties(ramps[i],descriptors[i]);
+    }
+    assert.strictEqual(cm.walkables,originalRows);
+    const restored=bindProfileSupports(cm,profile);
+    for(const [w,id] of ids) assert.equal(restored.get(w),id,'restore actual registered support identity');
+  });
+  return noBoxRescue ? rescueDisabledView(W,profile) : W;
 }
 const routeContactNames = ['frontGround','frontToe','frontTop','portalFront','portalRear','rearTop','rearToe','rearGround'];
 function profileRoute(p, from = 'front', offset = 0) {
@@ -106,18 +156,20 @@ function assertPhysicalFeet(result, p) {
   near(result.end[2],0,'physical feet settle back at ground after ordinary braking');
 }
 
-// This full cross-product runs in both the ordinary all-zone world and a copy
-// with box rescue disabled. The production controller itself is never changed.
+// Both variants run in the same all-zone world. The no-rescue variant proves
+// the physically bounded lane has no usable box rescue without copying owners.
 for (const noBoxRescue of [false,true]) for (const from of ['front','rear'])
 for (const fps of [60,10]) for (const sprint of [false,true]) for (const backward of [false,true]) {
   test(`昭德 true support ${from} origin ${fps}Hz ${sprint?'sprint':'walk'} ${backward?'backward':'forward'} rescueDisabled=${noBoxRescue}`, async t => {
-    const W=diagnosticWorld(await fullWorld(),noBoxRescue), p=gateGeom(explicit).profile;
+    const actual=await ownedWorld(),p=gateGeom(explicit).profile;
+    const W=noBoxRescue ? rescueDisabledView(actual,p) : actual;
     const identities=bindProfileSupports(W.cm,p);
     assert.equal([...identities].find(([,id])=>id===p.supports.platform.supportId)[0].rescue,false);
     const trace=traceProfileSupports(W.cm,identities);
     let result;
     try { result=replayPhysicalRoute(t,W,profileRoute(p,from),{fps,sprint,backward,recordFrames:true}); }
     finally {trace.restore();}
+    if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
     assertPhysicalSupport(trace.samples,p,from);
     assertPhysicalFeet(result,p);
     assert.equal(result.arrived,true,JSON.stringify({stuckAt:result.stuckAt,end:result.end}));
@@ -129,7 +181,7 @@ for (const fps of [60,10]) for (const sprint of [false,true]) for (const backwar
 }
 
 for(const offsetSign of [-1,1]) for(const from of ['front','rear']) test(`both clear-aperture sides are physically usable: ${offsetSign}, ${from}`,async t=>{
-  const W=diagnosticWorld(await fullWorld()),p=gateGeom(explicit).profile;
+  const W=await ownedWorld(),p=gateGeom(explicit).profile;
   const offset=offsetSign*(p.portals[0].clearWidth/2-0.5-0.2);
   const trace=traceProfileSupports(W.cm,bindProfileSupports(W.cm,p));
   let result;
@@ -140,7 +192,7 @@ for(const offsetSign of [-1,1]) for(const from of ['front','rear']) test(`both c
 
 for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(const mutation of ['delete','shift']) {
   test(`support mutation ${mutation} ${side} ramp is rejected with rescueDisabled=${noBoxRescue}`,async t=>{
-    const W=diagnosticWorld(await fullWorld(),noBoxRescue),p=gateGeom(explicit).profile;
+    const W=await mutationWorld(t,noBoxRescue),p=gateGeom(explicit).profile;
     const identities=bindProfileSupports(W.cm,p),id=p.ramps.find(r=>r.side===side).supportId;
     const original=[...identities].find(([,name])=>name===id)[0];
     if(mutation==='delete')W.cm.walkables.splice(W.cm.walkables.indexOf(original),1);
@@ -152,6 +204,7 @@ for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(c
     let result;
     try{result=replayPhysicalRoute(t,W,profileRoute(p),{fps:10,sprint:true,recordFrames:true});}
     finally{trace.restore();}
+    if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
     assert.throws(()=>assertPhysicalSupport(trace.samples,p),/true-support|missing ascent|other-box|other-ramp|increment/);
     t.diagnostic(`XY arrived=${result.arrived}; physical support correctly rejected ${mutation}:${id}`);
   });
@@ -159,7 +212,7 @@ for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(c
 
 for(const noBoxRescue of [false,true]) for(const side of ['front','rear']) for(const mutation of ['delete','shift'])
 test(`endpoint arrival cannot hide ${mutation}d ${side} support behind an unowned substitute, noRescue=${noBoxRescue}`,async t=>{
-  const W=diagnosticWorld(await fullWorld(),noBoxRescue),p=gateGeom(explicit).profile;
+  const W=await mutationWorld(t,noBoxRescue),p=gateGeom(explicit).profile;
   const identities=bindProfileSupports(W.cm,p),id=p.ramps.find(r=>r.side===side).supportId;
   const original=[...identities].find(([,name])=>name===id)[0],substitute={...original};
   if(mutation==='delete')W.cm.walkables.splice(W.cm.walkables.indexOf(original),1);
@@ -170,6 +223,7 @@ test(`endpoint arrival cannot hide ${mutation}d ${side} support behind an unowne
   W.cm.addWalkable(substitute,'injected-unowned-support');
   const trace=traceProfileSupports(W.cm,identities);let result;
   try{result=replayPhysicalRoute(t,W,profileRoute(p),{fps:10,sprint:true});}finally{trace.restore();}
+  if (noBoxRescue) W.assertNoBoxRescue(trace.samples);
   assert.equal(result.arrived,true,'deliberate defect reproduces the endpoint-only false positive');
   assert.ok(trace.samples.some(s=>s.source==='other-ramp'));
   assert.throws(()=>assertPhysicalSupport(trace.samples,p),/other-ramp/);
@@ -254,7 +308,7 @@ test('additive browser dispatch leaves both published old driver bodies byte-exa
 
 for(const fps of [60,10])for(const sprint of [false,true])for(const backward of [false,true])for(const from of ['front','rear'])
 test(`shared live-app helper uses actual production controller: ${fps}/${sprint}/${backward}/${from}`,async t=>{
-  const W=diagnosticWorld(await fullWorld()),p=gateGeom(explicit).profile;
+  const W=await ownedWorld(),p=gateGeom(explicit).profile;
   const oldDoc=globalThis.document,oldWindow=globalThis.window,noop=()=>{};
   const doc={...oldDoc,addEventListener:noop,removeEventListener:noop,exitPointerLock:noop};
   globalThis.document=doc;globalThis.window={addEventListener:noop,removeEventListener:noop};

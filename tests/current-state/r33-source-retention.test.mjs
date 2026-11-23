@@ -3,14 +3,40 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import {r33Source as sourceRegistry} from '../lib/r33-source-retention.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r33-source-retention.mjs', import.meta.url);
-// Explicit historical boundary. Raw R34 sources are independently tested in r34-source-retention.test.mjs.
-const read = path => restoreR34SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
+const readFile = path => fs.readFileSync(new URL(path, root));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r33-source-delta.json';
+// The published R33 Git commit 3b9f01f1fafad61f7c23efee1f1bb0a37c2ed8fb
+// independently supplies these six registered original blobs. The only bytes
+// allowed to select them are exact known later 2eaac9c identities. Unreviewed
+// bytes continue to the original strict restoration/inventory assertions.
+const successors = new Map([
+  ['data/interiors/qianqing.json', '2b4a513c47a83b827c94eeeb0017efecbbcc19c6db58c2f4bf284b64a25f4ee5'],
+  ['data/zones/west-six.json', '9a39fb072da2d4a608e0736e4056c688613a66cbb78783b8cfba06173966b457'],
+  ['src/scene/PalaceBuilder.js', 'a4fea0a828d1e36147506b232b1caf8a9c2d72f37837a57fee04737bd5382daa'],
+  ['src/scene/palace/special/ChuxiuHall.js', '04eb82f7afe040c658b17b2c2ca085a14227b729fbb90d236563e66795ed0f41'],
+  ['src/scene/zones/ZoneBase.js', 'e0728e42af334585466951359848f5b067683ad44a75001af01b0a719e32765b'],
+  ['src/ui/ModelFidelity.js', '8ae9e2d15cf88f10c47fbb18523eac60b0f015e9afd1b2ed8c8d16a538680d2b'],
+]);
+const archiveFile = readFile('tests/fixtures/r33-source-blobs.json.gz');
+assert.equal(sha(archiveFile), '963e72127d7e7cae01c6d95a67094bc3c0d41bb05287c926fcbe08c107e56830', 'immutable independent R33 source archive');
+const archive = Object.freeze(JSON.parse(gunzipSync(archiveFile, {maxOutputLength: 250_000})));
+function atR33(path, bytes) {
+  if (!successors.has(path) || sha(bytes) !== successors.get(path)) return restoreR34SourceIfPresent(path, bytes);
+  const binding = sourceRegistry.files[path] ?? sourceRegistry.addedFiles[path];
+  const exact = Buffer.from(archive[path], 'utf8');
+  assert.equal(exact.length, binding.candidateBytes, path);
+  assert.equal(sha(exact), binding.candidateSHA256, path);
+  assert.equal(blob(exact), binding.candidateGitBlob, path);
+  return exact;
+}
+const read = path => atR33(path, readFile(path));
 const changedPaths = [
   'assets-src/interiors/bind_qianqing_auxiliary.mjs',
   'assets-src/interiors/build_qianqing_auxiliary.py',
@@ -51,6 +77,14 @@ test('R33 registry binds the exact frozen checkpoint, independent Git blob ident
   assert.equal(Object.keys(registry.preservedFixtures).length, 135);
   for (const [path, digest] of Object.entries(registry.preservedFixtures)) assert.equal(sha(read(path)), digest, path);
   assert.deepEqual(validate(read(fixturePath)), registry);
+  assert.deepEqual(Object.keys(archive), [...successors.keys()]);
+  for (const [path, approved] of successors) {
+    const current = readFile(path), changed = Buffer.from(current);
+    assert.equal(sha(current), approved, 'unreviewed live R33 source change: ' + path);
+    changed[Math.floor(changed.length / 2)] ^= 1;
+    for (const mutation of [Buffer.alloc(0), changed, current.subarray(1), Buffer.concat([current, current]), Buffer.concat([current, Buffer.from('\n// unknown')])]) assert.equal(atR33(path, mutation), mutation);
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(atR33(unknown, current), current);
+  }
   for (const value of [registry, registry.files, registry.files[changedPaths[0]], registry.files[changedPaths[0]].deltas[0], registry.addedFiles, registry.addedAssets, registry.productAdditions, registry.preservedFixtures]) assert.ok(Object.isFrozen(value));
   assert.doesNotMatch(fs.readFileSync(helper, 'utf8'), /child_process|execSync|execFile|fetch\(|rev-parse|git show/);
 });
@@ -144,8 +178,8 @@ for (const path of [...addedSourcePaths, ...assetPaths]) test(`${path}: added R3
 test('R33 product inventory admits exactly two runtime modules and two GLBs after checking all source/provenance and asset bindings', async () => {
   await load();
   const {verifiedR33AddedProductPaths: verify} = await import('../lib/r33-product-inventory.mjs');
-  assert.deepEqual(verify(), productPaths);
-  assert.equal(new Set(verify()).size, productPaths.length);
+  assert.deepEqual(verify(read), productPaths);
+  assert.equal(new Set(verify(read)).size, productPaths.length);
   for (const path of [...addedSourcePaths, ...assetPaths, 'data/interiors/qianqing.json', 'data/interiors/taihe.json']) {
     const bytes = read(path), altered = Buffer.from(bytes); altered[Math.floor(altered.length / 2)] ^= 1;
     for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) assert.throws(() => verify(p => p === path ? bad : read(p)), path);
@@ -156,7 +190,7 @@ test('R33 product inventory admits exactly two runtime modules and two GLBs afte
     if (key === 'model') config.model = '/models/interiors/unknown.glb'; else config.asset.sha256 = '0'.repeat(64);
     assert.throws(() => verify(p => p === path ? Buffer.from(JSON.stringify(config)) : read(p)), /exact R33 asset-binding config/);
   }
-  for (const paths of [productPaths.slice(1), [...productPaths, productPaths[0]], [...productPaths, 'src/unknown.js']]) assert.throws(() => assert.deepEqual(paths, verify()));
+  for (const paths of [productPaths.slice(1), [...productPaths, productPaths[0]], [...productPaths, 'src/unknown.js']]) assert.throws(() => assert.deepEqual(paths, verify(read)));
 });
 
 test('unknown paths, inherited property names and older epochs cannot acquire an R33 exception', async () => {

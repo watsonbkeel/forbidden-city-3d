@@ -106,7 +106,7 @@ export const PALACE_LAYOUT = [
     position: { x: 0, y: 0, z: LAYOUT.ZHONGHE_Z },
     dimensions: { ...DIMENSIONS.ZHONGHE },
     features: {
-      roofType: 'xieshan',  // 歇山顶
+      roofType: 'pavilion', // 四角攒尖顶
       roofLayers: 1,
       hasBrackets: true,
       hasRailings: true,
@@ -121,7 +121,7 @@ export const PALACE_LAYOUT = [
     position: { x: 0, y: 0, z: LAYOUT.BAOHE_Z },
     dimensions: { ...DIMENSIONS.BAOHE },
     features: {
-      roofType: 'wudian',
+      roofType: 'xieshan',  // 歇山顶
       roofLayers: 2,
       hasBrackets: true,
       hasRailings: true,

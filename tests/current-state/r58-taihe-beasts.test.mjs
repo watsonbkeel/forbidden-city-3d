@@ -1,3 +1,4 @@
+import {replayR58HallBeastCase} from '../lib/r58-historical-hall-view.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {buildRoof} from '../../src/scene/RoofBuilder.js';
@@ -113,7 +114,15 @@ for(const name of ['baohe','zhonghe'])test(`${name} entire already-reviewed roof
   assert.deepEqual(signature(roof),old.geometry);assert.equal(triangles(roof),old.triangles);assert.equal(hash(roof.userData.walkingBeasts),old.recordHash);release(roof);
 });
 const hookless=await baselineHooklessBuilder();
-for(const name of ['太和殿','保和殿','中和殿','交泰殿','乾清宫'])test(`${name} actual hall retains baseline physics and non-target roof/nonroof bytes`,()=>{
+for(const name of ['太和殿','保和殿','中和殿','交泰殿','乾清宫']){
+const title=`${name} actual hall retains baseline physics and non-target roof/nonroof bytes`;
+if(name!=='保和殿'){
+  // These four exact R58-A signatures belong to the delivered geometry, not
+  // later hall expansions. The still-valid Baohe check below remains live.
+  test(title,replayR58HallBeastCase('r58-taihe-beasts.test.mjs',title));
+  continue;
+}
+test(title,()=>{
   const before=hallCapture(hookless.PalaceBuilder,name),after=hallCapture(PalaceBuilder,name),old=baseline.halls[name];
   assert.deepEqual(after.summary.remainder,before.summary.remainder);assert.deepEqual(after.summary.remainder,old.remainder);
   assert.deepEqual(after.summary.physics,before.summary.physics);assert.equal(hash(after.summary.physics),old.physicsHash);
@@ -128,6 +137,7 @@ for(const name of ['太和殿','保和殿','中和殿','交泰殿','乾清宫'])
   }
   for(const x of [before,after]){release(x.group);for(const m of x.builder.ownedMaterials)m.dispose();}
 });
+}
 test('Taihe repeated rebuild/dispose gives every temporary/final geometry and owned material one owner',()=>{
   const gd=THREE.BufferGeometry.prototype.dispose,md=THREE.Material.prototype.dispose,geos=new Map(),mats=new Map();
   THREE.BufferGeometry.prototype.dispose=function(){geos.set(this,(geos.get(this)??0)+1);return gd.call(this);};

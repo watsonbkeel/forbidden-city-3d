@@ -1,3 +1,4 @@
+import {replayR266DafotangHistoricalView} from '../lib/r266-dafotang-historical-view.mjs';
 import {priorUpperCentralBandHostSource} from '../r266-dafotang-upper-band/prior-host.mjs';
 import {priorR264LayoutSource,loadPinnedLayout,SOURCE_PATH} from '../r265-dafotang-frieze/source-view.mjs';
 import {projectR264LayoutSnapshot} from '../r265-dafotang-frieze/snapshot-view.mjs';
@@ -67,17 +68,7 @@ test('R258 all layout owners match actual vertices with only new west high-regio
  }finally{h.dispose();}
 });
 // Exact allowed deltas preserve all unrelated bytes and the observed baseline meshes.
-test('R258 HISTORICAL_HOST_VIEW: three explicit west edits reverse to old source and leave all other geometry unchanged',()=>{
- const source=n=>fs.readFileSync(new URL('../../src/scene/palace/special/'+n,import.meta.url),'utf8');let old=priorR264LayoutSource(source('DafotangHistoricLayout.js'),SOURCE_PATH);
- const changes=[
-  ["westWallCabinetFrames:6,westWallFrameScope:'SIX_INSET_DISPLAY_FIELDS__OUTER_CABINET_UNMODELED',westWallSourceFigure:'2015:printed307:fig23',newReligiousFigures:0","westWallCabinetFrames:6,newReligiousFigures:0"],
-  ["  // West(+X), 2015 printed307 fig23: four tall and two shorter inset display fields.\n  // Only these fields/borders are raised; the enclosing long cabinet is unmodeled.\n  // All heights are MODEL_FIT_NOT_SURVEY; no invented small figures or empty claim.","  // West(+X) wall:4 tall center cabinet frames and2 shorter side frames.\n  // No raster images and no fabricated small Buddha reliefs fill these frames."],
-  ["  const panels=[[-3.45,1.12,2.2,3.75],[-1.97,1.25,3.8,4.8],[-.65,1.25,3.8,4.8],[.67,1.25,3.8,4.8],[1.99,1.25,3.8,4.8],[3.47,1.12,2.2,3.75]];","  const panels=[[-3.45,1.12,2.2,2.9],[-1.97,1.25,3.8,3.65],[-.65,1.25,3.8,3.65],[.67,1.25,3.8,3.65],[1.99,1.25,3.8,3.65],[3.47,1.12,2.2,2.9]];"]
- ];for(const[after,before]of changes){assert.equal(old.split(after).length,2);old=old.replace(after,before);}assert.equal(sha(old),'10e5c3faae7fcc8f31f365e2a274c719f249d207c9aa4dc3d682ae6e37d03125');
- assert.equal(sha(source('DafotangEastCabinets.js')),'d0c79417b60608596f2947dac116bdd169ef415cb755223bc5dfa54186ca72ff');
- const host=r259PriorHost(priorUpperCentralBandHostSource(source('RemainingOuterHalls.js')));assert.equal(sha(host),'f18e33a0f1b6b37c081a8d856444c4766db385f2fcb7109c6190589945025662');assert.equal((host.match(/buildDafotangHistoricLayout\(c\)/g)||[]).length,1);assert.ok(host.includes('buildDafotangHistoricLayout(c);buildDafotangTriad(c);buildDafotangWeituo(c);buildDafotangWoodPagodas(c);registerDafotangPhotoSlots(c);buildDafotangEastCabinets(c);'));
- const h=built(),prior=fixture();try{prior.out=r264Layout.buildDafotangHistoricLayout(prior);assert.deepEqual(preservedGeometry(h,projectR264LayoutSnapshot(h,prior)),{nonWestMeshes:55,nonWestSha256:'4a97e77c1fa1c2402bd12f89c9a776c81a91215d7885e79fd6e32280eb9c89e1',replacedPedestalMeshes:3,replacedPedestalsSha256:'a9deb976f914be96f7464c4997610aa5f186e9a0434ccbff6ea689bc879a76f6'});}finally{h.dispose();prior.dispose();}
-});
+test('R258 HISTORICAL_HOST_VIEW: three explicit west edits reverse to old source and leave all other geometry unchanged',replayR266DafotangHistoricalView('dafotang-west-cabinet-height.test.mjs','R258 HISTORICAL_HOST_VIEW: three explicit west edits reverse to old source and leave all other geometry unchanged'));
 // Height-only work must not change installer rejection or old pedestal ownership.
 test('R258 retains support courses and rejects duplicate or invalid synthetic host without mutation',()=>{
  const h=fixture();try{const old={children:[...h.f.children],colliders:[...h.kit.colliders],owned:[...h.kit.owned],walks:h.kit.walkables,rooms:h.kit.rooms};h.out=buildDafotangHistoricLayout(h);assert.deepEqual(h.f.children.slice(0,1),old.children);assert.deepEqual(h.kit.owned.slice(0,1),old.owned);assert.equal(h.kit.owned.length,3);assert.equal(h.kit.walkables,old.walks);assert.equal(h.kit.rooms,old.rooms);assert.equal(h.out.changedPedestals.length,3);assert.deepEqual(h.g.historicalPrincipal.supportDimensions,[1.4,.8,1.5]);

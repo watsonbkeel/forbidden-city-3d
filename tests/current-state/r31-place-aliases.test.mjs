@@ -4,13 +4,15 @@ import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { PlaceCatalog } from '../../src/ui/PlaceCatalog.js';
 
+import { assertPrimaryIds } from '../lib/r31-current-directory-scope.mjs';
+
 const read = () => JSON.parse(readFileSync(new URL('../../data/places/zh-CN.json', import.meta.url)));
 const taihe = data => data.places.find(place => place.id === 'taihe');
 const alias = (name = '奉天殿', sourceIds = ['taihe']) => ({ name, sourceIds });
 
 test('eight curated historical/current aliases retain the source-backed current cards and 159 exact bindings', () => {
   const catalog = new PlaceCatalog();
-  assert.equal(catalog.places.length, 159);
+  assertPrimaryIds(catalog.places.map(place => place.id));
   assert.deepEqual(catalog.places.filter(place => place.aliases).map(place => [place.name, place.aliases]), [
     ['太和殿', [alias(), alias('皇极殿')]],
     ['储秀宫后殿', [alias('思顺斋', ['dpm-644d6c674fa6'])]],

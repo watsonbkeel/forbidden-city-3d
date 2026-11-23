@@ -1,0 +1,1682 @@
+{
+  "baseline": {
+    "tests": 1243,
+    "pass": 911,
+    "fail": 332,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "candidate": {
+    "tests": 1243,
+    "pass": 918,
+    "fail": 325,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "overlaySHA256": "7bd12f6dd79d85c7b463b6e53dcbed4a706c246040ae12014cd331894f09b121",
+  "fixed": [
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "actual camera and control initialization agree at eye height 1.7 with unchanged FOV and horizontal north",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "existing ground mesh, logical support, body and head are clear inside unchanged bounds",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "real collision world permits all 54m forward to the existing pre-gate approach without raised support",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "real controls walk the added approach at 10Hz, sprint=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "real controls walk the added approach at 10Hz, sprint=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "real controls walk the added approach at 60Hz, sprint=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/initial-entry.test.mjs",
+      "name": "real controls walk the added approach at 60Hz, sprint=true",
+      "count": 1
+    }
+  ],
+  "newFailures": [],
+  "persisting": [
+    {
+      "file": "tests/current-state/dafotang-east-cabinets.test.mjs",
+      "name": "R257 HISTORICAL_HOST_VIEW: unique call and old evidence except explicit R258 west inset height delta",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/dafotang-main-plaque.test.mjs",
+      "name": "R259 HISTORICAL_HOST_VIEW restored by exact R266 inverse calls real plaque builder after beams; not current new-band host runtime",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/dafotang-west-cabinet-height.test.mjs",
+      "name": "tests/current-state/dafotang-west-cabinet-height.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-ground-door-colliders.test.mjs",
+      "name": "tests/current-state/gate-ground-door-colliders.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-ground-door-source-guard.test.mjs",
+      "name": "tests/current-state/gate-ground-door-source-guard.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-plaque-source-guard.test.mjs",
+      "name": "tests/current-state/gate-plaque-source-guard.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-plaque-visibility-source-guard.test.mjs",
+      "name": "src/scene/PalaceBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-plaque-visibility-source-guard.test.mjs",
+      "name": "src/scene/RoofBuilder.js: no roof/builder/camera-constant edit in the visibility fix after exact V14 leaf normalization",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-plaques.test.mjs",
+      "name": "午门: explicit candidate budget replaces one mesh, adds one material, and preserves physics",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-rail-capless.test.mjs",
+      "name": "tests/current-state/gate-rail-capless.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-tower-render-geometry.test.mjs",
+      "name": "Wumen historical top and ramp support golden survives only the exact folded-ascent restoration",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-tower-render-geometry.test.mjs",
+      "name": "Wumen outer columns retain horizontal axes and radius parameters while approved heights change",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-tower-render-geometry.test.mjs",
+      "name": "Wumen preserves all geometry outside the finite reviewed main-tower profile",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-tower-routes.test.mjs",
+      "name": "tests/current-state/gate-tower-routes.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/gate-tower-shenwu.test.mjs",
+      "name": "tests/current-state/gate-tower-shenwu.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs",
+      "name": "unhooked experimental caps reproduce jump penetration at 10Hz",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs",
+      "name": "unhooked experimental caps reproduce jump penetration at 60Hz",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs",
+      "name": "unhooked experimental caps reproduce rail-walk penetration at 10Hz",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-finial-contact-blocker.test.mjs",
+      "name": "unhooked experimental caps reproduce rail-walk penetration at 60Hz",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-finial-replacement-prototype.test.mjs",
+      "name": "height-preserving local replacement exposes inherited support gap at 10Hz",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/inner-jinshui-side-finials.test.mjs",
+      "name": "only the four side bridges receive caps on their 88 existing posts",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/pavilion-render-geometry.test.mjs",
+      "name": "hongyi: hidden faces give a bounded triangle reduction while all 28 lattice leaves keep their bars",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "Qinan teleport consumes the one profile viewpoint and true look-at instead of the inherited facade depth",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "a real occluding wall between ground viewpoint and annex rejects the view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "blocked or elevated viewpoint fails closed with one candidate and no lateral/platform fallback",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "duplicate or moved source facade identity fails closed instead of blessing an ambiguous terminal surface",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "minimap draws two separate physical footprints, keeps inherited label anchor, and identifies the exterior action",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "missing actual Qin’an support rejects viewpoint validation even when cached map and loaded ids remain",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "missing, enlarged or foreign-tagged target facade cannot validate the view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "real ZoneManager loads and registers Qin’an before the first collision query, then real controls land at ground view",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "real full-world Qin’an viewpoint accepts only resident collision geometry and remains on world ground",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "source-bounded facade termination accepts the actual thin panel at an oblique angle",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "stale resident profile identity cannot validate the current source viewpoint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-navigation.test.mjs",
+      "name": "target-containing occluder cannot inherit the observed facade exemption, even with the garden tag",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-routes.test.mjs",
+      "name": "tests/current-state/qinan-exterior-routes.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+      "name": "tests/current-state/qinan-exterior-stair-safety.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-hall.test.mjs",
+      "name": "actual ZoneManager three-cycle lifecycle preserves deterministic metadata and zone ownership",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-hall.test.mjs",
+      "name": "actual assembly owns the low annex, closed north wall, two dedicated lighting rooms and no generic furniture",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-hall.test.mjs",
+      "name": "explicit role accounting records R48 golden columns and R49 split side doors without counting alternative LOD twice",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/qinan-hall.test.mjs",
+      "name": "new Qin’an lattice panels and painted beam boxes use full-height band UVs, not cropped box sampling",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r137-nanxun-relief.test.mjs",
+      "name": "all original Nanxun meshes/materials and physical/navigation arrays remain byte-equivalent to frozen R136",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r15-flight-world.test.mjs",
+      "name": "tests/current-state/r15-flight-world.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r15-historical-lamps.test.mjs",
+      "name": "photo-estimated lower-court placements do not overlap current architectural clearance",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r15-source-retention.test.mjs",
+      "name": "tests/current-state/r15-source-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-combined-source-retention.test.mjs",
+      "name": "R31 aliases retain exact older R6 catalog and source contracts without changing old fixtures",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-combined-source-retention.test.mjs",
+      "name": "R31 combines only the ten reviewed source changes and four added product files against 2be1751",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-combined-source-retention.test.mjs",
+      "name": "R31 restores exact R30 PalaceBuilder before the untouched older source chain",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-aliases.test.mjs",
+      "name": "eight curated historical/current aliases retain the source-backed current cards and 159 exact bindings",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "canonical names and demolished-site explanations remain searchable without losing their identities",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "historical name input opens the current card and preserves keyboard return state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "historical name input opens the current card and preserves touch return state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "皇极殿 search keeps two distinct card IDs and navigation targets on desktop",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-place-search.test.mjs",
+      "name": "皇极殿 search keeps two distinct card IDs and navigation targets on touch",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-qianqing-material.test.mjs",
+      "name": "historical R32 exported bytes, source/profile and all 27 collision/walking proxies remain bound",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-qianqing-scene.test.mjs",
+      "name": "tests/current-state/r31-qianqing-scene.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-source-retention.test.mjs",
+      "name": "main.js: exact interaction delta restores R30 and rejects unregistered edits",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r31-source-retention.test.mjs",
+      "name": "src/scene/flight/FlightTour.js: exact interaction delta restores R30 and rejects unregistered edits",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-scene-retention.test.mjs",
+      "name": "actual same-count rebuilt crest from unknown source never acquires the frozen geometry exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-scene-retention.test.mjs",
+      "name": "crest scene binding rejects unknown equal-count geometry, costs, collisions, partial restoration and runtime mutations",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-scene-retention.test.mjs",
+      "name": "far exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-scene-retention.test.mjs",
+      "name": "independent full crest capture binds exact total budget and byte-identical navigation through every old entry point",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-scene-retention.test.mjs",
+      "name": "near exact crest geometry reverses only five registered crowns; all other bytes remain identical",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-source-retention.test.mjs",
+      "name": "added crest module has one exact identity and every inventory rejects altered or missing bytes",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-source-retention.test.mjs",
+      "name": "all historical entry chains consume crest only through exact full-byte dispatch",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-source-retention.test.mjs",
+      "name": "crest reverses only exact full bytes and two unique review hunks without mutating input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-source-retention.test.mjs",
+      "name": "existing product inventory adds exactly one independently bound crest runtime module",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-crest-source-retention.test.mjs",
+      "name": "unregistered paths and changed epochs cannot acquire a crest exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R25 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R26 frieze unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R26 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R27 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R28 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R29 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "R30 unchanged exact product inventory rejects extra, missing and duplicate paths",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "assets-src/qianqing-ceiling-paint/PROMPT.txt: follow-through added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "assets-src/qianqing-ceiling-paint/README.md: follow-through added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "assets-src/qianqing-ceiling-paint/generated-original-r32.png: follow-through added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "existing product inventory includes exactly the two bound follow-through product additions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "public/textures/art/qianqing-ceiling-illustration-r32.webp: follow-through added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCeiling.js: follow-through reverses only exact full bytes and seven unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCeilingPaint.js: follow-through added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "src/ui/Minimap.js: follow-through reverses only exact full bytes and seven unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-followthrough-source-retention.test.mjs",
+      "name": "unregistered paths and changed epochs cannot acquire a follow-through exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-scene-retention.test.mjs",
+      "name": "actual frieze capture restores only metadata; all older exact scene entry points remain connected",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-scene-retention.test.mjs",
+      "name": "far complete geometry including UVs remains byte-identical to independent 898b4e6",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-scene-retention.test.mjs",
+      "name": "frieze metadata binding rejects geometry, material, budget, collision, partial and runtime mutations",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-scene-retention.test.mjs",
+      "name": "near complete geometry including UVs remains byte-identical to independent 898b4e6",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "assets-src/qianqing-frieze-paint/CORRECTION-PROMPT.txt: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "assets-src/qianqing-frieze-paint/PROMPT.txt: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "assets-src/qianqing-frieze-paint/README.md: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "assets-src/qianqing-frieze-paint/generated-original-r32.png: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "existing product inventory includes exactly the two bound frieze product additions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "public/textures/art/qianqing-five-dragon-illustration-r32.webp: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCentralArt.js: frieze reverses only exact full bytes and three unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingFriezePaint.js: frieze added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "src/ui/ModelFidelity.js: frieze reverses only exact full bytes and three unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-frieze-source-retention.test.mjs",
+      "name": "unregistered paths and changed epochs cannot acquire a frieze exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "both complete capture identities reject unregistered costs, topology, fields and geometry/material identities",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "historical R32 ordered navigation retains every frozen collider and walking surface",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "historical R32 resident scene binds every captured byte and its retained resident cost",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "only the exact complete R32 capture restores the complete frozen R31 capture and all earlier entrypoints",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "registered JSON runtime exceptions retain exact R31 values and never allow arbitrary omitted fields or negative zero",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-resident-scene.test.mjs",
+      "name": "unknown ordered collisions and walking surfaces never receive historical restoration, including at the R30 bridge",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-route-retention.test.mjs",
+      "name": "tests/current-state/r32-route-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-scene-retention.test.mjs",
+      "name": "UV and metadata bridges reject unknown fields, changed values, partial reversals and runtime exceptions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-scene-retention.test.mjs",
+      "name": "exact current capture restores independently rebuilt afb then original R32; navigation and costs remain unchanged",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-scene-retention.test.mjs",
+      "name": "far central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-scene-retention.test.mjs",
+      "name": "near central UV restoration exactly matches independent afb geometry; all other bytes remain equal",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "assets-src/qianqing-screen-paint/PROMPT.txt: screen added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "assets-src/qianqing-screen-paint/README.md: screen added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "assets-src/qianqing-screen-paint/generated-original-r32.png: screen added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "existing product inventory includes exactly the two bound screen product additions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "public/textures/art/qianqing-screen-illustration-r32.webp: screen added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCentralArt.js: screen reverses only exact full bytes and five unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCentralSetting.js: screen reverses only exact full bytes and five unique review hunks",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingScreenPaint.js: screen added source/asset has one exact identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-screen-source-retention.test.mjs",
+      "name": "unregistered paths and changed epochs cannot acquire a screen exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "data/interiors/qianqing.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "data/places/zh-CN.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "data/zones/east-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "data/zones/ningshou.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "data/zones/west-six.json: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "historical R27/R28 retained-driver guards bind all three exact R32 test-source deltas",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "later product inventory lists only independently bound R31 and R32 additions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "main.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "older source guard entry chains consume R32 only through exact full-byte dispatch",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/Environment.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/PalaceBuilder.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/flight/FlightEnvelope.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCeiling.js: added R32 source has a complete fixed identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCentralArt.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingCentralSetting.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/QianqingDisplay.js: added R32 source has a complete fixed identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/kit.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/special/InnerJinshui.js: added R32 source has a complete fixed identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/palace/special/YanxiStorehouses.js: added R32 source has a complete fixed identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/scene/zones/ZoneBase.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/ui/Minimap.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/ui/ModelFidelity.js: added R32 source has a complete fixed identity",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/ui/PlaceInfoPanel.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/ui/Teleport.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "src/utils/Collision.js: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "style.css: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "tests/lib/auto-routes.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "tests/lib/world.mjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r32-source-retention.test.mjs",
+      "name": "tests/stepwalk.cjs: exact frozen R32 bytes restore exact R31 bytes; all other bytes fail closed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-flight-envelope-retention.test.mjs",
+      "name": "tests/current-state/r33-flight-envelope-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-scene-retention.test.mjs",
+      "name": "tests/current-state/r33-scene-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "R33 product inventory admits exactly two runtime modules and two GLBs after checking all source/provenance and asset bindings",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "data/interiors/qianqing.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "data/zones/west-six.json: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "existing R32 and older strict source chains dispatch only complete registered R33 identities",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "src/scene/PalaceBuilder.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "src/scene/palace/special/ChuxiuHall.js: added R33 source or binary is independently byte-bound and never reversed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "src/scene/zones/ZoneBase.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "src/ui/ModelFidelity.js: raw R33 source restores one independently frozen R32 blob and fails closed on every mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r33-source-retention.test.mjs",
+      "name": "unknown paths, inherited property names and older epochs cannot acquire an R33 exception",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-flight-envelope-retention.test.mjs",
+      "name": "tests/current-state/r34-flight-envelope-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-night-lighting.test.mjs",
+      "name": "Frozen R34 lighting-only checkpoint reverses to R33 and rejects mutations: src/scene/Environment.js",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-night-lighting.test.mjs",
+      "name": "R34 existing garden lamp faces glow only at night with no new lights, collision geometry or shadows",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-scene-retention.test.mjs",
+      "name": "tests/current-state/r34-scene-retention.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "R34 added fine asset inventory also requires its exact current config-to-binary binding",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "R34 inventory and dispatch allow no unregistered paths, prototype properties or broad filename exceptions",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "data/zones/west-six.json: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "later integrated fixes preserve only the exact original lighting checkpoint and never normalize unknown sources",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "src/scene/Environment.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "src/scene/PalaceBuilder.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "src/scene/palace/special/ChuxiuCourtyard.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "src/scene/palace/special/YikunSideAccess.js: exact historical added bytes and finite inventory reject missing, duplicated or changed data",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "src/scene/zones/ZoneBase.js: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r34-source-retention.test.mjs",
+      "name": "tests/lib/world.mjs: exact historical R34 identity restores independently frozen R33 bytes, rejects mutations, and does not modify input",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r35-source-retention.test.mjs",
+      "name": "R35 binds the complete raw finish scope, independent R34 sources, unchanged product inventory and all previous fixtures",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r35-source-retention.test.mjs",
+      "name": "every retained production and provenance file remains byte-exact, including binary assets",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r35-source-retention.test.mjs",
+      "name": "src/scene/palace/kit.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r35-source-retention.test.mjs",
+      "name": "src/scene/zones/ZoneBase.js: raw R35 bytes restore only the independently frozen R34 identity and reject every mutated candidate",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-hall-beasts.test.mjs",
+      "name": "tests/current-state/r58-hall-beasts.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-hongyi-lower-windows.test.mjs",
+      "name": "Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-hongyi-lower-windows.test.mjs",
+      "name": "Tiren entire assembly, materials and navigation stay exact",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-hongyi-lower-windows.test.mjs",
+      "name": "existing Hongyi central inscription and every other non-target stream stay exact",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-taihe-beasts.test.mjs",
+      "name": "中和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-taihe-beasts.test.mjs",
+      "name": "乾清宫 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-taihe-beasts.test.mjs",
+      "name": "交泰殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-taihe-beasts.test.mjs",
+      "name": "太和殿 actual hall retains baseline physics and non-target roof/nonroof bytes",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-tiren-lower-leaves.test.mjs",
+      "name": "Hongyi, including its six original windows and upper gallery, is byte-identical",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-tiren-lower-leaves.test.mjs",
+      "name": "Tiren replaces only six lower window groups with twelve separately framed straight-lattice leaves",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-wumen-ascent-inheritance.test.mjs",
+      "name": "R58 explicit additions explain old whole-gate child/collider totals without changing the ascent oracle",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-wumen-ascent-inheritance.test.mjs",
+      "name": "R58 first-batch Wumen keeps every original folded-ascent object and physical record byte-exact",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-wumen-ascent-inheritance.test.mjs",
+      "name": "original ascent oracle still fails closed on actual geometry or collider mutation",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-xihe-corbels.test.mjs",
+      "name": "jingyun remains byte-identical and gets no copied Xihe silhouette",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-xihe-corbels.test.mjs",
+      "name": "longzong remains byte-identical and gets no copied Xihe silhouette",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-xihe-corbels.test.mjs",
+      "name": "raw pre-pruning source and final corbel triangles are all nondegenerate",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-xihe-corbels.test.mjs",
+      "name": "six curved Xihe rear corbels are added while all baseline geometry, materials and registrations stay exact",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-xihe-corbels.test.mjs",
+      "name": "xiehe remains byte-identical and gets no copied Xihe silhouette",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r58-zhendu-integration.test.mjs",
+      "name": "only the three explicit declarations change from the frozen R57 axis data",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 10Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 10Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 10Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 10Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 60Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 60Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 60Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 24 60Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 10Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 10Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 10Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 10Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 60Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 60Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 60Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: compound 47 60Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R62 baseline: old isolated Lijing start remains blocked by actual Chuxiu north wall",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 10Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 10Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 10Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 10Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 60Hz S sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 60Hz S walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 60Hz W sprint",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: compound 24 60Hz W walk",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/r63-west-rear-compound-routes.test.mjs",
+      "name": "R63 candidate: old isolated Lijing start remains blocked by actual Chuxiu north wall",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "fresh gates own disjoint geometry; merging and unloading never dispose shared library materials",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "jingyun: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "jingyun: final material merging retains exact surviving triangle streams and first surfaces",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "jingyun: real production materials achieve only the exact bounded covered-face reduction",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "longzong: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "longzong: final material merging retains exact surviving triangle streams and first surfaces",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "longzong: real production materials achieve only the exact bounded covered-face reduction",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "the gate never touches sibling assemblies or patches shared CourtKit methods",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xiehe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xiehe: final material merging retains exact surviving triangle streams and first surfaces",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xiehe: real production materials achieve only the exact bounded covered-face reduction",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xihe: all cardinal rotations, open/closed leaves and plaque modes keep exact premerge state",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xihe: final material merging retains exact surviving triangle streams and first surfaces",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gate-render-geometry.test.mjs",
+      "name": "xihe: real production materials achieve only the exact bounded covered-face reduction",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/side-gates.test.mjs",
+      "name": "full scene collision construction retains every three-passage side gate",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/skyline-single-face.test.mjs",
+      "name": "actual animate body recenters after controls and before render (all zones, high)",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/skyline-single-face.test.mjs",
+      "name": "actual animate body recenters after controls and before render (all zones, low)",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/skyline-single-face.test.mjs",
+      "name": "actual animate body recenters after controls and before render (streaming, high)",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/skyline-single-face.test.mjs",
+      "name": "actual animate body recenters after controls and before render (streaming, low)",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/square-halls.test.mjs",
+      "name": "integrated Zhonghe plinth retains six walking flights and excludes the two central carved stones",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/sun-azimuth.test.mjs",
+      "name": "protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/taihe-core-geometry.test.mjs",
+      "name": "tests/current-state/taihe-core-geometry.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/taihe-core-source-guard.test.mjs",
+      "name": "tests/current-state/taihe-core-source-guard.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/terrace-side-stairs.test.mjs",
+      "name": "new terrace metadata, colliders and owned geometry dispose cleanly, and rebuild without duplicates",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/tiren.test.mjs",
+      "name": "lower nine bays are brick, three windows, double plank door, three windows, brick",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/walkable-four-buildings.test.mjs",
+      "name": "tests/current-state/walkable-four-buildings.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/wumen-vertical-profile.test.mjs",
+      "name": "Wumen column count, plan, radii and horizontal tessellation remain fixed",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/wumen-vertical-profile.test.mjs",
+      "name": "after exact folded-ascent restoration, all old physics retains only the 46 keyed submicrometre foot deltas",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/wumen-vertical-profile.test.mjs",
+      "name": "all unscoped Wumen geometry, materials, wings, platform and portals stay byte-exact",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/wumen-vertical-source-guard.test.mjs",
+      "name": "tests/current-state/wumen-vertical-source-guard.test.mjs",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "V7 historical routes retain exact descriptors with only the later Qin’an and R6 Ningshou replacements isolated",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "both clear-aperture sides are physically usable: -1, front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "both clear-aperture sides are physically usable: -1, rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "both clear-aperture sides are physically usable: 1, front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "both clear-aperture sides are physically usable: 1, rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted front support behind an unowned substitute, noRescue=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide deleted rear support behind an unowned substitute, noRescue=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd front support behind an unowned substitute, noRescue=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "endpoint arrival cannot hide shiftd rear support behind an unowned substitute, noRescue=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/false/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 10/true/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/false/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/false/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/false/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/true/front",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "shared live-app helper uses actual production controller: 60/true/true/rear",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete front ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete front ramp is rejected with rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete rear ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation delete rear ramp is rejected with rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift front ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift front ramp is rejected with rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift rear ramp is rejected with rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "support mutation shift rear ramp is rejected with rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz sprint backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz sprint backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz sprint forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz sprint forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz walk backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz walk backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz walk forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 10Hz walk forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz sprint backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz sprint backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz sprint forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz sprint forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz walk backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz walk backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz walk forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support front origin 60Hz walk forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz sprint backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz sprint backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz sprint forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz sprint forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz walk backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz walk backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz walk forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 10Hz walk forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz sprint backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz sprint backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz sprint forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz sprint forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz walk backward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz walk backward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz walk forward rescueDisabled=false",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate-routes.test.mjs",
+      "name": "昭德 true support rear origin 60Hz walk forward rescueDisabled=true",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate.test.mjs",
+      "name": "four old profile gates and fourteen unrelated corridor assemblies are byte-equivalent to delivered V6",
+      "count": 1
+    },
+    {
+      "file": "tests/current-state/zhaode-gate.test.mjs",
+      "name": "only the two explicit corridor ends resolve to the profile envelope and remain closed",
+      "count": 1
+    },
+    {
+      "file": "tests/r138/jiaotai-low-rooms.test.mjs",
+      "name": "all previous palace geometry and contacts retained; no extra flat walkable added",
+      "count": 1
+    },
+    {
+      "file": "tests/r139/details.test.mjs",
+      "name": "Fanhua only previous front rail is replaced: all other meshes, floor holes, rooms and navigation preserved",
+      "count": 1
+    },
+    {
+      "file": "tests/r140/details.test.mjs",
+      "name": "Enclosure only intended material/UV changes; all original triangle positions/normals/world physics preserved",
+      "count": 1
+    }
+  ]
+}

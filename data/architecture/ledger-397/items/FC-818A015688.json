@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "number": "E16",
+  "stableId": "FC-818A015688",
+  "name": "钟粹门",
+  "section": "E",
+  "parent": "东六宫/钟粹宫",
+  "nature": "建筑或构筑物",
+  "scope": "核门面、门钉、门洞与门内影壁；门内院落视点不是室内陈设图。；建筑老页称玉器陈列；官方当前地图列古琴文化展，不能把老页展陈描述视作2026现状。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L503",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236484.html"
+    ],
+    "exterior": [
+      "https://pano.dpm.org.cn/#/panorama?regionId=65&secondAreaId=162&vpId=3434&sphPicId=1943332049300275200"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/east-six.json#/items/14",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "钟粹门",
+      "engineeringCoordinates": {
+        "x": -93.6,
+        "z": 413.7
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-east-six-818a015688"
+  ],
+  "referenceAnchor": {
+    "kind": "gate",
+    "x": -93.6,
+    "z": 413.7,
+    "conf": "中",
+    "src": "dimensions.md:177"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

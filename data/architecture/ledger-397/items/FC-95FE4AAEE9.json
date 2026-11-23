@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "number": "L9",
+  "stableId": "FC-95FE4AAEE9",
+  "name": "紫禁城城墙",
+  "section": "L",
+  "parent": "宫城四边",
+  "nature": "室外构件/设施",
+  "scope": "官方总说给南北961m、东西753m及约10m高城墙；角楼照片支持城墙、台基和角楼关系。；应分四边及门/角楼相接段，尚未逐段核验女墙、排水、马道和维修差异；不能把总尺寸当实测每段。室内不适用。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L790",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/buildings.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/04/20/s5e9d3f30d1324.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "src/scene/Layout.js#PALACE_LAYOUT/1",
+      "nameMatch": false,
+      "basis": [
+        "historic-pointer"
+      ],
+      "declaredName": "外围城墙",
+      "engineeringCoordinates": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 61
+        }
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/Enclosure.js:129",
+    "src/scene/Enclosure.js:164",
+    "src/scene/Enclosure.js:198",
+    "src/scene/Enclosure.js:220",
+    "src/scene/Enclosure.js:261"
+  ],
+  "directoryCandidates": [],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

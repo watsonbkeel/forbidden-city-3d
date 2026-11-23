@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "number": "C17",
+  "stableId": "FC-BE7146EA73",
+  "name": "南薰门",
+  "section": "C",
+  "parent": "执行时核实所属院落与位置",
+  "nature": "仓库标签待核（无身份来源）",
+  "scope": "目前从现有地点目录纳入；名称、现存位置与图像主体须继续核对，不能凭名称新增几何。",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L445",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236503.html"
+    ],
+    "exterior": [],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/outer-west.json#/items/8",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "南薰门",
+      "engineeringCoordinates": {
+        "x": 289.6,
+        "z": -347.74
+      }
+    }
+  ],
+  "sourceMentions": [],
+  "directoryCandidates": [
+    "place-outer-west-be7146ea73"
+  ],
+  "referenceAnchor": null,
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

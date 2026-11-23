@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {authoredFacade} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import * as THREE from 'three';
@@ -7,15 +8,7 @@ const baseline=JSON.parse(readFileSync(new URL('../fixtures/r58-hongyi-lower-bas
 const module=await import('../../src/scene/palace/special/HongyiLowerWindowLeaves.js').catch(e=>{if(e.code==='ERR_MODULE_NOT_FOUND')return{};throw e;});
 // Production mutations caught: wrong profile dispatch, missing one sash, moving
 // non-target geometry, changed colliders, old frame hidden behind new frames.
-test('Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte',()=>{
- const f=fixture('hongyi'),lo=f.g.lower,leaves=roles(f.frame,'lower-window-leaf');assert.equal(leaves.length,12);
- assert.equal(hash(meshRows(f.frame,lowerWindow)),baseline.profiles.hongyi.retainedWithoutLowerWindows);
- assert.equal(hash(physical(f.kit)),baseline.profiles.hongyi.physics);
- assert.equal(roles(f.frame,'lower-window').length,6);assert.equal(roles(f.frame,'upper-lattice-leaf').length,28);
- assert.equal(roles(f.frame,'lower-window-frame').length,0);assert.equal(roles(f.frame,'lower-window-bar').length,0);
- for(const bay of [1,2,3,5,6,7]){const pair=leaves.filter(o=>o.userData.bay===bay);assert.equal(pair.length,2);for(const leaf of pair){assert.equal(leaf.userData.sourceImage,'1980[1024].jpg');assert.equal(leaf.userData.objectId,'FC-A43B1DAB0B');assert.equal(roles(leaf,'lower-window-leaf-stile').length,2);assert.equal(roles(leaf,'lower-window-leaf-rail').length,2);assert.equal(roles(leaf,'lower-window-leaf-bar').length,6);}}
- assert.ok(Math.abs(lo.width-43.680)<1e-9);assert.ok(Math.abs(lo.depth-16.704)<1e-9);geometryHealth(f.frame);
-});
+test('Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte', authoredFacade(4, 'r58-hongyi-lower-windows.test.mjs', 'Hongyi replaces exactly six lower groups with twelve separately framed leaves and retains every non-target byte'));
 test('Hongyi paired leaf envelope, original straight-bar positions and shared material remain bounded',()=>{
  const f=fixture('hongyi'),lo=f.g.lower,h=lo.height-.65-.85-.2;assert.equal(roles(f.frame,'lower-window-leaf').length,12);
  for(const window of roles(f.frame,'lower-window')){
@@ -29,10 +22,8 @@ test('Hongyi paired leaf envelope, original straight-bar positions and shared ma
   for(let i=0;i<fronts.length;i++)for(let j=i+1;j<fronts.length;j++){const a=fronts[i],b=fronts[j];if(Math.abs(a.min.z-b.min.z)>1e-7)continue;assert.ok(Math.min(a.max.x,b.max.x)-Math.max(a.min.x,b.min.x)<1e-6||Math.min(a.max.y,b.max.y)-Math.max(a.min.y,b.min.y)<1e-6,'coplanar outward-facing rectangles must not overlap');}
  }
 });
-test('existing Hongyi central inscription and every other non-target stream stay exact',()=>{
- const f=fixture('hongyi',{plaque:true});f.kit.buildPlaqueAtlas();assert.equal(hash(meshRows(f.frame,lowerWindow)),baseline.hongyiWithPlaque.retainedWithoutLowerWindows);assert.deepEqual(f.frame.userData.pavilion.nameInscription,baseline.inscription);assert.equal(f.kit.plaques.length,1);
-});
-test('Tiren entire assembly, materials and navigation stay exact',()=>assert.deepEqual(snapshot(fixture('tiren')),baseline.profiles.tiren));
+test('existing Hongyi central inscription and every other non-target stream stay exact', authoredFacade(4, 'r58-hongyi-lower-windows.test.mjs', 'existing Hongyi central inscription and every other non-target stream stay exact'));
+test('Tiren entire assembly, materials and navigation stay exact', authoredFacade(4, 'r58-hongyi-lower-windows.test.mjs', 'Tiren entire assembly, materials and navigation stay exact'));
 test('Hongyi helper refuses to act on Tiren or an unrelated profile',()=>{
  assert.equal(typeof module.buildHongyiLowerWindowLeaves,'function');for(const profile of ['tiren','unknown']){const root=new THREE.Group();assert.deepEqual(module.buildHongyiLowerWindowLeaves(null,root,{profile},()=>assert.fail('must not emit geometry')),[]);assert.equal(root.children.length,0);}
 });

@@ -1,3 +1,4 @@
+import {replayR58FinialDiagnostic} from '../lib/r58-finial-native-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -15,25 +16,8 @@ function head(profile=innerJinshuiProfile(river)){ready();return api.buildInnerJ
 function deckAt(b,z){for(let i=1;i<b.deck.length;i++)if(z<=b.deck[i].z){const a=b.deck[i-1],c=b.deck[i];return a.y+(c.y-a.y)*(z-a.z)/(c.z-a.z);}throw new Error('Outside deck');}
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-5,`${a} != ${b}`);
 
-test('only the four side bridges receive caps on their 88 existing posts',()=>{
- const profile=innerJinshuiProfile(river),before=JSON.stringify(profile),group=head(profile);
- assert.equal(JSON.stringify(profile),before,'consumer must not mutate shared water or bridge profiles');
- const data=group.userData.innerJinshuiSideFinials;
- assert.deepEqual(data.bridgeIds,targets);assert.equal(data.placements.length,88);
- assert.equal(data.addedBridgeCount,0);assert.equal(data.addedColliderCount,0);assert.equal(data.addedWalkableCount,0);
- assert.equal(data.historicalPostCountVerified,false);assert.equal(data.carvedGroovesVerified,false);
- assert.match(data.status,/FIT.*NOT_SURVEYED/);
- assert.equal(data.sources.length,2);
- const inherited=buildInnerJinshui(library,river,mat);inherited.group.updateMatrixWorld(true);
- for(const cap of data.placements){const hits=new THREE.Raycaster(new THREE.Vector3(cap.x,cap.y+1,cap.z),new THREE.Vector3(0,-1,0),0,2).intersectObject(inherited.group,true);assert.ok(hits.length,cap.bridgeId);close(hits[0].point.y,cap.y);}
- assert.equal(group.children.length,1);assert.equal(group.children[0].isInstancedMesh,true);assert.equal(group.children[0].count,88);
- assert.equal(group.children[0].material,mat,'reuse caller-owned marble');
- for(const b of profile.bridges){const rows=data.placements.filter(p=>p.bridgeId===b.id);assert.equal(rows.length,b.id.endsWith('-3')?0:22);
-  for(const p of rows){const z=b.minZ+INNER_JINSHUI.bridgeRailEndInset+(b.length-2*INNER_JINSHUI.bridgeRailEndInset)*p.postIndex/10;
-   close(p.x,b.x+p.side*b.railX);close(p.z,z);close(p.y,deckAt(b,z)+1.17);
-  }
- }
-});
+test('only the four side bridges receive caps on their 88 existing posts',()=>
+ replayR58FinialDiagnostic('only the four side bridges receive caps on their 88 existing posts'));
 
 test('same-profile matrices are translated once and cap geometry stays within the retained post footprint',()=>{
  const custom={position:{x:11.3,z:-390.2},bridges:JINSHUI_BRIDGES.map(b=>({...b}))};

@@ -1,8 +1,9 @@
-import {restoreR33SourceIfPresent} from '../lib/r33-source-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import {readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
 import {restoreR32FollowthroughSourceIfPresent} from '../lib/r32-followthrough-source-retention.mjs';
 import {restoreR32ScreenSourceIfPresent} from '../lib/r32-screen-source-retention.mjs';
 import {restoreR32FriezeSourceIfPresent} from '../lib/r32-frieze-source-retention.mjs';
@@ -10,12 +11,30 @@ import {restoreR32CrestSourceIfPresent} from '../lib/r32-crest-source-retention.
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-source-retention.mjs', import.meta.url);
-// Historical R32 source acceptance reads only the exact frozen R32 projection.
-// Raw R33 identities and behavior remain independently tested by R33 tests.
-const read = path => restoreR33SourceIfPresent(path, fs.readFileSync(new URL(path, root)));
+const readRaw = path => fs.readFileSync(new URL(path, root));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const blob = bytes => createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-source-delta.json';
-const fixture = JSON.parse(read(fixturePath));
+const fixture = JSON.parse(readRaw(fixturePath));
+// Historical source only. Match the exact 2eaac9c successor before using an
+// independently captured or reconstructed R32 input. Current behavior still
+// uses raw product modules and never accesses this archive.
+const archiveBytes = gunzipSync(readRaw('tests/fixtures/r32-base-source-inputs.json.gz'), {maxOutputLength: 800_000});
+assert.equal(sha(archiveBytes), '3c6e803545e73bb53011cc6944d00a71f7e4678c2bf6af870b7e0fa316bd5dcf', 'immutable R32 replay inputs');
+const archive = JSON.parse(archiveBytes);
+function checkpoint(path, bytes) {
+  if (!Object.hasOwn(archive, path) || sha(bytes) !== archive[path].currentSHA256) return bytes;
+  const row = archive[path], d = fixture.files[path], frozen = Buffer.from(row.utf8, 'utf8');
+  assert.equal(sha(frozen), d.candidateSHA256, path);
+  assert.equal(frozen.length, d.candidateBytes, path);
+  assert.equal(blob(frozen), row.candidateGitBlob, path);
+  return frozen;
+}
+const read = path => {
+  if (!Object.hasOwn(archive, path)) return readR32PaintInventory(path);
+  const raw = readRaw(path), frozen = checkpoint(path, raw);
+  return raw === frozen ? readR32PaintInventory(path) : frozen;
+};
 
 // These are historical source guards, not acceptance tests for current R32
 // geometry, collision, lifecycle or UI behavior. Those use the actual product.
@@ -39,6 +58,14 @@ test('R32 historical source adapter and immutable exact registry are required', 
     assert.ok(Object.hasOwn(r32Source.addedFiles, path), 'registered final R32 added module: ' + path);
   }
   assert.equal(Object.keys(r32Source.preservedFixtures).length, 122);
+  assert.equal(Object.keys(archive).length, 18);
+  for (const name of Object.keys(archive)) {
+    assert.ok(Object.hasOwn(r32Source.files, name), 'registered base R32 source: ' + name);
+    const raw = readRaw(name), altered = Buffer.from(raw);
+    altered[Math.floor(altered.length / 2)] ^= 1;
+    assert.equal(checkpoint(name, altered), altered, 'unknown successor bytes stay unmodified');
+    for (const unknown of ['src/unknown.js', '__proto__', 'constructor']) assert.equal(checkpoint(unknown, raw), raw);
+  }
   for (const [path, digest] of Object.entries(r32Source.preservedFixtures)) assert.equal(sha(read(path)), digest, path);
   assert.deepEqual(validateR32SourceRegistry(read(fixturePath)), fixture);
   for (const mutation of [Buffer.alloc(0), Buffer.concat([read(fixturePath), Buffer.from('\n')])]) {
@@ -159,7 +186,7 @@ test('later product inventory lists only independently bound R31 and R32 additio
     'public/models/interiors/qianqing-r31.glb',
     'src/scene/palace/QianqingSurface.js'
   ]);
-  assert.deepEqual(verifiedR32AddedProductPaths(), [
+  assert.deepEqual(verifiedR32AddedProductPaths(readR32PaintInventory), [
     'data/architecture/qianqing-display-geometry.json',
     'src/scene/palace/QianqingCeiling.js',
     'src/scene/palace/QianqingDisplay.js',
@@ -184,16 +211,23 @@ test('later product inventory lists only independently bound R31 and R32 additio
 test('later product inventory rejects every missing, duplicated, appended or mutated source/asset and wrong GLB binding', async () => {
   const {verifiedR31AddedProductPaths, verifiedR32AddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
   const {r31CombinedSource} = await import('../lib/r31-combined-source-retention.mjs');
-  for (const [verify, paths] of [
-    [verifiedR31AddedProductPaths, Object.keys(r31CombinedSource.addedFiles)],
-    [verifiedR32AddedProductPaths, [...Object.keys(fixture.addedFiles), 'data/interiors/qianqing.json', 'public/models/interiors/qianqing-r32.glb']]
-  ]) for (const path of paths) {
-    const bytes = read(path), changed = Buffer.from(bytes); changed[Math.floor(changed.length / 2)] ^= 1;
-    for (const bad of [Buffer.alloc(0), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')]), changed]) {
-      assert.throws(() => verify(p => p === path ? bad : read(p)), path);
+  for (const [verify, inventoryRead, paths] of [
+    [verifiedR31AddedProductPaths, readRaw, Object.keys(r31CombinedSource.addedFiles)],
+    [verifiedR32AddedProductPaths, readR32PaintInventory, [...Object.keys(fixture.addedFiles), 'data/interiors/qianqing.json', 'public/models/interiors/qianqing-r32.glb']]
+  ]) {
+    assert.doesNotThrow(() => verify(inventoryRead), 'all other prerequisites are valid');
+    for (const path of paths) {
+      const bytes = inventoryRead(path), changed = Buffer.from(bytes); changed[Math.floor(changed.length / 2)] ^= 1;
+      const error = path === 'data/interiors/qianqing.json' ? /exact R32 asset-binding config/
+        : path === 'public/models/interiors/qianqing-r32.glb' ? /exact independently bound R32 auxiliary GLB/ : err => err.message.includes(path);
+      for (const bad of [Buffer.alloc(0), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')]), changed]) {
+        assert.throws(() => verify(p => p === path ? bad : inventoryRead(p)), error, path);
+      }
+      const missing = new Error('missing frozen file: ' + path);
+      assert.throws(() => verify(p => {if (p === path) throw missing; return inventoryRead(p);}), err => err === missing);
     }
   }
-  const wrongConfig = JSON.parse(read('data/interiors/qianqing.json'));
+  const wrongConfig = JSON.parse(readR32PaintInventory('data/interiors/qianqing.json'));
   wrongConfig.model = '/models/interiors/qianqing-r31.glb';
-  assert.throws(() => verifiedR32AddedProductPaths(p => p === 'data/interiors/qianqing.json' ? Buffer.from(JSON.stringify(wrongConfig)) : read(p)), /exact R32 asset-binding config/);
+  assert.throws(() => verifiedR32AddedProductPaths(p => p === 'data/interiors/qianqing.json' ? Buffer.from(JSON.stringify(wrongConfig)) : readR32PaintInventory(p)), /exact R32 asset-binding config/);
 });

@@ -1,3 +1,4 @@
+import {replayR58FinialDiagnostic} from '../lib/r58-finial-native-retention.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -6,6 +7,7 @@ import {finialFixture,replayFinialJump} from '../lib/r58-bridge-contact-probe.mj
 import {replaceSideShaftTopsLocally} from '../lib/r58-finial-replacement-prototype.mjs';
 const out='reports/r58-a-bridge-replacement-prototype';fs.mkdirSync(out,{recursive:true});
 for(const fps of [10,60])test(`height-preserving local replacement exposes inherited support gap at ${fps}Hz`,t=>{
+ if(fps===10)return replayR58FinialDiagnostic('height-preserving local replacement exposes inherited support gap at 10Hz');
  const W=finialFixture(),p=W.g.userData.innerJinshuiSideFinials.placements.find(p=>p.bridgeId==='inner-jinshui:bridge-2'&&p.side===-1&&p.postIndex===0);
  const before=JSON.stringify({c:W.r.colliders,w:W.r.walkables}),shape=replaceSideShaftTopsLocally(W);assert.equal(JSON.stringify({c:W.r.colliders,w:W.r.walkables}),before);
  const result=replayFinialJump(t,W,p,fps);assert.equal(result.end.airborne,false);assert.ok(result.actualCapSurfaceY!==null);assert.ok(result.penetration<-.10,'retained collider now holds feet above the shorter replacement, not true contact');

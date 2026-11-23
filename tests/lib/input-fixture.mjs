@@ -7,7 +7,7 @@ import { createDOM } from './ui-dom.mjs';
 // Production controls/collision/PointerLockControls, with only DOM and time mocked.
 // Render-equivalent matrix updates happen AFTER controls, as in main.js. Never
 // call getWorldDirection/updateMatrix before a tested movement: it masks stale yaw.
-export function setupInput(t, { mobile = false, map = false } = {}) {
+export function setupInput(t, { mobile = false, map = false, collisionManager } = {}) {
   const saved = Object.fromEntries(['document', 'window', 'navigator'].map(name =>
     [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
   const dom = createDOM();
@@ -26,7 +26,7 @@ export function setupInput(t, { mobile = false, map = false } = {}) {
   let now = 0;
   const clock = t.mock.method(performance, 'now', () => now);
   const camera = new THREE.PerspectiveCamera();
-  const cm = new CollisionManager();
+  const cm = collisionManager ?? new CollisionManager();
   const c = new FirstPersonControls(camera, document.body, cm);
   c.setPosition(0, PLAYER.HEIGHT, 0);
   camera.updateMatrixWorld(true); // Initial render only, before any input.

@@ -1,0 +1,96 @@
+{
+  "scope": "TWO_FULL_THREE_HALL_COMPLEX_BUILDS_REAL_FINISH_REAL_MATERIAL_OWNERSHIP_CPU_ONLY",
+  "beforeFix": {
+    "afterDisposeMetadataCount": 3,
+    "expected": 0
+  },
+  "afterFix": [
+    {
+      "cycle": 0,
+      "before": {
+        "geometries": 73,
+        "materials": 73,
+        "ownedMaterials": 58,
+        "libraryMaterials": 15,
+        "profiles": 1,
+        "sideRamps": 6,
+        "scene": 1
+      },
+      "ownedGeometryCorrectlyDisposed": true,
+      "afterFields": {
+        "profiles": 0,
+        "colliders": 0,
+        "walkables": 0,
+        "scene": 0,
+        "registeredColliders": 0,
+        "registeredWalkables": 0
+      },
+      "ownershipReceipt": {
+        "geometryDisposals": {
+          "numberOfObjects": 73,
+          "eventCounts": [
+            1
+          ]
+        },
+        "ownedMaterialDisposals": {
+          "numberOfObjects": 58,
+          "eventCounts": [
+            1
+          ]
+        },
+        "libraryMaterialDisposals": {
+          "numberOfObjects": 15,
+          "eventCounts": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "cycle": 1,
+      "before": {
+        "geometries": 73,
+        "materials": 73,
+        "ownedMaterials": 58,
+        "libraryMaterials": 15,
+        "profiles": 1,
+        "sideRamps": 6,
+        "scene": 1
+      },
+      "ownedGeometryCorrectlyDisposed": true,
+      "afterFields": {
+        "profiles": 0,
+        "colliders": 0,
+        "walkables": 0,
+        "scene": 0,
+        "registeredColliders": 0,
+        "registeredWalkables": 0
+      },
+      "ownershipReceipt": {
+        "geometryDisposals": {
+          "numberOfObjects": 73,
+          "eventCounts": [
+            1
+          ]
+        },
+        "ownedMaterialDisposals": {
+          "numberOfObjects": 58,
+          "eventCounts": [
+            1
+          ]
+        },
+        "libraryMaterialDisposals": {
+          "numberOfObjects": 15,
+          "eventCounts": [
+            0
+          ]
+        }
+      }
+    }
+  ],
+  "regressionTest": "tests/final-audit/terrace-disposal.test.mjs",
+  "afterDisposeBaoheTiersPerCycle": [
+    0,
+    0
+  ]
+}

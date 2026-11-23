@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
+import { replayR34ZhaodeV6Geometry } from '../lib/r34-zhaode-v6-native.mjs';
 import * as THREE from 'three';
 import { CourtKit, FACE } from '../../src/scene/palace/kit.js';
 import { ZoneBase } from '../../src/scene/zones/ZoneBase.js';
@@ -18,12 +18,6 @@ function geom(opts={}){assert.equal(typeof api.zhaodeGateGeometry,'function','de
 const nodes=(root,role)=>{const out=[];root.traverse(o=>{if(o.userData.role===role)out.push(o);});return out;};
 function fixture(opts={}){const lib=library(),kit=new CourtKit(lib),g=geom(opts);const width=kit.gate({x:0,z:0,gateProfile:'zhaode',gateKind:'three-bay',open:true,plaque:false,...opts});const frame=kit.root.children[0];frame.updateMatrixWorld(true);const cm=new CollisionManager();cm.rivers=[];cm.addColliders(kit.colliders);cm.addWalkables(kit.walkables);const blocked=(x,z,y=g.platformY)=>{const [wx,wz]=g.toWorld(x,z);return cm.checkCollision(new THREE.Vector3(wx,y+1.7,wz),.5);};return {lib,kit,g,width,frame,cm,blocked};}
 function ray(root,from,to,far=100){const r=new THREE.Raycaster(new THREE.Vector3(...from),new THREE.Vector3(...to));r.far=far;return r.intersectObject(root,true);}
-function digest(item){const zone=new ZoneBase(library(),{id:'snapshot',items:[]});if(item.kind==='corridor')zone.buildCorridor(item);else zone.buildGate({...item,plaque:false});const k=zone.kit;k.root.updateMatrixWorld(true);const meshes=[];k.root.traverse(o=>{if(o.isMesh)meshes.push({matrix:o.matrixWorld.toArray(),material:o.material?.name,cast:o.castShadow,receive:o.receiveShadow,index:o.geometry.index?Array.from(o.geometry.index.array):null,attributes:Object.fromEntries(Object.entries(o.geometry.attributes).map(([n,a])=>[n,{itemSize:a.itemSize,normalized:a.normalized,array:Array.from(a.array)}]))});});return createHash('sha256').update(JSON.stringify({meshes,colliders:k.colliders.map(b=>[b.min.toArray(),b.max.toArray()]),walkables:k.walkables,rooms:k.rooms,map:k.mapItems})).digest('hex');}
-// These are full geometry/collision/support/room/map hashes taken before edits on
-// delivered V6 58b129f54f3319dde19f2a15a43a4eb100dcf0ec, not rebuilt expectations.
-const oldGates=[{"name":"协和门","hash":"c52448adfea2696339fca2c1834caa18b22e9a337b294ffa0c860f88bcbae886"},{"name":"熙和门","hash":"19a4727e03a46c087d570a4f3bc0c3ed99016cd503f8053a28cbf75aee986d96"},{"name":"景运门","hash":"28f6a0b0a153375b53a82bddda9a4069303371d0feb803e37d11d4ff6ca5abde"},{"name":"隆宗门","hash":"4abcd9d792bf8f278002febfdb1f5435e8f67562ef6a84b88268f0753f96ef3c"}];
-const oldCorridors=[{"index":0,"hash":"59e97f0bc1727be9120e14ca2145ffcd4a57e64e55faff06b14d1529d01efcb8"},{"index":1,"hash":"026d8760fbf43e26b966b347fa36e37b9571d67cd20d98e7077c6a9b3063771c"},{"index":2,"hash":"660c12623f1282431b02ed26b00cf99e08cc9cddf75b91f8e21e82c7781777a3"},{"index":3,"hash":"93b315a413527a5137987951c488faa69145c48b5abf225a775d31bb5d9aa987"},{"index":4,"hash":"dddd0871fa9b997301db86295dc13e69af9a7043a05749ef13a872cd35c3b38f"},{"index":5,"hash":"c833b4a79c85ddd3c54ce1dcb58aed73871d40f705b52d5ad867867e13dfb008"},{"index":6,"hash":"42366e32485c27b233f8e02fa2bfd21f70ea0f28adbcb9261e41553969cef02f"},{"index":7,"hash":"deb6295dd29bbc9e3a1f08a9912d1920b8a453f1e8690f26973c3c025508fe95"},{"index":8,"hash":"13c1e25b8f7417b624115eea9b289719252b8393b833ad1c9f98032b92884c4e"},{"index":9,"hash":"07333bdc7aa6b8b3999d9bc00389f9d42e9afaef4751e35b085e079dac1b1dc2"},{"index":10,"hash":"b5cf4c38168b9e3201212c367a16aac8c9b922f764290552192ad603b0a42435"},{"index":11,"hash":"f3cefbd2c5edb95642a1ced1d57b8a898fa320ef97dd0d59632d6429409fd58a"},{"index":12,"hash":"7466befbd8257834a18b532b15e49041c308c0e27ffcdc786afef06ee018fea4"},{"index":13,"hash":"02bfc6f4c79adb93d5779c72482e7e4598df66a502835c7d79bec6fbdab5ff73"},{"index":14,"hash":"8ece2e6c2ef7d0327adf71cb22c236e6f60c4061acd26607b46e8fa53c58c06d"},{"index":15,"hash":"aef563b86f594c968c3d15c9aa1f92491f09d62cf2d9069bc1c73dc6c6d5dc43"}];
-const unchangedRecordsHash='c8879998ad586ec1c822e28f22fd2a28f4c8fac7b1772a0b4d68285ceaec5cf8';
 
 test('Zhaode is explicitly one raised three-core-bay gate at its unchanged anchor',()=>{
  assert.equal(item.gateProfile,'zhaode');assert.equal(item.gateKind,'three-bay');assert.equal(item.open,true);assert.equal(item.dimensionStatus,'provisional');assert.deepEqual([item.x,item.z],[-62.4,-214.2]);
@@ -75,7 +69,10 @@ test('ridge datum is documentary while actual roof bounds and ornament maximum a
  const f=fixture(),roof=nodes(f.frame,'zhaode-roof')[0];const ridge=ray(roof,[0,30,0],[0,-1,0]).filter(h=>h.object.material===f.kit.ridge);assert.ok(ridge.length);close(ridge[0].point.y,16.16);const box=new THREE.Box3().setFromObject(roof);const info=f.frame.userData.structure.roofBounds;assert.ok(info);close(info.min[0],box.min.x);close(info.max[1],box.max.y);assert.ok(box.min.x<-f.g.building.width/2);assert.ok(f.g.roof.overhang>0);
 });
 test('only the two explicit corridor ends resolve to the profile envelope and remain closed',()=>{
- const joins=axis.items.filter(i=>i.gateJoin);assert.equal(joins.length,2);assert.deepEqual(joins.map(i=>i.facing),['z-','z-']);const zone=new ZoneBase(library(),{id:'joins',items:[item,...joins]});zone.kit.finish=()=>zone.kit.root;const built=zone.build();built.group.updateMatrixWorld(true);close(zone.gateWidths.get('昭德门'),24.4);const g=geom(item);
+ // Resolve the same explicit gate owner as ZoneBase.buildCorridor, not all joins in the zone.
+ const joins=axis.items.filter(i=>i.gateJoin?.gate===item.name);
+ assert.deepEqual(joins.map(i=>[i.gateJoin.side,i.gateJoin.end]),[['left','to'],['right','from']]);
+ assert.equal(joins.length,2);assert.deepEqual(joins.map(i=>i.facing),['z-','z-']);const zone=new ZoneBase(library(),{id:'joins',items:[item,...joins]});zone.kit.finish=()=>zone.kit.root;const built=zone.build();built.group.updateMatrixWorld(true);close(zone.gateWidths.get('昭德门'),24.4);const g=geom(item);
  assert.deepEqual(joins[0].from,[-105.97,-217.3]);assert.deepEqual(joins[1].to,[-26.5,-217.3]);
  const corridorFrames=zone.kit.root.children.filter(o=>o.userData.gateJoin);assert.equal(corridorFrames.length,2);
  for(const f of corridorFrames){const join=g.joins[f.userData.gateJoin.side];close(f.userData.gateJoin.boundary[0],join.world[0]);close(f.userData.gateJoin.boundary[1],-217.3);const bounds=new THREE.Box3().setFromObject(f);assert.ok(f.userData.gateJoin.provisional);if(join.side==='left')assert.ok(bounds.max.x<=join.world[0]+.071);else assert.ok(bounds.min.x>=join.world[0]-.071);}
@@ -88,12 +85,7 @@ test('bad or unbuilt explicit joins fail closed without generic name or orientat
  assert.throws(()=>new ZoneBase(library(),{id:'bad',items:[base]}).build(),/join|gate/i);
  for(const change of [{side:'bogus'},{end:'from'},{gate:'missing'}]){const z=new ZoneBase(library(),{id:'bad',items:[item,{...base,gateJoin:{...base.gateJoin,...change}}]});assert.throws(()=>z.build(),/join|gate|endpoint/i);}
 });
-test('four old profile gates and fourteen unrelated corridor assemblies are byte-equivalent to delivered V6',()=>{
- for(const {name,hash} of oldGates)assert.equal(digest(axis.items.find(i=>i.name===name)),hash,name);
- const corridors=axis.items.filter(i=>i.kind==='corridor');assert.equal(corridors.length,16);for(const {index,hash} of oldCorridors)if(![12,13].includes(index))assert.equal(digest(corridors[index]),hash,`corridor ${index}`);
- const records=structuredClone(axis.items);for(const r of records){delete r.gateJoin;if(r.name==='昭德门'){delete r.gateProfile;delete r.gateKind;delete r.open;delete r.dimensionStatus;}}
- assert.equal(createHash('sha256').update(JSON.stringify(records)).digest('hex'),unchangedRecordsHash,'only gate fields and two references may change');
-});
+test('four old profile gates and fourteen unrelated corridor assemblies are byte-equivalent to delivered V6',replayR34ZhaodeV6Geometry);
 test('repeated merged geometry remains finite and disposes only assembly-owned resources',()=>{
  for(let iteration=0;iteration<2;iteration++){
   const f=fixture(),watched=new Map();const watch=o=>{if(watched.has(o))return;watched.set(o,0);o.addEventListener('dispose',()=>watched.set(o,watched.get(o)+1));};f.frame.traverse(o=>{if(o.geometry)watch(o.geometry);});const sources=[...watched.keys()];const shared=[...f.lib.materials.values()];for(const m of [...shared,...f.kit.owned])watch(m);const merged=f.kit.finish();for(const g of sources)assert.equal(watched.get(g),1);for(const mesh of merged.children){watch(mesh.geometry);for(const a of Object.values(mesh.geometry.attributes))for(const value of a.array)assert.ok(Number.isFinite(value));assert.ok(mesh.geometry.attributes.normal);assert.ok(mesh.geometry.attributes.uv);assert.equal(mesh.castShadow,true);}

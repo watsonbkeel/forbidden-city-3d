@@ -1,11 +1,10 @@
 import {restoreR33CaptureIfPresent} from '../lib/r33-scene-retention.mjs';
-import {historicalR32ModuleURL} from '../lib/historical-r32-scene-dependencies.mjs';
-import test from 'node:test';
+import {stageNativeR32Screen} from '../lib/r32-screen-native-fixture.mjs';
+import test, {after} from 'node:test';
 import {restoreR32CrestCaptureIfPresent, restoreR32CrestCentralLevelIfPresent} from '../lib/r32-crest-scene-retention.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {registerHooks} from 'node:module';
 import {restoreR32FriezeCaptureIfPresent} from '../lib/r32-frieze-scene-retention.mjs';
 
 const root = new URL('../../', import.meta.url);
@@ -20,20 +19,8 @@ async function load() {
   return import(helper);
 }
 
-registerHooks({load(url, context, next) {
-  if (url.endsWith('.json')) return {format: 'module', source: 'export default ' + fs.readFileSync(new URL(url), 'utf8'), shortCircuit: true};
-  return next(url, context);
-}});
-
-// Execute independently stored afb source bytes. Do not derive expected UVs
-// with the adapter under test, patch the current mapper, or reset attributes.
-async function historicalModules(includeOldCeiling = false) {
-  const sources = {...fixture.baselineSources};
-  if (!includeOldCeiling) delete sources['src/scene/palace/QianqingCeiling.js'];
-  const moduleURL = path => historicalR32ModuleURL(path, sources);
-  return {central: await import(moduleURL('src/scene/palace/QianqingCentralSetting.js')),
-    Builder: (await import(moduleURL('src/scene/PalaceBuilder.js'))).PalaceBuilder};
-}
+let mounted;
+after(() => mounted?.dispose());
 
 function captureLevel(root) {
   return root.children.map(object => ({name: object.name, matrix: (object.updateMatrix(), object.matrix.toArray()),
@@ -49,18 +36,23 @@ let builds;
 async function scenes() {
   await load();
   if (!builds) builds = (async () => {
+    mounted = stageNativeR32Screen(fixture.baselineSources);
+    const central = 'src/scene/palace/QianqingCentralSetting.js';
+    const builder = 'src/scene/PalaceBuilder.js';
     const T = await import('three');
-    const {captureJiaotaiScene} = await import('../lib/r27-jiaotai-capture.mjs');
-    const {PalaceBuilder} = await import('../../src/scene/PalaceBuilder.js');
-    const current = await import('../../src/scene/palace/QianqingCentralSetting.js');
-    const old = await historicalModules(), original = await historicalModules(true);
+    const {captureJiaotaiScene} = await import(new URL('tests/lib/r27-jiaotai-capture.mjs', mounted.after));
+    const {PalaceBuilder} = await import(new URL(builder, mounted.after));
+    const current = await import(new URL(central, mounted.after));
+    const old = {central: await import(new URL(central, mounted.before)),
+      Builder: (await import(new URL(builder, mounted.before))).PalaceBuilder};
+    const original = await import(new URL(builder, mounted.original));
     const levels = module => Object.fromEntries([['near', true], ['far', false]].map(([kind, fine]) =>
       [kind, captureLevel(module.buildQianqingCentralLevel(new T.MeshBasicMaterial(), fixture.central.frame, fine))]));
     // Exact later crest identity is reversed only for this frozen historical contract.
     return {T, current, old, currentLevels: Object.fromEntries(Object.entries(levels(current)).map(([kind, rows]) => [kind, restoreR32CrestCentralLevelIfPresent(kind, rows)])), oldLevels: levels(old.central),
       // Preserve this frozen a9 contract after the independently bound final
       // frieze metadata is removed; the new test checks raw d5 product captures.
-      capture: restoreR32FriezeCaptureIfPresent(restoreR32CrestCaptureIfPresent(restoreR33CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)))), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.Builder)};
+      capture: restoreR32FriezeCaptureIfPresent(restoreR32CrestCaptureIfPresent(restoreR33CaptureIfPresent(captureJiaotaiScene(PalaceBuilder)))), oldCapture: captureJiaotaiScene(old.Builder), originalCapture: captureJiaotaiScene(original.PalaceBuilder)};
   })();
   return builds;
 }

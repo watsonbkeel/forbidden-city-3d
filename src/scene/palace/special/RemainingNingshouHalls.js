@@ -18,7 +18,7 @@ import {buildXunyanSouthFront} from './XunyanSouthFront.js';
 import {buildSuichuSouthFront} from './SuichuSouthFront.js';
 import {buildForiForecourt} from './ForiForecourt.js';
 import {buildYueshiSouthFront} from './YueshiSouthFront.js';
-import {buildFanhuaSouthFront} from './FanhuaSouthFront.js';
+import {buildFanhuaSouthFront,registerFanhuaEntranceHeadroom} from './FanhuaSouthFront.js';
 import {buildJuanqinEastFront} from './JuanqinEastFront.js';
 import {buildJingfuSouthGallery} from './JingfuSouthGallery.js';
 import {buildFuwangSouthLower,buildFuwangSouthUpper,buildFuwangSouthSteps} from './FuwangSouthFront.js';
@@ -645,7 +645,9 @@ function buildFori(c) {
 function buildFanhua(c) {
  const{p}=c,bw=p.localW/7,h0=p.upperFloorY-p.ph,holes=[],southEnabled=c.kit.fanhuaSouthFront!==false;twoLevelFrame(c,{rearInset:0,skipSouth:southEnabled});if(southEnabled)buildFanhuaSouthFront(c);buildFanhuaFrontBalustrade(c);fitFanhuaFloorFascia(c);hangingFrieze(c);
  for(let i=0;i<7;i++)if(i!==3){const x=-p.localW/2+(i+.5)*bw;holes.push({x0:x-.85,x1:x+.85,z0:-1.05,z1:1.05});}
- const floorVoids=upperFloor(c,{holes});for(const q of holes)guardOpening(c,q);
+ const floorVoids=upperFloor(c,{holes});
+ if(southEnabled)registerFanhuaEntranceHeadroom(c);
+ for(const q of holes)guardOpening(c,q);
  for(let i=1;i<7;i++)for(const y of[p.ph,p.upperFloorY])wallLine(c,{a0:-p.localD/2+p.gallery,a1:p.localD/2,at:-p.localW/2+i*bw,y,h:(y===p.ph?h0:p.ph+p.colH-p.upperFloorY)-.22,side:true,doors:[{at:-2,w:1.7}],mat:'wood',role:'fanhua-seven-bay-partition'});
  for(let i=0;i<7;i++){
   const x=-p.localW/2+(i+.5)*bw;

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {authoredR58ZhenduAxis} from '../lib/r58-authored-facade.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -14,6 +15,7 @@ function library(){const m=new Map();return{material:n=>m.get(n)??(m.set(n,new T
 const item=axis.items.find(x=>x.name==='贞度门');
 
 test('only the three explicit declarations change from the frozen R57 axis data',()=>{
+ const axis=authoredR58ZhenduAxis(),item=axis.items.find(x=>x.name==='贞度门');
  assert.equal(item.gateProfile,'zhendu');assert.equal(item.gateKind,'three-bay');
  assert.deepEqual([item.x,item.z],[64.4,-214.2]);
  const original=structuredClone(axis);

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "number": "I16",
+  "stableId": "FC-FF99BC5DC0",
+  "name": "九龙壁",
+  "section": "I",
+  "parent": "宁寿宫区前朝·皇极门南",
+  "nature": "室外构件/设施",
+  "scope": "九条龙位置/颜色、五分区、瓦顶脊饰、石须弥座与现代护栏；影壁无室内；照片不能给出准确浮雕深度或构件拆分尺寸",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L711",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236477.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efef494ae066.jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/2020/07/03/s5efef4a2a5c83.jpg"
+    ],
+    "interior": []
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/10",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "九龙壁",
+      "engineeringCoordinates": {
+        "x": -295,
+        "z": 123
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/zones/ZoneBase.js:1153",
+    "src/scene/zones/ZoneBase.js:1192"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-ff99bc5dc0"
+  ],
+  "referenceAnchor": {
+    "kind": "screen",
+    "x": -295.0,
+    "z": 123.0,
+    "w": 29.4,
+    "conf": "高",
+    "src": "dimensions.md:338"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

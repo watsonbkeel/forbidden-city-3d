@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "number": "I7",
+  "stableId": "FC-82E7771BD4",
+  "name": "畅音阁",
+  "section": "I",
+  "parent": "宁寿宫区后寝东路南端",
+  "nature": "建筑或构筑物",
+  "scope": "三层戏楼、寿台开敞空间、彩画、扮戏楼内部平台与陈设；扮戏楼照片中戏衣/道具为该照片场景；展陈年代、上下台及机械装置待核",
+  "scopeOrigin": "https://github.com/watsonbkeel/forbidden-city-3d/blob/8de5c83d25a669a014575a1489429f064a464496/docs/photo-fidelity/MASTER-PROMPT.md#L702",
+  "sourceLinks": {
+    "identity": [
+      "https://www.dpm.org.cn/explore/building/236437.html"
+    ],
+    "exterior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/2604[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1493.jpg"
+    ],
+    "interior": [
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1492[1024].jpg",
+      "https://img.dpm.org.cn/Uploads/Picture/dc/1491[1024].jpg"
+    ]
+  },
+  "modelCandidates": [
+    {
+      "ref": "data/zones/ningshou.json#/items/25",
+      "nameMatch": true,
+      "basis": [
+        "historic-pointer",
+        "exact-current-name"
+      ],
+      "declaredName": "畅音阁",
+      "engineeringCoordinates": {
+        "x": -336.6,
+        "z": 365.5
+      }
+    }
+  ],
+  "sourceMentions": [
+    "src/scene/palace/special/ChangyinLowerNameboard.js:29",
+    "src/scene/palace/special/ChangyinMiddleNameboard.js:28",
+    "src/scene/palace/special/ChangyinNorthFront.js:38"
+  ],
+  "directoryCandidates": [
+    "place-ningshou-82e7771bd4"
+  ],
+  "referenceAnchor": {
+    "kind": "hall",
+    "x": -336.6,
+    "z": 365.5,
+    "w": 15.5,
+    "d": 14.7,
+    "conf": "高",
+    "src": "dimensions.md:381"
+  },
+  "confirmedPhysicalEntityId": null,
+  "confirmedWorldCoordinates": null,
+  "acceptance": {
+    "exterior": "unverified",
+    "interior": "unverified",
+    "passage": "unverified"
+  },
+  "nextStep": "核候选与真实实体/父院落对应，区分一对多及同体；再核独立外观、室内和通行。"
+}

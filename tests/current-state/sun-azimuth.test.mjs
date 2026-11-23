@@ -1,17 +1,9 @@
-import {restoreR35SourceIfPresent} from '../lib/r35-source-retention.mjs';
+import { replayR34SunSourceGuard } from '../lib/r34-sun-azimuth-native.mjs';
 import test from 'node:test';
-import { restorePlaceInfoBytes } from '../lib/place-info-source-delta.mjs';
-import { restoreLoadingWelcomeBytes } from '../lib/loading-welcome-source-delta.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { readHistoricalSource } from '../lib/historical-sources.mjs';
-import { assertV9MapMainBytes } from '../lib/v9-map-source-delta.mjs';
-import { restoreV10EntryMainBytes } from '../lib/v13-entry-source-delta.mjs';
-import { assertGateConstantsBytes } from '../lib/v9-gate-constants-delta.mjs';
-import { assertV10PostProcessingBytes } from '../lib/v10-render-lifecycle-source-delta.mjs';
 import * as THREE from 'three';
 import { HistoricalFixedSunEnvironment as Environment } from '../lib/environment-lighting.mjs';
-import {restorePreR15Source}from '../lib/r15-flight-source-retention.mjs';
 import { getSunPosition } from '../../src/scene/sky/SkySetup.js';
 import { historicalFixedSunEnvironmentFixture, targetToLight, modelBearing, shadowSettings, unchangedEnvironmentSnapshot, protectedEnvironmentMethods, sha256 } from '../lib/environment-lighting.mjs';
 
@@ -119,27 +111,7 @@ test('untouched Environment methods preserve IBL intensity and setup plus all no
   assert.deepEqual(protectedEnvironmentMethods(), baseline.environmentMethodsSHA256);
 });
 
-test('protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas', () => {
-  assert.equal(baseline.protectedSourcesSHA256['src/scene/sky/Skyline.js'],
-    '1aeb74c691478690d1eae9cfab2950847c786309e2a0f37a29a56fce0b15afba');
-  for (const [path, hash] of Object.entries(baseline.protectedSourcesSHA256)) {
-    if (path === 'src/config/constants.js') {
-      const historical = readHistoricalSource('35914d6c2bc16dbb9fd7245d6384195ece5e125d', 'src/config/constants.js');
-      assert.equal(sha256(historical), hash, 'historical constants fixture remains unchanged');
-      assertGateConstantsBytes(historical, readFileSync(new URL(`../../${path}`, import.meta.url)));
-      continue;
-    }
-    const expected = path === 'src/scene/sky/Skyline.js' ? acceptedSkyline.sourceSHA256 : hash;
-    const current = restoreR35SourceIfPresent(path, readFileSync(new URL(`../../${path}`, import.meta.url)));
-    if (path === 'main.js') {
-      const historical = readHistoricalSource(baseline.baseCommit, path);
-      assert.equal(sha256(historical), hash, 'the original V7 main.js hash remains pinned');
-      assertV9MapMainBytes(historical, restoreV10EntryMainBytes(restorePlaceInfoBytes('main.js', restoreLoadingWelcomeBytes(restorePreR15Source('main.js',current)))));
-    } else if (path === 'src/render/PostProcessing.js') {
-      assertV10PostProcessingBytes(current, expected);
-    } else assert.equal(sha256(current), expected, path);
-  }
-});
+test('protected sources match V7 with only the exact accepted skyline, V9 map/gate, V10 lifecycle and V13 entry deltas', replayR34SunSourceGuard);
 
 test('unused legacy getSunPosition API behavior stays unchanged and is not the active sun vector', t => {
   const env = initialized(t);

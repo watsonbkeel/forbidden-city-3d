@@ -3,8 +3,11 @@ import {verifiedR33AddedProductPaths} from '../lib/r33-product-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import path from 'node:path';
 import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import {readR32PaintCheckpoint, readR32PaintInventory} from '../lib/r32-paint-source-inputs.mjs';
+import {r33Source} from '../lib/r33-source-retention.mjs';
+import {r34Source} from '../lib/r34-source-retention.mjs';
 
 const root = new URL('../../', import.meta.url);
 const helper = new URL('../lib/r32-followthrough-source-retention.mjs', import.meta.url);
@@ -12,6 +15,29 @@ const read = name => fs.readFileSync(new URL(name, root));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixturePath = 'tests/fixtures/r32-followthrough-source-delta.json';
 const fixture = JSON.parse(read(fixturePath));
+const replayBytes = gunzipSync(read('tests/fixtures/r32-followthrough-replay.json.gz'), {maxOutputLength:80_000});
+assert.equal(sha(replayBytes), '4c46a296936308df22eb33c8a9f49000130085dae87a325effca01c084033647', 'immutable follow-through replay inputs');
+const replay = JSON.parse(replayBytes);
+const minimapPath = 'src/ui/Minimap.js', hallPath = 'src/scene/palace/special/ChuxiuHall.js',
+  courtyardPath = 'src/scene/palace/special/ChuxiuCourtyard.js';
+function checkpoint(name, current, row, delta, archived = row.utf8) {
+  if (sha(current) !== row.knownSuccessorSHA256) return current;
+  const frozen = Buffer.from(archived, 'utf8');
+  assert.equal(frozen.length, delta.candidateBytes, name);
+  assert.equal(sha(frozen), delta.candidateSHA256, name);
+  assert.equal(createHash('sha1').update(Buffer.from(`blob ${frozen.length}\0`)).update(frozen).digest('hex'), row.candidateGitBlob, name);
+  return frozen;
+}
+const atFollowthrough = name => name === minimapPath
+  ? checkpoint(name, read(name), replay.minimap, fixture.files[name]) : readR32PaintCheckpoint(name);
+const readR33Inventory = name => name === hallPath
+  ? checkpoint(name, read(name), replay.chuxiuHall, r33Source.addedFiles[name]) : readR32PaintCheckpoint(name);
+function readR34Inventory(name) {
+  const bytes = read(name);
+  if (name !== courtyardPath || sha(bytes) !== replay.chuxiuCourtyard.knownSuccessorSHA256) return bytes;
+  const sources = JSON.parse(gunzipSync(read(replay.chuxiuCourtyard.fixture), {maxOutputLength:130_000}));
+  return checkpoint(name, bytes, replay.chuxiuCourtyard, r34Source.addedFiles[name], sources[name]);
+}
 async function load() {
   assert.ok(fs.existsSync(helper), 'exact frozen R32 follow-through source helper is required');
   return import(helper);
@@ -75,7 +101,8 @@ for (const [name, delta] of Object.entries(fixture.files)) {
     const {restoreR31CombinedSourceIfPresent} = await import('../lib/r31-combined-source-retention.mjs');
     const {restoreR31SourceIfPresent} = await import('../lib/r31-flight-operations-retention.mjs');
     const {restorePreR15Source} = await import('../lib/r15-flight-source-retention.mjs');
-    const bytes = read(name), original = Buffer.from(bytes), text = bytes.toString('utf8');
+    const bytes = atFollowthrough(name);
+    const original = Buffer.from(bytes), text = bytes.toString('utf8');
     assert.equal(sha(bytes), delta.candidateSHA256);
     assert.equal(bytes.length, delta.candidateBytes);
     const old = restore(name, bytes);
@@ -126,18 +153,20 @@ for (const [name, delta] of Object.entries(fixture.addedFiles)) {
     for (const bad of [Buffer.alloc(0), altered, bytes.subarray(1), Buffer.concat([bytes, bytes]), Buffer.concat([bytes, Buffer.from('\n')])]) {
       assert.throws(() => check(name, bad), /exact R32 follow-through added source/);
       for (const verify of [verifiedR32FollowthroughAddedProductPaths, verifiedR32AddedProductPaths]) {
-        assert.throws(() => verify(p => p === name ? bad : read(p)), /exact R32 follow-through added source/);
+        assert.throws(() => verify(p => p === name ? bad : readR32PaintInventory(p)), /exact R32 follow-through added source/);
       }
     }
     for (const verify of [verifiedR32FollowthroughAddedProductPaths, verifiedR32AddedProductPaths]) {
-      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return read(p);}), /missing frozen file/);
+      assert.throws(() => verify(p => {if (p === name) throw new Error('missing frozen file: ' + p); return readR32PaintInventory(p);}), /missing frozen file/);
     }
   });
 }
 
 test('unregistered paths and changed epochs cannot acquire a follow-through exception', async () => {
   const {restorePreR32FollowthroughSource: restore, restoreR32FollowthroughSourceIfPresent: conditional, assertR32FollowthroughAddedSource: added} = await load();
-  const bytes = read('src/ui/Minimap.js');
+  const bytes = atFollowthrough(minimapPath);
+  const raw = read(minimapPath), altered = Buffer.concat([raw, Buffer.from('\n// unknown successor')]);
+  assert.equal(checkpoint(minimapPath, altered, replay.minimap, fixture.files[minimapPath]), altered);
   for (const name of ['src/unknown.js', 'src/ui/Minimap-copy.js', 'src/scene/palace/QianqingCeilingPaint-copy.js', 'public/textures/art/unknown.webp']) {
     assert.equal(restore(name, bytes), bytes);
     assert.equal(conditional(name, bytes), bytes);
@@ -154,8 +183,8 @@ test('unregistered paths and changed epochs cannot acquire a follow-through exce
 test('existing product inventory includes exactly the two bound follow-through product additions', async () => {
   await load();
   const {verifiedR32AddedProductPaths, verifiedR32FollowthroughAddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
-  assert.deepEqual(verifiedR32FollowthroughAddedProductPaths(), fixture.productAdditions);
-  const all = verifiedR32AddedProductPaths();
+  assert.deepEqual(verifiedR32FollowthroughAddedProductPaths(readR32PaintInventory), fixture.productAdditions);
+  const all = verifiedR32AddedProductPaths(readR32PaintInventory);
   assert.deepEqual(all.slice(-7), [...fixture.productAdditions,
     'public/textures/art/qianqing-screen-illustration-r32.webp', 'src/scene/palace/QianqingScreenPaint.js',
     'public/textures/art/qianqing-five-dragon-illustration-r32.webp', 'src/scene/palace/QianqingFriezePaint.js',
@@ -164,10 +193,11 @@ test('existing product inventory includes exactly the two bound follow-through p
   assert.ok(all.every(p => /^(src|data|public)\//.test(p)), 'provenance is bound but not a runtime inventory path');
 });
 
-// Re-evaluate the exact R25-R30 inventory unions without their unrelated
-// top-level scene captures. The original historical test entry points remain
-// retain their historical baseline assertions; the explicit R33 union adds
-// only four newly registered, independently byte-bound runtime paths.
+// Re-evaluate the exact historical R25-R30 inventory unions at the R34
+// integration boundary. Actual paths are independently extracted from the
+// public R34 Git tree; expected paths still come from the original registries
+// and each distinct, source/asset-validated inventory. No current files are
+// omitted by deriving the historical path list from the expected union.
 const registry = name => JSON.parse(read('tests/fixtures/' + name + '.json'));
 const r25 = registry('r25-nameboard-source-delta'), r26 = registry('r26-qianqing-source-delta');
 const frieze = registry('r26-qianqing-frieze-source-delta'), r27 = registry('r27-jiaotai-source-delta');
@@ -185,19 +215,20 @@ for (const [label, source, later, roots] of [
   test(`${label} unchanged exact product inventory rejects extra, missing and duplicate paths`, async () => {
     await load();
     const {verifiedR31AddedProductPaths, verifiedR32AddedProductPaths} = await import('../lib/r32-product-inventory.mjs');
+    const additionsR33 = verifiedR33AddedProductPaths(readR33Inventory);
+    const additionsR34 = verifiedR34AddedProductPaths(readR34Inventory);
     const expected = [
       ...Object.keys(source.files), ...Object.keys(source.addedFiles), ...Object.keys(source.retainedFiles),
       ...later.flatMap(r => Object.keys(r.addedFiles)),
-      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths(), ...verifiedR33AddedProductPaths(), ...verifiedR34AddedProductPaths()
+      ...verifiedR31AddedProductPaths(), ...verifiedR32AddedProductPaths(readR32PaintInventory), ...additionsR33, ...additionsR34
     ].filter(p => roots.some(dir => p.startsWith(dir + '/'))).sort();
-    const actual = roots.flatMap(dir => fs.readdirSync(new URL(dir + '/', root), {recursive: true, withFileTypes: true})
-      .filter(entry => entry.isFile()).map(entry => path.relative(root.pathname, path.join(entry.parentPath, entry.name)))).sort();
+    const actual = replay.productTree.paths.filter(p => roots.some(dir => p.startsWith(dir + '/'))).sort();
     assert.equal(expected.length, new Set(expected).size);
     assert.deepEqual(actual, expected);
     for (const extra of ['src/scene/palace/Unregistered.js', 'src/ui/Unregistered.js', ...(roots.includes('public') ? ['public/textures/art/unregistered.webp'] : [])]) {
       assert.throws(() => assert.deepEqual([...actual, extra].sort(), expected));
     }
-    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js', ...verifiedR33AddedProductPaths(), ...verifiedR34AddedProductPaths()].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
+    for (const added of [...fixture.productAdditions, 'src/scene/palace/QianqingScreenCrest.js', ...additionsR33, ...additionsR34].filter(p => roots.some(dir => p.startsWith(dir + '/')))) {
       assert.throws(() => assert.deepEqual(actual.filter(p => p !== added), expected));
       assert.throws(() => assert.deepEqual([...actual, added].sort(), expected));
     }

@@ -1,3 +1,4 @@
+import {loadTextureFirst} from '../palace/special/TriadTextureFirst.js';
 import {assertDafotangPreviewContext} from './DafotangPreviewScope.js';
 import {buildCangzhenGate} from '../palace/special/CangzhenGate.js';
 import {validateQiandongSecondFrontCourt} from '../palace/special/QiandongSecondFrontCourtProfile.js';
@@ -297,6 +298,8 @@ export class ZoneBase {
     if(options.dafotangOriginalScope==='triad'&&options.dafotangOriginalArtwork!==true)throw Error('Triad scope requires explicit original-artwork preview');
     if(options.dafotangCentralRevision!==undefined&&(options.dafotangCentralRevision!=='refined-eight-tier-v2'||options.dafotangOriginalArtwork!==true))throw Error('Explicit original-artwork preview and allowlisted central revision required');
     if(options.dafotangPrivateSideRevision!==undefined&&(options.dafotangPrivateSideRevision!=='private-side-eight-tier-v2'||options.dafotangOriginalArtwork!==true||options.dafotangOriginalScope!=='triad'||options.dafotangCentralRevision!=='refined-eight-tier-v2'))throw Error('Explicit private side revision requires triad preview and refined central');
+    if(options.triadTextureFirst!==undefined && (options.triadTextureFirst!==true || zoneJson.id!=='outer-west' || options.dafotangOriginalArtwork!==true || options.dafotangOriginalScope!=='triad'))throw Error('Explicit outer-west texture-first triad required');
+    this.triadTextureFirst=options.triadTextureFirst===true;
     this.library = library;
     this.zoneJson = zoneJson;
     this.kit = new CourtKit(library, zoneJson.id);
@@ -339,6 +342,12 @@ export class ZoneBase {
     this.group.userData.previewScope={kind:'DAFOTANG_ONLY_EXPLICIT_COMPONENT_PREVIEW',sourceContext:'CANONICAL_FULL_OUTER_WEST',placeId:'place-outer-west-6cae88b6a2',notFullZone:true};
     yield {phase:'result',index:0};
     return {group:this.group,colliders:[...this.kit.colliders],walkables:[...this.kit.walkables],rooms:[...this.kit.rooms],mapItems:this.kit.mapItems.map(publicMapItem),regions:[...this.kit.regions],silhouette:null};
+  }
+
+  startTextureFirstSession() {
+    if(this.triadTextureFirst && !this.disposed && this.group?.parent && !this.dafotangOriginalSession) {
+      this.dafotangOriginalSession=createOriginalTriadSession(this.group,{load:loadTextureFirst});
+    }
   }
 
   getBuildStepMetrics() { return getBuildStepMetrics(this); }
@@ -756,7 +765,7 @@ export class ZoneBase {
     // Keep every old room producer (including Jide/Weiyu) ahead of it.
     if(this.zoneJson.id==='east-six')buildQiandongSecondFrontCourt(this.kit,items[59],this.zoneJson);
     this.group = this.kit.finish();
-    if(this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2')){
+    if(!this.triadTextureFirst&&this.zoneJson.id==='outer-west'&&this.group.userData.architecture.some(r=>r.id==='place-outer-west-6cae88b6a2')){
       if(this.kit.dafotangOriginalArtwork){
         this.dafotangOriginalSession=this.kit.dafotangOriginalScope==='triad'
           ?createOriginalTriadSession(this.group,{load:({subjectId,...request})=>this.kit.dafotangPrivateSideRevision==='private-side-eight-tier-v2'&&subjectId!=='shakyamuni'?loadPreparedSideArtwork(subjectId,{...request,preparationOnly:true}):loadOriginalBuddhaArtwork(subjectId,{...request,centralRevision:this.kit.dafotangCentralRevision})})

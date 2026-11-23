@@ -1,5 +1,31 @@
 import*as T from'three';import test from'node:test';import assert from'node:assert/strict';import{fixture,context,isNew}from'./fixture.mjs';import{BeforeZone,beforeAPI}from'./before.mjs';import{rawSnapshot,hash}from'../r164-three-entry-navigation/snapshot.mjs';import{addFanhuaStairContacts,fitFanhuaStairApproach}from'../../src/scene/palace/special/FanhuaStairContact.js';import{REMAINING_NINGSHOU_PROFILES}from'../../src/scene/palace/special/RemainingNingshouHalls.js';
-test('all rendered source payload and prior physical objects remain, five exact visible tread ordinary contacts added',()=>{const a=fixture(),b=fixture(BeforeZone);try{assert.deepEqual(rawSnapshot(a.kit.root),rawSnapshot(b.kit.root));assert.deepEqual(a.kit.colliders.filter(c=>!isNew(c)),b.kit.colliders);assert.deepEqual(a.kit.walkables,b.kit.walkables);for(const k of['mapItems','regions','rooms','owned'])assert.equal(a.kit[k].length,b.kit[k].length,k);const c=a.kit.colliders.filter(isNew);assert.equal(c.length,5);for(let i=0;i<5;i++){assert.equal(c[i].fanhuaStairContact,i+1);assert.equal(c[i].min.x,-341.6);assert.equal(c[i].max.x,-338.4);assert.equal(c[i].max.y,.5*(i+1)/5);const m=a.f.children.filter(m=>m.userData.role==='fanhua-south-step')[i],b=new T.Box3().setFromObject(m);for(const k of['x','y','z'])assert.ok(Math.abs(c[i].min[k]-b.min[k])<1e-6&&Math.abs(c[i].max[k]-b.max[k])<1e-6);}assert.equal(c[0].overhead,undefined);assert.equal(c[0].triangleSupport,undefined);assert.equal(c[0].furnitureMotionScope,undefined)}finally{a.dispose();b.dispose()}});
+// Only the documented entrance clearance changes normalize out of this R164
+// replay. All other geometry, ordered bounds and metadata stay exact.
+function withoutFanhuaEntranceSweeps(colliders) {
+ const specs=[
+  ['fanhua:south-entrance-floor',[-342.8357142857143,3.6700000000000004,506.87],[-337.1642857142857,3.85,510]],
+  ['fanhua:south-lower-eave-beam',[-353,3.4099999928474425,506.60999999940395],[-327,3.7700000071525572,506.89000000059605]]
+ ];
+ const [slab,beam]=specs.map(([id,min,max])=>{
+  const matches=colliders.filter(c=>c.overhead?.sourceId===id);assert.equal(matches.length,1);
+  const [b]=matches;assert.deepEqual(b.min.toArray(),min);assert.deepEqual(b.max.toArray(),max);
+  assert.deepEqual(b.overhead,{type:'piecewise-linear-x',sourceId:id,points:[[min[0],min[1]],[max[0],min[1]]],minZ:min[2],maxZ:max[2],topY:max[1]});
+  return b;
+ });
+ const ordinarySlab=Object.assign(slab.clone(),slab);delete ordinarySlab.overhead;
+ colliders=colliders.filter(c=>c!==beam).map(c=>c===slab?ordinarySlab:c);
+ const lintels=colliders.filter(c=>c.overhead?.sourceId==='fanhua:south-door-lintel');
+ assert.equal(lintels.length,1);
+ const [lintel]=lintels;
+ assert.deepEqual(lintel.min.toArray(),[-341.72,3.15,507.76]);
+ assert.deepEqual(lintel.max.toArray(),[-338.28,3.3299999999999996,507.94]);
+ assert.deepEqual(lintel.overhead,{type:'piecewise-linear-x',sourceId:'fanhua:south-door-lintel',
+  points:[[-341.72,3.15],[-338.28,3.15]],minZ:507.76,maxZ:507.94,topY:3.3299999999999996});
+ const untagged=Object.assign(lintel.clone(),lintel);
+ delete untagged.overhead;
+ return colliders.map(c=>c===lintel?untagged:c);
+}
+test('retains all rendered geometry and existing boxes except exact entrance headroom changes; adds only five stair contacts to the stairs',()=>{const a=fixture(),b=fixture(BeforeZone);try{assert.deepEqual(rawSnapshot(a.kit.root),rawSnapshot(b.kit.root));assert.deepEqual(withoutFanhuaEntranceSweeps(a.kit.colliders.filter(c=>!isNew(c))),b.kit.colliders);assert.deepEqual(a.kit.walkables,b.kit.walkables);for(const k of['mapItems','regions','rooms','owned'])assert.equal(a.kit[k].length,b.kit[k].length,k);const c=a.kit.colliders.filter(isNew);assert.equal(c.length,5);for(let i=0;i<5;i++){assert.equal(c[i].fanhuaStairContact,i+1);assert.equal(c[i].min.x,-341.6);assert.equal(c[i].max.x,-338.4);assert.equal(c[i].max.y,.5*(i+1)/5);const m=a.f.children.filter(m=>m.userData.role==='fanhua-south-step')[i],b=new T.Box3().setFromObject(m);for(const k of['x','y','z'])assert.ok(Math.abs(c[i].min[k]-b.min[k])<1e-6&&Math.abs(c[i].max[k]-b.max[k])<1e-6);}assert.equal(c[0].overhead,undefined);assert.equal(c[0].triangleSupport,undefined);assert.equal(c[0].furnitureMotionScope,undefined)}finally{a.dispose();b.dispose()}});
 test('exact front approach differs but all other18 profiles and unmodified last three front points remain',()=>{for(const p of REMAINING_NINGSHOU_PROFILES){const q=beforeAPI.REMAINING_NINGSHOU_PROFILES.find(q=>q.id===p.id);if(p.key!=='fanhua')assert.deepEqual(p,q);else{assert.deepEqual(p.portals.slice(1),q.portals.slice(1));const normalize=p=>{const a=structuredClone(p);delete a.portals[0].approachPoints;delete a.navigation.approachPoints;delete a.navigation.portals[0].approachPoints;return a};assert.deepEqual(normalize(p),normalize(q));assert.notDeepEqual(p.navigation.approachPoints,q.navigation.approachPoints);assert.deepEqual(p.navigation.approachPoints.slice(2),q.navigation.approachPoints.slice(2))}}});
 test('duplicate registration rejected without mutating source or arrays',()=>{const a=fixture();try{const n=a.kit.colliders.length;assert.throws(()=>addFanhuaStairContacts(context(a)));assert.equal(a.kit.colliders.length,n)}finally{a.dispose()}});
 for(const mode of['position','manual-matrix','vertices','index','missing-source','missing-walk','readonly-array','wrong-profile','root-transform'])test('source guard rejects '+mode+' before adding contact',()=>{const a=fixture();try{a.kit.colliders=a.kit.colliders.filter(c=>!isNew(c));const m=a.f.children.find(m=>m.userData.role==='fanhua-south-step'&&m.geometry.type==='BoxGeometry'),c=context(a);if(mode==='position')m.position.x+=1;if(mode==='manual-matrix'){m.matrixAutoUpdate=false;m.matrix.makeTranslation(1,.25,0)}if(mode==='vertices')m.geometry.attributes.position.setX(0,20);if(mode==='index')m.geometry.index.setX(0,23);if(mode==='missing-source')a.f.remove(m);if(mode==='missing-walk')a.kit.walkables=[];if(mode==='missing-scope')a.kit.colliders=a.kit.colliders.filter(c=>!c.furnitureMotionScope);if(mode==='readonly-array')Object.freeze(a.kit.colliders);if(mode==='wrong-profile')c.p={...c.p,x:c.p.x+1};if(mode==='root-transform')a.kit.root.position.x=1;const before=hash(a.kit.colliders);assert.throws(()=>addFanhuaStairContacts(c));assert.equal(hash(a.kit.colliders),before);if(mode==='readonly-array')a.kit.colliders=[...a.kit.colliders];if(mode==='missing-source')a.f.add(m)}finally{a.dispose()}});

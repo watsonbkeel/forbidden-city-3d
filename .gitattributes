@@ -1,2 +1,5 @@
 # Preserve the published UTF-8/BOM CSV bytes and their audited CRLF line endings.
 reports/r52-program/*.csv -text whitespace=cr-at-eol
+
+# Preserve the original crosswalk as supplied; the registry test checks exact bytes.
+data/architecture/ledger-397/source-mapping-397.csv -text whitespace=cr-at-eol
