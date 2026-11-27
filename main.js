@@ -604,6 +604,14 @@ class ForbiddenCityApp {
       const status = document.createElement('small');status.className = 'model-status';
       status.textContent = fidelity.short;this.locationPanel.appendChild(status);
     }
+    const northTip = !this.flight?.occupied && (
+      location === '御花园北口' ? '去神武门：可从两侧的延和门或集福门绕过矮墙。' :
+      location === '顺贞门' ? '出顺贞门后，穿过北横街才到神武门。' : null
+    );
+    if (northTip) {
+      const tip = document.createElement('small');tip.className = 'model-status';
+      tip.textContent = northTip;this.locationPanel.appendChild(tip);
+    }
     this.helpPanel?.placeBelow(this.locationPanel);
   }
   

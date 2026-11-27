@@ -1,3 +1,4 @@
+import {buildShunzhenApproachPaving} from './garden/NorthStreet.js';
 import {splitChengguangCurb} from './garden/ChengguangCurbFit.js';
 import {clipYangxingBedTop,clipYangxingBedBorder,isYangxingWithheldTree,validateYangxingTreeCount} from './garden/YangxingLandscapeFit.js';
 import {clipJiangxueBedRectangle,isJiangxueWithheldPine,validateJiangxuePineCount} from './garden/JiangxueLandscapeFit.js';
@@ -92,6 +93,9 @@ export class GardenBuilder {
     const merged = mergeByMaterial(staticRoot, { name: 'garden_static' });
     merged.traverse(o => { if (o.isMesh && !o.isInstancedMesh) o.receiveShadow = true; });
     this.group.add(merged);
+    // Texture-only gate approach. Exact native terrain and collision stay owned
+    // by their original landscape and courtyard builders.
+    if (cx === 0 && this.bounds.z1 === 518.3) this.group.add(buildShunzhenApproachPaving(lib));
 
     this.buildTrees();
     this.scene.add(this.group);

@@ -1,3 +1,4 @@
+import {buildNorthStreetPaving} from './garden/NorthStreet.js';
 import {snapshotMesh,verifyMesh,snapshotAncestors,verifyAncestors} from '../controls/XiananContactIntegrity.js';
 import {linxiPoolGroundPath} from './palace/special/LinxiBridgePool.js';
 import {registerViewFollowingVisual,revokeViewFollowingVisual} from './sky/EnvironmentVisualOwnership.js';
@@ -148,6 +149,7 @@ export class Environment {
     ground.addEventListener('removed',()=>{birth.revoked=true;});
     groundGeometry.addEventListener('dispose',()=>{birth.revoked=true;});
     if (moat) this.addObject(buildOuterMoat(this.library, moat));
+    this.addObject(buildNorthStreetPaving(this.library));
     
     // 中轴御道（stone_slab，沿 z 轴从场景南界（午门外）到神武门）
     const roadWidth = 8;
