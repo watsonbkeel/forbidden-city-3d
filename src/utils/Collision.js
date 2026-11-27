@@ -1,3 +1,4 @@
+import {northApproachLocation} from '../scene/garden/NorthStreet.js';
 import {beginXiananMove,xiananMoveStart,tryXiananGroundedStep,finishXiananMove,abortXiananMove} from '../controls/XiananContactMotion.js';
 import {preserveXiananOwner,revokeXiananOwners} from '../scene/palace/special/XiananContactSources.js';
 import {preserveWumenSouthDeckOwner,canUseWumenSouthDeckBoundary} from '../scene/palace/special/WumenSouthDeckBoundary.js';
@@ -551,6 +552,8 @@ export class CollisionManager {
     const { x, z } = position;
     const hit = this.regions?.find(r => x >= r.minX && x <= r.maxX && z >= r.minZ && z <= r.maxZ);
     if (hit) return hit.name;
+    const northApproach = northApproachLocation(x,z,DEFAULT_PLAYER_RADIUS);
+    if (northApproach) return northApproach;
     // 兜底分段（真实米制）：外朝东西庑墙 ≈ ±106.5 / 110.7，内廷东西一长街墙 ±54.25，御花园墙 ±68
     if (Math.abs(x) > LAYOUT.PALACE_RECT.halfX) return x < 0 ? '东华门外' : '西华门外';
     if (Math.abs(x) > 106 && z > LAYOUT.WUMEN_Z + 4 && z < 204) return x < 0 ? '东路·文华殿一带' : '西路·武英殿一带';
