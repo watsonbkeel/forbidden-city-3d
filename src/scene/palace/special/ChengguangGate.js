@@ -1,5 +1,6 @@
 import * as T from 'three';
 import {CourtKit} from '../kit.js';
+import {buildShunzhenCourtWalls} from './ShunzhenCourtWalls.js';
 import {createTriangleTemplate,triangleInstance} from '../../../utils/TriangleSupport.js';
 const ID='chengguang-source-fit',done=new WeakSet();
 export const CHENGGUANG_FIT=Object.freeze({x:.5,z:513,rot:0,bays:1,bounds:Object.freeze([-2,0,511.6,3,5.2,514.4])});
@@ -38,5 +39,11 @@ export function buildChengguangGate(kit,zoneId){
    fit:['all dimensions, colors, complete elevations and roof details; no own image','regional game placement .5,513 is not surveyed','open leaves/.06 threshold deliberately retain game central route despite official closed condition','two short side piers, not full original courtyard'],
    excluded:['copper elephants, visitor map, fine motifs or plaque','complete historical enclosing walls','existing Shunzhen/Jifu/Yanhe identity rebinding','interiors or new contact permission'],unknown:['exact modern full facade','surveyed footprint and fine materials','GPU/mobile appearance']};f.userData.structure=meta;
  }catch(e){staged.dispose(staged.root);throw e;}
- kit.root.add(...[...staged.root.children]);kit.colliders.push(...staged.colliders);kit.walkables.push(...staged.walkables);kit.owned.push(...staged.owned);done.add(kit);return{frame:f,meta};
+ kit.root.add(...[...staged.root.children]);kit.colliders.push(...staged.colliders);kit.walkables.push(...staged.walkables);kit.owned.push(...staged.owned);done.add(kit);
+ // In a normal Garden build the gate pass and the two side gates are
+ // complete by this hook. A standalone Chengguang build stays standalone.
+ const courtyardAnchors=['garden/shunzhen-gates','yanhe-source-fit','jifu-source-fit'];
+ if(courtyardAnchors.every(id=>kit.root.children.some(child=>child.userData.structure?.id===id)))
+  buildShunzhenCourtWalls(kit);
+ return{frame:f,meta};
 }

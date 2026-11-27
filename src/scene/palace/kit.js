@@ -717,17 +717,25 @@ export class CourtKit {
     const vertical=this.plaques.filter(p=>p.layout!=='horizontal');
     buildHorizontalNameboardAtlas(this,this.plaques.filter(p=>p.layout==='horizontal'));
     if(!vertical.length)return;
-    const texts = [...new Set(vertical.map(p => p.text))];
+    // Custom faces get their own slot if a generic record with the same text
+    // also exists. Ordinary plaques are still deduplicated by text.
+    const slotKey = p => p.paintFace ? p : p.text;
+    const slots = new Map(vertical.map(p => [slotKey(p), p]));
     const CW = 96, CH = 256, cols = 21;
-    const rows = Math.ceil(texts.length / cols);
+    const rows = Math.ceil(slots.size / cols);
     const canvas = document.createElement('canvas');
     canvas.width = 2048;
     canvas.height = THREE.MathUtils.ceilPowerOfTwo(Math.max(rows * CH, 256));
     const c = canvas.getContext('2d');
     const font = '"STKaiti","KaiTi","Kaiti SC","Songti SC","SimSun",serif';
     const cell = new Map();
-    texts.forEach((t, i) => {
+    Array.from(slots).forEach(([key, { text: t, paintFace }], i) => {
       const cx = (i % cols) * CW, cy = Math.floor(i / cols) * CH;
+      cell.set(key, [cx / canvas.width, 1 - (cy + CH) / canvas.height, CW / canvas.width, CH / canvas.height]);
+      if (paintFace) {
+        paintFace(c, cx, cy, CW, CH);
+        return;
+      }
       c.fillStyle = '#c8a23c'; c.fillRect(cx, cy, CW, CH);
       c.fillStyle = '#1e3a6b'; c.fillRect(cx + 8, cy + 8, CW - 16, CH - 16);
       c.strokeStyle = '#e8c55a'; c.lineWidth = 3; c.strokeRect(cx + 13, cy + 13, CW - 26, CH - 26);
@@ -738,7 +746,6 @@ export class CourtKit {
       const step = (CH - 44) / chars.length;
       c.font = `bold ${Math.floor(Math.min(step * 0.86, CW * 0.62))}px ${font}`;
       chars.forEach((ch, k) => c.fillText(ch, cx + CW / 2, cy + 22 + step * (k + 0.5)));
-      cell.set(t, [cx / canvas.width, 1 - (cy + CH) / canvas.height, CW / canvas.width, CH / canvas.height]);
     });
     const tex = new THREE.CanvasTexture(canvas);
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -746,8 +753,9 @@ export class CourtKit {
     const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, metalness: 0.15, name: 'kit_plaques' });
     this.owned.push(mat);
     (this.ownedTextures ??= []).push(tex);
-    for (const { mesh, text } of vertical) {
-      const [u0, v0, du, dv] = cell.get(text);
+    for (const p of vertical) {
+      const { mesh } = p;
+      const [u0, v0, du, dv] = cell.get(slotKey(p));
       const uv = mesh.geometry.attributes.uv;
       for (let i = 0; i < uv.count; i++) uv.setXY(i, u0 + uv.getX(i) * du, v0 + uv.getY(i) * dv);
       mesh.material = mat;
