@@ -1,5 +1,6 @@
 import {removeCoveredPlatformSurface} from '../../../render/CoveredPlatformSurface.js';
 import { fitJingyunPlaqueFrame } from './JingyunPlaqueFrame.js';
+import { drawJingyunPlaqueFace } from './JingyunPlaqueFace.js';
 import {sideGateGalleryRailEnd} from './SideGateGalleryProfiles.js';
 import {buildXieheWestEndPartitions} from './XieheWestEndPartitions.js';
 import {buildXieheEastRampRails} from './XieheEastRampRails.js';
@@ -166,7 +167,8 @@ export function buildSideGate(kit,opts) {
   const plaqueZ=-d/2-.29-(g.profile==='xiehe'?.07:0);
   if(opts.plaque!==false) {
     kit.plaque(f,g.name,0,ph+h-.9,plaqueZ,.8,1.4);
-    fitJingyunPlaqueFrame(kit,f,g,kit.plaques.at(-1));
+    const plaque = kit.plaques.at(-1);
+    if (fitJingyunPlaqueFrame(kit, f, g, plaque)) plaque.paintFace = drawJingyunPlaqueFace;
   }
   if(g.profile==='xihe')buildXiheCourtyardCorbels(kit,f,g);
   if(g.profile==='xiehe')buildXieheCourtyardKnees(kit,f,g);
