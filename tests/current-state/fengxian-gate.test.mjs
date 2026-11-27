@@ -5,6 +5,7 @@ import {createCanvas} from '@napi-rs/canvas';
 import eastSix from '../../data/zones/east-six.json' with {type:'json'};
 import {ZoneBase} from '../../src/scene/zones/ZoneBase.js';
 import {CollisionManager} from '../../src/utils/Collision.js';
+import {gateGeom} from '../lib/world.mjs';
 import {PLAYER} from '../../src/config/constants.js';
 import {installCpuDocument} from '../lib/finished-world-lifecycle.mjs';
 import {createActualLibrary} from '../r158-cumulative-1600/library.mjs';
@@ -69,4 +70,16 @@ test('centre still walks both ways, side leaves and south-wall seams still block
     }
   }
   for (const dx of [-half, -5.5, 5.5, half]) assert.ok(blocked(body(dx, 0)), 'blocked side or wall seam: ' + dx);
+});
+
+test('whole-world QA recognizes the dedicated ground gate and proposes only the open passage', () => {
+  const item = eastSix.items.find(r => r.name === '奉先门');
+  const path = gateGeom(item);
+  assert.deepEqual(path.dir, [0, 1]);
+  assert.equal(path.platformY, 0);
+  assert.deepEqual(path.profile.portalCenters, [0], 'closed side bays are not auto-walk routes');
+  assert.ok(path.front > 1 && path.rear > 1 && path.half === Math.max(path.front, path.rear));
+  for (const end of [-path.front - .7, path.rear + .7]) {
+    assert.equal(cm.checkCollision(new T.Vector3(x, PLAYER.HEIGHT, z + end), .5), false);
+  }
 });

@@ -7,6 +7,8 @@ const PROFILE = 'fengxian-three-arch';
 const SOURCE = 'https://img.dpm.org.cn/Uploads/File/2023/02/15/u63ec3cb1a5b6d.pdf#page=5';
 const STUDY = 'https://doi.org/10.19819/j.cnki.ISSN0529-1399.202302007';
 const WALL_HEIGHT = 6.5; // Same finished wall profile as the existing adjoining wall.
+const FOREPART_FRONT = -1.62;
+const OPEN_LEAF_REAR = 1.48;
 const ARCHES = [
   { x: -5.5, width: 3.12, springY: 1.95, rise: 1.03 },
   { x: 0, width: 4.45, springY: 2.25, rise: 1.23 },
@@ -36,6 +38,17 @@ function outline(points) {
   for (const p of points.slice(1)) shape.lineTo(...p);
   shape.closePath();
   return shape;
+}
+
+// Ground-only traversal data for the world route probes. The side door
+// apertures are architectural openings, not available gameplay paths.
+export function fengxianGatePassage(item) {
+  if (item?.kind !== 'gate' || item.name !== NAME || item.gateProfile !== PROFILE ||
+      !Number.isFinite(item.x) || !Number.isFinite(item.z) || item.rot !== undefined) {
+    throw new Error('Invalid E56 passage source');
+  }
+  return { x: item.x, z: item.z, front: -FOREPART_FRONT, rear: OPEN_LEAF_REAR,
+    portalCenters: [ARCHES[1].x], platformY: 0 };
 }
 
 // The backing remains the same wall thickness/height at both joins. The
@@ -109,8 +122,8 @@ export function buildFengxianGate(kit, item, zone) {
     } else {
       for (const side of [-1, 1]) {
         const hinge = side * (p.width / 2 - .10);
-        box('retained-open-leaf', red, hinge - .06, hinge + .06, 0, 2.08, .08, 1.48);
-        kit.col(f, hinge - .06, 0, .08, hinge + .06, 2.08, 1.48);
+        box('retained-open-leaf', red, hinge - .06, hinge + .06, 0, 2.08, .08, OPEN_LEAF_REAR);
+        kit.col(f, hinge - .06, 0, .08, hinge + .06, 2.08, OPEN_LEAF_REAR);
       }
     }
   }
@@ -120,7 +133,7 @@ export function buildFengxianGate(kit, item, zone) {
   f.add(mark(cap, 'retained-height-wall-cap'));
 
   for (const [left, right, top] of FOREPARTS) {
-    const mid = (left + right) / 2, front = -1.62, rear = -.499;
+    const mid = (left + right) / 2, front = FOREPART_FRONT, rear = -.499;
     const p = ARCHES.find(a => a.x > left && a.x < right);
     if (p) {
       pier(left, p.x - p.width / 2, top, front, rear, .48);
