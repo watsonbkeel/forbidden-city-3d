@@ -1,3 +1,4 @@
+import {buildFengxianGate} from '../palace/special/FengxianGate.js';
 import {loadTextureFirst} from '../palace/special/TriadTextureFirst.js';
 import {assertDafotangPreviewContext} from './DafotangPreviewScope.js';
 import {buildCangzhenGate} from '../palace/special/CangzhenGate.js';
@@ -977,6 +978,7 @@ export class ZoneBase {
   }
 
   buildGate(item) {
+    if (item.gateProfile === 'fengxian-three-arch') return buildFengxianGate(this.kit, item, this.zoneJson);
     if(item.qiandongSecondFrontGate!==undefined){const built=buildQiandongSecondFrontGate(this.kit,item,this.zoneJson);if(!built)throw Error('Qiandong front gate dispatch mismatch');return built.width;}
     validateTaijiSouthGateSource(this.zoneJson,item);
     const xianan=this.zoneJson?.id==='outer-west'&&this.zoneJson.items?.[30]===item;
